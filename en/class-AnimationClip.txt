@@ -5,9 +5,11 @@ Animation clips can be selected from imported FBX data (see [[FBXImporter-Animat
 
 Attach:MecanimAligningAnimationClips.png
 
+A 'Take' is what defines all the animation that might be in an imported file - so this may contain a number of clips that need to be identified and created as clips but editing start and stop points. In order for these clips to loop they must also be trimmed in such a way to match as best as possible the first and last frame. Mecanim in Unity makes it easy to do so by representing
+
 ||PROPS
 ||``Name`` ||The name of the clip.||
-||``Source Take`` ||The take in the source file to use as a source for this animation clip.||
+||``Source Take`` ||The take in the source file to use as a source for this animation clip. (This option will not show up if there's only one take)||
 ||``Start`` ||Start frame of the clip.||
 ||``End`` ||End frame of the clip.||
 ||``Loop Pose``  ||Enable to make the motion loop seamlessly.||
