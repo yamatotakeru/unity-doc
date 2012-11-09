@@ -1,24 +1,24 @@
-!!Animation States
+!!アニメーションステート
 
-$$Animation States$$ are the basic building blocks of an $$Animation State Machine$$. Each state contains an individual animation sequence (or blend tree) which will play while the character is in that state. When an event in the game triggers a state transition, the character will be left in a new state whose animation sequence will then take over.
+$$アニメーションステート$$は$$アニメーションステートマシン$$の基本構成要素です。各ステート（状態）は、個々のアニメーションシーケンス（またはブレンドツリー）が含まれていて、キャラクターがそのステートの時に再生されます。ゲーム内のイベントで、ステート遷移をトリガすると、キャラクターは新しいステートにに移行し、対応するアニメーションシーケンスに動作が遷移します。
 
-When you select a state in the ~~Animator Controller~~, you will see the properties for that state in the inspector:-
+~~アニメーターコントローラー~~のステートを選択すると、インスペクタ上で、そのステートに対応するプロパティが表示されます。:-
 
 Attach:MecanimStateInspector.png
 
 ||PROPS
-||``Speed``      ||The default speed of the animation||
-||``Motion``     ||The animation clip assigned to this state||
-||``Foot IK``    ||Should Foot IK be respected for this state||
-||``Transitions``||The list of transitions originating from this state||
+||``Speed``      |||アニメーションのデフォルトの速度||
+||``Motion``     |||ステートに割り当てられているアニメーションクリップ||
+||``Foot IK``    ||ステートで足のIKを有効にするか||
+||``Transitions``||ステートの遷移先ステート一覧||
 
-The default state, displayed in brown, is the state that the machine will be in when it is first activated. You can change the default state, if necessary, by right-clicking on another state and selecting ^^Set As Default^^ from the context menu. The ''solo'' and ''mute'' checkboxes on each transition are used to control the behaviour of $$animation previews$$ - see [[AnimationSoloMute|this page]] for further details.
+茶色で表示されるデフォルトのステートは、最初に起動されたときのステートです。デフォルトの状態を変更したい場合は、別のステート上で右クリックし、コンテキストメニューから^^Set As Default^^を選択します。各遷移上soloおよびmuteのチェックボックスは$$アニメーションプレビュー$$の動作を制御するために使用されています。詳細は[[AnimationSoloMute|このページ]] を参照のこと。
 
-A new state can be added by right-clicking on an empty space in the ~~Animator Controller Window~~ and selecting ^^Create State->Empty^^ from the context menu. Alternatively, you can drag an animation into the Animator Controller Window to create a state containing that animation. (Note that you can only drag Mecanim animations into the Controller - non-Mecanim animations will be rejected.) States can also contain [[Main.AnimationBlendTrees|Blend Trees]].
+新しいステートの追加時はが~~Animator Controller Window~~のどこかを右クリックし、コンテキストメニューで^^Create State→Empty^^を選択します。別の方法としては、アニメーターコントローラウィンドウにアニメーションをドラッグすることで、そのアニメーションを含むステートを作成することが出来ます。（コントローラーにはメカニムアニメーションをドラッグできることに留意してください。 非メカニムアニメーションはリジェクトされます。）ステートは[[Main.AnimationBlendTrees|ブレンドツリー]] を含みます。
 
-!!!Any State
-$$Any State$$ is a special state which is always present. It exists for the situation where you want to go to a specific state regardless of which state you are currently in. This is a shorthand way of adding the same outward transition to all states in your machine. Note that the special meaning of $$Any State$$ implies that it cannot be the end point of a transition (ie, jumping to "any state" cannot be used as a way to pick a random state to enter next).
+!!!任意ステート（Any State）
+任意ステート（Any State）は常駐している特殊なステートです。現在どのステートにいるかに影響を受けることなく、特定のステートに遷移したい場合のために存在している。これは、全ステートに同じ遷移先を追加するのと同じ効果がある。$$任意ステート$$は、その特殊の機能により、ステートの遷移先とすることはできません。（次の遷移先としてランダムなステートを選択するための手段としては任意ステートは使用できませんので留意下さい。）
 
 Attach:AnyState.png
 
-(back to [[Animation State Machines]])
+([[Animation State Machines|アニメーションステートマシン]] に戻る)

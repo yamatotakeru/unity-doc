@@ -5,7 +5,15 @@ Animation clips can be selected from imported FBX data (see [[FBXImporter-Animat
 
 Attach:MecanimAligningAnimationClips.png
 
-A 'Take' is what defines all the animation that might be in an imported file - so this may contain a number of clips that need to be identified and created as clips but editing start and stop points. In order for these clips to loop they must also be trimmed in such a way to match as best as possible the first and last frame. Mecanim in Unity makes it easy to do so by representing
+A 'Take' is what defines a set of animation as separated in Motionbuilder, Maya and other 3D packages. Unity can import these takes as individual clips or you can create them from the whole file or a take. But in this section we are creating clips:
+
+Creating clips is essentially defining start and end points for segments of animation. In order for these clips to loop they should be trimmed in such a way to match as best as possible the first and last frame of the desired loop.
+
+Mecanim in Unity makes it easy to do so by representing these loop points with waves that can help match the best loop point for the rotation, y position and xz position. Checking the loop pose will match the first and last frame of your clip, but setting the the start and end points to match with green light first will ensure the Loop pose deviates the least from the original animation.
+
+To set the clip bounds (first and last frame) drag the left and right marker in the timeline. Observe the wave shapes as you drag each and aim for green sections for each parameter and ultimately the loop match green lights
+
+
 
 ||PROPS
 ||``Name`` ||The name of the clip.||

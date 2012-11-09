@@ -1,17 +1,17 @@
-!!Animation Transitions
+!!アニメーション遷移
 
-$$Animation Transitions$$ define ''what'' happens when you switch from one $$Animation State$$ to another. There can be only one transition active at any given time. 
+$$アニメーション遷移$$は、ある$$アニメーションステート$$から別のものに切り替えたときに何が起こるかを定義する。任意の時点でアクティブなアニメーション遷移はひとつのみです。
 
 ||PROPS
-||``Atomic``      ||Is this transition atomic? (cannot be interrupted)
-||``Conditions``    ||Here we decide ''when'' transitions get triggered. 
+||``Atomic``      ||遷移がアトミックか（中断が出来ない）
+||``Conditions``    ||いつ遷移がトリガーされるか
 
-A condition consists of 2 parts: 
-# A conditional predicate (``If``, ``If Not``, ``Less``, ``Greater``, ``Equals``, ``Not Equal``, and ``Exit Time``). 
-# An event parameter (in conjunction with ``If`` and ``If Not``, use bool parameters, ``Exit Time`` just uses time). 
-# A parameter value (if needed)
+Conditionは2つの部分から成ります：
+# 条件述語 (``If``, ``If Not``, ``Less``, ``Greater``, ``Equals``, ``Not Equal``, および ``Exit Time``)
+# イベントパラメータ（IfとIf Notでbool型と連動、Exit Timeはtime型を使用）。
+# パラメータ値（必要な場合）
 
-You can adjust the transition between the two animation clips by dragging the start and end values of the overlap. 
+2つのアニメーションクリップ間の遷移は、開始値と終了値をドラッグすることによって、重なりを調整することができます。
 Attach:MecanimTransitionInspector.png
 
-(back to [[Animation State Machines]])
+([[Animation State Machines|アニメーションステートマシン]] にもどる)
