@@ -1,0 +1,11 @@
+! セピアトーンイメージエフェクト
+
+
+$$セピアトーン$$はイメージを古写真風に色づけをするイメージ効果です。
+
+他のイメージエフェクト[[comp-ImageEffects|(image effects)]] 同様、エフェクト機能はUnity Proのみであり利用可能とするためにはプロスタンダードアセット（[[HOWTO-InstallStandardAssets|Pro Standard Assets]] ）をあらかじめインポートする必要があります
+
+Attach:FxSepia.png\\
+''シーンにセピアトーンイメージエフェクトを適用した例''
+
+(:include imagefx-SM2:)

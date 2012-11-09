@@ -1,0 +1,37 @@
+! Capsule Collider
+
+The $$Capsule Collider$$ is made of two half-spheres joined together by a cylinder.  It is the same shape as the Capsule primitive.
+
+Attach:Inspector-CapsuleCollider.png\\
+''A pile of Capsule Colliders''
+
+
+!!Properties
+
+||PROPS
+(:include comp-ColliderProps:)
+||``Radius`` ||The radius of the Collider's local width. ||
+||``Height`` ||The total height of the Collider. ||
+||``Direction`` ||The axis of the capsule's lengthwise orientation in the object's local space. ||
+||``Center`` ||The position of the Collider in the object's local space. ||
+
+
+!!Details
+
+You can adjust the Capsule Collider's ``Radius`` and ``Height`` independently of each other.  It is used in the [[class-CharacterController|Character Controller]] and works well for poles, or can be combined with other Colliders for unusual shapes.
+
+Attach:capsulecollider.png
+''A standard Capsule Collider''
+
+(:include comp-ColliderDetails:)
+
+
+!!Compound Colliders
+
+(:include comp-ColliderCompound:)
+
+
+!!Hints
+(:include comp-ColliderHints:)
+
+(:include comp-ColliderAdvanced:)

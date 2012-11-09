@@ -1,0 +1,11 @@
+! Animation Clip 
+Attach:animation_clip_inspector.png\\
+''An imported animation selected in the $$Project View$$''
+
+$$Animation Clips$$ store all animation data that can be used for animated characters or simple animations.
+
+They contain only one property which can not be modified: the sample rate. This is the sample rate at which the clip was created. Note that Unity performs keyframe reduction when importing animations, thus this is not the number of keys.
+
+For details on the various import settings for an individual Animation Clip, please see the [[class-Mesh | Mesh Component Reference page]].
+
+__Note:__ Imported animations can't be edited in the Animation View, but if you make a duplicate of the imported animation inside Unity, the duplicate can be edited.

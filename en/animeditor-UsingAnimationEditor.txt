@@ -1,0 +1,86 @@
+! Using the Animation View (Legacy)
+
+The $$Animation View$$ can be used to preview and edit $$Animation Clips$$ for animated $$Game Objects$$ in Unity. The $$Animation View$$ can be opened from the ^^Window->Animation^^ menu.
+
+Attach:AnimationEditorMenu.png
+
+
+!! Viewing Animations on a GameObject
+
+The $$Animation View$$ is tightly integrated with the $$Hierarchy View$$, the $$Scene View$$, and the $$Inspector$$. Like the Inspector, the Animation View will show whatever $$Game Object$$ is selected. You can select a Game Object to view using the $$Hierarchy View$$ or the $$Scene View$$. (If you select a Prefab in the $$Project View$$ you can inspect its animation curves as well, but you have to drag the Prefab into the Scene View in order to be able to edit the curves.)
+
+Attach:AnimationEditorShowsSelectedPP.png\\
+''The $$Animation View$$ shows the $$Game Object$$ selected in the $$Hierarchy View$$.''
+
+At the left side of the $$Animation View$$ is a hierarchical list of the animatable properties of the selected $$Game Object$$. The list is ordered by the $$Components$$ and $$Materials$$ attached to the Game Object, just like in the $$Inspector$$. Components and Materials can be folded and unfolded by clicking the small triangles next to them. If the selected Game Object has any child Game Objects, these will be shown after all of the Components and Materials.
+
+Attach:AnimationEditorMatchesInspectorPP.png\\
+''The property list to the left in the $$Animation View$$ shows the Components and Materials of the selected $$Game Object$$, just like the $$Inspector$$.''
+
+
+!! Creating a New Animation Clip
+
+Animated $$Game Objects$$ in Unity need an $$Animation Component$$ that controls the animations. If a Game Object doesn't already have an Animation Component, the $$Animation View$$ can add one for you automatically when creating a new $$Animation Clip$$ or when entering $$Animation Mode$$.
+
+To create a new $$Animation Clip$$ for the selected $$Game Object$$, click the right of the two selection boxes at the upper right of the $$Animation View$$ and select ^^[Create New Clip]^^. You will then be prompted to save an Animation Clip somewhere in your $$Assets$$ folder. If the Game Object doesn't have an $$Animation Component$$ already, it will be automatically added at this point. The new $$Animation Clip$$ will automatically be added to the list of Animations in the Animation Component.
+
+Attach:AnimationEditorNewClip.png\\
+''Create a new $$Animation Clip$$.''
+
+In the $$Animation View$$ you can always see which $$Game Object$$ you are animating and which $$Animation Clip$$ you are editing. There are two selection boxes in the upper left of the Animation View. The left selection box shows the $$Game Object$$ with the $$Animation Component$$ attached, and the right selection box shows the $$Animation Clip$$ you are editing.
+
+Attach:AnimationEditorNewAnimationPP.png\\
+''The left selection box shows the $$Game Object$$ with the $$Animation Component$$ attached, and the right selection box shows the $$Animation Clip$$ you are editing.''
+
+
+!! Animating a Game Object
+
+To begin editing an Animation Clip for the selected Game Object, click on the ^^Animation Mode button^^.
+
+Attach:AnimationEditorAnimationModeButton.png  Click the ^^Animation Mode button^^ to enter $$Animation Mode$$.
+
+This will enter $$Animation Mode$$, where changes to the Game Object are stored into the $$Animation Clip$$. (If the Game Object doesn't have an $$Animation Component$$ already, it will be automatically added at this point. If there is not an existing $$Animation Clip$$, you will be prompted to save one somewhere in your $$Assets$$ folder.)
+
+You can stop the $$Animation Mode$$ at any time by clicking the ^^Animation Mode button^^ again. This will revert the $$Game Object$$ to the state it was in prior to entering the Animation Mode.
+
+You can animate any of the properties shown in the property list of the $$Animation View$$. To animate a property, click on the ^^Key Indicator^^ for that property and choose ^^Add Curve^^ from the menu. You can also select multiple properties and right click on the selection to add curves for all the selected properties at once. (``Transform`` properties are special in that the ``.x``, ``.y``, and ``.z`` properties are linked, so that curves are added three at a time.)
+
+Attach:AnimationEditorAddCurves.png  Attach:AnimationEditorAddMultipleCurves.png\\
+''Any property can be animated by clicking on its ^^Key Indicator^^ or by right clicking on its name. For ``Transform`` properties, curves for ^^.x^^, ^^.y^^, and ^^.z^^ are added together.''
+
+When in $$Animation Mode$$, a red vertical line will show which frame of the $$Animation Clip$$ is currently previewed. The $$Inspector$$ and $$Scene View$$ will show the Game Object at that frame of the Animation Clip. The values of the animated properties at that frame are also shown in a column to the right of the property names.
+
+Attach:AnimationEditorPreviewFramePP.png\\
+''In $$Animation Mode$$ a red vertical line shows the currently previewed frame. The animated values at that frame are previewed in the $$Inspector$$ and $$Scene View$$ and to the right of the property names in the $$Animation View$$.''
+
+You can click anywhere on the ^^Time Line^^ to preview or modify that frame in the Animation Clip. The numbers in the ^^Time Line^^ are shown as seconds and frames, so 1:30 means 1 second and 30 frames.
+
+Attach:AnimationEditorTimeLine.png Click in the ^^Time Line^^ to preview a given frame.\\
+Attach:AnimationEditorFrameNavigation.png You can go directly to a specific frame by typing it in, or use the buttons to go to the previous or next $$keyframe$$.
+
+You can also use the following keyboard shortcuts to navigate between frames:
+
+* Press ^^Comma^^ (^^,^^) to go to the previous frame.
+* Press ^^Period^^ (^^.^^) to go to the next frame.
+* Hold Alt and press ^^Comma^^ (^^,^^) to go to the previous $$keyframe$$.
+* Hold Alt and press ^^Period^^ (^^.^^) to go to the next $$keyframe$$.
+
+In $$Animation Mode$$ you can move, rotate, or scale the $$Game Object$$ in the $$Scene View$$. This will automatically create $$Animation Curves$$ for the position, rotation, and scale properties of the $$Animation Clip$$ if they didn't already exist, and keys on those Animation Curves will automatically be created at the currently previewed frame to store the respective ^^Transform^^ values you changed.
+
+You can also use the $$Inspector$$ to modify any of the animatable properties of the $$Game Object$$. This too will create $$Animation Curves$$ as needed, and create $$keys$$ on those Animation Curves at the currently previewed frame to store your changed values. Properties that are not animatable are grayed out in the $$Inspector$$ while in Animation Mode.
+
+Attach:AnimationEditorKeyframeButton.png The ^^Keyframe button^^ creates a $$keyframe$$ for the shown curves at the currently previewed frame (shortcut: ^^K^^).
+
+You can also manually create a $$keyframe$$ using the ^^Keyframe button^^. This will create a key for all the curves that are currently shown in the $$Animation View$$. If you want to only show curves for a subset of the properties in the property list, you can select those properties. This is useful for selectively adding keys to specific properties only.
+
+Attach:AnimationEditorSelectedPropertyShown.png\\
+''When selecting a property in the property list, only the curve for that property is shown.''
+
+
+!! Playback
+
+The $$Animation Clip$$ can be played back at anytime by clicking the ^^Play button^^ in the $$Animation View$$.
+
+Attach:AnimationEditorPlayButton.png  Click the ^^Play button^^ to play back the $$Animation Clip$$.
+
+The playback will loop within the time range that is shown in the ^^Time Line^^. This makes it possible to focus on refining a small part of the $$Animation Clip$$ that is being worked on, without having to play back the entire length of the clip. To play back the whole length of the $$Animation Clip$$, zoom out to view the entire time range, or press ^^F^^ to Frame Select with no $$keys$$ selected. To learn more about navigating the ^^Curve View^^, see the section on [[animeditor-AnimationCurves| Editing Animation Curves]].

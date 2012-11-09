@@ -1,0 +1,25 @@
+! Audio Echo Filter (PRO only)
+
+The $$Audio Echo Filter$$ repeats a sound after a given ``Delay``, attenuating the repetitions based on the ``Decay Ratio``.\\
+The ``Wet Mix`` determines the amplitude of the filtered signal, where the ``Dry Mix`` determines the amplitude of the unfiltered sound output.
+
+Attach:AudioEchoFilter.png\\
+''The $$Audio Echo Filter$$ properties in the inspector.''
+
+
+!! Properties
+
+||PROPS
+||``Delay`` ||Echo delay in ms. 10 to 5000. Default = 500.||
+||``Decay Ratio`` ||Echo decay per delay. 0 to 1. 1.0 = No decay, 0.0 = total decay (ie simple 1 line delay). Default = 0.5.L||
+||``Wet Mix`` ||Volume of echo signal to pass to output. 0.0 to 1.0. Default = 1.0.||
+||``Dry Mix`` ||Volume of original signal to pass to output. 0.0 to 1.0. Default = 1.0.||
+
+
+
+!! Adding an Echo filter
+To add an Echo filter to a given audio source just select the object in the inspector and then select ``Component->Audio->Audio Echo Filter``.
+
+!!Hints
+* Hard surfaces reflects the propagation of sound. For example a large canyon can be made more convincing with the $$Audio Echo Filter$$.
+* Sound propagates slower than light - we all know that from lightning and thunder. To simulate this, add an $$Audio Echo Filter$$ to an event sound, set the ``Wet Mix`` to 0.0 and modulate the ``Delay`` to the distance between [[class-AudioSource|AudioSource]] and [[class-AudioListener|AudioListener]].

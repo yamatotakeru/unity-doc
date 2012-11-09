@@ -1,0 +1,17 @@
+!!Animation Transitions
+
+$$Animation Transitions$$ define ''what'' happens when you switch from one $$Animation State$$ to another. There can be only one transition active at any given time. 
+
+||PROPS
+||``Atomic``      ||Is this transition atomic? (cannot be interrupted)
+||``Conditions``    ||Here we decide ''when'' transitions get triggered. 
+
+A condition consists of 2 parts: 
+# A conditional predicate (``If``, ``If Not``, ``Less``, ``Greater``, ``Equals``, ``Not Equal``, and ``Exit Time``). 
+# An event parameter (in conjunction with ``If`` and ``If Not``, use bool parameters, ``Exit Time`` just uses time). 
+# A parameter value (if needed)
+
+You can adjust the transition between the two animation clips by dragging the start and end values of the overlap. 
+Attach:MecanimTransitionInspector.png
+
+(back to [[Animation State Machines]])

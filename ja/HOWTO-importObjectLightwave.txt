@@ -1,0 +1,64 @@
+! Lightwave からのオブジェクトのインポート
+
+Lightwave 向けの FBX プラグインを使用して、Lightwave からメッシュやアニメーションをインポートできます。
+
+!! Unity は現在、以下のものをインポートします。
+
+# 位置、回転、スケールのあるすべてのノード。 回転軸および名前もインポートされます。
+# UV および法線のあるメッシュ。
+# テクスチャとディフューズ色のあるマテリアル。 メッシュごとの複数のマテリアル。
+# アニメーション
+# ボーンベースのアニメーション
+
+!! インストール
+
+最新の Lightwave FBX　エクスポータは以下からダウンロードできます。
+
+* [[http://unity3d.com/lightwave_plugins/mbr_FBX200508_LW82_MACOS.pkg.sit | OS X lighwave 8.2 and 9.0 plugin]]
+* [[http://unity3d.com/lightwave_plugins/mbr_FBX200508_LW80_MACOS.pkg.sit | OS X Lighwave 8.0 plugin]]
+* [[http://unity3d.com/lightwave_plugins/mbr_FBX200508_LW82_WIN.zip | Windows Lighwave 8.2 and 9.0 plugin]]
+* [[http://unity3d.com/lightwave_plugins/mbr_FBX200508_LW80_WIN.zip | Windows Lighwave 8.0 plugin]]
+
+これらのプラグインをダウンロードすることで、[[http://unity3d.com/lightwave_plugins/License.txt|this licence]] に自動的に合意します。
+
+
+プラグインには 2 つのバージョンがあり、1 つは、LightWave 8.0 用、1 つは LightWave 8.2 から 9.0 用になります。 Make sure you install the correct version.
+
+Mac 向けのプラグインは、OS X パッケージと同梱しています。 このパッケージをダブルクリックして、インストールすると、インストーラが正しいフォルダにこれを置きます。 LightWave プラグイン フォルダが見つからない場合、^^Applications^^ フォルダに自身の LightWave フォルダを作成し、そこでそのフォルダをダンプします。 後者が発生した場合、LightWave プラグイン フォルダ (またはサブ フォルダ) に移動する必要があります。 「Edit Plugins」パネル (^^Option-F11^^) を介して、LightWave にプラグインを追加する必要があります。プラグインの追加方法の詳細については、LightWave マニュアルを参照してください。
+
+Attach:Lightwave./LWexpEditPlugs.jpg
+
+LightWave に追加されると、このプラグインには、一般メニュー タブ (ユーティリティ上) を介してアクセスできます。  一般メニューが表示されない場合、コンフィグ メニュー パネルを使用して、追加する必要があります。 後者のパネルで、プラグイン カテゴリ内で確認できます。このプラグインは「一般プラグイン」と呼ばれます。 便利なメニューに追加してください (この方法の詳細については、LightWave マニュアルを参照してください)。
+
+インストールに関する詳細については、インストーラと共にダウンロードできるリリース ノートに記載されています。
+
+!! エクスポート
+
+All objects and animations have to be exported from Layout (there is no Modeler FBX exporter).
+
+
+!!!1. Select Export to FBX from the Generics menu
+
+Attach:Lightwave./LWexpGenerics2.jpg Attach:Lightwave./LWexpExportToFBX.jpg
+
+
+!!!2. Select the appropriate settings in the fbx export dialog
+
+* fbx ファイル名を選択します。 現在の Unity プロジェクトの Assets フォルダにエクスポートした fbx ファイルを保存してください。
+* FBX ダイアログ パネルで、「Embed Textures」を選択する必要があります、そうでないと、エクスポートされたオブジェクトに UV はありません。 これは LightWave vbx エクスポータの問題で、Autodesk に応じて、今後のバージョンで修正されます。
+* Unity にアニメーションをエクスポートしたい場合、「Animations」にチェックを入れる必要があります。 「Lights」または「Cameras」にもチェックを入れる必要があります。
+* Unity のエクスポートされたアニメーション クリップの名前を変更するには、「LW Take 001」から好きな名前に変更します。
+
+Attach:Lightwave./fbxtex602b.jpg
+
+
+!!!3. Unity に切り替えます。
+
+* Unity は自動的に fbx ファイルをインポートし、テクスチャのマテリアルを生成します。
+* インポートした fbx ファイルをプロジェクト ビューからシーン ビューにドラッグします。
+
+!!注意
+
+*  エクスポート時または UV をエクスポートしない場合は、FBX パネルで「Embed Textures」を選択する必要があります。
+* Unity にアニメーションをエクスポートしたい場合、「Animations」および「Camera」または「Lights」のいずれかを有効にする必要があります。
+*  テクスチャは必ず fbx ファイルの隣にある「Textures」フォルダに置くことを強くお勧めします。 これにより、Unity は常にテクスチャを検索し、そのテクスチャをマテリアルに自動的に接続できます。

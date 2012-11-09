@@ -1,0 +1,23 @@
+!Blend Trees
+
+Blend Trees are used for continuous blending between similar animations based on float [[AnimationParameters|event parameters]]. A typical example of this is blending between ''walk'' and ''run'' animations based on the ''speed'' parameter. Mecanim can ensure that the transition between the walk and the run is smooth (it is important that the animation clips are ''aligned'': e.g. start with the left foot on the floor at 0.0, and have the right foot on the floor at 0.5 for both. Another typical example is a transition between RunLeft, Run and RunRight animations based on the ''direction'' parameter value between 0.0 (left) and 1.0 (right). 
+
+To start working with a new blend tree, you need to:
+# Right-click on empty space on the ~~Animator Controller Window~~
+# Select ^^From New Blend Tree^^. 
+# Double-click on the Blend Tree to bring up the ~~Blend Tree Inspector~~. 
+
+Attach:MecanimBlendTreeInitial.png
+
+In the inspector, the first thing you need is to select the [[AnimationParameters|Animation Parameter]] that will control this Blend Tree. 
+
+Then you can add individual animations by clicking ^^+ -> Add Motion Field^^ to add an animation clip to the blend tree. When you're done, it should look something like this:
+
+Attach:MecanimBlendTree.png
+
+The red vertical bar indicates the current value of the event parameter. You can preview what happens to the animations by pressing ^^Play^^ in the ~~Animation Preview Window~~, dragging the bar left and right.
+
+FAQ: When should I use $$State Machines$$ and when should I use $$Blend Trees$$?
+Answer: State machines are used for transitioning between unrelated animations based on discrete thresholds or boolean parameters. Blend trees are used for blending continuously between similar animations based on continuous (float) parameters.
+
+(back to [[MecanimAnimationSystem|Mecanim introduction]])

@@ -1,0 +1,67 @@
+! 3D Studio Max からのオブジェクトのインポート
+
+3dsMax で 3D オブジェクトを作成するには、$$Project$$ に直接 .max ファイルを保存するか、__Autodesk .FBX__ か一般的なフォーマットを使用して、Unity にこれらをエクスポートできます。 
+
+!! Unity は現在、3ds Max から以下のものをインポートします。Saving a Max file or exporting a generic 3D file type each has advantages and disadvantages see [[class-Mesh|class-Mesh]]
+
+# 位置、回転、スケールのあるすべてのノード。 回転軸および名前もインポートされます。
+# 頂点色のあるメッシュ、法線および [[#twouvs | two UV sets]]。
+# ディフューズ色とテクスチャのあるマテリアル。 メッシュごとの複数のマテリアル。
+# アニメーション
+# [[#bones | Bone based animations]].
+
+!! 3DS Max から FBX にエクスポートするには、 
+# [[http://autodesk.com/fbx | Autodesk website]] から最新の fbx エクスポータをダウンロードし、インストールしてください。
+# __.fbx__ 形式で、シーンまたは選択したオブジェクトをエクスポートします (^^File->Export^^ または ^^File->Export Selected^^)。 デフォルトのエクスポートオプションの使用も大丈夫です。
+# Unity のプロジェクト フォルダにエクスポートされた fbx ファイルをコピーします。
+# Unity の戻す場合は、__.fbx__ファイルは自動的にインポートされます。
+# $$Project View$$ から $$Scene View$$ にファイルをドラッグします。
+
+!! エクスポータ オプション
+
+(基本的にすべてをエクスポートする) デフォルトの FBX エクスポータ オプションの選択が可能です。
+
+Embed textures - this stores the image maps in the file, good for portability, not so good for file size
+
+Attach:FBX2013.png
+
+''デフォルトの FBX エクスポータ オプション ( fbx プラグイン バージョン 2013.3 の場合)''
+
+
+[[#bones]]
+!! # ボーンベースのアニメーションのエクスポート
+
+これは、ボーンベースのアニメーションをエクスポートしたい時に従う手順です。
+
+# 自由にボーン構造を設定します。
+# FK および/または IK を使用して、好きなアニメーションを作成します。
+# すべてのボーンおよび/または IK ソルバーを選択します。
+# ^^Motion->Trajectories^^ に移動し、^^Collapse^^ を押します。 Unity は、キー フィルタを作成するので、エクスポートするキーの数は関係ありません。
+# 最も新しい FBX 形式として「Export」または「Export selected」を選択します。
+# 通常通り、$$Assets$$ に FBX ファイルをドロップします。
+# Unity で、ルート ボーンにテクスチャをマテリアルにサイド割り当てる必要があります。
+
+Unity に 3ds Max からメッシュやアニメーションのあるボーン階層をエクスポートする際、生成された GameObject 階層は、3ds Max の「Schematic view」で確認できる階層に対応しています。1 つ違うところは、Unity は、GameObject をアニメーションを含む、新しいルートとして配置し、メッシュやマテリアル情報をルート ボーンに置きます。
+
+アニメーションおよびメッシュ情報を同じ Unity のGameObject に置きたい場合、3ds Max の階層ビューに移動し、メッシュ ノードをボーン階層のボーンにパレンディングします。 
+
+
+[[#twouvs]]
+!! Lightmapping への 2 つの UV セットのエクスポート
+
+3ds Max の Render To Texture および自動アンラッピング機能を使用して、ライト マップを作成できます。 Unity には組み込み [[Lightmapping | lightmapper]]がありますが、それがワークフローにより適する場合は、3dsmax を使用する方がよい場合があります。 通常、1 つの UV セットを、メイン テクスチャおよび/または法線マップに使用され、別の UV セットが、ライトマップ テクスチャに使用されます。 両方の UV セットが適切に動作するには、3ds Max のマテリアルは、標準である必要があり、デフューズ (メイン テクスチャの場合) およびセルフ イルミネーション (ライトマップの場合) の両方のマップ スロットを設定する必要があります。
+
+Attach:3dsMaxLightmapMaterial.png
+「セルフ イルミネーション マップを使用した 3ds Max での Lightmapping に設定されたマテリアル」
+
+オブジェクトが、マテリアル タイプの Shell を使用すると、現在の Autodesk ので FBX エクスポートは、__UV を正しくエクスポートしません__。
+
+または、以下に示すように、デフューズ マップのメイン テクスチャとライトマップを施用して、Multi/Sub Object マテリアル タイプを使用し、2 つのサブマテリアルを設定できます。 しかし。モデルの顔が異なるサブマテリアルの ID を使用する場合、これにより、複数のマテリアルがインポートされますが、パフォーマンスには最適ではありません。
+
+Attach:3dsMaxMultiSubObject.png
+「Multi/Sub Object オブジェクトを使用した 3ds Max での Lightmapping に設定された別のマテリアル」
+
+
+!! トラブルシューティング
+
+一部のモデルのインポートに問題がある場合は、 最新の FBX プラグイン（[[http://autodesk.com/fbx | Autodesk website]] からインストールできます） がインストールされていることを確認し、それでもダメであれば、FBX 2012に戻してみて下さい。

@@ -1,0 +1,26 @@
+! 詳細テクスチャをどのように使用しますか?
+
+$$Detail texture$$ は、表面に近づくに連れ、フェードインする小さい、微細パターンで、木目や石の不完全さ、地形における地表の細かい部分などです。  このテクスチャは、明示的に [[shader-NormalDiffuseDetail | Diffuse Detail shader]] と併用されます。
+
+詳細テクスチャは、全方向にタイルを貼る必要があります。 0-127 の色値は、オブジェクトをより暗くし、128 は何も変わらず、より明るい色だと、オブジェクトをより明るくします。 画像を 128 辺りに中央に配置することが非常に重要です。そうでない場合、適用されるオブジェクトは、近づくに連れ、より明るくなるか暗くなります。
+
+# 詳細テクスチャのグレースケール画像を描画または発見します。\\
+Attach:HOWTO-detail1.png\\
+「詳細テクスチャ」\\
+\\
+Attach:HOWTO-detail2.png\\
+「レベル」
+
+# メイン テクスチャの隣の画像を保存します。
+# Unity で、画像を選択し、「Generate Mip Maps」の下で、「Fades Out」を有効にし、スライダを $$Inspector$$ の $$Import Settings$$ にある類似の内容に設定します。
+# 上のスライダは、フェードアウトし始める前にテクスチャの小ささを決定し、下のスライダは詳細テクスチャが完全に消える前の離れる距離を決定します。\\
+\\
+Attach:HOWTO-detailmipmaps.png\\
+s.
+# 右側の $$Material Inspector$$ で、シェーダ ドロップダウンから ^^Diffuse Detail^^ を選択します。\\
+Attach:HOWTO-detail3.png
+
+# $$Project View$$ からテクスチャを「Detail」テクスチャ スロットにドラッグします。
+# 「Tiling」値を高い値に設定します。\\
+Attach:HOWTO-detail4.png
+

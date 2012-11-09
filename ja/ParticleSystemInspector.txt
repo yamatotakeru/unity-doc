@@ -1,0 +1,9 @@
+!!The Particle System Inspector (Shuriken)
+The ^^Particle System Inspector^^ shows one particle system at a time (the currently selected one), and it looks like this:
+Attach:ParticleSystemInspector.png
+
+Individual particle systems can take on various complex behaviors by using [[ParticleSystemModulesIntro|Modules]].
+
+They can also be extended by being grouped together into $$Particle Effects$$. 
+
+If you press the button ^^Open Editor ...^^, this will open up the Extended ^^Particle Editor^^, that shows all of the particle systems under the same root in the scene tree. For more information on particle system grouping, see the section on [[ParticleSystemGrouping|Particle Effects]]. 

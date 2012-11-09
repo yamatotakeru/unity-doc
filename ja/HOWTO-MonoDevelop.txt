@@ -1,0 +1,17 @@
+! Mono Develop を始める
+Mono Develop は Unity 3.x に同梱されており、この IDE　は、ゲームのスクリプティング部分およびそのデバッグを行うのを手伝います。
+
+! Mono Develop の設定
+Unity と連携するよう、Mono Develop を設定するには、Unity 設定に移動し、デフォルトのエディタとして設定する必要があります。
+
+Attach:MDDefaultEditor.png\\
+''Mono Develop をデフォルトのエディタとして設定''
+
+この後、既存のプロジェクトを作成または開いて、^^Assets -> Sync Mono Develop Project^^ をクリックして、Mono Develop とプロジェクトを同期させます。
+
+Attach:MonoDevelopSync.png
+''Mono Develop の同期''
+
+これにより、Mono Develop でプロジェクトが開きます (スクリプティング ファイルのみで、アセットは開きません)。 これで、[[Debugger | debugging]] を開始する準備ができました。
+
+プロジェクトの設定に問題がある場合、[[TroubleShooting#DesktopTroubleShooting | troubleshooting page]] にもアクセスしてみてください。

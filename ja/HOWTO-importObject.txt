@@ -1,0 +1,25 @@
+! 3D アプリケーションからオブジェクトをどのようにインポートしますか?
+
+Unity では、最も一般的な 3D アプリケーションからのインポートをサポートします。 以下から作業しているアプリケーションを選択します。
+
+* [[HOWTO-ImportObjectMaya|Maya]]
+* [[HOWTO-ImportObjectCinema4D|Cinema 4D]]
+* [[HOWTO-ImportObjectMax|3ds Max]]
+* [[HOWTO-ImportObjectCheetah3D|Cheetah3D]]
+* [[HOWTO-ImportObjectModo|Modo]]
+* [[HOWTO-importObjectLightwave|Lightwave]]
+* [[HOWTO-ImportObjectBlender|Blender]]
+
+!! その他のアプリケーション
+
+Unity は __.FBX__、__.dae、__.3DS__、__.dxf__ および __.obj__ ファイルを読み込めますが、プログラムでこれらの形式をエクスポートできるかどうかチェックしましょう。 一般的な 3D パッケージの FBX エクスポータは、[[http://autodesk.com/fbx|here]] にあります。 パッケージの多くで、Collada エクスポータを使用できます。
+
+!!ヒント
+
+* エクスポートされたメッシュの隣にある $$Textures$$ と呼ばれるフォルダにテクスチャを格納する。 これにより、Unity は常にテクスチャを検索し、そのテクスチャをマテリアルに自動的に接続できます。 詳細については、[[class-Texture2D|Textures]] を参照してください。
+
+!!以下も併せて参照してください。
+* [[Modeling Optimized Characters]]
+* [[HOWTO-bumpmap | How do I use normal maps?]]
+* [[class-Mesh | Mesh Import Settings]]
+* [[HOWTO-FixZAxisIsUp | How do I fix the rotation of an imported model?]]

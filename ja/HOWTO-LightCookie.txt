@@ -1,0 +1,17 @@
+! スポット ライト Cookieはどのように作成しますか?
+
+Unity は、[[HOWTO-InstallStandardAssets|Standard Assets]] にいくつかの $$Light Cookies$$ を同梱しています。 プロジェクトに標準アセットをプロジェクトにインポートする場合、^^Standard Assets->Light Cookies^^ にあります。 このページには、自身で作成する方法が記載されています。
+
+Cookie を使用してシーンに数々の視覚的詳細を追加する便利な方法は、ゲーム内のライティングの正確な見た目を制御するのにグレースケール テクスチャを使用する方法です。 これは、移動する雲の作成や、密集する葉の印象を与えるのに便利です。 [[class-Light | Light Component Reference page]] にこれに関する詳細が全て記載されていますが、テクスチャを Cookie に対して使用可能にするには、次のプロジェクトを設定する必要があります。
+
+スポット ライトにライト Cookie を作成するには、
+
+# Photoshop でCookieテクスチャをペイントします。 画像はグレースケールにする必要があります。 白のピクセルは、完全な照明強度で、黒いピクセルは照明なしになります。 テクスチャの境界は完全に黒にする必要があります。そうでない場合、スポット ライトの外部から光が漏れているような見かけになります。
+# $$Texture Inspector$$ で、「Repeat」 ラップ モードを「Clamp」に設定する必要があります。
+テクスチャを選択し、$$Inspector$$ で次の $$Import Settings$$ を編集します。
+
+# 「Border Mipmaps」を有効にします。
+# 「Build Alpha From Grayscale」を有効にします (このように、グレースケール Cookie を作成でき、Unity がこの Cookie をアルファ マップに自動的に変換します)
+# テクスチャ形式を「Alpha 8 Bit」に設定します。
+
+Attach:SpotlightCookie.png

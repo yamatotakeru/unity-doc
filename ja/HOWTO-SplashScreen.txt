@@ -1,0 +1,21 @@
+! スプラッシュ画面はどのように作成しますか?
+
+!デスクトップ!
+>>デスクトップ<<
+Unity でのスプラッシュ画面またはその他の全画面画像の作成方法について記載します。 この方法は、複数の解像度およびアスペクト比に対して機能します。
+
+# 最初に大きいテクスチャが必要になります。 サイズが 2 のべき乗のテクスチャが理想的です。 例えば、ほとんどの画面にフィットするように、1024x512 を使用してもよいでしょう。
+# メニューバー項目の ^^GameObject->Create Other->Cube^^ を使用して、箱を新規作成します。
+# スケールの最初の 2 つの値として、16 と 9 を入力して、箱のサイズを 16:9 形式になるよう縮小拡大します。\\
+Attach:HOWTO-SplashScreen1.png
+# テクスチャを立方体にドラッグし、$$Camera$$ がその立方体を向くようにします。 この立方体が 16:9 ｎアスペクト比で表示されるような距離にカメラを置きます。   $$Scene View$$ メニューバーで $$Aspect Ratio Selector$$ を使用して、最終結果を確認します。
+
+>><<
+!iOS!
+>>ios<<
+[[ MobileCustomizeSplashScreen | Customising IOS device Splash Screens]]
+>><<
+!Android!
+>>android<<
+[[ MobileCustomizeSplashScreen | Customising Android device Splash Screens]]
+>><<

@@ -1,0 +1,63 @@
+! Input Manager
+!Desktop!
+>>desktop<<
+The $$Input Manager$$ is where you define all the different input axes and game actions for your project.
+
+Attach:InputSetAll.png\\
+''The Input Manager''
+
+To see the Input Manager choose: ^^Edit->Project Settings->Input^^.
+
+
+!!Properties
+
+||PROPS
+||``Axes`` ||Contains all the defined input axes for the current project: ``Size`` is the number of different input axes in this project, ``Element 0, 1, ...`` are the particular axes to modify. ||
+||``Name`` ||The string that refers to the axis in the game launcher and through scripting. ||
+||``Descriptive Name`` ||A detailed definition of the ``Positive Button`` function that is displayed in the game launcher. ||
+||``Descriptive Negative Name`` ||A detailed definition of the ``Negative Button`` function that is displayed in the game launcher. ||
+||``Negative Button`` ||The button that will send a negative value to the axis. ||
+||``Positive Button`` ||The button that will send a positive value to the axis. ||
+||``Alt Negative Button`` ||The secondary button that will send a negative value to the axis. ||
+||``Alt Positive Button`` ||The secondary button that will send a positive value to the axis. ||
+||``Gravity`` ||How fast will the input recenter. Only used when the ``Type`` is ``key / mouse button``. ||
+||``Dead`` ||Any positive or negative values that are less than this number will register as zero.  Useful for joysticks. ||
+||``Sensitivity`` ||For keyboard input, a larger value will result in faster response time. A lower value will be more smooth. For Mouse delta the value will scale the actual mouse delta. ||
+||``Snap`` ||If enabled, the axis value will be immediately reset to zero after it receives opposite inputs. Only used when the ``Type`` is ``key / mouse button``. ||
+||``Invert`` ||If enabled, the positive buttons will send negative values to the axis, and vice versa. ||
+||``Type`` ||Use ``Key / Mouse Button`` for any kind of buttons, Mouse Movement for mouse delta and scrollwheels, ``Joystick Axis`` for analog joystick axes and ``Window Movement`` for when the user shakes the window. ||
+||``Axis`` ||Axis of input from the device (joystick, mouse, gamepad, etc.) ||
+||``Joy Num`` ||Which joystick should be used. By default this is set to retrieve the input from all joysticks. This is only used for input axes and not buttons. ||
+
+
+!! Details
+
+All the axes that you set up in the Input Manager serve two purposes:
+
+*They allow you to reference your inputs by axis name in scripting
+*They allow the players of your game to customize the controls to their liking
+
+All defined axes will be presented to the player in the game launcher, where they will see its name, detailed description, and default buttons.  From here, they will have the option to change any of the buttons defined in the axes.  Therefore, it is best to write your scripts making use of axes instead of individual buttons, as the player may want to customize the buttons for your game.
+
+Attach:Input-GameLauncher.png\\
+''The game launcher's Input window is displayed when your game is run''
+
+See also: [[Input]].
+
+!!Hints
+* Axes are not the best place to define "hidden" or secret functions, as they will be displayed very clearly to the player in the game launcher.
+>><<
+
+!iOS!
+>>ios<<
+This section is not supported on iOS devices.
+
+For more info on how to work with input on iOS devices, please refer to the [[Input#iPhoneInput | iOS Input]] page.
+>><<
+
+!Android!
+>>android<<
+This section is not supported on Android devices.
+
+For more info on how to work with input on Android devices, please refer to the [[Input#AndroidInput | Android Input]] page.
+>><<

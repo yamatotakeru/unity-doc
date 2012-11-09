@@ -1,0 +1,11 @@
+!チュートリアル
+
+これらのチュートリアルに従いながら、Unity を使用してください。  実際に体験することで、実際のプロジェクトを作成することができます。  新規ユーザーの場合は、GUI の基本とスクリプティングの基本チュートリアルに  その後は、いずれかのチュートリアルに従ってください。  チュートリアルはすべて PDF 形式なので、印刷して、Unity と並行で、指示を仰いだり、参照したりできます。
+
+__注意:__ これらのチュートリアルは、Unity のデスクトップ版向けであるため、Android や iOS 機器 (iPhone/iPad) では機能しません。
+
+[[http://unity3d.com/support/documentation/tutorials/|Attach: onlineresources.jpg]] [[Attach:GUI Essentials.pdf|Attach:guiessentials.jpg]] [[Attach:Scripting Tutorial.pdf|Attach: scriptingessentials.jpg]]
+
+また、Unity 向けのプレゼンテーション、アーティクル、アセットまたは拡張などのその他のリソースをお探しの場合は、[[ http://unity3d.com/support/resources/|here]] から。
+
+また、 [[http://unity3d.com/support/resources/tutorials | Unity3D Tutorial's Home Page]] をクリックすることで、チュートリアルの最新の追加内容を確認できます。

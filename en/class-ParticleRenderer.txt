@@ -1,0 +1,62 @@
+! Particle Renderer (Legacy)
+
+The $$Particle Renderer$$ renders the $$Particle System$$ on screen.
+
+Attach:Inspector-ParticleRenderer.png\\
+''The Particle Renderer $$Inspector$$''
+
+
+!!Properties
+
+||PROPS
+||``Materials`` ||Reference to a list of $$Materials$$ that will be displayed in the position of each individual particle. ||
+||``Camera Velocity Scale`` ||The amount of stretching that is applied to the Particles based on [[class-Camera|Camera]] movement. ||
+||``Stretch Particles`` ||Determines how the particles are rendered. ||
+||>>>``Billboard`` ||The particles are rendered as if facing the camera. ||
+||>>>``Stretched`` ||The particles are facing the direction they are moving. ||
+||>>>``SortedBillboard`` ||The particles are sorted by depth. Use this when using a blending material. ||
+||>>>``VerticalBillboard`` ||All particles are aligned flat along the X/Z axes. ||
+||>>>``HorizontalBillboard`` ||All particles are aligned flat along the X/Y axes. ||
+||``Length Scale`` ||If ``Stretch Particles`` is set to ``Stretched``, this value determines how long the particles are in their direction of motion. ||
+||``Velocity Scale`` ||If ``Stretch Particles`` is set to ``Stretched``, this value determines the rate at which particles will be stretched, based on their movement speed. ||
+||``UV Animation`` ||If either of these are set, the UV coordinates of the particles will be generated for use with a tile animated texture. See the section on [[#AnimatedTextures|Animated Textures]] below. ||
+||>>>``X Tile`` ||Number of frames located across the X axis. ||
+||>>>``Y Tile`` ||Number of frames located across the Y axis. ||
+||>>>``Cycles`` ||How many times to loop the animation sequence. ||
+
+
+!! Details
+
+Particle Renderers are required for any Particle Systems to be displayed on the screen.
+
+Attach:ParticleRendererExhaust.png\\
+''A Particle Renderer makes the Gunship's engine exhaust appear on the screen''
+
+
+!!! Choosing a Material
+
+When setting up a Particle Renderer it is very important to use an appropriate material and shader that renders both sides of the material. Most of the time you want to use a Material with one of the built-in Particle Shaders. There are some premade materials in the ^^Standard Assets->Particles->Sources^^ folder that you can use.
+
+Creating a new material is easy:
+# Select ^^Assets->Create Other->Material^^ from the menu bar.
+# The [[class-Material|Material]] has a shader popup, choose one of the shaders in the Particles group. Eg. ^^Particles->Multiply^^.
+# Now assign a Texture. The different shaders use the alpha channel of the textures slightly differently, but most of the time a value of black will make it invisible and white in the alpha channel will display it on screen.
+
+
+!!! Distorting particles
+
+By default particles are rendered billboarded. That is simple square sprites. This is good for smoke and explosions and most other particle effects.
+
+Particles can be made to either stretch with the velocity. This is useful for sparks, lightning or laser beams. ``Length Scale`` and ``Velocity Scale`` affects how long the stretched particle will be.
+
+``Sorted Billboard`` can be used to make all particles sort by depth. Sometimes this is necessary, mostly when using ^^Alpha Blended^^ particle shaders. This can be expensive and should only be used if it really makes a quality difference when rendering.
+
+
+[[#AnimatedTextures]]
+
+!!! Animated textures
+
+Particle Systems can be rendered with an animated tile texture. To use this feature, make the texture out of a grid of images. As the particles go through their life cycle, they will cycle through the images. This is good for adding more life to your particles, or making small rotating debris pieces.
+
+!!Hints
+* Use Particle Shaders with the Particle Renderer.

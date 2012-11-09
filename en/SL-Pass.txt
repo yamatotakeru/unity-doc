@@ -1,0 +1,55 @@
+! ShaderLab syntax: Pass
+The Pass block causes the geometry of an object to be rendered once.
+
+!!Syntax
+:__Pass__ __{__ ''[Name and Tags] [RenderSetup] [TextureSetup]'' __}__ : The basic pass command contains an optional list of render setup commands, optionally followed by a list of textures to use.
+
+!! Name and tags
+
+A Pass can define its [[SL-Name | Name]] and arbitrary number of [[SL-PassTags | Tags]] - name/value strings that communicate Pass' intent to the rendering engine.
+
+!! Render Setup
+
+A pass sets up various states of the graphics hardware, for example should alpha blending be turned on, should fog be used, and so on. The commands are these:
+
+:__Material__ __{__ ''Material Block'' __}__: Defines a material to use in a vertex lighting pipeline. See [[SL-Material|material page]] for details.
+:__Lighting__ On | Off: Turn vertex lighting on or off. See [[SL-Material|material page]] for details.
+:__Cull__ Back | Front | Off: Set polygon culling mode.
+:__ZTest__ (Less | Greater | LEqual | GEqual | Equal | NotEqual | Always): Set depth testing mode.
+:__ZWrite__ On | Off: Set depth writing mode.
+:__Fog__ __{__ ''Fog Block'' __}__: Set fog parameters.
+:__AlphaTest__ (Less | Greater | LEqual | GEqual | Equal | NotEqual | Always) ''CutoffValue'': Turns on alpha testing.
+:__Blend__ ''SourceBlendMode'' ''DestBlendMode'': Sets alpha blending mode.
+:__Color__ ''Color value'': Sets color to use if vertex lighting is turned off.
+:__ColorMask__ RGB | A | 0 | any combination of R, G, B, A: Set color writing mask. Writing ''ColorMask 0'' turns off rendering to all color channels.
+:__Offset__ ''OffsetFactor'' __,__ ''OffsetUnits'': Set depth offset. Note that this command intentionally only accepts constants (i.e., not shader parameters) as of Unity 3.0.
+:__SeparateSpecular__ On | Off: Turns separate specular color for vertex lighting on or off. See [[SL-Material|material page]] for details.
+:__ColorMaterial__ AmbientAndDiffuse | Emission: Uses per-vertex color when computing vertex lighting. See [[SL-Material|material page]] for details.
+
+!! Texture Setup
+
+After the render state setup, you can specify a number of textures and their combining modes to apply using [[SL-SetTexture | SetTexture]] commands:
+->__SetTexture__ ''texture property'' { ''[Combine options]'' }
+
+The texture setup configures fixed function multitexturing pipeline, and is ignored if custom [[SL-ShaderPrograms | fragment shaders]] are used.
+
+
+!! Details
+
+!!! Per-pixel Lighting
+
+The per-pixel lighting pipeline works by rendering objects in multiple passes. Unity renders the object once to get ambient and any vertex lights in. Then it renders each pixel light affecting the object in a separate additive pass. See [[SL-RenderPipeline|Render Pipeline]] for details.
+
+!!! Per-vertex Lighting
+
+Per-vertex lighting is the standard Direct3D/OpenGL lighting model that is computed for each vertex. ``Lighting on`` turns it on. Lighting is affected by $$Material$$ block, $$ColorMaterial$$ and $$SeparateSpecular$$ commands.  See [[SL-Material|material page]] for details.
+
+!! See Also
+
+There are several special passes available for reusing common functionality or implementing various high-end effects:
+* [[SL-UsePass|UsePass]] includes named passes from another shader.
+* [[SL-GrabPass|GrabPass]] grabs the contents of the screen into a texture, for use in a later pass.
+
+!! Subsections
+
+(:tocportion:)

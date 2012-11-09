@@ -1,0 +1,20 @@
+!Tag Manager
+
+The $$Tag Manager$$ allows you to set up $$Layers$$ and $$Tags$$. To see it choose ^^Edit->Project Settings->Tags^^.
+
+Attach:TagSet.png\\
+''The Tag Manager''
+
+
+!!Properties
+
+||PROPS
+||``Tags`` ||You can add new elements by typing in the last element. ||
+||``User Layer 8-31`` ||You can add custom named User Layers ||
+
+
+!!Details
+
+Layers can be used to cast rays, render, or apply lighting to certain groups of objects only. You can choose the Layer in the [[class-GameObject|GameObject inspector]]. More information about how to use Layers can be found [[Layers | here]], while Tags are covered [[Tags | here]].
+
+Tags are used to quickly find objects from scripts, utilizing the Tag name. When a new tag is added, you can choose it from the [[class-GameObject|GameObject]] tag popup.

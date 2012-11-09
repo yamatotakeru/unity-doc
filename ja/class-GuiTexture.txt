@@ -1,0 +1,58 @@
+! GUI Texture
+
+$$GUI Textures$$ are displayed as flat images in 2D. They are made especially for user interface elements, buttons, or decorations.  Their positioning and scaling is performed along the x and y axes only, and they are measured in $$Screen Coordinates$$, rather than $$World Coordinates$$.
+
+Attach:Inspector-GUITexture.png\\
+''The GUI Texture $$Inspector$$''
+
+__Please Note__: Unity 2.0 introduced $$UnityGUI$$, a GUI Scripting system.  You may prefer creating user interface elements with UnityGUI instead of GUI Textures.  Read more about how to use UnityGUI in the [[GUI Scripting Guide]].
+
+
+!!Properties
+
+||PROPS
+||``Texture``     ||Reference to the [[class-Texture2D|Texture]] that will be used as the texture's display. ||
+||``Color``       ||Color that will tint the ``Texture`` drawn on screen. ||
+||``Pixel Inset`` ||Used for pixel-level control of the scaling and positioning of the GUI Texture. All values are measured relative to the position of the GUI Texture's $$Transform$$. ||
+||>>>``X`` ||Left-most pixel position of the texture.   ||
+||>>>``Y`` ||Bottom-most pixel position of the texture. ||
+||>>>``Width`` ||Right-most pixel position of the texture.  ||
+||>>>``Height`` ||Top-most pixel position of the texture.    ||
+||``Left Border``   ||Number of pixels from the left that are not affected by scale.   ||
+||``Right Border``  ||Number of pixels from the right that are not affected by scale.  ||
+||``Top Border``    ||Number of pixels from the top that are not affected by scale.    ||
+||``Bottom Border`` ||Number of pixels from the bottom that are not affected by scale. ||
+
+!! Details
+
+To create a GUITexture:
+
+# Select a Texture in the $$Project View$$
+# Choose ^^GameObject->Create Other->GUI Texture^^ from the menu bar
+
+GUI Textures are perfect for presenting game interface backgrounds, buttons, or other elements to the player.  Through scripting, you can easily provide visual feedback for different "states" of the texture -- when the mouse is hovering over the texture, or is actively clicking it for example.  Here is the basic breakdown of how the GUI Texture is calculated:
+
+Attach:GUITexture-Layout.jpg\\
+''GUI Textures are laid out according to these rules''
+
+Attach:GUITexture-Example.png\\
+''The GUI elements seen here were all created with GUI Textures''
+
+
+!!! Borders
+
+The number of pixels that will not scale with the texture at each edge of the image.  As you rarely know the resolution your game runs in, chances are your GUI will get scaled. Some GUI textures have a border at the edge that is meant to be an exact number of pixels. In order for this to work, set the border sizes to match those from the texture.
+
+
+!!! Pixel Inset
+
+The purpose of the ``Pixel Inset`` is to prevent textures from scaling with screen resolution, and keeping thim in a fixed pixel size. This allows you to render a texture without any scaling.  This means that players who run your game in higher resolutions will see your textures in smaller areas of the screen, allowing them to have more screen real-estate for your gameplay graphics.
+
+To use it effectively, you need to set the scale of the GUI Texture's Transform to (0, 0, 0). Now, the ``Pixel Inset`` is in full control of the texture's size and you can set the ``Pixel Inset`` values to be the exact pixel size of your Texture.
+
+
+!! Hints
+
+* The depth of each layered GUI Texture is determined by its individual Z Transform position, not the global Z position.
+* GUI Textures are great for making menu screens, or pause/escape menu screens.
+* You should use ``Pixel Inset`` on any GUI Textures that you want to be a specific number of pixels for the width and height.

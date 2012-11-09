@@ -1,0 +1,39 @@
+! GUI Text
+
+$$GUI Text$$ displays text of any font you import in screen coordinates.
+
+Attach:Inspector-GUIText.png\\
+''The GUI Text $$Inspector$$''
+
+__Please Note__: Unity 2.0 introduced $$UnityGUI$$, a GUI Scripting system.  You may prefer creating user interface elements with UnityGUI instead of GUI Texts.  Read more about how to use UnityGUI in the [[GUI Scripting Guide]].
+
+
+!! Properties
+
+||PROPS
+||``Text``     ||The string to display. ||
+||``Anchor``   ||The point at which the ``Text`` shares the position of the $$Transform$$. ||
+||``Alignment``    ||How multiple lines are aligned within the $$GUIText$$. ||
+||``Pixel Offset`` ||Offset of the text relative to the position of the GUIText in the screen.||
+||``Line Spacing`` ||How much space will be in-between lines of ``Text``. ||
+||``Tab Size`` ||How much space will be inserted for a tab ('\t') character. As a multiplum of the space character offset. ||
+||``Font``     ||The [[class-Font|Font]] to use when rendering the text. ||
+||``Material`` ||Reference to the $$Material$$ containing the characters to be drawn. If set, this property overrides the one in the [[class-Font|Font]] asset. ||
+||``Pixel Correct`` ||If enabled, all ``Text`` characters will be drawn in the size of the imported font texture. If disabled, the characters will be resized based on the Transform's ``Scale``. ||
+
+
+!! Details
+
+GUI Texts are used to print text onto the screen in 2D. The $$Camera$$ has to have a [[class-GUILayer|GUI Layer]] attached in order to render the text.  Cameras include a GUI Layer by default, so don't remove it if you want to display a GUI Text.  GUI Texts are positioned using only the X and Y axes.  Rather than being positioned in World Coordinates, GUI Texts are positioned in Screen Coordinates, where (0,0) is the bottom-left and (1,1) is the top-right corner of the screen
+
+To import a font see the [[class-Font|Font page]].
+
+
+!!! Pixel Correct
+
+By default, GUI Texts are rendered with ``Pixel Correct`` enabled. This makes them look crisp and they will stay the same size in pixels independent of the screen resolution.
+
+!!Hints
+* When entering text into the ``Text`` property, you can create a line break by holding ^^Alt^^ and pressing ^^Return^^.
+* If you are scripting the ``Text`` property, you can add line breaks by inserting the escape character "\n" in your strings.
+* You can download free true type fonts from [[http://www.1001freefonts.com/fonts/afonts.htm|1001freefonts.com]] (download the Windows fonts since they contain TrueType fonts).

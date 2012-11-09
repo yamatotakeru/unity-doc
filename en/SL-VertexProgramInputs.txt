@@ -1,0 +1,282 @@
+! Providing vertex data to vertex programs
+
+For Cg/HLSL [[SL-ShaderPrograms | vertex programs]], the vertex data must be passed in as a structure. Several commonly used vertex structures are defined in [[SL-BuiltinIncludes | $$UnityCG.cginc$$ include file]], and in most cases it's enough just to use them. The structures are:
+* $$appdata_base$$: vertex consists of position, normal and one texture coordinate.
+* $$appdata_tan$$: vertex consists of position, tangent, normal and one texture coordinate.
+* $$appdata_full$$: vertex consists of position, tangent, normal, two texture coordinates and color.
+
+For example, this shader colors the mesh based on it's normals and just uses $$appdata_base$$ as vertex program input:
+[@
+Shader "VertexInputSimple" {
+  SubShader {
+    Pass {
+      CGPROGRAM
+      #pragma vertex vert
+      #pragma fragment frag
+      #include "UnityCG.cginc"
+     
+      struct v2f {
+          float4 pos : SV_POSITION;
+          fixed4 color : COLOR;
+      };
+      
+      v2f vert (appdata_base v)
+      {
+          v2f o;
+          o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+          o.color.xyz = v.normal * 0.5 + 0.5;
+          o.color.w = 1.0;
+          return o;
+      }
+
+      fixed4 frag (v2f i) : COLOR0 { return i.color; }
+      ENDCG
+    }
+  } 
+}
+@]
+
+If you want to access different vertex data, you have to declare vertex structure yourself. The structure __members must be__ from the following list:
+* $$float4 vertex$$ is the vertex position
+* $$float3 normal$$ is the vertex normal
+* $$float4 texcoord$$ is the first UV coordinate
+* $$float4 texcoord1$$ is the second UV coordinate
+* $$float4 tangent$$ is the tangent vector (used for normal mapping)
+* $$float4 color$$ is per-vertex color
+
+!! Examples
+
+!!! Visualizing UVs
+
+The following shader example uses vertex position and first texture coordinate as vertex shader input (defined in structure $$appdata$$). It is very useful to debug UV coordinates of the mesh. UV coordinates are visualized as red and green colors, and coordinates outside of 0..1 range have additional blue tint applied.
+
+[@
+Shader "!Debug/UV 1" {
+SubShader {
+    Pass {
+        Fog { Mode Off }
+CGPROGRAM
+#pragma vertex vert
+#pragma fragment frag
+
+// vertex input: position, UV
+struct appdata {
+    float4 vertex : POSITION;
+    float4 texcoord : TEXCOORD0;
+};
+
+struct v2f {
+    float4 pos : SV_POSITION;
+    float4 uv : TEXCOORD0;
+};
+v2f vert (appdata v) {
+    v2f o;
+    o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+    o.uv = float4( v.texcoord.xy, 0, 0 );
+    return o;
+}
+half4 frag( v2f i ) : COLOR {
+    half4 c = frac( i.uv );
+    if (any(saturate(i.uv) - i.uv))
+        c.b = 0.5;
+    return c;
+}
+ENDCG
+    }
+}
+}@]
+
+
+Attach:SL-DebugUV1.png\\
+''Debug UV1 shader applied to a torus knot model''
+
+Similarly, this shader vizualizes the second UV set of the model:
+[@Shader "!Debug/UV 2" {
+SubShader {
+    Pass {
+        Fog { Mode Off }
+CGPROGRAM
+#pragma vertex vert
+#pragma fragment frag
+
+// vertex input: position, second UV
+struct appdata {
+    float4 vertex : POSITION;
+    float4 texcoord1 : TEXCOORD1;
+};
+
+struct v2f {
+    float4 pos : SV_POSITION;
+    float4 uv : TEXCOORD0;
+};
+v2f vert (appdata v) {
+    v2f o;
+    o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+    o.uv = float4( v.texcoord1.xy, 0, 0 );
+    return o;
+}
+half4 frag( v2f i ) : COLOR {
+    half4 c = frac( i.uv );
+    if (any(saturate(i.uv) - i.uv))
+        c.b = 0.5;
+    return c;
+}
+ENDCG
+    }
+}
+}@]
+
+!!! Visualizing vertex colors
+
+The following shader uses vertex position and per-vertex colors as vertex shader input (defined in structure $$appdata$$).
+
+[@Shader "!Debug/Vertex color" {
+SubShader {
+    Pass {
+        Fog { Mode Off }
+CGPROGRAM
+#pragma vertex vert
+#pragma fragment frag
+
+// vertex input: position, color
+struct appdata {
+    float4 vertex : POSITION;
+    fixed4 color : COLOR;
+};
+
+struct v2f {
+    float4 pos : SV_POSITION;
+    fixed4 color : COLOR;
+};
+v2f vert (appdata v) {
+    v2f o;
+    o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+    o.color = v.color;
+    return o;
+}
+fixed4 frag (v2f i) : COLOR0 { return i.color; }
+ENDCG
+    }
+}
+}@]
+
+Attach:SL-DebugColors.png\\
+''Debug Colors shader applied to a model that has illumination baked into colors''
+
+
+!!! Visualizing normals
+
+The following shader uses vertex position and normal as vertex shader input (defined in structure $$appdata$$). Normal's X,Y,Z components are visualized as R,G,B colors. Because the normal components are in -1..1 range, we scale and bias them so that the output colors are in displayable 0..1 range.
+
+[@Shader "!Debug/Normals" {
+SubShader {
+    Pass {
+        Fog { Mode Off }
+CGPROGRAM
+#pragma vertex vert
+#pragma fragment frag
+
+// vertex input: position, normal
+struct appdata {
+    float4 vertex : POSITION;
+    float3 normal : NORMAL;
+};
+
+struct v2f {
+    float4 pos : SV_POSITION;
+    fixed4 color : COLOR;
+};
+v2f vert (appdata v) {
+    v2f o;
+    o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+    o.color.xyz = v.normal * 0.5 + 0.5;
+    o.color.w = 1.0;
+    return o;
+}
+fixed4 frag (v2f i) : COLOR0 { return i.color; }
+ENDCG
+    }
+}
+}@]
+
+Attach:SL-DebugNormals.png\\
+''Debug Normals shader applied to a model. You can see that the model has hard shading edges.''
+
+
+!!! Visualizing tangents and binormals
+
+Tangent and binormal vectors are used for normal mapping. In Unity only the tangent vector is stored in vertices, and binormal is derived from normal and tangent.
+
+The following shader uses vertex position and tangent as vertex shader input (defined in structure $$appdata$$). Tangent's X,Y,Z components are visualized as R,G,B colors. Because the normal components are in -1..1 range, we scale and bias them so that the output colors are in displayable 0..1 range.
+
+[@Shader "!Debug/Tangents" {
+SubShader {
+    Pass {
+        Fog { Mode Off }
+CGPROGRAM
+#pragma vertex vert
+#pragma fragment frag
+
+// vertex input: position, tangent
+struct appdata {
+    float4 vertex : POSITION;
+    float4 tangent : TANGENT;
+};
+
+struct v2f {
+    float4    pos : SV_POSITION;
+    fixed4    color : COLOR;
+};
+v2f vert (appdata v) {
+    v2f o;
+    o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+    o.color = v.tangent * 0.5 + 0.5;
+    return o;
+}
+fixed4 frag (v2f i) : COLOR0 { return i.color; }
+ENDCG
+    }
+}
+}@]
+
+Attach:SL-DebugTangents.png\\
+''Debug Tangents shader applied to a model.''
+
+The following shader visualizes binormals. It uses vertex position, normal and tangent as vertex input. Binormal is calculated from normal and tangent. Just like normal or tangent, it needs to be scaled and biased into a displayable 0..1 range.
+
+[@Shader "!Debug/Binormals" {
+SubShader {
+    Pass {
+        Fog { Mode Off }
+CGPROGRAM
+#pragma vertex vert
+#pragma fragment frag
+
+// vertex input: position, normal, tangent
+struct appdata {
+    float4 vertex : POSITION;
+    float3 normal : NORMAL;
+    float4 tangent : TANGENT;
+};
+
+struct v2f {
+    float4    pos : SV_POSITION;
+    float4    color : COLOR;
+};
+v2f vert (appdata v) {
+    v2f o;
+    o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+    // calculate binormal
+    float3 binormal = cross( v.normal, v.tangent.xyz ) * v.tangent.w;
+    o.color.xyz = binormal * 0.5 + 0.5;
+    o.color.w = 1.0;
+    return o;
+}
+fixed4 frag (v2f i) : COLOR0 { return i.color; }
+ENDCG
+    }
+}
+}@]
+
+Attach:SL-DebugBinormals.png\\
+''Debug Binormals shader applied to a model. Pretty!''

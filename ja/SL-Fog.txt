@@ -1,0 +1,21 @@
+! ShaderLab syntax: Fog
+
+Fog parameters are controlled with Fog command.
+
+Attach:SL./PipelineFFP.png
+
+Fogging blends the color of the generated pixels down towards a constant color based on distance from camera. Fogging does not modify a blended pixel's alpha value, only its RGB components.
+
+!! Syntax
+:__Fog__ __{__ ''Fog Commands'' __}__: Specify fog commands inside curly braces.
+:__Mode__ Off | Global | Linear | Exp | Exp2: Defines fog mode. Default is global, which translates to Off or Exp2 depending whether fog is turned on in Render Settings.
+:__Color__ ''ColorValue'': Sets fog color.
+:__Density__ ''FloatValue'': Sets density for exponential fog.
+:__Range__ ''FloatValue'' __,__ ''FloatValue'': Sets near & far range for linear fog.
+
+
+!! Details
+
+Default fog settings are based on [[class-RenderSettings | Render Settings]]: fog mode is either ``Exp2`` or ``Off``; density & color taken from settings as well.
+
+Note that if you use [[SL-ShaderPrograms|fragment programs]], Fog settings of the shader will still be applied. On platforms where there is no fixed function Fog functionality, Unity will patch shaders at runtime to support the requested Fog mode.

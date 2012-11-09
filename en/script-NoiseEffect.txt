@@ -1,0 +1,18 @@
+!Noise image effect
+
+$$Noise$$ is an image postprocessing effect that can simulate both TV and VCR noise.
+
+As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+
+Attach:FxNoise.png\\
+''Noise effect with high intensity applied to the scene''
+
+||PROPS
+||``Monochrome`` ||If enabled, Noise is similar to TV noise. If disabled, it more closely resembles VCR noise - it distorts color values in YUV space, so you also get hue changes, mostly towards magenta/green gues. ||
+||``Grain Intensity Min/Max`` ||The intensity of noise takes random values between ``Min`` and ``Max``. ||
+||``Grain Size`` ||The size of a single grain texture pixel in screen pixels. Increasing this will make noise grains larger. ||
+||``Scratch Intensity Min/Max`` ||The intensity of additional scratch/dust takes random values between ``Min`` and ``Max``. ||
+||``Scratch FPS`` ||Scratches jump to different positions on the screen at this framerate. ||
+||``Scratch Jitter`` ||Scratches can jitter slightly while remaining close to their original positions. ||
+
+(:include imagefx-SM2:)

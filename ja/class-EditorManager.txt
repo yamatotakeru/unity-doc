@@ -1,0 +1,10 @@
+!エディタ設定
+
+Attach:EditorSettings.png
+
+!! Properties
+
+||PROPS
+||``Version Control``||バージョン管理の使用モード||
+||``WWW Security Emulation``||ウェブプレイヤー（Webplayer）でのテストの際、エディタが指定したURLでホスティングされているかのようシミュレーションできる||
+||``Asset Serialization``||バージョン管理でのマージを支援するため、Unityはシーンのファイルをテキスト形式で保存することが出来る（詳細については [[TextualSceneFormat| テキストシーン形式 ]] を参照のこと）。もしマージされない場合、Unityはシーン保存を容量節約できるバイナリ形式、あるいはバイナリ形式とテキスト形式を同時に共存させることも可能である。||

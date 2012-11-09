@@ -1,0 +1,11 @@
+!Toolbar
+
+Attach:Editor-Toolbar.png
+
+The Toolbar consists of five basic controls.  Each relate to different parts of the Editor.
+
+Attach:UI-ViewTool.png Transform Tools -- used with the Scene View \\
+Attach:Editor-GizmoButtons.png Transform Gizmo Toggles -- affect the Scene View display \\
+Attach:Editor-PlayButtons.png Play/Pause/Step Buttons -- used with the Game View \\
+Attach:Editor-LayersDropdown.png [[Layers|Layers]] Drop-down -- controls which objects are displayed in Scene View \\
+Attach:Editor-LayoutDropdown.png Layout Drop-down -- controls arrangement of all Views

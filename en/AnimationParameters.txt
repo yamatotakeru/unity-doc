@@ -1,0 +1,62 @@
+!Animation Parameters
+
+Animation Parameters expose the operation of the state machine to game logic. Events are triggered based on event parameters, activated from game logic. Typically you would work with events in 3 places:
+
+#Setting up parameters in the ~~Parameter Widget~~ in the bottom-left corner of the ~~Animator Controller Window~~
+#Setting up conditions for transitions in the ~~Transition Inspector~~, based on those parameters
+#Controlling the parameters from script. 
+
+Attach:MecanimEvents.png
+
+Event parameters can be of 4 basic types: ''Vector'', ''Float'', ''Int'', and ''Bool'', and they can be controlled from script via the functions [[ScriptRef:Animator.SetVector.html|SetVector]], [[ScriptRef:Animator.SetFloat.html|SetFloat]], [[ScriptRef:Animator.SetInt.html|SetInt]], and [[ScriptRef:SetBool.html|SetBool]] respectively.
+
+Note that the values next to the parameters serve as Check default values for those parameters at startup, unless they're overriden by (or blended with) values from [[AnimatorCurves|animation curves]]
+
+Thus, a complete animated character in the scene will have both an ``Animator Component`` and a script that controls the parameters in the Animator. 
+
+Attach:MecanimAnimatorAndScript.png
+
+Here's an example of a script that modifies event parameters based on user input
+
+[@
+public class AvatarCtrl : MonoBehaviour {
+	
+	protected Animator animator;
+	
+	public float DirectionDampTime = .25f;
+				
+	void Start () 
+	{
+		animator = GetComponent<Animator>();
+	}
+    
+	void Update () 
+	{
+		if(animator)
+		{
+                        //get the current state
+			AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+			
+                        //if we're in "Run" mode, respond to input for jump, and set the Jump parameter accordingly. 
+        	        if(stateInfo.name == "Base Layer.RunBT")
+			{
+				if(Input.GetButton("Fire1")) 
+                                    animator.SetBool("Jump", true );
+			}
+			else
+			{
+            	                animator.SetBool("Jump", false);				
+			}
+		
+         		float h = Input.GetAxis("Horizontal");
+                	float v = Input.GetAxis("Vertical");
+			
+                        //set event parameters based on user input
+			animator.SetFloat("Speed", h*h+v*v);
+                        animator.SetFloat("Direction", h, DirectionDampTime, Time.deltaTime);
+		}		
+	}   		  
+}
+@]
+
+(back to [[Animation State Machines]])

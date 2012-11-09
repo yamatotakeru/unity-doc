@@ -1,0 +1,22 @@
+!Muscle setup
+
+Mecanim allows you to control the range of motion of different bones using $$Muscles$$. 
+
+Once the Avatar has been [[ConfiguringtheAvatar|properly configured]], Mecanim will "understand" the bone structure and allow you to start working in the ~~Muscles~~ tab of the ~~Avatar Inspector~~. Here, it is very easy to tweak the character's range of motion and ensure the character deforms in a convincing way, free from visual artifacts or self-overlaps.
+
+Attach:MecanimAvatarMuscles.png
+
+You can either adjust individual bones in the body (lower part of the view) or manipulate the character using predefined deformations which operate on several bones at once (upper part of the view). 
+
+!Muscle Clips
+
+In the Animation tab, you can set up $$Muscle Clips$$, which are animations for specific muscles and muscle groups. 
+
+Attach:MecanimMuscleClips.png
+
+You can also define which body parts these muscle clips apply to.
+Attach:MecanimBodyMask.png
+
+(back to [[Avatar Creation and Setup]])
+
+(back to [[MecanimAnimationSystem|Mecanim introduction]])

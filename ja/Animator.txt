@@ -1,0 +1,7 @@
+!Animator Component and Animator Controller
+
+(:include class-Animator:)
+
+(:include class-AnimatorController:)
+
+(back to [[MecanimAnimationSystem|Mecanim introduction]])

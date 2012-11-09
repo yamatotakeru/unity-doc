@@ -1,0 +1,16 @@
+! Using the Inspector
+
+The $$Inspector$$ is used to view and edit $$Properties$$ of many different types.
+
+Games in Unity are made up of multiple $$GameObjects$$ that contain meshes, scripts, sounds, or other graphical elements like Lights. When you select a $$GameObject$$ in the Hierarchy or Scene View, the $$Inspector$$ will show and let you modify the $$Properties$$ of that GameObject and all the $$Components$$ and $$Materials$$ on it. The same will happen if you select a $$Prefab$$ in the Project View. This way you modify the functionality of GameObjects in your game. You can read more about the [[GameObjects#Relationship|GameObject-Component relationship]], as it is very important to understand.
+
+Attach:GenericInspector.png\\
+''Inspector shows the properties of a GameObject and the Components and Materials on it.''
+
+When you create a $$script$$ yourself, which works as a custom Component type, the member variables of that script are also exposed as $$Properties$$ that can be edited directly in the Inspector when that script component has been added to a $$GameObject$$. This way script variables can be changed without modifying the script itself.
+
+Furthermore, the Inspector is used for showing import options of assets such as textures, 3D models, and fonts when selected. Some scene and project-wide settings are also viewed in the $$Inspector$$, such as all the [[comp-ManagerGroup| Settings Managers]].
+
+Any property that is displayed in the Inspector can be directly modified. There are two main types of Properties: $$Values$$ and $$References$$.
+
+(:tocportion:)

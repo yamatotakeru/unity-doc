@@ -1,0 +1,775 @@
+This is "the structure" of the docs. Simply a nested bulleted list; to make a page appear in the docs add it in appropriate place here. Please note that blank lines in the TOC structure are significant - make sure you do not add new blank lines in between TOC entries!
+
+! Unity Manual TOC
+
+*[[Unity Manual]]
+**[[User Guide]]
+***[[Unity Basics]]
+****[[Learning the Interface]]
+*****[[ProjectView40]]
+*****[[Hierarchy]]
+*****[[Toolbar]]
+*****[[SceneView40]]
+>>jpn<<
+*****[[GameView40]]
+>><<
+*****[[Inspector]]
+*****[[Other Views]]
+>>jpn<<
+****[[Customizing Your Workspace]]
+>><<
+****[[Asset Workflow]]
+>>jpn<<
+****[[Creating Scenes]]
+>><<
+****[[Publishing Builds]]
+>>jpn<<
+****[[Tutorials]]
+>><<
+****[[Unity Hotkeys]]
+****[[Preferences]]
+***[[Building Scenes]]
+****[[GameObjects]]
+*****[[The GameObject-Component Relationship]]
+*****[[Using Components40]]
+>>jpn<<
+*****[[The Component-Script Relationship]]
+>><<
+*****[[DeactivatingGameObjects]]
+****[[Using The Inspector]]
+*****[[Editing Value Properties40]]
+*****[[Editing Reference Properties]]
+*****[[Multi-Object Editing]]
+>>jpn<<
+*****[[Inspector Options]]
+>><<
+****[[Using The Scene View]]
+*****[[Scene View Navigation]]
+*****[[Positioning GameObjects]]
+*****[[View Modes]]
+*****[[Gizmo and Icon Visibility]]
+****[[Searching]]
+****[[Prefabs]]
+****[[Lights]]
+****[[Cameras]]
+>>jpn<<
+****[[Terrains]]
+>><<
+***[[Asset Import and Creation]]
+****[[Importing Assets]]
+****[[Meshes]]
+*****[[3D-formats]]
+****[[Animations40|Animations (Legacy)]]
+****[[Materials]]
+>>jpn<<
+****[[Textures]]
+>><<
+****[[Procedural Materials]]
+>>jpn<<
+****[[Video Files]]
+>><<
+****[[Audio Files]]
+*****[[TrackerModules]]
+****[[Scripting]]
+****[[Asset Store]]
+****[[Asset Server]]
+*****[[Asset Cache Server]]
+*****[[Cache Server FAQ]]
+****[[Behind the Scenes]]
+>>jpn<<
+***[[Creating Gameplay]]
+>><<
+****[[Instantiating Prefabs]]
+****[[Input]]
+****[[Transforms]]
+****[[Physics]]
+****[[RandomNumbers]]
+****[[Particle Systems]]
+*****[[Particle System Curve Editor]]
+*****[[Particle System Color Editor]]
+*****[[GradientEditor|Particle System Gradient Editor]]
+*****[[Particle System Inspector]]
+*****[[Particle System Modules Intro]]
+*****[[Particle System Modules40]]
+*****[[Particle System Grouping]]
+****[[Mecanim Animation System]]
+*****[[AnimationGlossary|A glossary of animation and Mecanim terms]]
+*****[[Asset Preparation and Import]]
+******[[Preparing a character from scratch|Preparing your own character]]
+******[[AnimationsImport|Importing Animations]]
+******[[Splitting animations]]
+*****[[Avatar Creation and Setup]]
+******[[Creating the Avatar]]
+******[[Configuring the Avatar]]
+******[[Muscle Definitions]]
+******[[Avatar Body Mask]]
+******[[Retargeting]]
+******[[Inverse Kinematics]]
+*****[[Generic Animations]]
+*****[[Bringing characters to life]]
+******[[Aligning Animation Clips]]
+******[[Animator|Animator Component and Window]]
+******[[Animation State Machines]]
+*******[[Animation States]]
+*******[[Animation Transitions]]
+*******[[Animation Parameters]]
+******[[Animation Blend Trees]]
+******[[Advanced topics]]
+*******[[AnimatorCurves|Animation Curves in Mecanim]]
+*******[[Nested State Machines]]
+*******[[Animation Layers]]
+*******[[AnimationSoloMute|Animation State Machine Preview (solo and mute)]]
+*******[[Target Matching]]
+*******[[Root Motion]]
+********[[Scripting Root Motion]]
+****[[Animations40|Legacy Animation system]]
+*****[[AnimationEditorGuide40|Animation Editor Guide (Legacy)]]
+*****[[Animation Scripting 40|Animation Scripting (Legacy)]]
+****[[Navmesh and Pathfinding]] 
+*****[[Navmeshbaking|Navmesh Baking]]
+>>jpn<<
+****[[Sound]]
+>><<
+****[[Game Interface Elements]]
+****[[Networked Multiplayer]]
+>>ios<<
+** [[iphone-GettingStarted]]
+*** [[iphone-basic]]
+*** [[unity-remote]]
+*** [[iphone-API]]
+**** [[Input#iPhoneInput | iphone-Input]]
+**** [[MobileKeyboard | iOS-Keyboard]]
+**** [[MobileAdvanced | iOS-Advanced]]
+**** [[MobileDotnet | iOS-DotNet]]
+*** [[iphone-Hardware]]
+*** [[iphone-performance]]
+**** [[iphone-iOS-Optimization]]
+**** [[iphone-InternalProfiler]]
+**** [[iphone-playerSizeOptimization]]
+*** [[iphone-accountsetup]]
+*** [[iphone-unsupported]]
+*** [[PluginsForIOS | iphone-Plugins]]
+*** [[iphone-Downloadable-Content]]
+*** [[MobileCustomizeSplashScreen]]
+*** [[TroubleShooting#iPhoneTroubleShooting | iphone-troubleshooting]]
+*** [[iphone-bugreporting]]
+>><<
+>>android<<
+** [[android-GettingStarted]]
+*** [[android-sdksetup]]
+*** [[android-remote]]
+*** [[TroubleShooting#AndroidTroubleShooting | android-troubleshooting]]
+*** [[android-bugreporting]]
+*** [[android-unsupported]]
+*** [[class-PlayerSettings#Android | Android Player Settings]]
+*** [[android-API]]
+**** [[Input#AndroidInput | Android-Input]]
+**** [[MobileKeyboard#Android | Android-Keyboard]]
+**** [[MobileAdvanced#Android | Android-Advanced]]
+**** [[MobileDotnet#Android | Android-DotNet]]
+*** [[PluginsForAndroid | Android-Plugins]]
+*** [[MobileCustomizeSplashScreen#Android | Android Splash Screen]]
+>><<
+>>metro<<
+**[[metro-gettingstarted]]
+***[[metro-debugging]]
+***[[metro-plugins]]
+***[[metro-projecttypes]]
+***[[metro-faq]]
+****[[metro-wack]]
+***[[metro-examples]]
+>><<
+** [[nacl-gettingstarted]]
+** [[flash-gettingstarted]]
+*** [[flash-setup]]
+*** [[flash-building]]
+*** [[flash-debugging]]
+*** [[flash-whatssupported]]
+*** [[flash-embeddingapi]]
+*** [[flash-adobelicense]]
+*** [[flashexamples-supplyingdata]]
+*** [[flashexamples-callingflashfunctions]]
+*** [[flashexamples-browserjavascriptcommunication]]
+*** [[flashexamples-accessingthestage]]
+** [[FAQ]]
+*** [[Upgrade Guide35_40|Upgrade guide from 3.5 to 4.0]]
+*** [[UpgradeGuide34_35|Upgrade guide from 3.4 to 3.5]]
+>>jpn<<
+*** [[HowToUpgradeFrom2xTo3x]]
+**** [[PhysicsUpgradeDetails]]
+>><<
+**** [[MonoUpgradeDetails]]
+**** [[RenderingUpgradeDetails]]
+**** [[SL-V3Conversion]]
+*** [[Main.Unity4xActivation-Overview|Unity 4.x Activation - Overview]]
+**** [[ManagingyourUnity4xLicense|Managing your Unity 4.x License]]
+**** [[Online Activation Guide]]
+**** [[Manual Activation Guide]]
+*** [[Game Code How-to]]
+>>jpn<<
+**** [[HOWTO-First Person Walkthrough]]
+>><<
+*** [[Graphics how-tos]]
+**** [[HOWTO-alphamaps]]
+>>jpn<<
+**** [[HOWTO-bumpmap | HOWTO-Normalmap]]
+**** [[HOWTO-UseDetailTexture]]
+**** [[HOWTO-MakeCubemap]]
+****[[HOWTO-UseSkybox]]
+>><<
+****[[HOWTO-MeshParticleEmitter]]
+>>jpn<<
+****[[HOWTO-SplashScreen]]
+****[[HOWTO-LightCookie]]
+****[[HOWTO-FixZAxisIsUp]]
+****[[HOWTO-Water]]
+>><<
+***[[HOWTO-exportFBX]]
+***[[HOWTO-ArtAssetBestPracticeGuide]]
+>>jpn<<
+***[[HOWTO-importObject]]
+****[[HOWTO-ImportObjectMaya]]
+****[[HOWTO-ImportObjectCinema4D]]
+****[[HOWTO-ImportObjectMax]]
+****[[HOWTO-ImportObjectCheetah3D]]
+****[[HOWTO-ImportObjectModo]]
+****[[HOWTO-importObjectLightwave]]
+****[[HOWTO-ImportObjectBlender]]
+***[[Workflow]]
+****[[HOWTO-MonoDevelop]]
+****[[HOWTO-exportpackage]]
+****[[HOWTO-InstallStandardAssets]]
+>><<
+****[[HOWTO-PortingBetweenPlatforms]]
+***[[MobileDeveloperChecklist]]
+****[[MobileCrashes]]
+****[[MobileProfiling]]
+****[[MobileOptimisation]]
+**[[Advanced]]
+***[[Vector Cookbook]]
+****[[UnderstandingVectorArithmetic]]
+****[[DirectionDistanceFromOneObjectToAnother]]
+****[[ComputingNormalPerpendicularVector]]
+****[[AmountVectorMagnitudeInAnotherDirection]]
+***[[AssetBundlesIntro|AssetBundles]]
+****[[abfaq|Frequently Asked Questions]]
+****[[Building Asset Bundles|Building AssetBundles]]
+****[[Downloading Asset Bundles|Downloading AssetBundles]]
+****[[Loading Asset Bundles|Loading resources from AssetBundles]]
+****[[keepingtrackofloadedassetbundles|Keeping track of loaded AssetBundles]]
+****[[binarydata|Storing and loading binary data]]
+****[[protectingcontent|Protecting content]]
+****[[managingassetdependencies|Managing Asset Dependencies]]
+****[[scriptsinassetbundles|Including scripts in AssetBundles]]
+***[[Graphics Features]]
+****[[HDR]]
+****[[RenderingPaths]]
+****[[Linear Lighting]]
+****[[Level Of Detail]]
+****[[Shaders]]
+>>jpn<<
+*****[[ShaderTut1]]
+>><<
+*****[[ShaderTut2]]
+****[[DirectX 11]]
+****[[Compute Shaders]]
+****[[GraphicsEmulation]]
+***[[AssetDatabase]]
+***[[BuildPlayerPipeline]]
+***[[Profiler]]
+***[[Lightmapping]]
+****[[LightmappingInDepth]]
+****[[LightmappingCustomSettings]]
+****[[LightmappingUV]]
+****[[LightProbes]]
+***[[Occlusion Culling]]
+***[[CameraTricks]]
+****[[UnderstandingFrustum]]
+****[[FrustumSizeAtDistance]]
+****[[DollyZoom]]
+****[[CameraRays]]
+****[[ObliqueFrustum]]
+****[[ImpressionOfSize]]
+***[[Loading Resources at Runtime]]
+***[[Modifying Source Assets Through Scripting]]
+>>jpn<<
+***[[Generating Mesh Geometry Procedurally]]
+>><<
+****[[Anatomy of a Mesh]]
+>>jpn<<
+****[[Using the Mesh Class]]
+>><<
+****[[Example - Creating a Billboard Plane]]
+***[[StyledText]]
+***[[UsingDLL]]
+***[[Execution Order]]
+***[[iphone-PracticalGuide]]
+**** [[iphone-FutureDevices]]
+**** [[iphone-OptimizedGraphicsMethods]]
+**** [[iphone-OptimizedScriptingMethods]]
+**** [[iphone-PracticalRenderingOptimizations]]
+**** [[iphone-PracticalScriptingOptimizations]]
+***[[Optimizing Graphics Performance]]
+**** [[Draw Call Batching]]
+**** [[Modeling Optimized Characters]]
+****[[RenderingStatistics]]
+***[[Reducing File size]]
+***[[Understanding Automatic Memory Management]]
+***[[PlatformDependentCompilation | Platform Dependent Compilation]]
+***[[GenericFunctions | Generic Functions]]
+>>jpn<<
+***[[Debugging]]
+>><<
+****[[Console]]
+****[[Debugger]]
+****[[LogFiles | Log Files]]
+*****[[AccessingHiddenFolders | Accessing Hidden Folders]]
+***[[Plugins]]
+****[[PluginsForDesktop]]
+****[[PluginsForIOS]]
+****[[PluginsForAndroid]]
+****[[NativePluginInterface]]
+***[[TextualSceneFormat]]
+****[[FormatDescription]]
+****[[YAMLSceneExample]]
+****[[ClassIDReference]]
+***[[StreamingAssets]]
+***[[Command Line Arguments]]
+***[[RunningEditorCodeOnLaunch]]
+>>jpn<<
+***[[NetworkEmulation]]
+>><<
+***[[Security Sandbox]]
+***[[ScriptRef:MonoCompatibility.html | Overview of available .NET Class Libraries ]] 
+>>jpn<<
+***[[VisualStudioIntegration]]
+>><<
+***[[ExternalVersionControlSystemSupport]]
+***[[Analytics]]
+>>jpn<<
+***[[Version Check]]
+>><<
+***[[Installing Multiple Versions of Unity]]
+***[[TroubleShooting]]
+>>desktop<<
+***[[IME Input]]
+>><<
+*** [[Shadows]]
+**** [[DirectionalShadowDetails]]
+**** [[Shadow Troubleshooting]]
+**** [[Shadow Size Details]]
+>>desktop<<
+*** [[OptimizeForIntegratedCards]]
+***[[Web Player Deployment]]
+****[[HTML code to load Unity Web Player content]]
+****[[Working with UnityObject]]
+****[[Customizing the Unity Web Player loading screen]]
+****[[WebPlayerBehaviorTags]]
+****[[Unity Web Player and browser communication]]
+****[[Using Web Player templates]]
+****[[Web Player Streaming]]
+
+***[[Web Player Deployment - UnityObject2]]
+****[[HTML code to load Unity Web Player content - UnityObject2]]
+****[[Working with UnityObject2]]
+****[[Customizing the Unity Web Player loading screen - UnityObject2]]
+****[[WebPlayerBehaviorTags - UnityObject2]]
+****[[Unity Web Player and browser communication - UnityObject2]]
+
+>><<
+
+
+----
+
+
+!Reference Manual
+*[[Reference]]
+**[[Components]]
+***[[comp-AIGroup]]
+****[[class-NavMeshAgent]]
+****[[class-OffMeshLink]]
+****[[class-NavMeshObstacle]]
+>>jpn<<
+***[[comp-AnimationGroup]]
+****[[class-Animation]]
+>><<
+****[[class-AnimationClip]]
+****[[class-Animator]]
+****[[class-AnimatorController]]
+****[[class-Avatar]]
+****[[class-AvatarBodyMask]]
+****[[class-AvatarSkeletonMask]]
+****[[class-HumanTemplate]]
+****[[class-State]]
+****[[class-Transition]]
+>>jpn<<
+***[[comp-AssetsGroup]]
+>><<
+****[[class-AudioClip]]
+>>jpn<<
+****[[class-Cubemap]]
+>><<
+****[[class-FBXImporter]]
+*****[[FBXImporter-Model]]
+*****[[FBXImporter-Rig]]
+*****[[FBXImporter-Animations]]
+>>jpn<<
+****[[class-Flare]]
+>><<
+****[[class-Font]]
+>>jpn<<
+****[[class-Material]]
+>><<
+****[[class-Mesh]]
+****[[class-MovieTexture]]
+>>jpn<<
+****[[class-ProceduralMaterial]]
+****[[class-RenderTexture]]
+****[[class-TextAsset]]
+>><<
+****[[class-Texture2D]]
+>>jpn<<
+***[[comp-AudioGroup]]
+****[[class-AudioListener]]
+>><<
+****[[class-AudioSource]]
+****[[class-AudioEffect]]
+*****[[class-AudioLowPassFilter]]
+>>jpn<<
+*****[[class-AudioHighPassFilter]]
+>><<
+*****[[class-AudioEchoFilter]]
+>>jpn<<
+*****[[class-AudioDistorionFilter]]
+>><<
+*****[[class-AudioReverbFilter]]
+*****[[class-AudioChorusFilter]]
+****[[class-AudioReverbZone]]
+****[[class-Microphone]]
+>>jpn<<
+***[[comp-DynamicsGroup]]
+****[[class-BoxCollider]]
+>><<
+****[[class-CapsuleCollider]]
+****[[class-CharacterController]]
+>>jpn<<
+****[[class-CharacterJoint]]
+****[[class-ConfigurableJoint]]
+****[[class-ConstantForce]]
+****[[class-FixedJoint]]
+****[[class-HingeJoint]]
+****[[class-MeshCollider]]
+****[[class-PhysicMaterial]]
+>><<
+****[[class-Rigidbody]]
+>>jpn<<
+****[[class-SphereCollider]]
+****[[class-SpringJoint]]
+>><<
+****[[class-InteractiveCloth]]
+****[[class-SkinnedCloth]]
+>>jpn<<
+****[[class-WheelCollider]]
+***[[comp-GameObjectGroup]]
+****[[class-GameObject]]
+>><<
+*** [[comp-ImageEffects]]
+**** [[script-AntialiasingAsPostEffect]]
+>>u40<<
+**** [[script-Bloom]]
+**** [[script-CameraMotionBlur]]
+**** [[script-DepthOfFieldScatter]]
+**** [[script-NoiseAndGrain]]
+**** [[script-ScreenOverlay]]
+**** [[script-ColorCorrectionLut]]
+>><<
+**** [[script-BloomAndLensFlares]]
+**** [[script-ColorCorrectionCurves]]
+**** [[script-ContrastEnhance]]
+**** [[script-Crease]]
+**** [[script-DepthOfField34]]
+**** [[script-Tonemapping]]
+**** [[script-EdgeDetectEffectNormals]]
+**** [[script-Fisheye]]
+>>jpn<<
+**** [[script-GlobalFog]]
+>><<
+**** [[script-SunShafts]]
+**** [[script-TiltShift]]
+**** [[script-Vignetting]]
+**** [[script-BlurEffect]]
+>>jpn<<
+**** [[script-ColorCorrectionEffect]]
+>><<
+**** [[script-ContrastStretchEffect]]
+**** [[script-EdgeDetectEffect]]
+**** [[script-GlowEffect]]
+>>jpn<<
+**** [[script-GrayscaleEffect]]
+>><<
+**** [[script-MotionBlur]]
+>>jpn<<
+**** [[script-NoiseEffect]]
+**** [[script-SepiaToneEffect]]
+**** [[script-SSAOEffect]]
+>><<
+**** [[script-TwirlEffect]]
+**** [[script-VortexEffect]]
+>>jpn<<
+*** [[comp-ManagerGroup]]
+>><<
+**** [[class-AudioManager]]
+>>jpn<<
+**** [[class-EditorManager]]
+>><<
+**** [[class-InputManager]]
+**** [[class-NavMeshLayers]]
+**** [[class-NetworkManager]]
+**** [[class-PhysicsManager]]
+>>u40<<
+**** [[class-PlayerSettings40]]
+>><<
+**** [[class-QualitySettings]]
+**** [[class-RenderSettings]]
+**** [[class-ScriptExecution]]
+**** [[class-TagManager]]
+**** [[class-TimeManager]]
+>>jpn<<
+*** [[comp-MeshGroup]]
+**** [[class-MeshFilter]]
+>><<
+**** [[class-MeshRenderer]]
+**** [[class-SkinnedMeshRenderer]]
+**** [[class-TextMesh]]
+>>jpn<<
+*** [[comp-NetworkGroup]]
+**** [[class-NetworkView]]
+>><<
+*** [[comp-Effects]]
+**** [[class-ParticleSystem]]
+>>jpn<<
+**** [[class-Halo]]
+**** [[class-LensFlare]]
+>><<
+**** [[class-LineRenderer]]
+>>jpn<<
+**** [[class-TrailRenderer]]
+**** [[class-Projector]]
+>><<
+**** [[comp-ParticlesLegacy]]
+***** [[class-EllipsoidParticleEmitter]]
+***** [[class-MeshParticleEmitter]]
+***** [[class-ParticleAnimator]]
+***** [[class-ParticleRenderer]]
+***** [[class-WorldParticleCollider]]
+>>jpn<<
+*** [[comp-RenderingGroup]]
+>><<
+**** [[class-Camera]]
+>>jpn<<
+**** [[class-FlareLayer]]
+**** [[class-GUILayer]]
+**** [[class-GuiText]]
+**** [[class-GuiTexture]]
+>><<
+**** [[class-Light]]
+**** [[class-LightProbeGroup]]
+**** [[class-OcclusionArea]]
+**** [[class-OcclusionPortal]]
+>>jpn<<
+**** [[class-Skybox]]
+>><<
+**** [[class-LODGroup]]
+**** [[class-Texture3D]]
+>>jpn<<
+*** [[comp-TransformationGroup]]
+>><<
+**** [[class-Transform]]
+>>jpn<<
+*** [[comp-UnityGUIGroup]]
+**** [[class-GUISkin]]
+**** [[class-GUIStyle]]
+*** [[comp-Wizards]]
+>><<
+**** [[wizard-RagdollWizard]]
+** [[script-Terrain]]
+*** [[terrain-UsingTerrains]]
+*** [[terrain-Height]]
+*** [[terrain-Textures]]
+*** [[terrain-Trees]]
+*** [[terrain-Grass]]
+*** [[terrain-DetailMeshes]]
+*** [[script-Terrain#Lightmapping | Terrain Lightmapping]]
+*** [[terrain-OtherSettings]]
+** [[class-Tree]]
+*** [[tree-FirstTree]]
+*** [[tree-Structure]]
+*** [[tree-Branches]]
+*** [[tree-Leaves]]
+*** [[class-WindZone]]
+** [[AnimationEditorGuide]]
+*** [[animeditor-UsingAnimationEditor]]
+*** [[animeditor-AnimationCurves]]
+>>jpn<<
+*** [[EditingCurves]]
+>><<
+*** [[animeditor-MultipleParts]]
+*** [[animeditor-AnimationEvents]]
+** [[GUI Scripting Guide]]
+*** [[gui-Basics]]
+*** [[gui-Controls]]
+*** [[gui-Customization]]
+*** [[gui-Layout]]
+*** [[gui-Extending]]
+*** [[gui-ExtendingEditor]]
+>>jpn<<
+** [[Network Reference Guide]]
+>><<
+>>ios<<
+***[[MobileNetworking | Networking on iOS]]
+>><<
+*** [[net-HighLevelOverview]]
+>>jpn<<
+*** [[net-UnityNetworkElements]]
+>><<
+*** [[net-NetworkView]]
+*** [[net-RPCDetails]]
+*** [[net-StateSynchronization]]
+*** [[net-NetworkInstantiate]]
+>>jpn<<
+*** [[net-NetworkLevelLoad]]
+>><<
+*** [[net-MasterServer]]
+>>jpn<<
+**** [[net-MasterServerBuild]]
+>><<
+*** [[net-MinimizingBandwidth]]
+*** [[net-SocialAPI]]
+>>jpn<<
+**[[Built-in Shader Guide]]
+*** [[shader-Performance]]
+*** [[shader-NormalFamily]]
+**** [[shader-NormalVertexLit]]
+**** [[shader-NormalDiffuse]]
+**** [[shader-NormalSpecular]]
+**** [[shader-NormalBumpedDiffuse]]
+**** [[shader-NormalBumpedSpecular]]
+**** [[shader-NormalParallaxDiffuse]]
+**** [[shader-NormalParallaxSpecular]]
+**** [[shader-NormalDecal]]
+**** [[shader-NormalDiffuseDetail]]
+*** [[shader-TransparentFamily]]
+**** [[shader-TransVertexLit]]
+**** [[shader-TransDiffuse]]
+**** [[shader-TransSpecular]]
+**** [[shader-TransBumped Diffuse]]
+**** [[shader-TransBumped Specular]]
+**** [[shader-TransParallax Diffuse]]
+**** [[shader-TransParallax Specular]]
+*** [[shader-TransparentCutoutFamily]]
+**** [[shader-TransCutVertexLit]]
+**** [[shader-TransCutDiffuse]]
+**** [[shader-TransCutSpecular]]
+**** [[shader-TransCutBumpedDiffuse]]
+**** [[shader-TransCutBumpedSpecular]]
+*** [[shader-SelfIllumFamily]]
+**** [[shader-SelfIllumVertexLit]]
+**** [[shader-SelfIllumDiffuse]]
+**** [[shader-SelfIllumSpecular]]
+>><<
+**** [[shader-SelfIllumBumpedDiffuse]]
+**** [[shader-SelfIllumBumpedSpecular]]
+**** [[shader-SelfIllumParallaxDiffuse]]
+**** [[shader-SelfIllumParallaxSpecular]]
+>>jpn<<
+*** [[shader-ReflectiveFamily]]
+**** [[shader-ReflectiveVertexLit]]
+**** [[shader-ReflectiveDiffuse]]
+**** [[shader-ReflectiveSpecular]]
+**** [[shader-ReflectiveBumpedDiffuse]]
+**** [[shader-ReflectiveBumpedSpecular]]
+**** [[shader-ReflectiveParallaxDiffuse]]
+**** [[shader-ReflectiveParallaxSpecular]]
+**** [[shader-ReflectiveBumpedUnlit]]
+**** [[shader-ReflectiveBumpedVertexLit]]
+>><<
+**[[Rendering-Tech]]
+***[[RenderTech-DeferredLighting]]
+>>jpn<<
+***[[RenderTech-ForwardRendering]]
+***[[RenderTech-VertexLit]]
+>><<
+***[[RenderTech-HardwareRequirements]]
+>>jpn<<
+**[[SL-Reference]]
+>><<
+***[[SL-SurfaceShaders]]
+****[[SL-SurfaceShaderExamples]]
+****[[SL-SurfaceShaderLighting]]
+>>jpn<<
+****[[SL-SurfaceShaderLightingExamples]]
+>><<
+>>u40<<
+****[[SL-SurfaceShaderTessellation]]
+>><<
+***[[SL-ShaderPrograms]]
+****[[SL-PropertiesInPrograms]]
+****[[SL-VertexProgramInputs]]
+****[[SL-BuiltinIncludes]]
+****[[SL-BuiltinMacros]]
+>>jpn<<
+****[[SL-BuiltinStateInPrograms]]
+>><<
+****[[SL-GLSLShaderPrograms]]
+>>jpn<<
+***[[SL-Shader]]
+>><<
+****[[SL-Properties]]
+>>jpn<<
+****[[SL-SubShader]]
+>><<
+*****[[SL-Pass]]
+>>jpn<<
+******[[SL-Material]]
+>><<
+******[[SL-CullAndDepth]]
+******[[SL-SetTexture]]
+>>jpn<<
+******[[SL-Fog]]
+******[[SL-AlphaTest]]
+>><<
+******[[SL-Blend]]
+******[[SL-PassTags]]
+>>jpn<<
+******[[SL-Name]]
+******[[SL-BindChannels]]
+>><<
+*****[[SL-UsePass]]
+*****[[SL-GrabPass]]
+*****[[SL-SubshaderTags]]
+>>jpn<<
+****[[SL-Fallback]]
+****[[SL-Other]]
+***[[SL-AdvancedTopics]]
+>><<
+****[[SL-RenderPipeline]]
+>>jpn<<
+****[[SL-ShaderPerformance]]
+>><<
+****[[SL-ShaderReplacement]]
+**** [[SL-DepthTextures]]
+**** [[SL-CameraDepthTexture]]
+**** [[SL-PlatformDifferences]]
+>>jpn<<
+****[[SL-ShaderLOD]]
+>><<
+***[[SL-BuiltinValues]]
+>>jpn<<
+** [[Scripting Concepts]]
+>><<
+*** [[Layers]]
+>>jpn<<
+****[[LayerBasedCollision | Layer Based Collision detection]]
+*** [[Tags]]
+*** [[RigidbodySleeping]]
+>><<

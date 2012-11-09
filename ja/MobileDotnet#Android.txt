@@ -1,0 +1,209 @@
+<!DOCTYPE html 
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>DocWiki | Main / MobileDotnet </title>
+  <meta http-equiv='Content-Style-Type' content='text/css' />
+  <link rel='stylesheet' href='http://docwiki.unity3d.co.jp/pub/skins/unitywiki/unitywiki.css' type='text/css' />
+  <!--HTMLHeader--><style type='text/css'><!--
+  ul, ol, pre, dl, p { margin-top:0px; margin-bottom:0px; }
+  code.escaped { white-space: nowrap; }
+  .vspace { margin-top:1.33em; }
+  .indent { margin-left:40px; }
+  .outdent { margin-left:40px; text-indent:-40px; }
+  a.createlinktext { text-decoration:none; border-bottom:1px dotted gray; }
+  a.createlink { text-decoration:none; position:relative; top:-0.5em;
+    font-weight:bold; font-size:smaller; border-bottom:none; }
+  img { border:0px; }
+  
+span.anchor {
+	float: left;
+	font-size: 10px;
+	margin-left: -10px;
+	width: 10px;
+    position:relative; top:-0.1em;
+	text-align: center;
+}
+span.anchor a { text-decoration: none; }
+span.anchor a:hover { text-decoration: underline; }
+ol.toc { text-indent:-20px; list-style: none; }
+ol.toc ol.toc { text-indent:-40px; }
+div.tocfloat { font-size: smaller; margin-bottom: 10px;
+    border-top: 1px dotted #555555; border-bottom: 1px dotted #555555;
+    padding-top: 5px; padding-bottom: 5px; 
+    width: 38%; float: right; margin-left: 10px; clear: right;
+    margin-right:-13px; padding-right: 13px; padding-left: 13px;
+    background-color: #eeeeee; }
+div.toc { font-size: smaller; 
+    padding: 5px; border: 1px dotted #cccccc;
+    background: #f7f7f7;
+    margin-bottom: 10px; }
+div.toc p { background-color: #f9f6d6;
+    margin-top:-5px;   padding-top: 5px;
+    margin-left:-5px;  padding-left: 5px;
+    margin-right:-5px; padding-right: 5px;
+    padding-bottom: 3px;
+    border-bottom:  1px dotted #cccccc; }.editconflict { color:green; 
+  font-style:italic; margin-top:1.33em; margin-bottom:1.33em; }
+
+  table.markup { border:2px dotted #ccf; width:90%; }
+  td.markup1, td.markup2 { padding-left:10px; padding-right:10px; }
+  table.vert td.markup1 { border-bottom:1px solid #ccf; }
+  table.horiz td.markup1 { width:23em; border-right:1px solid #ccf; }
+  table.markup caption { text-align:left; }
+  div.faq p, div.faq pre { margin-left:2em; }
+  div.faq p.question { margin:1em 0 0.75em 0; font-weight:bold; }
+  div.faqtoc div.faq * { display:none; }
+  div.faqtoc div.faq p.question 
+    { display:block; font-weight:normal; margin:0.5em 0 0.5em 20px; line-height:normal; }
+  div.faqtoc div.faq p.question * { display:inline; }
+   
+    .frame 
+      { border:1px solid #cccccc; padding:4px; background-color:#f9f9f9; }
+    .lfloat { float:left; margin-right:0.5em; }
+    .rfloat { float:right; margin-left:0.5em; }
+a.varlink { text-decoration:none; }
+
+--></style><script type="text/javascript">
+function toggle(obj) {
+    var elstyle = document.getElementById(obj).style;
+    var text    = document.getElementById(obj + "tog");
+    if (elstyle.display == 'none') {
+        elstyle.display = 'block';
+        text.innerHTML = "hide";
+    } else {
+        elstyle.display = 'none';
+        text.innerHTML = "show";
+    }
+}
+</script>  <meta name='robots' content='index,follow' />
+
+</head>
+<body>
+<!--PageHeaderFmt-->
+  <div id='wikilogo'><a href='http://docwiki.unity3d.co.jp/index.php'><img src='http://docwiki.unity3d.co.jp/pub/skins/unitywiki/unitywiki.png'
+    alt='DocWiki' border='0' /></a>
+        <span id='wikititle'>
+          <span class='pagegroup'><a href='http://docwiki.unity3d.co.jp/index.php?n=Main'>Main</a> /</span>
+          <span class='pagetitle'>MobileDotnet</span>
+        </span>
+  </div>
+  <div id='wikihead'>
+  <form action='http://docwiki.unity3d.co.jp/index.php'>
+    <span class='headnav'><a href='http://docwiki.unity3d.co.jp/index.php?n=Site.AllRecentChanges'
+      accesskey='c'>Recent Changes</a> -</span>
+    <input type='hidden' name='n' value='Main.MobileDotnet' />
+    <input type='hidden' name='action' value='search' />
+    <a href='http://docwiki.unity3d.co.jp/index.php?n=Site.Search'>Search</a>:
+    <input type='text' name='q' value='' class='inputbox searchbox' />
+    <input type='submit' class='inputbutton searchbutton'
+      value='Go' /></form></div>
+<!--/PageHeaderFmt-->
+  <table id='wikimid' width='100%' cellspacing='0' cellpadding='0'><tr>
+<!--PageLeftFmt-->
+      <td id='wikileft' valign='top'>
+        <ul><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.HomePage'>Home Page</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Site.SideBar?action=login'>Login</a>
+</li></ul><p class='vspace sidehead'> 4.x Unity doc
+</p>
+<div class='vspace'></div><ul><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.UnityManual'>Unity Manual</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.Reference'>Reference Manual</a> 
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.Components'>Components</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.Built-inShaderGuide'>Built-in Shader Guide</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.iphone-GettingStarted'>iPhone Guide</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.android-GettingStarted'>Android Guide</a>
+</li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Main.xbox360-gettingstarted?action=edit'>360 Guide</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.xbox360-gettingstarted?action=edit'>?</a>
+</li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Main.wii-gettingstarted?action=edit'>Wii Guide</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.wii-gettingstarted?action=edit'>?</a>
+</li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Main.ps3-gettingstarted?action=edit'>PS3 Guide</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.ps3-gettingstarted?action=edit'>?</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.flash-gettingstarted'>Flash Guide</a>
+</li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Main.wiiu-gettingstarted?action=edit'>WiiU Guide</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.wiiu-gettingstarted?action=edit'>?</a>
+<div class='vspace'></div></li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.TableOfContents'>Table Of Contents</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.IncludedPages'>Included Pages</a>
+<div class='vspace'></div></li><li><a class='urllink' href='http://docwiki.hq.unity3d.com/3x/index.php' rel='nofollow'>3.x docs</a>
+</li></ul><p class='vspace sidehead'> Website bits
+</p>
+<div class='vspace'></div><ul><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Website.HomePage?action=edit'>Home Page</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Website.HomePage?action=edit'>?</a>
+</li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Website.TableOfContents?action=edit'>Table Of Contents</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Website.TableOfContents?action=edit'>?</a>
+</li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Website.AssetServerInstallation?action=edit'>Asset Server</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Website.AssetServerInstallation?action=edit'>?</a>
+<div class='vspace'></div></li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=SourceCode.HomePage?action=edit'>Source code</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=SourceCode.HomePage?action=edit'>?</a>
+</li></ul><p class='vspace sidehead'> Misc
+</p><ul><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.PageList'>All pages</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Site.AllRecentChanges?action=rss'>RSS</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.HomePage?action=refcount'>Refcount</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.WikiSandbox'>WikiSandbox</a>
+</li></ul><p class='vspace'  style='text-align: right;'> <span style='font-size:83%'><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Site.SideBar?action=edit'>edit SideBar</a></span>
+</p>
+</td>
+<!--/PageLeftFmt-->
+      <td id='wikibody' valign='top'>
+<!--PageActionFmt-->
+        <div id='wikicmds'><ul><li class='browse'><a accesskey=''  class='selflink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileDotnet'>View</a>
+</li><li class='edit'><a accesskey='e'  rel='nofollow'  class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileDotnet?action=edit'>Edit</a>
+</li><li class='diff'><a accesskey='h'  rel='nofollow'  class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileDotnet?action=diff&amp;source=y'>History</a>
+</li><li class='backlink'><a accesskey='ak_backlink'  rel='nofollow'  class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileDotnet?action=search&amp;q=link=Main.MobileDotnet'>Backlinks</a>
+</li></ul>
+</div>
+<!--PageText-->
+<div id='wikitext'>
+<h1>Using .NET API 2.0 compatibility level</h1>
+<p><a name='iOS' id='iOS'></a>
+</p><a class='iosRef' id='iosRef' href="javascript:ShowHideDiv('iosRef','specific-ios', 'iOS');"><img src="./uploads/Main/PlatformArrowDown.png"><h1>iOS</h1></a>
+<div class='specific-ios' style='display: block;' id='specific-ios' > 
+<p>Now Unity iOS supports two .NET API compatibility levels: .NET 2.0 and a subset of .NET 2.0 .You can select the appropriate level in the <a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.class-PlayerSettings'>Player Settings</a>.
+</p>
+<div class='vspace'></div><h2>.NET API 2.0</h2>
+<p>Unity supports the <span class='doc-prop'>.NET 2.0</span> API profile. This is close to the full .NET 2.0 API and offers the best compatibility with pre-existing .NET code.  However, the application's build size and startup time will be relatively poor.
+</p>
+<p class='vspace'><b>Note:</b> Unity iOS does not support namespaces in scripts. If you have a third party library supplied as source code then the best approach is to compile it to a DLL outside Unity and then drop the DLL file into your project's Assets folder.
+</p>
+<div class='vspace'></div><h2>.NET 2.0 Subset </h2>
+<p>Unity also supports the <span class='doc-prop'>.NET 2.0 Subset</span> API profile. This is close to the Mono "monotouch" profile, so many limitations of the "monotouch" profile also apply to Unity's .NET 2.0 Subset profile. More information on the limitations of the "monotouch" profile can be found <a class='urllink' href='http://monotouch.net/Documentation/Limitations' rel='nofollow'>here</a>. The advantage of using this profile is reduced build size (and startup time) but this comes at the expense of compatibility with existing .NET code.
+</p>
+<div class='vspace'></div></div>
+<p><a name='Android' id='Android'></a>
+</p><a class='androidRef' id='androidRef' href="javascript:ShowHideDiv('androidRef','specific-android', 'Android');"><img src="./uploads/Main/PlatformArrowDown.png"><h1>Android</h1></a>
+<div class='specific-android' style='display: block;' id='specific-android' > 
+<p>Unity Android supports two .NET API compatibility levels: .NET 2.0 and a subset of .NET 2.0 You can select the appropriate level in the <a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.class-PlayerSettings'>Player Settings</a>.
+</p>
+<div class='vspace'></div><h2>.NET API 2.0</h2>
+<p>Unity supports the <span class='doc-prop'>.NET 2.0</span> API profile; It is close to the full .NET 2.0 API and offers the best compatibility with pre-existing .NET code. However, the application's build size and startup time will be relatively poor.
+</p>
+<p class='vspace'><b>Note:</b> Unity Android does not support namespaces in scripts. If you have a third party library supplied as source code then the best approach is to compile it to a DLL outside Unity and then drop the DLL file into your project's Assets folder.
+</p>
+<div class='vspace'></div><h2>.NET 2.0 Subset </h2>
+<p>Unity also supports the <span class='doc-prop'>.NET 2.0 Subset</span> API profile. This is close to the Mono "monotouch" profile, so many limitations of the "monotouch" profile also apply to Unity's .NET 2.0 Subset profile. More information on the limitations of the "monotouch" profile can be found <a class='urllink' href='http://monotouch.net/Documentation/Limitations' rel='nofollow'>here</a>. The advantage of using this profile is reduced build size (and startup time) but this comes at the expense of compatibility with existing .NET code.
+</p></div>
+</div>
+
+      </td>
+    </tr></table>
+<!--PageFooterFmt-->
+  <div id='wikifoot'>
+    <div class='footnav'>
+      <a rel="nofollow" href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileDotnet?action=edit'>Edit</a> -
+      <a rel="nofollow" href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileDotnet?action=diff&source=y'>History</a> -
+      <a rel="nofollow" href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileDotnet?action=print' target='_blank'>Print</a> -
+      <a href='http://docwiki.unity3d.co.jp/index.php?n=Site.AllRecentChanges'>Recent Changes</a> -
+      <a href='http://docwiki.unity3d.co.jp/index.php?n=Site.Search'>Search</a> - 
+      <a href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileDotnet?action=search&q=link=Main.MobileDotnet'>Backlinks</a></div>
+    <div class='lastmod'>Page last modified on 2012-07-12 01:08</div></div>
+<!--HTMLFooter-->
+</body>
+</html>

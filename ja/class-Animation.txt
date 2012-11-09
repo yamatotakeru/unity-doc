@@ -1,0 +1,19 @@
+! アニメーション
+
+Attach:AnimationInspector35.png\\
+''The Animation $$Inspector$$''
+
+!!Properties
+
+||PROPS
+||``Animation``  ||デフォルトのアニメーション。「Play Automatically」がオンの際に再生される||
+||``Animations`` ||スクリプトからアクセス可能なアニメーションのリスト||
+||``Play Automatically`` ||オンの場合はゲーム開始時に自動再生||
+||``Animate Physics`` ||オンの場合は物理エンジン（Physics）と連動||
+||``Culling Type``||どの場合はアニメーション再生を行わないか設定||
+||>>>``Always Animate``||常に再生||
+||>>>``Based on Renderers``||デフォルトのアニメーションポーズの場合は再生||
+||>>>``Based on Clip Bounds``||インポートの際に計算されるクリップの境界に基づいて再生し、クリップの境界がビューの外にある場合は再生しない||
+||>>>``Based on User Bounds``||ユーザ定義に基づいた境界にもとづいて再生し、ユーザが定義した境界がビューの外にある場合は再生しない||
+
+Unity上でアニメーションを作成する方法の詳細については [[AnimationEditorGuide | アニメーションビューガイド ]] を参照のこと。%% アニメーション付きのキャラクターをインポートする方法については[[Animations | アニメーションインポート ]] あるいはカスタムのスクリプティングについては[[Animation Scripting | アニメーションスクリプティング ]] を参照のこと。

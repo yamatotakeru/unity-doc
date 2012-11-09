@@ -1,0 +1,9 @@
+(:include class-BoxCollider-Details:)
+
+!!複合コライダ
+(:include comp-ColliderCompound:)
+
+!!ヒント
+(:include comp-ColliderHints:)
+
+(:include comp-ColliderAdvanced:)

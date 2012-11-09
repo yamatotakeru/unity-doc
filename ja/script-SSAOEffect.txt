@@ -1,0 +1,33 @@
+! スクリーンスペース アンビエントオクルージョン（SSAO）イメージエフェクト
+
+$$スクリーンスペースアンビエントオクルージョン（SSAO）$$は[[http://en.wikipedia.org/wiki/Ambient_occlusion | アンビエントオクルージョン(Ambient Occlusion)]] をリアルタイムで擬似的に後処理イメージ効果として再現するものです。互いに接近している折り目、穴、地表を暗くする効果があります。現実世界においては、環境光（Ambient light）を遮られ光効果を''オクルージョン''(無視)するため暗く見えます。
+
+他のイメージエフェクト同様、エフェクト機能[[comp-ImageEffects|(image effects)]] はUnity Proのみであり利用可能とするためにはプロスタンダードアセット（[[HOWTO-InstallStandardAssets|Pro Standard Assets]] ）をあらかじめインポートする必要があります
+
+Attach:FxSSAO.png\\
+''SSAOをシーンに適用した例''
+
+Attach:FxNoSSAO.png\\
+''比較のためSSAOなしでの同じシーンを描画。物体や植物が地面に接する付近の違いを見比べて下さい''
+
+!! プロパティ
+
+||PROPS
+||``Radius`` ||この半径より隣接距離がが短い場合アンビエントオクルージョンを適用します||
+||``Sample Count`` ||アンビエントオクルージョンのサンプリング回数。より高い値にすることで品質が上がるが処理オーバヘッドの負荷も上がります||
+||``Occlusion Intensity`` ||アンビエントオクルージョンが適用する暗さの度合い||
+||``Blur`` ||暗くする際に適用する滲み。滲みなし（値をゼロ）にすることで処理速度は上がりますが、暗くした場所のノイズが増えます ||
+||``Downsampling`` ||計算を行う際の解像度（例えば値を2に設定した場合は画面解像度の半分）。より大きな値にすることでレンダリング処理の時間を短縮できますが、品質は低下します||
+||``Occlusion Attenuation`` ||オクルージョンを距離に応じて減衰させる強度 ||
+||``Min Z`` ||画像の乱れが発生する場合はこの値を増加して下さい ||
+
+!! 詳細
+
+SSAOはアンビエントオクルージョンを擬似的に後処理イメージ効果として再現します。処理コストは画面解像度に単純に依存し、SSAOのパラメータはシーンの複雑さの影響を受けません（現実世界ののアンビエントオクルージョンであれば複雑さも影響します）しかし擬似化により画像の乱れが発生しやすくなります。例えば、画面外のオブジェクトはオクルージョンに影響せず、オクルージョンの強度もビューアングルやカメラ位置に依存します。
+
+SSAOは処理時間を相当に浪費しやすく、一般的にハイエンドのグラフィックカードのみで使用すべきです。SSAOを使用することでUnityはカメラのデプスおよびノーマルテクスチャをレンダリングさせることになりドローコール数を増加させてかつCPUオーバーヘッドがかかります。しかしデプスおよびノーマルテクスチャは他の効果でも代用できます（例としてDepth of Fieldなど）一度テクスチャが生成されるとSSAO効果の残りの処理はグラフィックスカード上で行われます。
+
+
+!! ハードウェア要件
+
+SSAO works on graphics cards with Shader Model 3.0 support (eg, GeForce 6 and later, Radeon X1300 and later).  All image effects automatically disable themselves when they can not run on a particular graphics card. Due to the complexity of the effect, SSAO is not supported on mobile devices.

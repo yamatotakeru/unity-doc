@@ -1,0 +1,41 @@
+!Animation View Guide (Legacy)
+
+The $$Animation View$$ in Unity allows you to create and modify $$Animation Clips$$ directly inside Unity. It is designed to act as a powerful and straightforward alternative to external 3D animation programs. In addition to animating movement, the editor also allows you to animate variables of materials and components and augment your Animation Clips with $$Animation Events$$, functions that are called at specified points along the timeline.
+
+See the pages about [[Animations|Animation import]] and [[Animation Scripting|Animation Scripting]] for further information about these subject.
+
+The Animation View Guide is broken up into several pages that each focus on different areas of the View:-
+
+!! [[animeditor-UsingAnimationEditor| Using the Animation View]]
+
+[[animeditor-UsingAnimationEditor| Attach:AnimationEditorPreviewFrame.png]]
+
+This section covers the basic operations of the $$Animation View$$, such as creating and editing $$Animations Clips$$.
+
+
+!! [[animeditor-AnimationCurves| Using Animation Curves]]
+
+[[animeditor-AnimationCurves| Attach:AnimationEditorSimple.png]]
+
+This section explains how to create $$Animation Curves$$, add and move $$keyframes$$ and set WrapModes. It also offers tips for using $$Animation Curves$$ to their full advantage.
+
+
+!! [[EditingCurves| Editing Curves]]
+
+[[EditingCurves| Attach:AnimationTypeOfConnections2.png]]
+
+This section explains how to navigate efficienlty in the editor, create and move $$keys$$, and edit $$tangents$$ and tangent types.
+
+
+!! [[animeditor-MultipleParts| Objects with Multiple Moving Parts]]
+
+[[animeditor-MultipleParts| Attach:AnimationEditorTurretB.png]]
+
+This section explains how to animate $$Game Objects$$ with multiple moving parts and how to handle cases where there is more than one $$Animation Component$$ that can control the selected $$Game Object$$.
+
+
+!! [[animeditor-AnimationEvents| Using Animation Events]]
+
+[[animeditor-AnimationEvents| Attach:AnimationEditorEventTooltip.png]]
+
+This section explains how to add $$Animation Events$$ to an $$Animation Clip$$. Animation Events allow you call a script function at specified points in the animation's timeline.

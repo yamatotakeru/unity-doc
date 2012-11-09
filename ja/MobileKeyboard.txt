@@ -1,0 +1,82 @@
+!Mobile Keyboard
+In most cases, Unity will handle keyboard input automatically for GUI elements but it is also easy to show the keyboard on demand from a script.
+
+
+!iOS!
+[[#iOS]]
+>>ios<<
+!!Using the Keyboard
+!!!GUI Elements
+The keyboard will appear automatically when a user taps on editable GUI elements. Currently, [[ScriptRef:GUI.TextField.html | GUI.TextField]], [[ScriptRef:GUI.TextArea.html | GUI.TextArea]] and [[ScriptRef:GUI.PasswordField.html | GUI.PasswordField]] will display the keyboard; see the  [[ScriptRef:GUI.html | GUI class]] documentation for further details.
+
+!!!Manual Keyboard Handling
+Use the ``iPhoneKeyboard.Open`` function to open the keyboard. Please see the [[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]] scripting reference for the parameters that this function takes.
+
+!!Keyboard Type Summary
+The Keyboard supports the following types:
+||PROPS
+||``iPhoneKeyboardType.Default`` ||Letters. Can be switched to keyboard with numbers and punctuation.||
+||``iPhoneKeyboardType.ASCIICapable`` ||Letters. Can be switched to keyboard with numbers and punctuation.||
+||``iPhoneKeyboardType.NumbersAndPunctuation`` ||Numbers and punctuation. Can be switched to keyboard with letters.||
+||``iPhoneKeyboardType.URL`` ||Letters with slash and .com buttons. Can be switched to keyboard with numbers and punctuation.||
+||``iPhoneKeyboardType.NumberPad`` ||Only numbers from 0 to 9.||
+||``iPhoneKeyboardType.PhonePad`` ||Keyboard used to enter phone numbers.||
+||``iPhoneKeyboardType.NamePhonePad`` ||Letters. Can be switched to phone keyboard.||
+||``iPhoneKeyboardType.EmailAddress`` ||Letters with @ sign. Can be switched to keyboard with numbers and punctuation.||
+
+!!Text Preview
+By default, an edit box will be created and placed on top of the keyboard after it appears. This works as preview of the text that user is typing, so the text is always visible for the user. However, you can disable text preview by setting ``iPhoneKeyboard.hideInput`` to true. Note that this works only for certain keyboard types and input modes. For example, it will not work for phone keypads and multi-line text input. In such cases, the edit box will always appear. ``iPhoneKeyboard.hideInput`` is a global variable and will affect all keyboards.
+
+!!Keyboard Orientation
+By default, the keyboard automatically follows the device orientation. To disable or enable rotation to a certain orientation, use the following properties available in [[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]]:
+||PROPS
+||``autorotateToPortrait`` ||Enable or disable autorotation to portrait orientation (button at the bottom).||
+||``autorotateToPortraitUpsideDown`` ||Enable or disable autorotation to portrait orientation (button at top).||
+||``autorotateToLandscapeLeft`` ||Enable or disable autorotation to landscape left orientation (button on the right).||
+||``autorotateToLandscapeRight`` ||Enable or disable autorotation to landscape right orientation (button on the left).||
+
+!!Visibility and Keyboard Size
+There are three keyboard properties in [[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]] that determine keyboard visibility status and size on the screen.
+||PROPS
+||``visible`` ||Returns ``true`` if the keyboard is fully visible on the screen and can be used to enter characters.||
+||``area`` ||Returns the position and dimensions of the keyboard.||
+||``active`` ||Returns ``true`` if the keyboard is activated. This property is not static property. You must have a keyboard instance to use this property.||
+
+Note that ``iPhoneKeyboard.area`` will return a rect with position and size set to 0 until the keyboard is fully visible on the screen. You should not query this value immediately after ``iPhoneKeyboard.Open``. The sequence of keyboard events is as follows:
+
+*``iPhoneKeyboard.Open`` is called. ``iPhoneKeyboard.active`` returns true. ``iPhoneKeyboard.visible`` returns false. ``iPhoneKeyboard.area`` returns (0, 0, 0, 0).
+*Keyboard slides out into the screen. All properties remain the same.
+*Keyboard stops sliding. ``iPhoneKeyboard.active`` returns true. ``iPhoneKeyboard.visible`` returns true. ``iPhoneKeyboard.area`` returns real position and size of the keyboard.
+
+!!Secure Text Input
+It is possible to configure the keyboard to hide symbols when typing. This is useful when users are required to enter sensitive information (such as passwords). To manually open keyboard with secure text input enabled, use the following code:
+[@
+iPhoneKeyboard.Open("", iPhoneKeyboardType.Default, false, false, true);
+@]
+
+Attach:KeyboardSecure.png
+''Hiding text while typing''
+
+!!Alert keyboard
+To display the keyboard with a black semi-transparent background instead of the classic opaque, call ``iPhoneKeyboard.Open`` as follows:
+[@
+iPhoneKeyboard.Open("", iPhoneKeyboardType.Default, false, false, true, true);
+@]
+
+Attach:KeyboardClassic.png
+''Classic keyboard''
+
+Attach:KeyboardAlert.png
+''Alert keyboard''
+
+>><<
+
+!Android!
+[[#Android]]
+>>android<<
+Unity Android reuses the iOS API to display system keyboard. Even though Unity Android supports most of the functionality of its iPhone counterpart, there are two aspects which are not supported:
+* ``iPhoneKeyboard.hideInput``
+* ``iPhoneKeyboard.area``
+
+Please also note that the layout of a ``iPhoneKeyboardType`` can differ somewhat between devices.
+>><<

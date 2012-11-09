@@ -1,0 +1,23 @@
+! フォグ
+
+$$フォグ$$ イメージエフェクトはカメラによる急激な霧を生成する。全ての計算はワールド座標系で行われるため高さを指定できる洗練されたエフェクトの霧が再現できる（図を参照のこと）
+
+Attach:GlobalFogExample.png\\
+''フォグ(霧)の例、距離および高さを指定している''
+
+Attach:Athmospheric.png\\
+''簡便に大気に写ったフォグ''
+
+
+他の [[ comp-ImageEffects | イメージエフェクト ]] 同様、エフェクト機能はUnity Proのみであり利用可能とするためには [[ HOWTO-InstallStandardAssets | Pro Standard Assets ]] をあらかじめインポートする必要がある
+
+!! Properties
+||PROPS
+||``Fog Mode`` ||利用可能なフォグのタイプ、距離のみ、高さのみ、あるいは双方を指定できる||
+||``Start Distance`` ||フォグがフェードイン開始する距離をワールド座標系の単位長さで指定||
+||``Global Density`` ||``Fog Color``が互いに近づいて集まる距離を指定||
+||``Height Scale`` ||フォグの密度が減少する度合いを高さで指定（Fog Modeで高さが指定されている前提）||
+||``Height`` ||フォグがフェードイン開始するワールド座標系のY座標||
+||``Global Fog Color`` ||フォグの色||
+
+(:include imagefx-SM2Depth:)

@@ -1,0 +1,29 @@
+! 法線マップをどのように使用しますか?
+
+$$Normal maps$$ は、凹凸のある表面の外観を作成するために、オブジェクト上の高さマップとして使用するグレー スケールがそうです。 次のようなモデルがあるとします。
+
+Attach:Bumpmap1.png\\
+「3D モデル」
+
+Attach:Bumpmap2.png\\
+「テクスチャ」
+
+オブジェクトの明るい部分を隆起させたいとします。
+
+# Photoshop でテクスチャのグレー スケール高さマップを描画します。 白が高い部分で、黒が低い部分です。 次のようになります。 [[<<]] Attach:Bumpmap3.png
+
+# メイン テクスチャの隣の画像を保存します。
+# Unity で、24 ビット RGB　形式を選択し、$$Inspector$$ の $$Import Settings$$ の「Generate Normal Map」を有効にします。 [[<<]] 
+\\
+Attach:Bumpmap4.png
+
+# モデルの $$Material Inspector$$ で、シェーダ ドロップダウンから「Bumped Diffuse」を選択します。 [[<<]] Attach:Bumpmap5.png
+
+# プロジェクト ウィンドウからのテクスチャを「Normalmap」テクスチャ スロットにドラッグします。 [[<<]] Attach:Bumpmap6.png
+
+これでオブジェクトが法線マップに適用されました。
+
+Attach:Bumpmap7.png
+
+!!ヒント
+* 突起をより目立たせるには、テクスチャ インポート設定で Bumpyness スライダを使用するか、Photoshop でテクスチャをぼやけさせます。 Experiment with both approaches to get a feel for it.

@@ -1,0 +1,47 @@
+!Import settings for Meshes
+
+The $$Import Settings$$ for a model file will be displayed in the ~~Model~~ tab of the FBX importer inspector when the model is selected. These affect the __mesh__, it's __normals__ and imported __materials__. Settings are applied per asset on disk so if you need assets with different settings make (and rename accordingly) a duplicate file.
+
+Although defaults can suffice initially, it is worth studying the settings glossary below, as they can determine what you wish to do with the game object.
+
+Some general adjustments to be made for example might be:
+
+* Scale - this scale factor is used for compensating difference in units between Unity and 3d modeling tool - it rescales whole file. If you do not care about units you can simply set it to 1.
+* Generate colliders - this will generate a collison mesh to allow your model to collide with other objects - see notes below.
+* Material Naming and Search - this will help you automatically setup your materials and locate textures
+
+Attach:MecanimImporterModelTab.png\\
+''FBX Importer Inspector: Model tab''
+
+||PROPS
+||__''Meshes''__ ||
+||``Scale Factor`` ||Unity's physics system expects 1 meter in the game world to be 1 unit in the imported file. If you prefer to model at a different scale then you can compensate for it here. defaults for different 3D packages are as follows .fbx, .max, .jas, .c4d = 0.01, .mb, .ma, .lxo, .dxf, .blend, .dae = 1 .3ds = 0.1||
+||``Mesh Compression`` ||Increasing this value will reduce the file size of the mesh, but might introduce irregularities.  It's best to turn it up as high as possible without the mesh looking too different from the uncompressed version. This is useful for [[ReducingFilesize | optimizing game size]]. ||
+||``Read/Write Enabled``||Enables the mesh to be written at runtime so you can modify the data - makes a copy in memory.||
+||``Optimize Mesh``||This option determines the order in which triangles will be listed in the mesh.||
+||``Generate Colliders`` ||If this is enabled, your meshes will be imported with Mesh Colliders automatically attached. This is useful for quickly generating a collision mesh for environment geometry, but should be avoided for geometry you will be moving. For more info see [[#colliders | Colliders]] below. ||
+||``Swap UVs`` ||Use this if lightmapped objects pick up the wrong UV channels. This will swap your primary and secondary UV channels.||
+||``Generate Lightmap`` ||Use this to create the second UV channel to be used for Lightmapping.||
+||>>>``Advanced Options`` ||See [[Main.LightmappingUV | Lightmapping UVs document]].||
+||__''Normals & Tangents''__ ||
+||``Normals`` ||Defines if and how normals should be calculated. This is useful for [[ReducingFilesize | optimizing game size]]. ||
+||>>>``Import`` ||Default option. Imports normals from the file. ||
+||>>>``Calculate`` ||Calculates normals based on ``Smoothing angle``. If selected, the ``Smoothing Angle`` becomes enabled. ||
+||>>>``None`` ||Disables normals. Use this option if the mesh is neither normal mapped nor affected by realtime lighting. ||
+||``Tangents`` ||Defines if and how tangents and binormals should be calculated. This is useful for [[ReducingFilesize | optimizing game size]]. ||
+||>>>``Import`` ||Imports tangents and binormals from the file. This option is available only for FBX, Maya and 3dsMax files and only when normals are imported from the file. ||
+||>>>``Calculate`` ||Default option. Calculates tangents and binormals. This option is available only when normals are either imported or calculated.  ||
+||>>>``None`` ||Disables tangents and binormals. The mesh will have no Tangents, so won't work with normal-mapped shaders. ||
+||``Smoothing Angle`` ||Sets how sharp an edge has to be in order to be treated as a hard edge. It is also used to split normal map tangents. ||
+||``Split Tangents`` ||Enable this if normal map lighting is broken by seams on your mesh. This usually only applies to characters. ||
+||__''Materials''__ ||
+||``Import Materials`` ||Disable this if you don't want materials to be generated. Default-Diffuse material will be used instead. ||
+||``Material Naming`` ||Controls how Unity materials are named: ||
+||>>>``By Base Texture Name`` ||The name of the diffuse texture of the imported material that will be used to name the material in Unity. When a diffuse texture is not assigned to the material, Unity will use the name of the imported material. ||
+||>>>``From Model's Material`` ||The name of the imported material will be used for naming the Unity material. ||
+||>>>``Model Name + Model's Material`` ||The name of the model file in combination with the name of the imported material will be used for naming the Unity material. ||
+||>>>``Texture Name or Model Name + Model's Material (Obsolete)`` ||The name of the diffuse texture of the imported material will be used for naming the Unity material. When a diffuse texture is not assigned or it cannot be located in one of the Textures folders, then the material will be named by Model Name + Model's Material instead. This option is backwards compatible with the behavior of Unity 3.4 (and earlier versions). We recommend using ``By Base texture Name``, because it is less complicated and has more consistent behavior. ||
+||``Material Search`` ||Controls where Unity will try to locate existing materials using the name defined by the ``Material Naming`` option: ||
+||>>>``Local`` ||Unity will try to find existing materials only in the "local" Materials folder, ie, the Materials subfolder which is the same folder as the model file. ||
+||>>>``Recursive-Up`` ||Unity will try to find existing materials in all Materials subfolders in all parent folders up to the Assets folder. ||
+||>>>``Everywhere`` ||Unity will try to find existing materials in all Unity project folders. ||

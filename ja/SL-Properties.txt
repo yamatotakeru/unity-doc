@@ -1,0 +1,58 @@
+! ShaderLab syntax: Properties
+
+Shaders can define a list of parameters to be set by artists in Unity's [[Materials|material inspector]]. The Properties block in the shader file defines them.
+
+!!Syntax
+:__Properties__ { ''Property'' [''Property ...''] }: Defines the property block. Inside braces multiple properties are defined as follows.
+:''name'' ("''display name''", __Range__ (''min'', ''max'')) = ''number'': Defines a float property, represented as a slider from ''min'' to ''max'' in the inspector.
+:''name'' ("''display name''", __Color__) = (''number'',''number'',''number'',''number''): Defines a color property.
+:''name'' ("''display name''", __2D__) = "''name''" { ''options'' }: Defines a 2D texture property.
+:''name'' ("''display name''", __Rect__) = "''name''" { ''options'' }: Defines a rectangle (non power of 2) texture property.
+:''name'' ("''display name''", __Cube__) = "''name''" { ''options'' }: Defines a cubemap texture property.
+:''name'' ("''display name''", __Float__) = ''number'': Defines a float property.
+:''name'' ("''display name''", __Vector__) = (''number'',''number'',''number'',''number''): Defines a four component vector property.
+
+!!Details
+
+Each property inside the shader is referenced by __name__ (in Unity, it's common to start shader property names with underscore). The property will show up in material inspector as __display name__. For each property a default value is given after equals sign:
+* For ''Range'' and ''Float'' properties it's just a single number.
+* For ''Color'' and ''Vector'' properties it's four numbers in parentheses.
+* For texture (''2D'', ''Rect'', ''Cube'') the default value is either an empty string, or one of builtin default textures: "''white''", "''black''", "''gray''" or "''bump''".
+
+Later on in the shader, property values are accessed using property name in square brackets: __[name]__.
+
+!!Example
+
+[@Properties {
+    // properties for water shader
+    _WaveScale ("Wave scale", Range (0.02,0.15)) = 0.07 // sliders
+    _ReflDistort ("Reflection distort", Range (0,1.5)) = 0.5
+    _RefrDistort ("Refraction distort", Range (0,1.5)) = 0.4
+    _RefrColor ("Refraction color", Color)  = (.34, .85, .92, 1) // color
+    _ReflectionTex ("Environment Reflection", 2D) = "" {} // textures
+    _RefractionTex ("Environment Refraction", 2D) = "" {}
+    _Fresnel ("Fresnel (A) ", 2D) = "" {}
+    _BumpMap ("Bumpmap (RGB) ", 2D) = "" {}
+} @]
+
+
+!!!Texture property options
+
+The ''options'' inside curly braces of the texture property are optional. The available options are:
+
+* __TexGen__ ''texgenmode'': Automatic texture coordinate generation mode for this texture. Can be one of ''ObjectLinear'', ''EyeLinear'', ''SphereMap'', ''CubeReflect'', ''CubeNormal''; these correspond directly to OpenGL texgen modes. Note that TexGen is ignored if custom vertex programs are used.
+* __LightmapMode__ If given, this texture will be affected by per-renderer lightmap parameters. That is, the texture to use can be not in the material, but taken from the settings of the Renderer instead, see [[ScriptRef:Renderer-lightmapIndex.html | Renderer scripting documentation]].
+
+!!!Example
+
+[@// EyeLinear texgen mode example
+Shader "Texgen/Eye Linear" {
+    Properties {
+        _MainTex ("Base", 2D) = "white" { TexGen EyeLinear }
+    }
+    SubShader {
+        Pass {
+            SetTexture [_MainTex] { combine texture }
+        }
+    }
+} @]

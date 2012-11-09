@@ -1,0 +1,13 @@
+!Reflective Parallax Diffuse
+
+Attach:Shaders./Shader-ReflParallaxBump.png
+
+(:include shader-ReflectiveFamilyImport:)
+
+(:include shader-ParallaxSubsetImport:)
+
+(:include shader-DiffuseSubsetImport:)
+
+!!Performance
+
+Generally, this shader is on the more expensive rendering side.  For more details, please view the [[shader-Performance | Shader Peformance page]].

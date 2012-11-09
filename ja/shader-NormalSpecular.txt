@@ -1,0 +1,9 @@
+! Specular
+
+Attach:Shaders./Shader-NormalSpec.png
+
+(:include shader-SpecularSubsetImport:)
+
+!!Performance
+
+Generally, this shader is moderately expensive to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].

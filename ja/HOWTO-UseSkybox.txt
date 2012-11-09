@@ -1,0 +1,15 @@
+! スカイボックスはどのように作成しますか?
+
+$$Skybox$$ は、ゲーム内のすべてのグラフィックの裏で描画される6 面体のキューブです。 以下が作成方法になります。
+
+# スカイボックスの 6 面のそれぞれに対応した 6 つのテクスチャを作成し、プロジェクトの $$Assets$$ フォルダに入れます。
+# 各テクスチャに対して、ラップ モードを「Repeat」 から「Clamp」に設定する必要があります。 これを行わない場合は、縁の色が調和しません。 [[<<]] Attach:SkyboxWrapmode.png
+# $$Material$$ を新規作成するには、メニューバーから ^^Assets->Create->Material^^  を選択します。
+# $$Inspector$$ の上部にあるシェーダ ドロップダウンを選択し、^^RenderFX->Skybox^^ を選択します。
+# マテリアル内の各テクスチャ スロットに 6 つのテクスチャを割り当てます。 これを行うには、$$Project View$$ から各テクスチャを対応するスロットにドラッグします。 [[<<]] Attach:SkyboxMaterial.png
+
+スカイボックスを作業中のシーンに割り当てるには、
+# メニューバーから ^^Edit->Render Settings^^ を選択します。
+# 新しいスカイボックス マテリアルをインスペクタの「Skybox Material」スロットにドラッグします。 [[<<]] Attach:SkyboxRenderSettings.png
+
+[[HOWTO-InstallStandardAssets|Standard Assets]] パッケージには、すぐに使えるスカイボックスが幾つか含まれています。これが、最も速く始める方法です。

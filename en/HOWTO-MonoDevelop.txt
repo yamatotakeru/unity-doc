@@ -1,0 +1,17 @@
+! Getting started with Mono Develop
+Mono Develop comes now with Unity 3.x, this IDE will help you out taking care of the scripting part of your game and the debugging o it.
+
+! Setting Up Mono Develop.
+To set up Mono Develop to work with with Unity you just have to go to Unity Preferences and set it as your default editor.
+
+Attach:MDDefaultEditor.png\\
+''Setting Mono Develop as the Default Editor''
+
+After this, create or open an existing project and make sure your project is synced with Mono Develop by clicking on ^^Assets -> Sync Mono Develop Project^^.
+
+Attach:MonoDevelopSync.png
+''Mono Develop Sync.''
+
+This will open your project (Only The scripting files, no Assets) in Mono Develop. Now you are ready to start [[Debugger | debugging]].
+
+Also you might want to visit the [[TroubleShooting#DesktopTroubleShooting | troubleshooting page]] in case you have any problem setting your project.

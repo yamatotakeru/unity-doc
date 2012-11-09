@@ -1,0 +1,173 @@
+! Light
+
+$$Lights$$ will bring personality and flavor to your game. You use lights to illuminate the scenes and objects to create the perfect visual mood. Lights can be used to simulate the sun, burning match light, flashlights, gun-fire, or explosions, just to name a few.
+
+Attach:LightInspectorV3.png\\
+''The Light $$Inspector$$''
+
+There are four types of lights in Unity:
+* $$Point lights$$ shine from a location equally in all directions, like a light bulb.
+* $$Directional lights$$ are placed infinitely far away and affect everything in the scene, like the sun.
+* $$Spot lights$$ shine from a point in a direction and only illuminate objects within a cone - like the headlights of a car.
+* $$Area lights$$ (only available for lightmap baking) shine in all directions to one side of a rectangular section of a plane. 
+
+Lights can also cast $$Shadows$$.  Shadows are a Pro-only feature.  Shadow properties can be adjusted on a per-light basis.
+
+!!Properties
+
+||PROPS
+||``Type`` ||The current type of light object: ||
+||>>>``Directional`` ||A light placed infinitely far away. It affects everything in the scene. ||
+||>>>``Point`` ||A light that shines equally in all directions from its location, affecting all objects within its ``Range``. ||
+||>>>``Spot`` ||A light that shines everywhere within a cone defined by ``Spot Angle`` and ``Range``. Only objects within this region are affected by the light. ||
+||>>>``Area``||A light that shines in all directions to one side of a rectangular area of a plane, affecting all objects within its ``Range``. The rectangle is defined by the X and Y properties. Area lights are only available during lightmap baking and have no effect on objects at runtime.||
+||``Range`` ||How far light is emitted from the center of the object. ``Point``/``Spot`` light only. ||
+||``Spot Angle`` ||Determines the angle of the cone in degrees. ``Spot`` light only. ||
+||``Color`` ||The color of the light emitted. ||
+||``Intensity`` ||Brightness of the light. Default value for a ``Point``/``Spot`` light is 1. Default value for a ``Directional`` light is 0.5 ||
+||``Cookie`` ||The alpha channel of this texture is used as a mask that determines how bright the light is at different places. If the light is a ``Spot`` or a ``Directional`` light, this must be a 2D texture. If the light is a ``Point`` light, it must be a $$Cubemap$$. ||
+||``Cookie Size`` ||Scales the projection of a Cookie. ``Directional`` light only. ||
+||``Shadow Type`` (Pro only) ||``No``, ``Hard`` or ``Soft`` [[Shadows|shadows]] that will be cast by this light. Only applicable to desktop build targets. Soft shadows are more expensive. ||
+||>>>``Strength`` ||The darkness of the shadows.  Values are between 0 and 1. ||
+||>>>``Resolution`` ||Detail level of the shadows. ||
+||>>>``Bias`` ||Offset used when comparing the pixel position in light space with the value from the shadow map. See ''Shadow Mapping and the Bias Property'' below ||
+||>>>``Softness`` ||Scales the penumbra region (the offset of blur samples). ``Directional`` light only. ||
+||>>>``Softness Fade`` ||Shadow softness fade based on the distance from the camera. ``Directional`` light only. ||
+||``Draw Halo`` ||If checked, a spherical halo of light will be drawn with a radius equal to ``Range``. ||
+||``Flare`` ||Optional reference to the [[class-Flare|Flare]] that will be rendered at the light's position. ||
+||``Render Mode`` ||Importance of this light. This can affect lighting fidelity and performance, see ''Performance Considerations'' below. Options include:
+||>>>``Auto`` ||The rendering method is determined at runtime depending on the brightness of nearby lights and current [[class-QualitySettings|Quality Settings]] for desktop build target. ||
+||>>>``Important`` ||This light is always rendered at per-pixel quality. Use this for very important effects only (e.g. headlights of a player's car). ||
+||>>>``Not Important`` ||This light is always rendered in a faster, vertex/object light mode. ||
+||``Culling Mask`` ||Use to selectively exclude groups of objects from being affected by the light; see [[Layers]]. ||
+||``Lightmapping`` ||The Lightmapping mode: ``RealtimeOnly``, ``Auto`` or ``BakedOnly``; see the [[LightmappingInDepth#DualLightmaps | Dual Lightmaps]] description. ||
+||``X``||(Area lights only) The width of the rectangular light area.||
+||``Y``||(Area lights only) The height of the rectangular light area.||
+
+!! Details
+
+There are four basic light types in Unity. Each type can be customized to fit your needs.
+
+You can create a texture that contains an alpha channel and assign it to the ``Cookie`` variable of the light.  The Cookie will be projected from the light. The Cookie's alpha mask modulates the light amount, creating light and dark spots on surfaces. They are a great way af adding lots of complexity or atmosphere to a scene.
+
+All [[Built-in Shader Guide | built-in shaders]] in Unity seamlessly work with any type of light. $$VertexLit$$ shaders cannot display Cookies or Shadows, however.
+
+In Unity Pro with a build target of webplayer or standalone, all Lights can optionally cast [[Shadows]].  This is done by selecting either ``Hard Shadows`` or ``Soft Shadows`` for the ``Shadow Type`` property of each individual Light.  For more information about shadows, please read the [[Shadows]] page.
+
+
+
+!!! Point Lights
+
+Attach:LightPoint.png
+
+Point lights shine out from a point in all directions. They are the most common lights in computer games - typically used for explosions, light bulbs, etc.  They have an average cost on the graphics processor (though point light shadows are the most expensive).
+
+Attach:Light-Point.png\\
+''Point Light''
+
+Point lights can have cookies - [[class-Cubemap|Cubemap]] texture with alpha channel. This Cubemap gets projected out in all directions.
+
+Attach:Light-PointCookie.png\\
+''Point Light with a Cookie''
+
+
+
+!!! Spot Lights
+
+Attach:LightSpot.png
+
+Spot lights only shine in one direction, in a cone.  They are perfect for flashlights, car headlights or lamp posts.  They are the most expensive on the graphics processor.
+
+Attach:Light-Spot.png\\
+''Spot Light''
+
+Spot lights can also have cookies - a texture projected down the cone of the light. This is good for creating an effect of light shining through the window. It is very important that the texture is black at the edges, has ``Border Mipmaps`` option on and its wrapping mode is set to ``Clamp``. For more info on this, see [[class-Texture2D|Textures]].
+
+Attach:Light-SpotCookie.png\\
+''Spot Light with a Cookie''
+
+
+!!! Directional Lights
+
+Attach:LightDir.png
+
+Directional lights are used mainly in outdoor scenes for sun & moonlight.  The light affect all surfaces of objects in your scene.  They are the least expensive on the graphics processor. Shadows from directional lights (for platforms that support shadows) are explained in depth on [[DirectionalShadowDetails | this page]].
+
+Attach:Light-Direct.png\\
+''Directional Light''
+
+When directional light has a cookie, it is projected down the center of the light's Z axis. The size of the cookie is controlled with ``Cookie Size`` property. Set the cookie texture's wrapping mode to ``Repeat`` in the $$Inspector$$.
+
+Attach:Light-DirectCookie.png\\
+''Directional Light projecting a cloud-like cookie texture''
+
+A cookie is a great way to add some quick detail to large outdoor scenes. You can even slide the light slowly over the scene to give the impression of moving clouds.
+
+
+!!Area Lights
+
+Area lights cast light from one side of a rectangular area of a plane. 
+
+Attach:AreaLightDiagram.png
+
+Light is cast on all objects within the light's range. The size of the rectangle is determined by the X and Y properties and and the plane's normal (ie, the side to which light is cast) is the same as the light's positive Z direction. Light is emitted from the whole surface of the rectangle, so shading and shadows from affected object tend to be much softer than with point or directional light sources. 
+
+Since the lighting calculation is quite processor-intensive, area lights are not available at runtime and can only be used as a lightmap effect.
+
+!! Performance considerations
+
+Lights can be rendered in one of two methods: $$vertex$$ lighting and $$pixel$$ lighting. Vertex lighting only calculates the lighting at the vertices of the game models and interpolates the lighting over the surfaces of the models. Pixel lights are calculated at every screen pixel, and hence are much more expensive.  Some older graphics cards only support vertex lighting.
+
+While pixel lighting is slower to render, it does allow some effects that are not possible with vertex lighting. Normal-mapping, light cookies and realtime shadows are only rendered for pixel lights. Spotlight shapes and Point light highlights are much better when rendered in pixel mode as well. The three light types above would look like this when rendered in vertex light mode:
+
+Attach:Light-PointVertex.png\\
+''Point light in Vertex lighting mode.''
+
+Attach:Light-SpotVertex.png\\
+''Spot light in Vertex lighting mode.''
+
+Attach:Light-DirectVertex.png\\
+''Directional light in Vertex lighting mode.''
+
+Lights have a big impact on rendering speed - therefore a tradeoff has to be made betwen lighting quality and game speed. Since pixel lights are much more expensive than vertex lights, Unity will only render the brightest lights at per-pixel quality.  The actual number of pixel lights can be set in the [[class-QualitySettings|Quality Settings]] for webplayer and standalone build targets. 
+
+You can explicitly control if a light should be rendered as a vertex or pixel light using the ``Render Mode`` property. By default Unity will classify the light automatically based on how much the object is affected by the light.
+
+The actual lights that are rendered as pixel lights are determined on an object-by-object case. This means:
+
+* Huge objects with bright lights could use all the pixel lights (depending on the quality settings). If the player is far from these, nearby lights will be rendered as vertex lights.  Therefore, it is better to split huge objects up in a couple of small ones.
+
+See Optimizing Graphics performance on [[OptimizingGraphicsPerformance#DesktopOptimizingGraphicsPerformance | Desktop]], [[OptimizingGraphicsPerformance#iPhoneOptimizingGraphicsPerformance| iOS]] or [[OptimizingGraphicsPerformance#AndroidOptimizingGraphicsPerformance | Android]] page for more information.
+
+
+!! Creating Cookies
+
+For more information on creating cookies, please see the [[HOWTO-LightCookie|tutorial on how to create a Spot light cookie]].
+
+
+!!Shadow Mapping and the Bias Property
+
+Shadows are implemented using a technique known as shadow mapping. This is analogous to the depth mapping used by a camera to determine which surfaces are obscured by others. The scene is internally rendered by a camera at the position of the light to create a depth map which stores the distance to each surface illuminated by the light. This kind of depth map is referred to as a shadow map, for obvious reasons. When the scene is rendered to the main view camera, each pixel position in the view is transformed into the light's space so that its distance can be compared to the corresponding pixel in the shadow map. If the pixel is more distant than the shadow map pixel then it is presumably obscured from the light by another object and so it will get no illumination.
+
+Attach:GoodShadowBias.png
+''Cylinder with correct shadowing''
+
+A surface directly illuminated by a light can sometimes appear to be partly in shadow. This is because pixels that should be exactly at the distance specified in the shadow map will sometimes be deemed farther away (a consequence of using a low resolution image for the map). The result is arbitrary patterns of pixels in shadow when they should really be lit, giving a visual effect known as "shadow acne".
+
+Attach:ShadowAcne.png
+''Shadow acne in the form of small dots on the cylinder''
+
+To prevent shadow acne, a bias value can be added to the distance in the shadow map to ensure that pixels on the borderline will definitely pass the comparison as they should. This is the value set by the Bias property associated with a light when it has shadows enabled. It is a mistake to set the bias too high, however, since areas of a shadow near to the object casting it can then sometimes be falsely illuminated. This effect is known as "Peter Panning" (ie, the disconnected shadow makes the object look as if it is flying some way above the ground like Peter Pan).
+
+Attach:PeterPanning.png
+''Peter Panning makes the object look raised above the ground''
+
+The bias value for a light may need a bit of tweaking to make sure that neither shadow acne nor Peter Panning occur. It is generally easier to gauge the right value by eye rather than attempt to calculate it.
+
+
+!!Hints
+
+* Spot lights with cookies can be extremely effective for making light coming in from windows.
+* Low-intensity point lights are good for providing depth to a scene.
+* For maximum performance, use a [[Built-in Shader Guide | VertexLit]] shader. This shader only does per-vertex lighting, giving a much higher throughput on low-end cards.
+* Auto lights can cast dynamic shadows over lightmapped objects without adding extra illumination. For this to work the Auto lights must be active when the Lightmap is baked. Otherwise they render as real time lights.

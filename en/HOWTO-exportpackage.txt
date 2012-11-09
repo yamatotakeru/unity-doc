@@ -1,0 +1,16 @@
+! How do I reuse assets between projects?
+
+As you build your game, Unity stores a lot of metadata about your assets (import settings, links to other assets, etc.). If you want to take your assets into a different project, there is a specific way to do that.  Here's how to easily move assets between projects and still preserve all this info.
+
+# In the $$Project View$$, select all the asset files you want to export.
+# Choose ^^Assets->Export Package...^^ from the menubar.
+# Name and save the package anywhere you like.
+# Open the project you want to bring the assets into.
+# Choose ^^Assets->Import Package...^^ from the menubar.
+# Select your package file saved in step 3.
+
+
+!!Hints
+
+* When exporting a package Unity can export all dependencies as well. So for example if you select a $$Scene$$ and export a package with all dependencies, then all models, textures and other assets that appear in the scene will be exported as well.  This can be a quick way of exporting a bunch of assets without manually locating them all.
+* If you store your Exported Package in the Standard Packages folder next to your Unity application, they will appear in the ``Create New Project`` dialog.

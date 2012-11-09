@@ -1,0 +1,20 @@
+! Animation
+
+Attach:AnimationInspector35.png\\
+''The Animation $$Inspector$$''
+
+!!Properties
+
+||PROPS
+||``Animation``  ||The default animation that will be played when Play Automatically is enabled. ||
+||``Animations`` ||A list of animations that can be accessed from scripts. ||
+||``Play Automatically`` ||Should the animation be played automatically when starting the game? ||
+||``Animate Physics`` ||Should the animation interact with physics. ||
+||``Culling Type``||Determines when the animation will not be played.||
+||>>>``Always Animate``||Always animate.||
+||>>>``Based on Renderers``||Cull based on the default animation pose.||
+||>>>``Based on Clip Bounds``||Cull based on clip bounds (calculated during import), if the clip bounds are out of view, the animation will not be played.||
+||>>>``Based on User Bounds``||Cull based on bounds defined by the user, if the user-defined bounds are out of view, the animation will not be played.||
+
+See the [[AnimationEditorGuide | Animation View Guide]] for more information on how to create animations inside Unity.%%  See the [[Animations|Animation Import]] page on how to import animated characters, or the [[Animation Scripting | Animation Scripting]] page on how to create animated behaviors for your game.
+

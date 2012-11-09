@@ -1,0 +1,11 @@
+!Reflective Vertex-Lit
+
+Attach:Shaders./Shader-ReflVertex.png
+
+(:include shader-ReflectiveFamilyImport:)
+
+(:include shader-VertexLitSubsetImport:)
+
+!!Performance
+
+Generally, this shader is not too expensive to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].

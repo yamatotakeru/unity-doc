@@ -1,0 +1,27 @@
+! Physics Manager
+
+You can access the $$Physics Manager$$ by selecting ^^Edit->Project Settings->Physics^^ from the menu bar.
+
+Attach:PhysicsSet4b7.png\\
+''The Physics Manager''
+
+
+!!Properties
+
+||PROPS
+||``Gravity`` ||The amount of gravity applied to all $$Rigidbodies$$. Usually gravity acts only on the Y-axis (negative is down). Gravity is meters/(seconds^2). ||
+||``Default Material`` ||The default $$Physics Material$$ that will be used if none has been assigned to an individual $$Collider$$. ||
+||``Bounce Threshold`` ||Two colliding objects with a relative velocity below this value will not bounce. This value also reduces jitter so it is not recommended to set it to a very low value. ||
+||``Sleep Velocity`` ||The default linear velocity, below which objects start going to sleep. ||
+||``Sleep Angular Velocity`` ||The default angular velocity, below which objects start going to sleep. ||
+||``Max Angular Velocity`` ||The default maximimum angular velocity permitted for any Rigidbodies. The angular velocity of Rigidbodies is clamped to stay within ``Max Angular Velocity`` to avoid numerical instability with quickly rotating bodies. Because this may prevent intentional fast rotations on objects such as wheels, you can override this value for any Rigidbody by scripting ``Rigidbody.maxAngularVelocity``. ||
+||``Min Penetration For Penalty`` ||How deep in meters are two objects allowed to penetrate before the collision solver pushes them apart. A higher value will make objects penetrate more but reduces jitter. ||
+||``Solver Iteration Count`` ||Determines how accurately joints and contacts are resolved. Usually a value of 7 works very well for almost all situations. ||
+||``Raycasts Hit Triggers`` ||If enabled, any Raycast that intersects with a Collider marked as a Trigger will return a hit.  If disabled, these intersections will not return a hit. ||
+||``Layer Collision Matrix`` ||Defines how the [[LayerBasedCollision | layer-based collision]] detection system will behave.||
+
+!!Details
+The Physics Manager is where you define the default behaviors of your world.  For an explanation of Rigidbody Sleeping, read this page about [[RigidbodySleeping|sleeping]].
+
+!!Hints
+* If you are having trouble with connected bodies oscillating and behaving eratically, setting a higher ``Solver Iteration Count`` may improve their stability, but will require more processing power.

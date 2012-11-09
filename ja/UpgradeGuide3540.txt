@@ -1,0 +1,89 @@
+!! GameObject active state
+
+Unity 4.0 changes how the active state of GameObjects is handled. GameObject's active state is now inherited by child GameObjects, so that any GameObject which is inactive will also cause its children to be inactive. We believe that the new behavior makes more sense than the old one, and should have always been this way. Also, the upcoming new GUI system heavily depends on the new 4.0 behavior, and would not be possible without it. Unfortunately, this may require some work to fix existing projects to work with the new Unity 4.0 behavior, and here is the change:
+
+!!! The old behavior:
+
+* Whether a GameObject is active or not was defined by its ``.active`` property.
+* This could be queried and set by checking the ``.active`` property.
+* A GameObject's active state had no impact on the active state of child GameObjects. If you want to activate or deactivate a GameObject and all of its children, you needed to call ``GameObject.SetActiveRecursively``.
+* When using ``SetActiveRecursively`` on a GameObject, the previous active state of any child GameObject would be lost. When you deactivate and then activated a GameObject and all its children using ``SetActiveRecursively``, any child which had been inactive before the call to ``SetActiveRecursively``, would become active, and you had to manually keep track of the active state of children if you want to restore it to the way it was.
+* Prefabs could not contain any active state, and were always active after prefab instantiation.
+
+!!! The new behavior:
+
+* Whether a GameObject is active or not is defined by its own ``.activeSelf`` property, and that of all of its parents. The GameObject is active if its own ``.activeSelf`` property and that of all of its parents is ``true``. If any of them are ``false``, the GameObject is inactive.
+* This can be queried using the ``.activeInHierarchy`` property.
+* The ``.activeSelf`` state of a GameObject can be changed by calling ``GameObject.SetActive``. When calling ``SetActive (false)`` on a previously active GameObject, this will deactivate the GameObject and all its children. When calling ``SetActive (true)`` on a previously inactive GameObject, this will activate the GameObject, if all its parents are active. Children will be activated when all their parents are active (i.e., when all their parents have ``.activeSelf`` set to ``true``).
+* This means that ``SetActiveRecursively`` is no longer needed, as active state is inherited from the parents. It also means that, when deactivating and activating part of a hierarchy by calling ``SetActive``, the previous active state of any child GameObject will be preserved.
+* Prefabs can contain active state, which is preserved on prefab instantiation.
+
+!!! Example:
+
+You have three GameObjects, A, B and C, so that B and C are children of A. 
+* Deactivate C by calling ``C.SetActive(false)``. 
+* Now, ``A.activeInHierarchy == true``, ``B.activeInHierarchy == true`` and ``C.activeInHierarchy == false``.
+* Likewise, ``A.activeSelf == true``, ``B.activeSelf == true`` and ``C.activeSelf == false``.
+* Now we deactivate the parent A by calling ``A.SetActive(false)``. 
+* Now, ``A.activeInHierarchy == false``, ``B.activeInHierarchy == false`` and ``C.activeInHierarchy == false``.
+* Likewise, ``A.activeSelf == false``, ``B.activeSelf == true`` and ``C.activeSelf == false``.
+* Now we activate the parent A again by calling ``A.SetActive(true)``. 
+* Now, we are back to ``A.activeInHierarchy == true``, ``B.activeInHierarchy == true`` and ``C.activeInHierarchy == false``.
+* Likewise, ``A.activeSelf == true``, ``B.activeSelf == true`` and ``C.activeSelf == false``.
+
+!!! The new active state in the editor
+
+To visualize these changes, in the Unity 4.0 editor, any GameObject which is inactive (either because it's own ``.activeSelf`` property is set to ``false``, or that of one of it's parents), will be greyed out in the hierarchy, and have a greyed out icon in the inspector. The GameObject's own ``.activeSelf`` property is reflected by it's active checkbox, which can be toggled regardless of parent state (but it will only activate the GameObject if all parents are active).
+
+!!! How this affects existing projects:
+
+* To make you aware of places in your code where this might affect you, the ``GameObject.active`` property and the ``GameObject.SetActiveRecursively()`` function have been deprecated.
+* They are, however still functional. Reading the value of ``GameObject.active`` is equivalent to reading ``GameObject.activeInHierarchy``, and setting ``GameObject.active`` is equivalent to calling ``GameObject.SetActive()``. Calling ``GameObject.SetActiveRecursively()`` is equivalent to calling ``GameObject.SetActive()`` on the GameObject and all of it's children.
+* Exiting scenes from 3.5 are imported by setting the ``selfActive`` property of any GameObject in the scene to it's previous ``active`` property.
+* As a result, any project imported from previous versions of Unity should still work as expected (with compiler warnings, though), as long as it does not rely on having active children of inactive GameObjects (which is no longer possible in Unity 4.0).
+* If your project relies on having active children of inactive GameObjects, you need to change your logic to a model which works in Unity 4.0.
+
+
+!! Changes to the asset processing pipeline
+During the development of 4.0 our asset import pipeline has changed in some significant ways internal in order to improve performance, memory usage and determinism. For the most part these changes does not have an impact on the user with one exception: Objects in assets are not made persistent until the very end of the import pipeline and any previously imported version of an assets will be completely replaced.
+
+The first part means that during post processing you cannot get the correct references to objects in the asset and the second part means that if you use the references to a previously imported version of the asset during post processing do store modification those modifications will be lost.
+
+!!! Example of references being lost because they are not persistent yet
+Consider this small example:
+(:code:)
+public class ModelPostprocessor : AssetPostprocessor
+{
+    public void OnPostprocessModel(GameObject go)
+    {
+        PrefabUtility.CreatePrefab("Prefabs/" + go.name, go);
+    }
+}
+(:codeend:)
+
+In Unity 3.5 this would create a prefab with all the correct references to the meshes and so on because all the meshes would already have been made persistent, but since this is not the case in Unity 4.0 the same post processor will create a prefab where all the references to the meshes are gone, simply because Unity 4.0 does not yet know how to resolve the references to objects in the original model prefab. To correctly copy a modelprefab in to prefab you should use ``OnPostProcessAllAssets`` to go through all imported assets, find the modelprefab and create new prefabs as above.
+
+
+!!! Example of references to previously imported assets being discarded
+The second example is a little more complex but is actually a use case we have seen in 3.5 that broke in 4.0. Here is a simple ``ScriptableObject`` with a references to a mesh.
+(:code:)
+public class Referencer : ScriptableObject
+{
+    public Mesh myMesh;	
+}
+(:codeend:)
+
+We use this ``ScriptableObject`` to create an asset with references to a mesh inside a model, then in our post processor we take that reference and give it a different name, the end result being that when we have reimported the model the name of the mesh will be what the post processor determines.
+
+(:code:)
+public class Postprocess : AssetPostprocessor
+{
+	public void OnPostprocessModel(GameObject go)
+	{
+		Referencer myRef  = (Referencer)AssetDatabase.LoadAssetAtPath("Assets/MyRef.asset", typeof(Referencer));
+		myRef.myMesh.name = "AwesomeMesh";
+	}
+}
+(:codeend:)
+
+This worked fine in Unity 3.5 but in Unity 4.0 the already imported model will be completely replaced, so changing the name of the mesh from a previous import will have no effect. The Solution here is to find the mesh by some other means and change its name. What is most important to note is that in Unity 4.0 you should ONLY modify the given input to the post processor and not rely on the previously imported version of the same asset.

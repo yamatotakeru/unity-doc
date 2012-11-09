@@ -1,0 +1,173 @@
+! シェーダ: ShaderLab と固定関数シェーダ
+
+このチュートリアルでは、自身のシェーダの作成法とゲームの見た目をよくする方法を学びます。
+
+Unity には、$$ShaderLab$$ と呼ばれる強力なシェーディングおよびマテリアル言語が用意されています。 スタイルは、CgFX および Direct3D Effects (.FX) 言語に似ています。これは、[[class-Material | $$Material$$]] を表示するのに必要なものすべてを記述します。
+
+シェーダは、各種グラフィック ハードウェア機能で対象とされる Unity の [[class-Material|Material Inspector]] に表示されるプロパティと複数のシェーダ実行 ($$SubShaders$$) を記述し、それぞれが、完全なグラフィック ハードウェア レンダリング状態、固定関数パイプライン設定、使用する頂点/断片プログラムを記述します。 頂点/断片プログラムは、高レベルの $$Cg/HLSL$$ プログラム言語で記述されます。
+
+このチュートリアルでは、固定関数およびプログラム可能なパイプラインの両方を使用したシェーダの記述法について説明します。 [[http://opengl.org/documentation/red_book|OpenGL]] または Direct3D レンダー状態およびプログラム可能なパイプラインを基本的に理解しており、[[http://developer.nvidia.com/object/cg_toolkit.html|Cg]]、[[http://msdn.microsoft.com/en-us/library/bb509561%28VS.85%29.aspx|HLSL]] または [[http://www.opengl.org/documentation/glsl | GLSL]] プログラム言語に関して、ある程度の知識のある方を想定しています。 一部のシェーダのチュートリアルおよび文書は、[[http://developer.nvidia.com/page/home.html|NVIDIA]] および [[http://developer.amd.com/GPU/Pages/default.aspx|AMD]] 開発者サイトに置かれています。
+
+!! はじめに
+
+シェーダを新規作成するには、メニューバーから ^^Assets->Create->Shader^^  を選択するか、既存のシェーダをコピーし、そこから作業します。 sたらしいシェーダは、$$Project View$$ をダブルクリックすることで編集できます。
+
+非常に基本的なシェーダから始めましょう。
+
+
+[@Shader "Tutorial/Basic" {
+    Properties {
+        _Color ("Main Color", Color) = (1,0.5,0.5,1)
+    }
+    SubShader {
+        Pass {
+            Material {
+                Diffuse [_Color]
+            }
+            Lighting On
+        }
+    }
+} @]
+
+
+この簡単なシェーダは、最も基本的なシェーダの 1 つを例示します。 これは、「Main Color」という色プロパティを定義し、これにバラのような色 (赤=100% 緑=50% 青=50% アルファ=100%). のデフォルト値を割り当てます。 次に、$$Pass$$ を呼び出してオブジェクトをレンダリングし、このパスで、デフューズ マテリアル コンポーネントをプロパティ「_Color」に設定し、頂点ごとのライティングをオンにします。
+
+このシェーダをテストするには、ドロップダウン メニューからシェーダを選択し (^^Tutorial->Basic^^) 、そのマテリアルをオブジェクトに割り当てます。 マテリアル インスペクタで色を微調整し、変更を確認します。 より複雑なものに移行する時間です!
+
+
+!! 基本的な頂点ライティング
+
+既存の複雑なシェーダを開く場合、よい概要を得るのは若干難しい場合があります。 最初に、Unity に同梱の組み込み $$VertexLit$$ シェーダを分解してみましょう。 このシェーダは、固定関数パイプラインを使用して、標準の頂点ごとのライティングを実行します。
+
+
+[@Shader "VertexLit" {
+    Properties {
+        _Color ("Main Color", Color) = (1,1,1,0.5)
+        _SpecColor ("Spec Color", Color) = (1,1,1,1)
+        _Emission ("Emmisive Color", Color) = (0,0,0,0)
+        _Shininess ("Shininess", Range (0.01, 1)) = 0.7
+        _MainTex ("Base (RGB)", 2D) = "white" {}
+    }
+
+    SubShader {
+        Pass {
+            Material {
+                Diffuse [_Color]
+                Ambient [_Color]
+                Shininess [_Shininess]
+                Specular [_SpecColor]
+                Emission [_Emission]
+            }
+            Lighting On
+            SeparateSpecular On
+            SetTexture [_MainTex] {
+                constantColor [_Color]
+                Combine texture * primary DOUBLE, texture * constant
+            }
+        }
+    }
+} @]
+
+
+すべてのシェーダは、キーワード「[[SL-Shader|Shader]]」で始まり、その後にシェーダの名前を表す文字列が続きます。 これは、$$Inspector$$ に表示される名前です。 このシェーダのすべてのコードは、その後の波括弧内に入れる必要があるということです。 ``{ }`` (ブロックと呼ばれます)。
+
+* この名前は短く、説明的である必要があります。 これは、__.shader__ファイル名に一致する必要はありません。
+* Unity のサブメニューにシェーダを置くには、スラッシュを使用します (例えば、「MyShaders/Test」は、^^MyShaders^^ または ^^MyShaders->Test^^ サブメニュー内で、^^Test^^ と表示されます)。
+
+このシェーダは、「SubShader」ブロックが後にくる「Properties」ブロックで構成されます。 これらについては各自後述します。
+
+
+!!プロパティ
+
+シェーダ ブロックの最初で、[[class-Material|Material Inspector]] でアーティストが編集できるプロパティを定義できます。 「VertexLit」の例では、このプロパティは次のように見えます。
+
+Attach:ShaderTutProperties.png
+
+プロパティは、「[[SL-Properties|Properties]]」ブロック内の個々の行に一覧表示されます。 各プロパティは、内部名 (「Color」、「MainTex」) で始まります。 この後の括弧内には、インスペクタで表示される名前とプロパティの型がきます。 その後、このプロパティのデフォルト値が一覧表示されます。
+
+Attach:ShaderTutPropertyDetail.png
+
+型のリストは、[[SL-Properties|Properties Reference]] にあります。 デフォルト値は、プロパティのタイプによって決まります。 色の例では、デフォルト値は、4 つの成分のベクトルになるはずです。
+
+プロパティを定義したので、実際のシェーダを記述する準備ができました。
+
+
+!! シェーダ本体
+
+次に進む前に、シェーダ ファイルの基本的な構造を定義しましょう。
+
+グラフィック ハードウェアによって、機能が異なります。 例えば、グラフィック カードによって断片プログラムをサポートしているものとしていないものがあります。パスごとに 4 つのテクスチャを置くものもあれば、2 つまたは 1 つしかおかないものもあります。ユーザーの持っているハードウェアが何であろうと最大限に活用できるようにするため、シェーダは、複数の $$SubShaders$$ を含むことができます。 Unity がシェーダをレンダリングすると、すべてのサブシェーダに展開し、ハードウェアがサポートする最初のサブシェーダを使用します。
+
+
+[@Shader "Structure Example" {
+    Properties { /* ...shader properties... }
+    SubShader {
+    	// ...頂点/断片プログラムを使用するサブシェーダ...
+    }
+    SubShader {
+    	// ...パスごとに 4 つのテクスチャを使用するサブシェーダ...
+    }
+    SubShader {
+    	// ...パスごとに 2 つのテクスチャを使用するサブシェーダ...
+    }
+    SubShader {
+    	// ...見た目は悪いが、いずれでも実行するサブシェーダ :)
+    }
+} @]
+
+このシステムにより、Unity はすべての既存のハードウェアをサポートし、それぞれでの質を最大化できます。 しかし、シェーダは多少長くなります。
+
+各サブシェーダ ブロック内で、すべてのパスが共有するレンダリング状態を設定し、レンダリング パス自体を定義します。 使用できるコマンドの完全なリストは、[[SL-SubShader|SubShader Reference]] にあります。
+
+
+!! パス
+
+各サブシェーダは、パスの集合です。 各パスに対して、オブジェクト ジオメトリがレンダリングされるため、少なくとも 1 つのパスが必要です。 ここでの VertexLit シェーダは、次の 1 つのパスがあります。
+
+[@// ...snip...
+Pass {
+    Material {
+        Diffuse [_Color]
+        Ambient [_Color]
+        Shininess [_Shininess]
+        Specular [_SpecColor]
+        Emission [_Emission]
+    }
+    Lighting On
+    SeparateSpecular On
+    SetTexture [_MainTex] {
+        constantColor [_Color]
+        Combine texture * primary DOUBLE, texture * constant
+    }
+}
+// ...スニップ... @]
+
+パスで定義されたコマンドは、グラフィック ハードウェアを設定し、特定の方法でジオメトリをレンダリングします。
+
+上記の例では、「[[SL-Material | Material]]」ブロックは、固定関数ライティング マテリアル設定にプロパティ値を結合します。 コマンド「Lighting On」は、標準の頂点ライティングをオンにし、「SeparateSpecular On」は、スペキュラ ハイライトに対して、個々の色の使用を有効にします。
+
+これまでのコマンドはすべて、固定関数 OpenGL/Direct3D ハードウェア モデルに対して、直接マッピングします。 詳細については、[[http://opengl.org/documentation/red_book|OpenGL red book]] を参照してください。
+
+次のコマンド「[[SL-SetTexture|SetTexture]]」は非常に重要です。 これらのコマンドは、使用したいテクスチャと混合方法を定義し、結合し、レンダリングで適用します。 「SetTexture」コマンドの後には、使用したいテクスチャのプロパティ名がきます (ここでは「_MainTex」)。この後には、テクスチャの適用方法を定義する $$combiner block$$ がきます。 コンバイナ ブロック内のコマンドは、画面上でレンダリングされる各ピクセルに対して実行されます。
+
+このブロック内で、一定の色値、つまり、マテリアルの色である「_Color」を設定します。 この一定の色はを以下で使用します。
+
+次のコマンドでは、テクスチャと色値の混合方法を指定します。 これを、テクスチャをそれぞれまたは色とブレンドする方法を指定する「Combine」コマンドで行います。 一般に以下のような感じになります。
+    ``Combine`` $$ColorPart$$, $$AlphaPart$$
+
+ここでは、「ColorPart」と「AlphaPart」が、色 (RGB) とアルファ (A) 成分のブレンディングをそれぞれ定義します。 「AlphaPart」が省略されると、「ColorPart」と同じブレンディングを使用します。
+
+頂点リットの例で、
+    ``Combine`` texture * primary DOUBLE__,__ texture * constant
+
+ここでは、「texture」は、現在のテクスチャ (ここでは「_MainTex」) から来ている色です。 これは「primary」頂点色で乗算 (*) されます。  最初の色は、頂点ライティング色で、上記マテリアル色から計算されます。 最後に、結果が 2 で乗算され、ライティング強度が増します (「DOUBLE」)。 アルファ値 (コンマの後) は、「constant」値で乗算された「texture」になります (上記の「constantColor」で設定)。 もう 1 つのよく使用されるコンバイナ モードは、「previous」と呼ばれます (このシェーダでは使用されません)。 これは、前の「SetTexture」手順の結果であり、複数のテクスチャおよび/または色を相互に結合するのに使用できます。
+
+!! 要約
+
+頂点リット シェーダは、レンダリングされたライティング強度が 2 倍になるよう、標準のチュ点ライティングを設定し、テクスチャ コンバイナを設定します。
+
+シェーダにより多くのパスを入れることができ、これらのパスは次々とレンダリングされます。 しかし、現在、必要な効果があるため、これは不要です。 高度な機能を使用しないため、必要なサブシェーダは 1 つだけです。この特定のシェーダは、Unity がサポートしているグラフィック カードで機能します。
+
+頂点リット シェーダは、考えられる中で最も基本的なシェーダです。 ハードウェア固有の操作を使用せず、また ShaderLab および Cg が提供する特殊でクールなコマンドも使用しませんでした。
+
+[[ShaderTut2 | next chapter]] では、Cg 言語を使用したカスタムの頂点および断片プログラムの記述法の説明から始めます。

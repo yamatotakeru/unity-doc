@@ -1,0 +1,19 @@
+! GLSL Shader Programs
+
+In addition to using [[SL-ShaderPrograms | Cg/HSL shader programs]], OpenGL Shading Language (GLSL) shaders can be written directly.
+
+However, '''use of raw GLSL is only recommended for testing''', or when you know you will only target Mac OS X or OpenGL ES 2.0 compatible mobile devices. In majority of normal cases, Unity will cross-compile Cg/HLSL into optimized GLSL (this is done by default for mobile platforms, and can be optionally turned on for desktop platforms via @@#pragma glsl@@).
+
+!! GLSL snippets
+
+GLSL program snippets are written between ``GLSLPROGRAM`` and ``ENDGLSL`` keywords.
+
+In GLSL, all shader function entry points have to be called ``main()``. When Unity loads the GLSL shader, it loads the source once for the vertex program, with ``VERTEX`` preprocessor define, and once more for the fragment program, with ``FRAGMENT`` preprocessor define. So the way to separate vertex and fragment program parts in GLSL snippet is to surround them with ``#ifdef VERTEX`` .. ``#endif`` and ``#ifdef FRAGMENT`` .. ``#endif``. Each GLSL snippet must contain both a vertex program and a fragment program.
+
+Standard include files match those provided for Cg shaders; they just have ``.glslinc`` extension: ``UnityCG.glslinc``.
+
+Vertex shader inputs come from predefined GLSL variables (gl_Vertex, gl_MultiTexCoord0, ...) or are user defined attributes. Usually only the tangent vector needs a user defined attribute:
+    attribute vec4 Tangent;
+
+Data from vertex to fragment programs is passed through ''varying'' variables, for example:
+    varying vec3 lightDir; // vertex shader computes this, fragment shader uses this

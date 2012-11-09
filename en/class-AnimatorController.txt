@@ -1,0 +1,21 @@
+!!Animator Controller
+
+You can view and set up character behavior from the ~~Animator Controller~~ view (Menu: ^^Window > Animator Controller^^).
+
+An ``Animator Controller`` can be created from the ~~Project View~~ (Menu: ^^Create > Animator Controller^^).
+This creates a @@.controller@@ asset on disk, which looks like this in the ~~Project Browser~~
+
+Attach:MecanimAnimatorControllerIcon.png
+Animator Controller asset on disk
+
+After the state machine setup has been made, you can drop the controller onto the Animator component of any character with an Avatar in the ~~Hierarchy View~~. 
+
+Attach:MecanimAnimatorControllerWindow.png
+->The Animator Controller Window
+
+The ~~Animator Controller Window~~ will contain 
+*The ~~Animation Layer Widget~~ (top-left corner, see [[Animation Layers]])
+*The ~~Event Parameters Widget~~ (bottom-left, see [[Animation Parameters]])
+*The visualization of the [[AnimationStateMachines|State Machine itself]].
+
+Note that the ~~Animator Controller Window~~ will always display the state machine from the most recently selected @@.controller@@ asset, regardless of what scene is currently loaded.

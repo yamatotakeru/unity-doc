@@ -1,0 +1,37 @@
+! カプセルコライダ
+
+$$カプセルコライダ$$は円柱で結合された 2つの半球で構成されます。これは、カプセル プリミティブと同じ形状です。
+
+Attach:Inspector-CapsuleCollider.png\\
+''山積みされたカプセルコライダ''
+
+
+!!プロパティ
+
+||PROPS
+(:include comp-ColliderProps:)
+||``Radius`` ||コライダのローカル座標系における半径 ||
+||``Height`` ||コライダの高さ ||
+||``Direction`` ||オブジェクトのローカル座標系における長辺方向の軸の向き。 ||
+||``Center`` ||オブジェクトのローカル座標系におけるコライダの位置 ||
+
+
+!!詳細
+
+カプセルコライダはあなたは、独立してカプセル・コライダーの''半径''、''高さ''を調整することができます。主な用途である[[class-CharacterController|キャラクターコントローラー]] 　での使用の他、複数のコライダを組み合わせて一般的でない形状にしたり、ポールとして使用することも可能です。
+
+Attach:capsulecollider.png
+''標準的なカプセルコライダ''
+
+(:include comp-ColliderDetails:)
+
+
+!!複合コライダ
+
+(:include comp-ColliderCompound:)
+
+
+!!ヒント
+(:include comp-ColliderHints:)
+
+(:include comp-ColliderAdvanced:)

@@ -1,0 +1,82 @@
+!Normal Shader Family
+
+These shaders are the basic shaders in Unity.  They are not specialized in any way and should be suitable for most opaque objects.  They are not suitable if you want your object to be transparent, emitting light etc. 
+
+!! [[shader-NormalVertexLit|Vertex Lit]]
+
+[[shader-NormalVertexLit | Attach:Shaders./Thumb-NormalVertex.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture, no alpha channel required
+
+
+!! [[shader-NormalDiffuse|Diffuse]]
+
+[[shader-NormalDiffuse| Attach:Shaders./Thumb-NormalDiffuse.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture, no alpha channel required
+
+
+!! [[shader-NormalSpecular|Specular]]
+
+[[shader-NormalSpecular| Attach:Shaders./Thumb-NormalSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for Specular Map
+
+
+!! [[shader-NormalBumpedDiffuse|Normal mapped]]
+
+[[shader-NormalBumpedDiffuse| Attach:Shaders./Thumb-NormalBump.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture, no alpha channel required
+* One ``Normal map``
+
+
+!! [[shader-NormalBumpedSpecular|Normal mapped Specular]]
+
+[[shader-NormalBumpedSpecular| Attach:Shaders./Thumb-NormalBumpSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for Specular Map
+* One ``Normal map``
+
+
+!! [[shader-NormalParallaxDiffuse|Parallax]]
+
+[[shader-NormalParallaxDiffuse| Attach:Shaders./Thumb-NormalParallaxBump.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture, no alpha channel required
+* One ``Normal map``
+* One ``Height`` texture with Parallax Depth in the alpha channel
+
+
+!! [[shader-NormalParallaxSpecular|Parallax Specular]]
+
+[[shader-NormalParallaxSpecular| Attach:Shaders./Thumb-NormalParallaxBumpSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for Specular Map
+* One ``Normal map``
+* One ``Height`` texture with Parallax Depth in the alpha channel
+
+
+!! [[shader-NormalDecal|Decal]]
+
+[[shader-NormalDecal| Attach:Shaders./Thumb-NormalDecal.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture, no alpha channel required
+* One ``Decal`` texture with alpha channel for Decal transparency
+
+
+!! [[shader-NormalDiffuseDetail|Diffuse Detail]]
+
+[[shader-NormalDiffuseDetail| Attach:Shaders./Thumb-NormalDiffuseDetail.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture, no alpha channel required
+* One ``Detail`` grayscale texture; with 50% gray being neutral color

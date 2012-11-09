@@ -1,0 +1,10 @@
+! Features currently not supported by Unity Android
+
+!! Graphics
+* Non-square textures are not supported by the ETC format.
+* Movie Textures are not supported, use a full-screen streaming playback instead. Please see the [[Main.VideoFiles | Movie playback page]] for more information.
+
+!! Scripting
+* ``OnMouseEnter``, ``OnMouseOver``, ``OnMouseExit``, ``OnMouseDown``, ``OnMouseUp``, and ``OnMouseDrag`` events are not supported on Android. 
+* Dynamic features like Duck Typing are not supported. Use #pragma strict for your scripts to force the compiler to report dynamic features as errors.
+* Video streaming via ``WWW`` class is not supported.

@@ -1,0 +1,16 @@
+! Fisheye image effect
+
+The $$Fisheye$$ image effect creates distorts the image as if viewed through a fisheye lens (although any lens will distort the image to some extent).
+
+As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+
+Attach:FisheyeExample.png\\
+''Fisheye distorts the image at its corners. The use of [[script-AntialiasingAsPostEffect|image antialiasing techniques]] is highly recommended because of sampling artefacts.''
+
+!! Properties
+
+||PROPS
+||``Strength X`` ||The horizontal distortion. ||
+||``Strength Y`` ||The vertical distortion. ||
+
+(:include imagefx-SM2:)

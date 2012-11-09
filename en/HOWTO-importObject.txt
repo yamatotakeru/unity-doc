@@ -1,0 +1,25 @@
+! How do I import objects from my 3D app?
+
+Unity supports importing from most popular 3D applications. Choose the one you're working with below:
+
+* [[HOWTO-ImportObjectMaya|Maya]]
+* [[HOWTO-ImportObjectCinema4D|Cinema 4D]]
+* [[HOWTO-ImportObjectMax|3ds Max]]
+* [[HOWTO-ImportObjectCheetah3D|Cheetah3D]]
+* [[HOWTO-ImportObjectModo|Modo]]
+* [[HOWTO-importObjectLightwave|Lightwave]]
+* [[HOWTO-ImportObjectBlender|Blender]]
+
+!! Other applications
+
+Unity can read __.FBX__, __.dae__, __.3DS__, __.dxf__ and __.obj__ files, so check to see if your program can export to one of these formats. FBX exporters for popular 3D packages can be found [[http://autodesk.com/fbx|here]]. Many packages also have a Collada exporter available.
+
+!!Hints
+
+* Store textures in a folder called $$Textures$$ next to the exported mesh. This will guarantee that Unity will always be able to find the Texture and automatically connect the Texture to the Material. For more information, see the [[class-Texture2D|Textures]] reference.
+
+!!See Also
+* [[Modeling Optimized Characters]]
+* [[HOWTO-bumpmap | How do I use normal maps?]]
+* [[class-Mesh | Mesh Import Settings]]
+* [[HOWTO-FixZAxisIsUp | How do I fix the rotation of an imported model?]]

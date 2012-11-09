@@ -1,0 +1,61 @@
+!Transparent Cutout Shader Family
+
+The Transparent Cutout shaders are used for objects that have fully opaque and fully transparent parts (no partial transparency). Things like chain fences, trees, grass, etc.
+
+!! [[shader-TransCutVertexLit|Transparent Cutout Vertex-Lit]]
+
+[[shader-TransCutVertexLit| Attach:Shaders./Thumb-TransCutoutVertex.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for Transparency Map
+
+[[shader-TransCutVertexLit | &#187; More details]]
+
+
+!! [[shader-TransCutDiffuse|Transparent Cutout Diffuse]]
+
+[[shader-TransCutDiffuse|Attach:Shaders./Thumb-TransCutoutDiffuse.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for Transparency Map
+
+[[shader-TransCutDiffuse | &#187; More details]]
+
+
+!! [[shader-TransCutSpecular|Transparent Cutout Specular]]
+
+[[shader-TransCutSpecular| Attach:Shaders./Thumb-TransCutoutSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for combined Transparency Map/Specular Map
+
+'''Note:'''
+One limitation of this shader is that the ``Base`` texture's alpha channel doubles as a Specular Map for the Specular shaders in this family.
+
+[[shader-TransCutSpecular | &#187; More details]]
+
+
+!! [[shader-TransCutBumpedDiffuse|Transparent Cutout Bumped]]
+
+[[shader-TransCutBumpedDiffuse| Attach:Shaders./Thumb-TransCutoutBump.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for Transparency Map
+* One ``Normal map`` normal map, no alpha channel required
+
+[[shader-TransCutBumpedDiffuse | &#187; More details]]
+
+
+!! [[shader-TransCutBumpedSpecular|Transparent Cutout Bumped Specular]]
+
+[[shader-TransCutBumpedSpecular| Attach:Shaders./Thumb-TransCutoutBumpSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for combined Transparency Map/Specular Map
+* One ``Normal map`` normal map, no alpha channel required
+
+'''Note:'''
+One limitation of this shader is that the ``Base`` texture's alpha channel doubles as a Specular Map for the Specular shaders in this family.
+
+[[shader-TransCutBumpedSpecular | &#187; More details]]
+

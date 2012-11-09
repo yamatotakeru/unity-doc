@@ -1,0 +1,86 @@
+!Transparent Shader Family
+
+The Transparent shaders are used for fully- or semi-transparent objects.  Using the alpha channel of the ``Base`` texture, you can determine areas of the object which can be more or less transparent than others.  This can create a great effect for glass, HUD interfaces, or sci-fi effects.
+
+!! [[shader-TransVertexLit|Transparent Vertex-Lit]]
+
+[[shader-TransVertexLit| Attach:Shaders./Thumb-TransVertex.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for Transparency Map
+
+[[shader-TransVertexLit | &#187; More details]]
+
+
+!! [[shader-TransDiffuse|Transparent Diffuse]]
+
+[[shader-TransDiffuse| Attach:Shaders./Thumb-TransDiffuse.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for Transparency Map
+
+[[shader-TransDiffuse | &#187; More details]]
+
+
+!! [[shader-TransSpecular|Transparent Specular]]
+
+[[shader-TransSpecular| Attach:Shaders./Thumb-TransSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for combined Transparency Map/Specular Map
+
+'''Note:'''
+One limitation of this shader is that the ``Base`` texture's alpha channel doubles as a Specular Map for the Specular shaders in this family.
+
+
+[[shader-TransSpecular | &#187; More details]]
+
+
+!! [[shader-TransBumpedDiffuse|Transparent Normal mapped]]
+
+[[shader-TransBumpedDiffuse| Attach:Shaders./Thumb-TransBump.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for Transparency Map
+* One ``Normal map`` normal map, no alpha channel required
+
+[[shader-TransBumpedDiffuse | &#187; More details]]
+
+
+!! [[shader-TransBumpedSpecular|Transparent Normal mapped Specular]]
+
+[[shader-TransBumpedSpecular| Attach:Shaders./Thumb-TransBumpSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for combined Transparency Map/Specular Map
+* One ``Normal map`` normal map, no alpha channel required
+
+'''Note:'''
+One limitation of this shader is that the ``Base`` texture's alpha channel doubles as a Specular Map for the Specular shaders in this family.
+
+[[shader-TransBumpedSpecular | &#187; More details]]
+
+
+!! [[shader-TransParallaxDiffuse|Transparent Parallax]]
+
+[[shader-TransParallaxDiffuse| Attach:Shaders./Thumb-TransParallaxBump.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for Transparency Map
+* One ``Normal map`` normal map with alpha channel for Parallax Depth
+
+[[shader-TransParallaxDiffuse | &#187; More details]]
+
+
+!! [[shader-TransParallaxSpecular|Transparent Parallax Specular]]
+
+[[shader-TransParallaxSpecular| Attach:Shaders./Thumb-TransParallaxBumpSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for combined Transparency Map/Specular Map
+* One ``Normal map`` normal map with alpha channel for Parallax Depth
+
+'''Note:'''
+One limitation of this shader is that the ``Base`` texture's alpha channel doubles as a Specular Map for the Specular shaders in this family.
+
+[[shader-TransParallaxSpecular | &#187; More details]]

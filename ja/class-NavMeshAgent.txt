@@ -1,0 +1,20 @@
+!NavMesh Agent (Pro Only)
+
+The ``NavMesh Agent`` component is used in connection with pathfinding, and is the place to put information about how this agent navigates the  [[NavmeshandPathfinding|NavMesh]]. You can access it in ^^Component->Navigation->Nav Mesh Agent^^
+
+Attach:NavMeshAgent.png
+
+||PROPS
+||``Radius``||Agent radius (used for pathfinding purposes only, and can differ from the actual object's radius, typically larger). ||
+||``Speed`` ||Maximum movement speed with which the agent can traverse the world toward its destination.||
+||``Acceleration`` ||Maximum acceleration.||
+||``Angular Speed`` ||Maximum rotation speed in (deg/s).||
+||``Stopping distance`` ||Stopping distance. The agent will decelerate when within this distance to the destination.||
+||``Auto Traverse OffMesh Link``	||Automate movement onto and off of OffMeshLinks.
+||``Auto Repath`` ||Acquire new path if existing is partial or invalid.
+||``Height``||The height of the agent (used in debug graphics).
+||``Base offset`` ||Vertical offset of the collision geometry relative to the actual geometry.
+||``Obstacle Avoidance Type`` ||The level of quality of avoidance.
+||``NavMesh Walkable`` ||Specifies the types of [[class-NavMeshLayers|Navmesh layers]] that the agent can traverse.
+
+(back to [[NavmeshandPathfinding|Navigation and Pathfinding]])

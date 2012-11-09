@@ -1,0 +1,19 @@
+!Nested State Machines
+
+For convenience, it is possible to nest Animation State Machines within other Animation State Machines. You can create a Sub-state machine by rightclicking on an empty space within the ~~Animator Controller~~ window and selecting ^^Create Sub-State Machine^^. 
+
+Attach:MecanimStateMachinePullDown.png
+
+This forms a sub-state machine, to which you can navigate by double-clicking on the rhombic node:
+
+Attach:MecanimSubStateMachine.png
+
+Note, however, that you can only connect from states to other states. Thus when you create a transition from a state to a state machine, Unity will ask you to select a state from that machine. You can connect both up and down the hierarchy. 
+
+Attach:MecanimSelectSubState.png
+
+The ~~State Inspector~~ and the ~~Transition Inspector~~ will indicate which state machine each state comes from:
+Attach:MecanimTransitionToSubStateInspector.png
+(back to [[Animation State Machines|State Machines introduction]])
+
+(back to [[MecanimAnimationSystem|Mecanim introduction]])

@@ -1,0 +1,11 @@
+! Bumped Specular
+
+Attach:Shaders./Shader-NormalBumpSpec.png
+
+(:include shader-BumpSubsetImport:)
+
+(:include shader-SpecularSubsetImport:)
+
+!!Performance
+
+Generally, this shader is moderately expensive to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].

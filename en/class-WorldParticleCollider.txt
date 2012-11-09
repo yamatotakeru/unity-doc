@@ -1,0 +1,35 @@
+! World Particle Collider (Legacy)
+
+The $$World Particle Collider$$ is used to collide particles against other $$Colliders$$ in the scene.
+
+Attach:Inspector-ParticleCollider.png\\
+''A $$Particle System$$ colliding with a $$Mesh Collider$$''
+
+
+!! Properties
+
+||PROPS
+||``Bounce Factor`` ||Particles can be accelerated or slowed down when they collide against other objects. This factor is similar to the $$Particle Animator's$$ ``Damping`` property. ||
+||``Collision Energy Loss`` ||Amount of energy (in seconds) a particle should lose when colliding. If the energy goes below 0, the particle is killed. ||
+||``Min Kill Velocity`` ||If a particle's ``Velocity`` drops below ``Min Kill Velocity`` because of a collision, it will be eliminated. ||
+||``Collides with`` ||Which [[Layers]] the particle will collide against. ||
+||``Send Collision Message`` ||If enabled, every particle sends out a collision message that you can catch through scripting. ||
+
+
+!! Details
+
+To create a Particle System with Particle Collider:
+# Create a Particle System using ^^GameObject->Create Other->Particle System^^
+# Add the Particle Collider using ^^Component->Particles->World Particle Collider^^
+
+
+!!! Messaging
+
+If ``Send Collision Message`` is enabled, any particles that are in a collision will send the message ``OnParticleCollision()`` to  both the particle's $$GameObject$$ and the GameObject the particle collided with.
+
+
+!! Hints
+
+* ``Send Collision Message`` can be used to simulate bullets and apply damage on impact.
+* Particle Collision Detection is slow when used with a lot of particles. Use Particle Collision Detection wisely.
+* Message sending introduces a large overhead and shouldn't be used for normal Particle Systems.

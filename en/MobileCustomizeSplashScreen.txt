@@ -1,0 +1,21 @@
+!Customizing the Splash screen of Your Mobile Application
+
+!iOS!
+>>ios<<
+Under iOS Basic, a default splash screen will be displayed while your game loads, oriented according to the ``Default Screen Orientation`` option in the [[class-PlayerSettings|Player Settings]].
+
+Users with an iOS Pro license can use any texture in the project as a splash screen. The size of the texture depends on the target device (320x480 pixels for 1-3rd gen devices, 1024x768 for iPad, 640x960 for 4th gen devices) and supplied textures will be scaled to fit if necessary. You can set the splash screen textures using the [[Main.class-PlayerSettings|iOS Player Settings]].
+
+>><<
+
+[[#Android]]
+!Android!
+>>android<<
+Under Android Basic, a default splash screen will be displayed while your game loads, oriented according to the ``Default Screen Orientation`` option in the [[class-PlayerSettings|Player Settings]].
+
+Android Pro users can use any texture in the project as a splash screen. You can set the texture from the Splash Image section of the Android [[Main.class-PlayerSettings|Player Settings]]. You should also select the ``Splash scaling`` method from the following options:-
+* ``Center (only scale down)`` will draw your image at its natural size unless it is too large, in which case it will be scaled down to fit.
+* ``Scale to fit (letter-boxed)`` will draw your image so that the longer dimension fits the screen size exactly. Empty space around the sides in the shorter dimension will be filled in black.
+* ``Scale to fill (cropped)`` will scale your image so that the shorter dimension fits the screen size exactly. The image will be cropped in the longer dimension.
+
+>><<

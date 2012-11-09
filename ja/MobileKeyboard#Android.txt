@@ -1,0 +1,257 @@
+<!DOCTYPE html 
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>DocWiki | Main / MobileKeyboard </title>
+  <meta http-equiv='Content-Style-Type' content='text/css' />
+  <link rel='stylesheet' href='http://docwiki.unity3d.co.jp/pub/skins/unitywiki/unitywiki.css' type='text/css' />
+  <!--HTMLHeader--><style type='text/css'><!--
+  ul, ol, pre, dl, p { margin-top:0px; margin-bottom:0px; }
+  code.escaped { white-space: nowrap; }
+  .vspace { margin-top:1.33em; }
+  .indent { margin-left:40px; }
+  .outdent { margin-left:40px; text-indent:-40px; }
+  a.createlinktext { text-decoration:none; border-bottom:1px dotted gray; }
+  a.createlink { text-decoration:none; position:relative; top:-0.5em;
+    font-weight:bold; font-size:smaller; border-bottom:none; }
+  img { border:0px; }
+  
+span.anchor {
+	float: left;
+	font-size: 10px;
+	margin-left: -10px;
+	width: 10px;
+    position:relative; top:-0.1em;
+	text-align: center;
+}
+span.anchor a { text-decoration: none; }
+span.anchor a:hover { text-decoration: underline; }
+ol.toc { text-indent:-20px; list-style: none; }
+ol.toc ol.toc { text-indent:-40px; }
+div.tocfloat { font-size: smaller; margin-bottom: 10px;
+    border-top: 1px dotted #555555; border-bottom: 1px dotted #555555;
+    padding-top: 5px; padding-bottom: 5px; 
+    width: 38%; float: right; margin-left: 10px; clear: right;
+    margin-right:-13px; padding-right: 13px; padding-left: 13px;
+    background-color: #eeeeee; }
+div.toc { font-size: smaller; 
+    padding: 5px; border: 1px dotted #cccccc;
+    background: #f7f7f7;
+    margin-bottom: 10px; }
+div.toc p { background-color: #f9f6d6;
+    margin-top:-5px;   padding-top: 5px;
+    margin-left:-5px;  padding-left: 5px;
+    margin-right:-5px; padding-right: 5px;
+    padding-bottom: 3px;
+    border-bottom:  1px dotted #cccccc; }.editconflict { color:green; 
+  font-style:italic; margin-top:1.33em; margin-bottom:1.33em; }
+
+  table.markup { border:2px dotted #ccf; width:90%; }
+  td.markup1, td.markup2 { padding-left:10px; padding-right:10px; }
+  table.vert td.markup1 { border-bottom:1px solid #ccf; }
+  table.horiz td.markup1 { width:23em; border-right:1px solid #ccf; }
+  table.markup caption { text-align:left; }
+  div.faq p, div.faq pre { margin-left:2em; }
+  div.faq p.question { margin:1em 0 0.75em 0; font-weight:bold; }
+  div.faqtoc div.faq * { display:none; }
+  div.faqtoc div.faq p.question 
+    { display:block; font-weight:normal; margin:0.5em 0 0.5em 20px; line-height:normal; }
+  div.faqtoc div.faq p.question * { display:inline; }
+   
+    .frame 
+      { border:1px solid #cccccc; padding:4px; background-color:#f9f9f9; }
+    .lfloat { float:left; margin-right:0.5em; }
+    .rfloat { float:right; margin-left:0.5em; }
+a.varlink { text-decoration:none; }
+
+--></style><script type="text/javascript">
+function toggle(obj) {
+    var elstyle = document.getElementById(obj).style;
+    var text    = document.getElementById(obj + "tog");
+    if (elstyle.display == 'none') {
+        elstyle.display = 'block';
+        text.innerHTML = "hide";
+    } else {
+        elstyle.display = 'none';
+        text.innerHTML = "show";
+    }
+}
+</script>  <meta name='robots' content='index,follow' />
+
+</head>
+<body>
+<!--PageHeaderFmt-->
+  <div id='wikilogo'><a href='http://docwiki.unity3d.co.jp/index.php'><img src='http://docwiki.unity3d.co.jp/pub/skins/unitywiki/unitywiki.png'
+    alt='DocWiki' border='0' /></a>
+        <span id='wikititle'>
+          <span class='pagegroup'><a href='http://docwiki.unity3d.co.jp/index.php?n=Main'>Main</a> /</span>
+          <span class='pagetitle'>MobileKeyboard</span>
+        </span>
+  </div>
+  <div id='wikihead'>
+  <form action='http://docwiki.unity3d.co.jp/index.php'>
+    <span class='headnav'><a href='http://docwiki.unity3d.co.jp/index.php?n=Site.AllRecentChanges'
+      accesskey='c'>Recent Changes</a> -</span>
+    <input type='hidden' name='n' value='Main.MobileKeyboard' />
+    <input type='hidden' name='action' value='search' />
+    <a href='http://docwiki.unity3d.co.jp/index.php?n=Site.Search'>Search</a>:
+    <input type='text' name='q' value='' class='inputbox searchbox' />
+    <input type='submit' class='inputbutton searchbutton'
+      value='Go' /></form></div>
+<!--/PageHeaderFmt-->
+  <table id='wikimid' width='100%' cellspacing='0' cellpadding='0'><tr>
+<!--PageLeftFmt-->
+      <td id='wikileft' valign='top'>
+        <ul><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.HomePage'>Home Page</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Site.SideBar?action=login'>Login</a>
+</li></ul><p class='vspace sidehead'> 4.x Unity doc
+</p>
+<div class='vspace'></div><ul><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.UnityManual'>Unity Manual</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.Reference'>Reference Manual</a> 
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.Components'>Components</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.Built-inShaderGuide'>Built-in Shader Guide</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.iphone-GettingStarted'>iPhone Guide</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.android-GettingStarted'>Android Guide</a>
+</li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Main.xbox360-gettingstarted?action=edit'>360 Guide</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.xbox360-gettingstarted?action=edit'>?</a>
+</li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Main.wii-gettingstarted?action=edit'>Wii Guide</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.wii-gettingstarted?action=edit'>?</a>
+</li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Main.ps3-gettingstarted?action=edit'>PS3 Guide</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.ps3-gettingstarted?action=edit'>?</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.flash-gettingstarted'>Flash Guide</a>
+</li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Main.wiiu-gettingstarted?action=edit'>WiiU Guide</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.wiiu-gettingstarted?action=edit'>?</a>
+<div class='vspace'></div></li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.TableOfContents'>Table Of Contents</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.IncludedPages'>Included Pages</a>
+<div class='vspace'></div></li><li><a class='urllink' href='http://docwiki.hq.unity3d.com/3x/index.php' rel='nofollow'>3.x docs</a>
+</li></ul><p class='vspace sidehead'> Website bits
+</p>
+<div class='vspace'></div><ul><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Website.HomePage?action=edit'>Home Page</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Website.HomePage?action=edit'>?</a>
+</li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Website.TableOfContents?action=edit'>Table Of Contents</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Website.TableOfContents?action=edit'>?</a>
+</li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=Website.AssetServerInstallation?action=edit'>Asset Server</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=Website.AssetServerInstallation?action=edit'>?</a>
+<div class='vspace'></div></li><li><a class='createlinktext' rel='nofollow' 
+    href='http://docwiki.unity3d.co.jp/index.php?n=SourceCode.HomePage?action=edit'>Source code</a><a rel='nofollow' 
+    class='createlink' href='http://docwiki.unity3d.co.jp/index.php?n=SourceCode.HomePage?action=edit'>?</a>
+</li></ul><p class='vspace sidehead'> Misc
+</p><ul><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.PageList'>All pages</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Site.AllRecentChanges?action=rss'>RSS</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.HomePage?action=refcount'>Refcount</a>
+</li><li><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.WikiSandbox'>WikiSandbox</a>
+</li></ul><p class='vspace'  style='text-align: right;'> <span style='font-size:83%'><a class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Site.SideBar?action=edit'>edit SideBar</a></span>
+</p>
+</td>
+<!--/PageLeftFmt-->
+      <td id='wikibody' valign='top'>
+<!--PageActionFmt-->
+        <div id='wikicmds'><ul><li class='browse'><a accesskey=''  class='selflink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileKeyboard'>View</a>
+</li><li class='edit'><a accesskey='e'  rel='nofollow'  class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileKeyboard?action=edit'>Edit</a>
+</li><li class='diff'><a accesskey='h'  rel='nofollow'  class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileKeyboard?action=diff&amp;source=y'>History</a>
+</li><li class='backlink'><a accesskey='ak_backlink'  rel='nofollow'  class='wikilink' href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileKeyboard?action=search&amp;q=link=Main.MobileKeyboard'>Backlinks</a>
+</li></ul>
+</div>
+<!--PageText-->
+<div id='wikitext'>
+<h1>Mobile Keyboard</h1>
+<p>In most cases, Unity will handle keyboard input automatically for GUI elements but it is also easy to show the keyboard on demand from a script.
+</p>
+<div class='vspace'></div><a class='iosRef' id='iosRef' href="javascript:ShowHideDiv('iosRef','specific-ios', 'iOS');"><img src="./uploads/Main/PlatformArrowDown.png"><h1>iOS</h1></a>
+<p><a name='iOS' id='iOS'></a>
+</p><div class='specific-ios' style='display: block;' id='specific-ios' > 
+<h2>Using the Keyboard</h2>
+<h3>GUI Elements</h3>
+<p>The keyboard will appear automatically when a user taps on editable GUI elements. Currently, <a class='urllink' href='../ScriptReference/GUI.TextField.html' rel='nofollow'>GUI.TextField</a>, <a class='urllink' href='../ScriptReference/GUI.TextArea.html' rel='nofollow'>GUI.TextArea</a> and <a class='urllink' href='../ScriptReference/GUI.PasswordField.html' rel='nofollow'>GUI.PasswordField</a> will display the keyboard; see the  <a class='urllink' href='../ScriptReference/GUI.html' rel='nofollow'>GUI class</a> documentation for further details.
+</p>
+<div class='vspace'></div><h3>Manual Keyboard Handling</h3>
+<p>Use the <span class='doc-prop'>iPhoneKeyboard.Open</span> function to open the keyboard. Please see the <a class='urllink' href='../ScriptReference/iPhoneKeyboard.html' rel='nofollow'>iPhoneKeyboard</a> scripting reference for the parameters that this function takes.
+</p>
+<div class='vspace'></div><h2>Keyboard Type Summary</h2>
+<p>The Keyboard supports the following types:
+</p><table width='100%'><tr ><th  align='left'>Property:</th><th  align='left'>Function:</th></tr>
+<tr ><td  align='left'><span class='doc-prop'>iPhoneKeyboardType.Default</span></td><td >Letters. Can be switched to keyboard with numbers and punctuation.</td></tr>
+<tr ><td  align='left'><span class='doc-prop'>iPhoneKeyboardType.ASCIICapable</span></td><td >Letters. Can be switched to keyboard with numbers and punctuation.</td></tr>
+<tr ><td  align='left'><span class='doc-prop'>iPhoneKeyboardType.NumbersAndPunctuation</span></td><td >Numbers and punctuation. Can be switched to keyboard with letters.</td></tr>
+<tr ><td  align='left'><span class='doc-prop'>iPhoneKeyboardType.URL</span></td><td >Letters with slash and .com buttons. Can be switched to keyboard with numbers and punctuation.</td></tr>
+<tr ><td  align='left'><span class='doc-prop'>iPhoneKeyboardType.NumberPad</span></td><td >Only numbers from 0 to 9.</td></tr>
+<tr ><td  align='left'><span class='doc-prop'>iPhoneKeyboardType.PhonePad</span></td><td >Keyboard used to enter phone numbers.</td></tr>
+<tr ><td  align='left'><span class='doc-prop'>iPhoneKeyboardType.NamePhonePad</span></td><td >Letters. Can be switched to phone keyboard.</td></tr>
+<tr ><td  align='left'><span class='doc-prop'>iPhoneKeyboardType.EmailAddress</span></td><td >Letters with @ sign. Can be switched to keyboard with numbers and punctuation.</td></tr>
+</table>
+<div class='vspace'></div><h2>Text Preview</h2>
+<p>By default, an edit box will be created and placed on top of the keyboard after it appears. This works as preview of the text that user is typing, so the text is always visible for the user. However, you can disable text preview by setting <span class='doc-prop'>iPhoneKeyboard.hideInput</span> to true. Note that this works only for certain keyboard types and input modes. For example, it will not work for phone keypads and multi-line text input. In such cases, the edit box will always appear. <span class='doc-prop'>iPhoneKeyboard.hideInput</span> is a global variable and will affect all keyboards.
+</p>
+<div class='vspace'></div><h2>Keyboard Orientation</h2>
+<p>By default, the keyboard automatically follows the device orientation. To disable or enable rotation to a certain orientation, use the following properties available in <a class='urllink' href='../ScriptReference/iPhoneKeyboard.html' rel='nofollow'>iPhoneKeyboard</a>:
+</p><table width='100%'><tr ><th  align='left'>Property:</th><th  align='left'>Function:</th></tr>
+<tr ><td  align='left'><span class='doc-prop'>autorotateToPortrait</span></td><td >Enable or disable autorotation to portrait orientation (button at the bottom).</td></tr>
+<tr ><td  align='left'><span class='doc-prop'>autorotateToPortraitUpsideDown</span></td><td >Enable or disable autorotation to portrait orientation (button at top).</td></tr>
+<tr ><td  align='left'><span class='doc-prop'>autorotateToLandscapeLeft</span></td><td >Enable or disable autorotation to landscape left orientation (button on the right).</td></tr>
+<tr ><td  align='left'><span class='doc-prop'>autorotateToLandscapeRight</span></td><td >Enable or disable autorotation to landscape right orientation (button on the left).</td></tr>
+</table>
+<div class='vspace'></div><h2>Visibility and Keyboard Size</h2>
+<p>There are three keyboard properties in <a class='urllink' href='../ScriptReference/iPhoneKeyboard.html' rel='nofollow'>iPhoneKeyboard</a> that determine keyboard visibility status and size on the screen.
+</p><table width='100%'><tr ><th  align='left'>Property:</th><th  align='left'>Function:</th></tr>
+<tr ><td  align='left'><span class='doc-prop'>visible</span></td><td >Returns <span class='doc-prop'>true</span> if the keyboard is fully visible on the screen and can be used to enter characters.</td></tr>
+<tr ><td  align='left'><span class='doc-prop'>area</span></td><td >Returns the position and dimensions of the keyboard.</td></tr>
+<tr ><td  align='left'><span class='doc-prop'>active</span></td><td >Returns <span class='doc-prop'>true</span> if the keyboard is activated. This property is not static property. You must have a keyboard instance to use this property.</td></tr>
+</table>
+<p class='vspace'>Note that <span class='doc-prop'>iPhoneKeyboard.area</span> will return a rect with position and size set to 0 until the keyboard is fully visible on the screen. You should not query this value immediately after <span class='doc-prop'>iPhoneKeyboard.Open</span>. The sequence of keyboard events is as follows:
+</p>
+<div class='vspace'></div><ul><li><span class='doc-prop'>iPhoneKeyboard.Open</span> is called. <span class='doc-prop'>iPhoneKeyboard.active</span> returns true. <span class='doc-prop'>iPhoneKeyboard.visible</span> returns false. <span class='doc-prop'>iPhoneKeyboard.area</span> returns (0, 0, 0, 0).
+</li><li>Keyboard slides out into the screen. All properties remain the same.
+</li><li>Keyboard stops sliding. <span class='doc-prop'>iPhoneKeyboard.active</span> returns true. <span class='doc-prop'>iPhoneKeyboard.visible</span> returns true. <span class='doc-prop'>iPhoneKeyboard.area</span> returns real position and size of the keyboard.
+</li></ul><div class='vspace'></div><h2>Secure Text Input</h2>
+<p>It is possible to configure the keyboard to hide symbols when typing. This is useful when users are required to enter sensitive information (such as passwords). To manually open keyboard with secure text input enabled, use the following code:
+</p><pre class='escaped'>
+iPhoneKeyboard.Open("", iPhoneKeyboardType.Default, false, false, true);
+</pre>
+<div class='vspace'></div><div><img src='http://docwiki.unity3d.co.jp/uploads/Main/KeyboardSecure.png' alt='' title='' /></div>
+<p><em>Hiding text while typing</em>
+</p>
+<div class='vspace'></div><h2>Alert keyboard</h2>
+<p>To display the keyboard with a black semi-transparent background instead of the classic opaque, call <span class='doc-prop'>iPhoneKeyboard.Open</span> as follows:
+</p><pre class='escaped'>
+iPhoneKeyboard.Open("", iPhoneKeyboardType.Default, false, false, true, true);
+</pre>
+<div class='vspace'></div><div><img src='http://docwiki.unity3d.co.jp/uploads/Main/KeyboardClassic.png' alt='' title='' /></div>
+<p><em>Classic keyboard</em>
+</p>
+<div class='vspace'></div><div><img src='http://docwiki.unity3d.co.jp/uploads/Main/KeyboardAlert.png' alt='' title='' /></div>
+<p><em>Alert keyboard</em>
+</p>
+<div class='vspace'></div></div>
+<div class='vspace'></div><a class='androidRef' id='androidRef' href="javascript:ShowHideDiv('androidRef','specific-android', 'Android');"><img src="./uploads/Main/PlatformArrowDown.png"><h1>Android</h1></a>
+<p><a name='Android' id='Android'></a>
+</p><div class='specific-android' style='display: block;' id='specific-android' > 
+<p>Unity Android reuses the iOS API to display system keyboard. Even though Unity Android supports most of the functionality of its iPhone counterpart, there are two aspects which are not supported:
+</p><ul><li><span class='doc-prop'>iPhoneKeyboard.hideInput</span>
+</li><li><span class='doc-prop'>iPhoneKeyboard.area</span>
+</li></ul><p class='vspace'>Please also note that the layout of a <span class='doc-prop'>iPhoneKeyboardType</span> can differ somewhat between devices.
+</p></div>
+</div>
+
+      </td>
+    </tr></table>
+<!--PageFooterFmt-->
+  <div id='wikifoot'>
+    <div class='footnav'>
+      <a rel="nofollow" href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileKeyboard?action=edit'>Edit</a> -
+      <a rel="nofollow" href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileKeyboard?action=diff&source=y'>History</a> -
+      <a rel="nofollow" href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileKeyboard?action=print' target='_blank'>Print</a> -
+      <a href='http://docwiki.unity3d.co.jp/index.php?n=Site.AllRecentChanges'>Recent Changes</a> -
+      <a href='http://docwiki.unity3d.co.jp/index.php?n=Site.Search'>Search</a> - 
+      <a href='http://docwiki.unity3d.co.jp/index.php?n=Main.MobileKeyboard?action=search&q=link=Main.MobileKeyboard'>Backlinks</a></div>
+    <div class='lastmod'>Page last modified on 2011-11-03 02:06</div></div>
+<!--HTMLFooter-->
+</body>
+</html>

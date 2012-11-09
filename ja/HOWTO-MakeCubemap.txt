@@ -1,0 +1,5 @@
+! キューブマップ テクスチャはどのように作成しますか?
+
+$$Cubemaps$$ は、[[shader-ReflectiveFamily | Reflective built-in shaders]] で使用されます。 これを作成するには、6 つの 2D テクスチャを作成し、キューブマップ アセットを新規作成するか、1 つの正方形テクスチャからキューブマップを作成します。 詳細については、[[class-Cubemap|Cubemap Texture]] 文書ページを参照してください。
+
+スタティックおよびダイナミック キューブマップの反射もスクリプトからレンダリングできます。 [[ScriptRef:Camera.RenderToCubemap.html | Camera.RenderToCubemap]] ページのコード例には、エディタから直接 キューブマップをレンダリングするための簡単なウィザード スクリプトが含まれています。

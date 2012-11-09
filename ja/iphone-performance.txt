@@ -1,0 +1,5 @@
+! Optimizing Performance in iOS.
+
+This section covers optimzations which are unique to iOS devices. For more information on optimizing for mobile devices, see the [[Main.iphone-PracticalGuide | Practical Guide to Optimization for Mobiles]]. 
+
+(:tocportion:)

@@ -1,0 +1,11 @@
+! Parallax Diffuse
+
+Attach:Shaders./Shader-NormalParallaxBump.png
+
+(:include shader-ParallaxSubsetImport:)
+
+(:include shader-DiffuseSubsetImport:)
+
+!!Performance
+
+Generally, this shader is on the more expensive rendering side.  For more details, please view the [[shader-Performance | Shader Peformance page]].
