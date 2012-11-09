@@ -1,27 +1,27 @@
-!Creating the Avatar
+!アバター作成
 
-After an FBX file is imported, you can specify what kind of rig it is in the ~~Rig~~ tab of the ~~FBX importer options~~. 
+FBXファイルをインポートした後、~~FBX importer options~~の~~Rig~~タブでリグの指定することができます。
 
-!!Humanoid animations
-For a Humanoid rig, select ^^Humanoid^^ and click ^^Apply^^. Mecanim will attempt to match up your existing bone structure to the Avatar bone structure. In many cases, it can do this automatically by analysing the connections between bones in the rig.
+!!ヒューマノイド　アニメーション
+ヒューマノイドリグの場合、^^Humanoid^^を選択し^^Apply^^をクリックします。メカニムはアバターのボーン構造に現在のボーン構造のマッチングを試みます。多くの場合、リグのボーンのつながりを正しく分析し、ほぼ自動作業となります。
 
-If the match has succeeded, you will see a check mark next to the ^^Configure...^^ menu
+マッチングが成功した場合は、^^Configure...^^メニューの横にチェックマークが表示されます。
 
 Attach:MecanimImporterRigTab.png
 
-Also, in the case of a successful match, an Avatar sub-asset is added to the FBX asset, which you will be able to see in the project view hierarchy. 
+また、マッチングが成功した場合には、FBXのアセットにアバターの子アセットが追加されたことがプロジェクト·ビュー階層にて表示されます。
 Attach:MecanimFBXNoAvatar.png Attach:MecanimFBXWithAvatar.png\\
-''Models with and without an Avatar sub-asset''
+アバターの子アセットがある場合とない場合のモデル
 
 Attach:MecanimAvatarCreated.png\\
-''The inspector for an Avatar asset''
+インスペクタ上のアバターアセット
 
-If Mecanim was unable to create the Avatar, you will see a cross next to the ^^Configure ...^^ button, and no Avatar sub-asset will be added. When this happens, you need to configure the avatar manually as described on [[Configuring the Avatar|this page]].
+メカニムがアバターを作成することができなかった場合は、^^Configure ...^^ボタンの横に×印が表示され、アバターの子アセットが追加されません。この場合は、 [[Configuring the Avatar|このページ]] の手順にしたがい手動でアバターを設定する必要があります。
 
-!!Non-humanoid animations
+!!非ヒューマノイド　アニメーション
 
-Two options for non-humanoid animation are provided: $$Generic$$ and $$Legacy$$. Generic animations are imported using the Mecanim system but don't take advantage of the extra features available for humanoid animations. Legacy animations use the the animation system that was provided by Unity before Mecanim. There are some cases where it is still useful to work with legacy animations (most notably with legacy projects that you don't want to update fully) but they are seldom needed for new projects. See [[Animations40|this section]] of the manual for further details on legacy animations.
+非ヒューマノイドアニメーションのための2つのオプション（$$ジェネリック$$および$$レガシー$$）が用意されています。ジェネリックアニメーションはメカニムを使用してインポートが出来ますが、その際にヒューマノイドアニメーションで使用できるいくつかのすぐれた追加機能を利用できません。レガシーアニメーションはメカニム登場以前にUnityで提供されていたアニメーションシステムを使用しています。従来のアニメーションもでまだ有用なケースはありますが（特にあなたが完全にはアップデートしたくない過去プロジェクトを含む場合）、新規プロジェクトではほぼ必要ありません。レガシーアニメーションの詳細については、マニュアルの[[Animations40|このセクション]] を参照してください。
 
-(back to [[Avatar Creation and Setup]])
+([[Avatar Creation and Setup|アバター作成およびセットアップ]] に戻る)
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)

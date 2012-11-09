@@ -386,13 +386,12 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 *[[Reference]]
 **[[Components]]
 ***[[comp-AIGroup]]
+>>jpn<<
 ****[[class-NavMeshAgent]]
 ****[[class-OffMeshLink]]
 ****[[class-NavMeshObstacle]]
->>jpn<<
 ***[[comp-AnimationGroup]]
 ****[[class-Animation]]
->><<
 ****[[class-AnimationClip]]
 ****[[class-Animator]]
 ****[[class-AnimatorController]]
@@ -402,7 +401,6 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[class-HumanTemplate]]
 ****[[class-State]]
 ****[[class-Transition]]
->>jpn<<
 ***[[comp-AssetsGroup]]
 >><<
 ****[[class-AudioClip]]

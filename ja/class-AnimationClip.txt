@@ -1,11 +1,11 @@
-! Animation Clip 
+! アニメーションクリップ
 Attach:animation_clip_inspector.png\\
-''An imported animation selected in the $$Project View$$''
+インポートしたアニメーションを$$プロジェクトビュー$$に表示
 
-$$Animation Clips$$ store all animation data that can be used for animated characters or simple animations.
+$$アニメーション·クリップ$$はアニメーションキャラクターや簡単なアニメーションに使用できるアニメーションの情報をすべて格納します。
 
-They contain only one property which can not be modified: the sample rate. This is the sample rate at which the clip was created. Note that Unity performs keyframe reduction when importing animations, thus this is not the number of keys.
+プロパティはサンプルレートのみで変更不可能です。クリップが作成されたときのサンプルレートが格納されています。Unityはアニメーションをインポートするときにキーフレームの自動削減を行いますのでサンプルレートはキー数と一致しないことに留意して下さい。
 
-For details on the various import settings for an individual Animation Clip, please see the [[class-Mesh | Mesh Component Reference page]].
+個々のアニメーションクリップのさまざまなインポート設定の詳細については、[[class-Mesh | メッシュコンポーネント　リファレンス]] を参照してください.
 
-__Note:__ Imported animations can't be edited in the Animation View, but if you make a duplicate of the imported animation inside Unity, the duplicate can be edited.
+__注意 __インポートされたアニメーションはアニメーションビューで編集することはできませんが、Unity上でアニメーションの複製を行った場合は、複製したほうは編集することができます。

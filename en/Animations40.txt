@@ -1,34 +1,34 @@
-! Animations (Legacy)
+!Legacy animation system
 
-Unity's Animation System allows you to create beautifully animated skinned characters. The Animation System supports animation blending, mixing, additive animations, walk cycle time synchronization, animation layers, control over all aspects of the animation playback (time, speed, blend-weights), mesh skinning with 1, 2 or 4 bones per vertex and finally physically based ragdolls.
+Prior to the introduction of Mecanim, Unity used its own animation system and for backward compatiblity, this system is still available. The main reason for using legacy animation is to continue working with an old project without the work of updating it for Mecanim. However, it is not recommended that you use the legacy system for new projects.
 
-For best practices on creating a rigged character with optimal performance in Unity, we recommended that you check out the section on [[Modeling Optimized Characters]].
+!!Working with legacy animations
 
-The following topics are covered on this page:
+To import a legacy animation, you first need to mark it as such in the Mesh importer's Rig tab:-
 
-*[[#ImportAnim | Importing Character Animations]]
-**[[#ImportIK | Inverse Kinematics]]
-**[[#ImportModelNoAnims | Adding animations to models that do not contain them]]
-*[[#IntoScene | Inserting Into a Unity Scene]]
+Attach:MecanimLegacyAnimationProps.png
 
-[[AnimationsImport|Importing Animations]]
+The Animation tab on the importer will then look something like this:-
 
-[[Splittinganimations|Spliting animations]]
+||``Import Animation`` ||Selects whether or not animation should be imported at all. ||
+||``Wrap Mode`` ||The method of handling what happens when the animation comes to an end:- ||
+||>>>``Default`` ||Uses whatever setting is specified in the animation clip. ||
+||>>>``Once`` ||Play the clip to the end and then finish. ||
+||>>>``Loop`` ||Play to the end, then immediately restart from the beginning. ||
+||>>>``PingPong`` ||Play to the end, then play from the end in reverse, and so on. ||
+||>>>``Forever`` ||Play to the end, then loop the last frame indefinitely. ||
+||``Anim Compression`` ||Settings to attempt to remove redundant information from clips:- ||
+||>>>``Off`` ||No compression. ||
+||>>>``Keyframe reduction`` ||Attempt to remove keyframes where differences are too small to be seen||
+||>>>``Keyframe reduction and compression``||As for ''Keyframe reduction'', but clip data is also compressed. ||
+||``Rotation error`` ||Minimum difference in rotation values (in degrees), below which two keyframes are counted as equal. ||
+||``Position error`` ||Minimum difference in position (as a percentage of coordinate values), below which two keyframes are counted as equal. ||
+||``Rotation error`` ||Minimum difference in scale (as a percentage of coordinate values), below which two keyframes are counted as equal. ||
 
-[[#ImportIK]]
 
-!!! Importing Inverse Kinematics
+Below the properties in the inspector is a list of animation clips. When you click on a clip in the list, an additional panel will appear below it in the inspector:-
 
-When importing animated characters from Maya that are created using IK, you have to check the ``Bake IK & simulation`` box in the Import Settings. Otherwise, your character will not animate correctly.
+Attach:MecanimLegacyAnimationClips.png
 
-[[#IntoScene]]
+The Start and End values can be changed to allow you to use just a part of the original clip (see the page on [[Splittinganimations||splitting animations]] for further details). The ''Add Loop Frame'' option adds an extra keyframe to the end of the animation that is exactly the same as the keyframe at the start. This enables the animation to loop smoothly even when the last frame doesn't exactly match up with the first. The ''Wrap Mode'' setting is identical to the master setting in the main animation properties but applies only to that specific clip.
 
-!! Bringing the character into the Scene
-
-When you have imported your model you drag the object from the ~~Project View~~ into the ~~Scene View~~ or ~~Hierarchy View~~
-Attach:animation_in_scene.png\\
-''The animated character is added by dragging it into the scene''
-
-The character above has three animations in the animation list and no default animation. You can add more animations to the character by dragging animation clips from the ~~Project View~~ on to the character (in either the Hierarchy or Scene View). This will also set the default animation. When you hit Play, the default animation will be played.
-
-TIP: You can use this to quickly test if your animation plays back correctly. Also use the ``Wrap Mode`` to view different behaviors of the animation, especially looping.

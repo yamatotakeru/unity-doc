@@ -1,19 +1,19 @@
-!Avatar Body Mask
+!アバター　ボディマスク
 
-Specific body parts can be selectively enabled or disabled in an animation using a so-called $$Body Mask$$. Body masks are used in the ~~Animation~~ tab of the mesh import inspector and [[Animation Layers]]. Body masks enable you to tailor an animation to fit the specific requirements of your character more closely. For example, you may have a standard walking animation that includes both arm and leg motion, but if a character is carrying a large object with both hands then you wouldn't want his arms to swing by his sides as he walks. However, you could still use the standard walking animation by switching off the arm movements in the body mask.
+アニメーションで$$ボディマスク$$と呼ばれるものを使用して、特定の体の部分を選択的に有効または無効にすることができます。ボディマスクはメッシュインポートインスペクタの~~Animation~~タブと[[Animation Layers]] で使用されています。 ボディマスクによって、キャラクターの特定の要件に合わせてアニメーションを詳細にカスタマイズできます。たとえば、腕と脚の動きの両方を含む標準的な歩行アニメーションがあったとして、キャラクターが両手で大きな物体を運んでいる場合は、歩行中に腕が大きくスイングするのは不自然です。ただし、ボディマスクで腕の動きをオフにすることで、標準の歩行アニメーションを活用することができます。
 
-The body parts included are: Head, Left Arm, Right Arm, Left Hand, Right Hand, Left Leg, Right Leg and Root (which is denoted by the "shadow" under the feet). 
-In the body mask, you can also toggle __inverse kinematics__ (IK) for hands and feet, which will determine whether or not IK curves will be included in animation blending. 
+ボディパーツに含まれるのは、頭、左腕、右腕、左手、右手、左足、右足とルート（足の下の影部分）です。
+ボディマスクでは、手や足で_インバースキネマティクス__（IK）を切り替えることでIK曲線をアニメーションに含めるか決定することができます。
 
 Attach:MecanimBodyMaskAssetNoArms.png
-''Body mask in the Body Mask inspector (arms excluded)''
+インスペクタ上の'ボディマスク（腕を除く）
 
-In the Animation tab of the mesh import inspector, you will see a list entitled ''Clips'' that contains all the object's animation clips. When you select an item from this list, options for the clip will be shown, including the body mask editor.
+メッシュインポートインスペクタのアニメーションタブでは、Clipsというリストがあり、オブジェクトのすべてのアニメーションクリップが含まれています。このリストから項目を選択すると、ボディマスクエディタを含め、アニメーションクリップに対して設定できるオプションが表示されます。
 
-You can also create Body Mask Assets (^^Assets->Create->Avatar Body Mask^^), which show up as .mask files on disk.
+You can also create Body Mask Assets (^^Assets->Create->Avatar Body Mask^^), which show up as .mask files on disk.またボディマスクのアセット作成（メニューで^^Assets->Create->Avatar Body Mask^^を｣選択）により.mask拡張子のファイルが作成されます。
 
-The BodyMask assets can be reused in [[AnimationStateMachines|Animator Controllers]], when specifying [[Animation Layers]]
+ボディマスクは、[[Animation Layers]] を指定する際に[[AnimationStateMachines|アニメータコントローラ]] で再利用することができます。
 
-A benefit of using body masks is that they tend to reduce memory overheads since body parts that are not active do not need their associated animation curves. Also, the unused curves need not be calculated during playback which will tend to reduce the CPU overhead of the animation.
+ボディマスクを使用することの利点は、これらはアクティブではないボディパーツがそれに関連付けられたアニメーションカーブを必要としないため、メモリのオーバーヘッドを減少させやすい、ということです。さらに、未使用のアニメーションカーブは再生中に計算する必要がないためアニメーションによるCPUオーバーヘッドを削減しやすくなります。
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)

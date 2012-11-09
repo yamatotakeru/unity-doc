@@ -1,20 +1,19 @@
-!NavMesh Agent (Pro Only)
+!　ナビメッシュエージェント （Unity Proのみ）
 
-The ``NavMesh Agent`` component is used in connection with pathfinding, and is the place to put information about how this agent navigates the  [[NavmeshandPathfinding|NavMesh]]. You can access it in ^^Component->Navigation->Nav Mesh Agent^^
+''ナビメッシュエージェント''（NavMesh Agent）コンポーネントは経路探索（Pathfinding）と連動して使用し、このエージェントが[[NavmeshandPathfinding | ナビメッシュ]] を移動する際の変数を定義する。使用の際はメニューの^^Component→Navigation→NavMesh Agent^^を選択します。
 
 Attach:NavMeshAgent.png
 
 ||PROPS
-||``Radius``||Agent radius (used for pathfinding purposes only, and can differ from the actual object's radius, typically larger). ||
-||``Speed`` ||Maximum movement speed with which the agent can traverse the world toward its destination.||
-||``Acceleration`` ||Maximum acceleration.||
-||``Angular Speed`` ||Maximum rotation speed in (deg/s).||
-||``Stopping distance`` ||Stopping distance. The agent will decelerate when within this distance to the destination.||
-||``Auto Traverse OffMesh Link``	||Automate movement onto and off of OffMeshLinks.
-||``Auto Repath`` ||Acquire new path if existing is partial or invalid.
-||``Height``||The height of the agent (used in debug graphics).
-||``Base offset`` ||Vertical offset of the collision geometry relative to the actual geometry.
-||``Obstacle Avoidance Type`` ||The level of quality of avoidance.
-||``NavMesh Walkable`` ||Specifies the types of [[class-NavMeshLayers|Navmesh layers]] that the agent can traverse.
+||``Radius``||エージェントの半径（経路探索の目的のみで使用され、実際のオブジェクトの半径と一致せずやや大きくなります）. ||
+||``Speed`` ||エージェントが目的地まで移動する速度の最大値||
+||``Acceleration`` ||加速度の最大値||
+||``Angular Speed`` ||回転速度（角度/秒）の最大値||
+||``Stopping distance`` ||停止距離。 エージェントは目的地までの距離がこの範囲に収まると減速を始めます||
+||``Auto Traverse OffMesh Link``	||オフメッシュリンク（OffMesh Link）からの出入りの動作を自動化します
+||``Height``||エージェントの高さ（デバッグ時の描画で使用）
+||``Base offset`` ||縦方向において、実際のオブジェクトとコライダ（Collider）の差分の距離
+||``Obstacle Avoidance Type`` ||回避動作の品質レベル
+||``NavMesh Walkable`` ||エージョントがその上を移動できる[[class-NavMeshLayers|ナビメッシュレイヤ]] のタイプ
 
-(back to [[NavmeshandPathfinding|Navigation and Pathfinding]])
+([[NavmeshandPathfinding| ナビゲーションと経路探索]] に戻る)

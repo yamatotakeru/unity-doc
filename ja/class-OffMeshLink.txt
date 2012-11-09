@@ -1,32 +1,34 @@
-!Off-mesh links (Pro only) 
+! オフメッシュリンク（Unity Proのみ）
 
-Note that this section is primarily about the ''manual'' off-mesh links, namely those that are set up by the user via the ``OffMeshLink`` component. For automatically generated off-mesh links, see the the [[NavmeshandPathfinding|Navmesh intro]]
+本項では主に手動のオフメッシュリンク（Off-mesh Link）に関する記載であり、''オフメッシュ''（Offmesh）コンポーネントを用いて手動でセットアップしたケースについて説明します。自動的に生成されるオフメッシュリンク（Off-mesh Link）については[[NavmeshandPathfinding|ナビメッシュ入門]] を併せて参照のこと。
 
 Attach:OffMeshLinkInScene.png
 
-It is possible that the ''navmesh static'' geometry in the scene is disconnected, thus making it impossible for agents to get from one part of the world to the other.
+ナビメッシュスタティック（navmesh static）の配置が互いに接続されず、結果的にエージェントがある空間から別の空間へ移動することが出来ないことがありえます。
 
-To remedy this, Unity has a system of $$Off-mesh links$$
+この課題を解消するためにUnityには$$オフメッシュリンク$$（Off-mesh Link）という仕組みを持っています。
 
 Attach:OffMeshLink.png
-''The OffMeshLink component''
+オフメッシュリンク　コンポーネント
 
-An off-mesh link is a component that can be placed on any object, and it has the following properties
+
+オフメッシュリンクはどのようなオブジェクトにもアタッチすることが可能であり、次のようなプロパティを持つ：
 
 ||PROPS
-||``Start`` ||The start object of the off-mesh link.
-||``End``    ||The end object of the off-mesh link.
-||``Cost Override``||If value is positive, use it when calculating path cost on processing a path request. Otherwise, we use the default cost (cost of the layer to which this game object belongs). If the Cost Override is set to the value 3.0, moving over the off-mesh link will be three times more expensive than moving the same distance on a default NavMesh area. ''This property is runtime-editable and does not require a re-bake''
-||``Bi Directional``||If this is on, the link can be traversed both ways, if it's off, the link can only be traversed in the direction from Start to End.
-||``Activated``   ||Specifies if this link is actually used by the pathfinder. When this property is false, the off-mesh link will be disregarded. ''This property is runtime-editable, and does not require a re-bake.''
+||``Start`` ||オフメッシュリンクの開始位置を示すオブジェクト
+||``End``    ||オフメッシュリンクの終了位置を示すオブジェクト
+||``Cost Override``||正の値の場合、経路リクエストを処理する際に経路コストを算出するのに用います。正の値でない場合、デフォルトのコストが適用される（ゲームオブジェクトが所属するレイヤーのコスト）。
+Cost Overrideが3.0に設定した場合、オフメッシュリンク上を経路とした場合、通常のナビメッシュエリアを経路とした場合と比べて3倍のコストがかかります。このプロパティはランタイムで修正可能であり、焼きこみ(re-bake)を行う必要はありません。
+||``Bi Directional``||オンに設定した場合、オフメッシュリンクは双方向に移動することが出来ます。オフに設定した場合、開始（Start）から終了（End）の方向しか移動できません
+||``Activated``   ||このリンクを経路探索で使用するかのフラグ。このプロパティがfalseの場合、オフメッシュリンクは無視されます。このプロパティはランタイムで修正可能であり、焼きこみ(re-bake)を行う必要はありません。
 
 
-!!Special notes on OffMeshLink properties
+!!オフメッシュリンクのプロパティに関する特記事項
 
-The "Activated" and "Cost Override" properties can be changed at runtime and
-have immediate effect. All other properties require a Navmesh re-bake before they effect. 
+「Activated」と「Cost Override」のプロパティはランタイムで修正可能であり、
+ただちに適用されます。他のプロパティは適用するためにNavMeshの焼きこみ（re-bake）が必要です。
 
-If the start or end transforms are unassigned when baking, or if the position of either the start or end transforms is too far away from the NavMesh to find valid positions, the off-mesh links will not be generated. In this case, an error is displayed in the Console window.
+開始（Start）あるいは終了（End）のトランスフォームが焼きこみ（baking）の際に設定されていない場合、または開始（Start）あるいは終了（End）のトランスフォームがナビメッシュから距離が離れすぎていて有効なポジションが見つけられない場合、オフメッシュリンクは生成されません。この場合、エラーがコンソールウィンドウに表示されます。
 
 
-(back to [[NavmeshandPathfinding|Navigation and Pathfinding]])
+([[NavmeshandPathfinding| ナビゲーションと経路探索]] に戻る)
