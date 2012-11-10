@@ -1,40 +1,42 @@
-!Occlusion Area (Pro Only)
+!オクルージョンエリア（Unity Proのみ）
 
-To apply occlusion culling to moving objects you have to create an $$Occlusion Area$$ and then modify its size to fit the space where the moving objects will be located (of course the moving objects cannot be marked as static). You can create Occlusion Areas is by adding the ``Occlusion Area`` component to an empty game object (^^Component->Rendering->Occlusion Area^^ in the menus)
+オクルージョンカリングを適用するためには$$オクルージョンエリア$$を作成し移動オブジェクトが配置される場所となるようサイズを修正する必要があります（当然、移動するオブジェクトをStaticとすることはできません）オクルージョンエリアを作成するためには、空のゲームオブジェクトにオクルージョンエリア　コンポーネントを追加します。(メニューで^^Component->Rendering->Occlusion Area^^ を選択)
 
-After creating the $$Occlusion Area$$, just check the ''Is Target Volume'' checkbox to occlude moving objects. 
+$$オクルージョンエリア$$を作成した後IsTargetVolumeチェックボックスをオンにして動くオブジェクトをオクルージョン（無視）します。
 
 Attach:OcclusionCullingOcclusionArea.png\\
-''Occlusion Area properties for moving objects.''
+移動するオブジェクトのオクルージョンエリア　プロパティ
 
 ||PROPS
-||``Size`` ||Defines the size of the Occlusion Area.||
-||``Center`` ||Sets the center of the Occlusion Area. By default this is 0,0,0 and is located in the center of the box.||
-||``Is View Volume`` ||Defines where the camera can be. Check this in order to occlude static objects that are inside this ''Occlusion Area''.||
-||``Is Target Volume`` ||__Select this when you want to occlude moving objects.__||
-||``Target Resolution`` ||Determines how accurate the occlusion culling inside the area will be. This affects the size of the cells in an Occlusion Area. __NOTE: This only affects Target Areas.__ ||
-||>>>``Low`` ||This takes less time to calculate but is less accurate.||
-||>>>``Medium`` ||This gives a balance between accuracy and time taken to process the occlusion culling data.||
-||>>>``High`` ||This takes longer to calculate but has better accuracy.||
-||>>>``Very High`` ||Use this value when you want to have more accuracy than high resolutions, be aware it takes more time.||
-||>>>``Extremely High`` ||Use this value when you want to have almost exact occlusion culling on your moveable objects. Note: This setting takes a lot of time to calculate.||
+||``Size`` ||オクルージョンエリアのサイズを定義||
+||``Center`` ||オクルージョンエリアの中心を設定します。デフォルトでは、（0,0,0）であり、ボックスの中央に位置しています。||
+||``Is View Volume`` ||カメラを配置できる場所を定義します。オクルージョンエリア内にあるStaticオブジェクトをオクルージョンするときオンにします。||
+||``Is Target Volume`` ||__移動するオブジェクトをオクルージョンしたいときに選択すること__||
+||``Target Resolution`` ||エリア内でオクルージョンカリングの精度を決定します。これは、オクルージョンエリア内のセルのサイズに影響します。__注意：これはターゲットエリアのみに影響を与えます。__||
+||>>>``Low`` ||処理時間は短くなるものの、精緻さは落ちます||
+||>>>``Medium`` ||オクルージョンカリングと処理時間のバランスをとります||
+||>>>``High`` ||オクルージョンカリングと処理時間のバランスをとります。||
+||>>>``Very High`` ||High設定で精緻さが不十分な場合に使用しますが、処理時間がさらに長くなることに留意する必要があります||
+||>>>``Extremely High`` ||動くオブジェクトでほぼ完全に精緻なオクルージョンカリングが求められる場合に限り使用してください。注意：大量の処理時間を浪費します。||
 
 
-After you have added the Occlusion Area, you need to see how it divides the box into cells. To see how the occlusion area will be calculated, Select ^^Edit^^ and toggle the ^^View^^ button 
-in the $$Occlusion Culling Preview Panel$$. 
+オクルージョンエリアを作成した後、箱をセルに分割する方法を確認する必要があります。オクルージョンエリアがどのように算出されたか確認するためにはEditを選択し、オクルージョンカリングプレビューパネル（ Occlusion Culling Preview Panel）でビュー（View）をトグルして選択して下さい。
+
 
 Attach:OcclusionCullingEditView.png\\
 
-!! Testing the generated occlusion
+!! 生成されたオクルージョンのテスト
 
-After your occlusion is set up, you can test it by enabling the ''Occlusion Culling'' (in the $$Occlusion Culling Preview Panel$$ in Visualize mode) and moving the $$Main Camera$$ around in the scene view.
+オクルージョンをセットアップした後、オクルージョンカリングプレビューパネル（ Occlusion Culling Preview Panel）上でOcclusion Cullingをオンにして、メインカメラをシーンビューのなかで移動することでテストを行うことが出来ます。
 
 Attach:OcclusionCullingVisualize.png\\
-''The Occlusion View mode in Scene View''
-
-As you move the Main Camera around (whether or not you are in Play mode), you'll see various objects disable themselves.  The thing you are looking for here is any error in the occlusion data.  You'll recognize an error if you see objects suddenly popping into view as you move around.  If this happens, your options for fixing the error are either to change the resolution (if you are playing with target volumes) or to move objects around to cover up the error.  To debug problems with occlusion, you can move the Main Camera to the problematic position for spot-checking.
+シーンビューのオクルージョンカリング（Occlusion Culling）モード
 
 
-When the processing is done, you should see some colorful cubes in the View Area. The blue cubes represent the cell divisions for $$Target Volumes$$. The white cubes represent cell divisions for $$View Volumes$$. If the parameters were set correctly you should see some objects not being rendered. This will be because they are either outside of the view frustum of the camera or else occluded from view by other objects.
+メインカメラを移動するのに合わせ（Playモードでない場合も）、オブジェクトが無効（disable）となることを確認出来ますオクルージョンデータでエラーが出ないことを確かめる必要があります。移動するのにあわせオブジェクトがビューに割り込んできたらエラーであると認識できますこの場合、エラーを修正するためにオプションとしては画面解像度を変更する（ターゲットボリュームを変更していた場合）か、オブジェクトを移動してエラーが出ないようにする方法があります。オクルージョンでデバッグをするためにはメインカメラを問題が発生しているポジションに移動してスポットでチェックを行うことが出来ます。
 
-After occlusion is completed, if you don't see anything being occluded in your scene then try breaking your objects into smaller pieces so they can be completely contained inside the cells.
+
+
+処理が完了するとビューエリアでカラフルなキューブを確認することが出来ます。青いキューブは$$ターゲットボリューム$$（Target Volume）のセル分割を意味しています。白いキューブは$$ビューボリューム$$（View Volume）のセル分割を意味しています。もしパラメータが正しく設定されていればいくつかのオブジェクトはレンダリングされません。その理由はカメラのビュー範囲（円錐状）の外にあるか、他のオブジェクトの配置により無視されているか、のいずれかになります。
+
+オクルージョンが完了した後、シーン上で何もオクルージョンされない場合、オブジェクトをより小さなパーツに分解しそのオブジェクトがセルの中に納まるサイズに小分けします。

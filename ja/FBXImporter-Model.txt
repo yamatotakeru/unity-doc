@@ -1,47 +1,47 @@
-!Import settings for Meshes
+!メッシュのインポート設定
 
-The $$Import Settings$$ for a model file will be displayed in the ~~Model~~ tab of the FBX importer inspector when the model is selected. These affect the __mesh__, it's __normals__ and imported __materials__. Settings are applied per asset on disk so if you need assets with different settings make (and rename accordingly) a duplicate file.
+モデルファイルの$$インポート設定$$は、モデルが選択されたときに、FBXインポータインスペクタの~~Model~~タブに表示されます。この設定は__メッシュ__や__法線マップ__、インポートされた__マテリアル__に影響を与えます。設定はディスク上のアセットごとに適用されますので、別の設定を持ったアセットでが必要な場合は複製したうえで適切にリネームします。
 
-Although defaults can suffice initially, it is worth studying the settings glossary below, as they can determine what you wish to do with the game object.
+最初はデフォルト設定で十分ですが、ゲームオブジェクトで実現したいことによっては、以下の設定を知る価値がある。
 
-Some general adjustments to be made for example might be:
+たとえば、よくある設定変更を挙げると：
 
-* Scale - this scale factor is used for compensating difference in units between Unity and 3d modeling tool - it rescales whole file. If you do not care about units you can simply set it to 1.
-* Generate colliders - this will generate a collison mesh to allow your model to collide with other objects - see notes below.
-* Material Naming and Search - this will help you automatically setup your materials and locate textures
+Scaleは、Unity世界での1単位と3Dモデリングツールの1単位を換算するために使用され、ファイル全体を拡大・縮小します。単位が問題ではない場合は、単に1に設定することができます。
+* Generate colliders - モデルが他のオブジェクトと衝突するようにするための衝突メッシュを生成します。以降の注意事項を参照のこと。
+* Material Naming、Material Search* -マテリアルを自動的にセットアップ、テクスチャ認識するのに役立ちます。
 
 Attach:MecanimImporterModelTab.png\\
-''FBX Importer Inspector: Model tab''
+FBXインポータ　インスペクタ：[Model]タブ
 
 ||PROPS
 ||__''Meshes''__ ||
-||``Scale Factor`` ||Unity's physics system expects 1 meter in the game world to be 1 unit in the imported file. If you prefer to model at a different scale then you can compensate for it here. defaults for different 3D packages are as follows .fbx, .max, .jas, .c4d = 0.01, .mb, .ma, .lxo, .dxf, .blend, .dae = 1 .3ds = 0.1||
-||``Mesh Compression`` ||Increasing this value will reduce the file size of the mesh, but might introduce irregularities.  It's best to turn it up as high as possible without the mesh looking too different from the uncompressed version. This is useful for [[ReducingFilesize | optimizing game size]]. ||
-||``Read/Write Enabled``||Enables the mesh to be written at runtime so you can modify the data - makes a copy in memory.||
-||``Optimize Mesh``||This option determines the order in which triangles will be listed in the mesh.||
-||``Generate Colliders`` ||If this is enabled, your meshes will be imported with Mesh Colliders automatically attached. This is useful for quickly generating a collision mesh for environment geometry, but should be avoided for geometry you will be moving. For more info see [[#colliders | Colliders]] below. ||
-||``Swap UVs`` ||Use this if lightmapped objects pick up the wrong UV channels. This will swap your primary and secondary UV channels.||
-||``Generate Lightmap`` ||Use this to create the second UV channel to be used for Lightmapping.||
-||>>>``Advanced Options`` ||See [[Main.LightmappingUV | Lightmapping UVs document]].||
-||__''Normals & Tangents''__ ||
-||``Normals`` ||Defines if and how normals should be calculated. This is useful for [[ReducingFilesize | optimizing game size]]. ||
-||>>>``Import`` ||Default option. Imports normals from the file. ||
-||>>>``Calculate`` ||Calculates normals based on ``Smoothing angle``. If selected, the ``Smoothing Angle`` becomes enabled. ||
-||>>>``None`` ||Disables normals. Use this option if the mesh is neither normal mapped nor affected by realtime lighting. ||
-||``Tangents`` ||Defines if and how tangents and binormals should be calculated. This is useful for [[ReducingFilesize | optimizing game size]]. ||
-||>>>``Import`` ||Imports tangents and binormals from the file. This option is available only for FBX, Maya and 3dsMax files and only when normals are imported from the file. ||
-||>>>``Calculate`` ||Default option. Calculates tangents and binormals. This option is available only when normals are either imported or calculated.  ||
-||>>>``None`` ||Disables tangents and binormals. The mesh will have no Tangents, so won't work with normal-mapped shaders. ||
-||``Smoothing Angle`` ||Sets how sharp an edge has to be in order to be treated as a hard edge. It is also used to split normal map tangents. ||
-||``Split Tangents`` ||Enable this if normal map lighting is broken by seams on your mesh. This usually only applies to characters. ||
+||``Scale Factor`` ||Unity の物理特性システムは、ゲーム世界での 1 メートルを、インポートされたファイルでの 1 単位と考えます。 異なるスケールでモデリングしたい場合は、ここで修正します。異なる3Dパッケ??ージのデフォルトは次のとおりです。 (.fbx、.max、.jas、.c4d) = 0.01、(.mb、.ma、.lxo、.dxf、.blend、.dae) = 1、(.3ds) = 0.1||
+||``Mesh Compression`` ||この値を上げると、メッシュのファイル サイズが小さくなりますが、異常が生じる可能性があります。 メッシュが解凍後と違いすぎないように、できる限り高い値に設定します。これは、[[ReducingFilesize | ゲームサイズの最適化]] に便利です。 ||||
+||``Read/Write Enabled``||ランタイム時にメッシュを書込可能とし、メモリ内でコピーが作成されます。||
+||``Optimize Mesh``||このオプションは、三角形メッシュが表示される順序を決定します。||
+||``Generate Colliders`` ||メッシュに自動的メッシュコライダーをアタッチしてインポート。背景の物体の衝突メッシュを簡易にを生成するのに便利、一方で移動しない物体では避けるべきです。詳細情報については[[#colliders | コライダー]] を参照してください。||
+||``Swap UVs`` ||Lightmapped オブジェクトが間違えた UV チャンネルを選択した場合に使用します。 これにより、1 次および 2 次 UV チャンネルがスワップされます。||
+||``Generate Lightmap`` ||これを使用し、Lightmapping に使用する UV2 を作成します。||
+||>>>``Advanced Options`` ||[[Main.LightmappingUV | ライトマップUV]] を参照して下さい。||
+||__Normals&Tangents__ ||
+||``Normals`` ||法線を計算するかどうか、およびどのように計算するかを定義します。これは、[[ReducingFilesize | ゲームサイズの最適化]] に便利です。 ||||
+||>>>``Import`` ||デフォルトのオプション。ファイルから法線をインポートします。||
+||>>>``Calculate`` ||「Smoothing angle」に基づいて、法線を計算します。選択すると、「Smoothing Angle」が有効になります。||
+||>>>``None`` ||法線を無効にします。 このオプションは、メッシュがマップされた法線およびリアルタイムのライティングの影響を受けている法線でない場合に使用します。||
+||``Tangents`` ||接線および従法線を計算するかどうか、およびどのように計算するかを定義します。これは、[[ReducingFilesize | ゲームサイズの最適化]] に便利です。 ||||
+||>>>``Import`` ||ファイルから接線および従法線をインポートします。このオプションは、FBX、Maya および 3dsMax ファイルにのみと、法線がファイルからインポートされる時にのみ使用できます。||
+||>>>``Calculate`` ||デフォルトのオプション。 接線および従法線を計算します。接線および従法線を計算します。このオプションは、法線がインポートまたは計算されるかのいずれかの場合でのみ使用できます。 ||
+||>>>``None`` ||接線および従法線を無効にします。メッシュに接線はないため、法線をマップしたシェーダとは使用できません||
+||``Smoothing Angle`` ||端の鋭さの度合いを硬い端として設定します。これは、法線のマップ接線を分割するのにも使用されます。||
+||``Split Tangents`` ||法線マップライティングがメッシュ上の継ぎ目で分割される場合に、これを有効にします。 通常これはキャラクターにのみ適用されます。通常これはキャラクターにのみ適用されます。||
 ||__''Materials''__ ||
-||``Import Materials`` ||Disable this if you don't want materials to be generated. Default-Diffuse material will be used instead. ||
-||``Material Naming`` ||Controls how Unity materials are named: ||
-||>>>``By Base Texture Name`` ||The name of the diffuse texture of the imported material that will be used to name the material in Unity. When a diffuse texture is not assigned to the material, Unity will use the name of the imported material. ||
-||>>>``From Model's Material`` ||The name of the imported material will be used for naming the Unity material. ||
-||>>>``Model Name + Model's Material`` ||The name of the model file in combination with the name of the imported material will be used for naming the Unity material. ||
-||>>>``Texture Name or Model Name + Model's Material (Obsolete)`` ||The name of the diffuse texture of the imported material will be used for naming the Unity material. When a diffuse texture is not assigned or it cannot be located in one of the Textures folders, then the material will be named by Model Name + Model's Material instead. This option is backwards compatible with the behavior of Unity 3.4 (and earlier versions). We recommend using ``By Base texture Name``, because it is less complicated and has more consistent behavior. ||
-||``Material Search`` ||Controls where Unity will try to locate existing materials using the name defined by the ``Material Naming`` option: ||
-||>>>``Local`` ||Unity will try to find existing materials only in the "local" Materials folder, ie, the Materials subfolder which is the same folder as the model file. ||
-||>>>``Recursive-Up`` ||Unity will try to find existing materials in all Materials subfolders in all parent folders up to the Assets folder. ||
-||>>>``Everywhere`` ||Unity will try to find existing materials in all Unity project folders. ||
+||``Import Materials`` ||無効にするとマテリアルが生成されなくなります。デフォルトのDiffuseマテリアルが代わりに使用されます。||
+||``Material Naming`` ||Unityのマテリアルの命名を制御します||
+||>>>``By Base Texture Name`` ||Unityのマテリアルを命名する際に基準とするインポートされたマテリアルのDiffuseテクスチャ。Diffuseテクスチャがマテリアルに割り当てられていない場合、Unityはインポートされたマテリアルの名前を使用します。||
+||>>>``From Model's Material`` ||Unityのマテリアルを命名する際に基準となるインポートされたマテリアル。||
+||>>>``Model Name + Model's Material`` ||Unityのマテリアルを命名する際にモデルファイル名とインポートされたマテリアル名の組み合わせが使用されます。||
+||>>>``Texture Name or Model Name + Model's Material (Obsolete)`` ||Unityのマテリアルを命名する際にインポートされたマテリアル名のDiffuseテクスチャが使用されます。Diffuseテクスチャがマテリアルに割り当てられていない場合、Unityはインポートされたマテリアルの名前を使用します。モデル名とモデルのマテリアル名の組み合わせを使用します。このオプションは、Unity 3.4（およびそれ以前のバージョン）の動作と下位互換性があります。推奨設定は``By Base texture Name``であり、もっともシンプルで一貫性のある動作を伴います。||
+||``Material Search`` ||Material Namingオプションで定義された名前でUnityがマテリアルを検索する場所を制御します： ||
+||>>>``Local`` ||Unityは、マテリアルと同じフォルダ内でのみ（すなわちモデルファイルと同一フォルダ）、同じ名前のマテリアルがあるかチェックします。||
+||>>>``Recursive-Up`` ||Unityは、マテリアルと同じフォルダ内、およびAssetsフォルダに到達するまで、その全ての上位フォルダで、同じ名前のマテリアルがあるかチェックします。||
+||>>>``Everywhere`` ||Unityは、プロジェクト フォルダ全体から同じ名前のマテリアルがあるかチェックします。||

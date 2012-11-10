@@ -1,10 +1,10 @@
-!Meshes
+!メッシュ
 
-When a 3D model is imported, Unity represents it internally as a $$Mesh$$. A Mesh must be attached to a GameObject using a [[class-MeshFilter|Mesh Filter]] component. For the mesh to be visible, the GameObject must also have a [[class-MeshRenderer|Mesh Renderer]] or other suitable rendering component attached. With these components in place, the mesh will be visible at the GameObject's position with its exact appearance dependent on the Material used by the renderer.
+3Dモデルをインポートすると、Unityは$$メッシュ$$として内部的に格納します。メッシュは[[class-MeshFilter|メッシュフィルタ]] コンポーネント を使用してゲームオブジェクトにアタッチする必要があります。メッシュを表示できるようにするためには、ゲームオブジェクトにはさらに[[class-MeshRenderer|メッシュレンダラ]] あるいは他の適切なレンダラコンポーネントを持っている必要があります。これらのコンポーネントを使用することで、メッシュはレンダラによって使用されるマテリアルどおりの外観で、ゲームオブジェクトの位置に表示されます。
 
 Attach:MeshExample40.png \\
-''A [[class-MeshFilter | Mesh Filter]] together with [[class-MeshRenderer | Mesh Renderer]] makes the model appear on screen.''
+[[class-MeshFilter | メッシュフィルター]] と[[class-MeshRenderer | メッシュレンダラ]] でモデルを画面表示
 
-Unity's mesh importer provides many options for controlling the generation of the mesh and associating it with its textures and materials. These options are covered by the following pages:-
+Unityのメッシュインポーターはメッシュの生成を制御したり、テクスチャやマテリアルに関連付けるため、多くのオプションを用意しています。これらのオプションは、次のページで説明されています。
 
 (:tocportion:)

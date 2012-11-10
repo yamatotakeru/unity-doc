@@ -1,61 +1,61 @@
-!Font
+フォント
 
-$$Fonts$$ can be created or imported for use in either the [[class-GuiText|GUI Text]] or the [[class-TextMesh|Text Mesh]] $$Components$$.
+$$Font$$ [[class-GuiText|GUI Text]] または [[class-TextMesh|Text Mesh]] $$Component$$ のいずれかで使用するするに、作成またはインポートできます。
 
 
-!! Importing Font files
+!! True Type Font ファイル (.ttf) のインポート
 
-To add a font to your project you need to place the font file in your Assets folder. Unity will then automatically import it. Supported Font formats are TrueType Fonts (.ttf or .dfont files) and OpenType Fonts (.otf files).
+プロジェクトにフォントを追加するには、Assets フォルダに __.ttf__ ファイルを置く必要があります。 Unity が、自動的にフォントをインポートします。 そのフォントに拡張子 __.ttf__ があるか確認してください。ない場合、Unity はフォントを認識しません。
 
-To change the ``Size`` of the font, highlight it in the $$Project View$$ and you have a number of options in the $$Import Settings$$ in the $$Inspector$$.
+フォントの「サイズ」を変更するには、$$Project View$$ で強調表示すると、$$Inspector$$ の $$Import Settings$$ に多くのオプションが表示されます。
 
 Attach:font_importer.png\\
-''Import Settings for a font''
+「フォント用のインポート設定」
 
 ||PROPS
-||``Font Size``  ||The size of the font, based on the sizes set in any word processor ||
-||``Character`` ||The text encoding of the font.  You can force the font to display only upper- or lower-case characters here ||
-||               ||Setting this mode to Dynamic causes Unity to use the underlying OS font rendering routines (see below).||
-||``2.x font placing`` ||Unity 3.x uses a more typographically correct vertical font placement compared to 2.x.  We now use the font  ascent stored in the truetype font data rather than computing it when we render the font texture.  Ticking this Property causes the 2.x vertical positioning to be used. ||
+||``Font Size``  ||ワード プロセッサに設定されたサイズに基づいた、フォントのサイズ。 ||
+||``Character`` ||フォントのテキスト エンコーディング  ここでは、フォントを大文字または小文字のみで表示させることができます。 ||
+||               ||このモードを Dynamic に設定すると、ユーティリティがOS の基本フォント レンダリング ルーチンを使用するようになります （下記参照）。||
+||``2.x font placing`` ||Unity 3.x が、2.x よりも、印刷的により正しいフォントの縦配置を使用します。  フォント テクスチャをレンダリングする際に計算する代わりに、True Type フォントに保存されたフォント アセントを使用します。  このプロパティにチェックを入れると、2.x の縦配置が使用されます。 ||
 
-''Import Settings specific to non-dynamic fonts''
+「非 Dynamic フォントに固有のインポート設定」
 ||PROPS
-||``Font Rendering``	||The amount of anti-aliasing applied to the font.||
+||``Font Rendering``	||フォントに適用されるアンチエイリアス処理の量。||
 
-''Import Settings specific to dynamic fonts''
+「Dynamic フォントに固有のインポート設定」
 ||PROPS
-||``Style``      ||The styling applied to the font, one of Normal, Bold, Italic or BoldAndItalic. ||
-||``Include Font Data`` ||This setting controls the packaging of the font when used with Dynamic font property.  When selected the TTF is included in the output of the build.  When not selected it is assumed that the end user will have the font already installed on their machine.  Note that fonts are subject to copyright and you should only include fonts that you have licensed or created for yourself. ||
-||``Font Names`` ||Only available when Include Font Data is not selected.  Enter a comma-separated list of font names.  These fonts will be tried in turn from left to right and the first one found on the gamers machine will be used.  ||
+||``Style``      ||フォントに適用されるスタイルで、通常、太字、斜体、太字と斜体のいずれか。 ||
+||``Include Font Data`` ||Dynamic フォント プロパティと併用される際に、この設定がフォントのパッケージングを制御します。  選択すると、TTF がビルドの出力に含まれます。  選択しないと、エンド ユーザーがマシンにインストール済みのフォントを持っているとみなされます。  フォントは著作権の対象となるため、使用許諾を受けたフォントか、自身で作成してフォントのみ使用してください。 ||
+||``Font Names`` ||[Include Font Data] を選択していない場合にのみ使用できます。  コンマで区切られた、フォント名のリストが表示されます。  これらのフォントは、左から右へと順に試行され、ゲーマー マシンで最初に検出されたフォントが使用されます。  ||
 
-After you import the font, you can expand the font in Project View to see that it has auto-generated some assets.  Two assets are created during import: "font material" and "font texture".
+フォントをインポート後に、プロジェクト ビューでそのフォントを展開し、自動生成されたアセットがあるかを確認できます。  次の2 つのアセットはインポート中に作成されます。 「フォント マテリアル」と「フォント テクスチャ」
 
-!! Dynamic fonts
+!! Dynamic フォント
 
-Unity 3.0 adds support for dynamic font rendering. When you set the ``Characters`` drop-down in the Import Settings to ``Dynamic``, Unity will not pre-generate a texture with all font characters. Instead, it will use the FreeType font rendering engine to create the texture on the fly. This has the advantage that it can save in download size and texture memory, especially when you are using a font which is commonly included in user systems, so you don't have to include the font data, or when you need to support asian languages or large font sizes (which would make the font textures very large using normal font textures).
+Unity 3.0 は、Dynamic フォントのレンダリングのサポートを追加します。 インポート設定の「Characters」ドロップダウンリストを「Dynamic」に設定すると、Unity はすべてのフォント キャラクターを持つテクスチャを事前に生成しません。 代わりに、OS に組み込まれたフォント レンダリングを使用して、オン ザ フライでテクスチャを作成します。 これには、特にユーザーシステムに一般に含まれるフォントの使用しているために、フォント データを含める必要がない場合やアジア言語や大きいフォント サイズ （通常のフォント テクスチャを使用するので、フォント テクスチャが非常に大きくなる）をサポートする必要がある場合に、ダウンロードのサイズやテクスチャ メモリに保存できるという利点があります。 
 
-!! Unicode support
-Unity has full unicode support. Unicode text allows you to display German, French, Danish or Japanese characters that are usually not supported in an ASCII character set. You can also enter a lot of different special purpose characters like arrow signs or the option key sign, if your font supports it.
+!! Unicode サポート
+Unity はUnicode を完全にサポートしています。 Unicode のテキストにより、通常 ASCII 文字セットでサポートされていないドイツ語、フランス語、デンマーク語、日本語の文字を表示することができます。 また、フォントがサポートしている場合に、矢印やオプション キーなどの多くの異なる特殊用途文字を入力することができます。
 
-To use unicode characters, choose either ``Unicode`` or ``Dynamic`` from the ``Characters`` drop-down in the Import Settings.  You can now display unicode characters with this font.  If you are using a $$GUIText$$ or $$Text Mesh$$, you can enter unicode characters into the Component's ``Text`` field in the Inspector.  Note that the Inspector on Mac may not show the unicode characters correctly.
+Unicode 文字を使用するには、インポート設定の「Characters」ドロップダウンから「Unicode」か「Dynamic」のいずれかを選択します。  このフォントで Unicode 文字を表示できます。  $$GUIText$$ または $$Text Mesh$$ を使用している場合、インスペクタにあるコンポーネントの「Text」フィールドに Unicode 文字を入力できます。  Mac 上のインスペクタでは、Unicode 文字が正しく表示されない場合があります。
 
-You can also use unicode characters if you want to set the displayed text from scripting.  The Javascript and C# compilers fully support Unicode based scripts. You simply have to save your scripts with UTF-16 encoding.  In $$Unitron$$, this can be done by opening the script and choosing ^^Text->Text Encoding->Unicode (UTF 16)^^.  Now you can add unicode characters to a string in your script and they will display as expected in $$UnityGUI$$, a GUIText, or a Text Mesh.  On the PC where $$UniSciTE$$ is used for script editing save scripts using the UCS-2 Little Endian encoding.
-
-
-!! Changing Font Color
-
-There are different ways to change the color of your displayed font, depending on how the font is used.
+また、スクリプトから表示されるテキストを設定したい場合、Unicode 文字も使用できます。  Javascript と C# コンパイラは、Unicode ベースのスクリプトを完全にサポートしています。 UTF-16 エンコーディングでスクリプトを保存するだけでかまいません。  $$Unitron$$ で、^^Text->Text Encoding->Unicode (UTF 16)^^　を選択することで、この操作を行うことができます。  Unicode 文字をスクリプトの文字列に追加すると、$$UnityGUI$$ や、GUI テキスト、またはテキスト メッシュで期待されるように表示されます。  $$UniSciTE$$ がスクリプト の編集に使用される PC で、UCS-2 Little Endian エンコーディングを使用して、スクリプトを保存します。
 
 
-!!! GUIText & Text Mesh
+!! フォント カラーの変更
 
-If you are using a GUIText or a Text Mesh, you can change its color by using a custom $$Material$$ for the font. In the Project View, click on ^^Create->Material^^, and select and set up the newly created Material in the $$Inspector$$. Make sure you assign the texture from the font asset to the material. If you use the built-in ``GUI/Text Shader`` shader for the font material, you can choose the color in the ``Text Color`` property of the material.
+フォントの使用方法に応じて、表示フォントの色を変更する方法がいくつかあります。
+
+
+!!! GUI テキストとテキスト メッシュ
+
+GUI　テキストまたはテキスト メッシュを使用して、フォントに対してカスタムの $$Material$$ を使用して、その色を変更できます。 プロジェクト ビューで、^^Create->Material^^ をクリックし、$$Inspector$$ で新規作成したマテリアルを選択および設定します。 フォント アセットからそのマテリアルにテクスチャを割り当ててください。 フォント マテリアルに組み込みの「GUI/Text Shader」シェーダーを使用することで、マテリアルの「テキスト カラー」で色を選択できます。
 
 !!! UnityGUI
 
-If you are using UnityGUI scripting to display your font, you have much more control over the font's color under different circumstances.  To change the font's color, you create a $$GUISkin$$ from ^^Assets->Create->GUI Skin^^, and define the color for the specific control state, e.g. ^^Label->Normal->Text Color^^.  For more details, please read the [[class-GUISkin | GUI Skin page]].
+UnityGUI スクリプティングを使用して、フォントする場合、異なる環境で、フォントの色をより制御できます。  フォントの色を変更するには、^^Assets->Create->GUI Skin^^ から $$GUISkin$$ を作成し、^^Label->Normal->Text Color^^ などから、特定の制御状態に色を定義します。  詳細については、[[class-GUISkin | GUI Skin page]] を参照してください。
 
-!!Hints
-* To display an imported font select the font and choose ^^GameObject->Create Other->3D Text^^.
-* Using only lower or upper case characters reduces generated texture size.
-* The default font that Unity supplies is Arial.  This font is always available and does not appear in the Project window.
+!!ヒント
+* インポートされたフォントｗを表示するには、フォントを選択し、^^GameObject->Create Other->3D Text^^ を選択します。
+* 小文字または大文字のみ使用することで、生成されたテクスチャ サイズが小さくなります。
+* Unity が提供するデフォルトのフォントは、Arial になります。  このフォントは、常に使用可能で、プロジェクト ビューには表示されません。
