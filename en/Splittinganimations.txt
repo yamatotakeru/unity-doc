@@ -1,6 +1,6 @@
 !Splitting Animations
 
-An animated character typically has a number of different movements that are activated in the game in different circumstances. For example, it might need separate animations for walking, running, jumping, throwing, dying, etc. Depending on the way the model was animated, these separate movements might be imported as distinct animation clips or as one single clip where each movement simply follows on from the previous one. In cases where there is only a single clip, the clip must be __split__ into its component animation sequences within Unity, which will involve some extra steps in your workflow.
+An animated character typically has a number of different movements that are activated in the game in different circumstances. These movements are called [[class-AnimationClip|$$Animation Clips$$]]. For example, we might have separate animation clips for walking, running, jumping, throwing, dying, etc. Depending on the way the model was animated, these separate movements might be imported as distinct animation clips or as one single clip where each movement simply follows on from the previous one. In cases where there is only a single clip, the clip must be __split__ into its component animation clips within Unity, which will involve some extra steps in your workflow.
 
 !!Working with models that have pre-split animations
 
@@ -15,7 +15,7 @@ For models where the clips are supplied as one continuous animation, the ~~Anima
 
 Attach:MecanimImportAnimationNoSplit.png
 
-In cases like this, you can define the frame ranges that correspond to each of the separate animation sequences (walking, jumping, etc). You can create a new animation clip by pressing (+) and selecting the range of frames that are included in it. 
+4In cases like this, you can define the frame ranges that correspond to each of the separate animation sequences (walking, jumping, etc). You can create a new animation clip by pressing (+) and selecting the range of frames that are included in it. 
 
 For example:
 *walk animation during frames 1 - 33
@@ -28,27 +28,7 @@ Attach:MecanimImportAnimationSplitting.png\\
 
 In the Import Settings, the ``Split Animations`` table is where you tell Unity which frames in your asset file make up which Animation Clip. The names you specify here are used to activate them in your game.
 
-||PROPS
-||``name``        ||Defines the Animation Clip's name within Unity. ||
-||``Start`` ||The first frame of the animation. The frame number refers to the same frame as in the 3D program used to create the animation. ||
-||``End``  ||The last frame of the animation. ||
-||``Wrap Mode``   ||Defines how should time beyond the playback range of the clip be treated (Once, Loop, PingPong, ClampForever).||
-||``Add Loop Frame``  ||If enabled, an extra ``loop frame`` is inserted at the end of the animation. This frame matches the first frame in the clip. Use this if you want to make a looping animation and the first & last frames don't match up exactly. ||
-
-!!Working with animation clips for Mecanim animations. 
-Attach:MecanimImportChristmasTree.png
-
-||PROPS
-||``Lock Pose``        ||Lock Pose ||
-||``Lock Root Rotation`` ||Lock Root Rotation||
-||``Lock Height``  ||Lock Height ||
-||``Lock Root Position``   ||Lock root position||
-||``Rotation Offset``  ||Rotation Offset||
-||``Cycle Offset``  ||Cycle Offset||
-||``Mirror``  ||Mirror ||
-||``Body Mask``||The parts of the body this animation clip affects
-||``Curves``||Parametric curves
-
+For further information about the animation inspector, see the [[class-AnimationClip|Animation Clip component reference page]].
 
 [[#ImportModelNoAnims]]
 

@@ -7,11 +7,13 @@ $$Animation Transitions$$ define ''what'' happens when you switch from one $$Ani
 ||``Conditions``    ||Here we decide ''when'' transitions get triggered. 
 
 A condition consists of 2 parts: 
-# A conditional predicate (``If``, ``If Not``, ``Less``, ``Greater``, ``Equals``, ``Not Equal``, and ``Exit Time``). 
-# An event parameter (in conjunction with ``If`` and ``If Not``, use bool parameters, ``Exit Time`` just uses time). 
+# An event parameter (or ``Exit Time``, which just uses time). 
+# A conditional predicate, if needed (for example ``Less``/``Greater`` for floats). 
 # A parameter value (if needed)
 
 You can adjust the transition between the two animation clips by dragging the start and end values of the overlap. 
 Attach:MecanimTransitionInspector.png
+
+(See also [[AnimationSoloMute|Transition solo / mute]])
 
 (back to [[Animation State Machines]])
