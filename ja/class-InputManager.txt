@@ -1,63 +1,63 @@
-! Input Manager
-!Desktop!
+! 入力マネージャ
+!!デスクトップ
 >>desktop<<
-The $$Input Manager$$ is where you define all the different input axes and game actions for your project.
+$$Input Manager$$ では、プロジェクトに対して、全ての異なる入力軸とゲームでの動作を定義します。
 
 Attach:InputSetAll.png\\
-''The Input Manager''
+「入力マネージャ」
 
-To see the Input Manager choose: ^^Edit->Project Settings->Input^^.
+入力マネージャは、 ^^Edit->Project Settings->Audio^^ を選択することで表示できます。
 
 
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Axes`` ||Contains all the defined input axes for the current project: ``Size`` is the number of different input axes in this project, ``Element 0, 1, ...`` are the particular axes to modify. ||
-||``Name`` ||The string that refers to the axis in the game launcher and through scripting. ||
-||``Descriptive Name`` ||A detailed definition of the ``Positive Button`` function that is displayed in the game launcher. ||
-||``Descriptive Negative Name`` ||A detailed definition of the ``Negative Button`` function that is displayed in the game launcher. ||
-||``Negative Button`` ||The button that will send a negative value to the axis. ||
-||``Positive Button`` ||The button that will send a positive value to the axis. ||
-||``Alt Negative Button`` ||The secondary button that will send a negative value to the axis. ||
-||``Alt Positive Button`` ||The secondary button that will send a positive value to the axis. ||
-||``Gravity`` ||How fast will the input recenter. Only used when the ``Type`` is ``key / mouse button``. ||
-||``Dead`` ||Any positive or negative values that are less than this number will register as zero.  Useful for joysticks. ||
-||``Sensitivity`` ||For keyboard input, a larger value will result in faster response time. A lower value will be more smooth. For Mouse delta the value will scale the actual mouse delta. ||
-||``Snap`` ||If enabled, the axis value will be immediately reset to zero after it receives opposite inputs. Only used when the ``Type`` is ``key / mouse button``. ||
-||``Invert`` ||If enabled, the positive buttons will send negative values to the axis, and vice versa. ||
-||``Type`` ||Use ``Key / Mouse Button`` for any kind of buttons, Mouse Movement for mouse delta and scrollwheels, ``Joystick Axis`` for analog joystick axes and ``Window Movement`` for when the user shakes the window. ||
-||``Axis`` ||Axis of input from the device (joystick, mouse, gamepad, etc.) ||
-||``Joy Num`` ||Which joystick should be used. By default this is set to retrieve the input from all joysticks. This is only used for input axes and not buttons. ||
+||``Axes`` ||現在のプロジェクトに定義されたすべての入力軸を含みます。 「Size」は、このプロジェクトでの各入力軸の数で、「Element 0, 1, ...」は、修正する特定の軸になります。 ||
+||``Name`` ||ゲーム ランチャーにおける、およびスクリプティングを通じて軸を参照する文字列。 ||
+||``Descriptive Name`` ||ゲーム ランチャーに表示される「Positive Button」関数の詳細な定義。 ||
+||``Descriptive Negative Name`` ||ゲーム ランチャーに表示される「Negative Button」関数の詳細な定義。 ||
+||``Negative Button`` ||軸に負の値を送るボタン。 ||
+||``Positive Button`` ||軸に正の値を送るボタン。 ||
+||``Alt Negative Button`` ||軸に負の値を送る別のボタン。 ||
+||``Alt Positive Button`` ||軸に正の値を送る別のボタン。 ||
+||``Gravity`` ||入力が再度中心になる速度。 「Type」が「key / mouse button」の場合にのみ使用されます。 ||
+||``Dead`` ||この数値未満の正または負の値はゼロとして登録されます。  ジョイスティックに便利です。 ||
+||``Sensitivity`` ||キーボード入力の場合、この値を大きくすると、応答時間が速くなります。 値が低いと、より滑らかになります。 マウス デルタの場合、この値によって実際のマウス デルタが縮小拡大されます。 ||
+||``Snap`` ||有効にすると、反対の入力を受け取った直後に、軸値がゼロにリセットされます。 「Type」が「key / mouse button」の場合にのみ使用されます。 ||
+||``Invert`` |有効にすると、、正のボタンが軸に負の値を渡し、その逆も行われます。 ||
+||``Type`` ||何らかのボタンに「Key / Mouse Button」、マウス デルタおよびスクロール ホイールに「Mouse Movement」、アナログ ジョイスティックに「Joystick Axis」およびユーザーがウィンドウを揺すった場合に「Window Movement」をそれぞれ使用します。 ||
+||``Axis`` ||機器からの入力の軸 （ジョイスティック、マウス、ゲームパッドなど）。||
+||``Joy Num`` ||使用する必要のあるジョイスティック。 デフォルトでは、すべてのジョイスティックからの入力を回収します。 これは、入力軸のみに使用され、ボタンには使用されません。 ||
 
 
-!! Details
+!! 詳細
 
-All the axes that you set up in the Input Manager serve two purposes:
+入力マネージャで設定した軸にはすべて、次の 2 つの目的があります。
 
-*They allow you to reference your inputs by axis name in scripting
-*They allow the players of your game to customize the controls to their liking
+*スクリプティングで軸名によって入力を参照できるようにする。
+*ゲームのプレイヤーが制御を自分の好みにカスタマイズできるようにする。
 
-All defined axes will be presented to the player in the game launcher, where they will see its name, detailed description, and default buttons.  From here, they will have the option to change any of the buttons defined in the axes.  Therefore, it is best to write your scripts making use of axes instead of individual buttons, as the player may want to customize the buttons for your game.
+定義された軸はすべてゲーム ランチャーでプレイヤーに表示されます。ここでは、その名前、詳細な説明、デフォルトのボタンが表示されます。  ここから、軸で定義されたボタンを変更するためのオプションが表示されます。  そのため、プレイヤーがゲームのためにボタンをカスタマイズしたいように、個々のボタンの代わりに、軸を使用するようスクリプトを記述するのがベストです。
 
 Attach:Input-GameLauncher.png\\
-''The game launcher's Input window is displayed when your game is run''
+「ゲーム ランチャーの入力をウィンドウは、ゲーム実行時に表示されます」
 
-See also: [[Input]].
+以下も併せて参照してください。 [[Input]]
 
-!!Hints
-* Axes are not the best place to define "hidden" or secret functions, as they will be displayed very clearly to the player in the game launcher.
+!!ヒント
+* Axesは、ゲーム ランチャーでプレイヤーにはっきりと表示されるため、表示したくない、隠し機能を置く最適な場所ではありません。
 >><<
 
 !iOS!
 >>ios<<
-This section is not supported on iOS devices.
+本項は、iOS 機器でサポートされていません。
 
-For more info on how to work with input on iOS devices, please refer to the [[Input#iPhoneInput | iOS Input]] page.
+iOS 機器の入力の取り扱い方の詳細については、[[Input#iPhoneInput | iOS Input]] ページを参照してください。
 >><<
 
 !Android!
 >>android<<
-This section is not supported on Android devices.
+本項は、Android 機器でサポートされていません。
 
-For more info on how to work with input on Android devices, please refer to the [[Input#AndroidInput | Android Input]] page.
+Android 機器の入力の取り扱い方の詳細については、[[Input#AndroidInput | Android Input]] ページを参照してください。
 >><<

@@ -1,53 +1,53 @@
-! Interactive Cloth
+! インタラクティブ クロス
 
-The Interactive  Cloth class is a Component that simulates a "cloth-like" behavior on a mesh. Use this Component if you want to use cloth in your scene.
+インタラクティブ クロスは、メッシュでの「布のような」動作をシミュレートするコンポーネントです。 シーンでクロスを使用したい場合にこのコンポーネントを使用します。
 
 Attach:InteractiveCloth.png\\
-''Interactive cloth in the scene view and its properties in the inspector.''
+「シーン ビューでのインタラクティブ クロスとインスペクタでのそのプロパティ」
 
 
-!! Properties
-!!Interactive Cloth
+!! プロパティ
+!!インタラクティブ クロス
 ||PROPS
-||``Bending Stiffness`` ||Bending stiffness of the cloth.||
-||``Stretching Stiffness`` ||Stretching Stiffness of the cloth.||
-||``Damping`` ||Damp cloth motion.||
-||``Use Gravity`` ||Should Gravity affect the cloth simulation?.||
-||``External Acceleration`` ||A constant, external acceleration applied to the cloth||
-||``Random Acceleration`` ||A random, external acceleration applied to the cloth||
-||``Mesh`` ||Mesh that will be used by the interactive cloth for the simulation||
-||``Thickness`` ||The thickness of the cloth surface.||
-||``Friction`` ||The friction of the cloth.||
-||``Density`` ||The density of the cloth.||
-||``Pressure`` ||The pressure inside the cloth/||
-||``Collision Response`` ||How much force will be applied to colliding rigidbodies?.||
-||``Attachment Tear Factor`` ||How far attached rigid bodies need to be stretched, before they will tear off.||
-||``Attachment Response`` ||How much force will be applied to attached rigidbodies?.||
-||``Tear Factor`` ||How far cloth vertices need to be stretched, before the cloth will tear.||
-||``Attached Colliders`` ||Array that contains the attached colliders to this cloth||
-||``Self Collision`` ||Will the cloth collide with itself?.||
+||``Bending Stiffness`` ||クロスの曲げ剛性。||
+||``Bending Stiffness`` ||クロスの伸張剛性。||
+||``Damping`` ||濡れたクロスの動き。||
+||``Use Gravity`` ||クロスのシミュレーションに重力を影響させるかどうか。||
+||``External Acceleration`` ||クロスに適用される一定の、外部加速度。||
+||``Random Acceleration`` ||クロスに適用されるランダムの、外部加速度。||
+||``Mesh`` ||シミュレーションに対してインタラクティブ クロスが使用するメッシュ。||
+||``Thickness`` ||クロス表面の厚さ。||
+||``Friction`` ||クロスの摩擦。||
+||``Density`` ||クロスの密度。.||
+||``Pressure`` ||Tクロス内部の圧力。||
+||``Collision Response`` ||衝突するリジッドボディに適用される力の量。||
+||``Attachment Tear Factor`` ||追加されたリジッドボディを裂くのに必要な伸ばす距離。||
+||``Attachment Response`` ||追加されたリジッドボディに適用される力の量。||
+||``Tear Factor`` ||クロスを裂くのに必要なクロスの頂点を伸ばす距離。||
+||``Attached Colliders`` ||このクロスに対して追加されたコライダを含む配列。||
+||``Self Collision`` ||クロスがそれ自身と衝突するかどうか。||
 
-The Interactive Cloth Component depends of the Cloth Renderer Component, this means that this component cannot be removed if the Cloth Renderer is present in the Game Object.
+インタラクティブ クロス コンポーネントは、クロス レンダラ　コンポーネントに依存します。つまり、このコンポーネントは、クロス レンダラがゲーム オブジェクトに表示されている場合は、削除できないということです。
 
-!!Cloth Renderer
-||``Cast Shadows`` ||If selected the cloth will cast shadows||
-||``Receive Shadows`` ||The cloth can receive Shadows if enabled||
-||``Lightmap Index`` ||The index of the lightmap applied to this renderer.||
-||``Lightmap Tiling Offset`` ||The tiling & offset used for lightmap.||
-||``Materials`` ||Materials that the cloth will use.||
-||``Pause When Not Visible`` ||If selected, the simulation will not be calculated when the cloth is not being rendered by the camera.||
-
-
+!!クロス レンダラ
+||``Cast Shadows`` ||有効にすると、クロスが影を投影します。||
+||``Receive Shadows`` ||有効にすると、クロスは影を受けることができます。||
+||``Lightmap Index`` ||このレンダラに適用されるライトマップの索引。||
+||``Lightmap Tiling Offset`` |ライトマップに使用されるタイリングとオフセット。||
+||``Materials`` ||クロスが使用するマテリアル。||
+||``Pause When Not Visible`` ||選択すると、クロスがカメラでレンダリングされない場合に、シミュレーションが計算されません。||
 
 
-!! Adding an Interactive Cloth Game Object
-To add an Interactive Cloth in the scene just select ``GameObject->Create Other->Cloth``.
 
-!! Hints.
-* Using lots of clothes in your game will reduce exponentially the performance of your game.
-* If you want to simulate clothing on characters, check out the [[class-SkinnedCloth | Skinned Cloth]] component instead, which interacts with the SkinnedMeshRenderer component and is much faster then InteractiveCloth.
-* To attach the cloth to other objects, use the ''Attached Colliders'' property to assign other objects to attach to. The colliders must overlap some vertices of the cloth mesh for this to work.
-* Attached Colliders' objects must intersect with the cloth you are attaching to.
 
-!! Notes.
-* Cloth simulation will generate normals but not tangents. If the source mesh has tangents, these will be passed to the shader unmodified - so if you are using a shader which depends on tangents (such as bump mapped shaders), the lighting will look wrong for cloth which has been moved from it's initial position.
+!! インタラクティブ クロス ゲーム オブジェクトの追加
+シーンにインタラクティブ クロスを追加するには、「GameObject->Create Other->Cloth」を選択します。
+
+!! ヒント
+* ゲームで多くのクロスを使用すると、指数関数的にゲームのパフォーマンスが下がります。
+* キャラクターでクローシングをシミュレートしたい場合は、代わりに、 SkinnedMeshRenderer と相互に働き、InteractiveClotgh よりもはるかに速い [[class-SkinnedCloth | Skinned Cloth]] コンポーネントを確認します。
+* その他のオブジェクトにクロスを追加するには、「Attached Colliders」プロパティを使用して、追加するその他のオブジェクトを割り当てます。 これを行うには、コライダがクロス メッシュの一部の頂点を重ねる必要があります。
+* Attached Colliders のオブジェクトは、追加しているクロスと交差する必要があります。
+
+!! 備考
+* クロス　シミュレーションにより法線マップは生成されるが接線は生成しない。メッシュに接線がある場合、シェーダに変更なしで渡される。つまり接線に依存したシェーダ（バンプマップシェーダなど）を使用する場合、初期位置から移動したクロスに対するライティングは誤っているように見える。

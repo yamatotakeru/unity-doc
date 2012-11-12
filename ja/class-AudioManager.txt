@@ -1,26 +1,27 @@
-! Audio Manager
+! オーディオマネージャー
 
-The $$Audio Manager$$ allows you to tweak the maximum volume of all sounds playing in the scene.
-To see it choose ^^Edit->Project Settings->Audio^^.
+$$Audio Manager$$ では、シーンで再生されているすべての音声の最大音量を微調整できます。
+これを表示するには、^^Edit->Project Settings->Audio^^ を選択します。
 
 Attach:AudioSet.png
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Volume`` ||The volume of all sounds playing. ||
-||``Rolloff Scale`` ||Sets the global attenuation rolloff factor for Logarithmic rolloff based sources (see [[class-AudioSource| Audio Source]]). The higher the value the faster the volume will attenuate, conversely the lower the value, the slower it attenuate (value of 1 will simulate the "real world").||
-||``Speed of Sound`` ||The speed of sound. 343 is the real world speed of sound, if you are using a meters as your units. You can adjust this value to make your objects have more or less Doppler effect with larger or smaller speed. ||
-||``Doppler Factor`` ||How audible the Doppler effect is. When it is zero it is turned off. 1 means it should be quite audible for fast moving objects. ||
-||``Default Speaker Mode`` ||Defines which speaker mode should be the default for your project. Default is 2 for stereo speaker setups (see [[ScriptRef:AudioSpeakerMode.html |AudioSpeakerMode]] in the scripting API reference for a list of modes).||
-||``DSP Buffer Size``||The size of the DSP buffer can be set to optimise for latency or performance||
-||>>>``Default``||Default buffer size||
-||>>>``Best Latency``||Trades off performance in favour of latency||
-||>>>``Good Latency``||Balance between latency and performance||
-||>>>``Best Performance``||Trades off latency in favour of performance||
+||``Volume`` ||再生中のすべての音声の音量。 ||
+||``Rolloff Scale`` ||対数 RollOff ベースのソースに対して、グローバル減衰ロールオフ係数を設定します（[[class-AudioSource| Audio Source]] を参照）。 この値が高いほど、音量の減衰速度が上がり、低いほど、減衰速度は下がります （1 の場合は、現実世界をシミュレートします）。||
+||``Speed of Sound`` ||音声の速度。 単位にメートルを使用している場合、343 が現実世界での音声の速度になります。 この値を調整して、より速い速度、あるいはより遅い速度で、オブジェクトに対して、ドップラー効果の量を増やしたり、減らしたりできます。||
+||``Doppler Factor`` ||ドップラー効果の可聴量。 ゼロにすると、オフになります。 1 の場合は、高速で移動するオブジェクトの場合にかなり聞こえやすくなります。||
+||``Default Speaker Mode`` ||プロジェクトに対して、デフォルトにする必要のあるスピーカー モードを定義します デフォルトは、2で、ステレオ スピーカーNO設定になります （モードのリストに関しては、スクリプティング API リファレンスの [[ScriptRef:AudioSpeakerMode.html |AudioSpeakerMode] を参照してください）。||
+||``DSP Buffer Size``||DSPバッファのサイズは、レイテンシやパフォーマンスを最適化するために設定することができます||
+||>>>``Default``||デフォルトのバッファ・サイズ||
+||>>>``Best Latency``||レイテンシを良くするためパフォーマンスを犠牲にします||
+||>>>``Good Latency``||レイテンシとパフォーマンスのバランスをとります||
+||>>>``Best Performance``||パフォーマンスを良くするためレイテンシを犠牲にします||
 
-!!Details
+!!詳細
 
-If you want to use Doppler Effect set ``Doppler Factor`` to 1. Then tweak both ``Speed of Sound`` and ``Doppler Factor`` until you are satisfied.\\
-Speaker mode can be changed runtime from your application through scripting. See [[ScriptRef:AudioSettings.html |Audio Settings]].
+ドップラー効果を使用したい場合は、「Doppler Factor」を 1 に設定します。次に「Speed of Sound」と「Doppler Factor」の両方を満足するまで微調整します。 \\
+
+スピーカー モードは、スクリプティングを通じて、アプリケーションからランタイムで変更できます。 [[ScriptRef:AudioSettings.html |Audio Settings]] を参照してください。

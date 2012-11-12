@@ -1,16 +1,16 @@
-! Audio Filters (PRO only)
+! オーディオ フィルタ（Unity Proのみ）
 
-[[class-AudioSource | AudioSources]] and the [[class-AudioListener | AudioListener]] can have filter components applied, by adding the filter components to the same GameObject the AudioSource or AudioListener is on. Filter effects are serialized in the component order as seen here:
+[[class-AudioSource | AudioSources]] または [[class-AudioListener | AudioListener]] がアタッチされているのと同じゲームオブジェクトにフィルタコンポーネントを追加することによってフィルタコンポーネントを適用することができます。フィルタ効果は次のようなコンポーネントの順序で実行さます：
 
 Attach:FilterGraph1.png Attach:FilterGraph2.png\\
 
-Enabling/Disabling a filter component will ''bypass'' the filter. Though highly optimized, some filters are still CPU intensive. Audio CPU usage can monitored in the [[Profiler#Audio | profiler]] under the Audio Tab.
+フィルタコンポーネントを有効/無効にするとことでフィルタをスキップすることが出来る。高度に最適化されているものの、いくつかのフィルタは、CPU負荷が大きいです。Audioタブの[[Profiler#Audio | profiler]] のオーディオCPU使用率を監視することができます。
 
 
-See these pages for more information on each filter type:
-* [[class-AudioLowPassFilter | Low Pass Filter]]
-* [[class-AudioHighPassFilter | High Pass Filter]]
-* [[class-AudioEchoFilter | Echo Filter]]
-* [[class-AudioDistorionFilter | Distortion Filter]]
-* [[class-AudioReverbFilter | Reverb Filter]]
-* [[class-AudioChorusFilter | Chorus Filter]]
+各フィルタータイプの詳細については、次ページを参照してください。
+* [[class-AudioLowPassFilter | ローパスフィルタ]]
+* [[class-AudioHighPassFilter |ハイパスフィルタ]]
+* [[class-AudioEchoFilter |エコーフィルタ]]
+* [[class-AudioDistorionFilter |歪みフィルタ]]
+* [[class-AudioReverbFilter |リバーブフィルタ]]
+* [[class-AudioChorusFilter |コーラスフィルタ]]

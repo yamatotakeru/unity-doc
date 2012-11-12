@@ -1,28 +1,28 @@
-! Audio Chorus Filter (PRO only)
+! オーディオ コーラス（再現）フィルタ (PROのみ)
 
-The $$Audio Chorus Filter$$ takes an [[class-AudioClip | Audio Clip]] and processes it creating a chorus effect. 
+$$Audio Chorus Filter$$ は、[[class-AudioClip | Audio Clip]] を取り、それを処理して、コーラス効果を作成します。 
 
-The chorus effect modulates the original sound by a sinusoid low frequency oscillator (LFO).  The output sounds like there are multiple sources emitting the same sound with slight variations - resembling a choir.
+コーラス効果は、正弦波低周波数オシレータ （LFO） によって元の音声を変調します。  出力音声は、若干の違いのある同じ音声 （合唱に似た） を出す複数のソースです。
 
 Attach:AudioChorusFilter.png\\
-''The Audio high Pass filter properties in the inspector.''
+「オーディオ ハイ パス フィルタ プロパティはインスペクタにあります。」
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Dry Mix`` ||Volume of original signal to pass to output. 0.0 to 1.0. Default = 0.5.||
-||``Wet Mix 1`` ||Volume of 1st chorus tap. 0.0 to 1.0. Default = 0.5.||
-||``Wet Mix 2`` ||Volume of 2nd chorus tap. This tap is 90 degrees out of phase of the first tap. 0.0 to 1.0. Default = 0.5.||
-||``Wet Mix 3`` ||Volume of 3rd chorus tap. This tap is 90 degrees out of phase of the second tap. 0.0 to 1.0. Default = 0.5.||
-||``Delay`` ||The LFO's delay in ms. 0.1 to 100.0. Default = 40.0 ms||
-||``Rate`` ||The LFO's modulation rate in Hz. 0.0 to 20.0. Default = 0.8 Hz.||
-||``Depth`` ||Chorus modulation depth. 0.0 to 1.0. Default = 0.03.||
-||``Feed Back`` ||Chorus feedback. Controls how much of the wet signal gets fed back into the filter's buffer. 0.0 to 1.0. Default = 0.0.||
+||``Dry Mix`` ||出力に渡す元の信号の音量。 0.0 ～ 1.0。 デフォルト = 0.5。||
+||``Wet Mix 1`` ||最初のコーラス タップの音量。 0.0 ～ 1.0。 デフォルト = 0.5。||
+||``Wet Mix 2`` ||2 番目ののコーラス タップの音量。 このタップは、最初のタップよりも位相が 90°ずれまています。 0.0 ～ 1.0。 デフォルト = 0.5。||
+||``Wet Mix 3`` ||3 番目ののコーラス タップの音量。 このタップは、2 つ目ののタップよりも位相が 90°ずれまています。 0.0 ～ 1.0。 デフォルト = 0.5。||
+||``Delay`` ||LFO の遅延 （単位: ms)。0.1 ～ 100.0。|| デフォルト = 40.0ms。||
+||``Rate`` ||LFO の変調速度 （単位: Hz）。 0.0 ～ 20.0。 デフォルト = 0.8 Hz。||
+||``Depth`` ||コーラス変調度。 0.0 ～ 1.0。 デフォルト = 0.03。||
+||``Feed Back`` ||コーラスのフィードバック。 フィルタのバッファにフィードバックされるウェット信号の量を制御します。 0.0 ～ 1.0。 デフォルト = 0.0。||
 
-!! Adding a chorus filter
-To add a chorus filter to a given audio source just select the object in the inspector and then select ``Component->Audio->Audio Chorus Filter``.
+!! コーラス フィルタの追加
+コーラス フィルタを所定のオーディオ ソースに追加するには、インスペクタ内でオブジェクトを選択し、[Component->Audio->Audio Chorus Filter] を選択します。
 
-!! Hints
-* You can tweak the chorus filter to create a flanger effect by lowering the feedback and decreasing the delay, as the flanger is a variant of the chorus.
-* Creating a simple, dry echo is done by setting ``Rate`` and ``Depth`` to 0 and tweaking the mixes and ``Delay``
+!! ヒント
+* フランジャーはコーラスの変形なので、コーラス フィルタを微調整して、フィードバックを下げ、遅延を減らすことでフランジャー効果を作成できます。
+* 「Rate」と「Depth」を 0 に設定し、これらと「Delay」を微調整することで、簡単なドライ エコーを作成できます。

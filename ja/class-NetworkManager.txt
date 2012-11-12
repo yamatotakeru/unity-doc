@@ -1,29 +1,29 @@
-! Network Manager
+! ネットワーク マネージャ
 
-The $$Network Manager$$ contains two very important properties for making Networked multiplayer games.
+$$Network Manager$$ には、ネットワーク マルチプレイヤーのゲームを作成するための2 つの重要なプロパティが含まれています。
 
 Attach:NetworkSet.png\\
-''The Network Manager''
+「ネットワーク マネージャ」
 
-You can access the Network Manager by selecting ^^Edit->Project Settings->Network^^ from the menu bar.
+ネットワーク マネージャにアクセスするには、メニューバーから ^^Edit->Project Settings->Network^^ を選択します。
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Debug Level`` ||The level of messages that are printed to the console ||
-||>>>``Off`` ||Only errors will be printed ||
-||>>>``Informational`` ||Significant networking events will be printed ||
-||>>>``Full`` ||All networking events will be printed ||
-||``Sendrate`` ||Number of times per second that data is sent over the network ||
+||``Debug Level`` ||コンソールに表示されたメッセージのレベル。||
+||>>>``Off`` ||エラーのみ表示されます。||
+||>>>``Informational`` ||重要なネットワーク イベントが表示されます。||
+||>>>``Full`` ||すべてのネットワーク イベントが表示されます。||
+||``Sendrate`` ||ネットワーク上でデータが送信される秒ごとの回数。||
 
 
-!! Details
+!! 詳細
 
-Adjusting the Debug Level can be enormously helpful in fine-tuning or debugging your game's networking behaviors.  At first, setting it to ``Full`` will allow you to see every single network action that is performed.  This will give you an overall sense of how frequently you are using network communication and how much bandwidth you are using as a result.
+Debug Level の調整は、ゲームのネットワーク上での動作を微調整およびデバッグする上で非常に便利です。  最初に。これを「Full」に設定すると、実行されるすべてのネットワーク動作を確認できます。  これにより、ネットワーク通信を使用する頻度や、結果として使用する帯域幅の量を全体的に確認できます。
 
-When you set it to ``Informational``, you will see major events, but not every individual activity.  Assigning unique ``Network IDs`` and buffering ``RPC`` calls will be logged here.
+「Informational」に設定すると、大きいイベントを確認できますが、1 つ １ つの行動は確認できません。  一意の「Network ID」を割り当て、「RPC」呼び出しをバッファリングすると、ここでログに残ります。
 
-When it is ``Off``, only errors from networking will be printed to the console.
+「Off」にすると、ネットワークからのエラーのみがコンソールに表示されます。
 
-The data that is sent at the ``Sendrate`` intervals (1 second / ``Sendrate`` = interval) will vary based on the $$Network View$$ properties of each broadcasting object.  If the Network View is using ``Unreliable``, its data will be send at each interval.  If the Network View is using ``Reliable Delta Compressed``, Unity will check to see if the Object being watched has changed since the last interval.  If it has changed, the data will be sent.
+「Sendrate」間隔 (1 秒 / 「Sendrate」 = 間隔) で送信されるデータは、各放送オブジェクトの $$Network View$$ プロパティに基づいて変わります。  ネットワーク ビューが「Unreliable」を使用している場合、そのデータは各間隔で送信されます。  ネットワーク ビューが「Reliable Delta Compressed」を使用している場合、Unity は監視されているオブジェクトが最後の間隔以降に変更されてたかをチェックします。  変更されている場合、データが送信されます。
