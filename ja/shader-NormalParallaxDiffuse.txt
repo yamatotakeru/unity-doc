@@ -1,4 +1,4 @@
-! Parallax Diffuse
+! 視差デフューズ
 
 Attach:Shaders./Shader-NormalParallaxBump.png
 
@@ -6,6 +6,6 @@ Attach:Shaders./Shader-NormalParallaxBump.png
 
 (:include shader-DiffuseSubsetImport:)
 
-!!Performance
+!!パフォーマンス
 
-Generally, this shader is on the more expensive rendering side.  For more details, please view the [[shader-Performance | Shader Peformance page]].
+一般に、このシェーダではレンダリングに費用が多くかかります。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。

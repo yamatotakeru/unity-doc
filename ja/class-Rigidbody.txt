@@ -1,94 +1,94 @@
-! Rigidbody
+! リジッドボディ
 
-$$Rigidbodies$$ enable your $$GameObjects$$ to act under the control of physics. The Rigidbody can receive forces and torque to make your objects move in a realistic way.  Any GameObject must contain a Rigidbody to be influenced by gravity, act under added forces via scripting, or interact with other objects through the NVIDIA PhysX physics engine.
+$$Rigidbody$$ により、 $$GameObject$$ が物理特性の制御下で動作するようになります。 リジッドボディは、力やトルクを受け、現実的な方向にオブジェクトを動かすことができます。  GameObject は、重力の影響を影響を受けるリジッドボディを含めるか、スクリプティングを通じて加えた力の下で動作するか、NVIDIA PhysX 物理特性エンジンを通じて、その他のオブジェクトと相互作用する必要があります。
 
 Attach:Inspector-Rigidbody.png\\
-''Rigidbodies allow GameObjects to act under physical influence''
+「リジッドボディにより、GameObject は物理的影響の下で動作できます」
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Mass`` ||The mass of the object (arbitrary units). It is recommended to make masses not more or less than 100 times that of other Rigidbodies. ||
-||``Drag`` ||How much air resistance affects the object when moving from forces. 0 means no air resistance, and infinity makes the object stop moving immediately. ||
-||``Angular Drag`` ||How much air resistance affects the object when rotating from torque. 0 means no air resistance, and infinity makes the object stop rotating immediately. ||
-||``Use Gravity`` ||If enabled, the object is affected by gravity. ||
-||``Is Kinematic`` ||If enabled, the object will not be driven by the physics engine, and can only be manipulated by its $$Transform$$. This is useful for moving platforms or if you want to animate a Rigidbody that has a $$HingeJoint$$ attached. ||
-||``Interpolate`` ||Try one of the options only if you are seeing jerkiness in your Rigidbody's movement. ||
-||>>>``None`` ||No Interpolation is applied. ||
-||>>>``Interpolate`` ||Transform is smoothed based on the Transform of the previous frame. ||
-||>>>``Extrapolate`` ||Transform is smoothed based on the estimated Transform of the next frame. || 
-||``Freeze Rotation`` ||If enabled, this GameObject will never rotate based on collisions or forces added via script -- it will only rotate when using ``transform.Rotate()``. ||
-||``Collision Detection`` ||Used to prevent fast moving objects from passing through other objects without detecting collisions. ||
-||>>>``Discrete`` ||Use Discreet collision detection against all other colliders in the scene. Other colliders will use Discreet collision detection when testing for collision against it. Used for normal collisions (This is the default value). ||
-||>>>``Continuous`` ||Use Discrete collision detection against dynamic colliders (with a rigidbody) and continuous collision detection against static MeshColliders (without a rigidbody). Rigidbodies set to Continuous Dynamic will use continuous collision detection when testing for collision against this rigidbody. Other rigidbodies will use Discreet Collision detection. Used for objects which the Continuous Dynamic detection needs to collide with. (This has a big impact on physics performance, leave it set to Discrete, if you don't have issues with collisions of fast objects) ||
-||>>>``Continuous Dynamic`` ||Use continuous collision detection against objects set to Continuous and Continuous Dynamic Collision. It will also use continuous collision detection against static MeshColliders (without a rigidbody). For all other colliders it uses discreet collision detection. Used for fast moving objects.||
-||``Constraints`` ||Restrictions on the Rigidbody's motion:-||
-||>>>``Freeze Position``||Stops the Rigidbody moving in the world X, Y and Z axes selectively.||
-||>>>``Freeze Rotation``||Stops the Rigidbody rotating around the world X, Y and Z axes selectively.||
+||``Mass`` ||オブジェクトの質量 (単位	: kg)。 質量をその他のリジッドボディの 100 倍 にしておくことをお勧めします。 ||
+||``Drag`` ||力により動く際に、オブジェクトに影響する空気抵抗の量。 0 の場合、空気抵抗が 0 で、無限の場合、オブジェクトは直ちに動きを止めます。 ||
+||``Angular Drag`` ||トルクにより回転する際に、オブジェクトに影響する空気抵抗の量。 0 の場合、空気抵抗が 0 で、無限の場合、オブジェクトは直ちに回転を止めます。 ||
+||``Use Gravity`` ||有効にすると、オブジェクトは重力の影響を受けます。|| ||
+||``Is Kinematic`` ||有効にすると、オブジェクトは物理特性エンジンによって駆動されませんが、その $$Transform$$ によってのみ操作できます。 これは、プラットフォームを移したい場合や、$$HingeJoint$$ を追加したリジッドボディをアニメート化したい場合に便利です。 ||
+||``Interpolate`` ||リジッドボディの移動でギクシャクした動きを求めている場合にのみこのオプションのいずれかを試します。 ||
+||>>>``None`` ||補間は適用されません。 ||
+||>>>``Interpolate`` ||前のフレームのトランスフォームに基づいて、トランスフォームを円滑にします。 ||
+||>>>``Extrapolate`` ||次のフレームの推定トランスフォームに基づいて、トランスフォームを円滑にします。 || 
+||``Freeze Rotation`` ||有効にすると、GameObject はスクリプトを通じて追加される衝突または力に基づいて回転しません。「transform.Rotate()」を使用した場合のみ回転します。 ||
+||``Collision Detection`` ||高速で移動するオブジェクトが、衝突を検出せずに、他のオブジェクトを通過させないようにする場合に使用します。 ||
+||>>>``Discrete`` ||シーン内のその他すべてのコライダに対して、個別の衝突検出を使用します。 その他のコライダは、衝突のテスト時に個別衝突検出を使用します。 通常の衝突に使用されます (これはデフォルト値です)。 ||
+||>>>``Continuous`` ||動的衝突 (リジッドボディとの) に対する個別衝突検出と、スタティックな MeshColliders との連続衝突検出 (リジッドボディなし) を使用します。 Rigidbodies set to Continuous Dynamic に設定されたリジッドボディは、このリジッドボディへの衝突をテストする際に、連続衝突検出を使用します。 その他のリジッドボディは、個別衝突検出を使用します。 連続衝突検出が衝突を必要とするオブジェクトに使用されます。 (高速のオブジェクトの衝突に関して問題がない場合は、これは、物理特性パフォーマンスに大きく影響するため、個別に設定しておきます) ||
+||>>>``Continuous Dynamic`` ||連続および連続動的衝突に設定されたオブジェクトに対して、連続衝突検出を使用します。 スタティックな MeshColliders との連続衝突検出も使用します (リジッドボディなし)。 その他すべてのコライダに対しては、個別衝突検出を使用します。 高速移動するオブジェクトに使用されます。||
+||``Constraints`` ||リジッドボディの動きに関する制限:-||
+||>>>``Freeze Position``||是界の X、Y、Z 軸で移動するリジッドボディを選択的に停止します。||
+||>>>``Freeze Rotation``||是界の X、Y、Z 軸で回転するリジッドボディを選択的に停止します。||
 
-!! Details
+!! 詳細
 
-Rigidbodies allow your GameObjects to act under control of the physics engine.  This opens the gateway to realistic collisions, varied types of joints, and other very cool behaviors.  Manipulating your GameObjects by adding forces to a Rigidbody creates a very different feel and look than adjusting the Transform $$Component$$ directly.  Generally, you shouldn't manipulate the Rigidbody and the Transform of the same GameObject - only one or the other.
+$$Rigidbody$$ により、GameObject が物理特性エンジンの制御下で動作するようになります。  これにより、現実的な衝突、多様な種類のジョイント、その他のクールな動作へのゲートウェイが開きます。  リジッドボディに力を加えることで、GameObject を操作することによって、 $$Component$$ を直接調整した場合とは違うルック & フィールを作成します。  一般に、リジッドボディと同じ GameObject のトランスフォームのどちらか一方だけを操作しないでください。
 
-The biggest difference between manipulating the Transform versus the Rigidbody is the use of forces.  Rigidbodies can receive forces and torque, but Transforms cannot.  Transforms can be translated and rotated, but this is not the same as using physics. You'll notice the distinct difference when you try it for yourself.  Adding forces/torque to the Rigidbody will actually change the object's position and rotation of the Transform component.  This is why you should only be using one or the other.  Changing the Transform while using physics could cause problems with collisions and other calculations.
+トランスフォームの操作とリジッドボディ間の最大の差は、力を使用するかしないかです。  リジッドボディは、力やトルクを受けることができますが、トランスフォームはできません。  トランスフォームは移動や回転はできますが、物理特性の使用とは異なります。 自分で試した場合は、その顕著な差に気づくでしょう。  リジッドボディに力/トルクを加えると、実際にオブジェクトの位置やトランスフォーム コンポーネントの回転を変更します。  このため、どちら一方だけを使用する必要があります。  物理特性使用中にトランスフォームを変更すると、衝突やその他の計算に問題が生じる場合があります。
 
-Rigidbodies must be explicitly added to your GameObject before they will be affected by the physics engine.  You can add a Rigidbody to your selected object from ``Components->Physics->Rigidbody`` in the menubar. Now your object is physics-ready; it will fall under gravity and can receive forces via scripting, but you may need to add a $$Collider$$ or a Joint to get it to behave exactly how you want.
-
-
-!!! Parenting
-
-When an object is under physics control, it moves semi-independently of the way its transform parents move. If you move any parents, they will pull the Rigidbody child along with them. However, the Rigidbodies will still fall down due to gravity and react to collision events.
+リジッドボディは、物理特性エンジンに影響を受ける前に、GameObject に明示的に追加する必要があります。  メニューバーで「Components->Physics->Rigidbody」から選択したオブジェクトにリジッドボディを追加できます。 オブジェクトで物理特性の準備ができました。重力下に置かれ、スクリプティングを介して、力を受けることができますが、 $$Collider$$ またはジョイントを追加して、正確に希望通りに動作させる必要があります。
 
 
-!!! Scripting
+!!! 親子関係
 
-To control your Rigidbodies, you will primarily use scripts to add forces or torque. You do this by calling ``[[ScriptRef:Rigidbody.AddForce.html|AddForce()]]`` and ``[[ScriptRef:Rigidbody.AddTorque.html|AddTorque()]]`` on the object's Rigidbody.  Remember that you shouldn't be directly altering the object's Transform when you are using physics.
-
-
-!!! Animation
-
-For some situations, mainly creating ragdoll effects, it is neccessary to switch control of the object between animations and physics. For this purpose Rigidbodies can be marked ``[[ScriptRef:Rigidbody-isKinematic.html|isKinematic]]``. While the Rigidbody is marked ``isKinematic``, it will not be affected by collisions, forces, or any other part of physX. This means that you will have to control the object by manipulating the [[class-Transform|Transform]] component directly.  Kinematic Rigidbodies will affect other objects, but they themselves will not be affected by physics. For example, Joints which are attached to Kinematic objects will constrain any other Rigidbodies attached to them and Kinematic Rigidbodies will affect other Rigidbodies through collisions.
+オブジェクトが物理特性の制御下にある場合、トランスフォームの親が移動する方法から半分独立して移動します。 親を移動すると、リジッドボディの子をそれに沿って引っ張ります。 しかし、リジッドボディは重力および衝突イベントへの対応により、落下していきます。
 
 
-!!! Colliders
+!!! スクリプティング
 
-Colliders are another kind of component that must be added alongside the Rigidbody in order to allow collisions to occur.  If two Rigidbodies bump into each other, the physics engine will not calculate a collision unless both objects also have a Collider attached.  Collider-less Rigidbodies will simply pass through each other during physics simulation.
+リジッドボディをコントロールするため、最初にスクリプトを使用して、力またはトルクを追加します。 「[[ScriptRef:Rigidbody.AddForce.html|AddForce()]]」 と「[[ScriptRef:Rigidbody.AddTorque.html|AddTorque()]] 」をオブジェクトのリジッドボディで呼び出すことでこれを行います。  物理特性を使用する際は、オブジェクトのトランスフォームを直接買えないようにしてください。
+
+
+!!! アニメーション
+
+一部の状況で、主にラグドール効果を作成する場合に、アニメーションと物理特性間でオブジェクトのコントロールを切り替える必要があります。 このため、リジッドボディには、「[[ScriptRef:Rigidbody-isKinematic.html|isKinematic]] 」と付けることができます。 リジッドボディに「isKinematic」と付いている場合、衝突や力、physX のその他の部分の影響を受けません。 This means that you will have to control the object by manipulating the [[class-Transform|Transform]] コンポーネントを直接操作することで、オブジェクトをコントロールする必要があるということです。  キネマティック リジッドボディはその他のオブジェクトに影響しますが、これら自体は物理特性の影響を受けません。 例えば、キネマティック オブジェクトに追加されるジョイントは、そこに追加されたその他のリジッドボディを制約し、キネマティック リジッドボディは衝突を通じて、その他のリジッドボディに影響します。
+
+
+!!! コライダ
+
+コライダは、衝突を発生させるために、リジッドボディと共に追加する必要のある別の種類のコンポーネントです。  2 つのリジッドボディが互いに衝突する場合、物理特性エンジンは、両方のオブジェクトもコライダを追加するまで、衝突を計算しません。  コライダのないリジッドボディは、物理特性シミュレーション中に互いを簡単に通過します。
 
 Attach:RigidbodyandCollider.png\\
-''Colliders define the physical boundaries of a Rigidbody''
+「コライダはリジッドボディの物理特性の境界を定義します」
 
-Add a Collider with the ``Component->Physics`` menu.  View the Component Reference page of any individual Collider for more specific information:
-*[[class-BoxCollider|Box Collider]] - primitive shape of a cube
-*[[class-SphereCollider|Sphere Collider]] - primitive shape of a sphere
-*[[class-CapsuleCollider|Capsule Collider]] - primitive shape of a capsule
-*[[class-MeshCollider|Mesh Collider]] - creates a collider from the object's mesh, cannot collide with another Mesh Collider
-*[[class-WheelCollider|Wheel Collider]] - specifically for creating cars or other moving vehicles
+「Component->Physics」メニューでコライダを追加します。  詳細については、個々のコライダのコンポーネント リファレンス ページを参照してください。
+*[[class-BoxCollider|Box Collider]] - キューブのプリミティブの形状
+*[[class-SphereCollider|Sphere Collider]] - 球体のプリミティブの形状
+*[[class-CapsuleCollider|Capsule Collider]] - カプセルのプリミティブの形状
+*[[class-MeshCollider|Mesh Collider]] - オブジェクトのメッシュからコライダを作成し、別のメッシュ コライダとは衝突できません
+*[[class-WheelCollider|Wheel Collider]] - 車両またはその他の移動する乗り物の作成用
 
 
-!!! Compound Colliders
+!!! 複合コライダ
 
 (:include comp-ColliderCompound:)
 
-!!! Continuous Collision Detection
+!!! 連続衝突検出
 
-Continuous collision detection is a feature to prevent fast-moving colliders from passing each other. This may happen when using normal (``Discrete``) collision detection, when an object is one side of a collider in one frame, and already passed the collider in the next frame. To solve this, you can enable continuous collision detection on the rigidbody of the fast-moving object. Set the collision detection mode to ``Continuous`` to prevent the rigidbody from passing through any static (ie, non-rigidbody) MeshColliders. Set it to ``Continuous Dynamic`` to also prevent the rigidbody from passing through any other supported rigidbodies with collision detection mode set to ``Continuous`` or ``Continuous Dynamic``. 
-Continuous collision detection is supported for Box-, Sphere- and CapsuleColliders. Note that continuous collision detection is intended as a safety net to catch collisions in cases where objects would otherwise pass through each other, but will not deliver physically accurate collision results, so you might still consider decreasing the fixed Time step value in the TimeManager inspector to make the simulation more precise, if you run into problems with fast moving objects.
+連続衝突検出は、高速移動するコライダが互いに通過しないようにする機能です。 これは、通常の(「Discrete」) 衝突検出使用時、オブジェクトが 1 つのフレームでコライダの片側にあり、次のフレームでコライダを通過している場合に発生することがあります。 これを解決するには、高速移動するオブジェクトのリジッドボディで連続衝突検出を有効にできます。 衝突検出モードを「Continuous」に切り替え、リジッドボディがスタティックな (つまり、非リジッドボディ) MeshColliders を通過させないようにします。 衝突検出モードを「Continuous Dynamic」に切り替え、リジッドボディが、衝突検出モードを「Continuous」または「Continuous Dynamic」に設定したその他のサポートされているリジッドボディを通過させないようにします。 
+連続衝突検出は、Box-、Sphere- および CapsuleCollider でサポートされています。
 
-!! Use the right size
+!! 正しいサイズの使用
 
-The size of the your GameObject's mesh is much more important than the mass of the Rigidbody.  If you find that your Rigidbody is not behaving exactly how you expect - it moves slowly, floats, or doesn't collide correctly - consider adjusting the scale of your mesh asset.  Unity's default unit scale is 1 unit = 1 meter, so the scale of your imported mesh is maintained, and applied to physics calculations.  For example, a crumbling skyscraper is going to fall apart very differently than a tower made of toy blocks, so objects of different sizes should be modeled to accurate scale.
+GameObject のメッシュのサイズは、リジッドボディの質量よりもはるかに重要です。  リジッドボディが期待通りに動作しなていない場合、ゆっくり移動するか、浮くか、正しく衝突しません。  Unity のデフォルトの単位スケールは、1 単位 = 1 メートルなので、インポートされたメッシュのスケールは維持され、物理特性計算に適用されます。  例えば、倒壊しかけている高層ビルは、積み木で作った塔とはかなり違う形で崩れるため、正確にスケールするには、サイズの異なるオブジェクトをモデル化する必要があります。
 
-If you are modeling a human make sure he is around 2 meters tall in Unity. To check if your object has the right size compare it to the default cube. You can create a cube using ^^GameObject->Create Other->Cube^^. The cube's height will be exactly 1 meter, so your human should be twice as tall.
+人間をモデリングしている場合、Unity では、その人間の身長は約 2メートルになります。 オブジェクトが正しいサイズかどうかを確認するには、デフォルトのキューブと比較します。 ^^GameObject->Create Other->Cube^^ を使用して、キューブを新規作成します。 キューブの高さは、ちょうど 1 メートルになるため、作成している人間は 2 倍の慎重になります。
 
-If you aren't able to adjust the mesh itself, you can change the uniform scale of a particular mesh asset by selecting it in $$Project View$$ and choosing ^^Assets->Import Settings...^^ from the menubar.  Here, you can change the scale and re-import your mesh.
+メッシュ自体を調整できない場合、$$Project View$$ で選択し、メニューバーから ^^Assets->Import Settings...^^ を選択することで、特定のメッシュ　アセットの均一なスケールを変更できます。  ここでは、スケールを変更し、メッシュを再インポートできます。
 
-If your game requires that your GameObject needs to be instantiated at different scales, it is okay to adjust the values of your Transform's scale axes.  The downside is that the physics simulation must do more work at the time the object is instantiated, and could cause a performance drop in your game.  This isn't a terrible loss, but it is not as efficient as finalizing your scale with the other two options.  Also keep in mind that non-uniform scales can create undesirable behaviors when Parenting is used.  For these reasons it is always optimal to create your object at the correct scale in your modeling application.
+ゲームで、GameObject を異なるスケールでインスタンス化する必要がある場合、トランスフォームのスケール軸の値を調整しても大丈夫です。  欠点は、物理特性シミュレーションは、オブジェクトのインスタンス化時に更に多くの作業を剃る必要があり、ゲーム内でパフォーマンスの低下を引き起こす可能性があります。  これは大きな損失ではありませんが、他の 2 つのオプションでスケールを仕上げることほど効率的ではありません。  不均一なスケールだと、パレンディング使用時に望まぬ動作を生じる場合があります。  このため、モデリング アプリケーションで正しいスケールでオブジェクトを作成するのが常に最適です。
 
 
-!! Hints
-* The relative ``Mass`` of two Rigidbodies determines how they react when they collide with each other.
-* Making one Rigidbody have greater ``Mass`` than another does not make it fall faster in free fall. Use ``Drag`` for that.
-* A low ``Drag`` value makes an object seem heavy. A high one makes it seem light. Typical values for ``Drag`` are between .001 (solid block of metal) and 10 (feather).
-* If you are directly manipulating the Transform component of your object but still want physics, attach a Rigidbody and make it Kinematic.
-* If you are moving a GameObject through its Transform component but you want to receive Collision/Trigger messages, you must attach a Rigidbody to the object that is moving.
+!! ヒント
+* 2 つのリジッドボディの相対的な「Mass」は、リジッドボディが互いに衝突する際に、どのように反応するかを決定します。
+* 1 つのリジッドボディの「Mass」を他方より大きくしても、自由落下での落下速度は上がりません。 これを行うには、「Drag」を使用します。
+* 「Drag」値が低いと、オブジェクトが重く見えるようになります。 この値が高いと、軽く見えます。 「Drag」の通常の値は、.001 (金属の塊) と 10 (羽) の間です。
+* オブジェクトのトランスフォーム コンポーネントを直接操作しているが、物理特性が必要な場合、リジッドボディを追加し、キネマティックにします。
+* トランスフォーム コンポーネントを通じて、GameObject を移動させているが、衝突/トリガー メッセージを受信したい場合は、リジッドボディを移動しているオブジェクトに追加する必要があります。

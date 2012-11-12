@@ -1,52 +1,51 @@
-! Rendering Paths
+! レンダリングパス
 
-Unity supports different $$Rendering Paths$$. You should choose which one you use depending on your game content and target platform / hardware. Different rendering paths have different features and performance characteristics that mostly affect Lights and Shadows.
+Unityは異なる $$レンダリングパス$$ に対応しています。 どれを選択すべきかは、ゲームの内容やターゲット／ハードウェアに依存します。異なるレンダリングパスは異なる特徴やパフォーマンスを持ちます。（おおかたライトや影が影響するのですが）
 
-The rendering Path used by your project is chosen in [[class-PlayerSettings | Player Settings]]. Additionally, you can override it for each [[class-Camera | Camera]].
+レンダリングパスは [[class-PlayerSettings | Player Settings]] で選択します。 さらに [[class-Camera | Camera]] でも上書き設定もできます。
 
-If the graphics card can't handle a selected rendering path, Unity will automatically use a lower fidelity one. So on a GPU that can't handle Deferred Lighting, Forward Rendering will be used. If Forward Rendering is not supported, Vertex Lit will be used.
+もしグラフィックスカードが選択したレンダリングパスを利用出来ないのであれば、Unityは自動的に下位のパスを使います。 ですので例えばデファードレンダリングが出来ないGPUでは、フォワードレンダリングが選ばれるでしょう。 もしフォワードレンダリングがサポートしていないのであれば、頂点ライトが選択されるでしょう。
 
 
 [[#deferredlighting]]
-!! Deferred Lighting
+!! デファードレンダリング
 
-$$Deferred Lighting$$ is the rendering path with the most lighting and shadow fidelity. It is best used if you have many realtime lights. It requires a certain level of hardware support, is for __Unity Pro__ only and is not supported on $$Mobile Devices$$.
+$$デファードレンダリング$$ はライトと影が最も厳密にレンダリングされます。もし多くのリアルタイムライトを使いたいのであれば最適でしょう。ただ、これはハードウェアがある一定のレベルが必要なので、__Unity Pro__ 専用で、 $$モバイルデバイス$$ ではサポートされていません。
 
-For more details see the __[[RenderTech-DeferredLighting | Deferred Lighting page]]__.
-
+さらに詳しくは __[[RenderTech-DeferredLighting | Deferred Lighting page]]__ を参照して下さい。
 
 [[#forward]]
-!! Forward Rendering
+!! フォワードレンダリング
 
-$$Forward$$ is a shader-based rendering path. It supports per-pixel lighting (including normal maps & light Cookies) and realtime shadows from one directional light. In the default settings, a small number of the brightest lights are rendered in per-pixel lighting mode. The rest of the lights are calculated at object vertices.
+$$フォワードレンダリング$$ はシェーダーベースのレンダリングパスです。 これはパーピクセルライト（ノーマルマップやlight Cookiesが含まれます）をサポートし、１個のディレクショナル（一方方向）ライトからのリアルタイムシャドウをサポートします。 デフォルト設定では、パーピクセルライトモードでは最小の数のライトでレンダリングされます。 残りのライトは頂点で計算されます。
 
-For more details see the __[[RenderTech-ForwardRendering | Forward Rendering page]]__.
+さらに詳しくは __[[RenderTech-ForwardRendering | Forward Rendering page]]__ を参照して下さい。
 
 
 [[#vertexlit]]
-!! Vertex Lit
+!! 頂点ライト
 
-$$Vertex Lit$$ is the rendering path with the lowest lighting fidelity and no support for realtime shadows. It is best used on old machines or limited mobile platforms.
+$$頂点ライト$$ は一番軽いレンダリングパスで、リアルタイム影もサポートされていません。古いマシンでは最も使われるでしょうし、モバイルプラットフォーム限定利用されるかもしれません。
 
-For more details see the __[[RenderTech-VertexLit | Vertex Lit page]]__.
+さらに詳しくは __[[RenderTech-VertexLit | Vertex Lit page]]__ を参照して下さい。
 
 
-!! Rendering Paths Comparison
+!! レンダリングパス比較
 
-||                                                 || Deferred Lighting || Forward Rendering   || Vertex Lit ||
+||                                                 || ディファードレンダリング || フォワードレンダリング   || 頂点ライト ||
 ||''%gray%__Features__'' || || || ||
-||Per-pixel lighting (normal maps, light cookies)  || Yes               || Yes                 || -          ||
-||Realtime shadows                                 || Yes               || 1 Directional Light || -          ||
-||Dual Lightmaps                                   || Yes               || -                   || -          ||
-||Depth&Normals Buffers                            || Yes               || Additional render passes || -     ||
-||Soft Particles                                   || Yes               || -                   || -          ||
-||Semitransparent objects                          || -                 || Yes                 || Yes        ||
-||Anti-Aliasing                                    || -                 || Yes                 || Yes        ||
-||Light Culling Masks                              || Limited           || Yes                 || Yes        ||
-||Lighting Fidelity                                || All per-pixel     || Some per-pixel      || All per-vertex ||
-||''%gray%__Performance__'' || || || ||
-||Cost of a per-pixel Light                        || Number of pixels it illuminates || Number of pixels * Number of objects it illuminates || - ||
-||''%gray%__Platform Support__'' || || || ||
+||パーピクセルライト (normal maps, light cookies)  || Yes               || Yes                 || -          ||
+||リアルタイム影                                 || Yes               || 1 Directional Light || -          ||
+||デュアルライトマップ                                   || Yes               || -                   || -          ||
+||デプス／ノーマル　バッファ                            || Yes               || Additional render passes || -     ||
+||ソフトパーティクル                                   || Yes               || -                   || -          ||
+||半透明オブジェクト                          || -                 || Yes                 || Yes        ||
+||アンチエイリアス                                    || -                 || Yes                 || Yes        ||
+||ライトカリングマスク                              || Limited           || Yes                 || Yes        ||
+||ライトの厳密さ                                || All per-pixel     || Some per-pixel      || All per-vertex ||
+||''%gray%__パフォーマンス__'' || || || ||
+||１ピクセルあたりのライトのコスト                        || Number of pixels it illuminates || Number of pixels * Number of objects it illuminates || - ||
+||''%gray%__サポートしているプラットフォーム__'' || || || ||
 ||PC (Windows/Mac)                                 || Shader Model 3.0+ || Shader Model 2.0+   || Anything            ||
 ||Mobile (iOS/Android)                             || -                 || OpenGL ES 2.0       || OpenGL ES 2.0 & 1.1 ||
 ||Consoles                                         || 360, PS3          || 360, PS3            || -                   ||

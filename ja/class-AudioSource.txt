@@ -1,77 +1,78 @@
-! Audio Source
+! オーディオ ソース
 
-The $$Audio Source$$ plays back an [[class-AudioClip | Audio Clip]] in the scene. If the Audio Clip is a 3D clip, the source is played back at a given position and will attenuate over distance. The audio can be spread out between speakers (stereo to 7.1) (''Spread'') and morphed between 3D and 2D (''PanLevel''). This can be controlled over distance with falloff curves. Also, if the [[ class-AudioListener | listener]] is within one or multiple [[ class-AudioReverbZone | Reverb Zones]], reverberations is applied to the source. (PRO only) Individual filters can be applied to each audio source for an even richer audio experience. See [[ class-AudioEffect | Audio Effects]] for more details.
+$$Audio Source$$ は、シーンで [[class-AudioClip | Audio Clip]] を再生します。 オーディオ クリップが 3D クリップの場合、ソースは、所定の位置で再生され、距離が離れると弱まります。 オーディオはスピーカー間で広がり （ステレオ - 7.1）(「スプレッド」)、3D と 2D 間で変わります (「パン レベル」)。 これは、フォールオフ曲線で長距離で制御できます。 また、[[ class-AudioListener | listener]] が 1 時間以内または、複数の [[ class-AudioReverbZone | Reverb Zones]] である場合、反響がソースに適用されます。 (PRO のみ) より鮮やかなオーディオを得るのに、個々のフィルターを各オーディオ ソースに適用できます。 詳細については、[[ class-AudioEffect | Audio Effects]] を参照してください。
 
 Attach:Editor-AudioSource.png\\
-''The Audio Source gizmo in the $$Scene View$$ and its settings in the $$inspector$$.''
+「$$Scene View$$ でのオーディオ ソース機器と $$inspector$$ でのその設定。」
 
 
 
-!! Properties
+!! !!プロパティ
 
 ||PROPS
-||``Audio Clip`` ||Reference to the sound clip file that will be played. ||
-||``Mute`` ||If enabled the sound will be playing but muted. ||
-||``Bypass Effects`` ||This Is to quickly "by-pass" filter effects applied to the audio source. An easy way to turn all effects on/off.||
-||``Play On Awake`` ||If enabled, the sound will start playing the moment the scene launches. If disabled, you need to start it using the ``Play()`` command from scripting. ||
-||``Loop`` ||Enable this to make the ``Audio Clip`` loop when it reaches the end. ||
-||``Priority`` ||Determines the priority of this audio source among all the ones that coexist in the scene. (Priority:  0 = most important. 256 = least important. Default = 128.). Use 0 for music tracks to avoid it getting occasionally swapped out.||
-||``Volume`` ||How loud the sound is at a distance of one world unit (one meter) from the $$Audio Listener$$. ||
-||``Pitch`` ||Amount of change in pitch due to slowdown/speed up of the ``Audio Clip``.  Value 1 is normal playback speed. ||
-||``__3D Sound Settings__``||Settings that are applied to the audio source if the Audio Clip is a 3D Sound.||
-||``Pan Level`` ||Sets how much the 3d engine has an effect on the audio source. ||
-||``Spread`` ||Sets the spread angle to 3d stereo or multichannel sound in speaker space. ||
-||``Doppler Level`` ||Determines how much doppler effect will be applied to this audio source (if is set to 0, then no effect is applied).||
-||``Min Distance`` ||Within the MinDistance, the sound will stay at loudest possible. Outside MinDistance it will begin to attenuate.  Increase the MinDistance of a sound to make it 'louder' in a 3d world, and decrease it to make it 'quieter' in a 3d world.||
-||``Max Distance`` ||The distance where the sound stops attenuating at. Beyond this point it will stay at the volume it would be at MaxDistance units from the listener and will not attenuate any more.||
-||``Rolloff Mode`` ||How fast the sound fades. The higher the value, the closer the Listener has to be before hearing the sound.(This is determined by a Graph).||
-||>>>``Logarithmic Rolloff`` ||The sound is loud when you are close to the audio source, but when you get away from the object it decreases significantly fast.||
-||>>>``Linear Rolloff`` ||The further away from the audio source you go, the less you can hear it.||
-||>>>``Custom Rolloff`` ||The sound from the audio source behaves accordingly to how you set the graph of roll offs.||
-||``__2D Sound Settings__``||Settings that are applied to the audio source if the Audio clip is a 2D Sound.||
-||``Pan 2D`` ||Sets how much the engine has an effect on the audio source. ||
+||``Audio Clip`` ||再生される音声クリップを参照します。 ||
+||``Mute`` ||有効にすると、音声は再生されますが、ミュートになります。. ||
+||``Bypass Effects`` ||オーディオ ソースに適用されるフィルター効果を素早く「バイパス」します。 簡単にすべての効果をオン・オフできます。||
+||``Play On Awake`` ||有効にすると、シーン開始時に音声の再生が始まります。 無効にすると、スクリプティングから「Play()」を使用して開始する必要があります。 ||
+||``Loop`` ||有効にすると、最後に達した時に、「オーディオ クリップ」がループします。 ||
+||``Priority`` ||シーンにある他のすべてのオーディオ ソースの間でこのオーディオ ソースの優先度を決定します。 (優先度:  0 = 最重要、 256 = 最も重視しない、 デフォルト = 128）。 音楽トラックが時々スワップアウトするのを避けるには、0 を使用します。||
+||``Volume`` ||$$Audio Listener$$　からの 1 つの世界単位 （1 メートル） ノ距離での音声の大きさ。 ||
+||``Pitch`` ||「オーディオ クリップ」での減速 / 加速によるピッチの変化量。  1 が普通の再生速度になります。 ||
+||``__3D Sound Settings__``||3D 音声の場合にオーディオ ソースに適用される設定。||
+||``Pan Level`` ||3D エンジンがオーディオ ソースに与える効果の程度を設定します。 ||
+||``Spread`` ||スピーカー空間内の 3D ステレオまたはマルチチャンネル音声に広がり角を設定します。 ||
+||``Doppler Level`` ||このオーディオ ソースに適用するドップラー効果の量を決定します （0 に設定すると、効果は適用されません）。||
+||``Min Distance`` ||MinDistance 内は、音声は最も低くなります。 MinDistance 外では、音声が弱まり始めます。  音声の MinDistance を増やすと、3D ワールドでの音声が「大きく」なります。減らすと、3D ワールドでの音声が「小さく」なります。||
+||``Max Distance`` ||音が弱まるのを止める距離。 この地点を超えると、リスナーからの MaxDistance 単位で到達する音量を維持し、これ以上下がることはありません。
+||``Rolloff Mode`` ||音声がフェードする速度。 この値が高いほど、音声を聞く前にリスナーがより近づく必要があります （グラフによって決定されます）。
+||>>>``Logarithmic Rolloff`` ||オーディオ ソースに近づくと音声が大きくなりますが、オブジェクトから離れると、かなりの速さで低くなります。||
+||>>>``Linear Rolloff`` ||オーディオ ソースから離れるほど、聞こえにくくなります。||
+||>>>``Custom Rolloff`` ||オーディオ ソースからの音声が、ロール オフのグラフの設定状態に応じて動作します。||
+||``__2D Sound Settings__``||3D 音声の場合にオーディオ ソースに適用される設定。||
+||``Pan 2D`` ||3D エンジンがオーディオ ソースに与える効果の程度を設定します。 ||
 
 [[#rolloff]]
-!! Types of Rolloff
-There are three Rolloff modes: Logarithmic, Linear and Custom Rolloff. The Custom Rolloff can be modified by modifying the volume distance curve as described below. If you try to modify the volume distance function when it is set to Logarithmic or Linear, the type will automatically change to Custom Rolloff.
+!! Rolloff の種類
+3つの Rolloff モードには、 対数、直線およびカスタム Rolloff があります。 カスタム  Rolloff は、後述するように、音量距離曲線を修正することで修正できます。 対数または直線に設定する際に、音量距離関数を修正しようとすると、自動的にカスタム  Rolloff.に変わります。
 
 Attach:TypesOfRollOff.png\\
-''Rolloff Modes that an audio source can have.''
+「オーディオ ソースが持つことができる Rolloff モード。」
 
-!! Distance Functions
+!! 距離関数
 
-There are several properties of the audio that can be modified as a function of the distance between the audio source and the audio listener.
+オーディオ ソースとオーディオ リスナー間の距離の関数として修正できる音声のプロパティがいくつかあります。
 
-%red%$$Volume$$%%: Amplitude(0.0 - 1.0) over distance.\\
-%green%$$Pan$$%%: Left(-1.0) to Right(1.0) over distance.\\
-%blue%$$Spread$$%%: Angle (degrees 0.0 - 360.0) over distance.\\
-%color=#B838CF define=purple%$$Low-Pass$$%% (only if LowPassFilter is attached to the AudioSource): Cutoff Frequency (22000.0-10.0) over distance.
+%red%$$Volume$$%%: 距離に対する振幅 (0.0 - 1.0)。\\
+%green%$$Pan$$%%: 距離に対する左 (-1.0) 対右 (1.0)。\\
+%blue%$$Spread$$%%: 距離に対する角度 (0.0 - 360.0°)。\\
+%color=#B838CF define=purple%$$Low-Pass$$%% (オーディオ ソースにローパスフィルタが追加されている場合のみ): 距離に対するカットオフ頻度 (22000.0 - 360.0°)。\\
 
 Attach:AudioDistanceFunctions.png\\
-''Distance functions for Volume, Pan, Spread and Low-Pass audio filter. The current distance to the Audio Listener is marked in the graph.''
+「音量、パン、拡散、ローパス音声フィルタのための距離関数。 オーディオ リスナーまでの現在の距離にグラフで印が付けられます。」
 
-To modify the distance functions, you can edit the curves directly. For more information, see the guide to [[EditingCurves | Editing Curves]].
+距離関数を修正するには、曲線を直接編集します。 詳細については、[[EditingCurves | Editing Curves]] を参照してください。
 
-!! Creating Audio Sources
+!! オーディオ ソースの作成
 
-Audio Sources don't do anything without an assigned ``Audio Clip``.  The Clip is the actual sound file that will be played back.  The Source is like a controller for starting and stopping playback of that clip, and modifying other audio properties.
+オーディオ ソースは、割り当てられた「オーディオ クリップ」がないと、何もしません。  クリップは、再生される実際の音声ファイルです。  ソースは、そのクリップの再生を開始・停止したり、その他のオーディオ プロパティを修正するためのコントローラのようなものです。
 
-To create a new Audio Source:
-# Import your audio files into your Unity Project.  These are now Audio Clips.
-# Go to ^^GameObject->Create Empty^^ from the menubar.
-# With the new GameObject selected, select ^^Component->Audio->Audio Source^^.
-# Assign the ``Audio Clip`` property of the Audio Source Component in the Inspector.
+オーディオ ソースの新規作成
+# Unity プロジェクトにオーディオ ファイルをインポートします。  これらがオーディオ クリップになります。
+# メニューバーから ^^GameObject->Create Empty^^ に移動します。
+# 新しい GameObject を選択して、^^Component->Audio->Audio Source^^ を選択します。
+# インスペクタでオーディオ ソース コンポーネントの「オーディオ クリップ」プロパティを割り当てます。
 
-__Note:__ If you want to create an ``Audio Source`` just for one ``Audio Clip`` that you have in the Assets folder then you can just drag that clip to the scene view - a GameObject with an ``Audio Source`` component will be created automatically for it. Dragging a clip onto on existing GameObject will attach the clip along with a new ``Audio Source`` if there isn't one already there. If the object does already have an ``Audio Source`` then the newly dragged clip will replace the one that the source currently uses.
+__注意:__ Assets フォルダにある 1 つの「オーディオ クリップ」に対してのみオーディオ ソースを作成したい場合、その「オーディオ クリップ」をシーン ビューにドラッグ & ドロップすると、そのシーン ビューに対して、「オーディオ ソース」ゲーム オブジェクトが自動的に作成されます。オーディオクリップをすでにあるゲームオブジェクトにドラッグ＆ドロップすると、オーディオクリップをと新しいオーディオソースをアタッチする（すでにオーディオソースがなかった場合）ことになります。もしオブジェクトにオーディオソースがあった場合、ドラッグ＆ドロップすることで、新しいオーディオクリップはすでにあるオーディオソースを上書きします。
 
 
-!! Platform specific details
+
+!! プラットフォーム固有の詳細
 !iOS!
 >>ios<<
-On mobile platforms compressed audio is encoded as MP3 for speedier decompression. Beware that this compression can remove samples at the end of the clip and potentially break a "perfect-looping" clip. Make sure the clip is right on a specific MP3 sample boundary to avoid sample clipping - tools to perform this task are widely available.
-For performance reasons audio clips can be played back using the Apple hardware codec. To enable this, check the "Use Hardware" checkbox in the import settings. See the [[class-AudioClip | Audio Clip]] documentation for more details.
+携帯プラットフォーム上では、より高速に解凍するため、圧縮オーディオは MP3 として符号化されます。 この圧縮により、クリップの最後のサンプルが削除され、「完全ループ」のクリップを破壊する可能性があることに注意してください。 サンプルのクリッピングを避けるため、クリップが MP3 サンプルの境界にあることを確認してください （これを行うためのツールが広く利用可能です）。
+パフォーマンス上の理由から、オーディオ クリップは、Apple ハードウェア コーデックを使用して再生できます。 これを有効にするには、インポート設定の「ハードウェアを使用する」チェックボックスにチェックを入れます。 詳細については、[[class-AudioClip | Audio Clip]] を参照してください。
 >><<
 !Android!
 >>android<<
-On mobile platforms compressed audio is encoded as MP3 for speedier decompression. Beware that this compression can remove samples at the end of the clip and potentially break a "perfect-looping" clip. Make sure the clip is right on a specific MP3 sample boundary to avoid sample clipping - tools to perform this task are widely available.
+携帯プラットフォーム上では、より高速に解凍するため、圧縮オーディオは MP3 として符号化されます。 この圧縮により、クリップの最後のサンプルが削除され、「完全ループ」のクリップを破壊する可能性があることに注意してください。 サンプルのクリッピングを避けるため、クリップが MP3 サンプルの境界にあることを確認してください （これを行うためのツールが広く利用可能です）。
 >><<

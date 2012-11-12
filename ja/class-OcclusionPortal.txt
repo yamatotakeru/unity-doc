@@ -1,10 +1,10 @@
-!Occlusion Portals
+!オクルージョンポータル
 
-In order to create occlusion primitive which are openable and closable at runtime, Unity uses ``Occlusion Portals``.
+実行時にオープン・クローズが可能であるオクルージョン　プリミティブを作成するには、Unityではオクルージョンポータルを使用します。
 
 Attach:OcclusionPortal.png
 
 ||PROPS
-||``Open`` ||Indicates if the portal is open (scriptable)
-||``Center`` ||Sets the center of the Occlusion Area. By default this is 0,0,0 and is located in the center of the box.||
-||``Size`` ||Defines the size of the Occlusion Area.||
+||``Open`` ||ポータルがオープンの状態（スクリプト編集可能）
+||``Center`` ||オクルージョンエリアの中心を設定します。デフォルトでは、（0,0,0）であり、ボックスの中央に位置しています。||
+||``Size`` ||オクルージョンエリアのサイズを定義||

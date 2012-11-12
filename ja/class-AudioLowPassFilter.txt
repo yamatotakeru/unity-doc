@@ -1,23 +1,25 @@
-! Audio Low Pass Filter (PRO only)
+! オーディオ　ローパスフィルター（Unity Proのみ）
 
-The $$Audio Low Pass Filter$$ filter passes low frequencies of an [[class-AudioSource|AudioSource]], or all sound reaching an [[class-AudioListener|AudioListener]], and cuts frequencies higher than the ``Cutoff Frequency``.\\
-The ``Lowpass Resonance Q`` (known as Lowpass Resonance Quality Factor) determines how much the filter's self-resonance is dampened. Higher ``Lowpass Resonance Q`` indicates a lower rate of energy loss i.e. the oscillations die out more slowly.\\
-The $$Audio Low Pass Filter$$ has a Rolloff curve associated with it, making it possible to set ``Cutoff Frequency`` over distance between the AudioSource and the AudioListener.
+$$Audio Low Pass Filter$$ フィルタは、[[class-AudioSource|AudioSource]] の低周波または [[class-AudioListener|AudioListener]] に達しているすべての音声を渡し、「Cutoff Frequency」よりも高い周波数をカットします。\\
+「Lowpass resonance Q」（別名: ローパス共鳴品質係数）は、フィルタの自己共鳴が抑制される度合いを決定します。 
+「Lowpass resonance Q」が高いということは、エネルギー損失率が下がる、つまり、共振の消滅がより遅くなるということです。
+$$Audio Low Pass Filter$$ は、 Rolloff 曲線と関連付けられており、これにより、オーディオ ソースとオーディオ リスナー間の距離にわたって、「Cutoff Frequency」を設定できます。
+
 
 Attach:AudioLowPassFilter.png\\
-''The Audio Low Pass filter properties in the inspector.''
+「オーディオ ロー パス フィルタ プロパティはインスペクタにあります。」
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Cutoff Frequency`` ||Lowpass cutoff frequency in hz. 10.0 to 22000.0. Default = 5000.0.||
-||``Lowpass Resonance Q`` ||Lowpass resonance Q value. 1.0 to 10.0. Default = 1.0.||
+||``Cutoff Frequency`` ||ロー パス カットオフ周波数 （単位: Hz）。 10.0 ～ 22000.0。 デフォルト = 5000.0。||
+||``Lowpass Resonance Q`` ||ロー パス共鳴 Q の値。 範囲は、10.0 ～ 10.0。 デフォルト = 1.0。||
 
 
-!! Adding a low pass filter
-To add a low pass filter to a given audio source just select the object in the inspector and then select ``Component->Audio->Audio Low Pass Filter``.
+!! ロー パス フィルタの追加
+ロー パス フィルタを所定のオーディオ ソースに追加するには、インスペクタ内でオブジェクトを選択し、[Component->Audio->Audio Low Pass Filter] を選択します。
 
-!! Hints
-* Sounds propagates very differently given the environment. For example, to compliment a visual fog effect add a subtle low-pass to the Audio Listener.
-* The high frequencies of a sound being emitted from behind a door will not reach the listener. To simulate this, simply change the ``Cutoff Frequency`` when opening the door.
+!!  ヒント
+* 音声は環境によってその伝播の仕方が異なります。例えば、視覚的な霧の効果の補完は、微妙なローパスのオーディオ リスナーへの追加になります。
+* ドアの後ろで発せられる音声の高周波はリスナーには届きません。ドアを開く際に、「Cutoff Frequency」を変更するだけ、これをシミュレートできます。

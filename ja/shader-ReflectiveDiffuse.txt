@@ -1,4 +1,4 @@
-!Reflective Diffuse
+! 反射デフューズ
 
 Attach:Shaders./Shader-ReflDiffuse.png
 
@@ -6,6 +6,6 @@ Attach:Shaders./Shader-ReflDiffuse.png
 
 (:include shader-DiffuseSubsetImport:)
 
-!!Performance
+!!パフォーマンス
 
-Generally, this shader is cheap to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].
+一般に、このシェーダでは少ない費用でレンダリングできます。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。

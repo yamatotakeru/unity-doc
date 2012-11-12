@@ -1,173 +1,173 @@
-! Light
+! ライト
 
-$$Lights$$ will bring personality and flavor to your game. You use lights to illuminate the scenes and objects to create the perfect visual mood. Lights can be used to simulate the sun, burning match light, flashlights, gun-fire, or explosions, just to name a few.
+$$Light$$ は、ゲームに個性や特色を与えます。 ライトを使用して、シーンやオブジェクトを照らし、完璧な視覚的ムードを作り出すことができます。 ライトを使用して、太陽や、燃えるマッチの明かり、閃光、銃火または爆発などをシミュレートすることができます。
 
 Attach:LightInspectorV3.png\\
-''The Light $$Inspector$$''
+「ライト $$Inspector$$」
 
-There are four types of lights in Unity:
-* $$Point lights$$ shine from a location equally in all directions, like a light bulb.
-* $$Directional lights$$ are placed infinitely far away and affect everything in the scene, like the sun.
-* $$Spot lights$$ shine from a point in a direction and only illuminate objects within a cone - like the headlights of a car.
-* $$Area lights$$ (only available for lightmap baking) shine in all directions to one side of a rectangular section of a plane. 
+Unity では、次の 4 種類のライトが用意されています。
+* $$Point light$$ は、電球のように、ある場所から全方向を等しく照らします。
+* $$Directional light$$ は、太陽のように、かなり遠くに配置され、シーン内のすべてを照らします。
+* $$Spot light$$ は、車のヘッドライトのように、1 点から 1 方向に光を放ち、円錐内のオブジェクトのみを照らします。
+* $$Area light$$ は、（ライトマップ焼き込みのときのみ）平面の片側の四角形の範囲に光を全方向に照射する。
 
-Lights can also cast $$Shadows$$.  Shadows are a Pro-only feature.  Shadow properties can be adjusted on a per-light basis.
+ライトは、$$Shadow$$ と投影することもできます。  影は、Pro 専用の機能です。  影プロパティは、ライトごとに調整可能です。
 
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Type`` ||The current type of light object: ||
-||>>>``Directional`` ||A light placed infinitely far away. It affects everything in the scene. ||
-||>>>``Point`` ||A light that shines equally in all directions from its location, affecting all objects within its ``Range``. ||
-||>>>``Spot`` ||A light that shines everywhere within a cone defined by ``Spot Angle`` and ``Range``. Only objects within this region are affected by the light. ||
-||>>>``Area``||A light that shines in all directions to one side of a rectangular area of a plane, affecting all objects within its ``Range``. The rectangle is defined by the X and Y properties. Area lights are only available during lightmap baking and have no effect on objects at runtime.||
-||``Range`` ||How far light is emitted from the center of the object. ``Point``/``Spot`` light only. ||
-||``Spot Angle`` ||Determines the angle of the cone in degrees. ``Spot`` light only. ||
-||``Color`` ||The color of the light emitted. ||
-||``Intensity`` ||Brightness of the light. Default value for a ``Point``/``Spot`` light is 1. Default value for a ``Directional`` light is 0.5 ||
-||``Cookie`` ||The alpha channel of this texture is used as a mask that determines how bright the light is at different places. If the light is a ``Spot`` or a ``Directional`` light, this must be a 2D texture. If the light is a ``Point`` light, it must be a $$Cubemap$$. ||
-||``Cookie Size`` ||Scales the projection of a Cookie. ``Directional`` light only. ||
-||``Shadow Type`` (Pro only) ||``No``, ``Hard`` or ``Soft`` [[Shadows|shadows]] that will be cast by this light. Only applicable to desktop build targets. Soft shadows are more expensive. ||
-||>>>``Strength`` ||The darkness of the shadows.  Values are between 0 and 1. ||
-||>>>``Resolution`` ||Detail level of the shadows. ||
-||>>>``Bias`` ||Offset used when comparing the pixel position in light space with the value from the shadow map. See ''Shadow Mapping and the Bias Property'' below ||
-||>>>``Softness`` ||Scales the penumbra region (the offset of blur samples). ``Directional`` light only. ||
-||>>>``Softness Fade`` ||Shadow softness fade based on the distance from the camera. ``Directional`` light only. ||
-||``Draw Halo`` ||If checked, a spherical halo of light will be drawn with a radius equal to ``Range``. ||
-||``Flare`` ||Optional reference to the [[class-Flare|Flare]] that will be rendered at the light's position. ||
-||``Render Mode`` ||Importance of this light. This can affect lighting fidelity and performance, see ''Performance Considerations'' below. Options include:
-||>>>``Auto`` ||The rendering method is determined at runtime depending on the brightness of nearby lights and current [[class-QualitySettings|Quality Settings]] for desktop build target. ||
-||>>>``Important`` ||This light is always rendered at per-pixel quality. Use this for very important effects only (e.g. headlights of a player's car). ||
-||>>>``Not Important`` ||This light is always rendered in a faster, vertex/object light mode. ||
-||``Culling Mask`` ||Use to selectively exclude groups of objects from being affected by the light; see [[Layers]]. ||
-||``Lightmapping`` ||The Lightmapping mode: ``RealtimeOnly``, ``Auto`` or ``BakedOnly``; see the [[LightmappingInDepth#DualLightmaps | Dual Lightmaps]] description. ||
-||``X``||(Area lights only) The width of the rectangular light area.||
-||``Y``||(Area lights only) The height of the rectangular light area.||
+||``Type`` ||ライトオブジェクトの現在のタイプ。 ||
+||>>>``Directional`` ||かなり遠くに配置されたライト。 シーン内のすべてを照らします。 ||
+||>>>``Point`` ||配置場所から全方向に光らを放つライトで、その「Range」内のすべてのオブジェクトを照らします。 ||
+||>>>``Spot`` ||「Spot Angle」と「Range」で定義される円錐内のすべての場所を照らすライト。 この領域のオブジェクトのみ照らされます。 ||
+||>>>``Area``||平面の片側の四角形の範囲で全方向に照射されるライトであり、Rangeの範囲にあるオブジェクトに影響を与える。四角形はX、Yプロパティで決定される。エリアライトはライトマップの焼き込みをのときのみ利用可能であり、リアルタイムではレンダリングされない。
+||``Range`` ||オブジェクトの中心から放出される光の範囲。 「Point」/「Spot」のみ。 ||
+||``Spot Angle`` ||円錐の角度をど決定します （単位: °）。 「Spot」のみ。 ||
+||``Color`` ||放出される光の色。 ||
+||``Intensity`` ||光の輝度。 「Point」/「Spot」のデフォルト値は 1 です。「Directional」のデフォルト値は 0.5 です。 
+||``Cookie`` ||このテクスチャのアルファ チャンネルが、異なる場所での光の輝度を決定するマスクとして使用されます。 ライトが「Spot」または「Directional」の場合、これは、2D テクスチャである必要があります。 ライトが「Point」の場合、これは、$$Cubemap$$ である必要があります。 ||
+||``Cookie Size`` ||Cookie の投影を縮小拡大します。 「Directional」のみ。 ||
+||``Shadow Type`` (Pro のみ) ||このライトによって投影される「No」、「Hard」または「Soft」の [[Shadows|shadows]]。 デスクトップの作成対象にのみ適用されます。 Soft の影はより高価になります。 ||
+||>>>``Strength`` ||影の強さ。  値は、0 と 1 になります。||
+||>>>``Resolution`` ||影の詳細なレベル。 ||
+||>>>``Bias`` ||明るい場所でのピクセル位置と、影マップからの値を比較する際に使用されるオフセット。 下記の「Shadow Mapping」と「Bias Property」を参照してください。||
+||>>>``Softness`` ||半影領域を縮小拡大します （ぼやけたサンプルのオフセット）。 「Directional」のみ。 ||
+||>>>``Softness Fade`` ||カメラからの距離に基づく影の柔らかさのフェード。 「Directional」のみ。 ||
+||``Draw Halo`` ||チェックを入れると、ライトの球体状のハローが「Range」に等しい半径で描画されます。 ||
+||``Flare`` ||ライトの位置でレンダリングされる [[class-Flare|Flare]] へのオプションの参照。 ||
+||``Render Mode`` ||このライトの重要度。 これは照明の忠実度とパフォーマンスに影響します。下記の「パフォーマンスに関する検討事項」を参照してください。 次のオプションが含まれます。
+||>>>``Auto`` ||このレンダリング方法は、デスクトップの ビルド 対象に対して、近くの光の輝度や現在の [[class-QualitySettings|Quality Settings]] に応じて、ランタイムで決定されます。 ||
+||>>>``Important`` ||このライトは常にピクセルごとの品質でレンダリングされます。 これは非常に重要な効果にのみ使用します （プレイヤーの車のヘッドライトなど）。 ||
+||>>>``Not Important`` ||このライトは常により速い、頂点 / オブジェクト ライト モードでレンダリングされます。 ||
+||``Culling Mask`` ||オブジェクトのグループがライトの影響を受けないように選択的に排除するのに使用されます。[[Layers]] 参照。 ||
+||``Lightmapping`` ||Lightmapping モード: 「RealtimeOnly」、「Auto」または「BakedOnly」があります。[[LightmappingInDepth#DualLightmaps | Dual Lightmaps]] を参照してください。 ||
+||``X``||（エリアライトのみ）四角形のライトエリアの幅||
+||``Y``||（エリアライトのみ）四角形のライトエリアの高さ||
 
-!! Details
+!! 詳細
 
-There are four basic light types in Unity. Each type can be customized to fit your needs.
+Unity では、次の 4 種類の基本的なライトが用意されています。 それぞれが、ニーズに合うようカスタマイズできます。
 
-You can create a texture that contains an alpha channel and assign it to the ``Cookie`` variable of the light.  The Cookie will be projected from the light. The Cookie's alpha mask modulates the light amount, creating light and dark spots on surfaces. They are a great way af adding lots of complexity or atmosphere to a scene.
+アルファ チャンネルを含むテクスチャを作成し、ライトの「Cookie」に割り当てることができます。  Cookie はライトから投影されます。 Cookie のアルファ マスクは光の量を調節し、面上の明るい点と暗い点を作成します。 シーンに複雑さや雰囲気を付け加えるのに便利です。
 
-All [[Built-in Shader Guide | built-in shaders]] in Unity seamlessly work with any type of light. $$VertexLit$$ shaders cannot display Cookies or Shadows, however.
+Unity の [[Built-in Shader Guide | built-in shaders]] はすべてどの種類のライトともシームレスに機能します。 しかし、$$VertexLit$$ シェーダは、Cookie や Shadow を表示できません。
 
-In Unity Pro with a build target of webplayer or standalone, all Lights can optionally cast [[Shadows]].  This is done by selecting either ``Hard Shadows`` or ``Soft Shadows`` for the ``Shadow Type`` property of each individual Light.  For more information about shadows, please read the [[Shadows]] page.
+Unity Pro では、ウェブ プレイヤーまたはスタンドアロンのビルド対象で、すべてのライトが選択的に [[Shadows]] を投影します。  これは、個々のライトの「Shadow Type」プロパティに対して、「Hard Shadows」または「Soft Shadows」のいずれかを選択して行います。  影の詳細については、[[Shadows]] を参照してください。
 
 
 
-!!! Point Lights
+!!! ポイント ライト
 
 Attach:LightPoint.png
 
-Point lights shine out from a point in all directions. They are the most common lights in computer games - typically used for explosions, light bulbs, etc.  They have an average cost on the graphics processor (though point light shadows are the most expensive).
+ポイント ライトは、ある点から全方向を等しく照らします。 コンピュータ ゲームで最も一般的なライトで、通常、爆発や電球などに使用されます。グラフィック プロセッサでの費用は平均的になりますす （ポイント ライトの影は最も費用がかかりますが）。
 
 Attach:Light-Point.png\\
-''Point Light''
+「ポイント ライト」
 
-Point lights can have cookies - [[class-Cubemap|Cubemap]] texture with alpha channel. This Cubemap gets projected out in all directions.
+ポイント ライトは Cookie - アルファ チャンネルのある [[class-Cubemap|Cubemap]] テクスチャを持つことができます。 このキューブマップは、全方向に投影されます。
 
 Attach:Light-PointCookie.png\\
-''Point Light with a Cookie''
+「Cookie のあるポイント ライト」
 
 
 
-!!! Spot Lights
+!!! スポット ライト
 
 Attach:LightSpot.png
 
-Spot lights only shine in one direction, in a cone.  They are perfect for flashlights, car headlights or lamp posts.  They are the most expensive on the graphics processor.
+スポット ライトは、1 つの円錐で、1 方向のみを照らします。  閃光や、車のヘッドライトまたは街灯に最適です。  グラフィック プロセッサでは、最も費用がかかります。
 
 Attach:Light-Spot.png\\
-''Spot Light''
+「スポット ライト」
 
-Spot lights can also have cookies - a texture projected down the cone of the light. This is good for creating an effect of light shining through the window. It is very important that the texture is black at the edges, has ``Border Mipmaps`` option on and its wrapping mode is set to ``Clamp``. For more info on this, see [[class-Texture2D|Textures]].
+スポット ライトも Cookie - ライトの円錐に投影されるテクスチャを持つことができます。 窓から差し込んでくる光の効果を作成するのに適しています。 このテクスチャは端で黒くなっており、「Border Mipmaps」オプションを持ち、ラッピング モードを「Clamp」に設定している必要があります。 詳細については、[[class-Texture2D|Textures]] に関する項目を参照してください。
 
 Attach:Light-SpotCookie.png\\
-''Spot Light with a Cookie''
+「Cookie のあるスポット ライト」
 
 
-!!! Directional Lights
+!!! ディレクショナル ライト
 
 Attach:LightDir.png
 
-Directional lights are used mainly in outdoor scenes for sun & moonlight.  The light affect all surfaces of objects in your scene.  They are the least expensive on the graphics processor. Shadows from directional lights (for platforms that support shadows) are explained in depth on [[DirectionalShadowDetails | this page]].
+ディレクショナル ライトは主に、屋外のシーンで、日光や月光を再現するのに使用されます。  このライトは、シーン内のオブジェクトのすべての面に影響します。  グラフィック プロセッサでは、最も費用がかかりません。 ディレクショナル ライトからの影 （影をサポートするプラットフォーム用） [[DirectionalShadowDetails | this page]] で詳細に説明しています。
 
 Attach:Light-Direct.png\\
-''Directional Light''
+「ディレクショナル ライト」
 
-When directional light has a cookie, it is projected down the center of the light's Z axis. The size of the cookie is controlled with ``Cookie Size`` property. Set the cookie texture's wrapping mode to ``Repeat`` in the $$Inspector$$.
+ディレクショナル ライトが Cookie を持っている場合、ライトの Z 軸の中心に投影されます。 Cookie のサイズは、「Cookie Size」プロパティで制御されます。 Cookie のテクスチャのラッピング モードを、$$Inspector$$ で「Repeat」に設定します。
 
 Attach:Light-DirectCookie.png\\
-''Directional Light projecting a cloud-like cookie texture''
+「雲のような Cookie テクスチャを投影するディレクショナル ライト」
 
-A cookie is a great way to add some quick detail to large outdoor scenes. You can even slide the light slowly over the scene to give the impression of moving clouds.
+Cookie は、大型の屋外のシーンに素早く詳細を加えるのに便利です。 シーン上で、ライトをゆっくりとスライドさせることで、動く雲の様子を付加することができます。
 
 
-!!Area Lights
+!!エリアライト
 
-Area lights cast light from one side of a rectangular area of a plane. 
+エリアライトは平面の片側の四角形の範囲に光を照射する。
 
 Attach:AreaLightDiagram.png
 
-Light is cast on all objects within the light's range. The size of the rectangle is determined by the X and Y properties and and the plane's normal (ie, the side to which light is cast) is the same as the light's positive Z direction. Light is emitted from the whole surface of the rectangle, so shading and shadows from affected object tend to be much softer than with point or directional light sources. 
+ライトは照射範囲のなかのすべてのオブジェクトに投影される。四角形の大きさはX、Yプロパティで決定され、平面の法線マップ（すなわちライトの投影面）はライトの正のZ方向と一致する。ライトは四角形の表面全体から放射され、オブジェクトが受けるシェーディングおよびシャドウのはポイントライトやディレクショナルライトに比べるとやわらかいものとなりがちである。
 
-Since the lighting calculation is quite processor-intensive, area lights are not available at runtime and can only be used as a lightmap effect.
+ライティング計算はプロセッサ負荷が大きいため、エリアライトはランタイムで使用することは出来ずライトマップエフェクトとしてのみ使用出来る。
 
-!! Performance considerations
+!! パフォーマンスに関する検討事項
 
-Lights can be rendered in one of two methods: $$vertex$$ lighting and $$pixel$$ lighting. Vertex lighting only calculates the lighting at the vertices of the game models and interpolates the lighting over the surfaces of the models. Pixel lights are calculated at every screen pixel, and hence are much more expensive.  Some older graphics cards only support vertex lighting.
+ライトのレンダリングは、 $$vertex$$ ライティングか $$pixel$$ ライティングのいずれかで行います。 Vertex ライティングは、ゲーム モデルの頂点でのライティングを計算し、モデルの面上へのライティングを補間します。 Pixel ライトは、画面のピクセルごとに計算されるため、より費用がかかります。  古いグラフィック カードは、頂点ライティングのみサポートしています。
 
-While pixel lighting is slower to render, it does allow some effects that are not possible with vertex lighting. Normal-mapping, light cookies and realtime shadows are only rendered for pixel lights. Spotlight shapes and Point light highlights are much better when rendered in pixel mode as well. The three light types above would look like this when rendered in vertex light mode:
+ピクセル ライティングはレンダリングに時間がかかりますが、頂点ライティングではできない効果を生み出すことができます。 法線マッピング、ライト Cookie およびリアルタイムの影はピクセル ライトにのみレンダリングされます。 スポットライト形状およびポイント ライト ハイライトは、ピクセル モードでのレンダリング時でもずっといい状態でレンダリングされます。 上記の 3 つのライトは頂点ライト モードでのレンダリング時は次のように見えます。
 
 Attach:Light-PointVertex.png\\
-''Point light in Vertex lighting mode.''
+「頂点ライティング モードでのポイント ライト」
 
 Attach:Light-SpotVertex.png\\
-''Spot light in Vertex lighting mode.''
+「頂点ライティング モードでのスポット ライト」
 
 Attach:Light-DirectVertex.png\\
-''Directional light in Vertex lighting mode.''
+「頂点ライティング モードでのディレクショナル ライト」
 
-Lights have a big impact on rendering speed - therefore a tradeoff has to be made betwen lighting quality and game speed. Since pixel lights are much more expensive than vertex lights, Unity will only render the brightest lights at per-pixel quality.  The actual number of pixel lights can be set in the [[class-QualitySettings|Quality Settings]] for webplayer and standalone build targets. 
+ライトはレンダリング速度に大きく影響するため、ライティングの品質とゲームの速度の間のバランスを取る必要があります。 ピクセル ライトは頂点ライトよりもはるかに費用がかかるため、Unity では、ピクセルごとの品質で最も明るい光をレンダリングするだけです。  ウェブ プレイヤーおよびスタンドアロンのビルド対象に対する実際のピクセル ライトの数は、 [[class-QualitySettings|Quality Settings]] で設定できます。 
 
-You can explicitly control if a light should be rendered as a vertex or pixel light using the ``Render Mode`` property. By default Unity will classify the light automatically based on how much the object is affected by the light.
+「Render Mode」プロパティで、ライトを頂点またはピクセル ライトのいずれかでレンダリングするかを明確に制御できます。 デフォルトでは、Unity はオブジェクトがライトのライトの影響をどれだけ受けるかに基づいて、自動的にライトを分類します。
 
-The actual lights that are rendered as pixel lights are determined on an object-by-object case. This means:
+ピクセル ライトとしてレンダリングされる実際のライトは、オブジェクトごとに決定されます。 つまり、
 
-* Huge objects with bright lights could use all the pixel lights (depending on the quality settings). If the player is far from these, nearby lights will be rendered as vertex lights.  Therefore, it is better to split huge objects up in a couple of small ones.
+* 明るいライトのある巨大なオブジェクトは、ピクセル ライトをすべて使用できます (品質設定に応じて)。 プレイヤーがこれらのライトから離れている場合、近くのライトは頂点ライトとしてレンダリングされます。  そのため、巨大なオブジェクトをいくつかの小さいオブジェクトに分割する方がよいでしょう。
 
-See Optimizing Graphics performance on [[OptimizingGraphicsPerformance#DesktopOptimizingGraphicsPerformance | Desktop]], [[OptimizingGraphicsPerformance#iPhoneOptimizingGraphicsPerformance| iOS]] or [[OptimizingGraphicsPerformance#AndroidOptimizingGraphicsPerformance | Android]] page for more information.
-
-
-!! Creating Cookies
-
-For more information on creating cookies, please see the [[HOWTO-LightCookie|tutorial on how to create a Spot light cookie]].
+詳細については、[[OptimizingGraphicsPerformance#DesktopOptimizingGraphicsPerformance | Desktop]]、[[OptimizingGraphicsPerformance#iPhoneOptimizingGraphicsPerformance| iOS]] または  [[OptimizingGraphicsPerformance#AndroidOptimizingGraphicsPerformance | Android]] ページのグラフィック パフォーマンスの最適化を参照してください。
 
 
-!!Shadow Mapping and the Bias Property
+!! Cookie の作成
 
-Shadows are implemented using a technique known as shadow mapping. This is analogous to the depth mapping used by a camera to determine which surfaces are obscured by others. The scene is internally rendered by a camera at the position of the light to create a depth map which stores the distance to each surface illuminated by the light. This kind of depth map is referred to as a shadow map, for obvious reasons. When the scene is rendered to the main view camera, each pixel position in the view is transformed into the light's space so that its distance can be compared to the corresponding pixel in the shadow map. If the pixel is more distant than the shadow map pixel then it is presumably obscured from the light by another object and so it will get no illumination.
+Cookie 作成の詳細については、 [[HOWTO-LightCookie|tutorial on how to create a Spot light cookie]] を参照してください。
+
+
+!!影マッピングと Bias プロパティ
+
+影は、影マッピングとして知られている手法で実施されます。 これは、カメラが、どの面を他のカメラによって隠されるかを決定する深さマッピングに似ています。 シーンは、ライトの位置で、カメラによって内部でレンダリングされ、ライトによって照らされる各面までの距離を格納する深さマップを作成します。 この種の深さマップは、明確な理由から、影マップとして参照されます。 シーンがメインのビュー カメラにレンダリングされると、ビュー内の各ピクセル位置がライトのスペースに変換され、その距離を影マップ内の対応するピクセルと比較できます。 ピクセルが影マップのピクセルよりも遠くにある場合、おそらく、別のオブジェクトにより光から隠されるため、照明が得られません。
 
 Attach:GoodShadowBias.png
-''Cylinder with correct shadowing''
+「正しく陰影付けられた円柱」
 
-A surface directly illuminated by a light can sometimes appear to be partly in shadow. This is because pixels that should be exactly at the distance specified in the shadow map will sometimes be deemed farther away (a consequence of using a low resolution image for the map). The result is arbitrary patterns of pixels in shadow when they should really be lit, giving a visual effect known as "shadow acne".
+ライトで直接光を当てられている面は、部分的に影があるように見える場合があります。 これは、ちょうど影マップで指定した距離にあるピクセルが、遠くにあるように見なされることがあるためです (低解像度の画像を使った結果)。 その結果、実際には光が立っているはずが、「影アクネ」として知られる視覚効果が生じ、ピクセルの任意のパターンに影が生じてしまいます。
 
 Attach:ShadowAcne.png
-''Shadow acne in the form of small dots on the cylinder''
+「円柱で小さな点となっている影アクネ」
 
-To prevent shadow acne, a bias value can be added to the distance in the shadow map to ensure that pixels on the borderline will definitely pass the comparison as they should. This is the value set by the Bias property associated with a light when it has shadows enabled. It is a mistake to set the bias too high, however, since areas of a shadow near to the object casting it can then sometimes be falsely illuminated. This effect is known as "Peter Panning" (ie, the disconnected shadow makes the object look as if it is flying some way above the ground like Peter Pan).
+影アクネを防ぐには、バイアス値を影マップの距離に追加し、境界線上のピクセルが通過するはずの比較を確実に通過するようにすることです。 これは、影が有効になった場合に、ライトと関連付けられた Bias プロパティが設定した値です。 しかし、影を投影するオブジェクトの近くにある影の部分は間違って照らされることがあるため、バイアス値を大きくしすぎるのは間違いです。 この効果は「ピーター パニング」として知られています (つまり、つながっていない影により、オブジェクトがピーター パンのように地面から離れて飛んでいるように見えるということです)。
 
 Attach:PeterPanning.png
-''Peter Panning makes the object look raised above the ground''
+「ピーター パニングにより、オブジェクトはまるで地面から離れているように見えます」
 
-The bias value for a light may need a bit of tweaking to make sure that neither shadow acne nor Peter Panning occur. It is generally easier to gauge the right value by eye rather than attempt to calculate it.
+ライトに対して、バイアス値を微調整して、影アクネもピーター パニングも発生しないようにする必要があります。 一般に、計算するよりも、目で正しい値を測る方が簡単です。
 
 
-!!Hints
+!!ヒント
 
-* Spot lights with cookies can be extremely effective for making light coming in from windows.
-* Low-intensity point lights are good for providing depth to a scene.
-* For maximum performance, use a [[Built-in Shader Guide | VertexLit]] shader. This shader only does per-vertex lighting, giving a much higher throughput on low-end cards.
-* Auto lights can cast dynamic shadows over lightmapped objects without adding extra illumination. For this to work the Auto lights must be active when the Lightmap is baked. Otherwise they render as real time lights.
+* Cookie のあるスポット ライトは、窓から光を差しこませる場合に極めて効果的です。
+* 低密度のポイント ライトは、シーンに深みを与えるのに適しています。
+* 最大の性能を得るには、[[Built-in Shader Guide | VertexLit]] シェーダを使用します。 このシェーダは、頂点ごとのライティングのみ行い、ローエンドカードの場合はスループットが非常に高くなります。
+* オートライトはライトマップされたオブジェクトに対し、追加の照明を用いることなくダイナミックシャドウを投影する。このためにはライトマップの焼き込みを行う時点でオートライトを有効にする必要性がある。無効の場合リアルタイムのライトとしてレンダリングされる。

@@ -1,40 +1,42 @@
-! Movie Texture
-__Note:__ This is a __Pro/Advanced__ feature only.
-!Desktop!
+! ムービーテクスチャ
+__注意：__　__Unity Pro/ Advancedのみ__
+!デスクトップ!
 >>desktop<<
-$$Movie Textures$$ are animated $$Textures$$ that are created from a video file.  By placing a video file in your project's ^^Assets Folder^^, you can import the video to be used exactly as you would use a regular [[class-Texture2D | Texture]].
+$$ムービーテクスチャ$$は、ビデオファイルから作成され、アニメーション化された$$テクスチャ$$です。
 
-Video files are imported via Apple QuickTime. Supported file types are what your QuickTime installation can play (usually __.mov__, __.mpg__, __.mpeg__, __.mp4__, __.avi__, __.asf__). On Windows movie importing requires Quicktime to be installed ([[http://www.apple.com/quicktime/download/ | download here]]).
+プロジェクトの^^Assetsフォルダ^^に動画ファイルを配置することによって、通常使用する[[class-Texture2D | テクスチャ]] とまったく同じように使用できるビデオをインポートすることができます。
+
+動画ファイルはApple社のQuickTimeを介してインポートされます。サポートされるファイルの種類はインストールされたQuickTimeのがサポートするものと一致します（通常は __.mov__、 __.mpg__、 __.mpeg__、 __.mp4__、 __.avi__、 __.asf__）Windows上でムービーがインポートされるためにはQuickTimeがインストールされていることが必要です（([[http://www.apple.com/quicktime/download/ | ここ]] )　からダウンロード）
 
 
-!! Properties
+!! プロパティ
 
-The Movie Texture $$Inspector$$ is very similar to the regular [[class-Texture2D | Texture]] Inspector.
+ムービーテクスチャ　$$インスペクタ$$は、通常の[[class-Texture2D | テクスチャ]] インスペクタと非常によく似ています。
 
 Attach:MovieTextureInInspector.png\\
-''Video files are Movie Textures in Unity''
+Unity上でビデオファイルから生成したムービーテクスチャ
 
 ||PROPS
-||``Aniso Level`` ||Increases Texture quality when viewing the texture at a steep angle. Good for floor and ground textures ||
-||``Filtering Mode`` ||Selects how the Texture is filtered when it gets stretched by 3D transformations ||
-||``Loop`` ||If enabled, the movie will loop when it finishes playing ||
-||``Quality`` ||Compression of the Ogg Theora video file.  A higher value means higher quality, but larger file size ||
+||``Aniso Level`` ||急な角度から眺めたときのテクスチャ品質を向上させます。床や地面のテクスチャに良い。||
+||``Filter Mode`` ||テクスチャが3Dへの変換によりストレッチされたときのフィルタ処理を選択 ||
+||``Loop`` ||オンの時、ムービー再生終了後にループ ||
+||``Quality`` ||Ogg Theoraビデオファイルの圧縮。より高い値により、品質がより高い一方でファイルサイズは大きくなる。||
 
 
-!! Details
+!! 詳細
 
-When a video file is added to your Project, it will automatically be imported and converted to $$Ogg Theora$$ format.  Once your Movie Texture has been imported, you can attach it to any $$GameObject$$ or $$Material$$, just like a regular Texture.
+ビデオファイルがプロジェクトに追加されると、自動的にインポートされ、$$Ogg Theora$$形式に変換されます。一度ムービーテクスチャがインポートすると、通常のテクスチャのように、任意の$$GameObject$$または$$マテリアル$$にアタッチできます。
 
-!!! Playing the Movie
+!!! ムービーを再生
 
-Your Movie Texture will not play automatically when the game begins running.  You must use a short script to tell it when to play.
+ゲームの実行開始時に、ムービーテクスチャは自動再生されません。再生を指示するスクリプトを準備する必要があります。
 
 [@
-// this line of code will make the Movie Texture begin playing
+// このコードによりムービーテクスチャが再生されます
 renderer.material.mainTexture.Play();
 @]
 
-Attach the following script to toggle Movie playback when the space bar is pressed:
+スペースが押されたときに動画再生をプレイバックに切り替えるためには、次のスクリプトをアタッチします。
 
 [@
 function Update () {
@@ -49,56 +51,61 @@ function Update () {
 }
 @]
 
-For more information about playing Movie Textures, see the [[ScriptRef:MovieTexture.html | Movie Texture Script Reference]] page
+ムービーテクスチャを再生する方法の詳細については、[[ScriptRef:MovieTexture.html | ムービーテクスチャ スクリプトリファレンス]] を参照してください。
 
 
-!!! Movie Audio
+!!! ムービーオーディオ
 
-When a Movie Texture is imported, the audio track accompanying the visuals are imported as well.  This audio appears as an $$AudioClip$$ child of the Movie Texture.
+ムービーテクスチャをインポートすると、映像とともにオーディオトラックもインポートされます。オーディオは、ムービーテクスチャの$$AudioClip$$を子オブジェクトとして表示されます。
 
 Attach:MovieTextureAudio.png\\
-''The video's audio track appears as a child of the Movie Texture in the $$Project View$$''
+ビデオのオーディオトラックは$$プロジェクトビュー$$にてムービーテクスチャの子オブジェクトとして表示されます
 
-To play this audio, the Audio Clip must be attached to a GameObject, like any other Audio Clip.  Drag the Audio Clip from the Project View onto any GameObject in the Scene or Hierarchy View.  Usually, this will be the same GameObject that is showing the Movie.  Then use [[ScriptRef: GameObject-audio.html|audio.Play()]] to make the the movie's audio track play along with its video.
+このオーディオを再生するには、他のオーディオクリップのように、ゲームオブジェクトにアタッチする必要があります。プロジェクトビューから、シーンビューか階層ビューの任意のゲームオブジェクトへドラッグします。
+
+通常、ムービーを見せているのと同じゲームオブジェクトになります。次に [[ScriptRef: GameObject-audio.html|audio.Play()]] を使用し、映像に合わせてオーディオトラックを再生します。
+
+
 >><<
 !iOS!
 >>ios<<
-Movie Textures are not supported on iOS. Instead, full-screen streaming playback is provided using [[ScriptRef:Handheld.PlayFullScreenMovie.html|Handheld.PlayFullScreenMovie]].
+ムービーテクスチャは、iOS上ではサポートされません。代わりに、[[ScriptRef:Handheld.PlayFullScreenMovie.html|Handheld.PlayFullScreenMovie]] を使用してフルスクリーン　ストリーミング再生が提供される。
 
-!!!You need to keep your videos inside the ''StreamingAssets'' folder located in your Project directory.
+!!!プロジェクト　ディレクトリのStreamingAssetsフォルダ内にビデオを格納する必要があります。
 
 
-Unity iOS supports any movie file types that play correctly on an iOS device, implying files with the extensions __.mov__, __.mp4__, __.mpv__, and __.3gp__ and using one of the following compression standards:
-* H.264 Baseline Profile Level 3.0 video
-* MPEG-4 Part 2 video
+iOSデバイス上で正しく再生できるファイルタイプはUnityのiOSでサポートされるため、（__.mov__, __.mp4__, __.mpv__, and __.3gp__ ）の拡張子や、次の圧縮規格はサポートされます：
+* H.264 ベースライン　プロファイルレベル3.0　ビデオ
+* MPEG-4 Part 2 ビデオ
 
-For more information about supported compression standards, consult the iPhone SDK [[http://developer.apple.com/library/ios/#documentation/MediaPlayer/Reference/MPMoviePlayerController_Class/MPMoviePlayerController/MPMoviePlayerController.html | MPMoviePlayerController Class Reference]].
+サポートされている圧縮規格の詳細については、iPhone SDKを参照してください。
+[[http://developer.apple.com/library/ios/#documentation/MediaPlayer/Reference/MPMoviePlayerController_Class/MPMoviePlayerController/MPMoviePlayerController.html | MPMoviePlayerController クラスリファレンス]] 
 
-As soon as you call [[ScriptRef:iPhoneUtils.PlayMovie.html | iPhoneUtils.PlayMovie]] or [[ScriptRef:iPhoneUtils.PlayMovie.html | iPhoneUtils.PlayMovieURL]], the screen will fade from your current content to the designated background color. It might take some time before the movie is ready to play but in the meantime, the player will continue displaying the background color and may also display a progress indicator to let the user know the movie is loading. When playback finishes, the screen will fade back to your content.
+[[ScriptRef:iPhoneUtils.PlayMovie.html | iPhoneUtils.PlayMovie]] あるいは [[ScriptRef:iPhoneUtils.PlayMovie.html | iPhoneUtils.PlayMovieURL]] をコールすると画面は現在のコンテンツから、指定された背景色にフェードアウトします。ムービーが再生できる状態になるまでに、少し時間がかかるかもしれませんが、その間プレイヤーは背景色が表示され続けるとともにムービーのロード時間の進行状況インジケータを表示することもできます。再生が終了すると、画面は元のコンテンツに戻るためにフェードバックします。
 
-!!! The video player does not respect switching to mute while playing videos
+!!! ビデオプレーヤーは、ビデオ再生時のミュート切替は無視します
 
-As written above, video files are played using Apple's embedded player (as of SDK 3.2 and iPhone OS 3.1.2 and earlier). This contains a bug that prevents Unity switching to mute.
+すでに書いたように、ビデオファイルはAppleの埋め込みプレーヤーを使用して再生されます。（SDK 3.2およびiPhone OS 3.1.2およびそれ以前のバージョン）このプレーヤーにはバグが含まれており、Unityではミュートに切替えることが出来ません。
 
-!!! The video player does not respect the device's orientation
-The Apple video player and iPhone SDK do not provide a way to adjust the orientation of the video. A common approach is to manually create two copies of each movie in landscape and portrait orientations. Then, the orientation of the device can be determined before playback so the right version of the movie can be chosen.
+!!! ビデオプレーヤーは、デバイスの向きを無視します
+アップル社ビデオプレーヤーとiPhone SDKはビデオの向きを調整する方法を提供していません。一般的なアプローチは、手動で各ムービーの複製を2つ、ランドスケープやポートレートの向きで、作成することです。これにより、デバイスの向きをプレイバック前に判定することで、正しいムービーを選択して再生することができる。
 >><<
 
 !Android!
 >>android<<
-Movie Textures are not supported on Android. Instead, full-screen streaming playback is provided using [[ScriptRef:Handheld.PlayFullScreenMovie.html|Handheld.PlayFullScreenMovie]].
+ムービーテクスチャは、Android上ではサポートされません。代わりに、[[ScriptRef:Handheld.PlayFullScreenMovie.html|Handheld.PlayFullScreenMovie]] を使用してフルスクリーン　ストリーミング再生が提供される。
 
-!!!You need to keep your videos inside of the ''StreamingAssets'' folder located in your Project directory.
+!!!プロジェクト　ディレクトリのStreamingAssetsフォルダ内にビデオを格納する必要があります。
 
 
-Unity Android supports any movie file type supported by Android, (ie, files with the extensions __.mp4__ and __.3gp__) and using one of the following compression standards:
+Androidデバイス上で正しく再生できるファイルタイプはUnityのAndroidでサポートされるため、（__.mp4__, and __.3gp__ ）の拡張子や、次の圧縮規格はサポートされます：
 * H.263
 * H.264 AVC
 * MPEG-4 SP
 
-However, device vendors are keen on expanding this list, so some Android devices are able to play formats other than those listed, such as HD videos.
+ただし、デバイスベンダーによりこのリストのサポート範囲は拡大しており、Androidの再生フォーマットが再生できるようなっているたえｍ、いくつかのAndroid端末はHD動画など、のフォーマットを再生することができます。
 
-For more information about the supported compression standards, consult the Android SDK [[http://developer.android.com/guide/appendix/media-formats.html | Core Media Formats documentation]].
+サポートされている圧縮規格の詳細については、Android SDKを参照してください[[http://developer.android.com/guide/appendix/media-formats.html | コアメディアフォーマットのドキュメント]]
 
-As soon as you call [[ScriptRef:iPhoneUtils.PlayMovie.html|iPhoneUtils.PlayMovie]] or [[ScriptRef:iPhoneUtils.PlayMovie.html|iPhoneUtils.PlayMovieURL]], the screen will fade from your current content to the designated background color. It might take some time before the movie is ready to play. In the meantime, the player will continue displaying the background color and may also display a progress indicator to let the user know the movie is loading. When playback finishes, the screen will fade back to your content.
+[[ScriptRef:iPhoneUtils.PlayMovie.html | iPhoneUtils.PlayMovie]] あるいは [[ScriptRef:iPhoneUtils.PlayMovie.html | iPhoneUtils.PlayMovieURL]] をコールすると画面は現在のコンテンツから、指定された背景色にフェードアウトします。ムービーが再生できる状態になるまでに、少し時間がかかるかもしれませんが、その間プレイヤーは背景色が表示され続けるとともにムービーのロード時間の進行状況インジケータを表示することもできます。再生が終了すると、画面は元のコンテンツに戻るためにフェードバックします。
 >><<

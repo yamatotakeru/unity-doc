@@ -1,5 +1,6 @@
-!Pathfinding
+!経路探索（Pathfinding）
 
-This section covers Unity's support for $$pathfinding$$, the process of planning an efficient route between two points while avoiding obstacles along the way.
+本項ではUnityの経路探索の機能をカバーし、二つの地点間で障害物をさけて最適な経路を移動するプロセスを説明します。
+
 
 (:tocportion:)

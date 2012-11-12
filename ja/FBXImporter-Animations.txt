@@ -1,32 +1,32 @@
-!FBX Importer - Animations Tab
+!FBXインポータ　Animationsタブ
 
 Attach:MecanimImporterAnimationsTab.png
 
 ||__''Animations''__ ||
-||``Generation`` ||Controls how animations are imported: ||
-||>>>``Don't Import`` ||No animation or skinning is imported. ||
-||>>>``Store in Original Roots`` ||Animations are stored in the root objects of your animation package (these might be different from the root objects in Unity). ||
-||>>>``Store in Nodes`` ||Animations are stored together with the objects they animate. Use this when you have a complex animation setup and want full scripting control. ||
-||>>>``Store in Root`` ||Animations are stored in the scene's transform root objects. Use this when animating anything that has a hierarchy. ||
-||``Bake Animations`` ||Enable this when using IK or simulation in your animation package. Unity will convert to forward kinematics on import. This option is available only for Maya, 3dsMax and Cinema4D files. ||
-||``Animation Wrap mode`` ||The default $$Wrap Mode$$ for the animation in the mesh being imported ||
-||>>>``Default``||The animation plays as specified in the animation splitting options below.||
-||>>>``Once``||The animation plays through to the end once and then stops.||
-||>>>``Loop``||The animation plays through and then restarts when the end is reached.||
-||>>>``PingPong``||The animation plays through and then plays in reverse from the end to the start, and so on.||
-||>>>``ClampForever``||The animation plays through but the last frame is repeated indefinitely. This is not the same as Once mode because playback does not technically stop at the last frame (which is useful when blending animations).||
-||``Split Animations`` ||If you have multiple animations in a single file, you can split it into multiple clips. ||
-||>>>``Name``||The name of the split animation clip||
-||>>>``Start``||The first frame of this clip in the model file ||
-||>>>``End``||The last frame of this clip in the model file ||
-||>>>``WrapMode``||What the split clip does when the end of the animation is reached (this is identical to the wrap mode option described above).||
-||>>>``Loop``||Depending on how the animation was created, one extra frame of animation may be required for the split clip to loop properly.  If your looping animation doesn't look correct, try enabling this option. ||
+||``Generation`` ||アニメーションをインポートする方法を制御します ||
+||>>>``Don't Import`` ||アニメーションやスキニングをインポートしません||
+||>>>``Store in Original Roots`` ||アニメーションをアニメーションパッケージのルートオブジェクトに格納します（Unity上のルートオブジェクトとは異なる場合があります）。||
+||>>>``Store in Nodes`` ||アニメーションは、その対象となるオブジェクトと一緒に格納されます。複雑なアニメーションを設定していて、スクリプトで完全に制御したい場合に使用てください。||
+||>>>``Store in Root`` ||アニメーションがシーンのトランスフォーム　ルートオブジェクトに格納されます。階層構造を持っている何かをアニメーション化する場合に使用して下さい。||
+||``Bake Animations`` ||アニメーションパッケージで、IKやシミュレーションを使用している場合オンにして下さい。Unityはインポート時にフォワード　キネマティクスに変換します。このオプションは、Maya、3dsMaxとCinema4Dファイルでのみ利用可能です。||
+||``Animation Wrap mode`` ||インポートされたメッシュ上のアニメーションのデフォルトの$$Wrap Mode$$
+||>>>``Default``||アニメーションを下のアニメーション分割オプションで指定したとおりに再生||
+||>>>``Once``||アニメーションは一度だけ再生。その後は停止||
+||>>>``Loop``||アニメーション再生終了後にループ再生||
+||>>>``PingPong``||アニメーションが再生終了時に、繰り返し逆方向へ再生||
+||>>>``ClampForever``||アニメーション再生後、最後のフレームが無限に繰り返される。Onceモードでの再生では厳密には最後のフレームまで到達しないため、違いがあります（アニメーションのブレンドの場合などで便利です）||
+||``Split Animations`` ||あなたが単一のファイルに複数のアニメーションを持っている場合は、複数のクリップに分割することができます。||
+||>>>``Name``||分割アニメーションクリップの名前||
+||>>>``Start``||モデルファイル内のクリップの最初のフレーム||
+||>>>``End``||モデルファイル内のクリップの最後のフレーム||
+||>>>``WrapMode``||分割された·クリップがアニメーション再生終了後の動作（前述のWrapのオプションと同じ）。||
+||>>>``Loop``||アニメーションの作成された方法によっては、分割されたクリップが適切にループするためにはアニメーションに追加で1フレーム必要な場合があります。アニメーションのループが正しいように見えない場合は、このオプションを有効にしてみてください。||
 ||__''Animation Compression''__ ||
-||``Anim. Compression`` ||The type of compression that will be applied to this mesh's animation(s) ||
-||>>>``Off`` ||Disables animation compression. This means that Unity doesn't reduce keyframe count on import, which leads to the highest precision animations, but slower performance and bigger file and runtime memory size. It is generally not advisable to use this option - if you need higher precision animation, you should enable keyframe reduction and lower allowed ``Animation Compression Error`` values instead. ||
-||>>>``Keyframe Reduction`` ||Reduces keyframes on import. If selected, the ``Animation Compression Errors`` options are displayed. ||
-||>>>``Keyframe Reduction and Compression`` ||Reduces keyframes on import and compresses keyframes when storing animations in files. This affects only file size - the runtime memory size is the same as ``Keyframe Reduction``. If selected, the ``Animation Compression Errors`` options are displayed. ||
-||``Animation Compression Errors`` ||These options are available only when keyframe reduction is enabled. ||
-||>>>``Rotation Error`` ||Defines how much rotation curves should be reduced. The smaller value you use - the higher precision you get. ||
-||>>>``Position Error`` ||Defines how much position curves should be reduced. The smaller value you use - the higher precision you get. ||
-||>>>``Scale Error`` ||Defines how much scale curves should be reduced. The smaller value you use - the higher precision you get. ||
+||``Anim. Compression`` ||メッシュのアニメーションに適用される圧縮のタイプ||
+||>>>``Off`` ||アニメーション圧縮をオフにする。Unityでインポート時にキーフレーム数を削減しません。アニメーション品質は最高になる一方で、パフォーマンス低下、ファイルサイズ増大、およびランタイム　メモリーサイズ増大を意味します。一般的に、このオプションの使用は推奨しません。別の方法としては、より精度の高いアニメーションが必要な場合にKeyframe Reductionをオンにして、Animation Compressionの値を許容できるところまで下げます。||
+||>>>``Keyframe Reduction`` ||インポート時にキーフレームを減らします。選択した場合は、Animation Compression Errors`オプションが表示されます。||
+||>>>``Keyframe Reduction and Compression`` ||インポート時にキーフレームを減らし、ファイルにアニメーションを格納する時にキーフレームを圧縮します。ファイルサイズのみに影響があり、ランタイムのメモリーサイズは、Keyframe Reductionをオンにした場合と同じになります。選択した場合は、Animation Compression Errosオプションが表示されます。||
+||``Animation Compression Errors`` ||これらのオプションはKeyframe Reductionがオンの場合のみ使用できます。||
+||>>>``Rotation Error`` ||回転カーブを削減する度合いを定義します。小さい値ほど高いアニメーション品質が得られます。||
+||>>>``Position Error`` ||位置カーブを削減する度合いを定義します。小さい値ほど高いアニメーション品質が得られます。||
+||>>>``Scale Error`` ||大きさカーブを削減する度合いを定義します。小さい値ほど高いアニメーション品質が得られます。||
