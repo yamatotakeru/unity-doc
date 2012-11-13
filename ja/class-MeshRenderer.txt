@@ -1,20 +1,23 @@
-! Mesh Renderer
+! メッシュ レンダラ
 
-The $$Mesh Renderer$$ takes the geometry from the [[class-MeshFilter|Mesh Filter]] and renders it at the position defined by the object's [[class-Transform|Transform]] component.
+$$Mesh Renderer$$ は、[[class-MeshFilter|Mesh Filter]] からのジオメトリを使い、オブジェクトの [[class-Transform|Transform]] コンポーネントで定義された位置でレンダリングします。
 
 Attach:InspectorMeshRend35.png
 
-!!Properties
+
+!!プロパティ
 
 ||PROPS
-||``Cast Shadows`` (Pro only) ||If enabled, this $$Mesh$$ will create shadows when a shadow-creating [[class-Light | Light]] shines on it ||
-||``Receive Shadows`` (Pro only) ||If enabled, this Mesh will display any shadows being cast upon it ||
-||``Materials`` ||A list of $$Materials$$ to render model with ||
-||``Light Probe Anchor``||A $$Transform$$ used to determine the interpolation position when the light probe system is used||
-||``Use Light Probes``||Enable probe-based lighting for this mesh||
+||``Cast Shadows`` (Unity Pro のみ) ||有効にすると、この $$Mesh$$ は影を生み出す [[class-Light | Light]] が輝いた時に、影を生じさせます。||
+||``Receive Shadows`` (Unity Pro のみ) ||有効にすると、このメッシュはその上に投射される影を表示します。||
+||``Materials`` ||モデルをレンダリングする $$Material$$ のリスト。 ||
+||``Light Probe Anchor``||ライトプローブを用いる場合に補間処理の基準位置を決める$$トランスフォーム$$||
+||``Use Light Probes``||メッシュのライトプローブを有効にします。||
 
-!!Details
 
-Meshes imported from 3D packages can use multiple [[Materials|Materials]]. For each Material there is an entry in Mesh Renderer's Materials list, so each submesh in the Mesh is rendered with a different material. If there are more materials assigned to the MeshRenderer then submeshes in the Mesh, then the first submesh will be rendered with each of the remaining materials - this lets you set up multi-pass rendering with multiple materials.
+!!詳細
 
-A mesh can receive light from the $$light probe$$ system if the ``Use Light Probes`` option is enabled (see the [[LightProbes|light probes]] manual page for further details). A single point is used as the mesh's notional position for light probe interpolation. By default, this is the centre of the mesh's bounding box, but you can override this by dragging a $$Transform$$ to the ``Light Probe Anchor`` property. It may be useful to set the anchor in cases where an object contains two adjoining meshes; since each mesh has a separate bounding box, the two will be lit discontinuously at the join by default. However, if you set both meshes to use the same anchor point, they will be consistently lit.
+3D パッケージからインポートされたメッシュは、複数の  [[Materials|マテリアル]] を使用できます。各マテリアルに対して、メッシュ レンダラのマテリアル リストの項目があるため、メッシュのサブメッシュは別のマテリアルで連弾リングされます。
+もしMeshRendererに割り当てられた材料の数が、メッシュ内のサブメッシュの数より多い場合、最初のサブメッシュは、残った材料によりレンダリングされます。これにより、複数の材料でマルチパスレンダリングを設定することができます。
+
+メッシュは、``Use Light Probes``オプションが有効になっている場合、$$ライトプローブ$$から光を受けることができます。（詳細はマニュアルの[[LightProbes|ライトプローブ]] を参照して下さい）一つの点がライトプローブ補間のためのメッシュの仮想位置として使用されます。デフォルトでは、この位置はメッシュのバウンディングボックスの中心ですが、``Light Probe Anchor``プロパティに$$トランスフォーム$$をドラッグすることによって、これを上書きできます。オブジェクトが2つの隣接するメッシュが含まれている場合にアンカー設定は役に立ちます。なぜなら各メッシュは別のバウンディングボックスを持っているので、デフォルトでは、2つのつなぎ目が不連続的に点灯しまうためです。逆に、同じアンカー位置を使用するように両方のメッシュを設定した場合は、それらは一貫性をもって点灯します。
