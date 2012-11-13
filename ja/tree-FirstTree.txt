@@ -1,63 +1,64 @@
-! Building Your First Tree
+! 初めてのツリー作成
 
-We'll now walk you through the creation of your first Tree Creator Tree in Unity.  First, make sure you have included the tree creator package in your project. If you don't, select ^^Assets->Import Package...^^, navigate to your Unity installation folder, and open the folder named ''Standard Packages''. Select the ''Tree Creator.unityPackage'' package to get the needed assets into your project.
+Unityのツリー　クリエーターの使用手順を追って説明します。最初に、プロジェクトにツリー　クリエータ　パッケージが含まれていることを確認してください。なかった場合、メニューから^^Assets->Import Package...^^と選択し、Unityのインストールフォルダに移動し、Standard Packagesフォルダを開きます。プロジェクトに必要なアセットを追加するためにTree  Creator.unityPackageパッケージを選択します。
 
-!! Adding a new Tree
-To create a new $$Tree$$ asset, select ^^GameObject->Create Other->Tree^^.
+!! 新たなツリー（木）の追加
+新しい$$ツリー$$アセットの作成にはメニューから ^^GameObject->Create Other->Tree^^を選択します。
 
 Attach:TreeCreator-CreatingBasic.png\\
 
-You'll see a new Tree asset is created in your Project View, and instantiated in the currently open Scene. This new Tree is very basic with only a single branch, so let's add some character to it.
+新しいツリーアセットがプロジェクトビューで作成され、現在開いているシーンでインスタンス化され表示されます。出来上がった新しいツリーは単一のブランチだけのシンプルなものなので、もっと特徴あるもにしていきます。
 
-!! Adding Branches
+!! ブランチ（枝）の追加
 
-Attach:TreeCreator-BasicBranch.png\\
-''A brand new tree in your scene''
+添付：TreeCreator-BasicBranch.png \ \
+''シーンにある真新しい木''
 
-Select the tree to view the $$Tree Creator$$ in the $$Inspector$$.  This interface provides all the tools for shaping and sculpting your trees. You will see the $$Tree Hierarchy$$ with two nodes present: the $$Tree Root$$ node and a single $$Branch Group$$ node, which we'll call the trunk of the tree.
+$$インスペクタ$$上の$$ツリー　クリエーター$$を で表示したいツリーを選択します。ツリーのインターフェイスを通して、ツリーの変形、整形に必要なすべてのツールが提供されます。$$ツリー階層$$上で2つのノードが表示されます（$$ツリー　ルート$$ノードと、単一の$$ブランチグループ$$ノード）
 
 
 
-In the $$Tree Hierarchy$$, select the $$Branch Group$$, which acts as the trunk of the tree. Click on the $$Add Branch Group$$ button and you'll see a new $$Branch Group$$ appear connected to the Main Branch. Now you can play with the settings in the $$Branch Group Properties$$ to see alterations of the branches attached to the tree trunk.
+$$ツリー階層$$で、木の幹にあたる$$ブランチグループ$$を選択します。$$Add Branch Group$$ボタンをクリックすると、メインのブランチにつながった新たなブランチグループが表示されます。今度は、$$ブランチグループのプロパティ$$を調整してトランクにつながったブランチのバリエーションをみることが出来ます。
 
 Attach:TreeCreator-AddingBranches1.png\\
-''Adding branches to the tree trunk.''
+トランク（幹）にブランチ（枝）を追加
 
-After creating the branches that are attached to the trunk, we can now add smaller twigs to the newly created branches by attaching another $$Branch Group$$ node. Select the secondary $$Branch Group$$ and click the $$Add Branch Group$$ button again. Tweak the values of this group to create more branches that are attached to the secondary branches.
+トランクに接続されているブランチを作成した後、さらにブランチグループノードに追加していくことで、より小さなブランチ（小枝）を作成できます。二つめの$$ブランチグループ$$を選択して$$Add Branch Group$$ボタンをクリックします。このグループのプロパティ値を調整して。二つめのブランチにより多くのブランチが作成されるようにします。
 
 Attach:TreeCreator-AddingBranches2.png\\
-''Adding branches to the secondary branches.''
+二つめのブランチにさらにブランチを追加
 
-Now the tree's branch structure is in place.  Our game doesn't take place in the winter time, so we should also add some $$Leaves$$ to the different branches, right?
+これによりブランチの構造が出来上がります。ゲームの想定が冬でないものとして、次はリーフ（葉）を追加します。
 
-!! Adding Leaves
+!! リーフ（葉）の追加
 
-We decorate our tree with leaves by adding $$Leaf Groups$$, which basically work the same as the Branch groups we've already used.  Select your secondary Branch Group node and then click the $$Add Leaf Group$$ button.  If you're really hardcore, you can add another leaf group to the tiniest branches on the tree as well.
+$$リーフグループ$$の追加によりツリーをリーフ（葉）で飾ります。リーフの仕組みはここまでみてきたブランチグループと同じです。二つめのブランチグループ　ノードを選択して$$Add Leaf Group$$ボタンをクリックします。さらに凝るのなら、ツリーの上にほんの小さなブランチにもリーフグループを追加することができます。
 
 Attach:TreeCreator-AddingLeaves.png\\
-''Leaves added to the secondary and smallest branches''
+二つめのブランチ、ほんの小さなブランチに追加されたリーフ
 
-Right now the leaves are rendered as opaque planes. This is because we want to adjust the leaves' values (size, position, rotation, etc.) before we add a material to them. Tweak the Leaf values until you find some settings you like.
+この時点ではリーフは透明でない平面としてレンダリングされます。これは、マテリアルを追加する前にリーフのプロパティ値（大きさ、位置、回転など）を調整するためです。思いどおりの設定になるまで、リーフの値は微調整していきます。
 
-!! Adding Materials
-In order to make our tree realistic looking, we need to apply $$Materials$$ for the branches and the leaves. Create a new Material in your project using ^Assets->Create->Material^^.  Rename it to "My Tree Bark", and choose ^^Nature->Tree Creator Bark^^ from the Shader drop-down. From here you can assign the $$Textures$$ provided in the Tree Creator Package to the Base, Normalmap, and Gloss properties of the Bark Material.  We recommend using the texture "BigTree_bark_diffuse" for the Base and Gloss properties, and "BigTree_bark_normal" for the Normalmap property.
+!! マテリアルの追加
+ツリーのリアリティを増すためには、ブランチやリーフ$$マテリアル$$を適用する必要があります。新しいマテリアルを作成するには、メニューで^^Assets->Create->Material^^を選択しますMy Tree Barkに名前変更し、シェーダのドロップダウンから^^Nature->Tree Creator Bark^^を選択します。ここから先では、ツリー　クリエータ　パッケージにて提供されている$$テクスチャ$$をベースマップ、法線マップ、およびBarkマテリアルのGlossプロパティに割り当てることができます。ベースマップとグロスマップのプロパティとしては "BigTree_bark_diffuse"を、法線プロパティのとしては"BigTree_bark_normal"を使用することをお勧めします。
 
-Now we'll follow the same steps for creating a Leaf Material.  Create a new Material and assign the shader as ^^Nature->Tree Creator Leaves^^.  Assign the texture slots with the leaf textures from the Tree Creator Package.
+リーフのマテリアル作成するも同じ手順に従います。新しいマテリアルを作成し、シェーダーを^^Nature->Tree Creator Leaves^^と割り当てます。ツリー　クリエータのパッケージからのテクスチャのスロットにリーフのテクスチャを割り当てます。
 
 Attach:TreeCreator-LeavesMaterial.png\\
-''Material for the Leaves''
+リーフのためのマテリアル
 
-When both Materials are created, we'll assign them to the different Group Nodes of the Tree.  Select your Tree and click any Branch or Leaf node, then expand the $$Geometry$$ section of the $$Branch Group Properties$$. You will see a Material assignment slot for the type of node you've selected.  Assign the relevant Material you created and view the results.
+両方のマテリアルが作成されたとき、ツリーの異なるグループノードに割り当てることができます。ツリーを選択し、任意のブランチまたはリーフノードをクリックして、$$ブランチグループのプロパティ$$の$$Geometryセクションを展開します。すでに選択したノードの種類のマテリアルの割り当てスロットが表示されます。作成したマテリアルを割り当て、結果を確認します。
 
 Attach:TreeCreator-AddingMaterialToLeaves.png\\
-''Setting the leaves material''
+リーフマテリアルの設定
 
-To finish off the tree, assign your Materials to all the $$Branch$$ and $$Leaf Group$$ nodes in the Tree.  Now you're ready to put your first tree into a game!
+ツリーを仕上げるために、すべての$$ブランチ$$に$$リーフグループ$$ノードをあなたの材料を割り当てて下さい。これであなたはゲームに最初のツリーを入れる準備が整いました！
 
 Attach:TreeCreator-FinalTree.png\\
-''Tree with materials on leaves and branches.''
+マテリアルをつけたリーフやブランチ
 
-!! Hints.
-* Creating trees is a trial and error process.
-* Don't create too many leaves/branches as this can affect the performance of your game.
-* Check the [[HOWTO-alphamaps | alpha maps]] guide for creating custom leaves.
+
+!!  ヒント
+* ツリーの作成は、試行錯誤のプロセスです。
+* あまりにも多くのリーフ/ブランチを作成しすぎないでください、ゲームのパフォーマンスに影響を与えます。
+* カスタムリーフを作成するためのガイドにはアルファマップを参照下さい。
