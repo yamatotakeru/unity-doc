@@ -1,72 +1,72 @@
-!Quality Settings
+!画質設定
 
-Unity allows you to set the level of graphical quality it will attempt to render. Generally speaking, quality comes at the expense of framerate and so it may be best not to aim for the highest quality on mobile devices or older hardware since it will have a detrimental effect on gameplay. The $$Quality Settings$$ inspector (menu: ^^Edit->Project Settings->Quality^^) is split into two main areas. At the top, there is the following matrix:-
+Unityは、レンダリングの画質レベルを設定することができます。一般的に言えば、画質はフレームレートを犠牲にしているのため、モバイル機器や古いハードウェアで最高画質をターゲットにすることはゲームプレイに悪影響を与えるため、正しいとはいえません。$$Quality Settings$$ は、^^Edit->Project Settings->Quality^^ は2つのメインエリアに分けることができます。上部には、次のマトリクスがあります：
 
 Attach:QualSettingsTop.png
 
-Unity lets you assign a name to a given combination of quality options for easy reference. The rows of the matrix let you choose which of the different platforms each quality level will apply to. The Default row at the bottom of the matrix is not a quality level in itself but rather sets the default quality level used for each platform (a green checkbox in a column denotes the level currently chosen for that platform). Unity comes with six quality levels pre-enabled but you can add your own levels using the button below the matrix. You can use the trashcan icon (the rightmost column) to delete an unwanted quality level.
+Unityには、簡単に参照できるように、画質オプションの組み合わせに名前をつけることができます。マトリクスの行により、各画質水準をどのプラットフォームに割り当てるかを選択することができます。マトリクスの下のDefault行は画質レベルそのものはではないが、各プラットフォームで使用されるデフォルトの画質レベルを設定します。（列に緑のチェックボックスは、現在、そのプラットフォームの選択レベルを表す）Unityは事前対応6つの画質レベルが付属していますが、マトリックスの下にあるボタンを使用して自分のレベルを追加することができます。不要な品質レベルを削除するには、ゴミ箱アイコン（右端の列）を使用することができます。
 
-You can click on the name of a quality level to select it for editing, which is done in the panel below the settings matrix:-
+画質レベルの名前をクリックして編集のために選択することが出来ます。（マトリックスの下のパネルでクリック）
 
 Attach:QualitySettingsBottom.png
 
 
-The quality options you can choose for a quality level are as follows:-
+画質レベルのために選ぶことができる画質オプションは次のとおりです：
 ||PROPS
-||Name||The name that will be used to refer to this quality level||
-||``Pixel Light Count``||The maximum number of pixel lights when Forward Rendering is used.
-||``Texture Quality``||This lets you choose whether to display textures at maximum resolution or at a fraction of this (lower resolution has less processing overhead). The options are __Full Res__, __Half Res__, __Quarter Res__ and __Eighth Res__.
-||``Anisotropic Textures``||This enables if and how anisotropic textures will be used.||
-||>>>``Disabled``||Anisotropic textures are not used.||
-||>>>``Per Texture``||Anisotropic rendering will be enabled separately for each Texture.||
-||>>>``Forced On``||Anisotropic textures are always used.||
-||``AntiAliasing``||This sets the level of antialiasing that will be used. The options are __2x__, __4x__ and __8x__ multi-sampling.||
-||``Soft Particles``||Should soft blending be used for particles?||
-||``Shadows``||This determines which type of shadows should be used||
-||>>>``Hard and Soft Shadows``||Both hard and soft shadows will be rendered.||
-||>>>``Hard Shadows Only``||Only hard shadows will be rendered.||
-||>>>``Disable Shadows``||No shadows will be rendered.||
-||``Shadow resolution``||Shadows can be rendered at several different resolutions: __Low__, __Medium__, __High__ and __Very High__. The higher the resolution, the greater the processing overhead.||
-||``Shadow Projection``||There are two different methods for projecting shadows from a directional light. __Close Fit__ renders higher resolution shadows but they can sometimes wobble slightly if the camera moves. __Stable Fit__ renders lower resolution shadows but they don't wobble with camera movements.||
-||``Shadow Cascades``||The number of shadow cascades can be set to zero, two or four. A higher number of cascades gives better quality but at the expense of processing overhead (see the Directional Shadows page for further details).||
-||``Shadow Distance``||The maximum distance from camera at which shadows will be visible. Shadows that fall beyond this distance will not be rendered.||
-||``Blend Weights``||The number of bones that can affect a given vertex during an animation. The available options are one, two or four bones.||
-||``VSync Count``||Rendering can be synchronised with the refresh rate of the display device to avoid "tearing" artifacts (see below). You can choose to synchronise with every vertical blank (VBlank), every second vertical blank or not to synchronise at all.||
-||``LOD Bias``||LOD levels are chosen based on the onscreen size of an object. When the size is between two LOD levels, the choice can be biased toward the less detailed or more detailed of the two models available. This is set as a fraction from 0 to 1 - the closer it is to zero, the more the bias is toward the less detailed model.||
-||``Maximum LOD Level``||The highest LOD that will be used by the game. Models which have a LOD above this level will not be used and omitted from the build (which will save storage and memory space).||
+||Name||画質レベルを参照するときに使用する名称||
+||``Pixel Light Count``||フォワードレンダリング使用時の最大ピクセルライト数
+||``Texture Quality``||テクスチャを最大解像度で表示するか、何分の一かで表示するか選択する（低い解像度は処理オーバーヘッドを減少させる）。選択肢は次のとおり __Full Res（フル解像度）__, __Half Res（1/2解像度）__, __Quarter Res（1/4解像度）__ and __Eighth Res（1/8解像度）__。
+||``Anisotropic Textures``||異方性テクスチャの設定||
+||>>>``Disabled``||異方性テクスチャは不使用||
+||>>>``Per Texture``||異方性レンダリングを各テクスチャごとに有効化||
+||>>>``Forced On``||異方性テクスチャを常に使用||
+||``AntiAliasing``||アンチエイリアシングのレベル設定選択肢は__2x__、__4x__ 、__8x__ のマルチサンプリング||
+||``Soft Particles``||ソフトブレンドをパーティクルに使用するか||
+||``Shadows``||使用されるべき影の種類||
+||>>>``Hard and Soft Shadows``||ハードとソフトの両方の影をレンダリング||
+||>>>``Hard Shadows Only``||ハードの影のみレンダリング||
+||>>>``Disable Shadows``||影がレンダリングされません。||
+||``Shadow resolution``||影は異なる解像度でレンダリングすることができます：__Low__、__Medium__、__High__ 、__Very High__解像度が高いほど、処理オーバーヘッドは大きくなります。||
+||``Shadow Projection``||ディレクショナル　ライトから影を投影する2つの異なる方法があります。__Close Fit__は高解像度の影をレンダリングするが、カメラのわずかな動きで揺れることがあります。__Stable Fit__は、低解像度の影をレンダリングするが、カメラの動きで揺れません。||
+||``Shadow Cascades``||シャドウカスケードの数はゼロ、2または4に設定することができます。カスケードの数値が高いほど高品質が得られますが、処理オーバーヘッドを犠牲にします（詳細はディレクショナル　シャドウのページを参照してください）。||
+||``Shadow Distance``||カメラから影が見える距離範囲。この距離を越えて投影される影はレンダリングされません。||
+||``Blend Weights``||アニメーションの際にひとつの頂点に影響を与えることができるボーンの数。使用可能なオプションは、1つ、2つ、または4つのボーンです。||
+||``VSync Count``||レンダリング処理をディスプレイのリフレッシュレートと同期させることでティアリングによる画像乱れ（下記参照）を避けることができる。すべての垂直ブランク（VBlank）と同期をとるか、ひとつおきに垂直ブランクと同期をとるか、まったく同期しないとか、選択することができます。||
+||``LOD Bias``||LODレベルはオブジェクトの画面上のサイズに基づいて選ばれます。サイズが2つのLODレベルの間にある場合、より詳細か、より詳細でないか、2つのモデルのいずれかの方に偏りをもたせることができます。値は0から1までの小数として設定出来ます。0に近いほど、より詳細でないモデルに偏ります。||
+||``Maximum LOD Level``||ゲームで使用される最大のLOD。これより高いLODを持つモデルは、使用されずビルド対象から外れます（ストレージとメモリ容量を節約）。||
 >>u40<<
-||``Particle Raycast Budget``||The maximum number of raycasts to use for approximate particle system collisions (those with ``Medium`` or ``Low`` quality). See [[ParticleSystemModules40|Particle System Collision Module]].||
+||``Particle Raycast Budget``||パーティクルシステムの衝突のために使用するraycastsの最大数（Medium,Low品質）。[[ParticleSystemModules40|パーティクル衝突モジュール]] を参照のこと。||
 >><<
 
-!!Tearing
+!!ティアリング
 
-The picture on the display device is not continuously updated but rather the updates happen at regular intervals much like frame updates in Unity. However, Unity's updates are not necessarily synchronised with those of the display, so it is possible for Unity to issue a new frame while the display is still rendering the previous one. This will result in a visual artifact called "tearing" at the position onscreen where the frame change occurs.
+ディスプレイ上の画像は連続して更新されるのではなく、Unityのフレーム更新のような定期的な間隔で発生します。しかし、Unityの更新は必ずしもディスプレイと同期していませんので、ディスプレイがまだ前のフレームをレンダリングしている最中にUnityが新しいフレームを発行してしまうことがありえます。この場合、フレームの変更が発生した画面の中ほどの位置に "ティアリング"と呼ばれる目に見える画像の乱れが発生します。
 
 Attach:Tearing.png\\
-''Simulated example of tearing. The shift in the picture is clearly visible in the magnified portion.''
+ティアリングの再現例。画像の拡大部には、画像のシフト（横ずれ）がはっきりと映っています。'
 
-It is possible to set Unity to switch frames only during the period where the display device is not updating, the so-called "vertical blank". The VSync option on the Quality Settings synchronises frame switches with the device's vertical blank or optionally with every other vertical blank. The latter may be useful if the game requires more than one device update to complete the rendering of a frame.
+Unityの設定により、ディスプレイが更新していないタイミング、いわゆる「垂直ブランク」のタイミングのみにフレームを切替えさせることが出来ます。画質設定（Quality Settings）のVSyncオプションにより、フレームの切替えをディスプレイの垂直ブランク、あるいはひとつおきの垂直ブランクと同期をとることが出来ます。後者は、ゲームでのフレームのレンダリング処理に要する時間が複数回のディスプレイ更新分だけ時間を要する場合に役に立ちます。
 
 [[#fsaa]]
-!!! Anti-aliasing
+!!! アンチエイリアス
 
-Anti aliasing improves the appearance of polygon edges, so they are not "jagged", but smoothed out on the screen. However, it incurs a performance cost for the graphics card and uses more video memory (there's no cost on the CPU though). The level of anti-aliasing determines how smooth polygon edges are (and how much video memory does it consume).
+アンチエイリアス処理により、ポリゴンの端の見た目が改善されるため、「ギザギザ」でなくなりますが、画面上では滑らかになります。  しかし、グラフィック カードのパフォーマンスが犠牲になり、使用されるビデオ メモリが増えます (CPU の負担は増えません)。 アンチエイリアス処理のレベルにより、ポリゴンの端がどのくらい滑らかになるか (消費されるビデオ メモリの量) が決定されます。
 
 Attach:AntiAliasingNone.png \\
-''Without anti-aliasing, polygon edges are "jagged".''
+アンチエイリアス処理を使用しないと、ポリゴンの端が「ギザギザ」になります
 
 Attach:AntiAliasing6x.png \\
-''With 6x anti-aliasing, polygon edges are smoothed out.''
+6 倍のアンチエイリアス処理を使用すると、ポリゴンの端が円滑になります
 
 
 [[#softparticles]]
-!!! Soft Particles
+!!! ソフトパーティクル
 
-Soft Particles fade out near intersections with other scene geometry. This looks much nicer, however it's more expensive to compute (more complex pixel shaders), and only works on platforms that support [[SL-DepthTextures | depth textures]]. Furthermore, you have to use [[RenderTech-DeferredLighting | Deferred Lighting]] rendering path, or make the camera render [[SL-CameraDepthTexture | depth textures]] from scripts.
+ソフトパーティクルは、シーン中の物体同士の交点付近をフェードアウト処理します。見た目は良くなりますが、計算処理の負荷は高くなり（複雑なピクセルシェーダ）、かつ[[SL-DepthTextures | デプステクスチャ]] をサポートしているプラットフォームでしか動作しません。さらにレンダリングパスとして[[RenderTech-DeferredLighting |ディファード　ライティング]] を使用するか、あるいはカメラのレンダラをスクリプトからから[[SL-CameraDepthTexture|デプステクスチャ]] とする必要があります。
 
 Attach:SoftParticlesOff.png \\
-''Without Soft Particles - visible intersections with the scene.''
+ソフトパーティクルを使用しないとシーンに交点がはっきりと描画されてしまいます。
 
 
 Attach:SoftParticlesOn.png \\
-''With Soft Particles - intersections fade out smoothly.''
+ソフトパーティクルを使用するとシーンに交点がスムーズに描画されます。
