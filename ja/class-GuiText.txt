@@ -1,39 +1,39 @@
-! GUI Text
+! GUI テキスト
 
-$$GUI Text$$ displays text of any font you import in screen coordinates.
+$$GUI Text$$ は、画面座標にインポートしたフォントのテキストを表示します。
 
 Attach:Inspector-GUIText.png\\
-''The GUI Text $$Inspector$$''
+''GUI テキスト $$Inspector$$'''
 
-__Please Note__: Unity 2.0 introduced $$UnityGUI$$, a GUI Scripting system.  You may prefer creating user interface elements with UnityGUI instead of GUI Texts.  Read more about how to use UnityGUI in the [[GUI Scripting Guide]].
+__注意__: Unity 2.0 は、GUI スクリプティング システムである $$UnityGUI$$ を採用しています。  GUI テキストの代わりに、UnityGUI でユーザー インタフェース要素を作成したい場合もあるでしょう。  [[GUI Scripting Guide]] のUnityGUI の使用法について続きを読んでください。
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Text``     ||The string to display. ||
-||``Anchor``   ||The point at which the ``Text`` shares the position of the $$Transform$$. ||
-||``Alignment``    ||How multiple lines are aligned within the $$GUIText$$. ||
-||``Pixel Offset`` ||Offset of the text relative to the position of the GUIText in the screen.||
-||``Line Spacing`` ||How much space will be in-between lines of ``Text``. ||
-||``Tab Size`` ||How much space will be inserted for a tab ('\t') character. As a multiplum of the space character offset. ||
-||``Font``     ||The [[class-Font|Font]] to use when rendering the text. ||
-||``Material`` ||Reference to the $$Material$$ containing the characters to be drawn. If set, this property overrides the one in the [[class-Font|Font]] asset. ||
-||``Pixel Correct`` ||If enabled, all ``Text`` characters will be drawn in the size of the imported font texture. If disabled, the characters will be resized based on the Transform's ``Scale``. ||
+||``Text``     ||表示される文字列。 ||
+||``Anchor``   ||''Text''が、$$Transform$$ の位置を共有する点。 ||
+||``Alignment``    ||$$GUIText$$ 内で複数の線がどのように配列されるか。 ||
+||``Pixel Offset`` ||画面嬢での GUIText の位置に関連したテキストのオフセット。||
+||``Line Spacing`` ||''Text''の中間位あるスペースの大きさ。 ||
+||``Tab Size`` ||タブ ('\t') 文字に挿入されるスペースの大きさ。 スペース文字のオフセットのマルチプラムとして。 ||
+||``Font``     ||テキストのレンダリング時に [[class-Font|Font]] 。 ||
+||``Material`` ||描写される文字を含む $$Material$$ への参照。 設定すると、このプロパティが [[class-Font|Font]] アセット内のプロパティを無効にします。 ||
+||``Pixel Correct`` ||有効にすると、すべての''Text''文字がインポートされたフォント テクスチャのサイズで描画されます。 無効にすると、トランスフォームの''Scale''に基づいて、リサイズされます。 ||
 
 
-!! Details
+!! 詳細
 
-GUI Texts are used to print text onto the screen in 2D. The $$Camera$$ has to have a [[class-GUILayer|GUI Layer]] attached in order to render the text.  Cameras include a GUI Layer by default, so don't remove it if you want to display a GUI Text.  GUI Texts are positioned using only the X and Y axes.  Rather than being positioned in World Coordinates, GUI Texts are positioned in Screen Coordinates, where (0,0) is the bottom-left and (1,1) is the top-right corner of the screen
+GUI テキストは、2D の画面にテキストを印刷するために使用されます。 $$Camera$$ は、テキストをレンダリングするために、[[class-GUILayer|GUI Layer]] を追加する必要があります。  カメラには、デフォルトで GUI レイヤーが含まれているため、GUI テキストを表示したい場合は、削除しないでください。  GUI テキストは、X および Y 軸のみを使用して配置されます。  GUI テキストは、世界座標に配置されるのではなく、画面座標に配置されます。ここでは、(0,0) は画面の左下で、(1,1) は画面の右上になります。
 
-To import a font see the [[class-Font|Font page]].
+フォントのインポートに関しては、[[class-Font|Font page]] を参照してください。
 
 
-!!! Pixel Correct
+!!! ピクセル コレクト
 
-By default, GUI Texts are rendered with ``Pixel Correct`` enabled. This makes them look crisp and they will stay the same size in pixels independent of the screen resolution.
+デフォルトでは、GUI テキストは、''ピクセル コレクト''を有効にすることでレンダリングされます。 これにより、GUI テキストが鮮明になり、画面の解像度に関係なく、ピクセルで同じサイズのままになります。
 
-!!Hints
-* When entering text into the ``Text`` property, you can create a line break by holding ^^Alt^^ and pressing ^^Return^^.
-* If you are scripting the ``Text`` property, you can add line breaks by inserting the escape character "\n" in your strings.
-* You can download free true type fonts from [[http://www.1001freefonts.com/fonts/afonts.htm|1001freefonts.com]] (download the Windows fonts since they contain TrueType fonts).
+!!ヒント
+* ''Text''プロパティにテキストを入力する際は、^^Alt^^ 押したまま、^^Return^^ を押すことで、改行を作成できます。
+* ''Text''プロパティを記述している場合、文字列にエスケープ キャラクター "\n" を挿入することで、改行を追加できます。
+* [[http://www.1001freefonts.com/fonts/afonts.htm|1001freefonts.com]] から無料の TrueType フォントをダウンロードできます (TrueType フォントが含まれているので、Windows フォントをダウンロードしてください)。
