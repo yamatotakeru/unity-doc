@@ -1,7 +1,7 @@
 !Level of Detail (Pro Only)
 
 As your scenes get larger, performance becomes a bigger consideration. One of the ways to manage this is to have meshes with different levels of detail depending on how far the camera is from the object. 
-This is called $$Level of Detail$$ (abbreviated as $$LOD$$) 
+This is called $$Level of Detail$$ (abbreviated as $$LOD$$). 
 
 Here's one of the ways to set up an object with different $$LODs$$.\
 
@@ -12,9 +12,9 @@ Here's one of the ways to set up an object with different $$LODs$$.\
 # Drag in the object with the low-res mesh onto the first ``Renderers`` box for ``LOD:1``. Say yes to the "Reparent game objects?" dialog
 # Right Click on ``LOD:2`` and remove it.
 
-At this point the empty object should contain both versions of the mesh, and "know" which mesh to show depending on how far away the camera is. 
+At this point the empty object should contain both versions of the mesh and "know" which mesh to show depending on how far away the camera is. 
 
-You can preview the effect of this, by dragging the camera icon left and right in the window for the ``LODGroup`` component.
+You can preview the effect of this by dragging the camera icon left and right in the window for the ``LODGroup`` component.
 
 Attach:LOD0_demo.jpg 
 ->''camera at LOD 0''
@@ -41,6 +41,6 @@ You can tweak your LOD settings for each platform in [[class-QualitySettings|Qua
 !!Utilities
 Here are some options that help you work with LODs
 
-||Recalculate Bounds||If there is new geometry added to the LODGroup, that is not reflected in the bounding volume, press this to update the bounds. One example where this is needed is when one of the geometries is part of a [[Prefabs|prefab]], and new geometry is added to that prefab. Geometry added directly to the LODGroup will automatically updates the bounds||
-||Update Lightmaps||Updates the ``Scale in Lightmap`` property in the [[Lightmapping|lightmaps]] based on the LOD level boundaries.||
-||Upload to Importer||Uploads the LOD level boundaries to the importer||
+||Recalculate Bounds ||If there is new geometry added to the LODGroup that is not reflected in the bounding volume then click this to update the bounds. One example where this is needed is when one of the geometries is part of a [[Prefabs|prefab]], and new geometry is added to that prefab. Geometry added directly to the LODGroup will automatically update the bounds. ||
+||Update Lightmaps ||Updates the ``Scale in Lightmap`` property in the [[Lightmapping|lightmaps]] based on the LOD level boundaries. ||
+||Upload to Importer ||Uploads the LOD level boundaries to the importer. ||

@@ -6,12 +6,15 @@ $$Animation Transitions$$ define ''what'' happens when you switch from one $$Ani
 ||``Atomic``      ||Is this transition atomic? (cannot be interrupted)
 ||``Conditions``    ||Here we decide ''when'' transitions get triggered. 
 
-A condition consists of 2 parts: 
-# A conditional predicate (``If``, ``If Not``, ``Less``, ``Greater``, ``Equals``, ``Not Equal``, and ``Exit Time``). 
-# An event parameter (in conjunction with ``If`` and ``If Not``, use bool parameters, ``Exit Time`` just uses time). 
-# A parameter value (if needed)
+A condition consists of: 
+* An event parameter 
+** Instead of a parameter, you can also use ``Exit Time``, and specify a number which represents the normalized time of the source state (e.g. 0.95 means the transition will trigger, when we've played the source clip 95% through). 
+* A conditional predicate, if needed (for example ``Less``/``Greater`` for floats). 
+* A parameter value (if needed).
 
 You can adjust the transition between the two animation clips by dragging the start and end values of the overlap. 
 Attach:MecanimTransitionInspector.png
+
+(See also [[AnimationSoloMute|Transition solo / mute]])
 
 (back to [[Animation State Machines]])

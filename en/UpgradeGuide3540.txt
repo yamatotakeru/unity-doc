@@ -100,3 +100,7 @@ This worked fine in Unity 3.5 but in Unity 4.0 the already imported model will b
 Unity 4.0 adds a "Read/Write Enabled" option in [[Meshes | Mesh]] import settings. When this option is turned off, it saves memory since Unity can unload a copy of mesh data in the game.
 
 However, if you are scaling or instantiating meshes at runtime with a non-uniform scale, you may have to enable "Read/Write Enabled" in their import settings. The reason is that non-uniform scaling requires the mesh data to be kept in memory. Normally we detect this at build time, but when meshes are scaled or instantiated at runtime you need to set this manually. Otherwise they might not be rendered in game builds correctly.
+
+!! Mesh optimization
+
+The Model Importer in Unity 4.0 has become better at mesh optimization. The "Mesh Optimization" checkbox in the Model Importer in Unity 4.0 is now enabled by default, and will reorder the vertices in your Mesh for optimal performance. You may have some post-processing code or effects in your project which depend on the vertex order of your meshes, and these might be broken by this change. In that case, turn off "Mesh Optimization" in the Mesh importer. Especially, if you are using the SkinnedCloth component, mesh optimization will cause your vertex weight mapping to change. So if you are using SkinnedCloth in a project imported from 3.5, you need to turn off "Mesh Optimization" for the affected meshes, or reconfigure your vertex weights to match the new vertex order.

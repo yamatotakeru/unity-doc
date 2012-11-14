@@ -1,22 +1,19 @@
 !Animation Parameters
 
-Animation Parameters expose the operation of the state machine to game logic. Events are triggered based on event parameters, activated from game logic. Typically you would work with events in 3 places:
+Animation Parameters are variables that are defined within the animation system but can also be accessed and assigned values from scripts. For example, the value of a parameter can be updated by an [[AnimatorCurves|animation curve]] and then accessed from a script so that, say, the pitch of a sound effect can be varied as if it were a piece of animation. Likewise, a script can set parameter values to be picked up by Mecanim. For example, a script can set a parameter to control a [[AnimationBlendTrees|Blend Tree]].
 
-#Setting up parameters in the ~~Parameter Widget~~ in the bottom-left corner of the ~~Animator Controller Window~~
-#Setting up conditions for transitions in the ~~Transition Inspector~~, based on those parameters
-#Controlling the parameters from script. 
+Default parameter values can be set up using the Parameters widget in the bottom left corner of the Animator window. They can be of four basic types: 
+
+*''Vector'' - a point in space
+*''Int'' - an integer (whole number)
+*''Float'' - a number with a fractional part
+*''Bool'' - true or false value
 
 Attach:MecanimEvents.png
 
-Event parameters can be of 4 basic types: ''Vector'', ''Float'', ''Int'', and ''Bool'', and they can be controlled from script via the functions [[ScriptRef:Animator.SetVector.html|SetVector]], [[ScriptRef:Animator.SetFloat.html|SetFloat]], [[ScriptRef:Animator.SetInt.html|SetInt]], and [[ScriptRef:SetBool.html|SetBool]] respectively.
+Parameters can be assigned values from a script using functions in the Animator class: [[ScriptRef:Animator.SetVector.html|SetVector]], [[ScriptRef:Animator.SetFloat.html|SetFloat]], [[ScriptRef:Animator.SetInt.html|SetInt]], and [[ScriptRef:SetBool.html|SetBool]].
 
-Note that the values next to the parameters serve as Check default values for those parameters at startup, unless they're overriden by (or blended with) values from [[AnimatorCurves|animation curves]]
-
-Thus, a complete animated character in the scene will have both an ``Animator Component`` and a script that controls the parameters in the Animator. 
-
-Attach:MecanimAnimatorAndScript.png
-
-Here's an example of a script that modifies event parameters based on user input
+Here's an example of a script that modifies parameters based on user input
 
 [@using UnityEngine;
 using System.Collections;
@@ -61,5 +58,7 @@ public class AvatarCtrl : MonoBehaviour {
 	}   		  
 }
 @]
+
+
 
 (back to [[Animation State Machines]])

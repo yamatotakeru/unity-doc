@@ -1,6 +1,6 @@
 !!Animation States
 
-$$Animation States$$ are the basic building blocks of an $$Animation State Machine$$. Each state contains an individual animation sequence (or blend tree) which will play while the character is in that state. When an event in the game triggers a state transition, the character will be left in a new state whose animation sequence will then take over.
+$$Animation States$$ are the basic building blocks of an $$Animation State Machine$$. Each state contains an individual animation sequence (or [[AnimationBlendTrees|blend tree]]) which will play while the character is in that state. When an event in the game triggers a state transition, the character will be left in a new state whose animation sequence will then take over.
 
 When you select a state in the ~~Animator Controller~~, you will see the properties for that state in the inspector:-
 

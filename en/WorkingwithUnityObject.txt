@@ -1,6 +1,10 @@
 !Working with UnityObject
 
-$$UnityObject$$ is a JavaScript script that simplifies Unity content embedding into HTML. It has functions to detect the Unity $$Web Player$$ plugin, initiate Web Player installation and embed Unity content. Although it's possible to deploy ``UnityObject.js`` file on the web server alongside the HTML file it's best to load it directly from the Unity server at ``[=http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js=]``. That way you will always reference the most up to date version of UnityObject. Please note that the ``UnityObject.js`` file hosted on the Unity server is minified to make it smaller and save traffic. If you want to explore the source code you can find the original file in the ``Data\Resources`` folder on Windows and the ``Contents/Resources`` folder on Mac OS X.  UnityObject by defaults sends anonymous data to GoogleAnalytics which is used to help us identify installation type and conversion rate.
+$$UnityObject$$ is a JavaScript script that simplifies Unity content embedding into HTML. It has functions to detect the Unity $$Web Player$$ plugin, initiate Web Player installation and embed Unity content. Although it's possible to deploy ``UnityObject.js`` file on the web server alongside the HTML file it's best to load it directly from the Unity server at ``[=http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js=]``. That way you will always reference the most up to date version of UnityObject. Please note that the ``UnityObject.js`` file hosted on the Unity server is minified to make it smaller and save traffic. If you want to explore the source code you can find the original file at this location on Windows machines 
+
+[@C:\Program Files (x86)\Unity\Editor\Data\Resources@]
+
+...and in the ``Contents/Resources`` folder on Mac OS X (ctrl-click on the application icon and select ''Show Package Contents'' to access the Contents folder). UnityObject by defaults sends anonymous data to GoogleAnalytics which is used to help us identify installation type and conversion rate.
 
 !!Functions
 
@@ -115,7 +119,7 @@ Installs the full Web Player if not available. Normally only a small part of the
 
 !!!enableAutoInstall
 
-Automatically starts Web Player installation if not available. Some platforms don't support this feature. Default value is ``false``.
+Automatically starts Web Player installation if not available. Some platforms/browsers may not allow the plugin to be updated from the browser or have this feature disabled. Default value is ``false``.
 
 ''Parameters:''
 
@@ -123,7 +127,7 @@ Automatically starts Web Player installation if not available. Some platforms do
 
 !!!enableJavaInstall
 
-Enables Java based installation. Some platforms doesn't support this feature. Default value is ``true``.
+Enables Java based installation. Some platforms may not support Java or may disable this feature. Default value is ``true``.
 
 ''Parameters:''
 
@@ -131,7 +135,7 @@ Enables Java based installation. Some platforms doesn't support this feature. De
 
 !!!enableClickOnceInstall
 
-Enables ClickOnce based installation. Some platforms doesn't support this feature. Default value is ``true``.
+Enables ClickOnce based installation. This feature is only available on Windows and may be disabled or unsupported in a given browser configuration. Default value is ``true``.
 
 ''Parameters:''
 
