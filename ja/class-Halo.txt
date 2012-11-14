@@ -1,18 +1,18 @@
-! Halo
+! ハロー
 
-$$Halos$$ are light areas around light sources, used to give the impression of small dust particles in the air.
+$$Halo$$ は、空気中の細かいゴミの印象を与えるのに使用される、光源周辺の明るいエリアです。
 
 Attach:Inspector-Halo.png\\
-''A Light with a separate Halo $$Component$$''
+''個々のハロー $$Component$$ での光''
 
 
-!! Properties
+!! プロパティ
 
-Halos use the ``Halo Texture`` set up in the [[class-RenderSettings | Render Settings]]. If none is assigned, it uses a default one. A [[class-Light | Light]] component can be setup to automatically show halo, without a separate Halo component.
+ハローは、[[class-RenderSettings | Render Settings]] で設定された''ハロー テクスチャ''を使用します。 何も割り当てられていない場合、デフォルトのものを使用します。 個々のハロー コンポーネントなしで、[[class-Light | Light]] コンポーネントを自動的に設定して、ハローを表示させることができます。
 
 ||PROPS
-||``Color`` ||Color of the Halo. ||
-||``Size``  ||Size of the Halo.  ||
+||``Color`` ||ハローの色。 ||
+||``Size`` ||ハローのサイズ。  ||
 
-!!Hints
-* To see Halos in the scene view, check ^^Fx^^ button in the $$Scene View$$ Toolbar.
+!!ヒント
+* シーン ビューでハローを表示するには、$$Scene View$$ ツールバーの ^^Fx^^ ボタンにチェックを入れます。

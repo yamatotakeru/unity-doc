@@ -1,28 +1,29 @@
-!IME in Unity
+!Unity でのIME
 
-!!What is Input Method Editor (IME)?
+!!インプット メソッド エディター (IME) とは?
 
-An input method is an operating system component or program that allows users to enter characters and symbols not found on their input device. For instance, on the computer, this allows the user of 'Western' keyboards to input Chinese, Japanese, Korean and Indic characters. On many hand-held devices, such as mobile phones, it enables using the numeric keypad to enter Latin alphabet characters.
+インプット メソッドは、ユーザーが入力機器にない文字や記号を入力することができる OS コンポーネントまたはプログラムです。 例えば、これによって、''Western''キーボードのユーザーは、コンピュータ上で中国語、日本語、韓国語やインド語文字を入力できます。 携帯電話などの多くの携帯機器では、数字キーパッドを使用して、ラテン アルファベット文字を入力できます。
 
-The term input method generally refers to a particular way to use the keyboard to input a particular language, for example the [[http://en.wikipedia.org/wiki/Cangjie_input_method|Cangjie method]], the [[http://en.wikipedia.org/wiki/Pinyin_method|pinyin method]], or the use of dead keys.
+ターム インプット メソッドは一般に、キーボードを使用して、[[http://en.wikipedia.org/wiki/Cangjie_input_method|Cangjie method]] や [[http://en.wikipedia.org/wiki/Pinyin_method|pinyin method]] 、デッド キーの使用など、特定の言語を入力できる特定の方法のことを指します。
 
-! IME and Unity
+! IME と Unity
+
 !Desktop!
->>desktop<<
+>>Desktop<<
 Attach:IMEMenu.png
 
-Unity provides IME support, which means that you can write non-ASCII characters in all your graphical user interfaces.
-This Input Method is fully integrated with the engine so you do not need to do anything to activate it. In order to test it, just change your keyboard language to a non-ASCII language (e.g. Japanese) and just start writing your interface.
+UnityはIMEサポートを提供しています。つまり、非 ASCII 文字をすべてのグラフィック ユーザー インターフェースを記述できます。
+このインプット メソッドは、エンジンに完全に統合されているため、有効にするのに何もする必要はありません。 テストしたい場合は、キーボード言語を日本語などの非 ASCII 言語に変更して、インターフェースの記述を開始するだけです。
 
-For more info and optimization when writting non-ASCII characters, check the ''``character``'' option in the [[class-Font | font properties]].
+非 ASCII 文字の記述時における情報と最適化の詳細については、[[class-Font | font properties]] の''character''オプションをチェックしてください。
 
-__Note:__ IME on Unity is not supported on mac webplayers at the moment.
+__注意:__ Unity での IME は現在、Mac ウェブ プレイヤーではサポートされていません。
 >><<
 !iOS!
 >>ios<<
-This feature is not supported on iOS devices yet.
+本機能は、iOS 機器でサポートされていません。
 >><<
 !Android!
 >>android<<
-This feature is not supported on Android devices yet.
+本機能は、Android 機器でサポートされていません。
 >><<

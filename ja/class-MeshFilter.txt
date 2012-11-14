@@ -1,18 +1,18 @@
-! Mesh Filter
+! メッシュ フィルタ
 
-The $$Mesh Filter$$ takes a mesh from your assets and passes it to the [[class-MeshRenderer|Mesh Renderer]] for rendering on the screen.
+$$Mesh Filter$$ はアセットからメッシュを取り、画面上でのレンダリングのために、[[class-MeshRenderer|Mesh Renderer]] に渡します。
 
 Attach:Inspector-MeshFilter.png\\
-''A Mesh Filter combined with a Mesh Renderer makes the model appear on screen. ''
+''メッシュ フィルタは、メッシュ レンダラと共に、モデルを画面に表示します。'' ''
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Mesh`` ||Reference to a [[class-Mesh | mesh]] that will be rendered. The ``Mesh`` is located in your Project Folder. ||
+||``Mesh`` ||レンダリングされる [[class-Mesh | mesh]] への参照。 ''Mesh''は Project フォルダにあります。 ||
 
 
-!! Details
-When importing mesh assets, Unity automatically creates a [[class-SkinnedMeshRenderer|Skinned Mesh Renderer]] if  the mesh is skinned, or a Mesh Filter along with a Mesh Renderer, if it is not.
+!! 詳細
+メッシュ アセットをインポートすると、メッシュがスキンされる場合に、Unity が自動的に [[class-SkinnedMeshRenderer|Skinned Mesh Renderer]] を作成し、そうでない場合は、メッシュ レンダラと共に、メッシュ フィルタを作成します。
 
-To see the Mesh in your scene, add a [[class-MeshRenderer|Mesh Renderer]] to the GameObject.  It should be added automatically, but you will have to manually re-add it if you remove it from your object.  If the Mesh Renderer is not present, the Mesh will still exist in your scene (and computer memory) but it will not be drawn.
+シーン内のメッシュを確認するには、[[class-MeshRenderer|Mesh Renderer]] を GameObject に追加します。  これは自動で追加されますが、オブジェクトから削除した場合は、再度手動で追加する必要があります。  メッシュ レンダラがない場合も、メッシュはシーン （コンピュータのメモリ） 内に存在していますが、描画はされません。

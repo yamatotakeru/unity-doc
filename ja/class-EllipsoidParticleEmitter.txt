@@ -1,36 +1,36 @@
-! Ellipsoid Particle Emitter (Legacy)
+! 楕円パーティクル エミッタ（旧パーティクルシステム）
 
-The $$Ellipsoid Particle Emitter$$ spawns particles inside a sphere. Use the ``Ellipsoid`` property below to scale & stretch the sphere.
+$$Ellipsoid Particle Emitter$$ は、球体内に粒子を発生させます。 下の''Ellipsoid''プロパティを使用して、球体を拡大縮小および延長させます。
 
 Attach:Inspector-EllipsoidEmitter.png\\
-''The Ellipsoid Particle Emitter $$Inspector$$''
+''楕円パーティクル エミッタ $$Inspector$$''
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
 (:include comp-ParticleEmitterProps:)
-||``Ellipsoid`` ||Scale of the sphere along X, Y, and Z that the particles are spawned inside. ||
-||``MinEmitterRange`` ||Determines an empty area in the center of the sphere - use this to make particles appear on the edge of the sphere. ||
+||``Ellipsoid`` ||粒子が内側に生じる、X,Y、Z にそった球体のスケール。 ||
+||``MinEmitterRange`` ||球体の中心で空白のエリアを決定します - これは、球体の縁に粒子を表示させるのに使用します。 ||
 
 
-!!Details
+!!詳細
 
-Ellipsoid Particle Emitters (EPEs) are the basic emitter, and are included when you choose to add a $$Particle System$$ to your scene from ^^Components->Particles->Particle System^^.  You can define the boundaries for the particles to be spawned, and give the particles an initial velocity.  From here, use the [[class-ParticleAnimator|Particle Animator]] to manipulate how your particles will change over time to achieve interesting effects.
+楕円パーティクル エミッタ (EPE) は、基本的なエミッタで、^^Components->Particles->Particle System^^ からシーンに $$Particle System$$ を追加するよう選択すると含まれます。  粒子を生じさせる境界を定義し、粒子に初速を与えます。  ここから、[[class-ParticleAnimator|Particle Animator]] を使用して、希望の効果を達成するのに、時間と共に粒子がどのように変化するかを操作します。
 
 (:include comp-ParticleEmitterDetails:)
 
 
 !!! Min Emitter Range
 
-The ``Min Emitter Range`` determines the depth within the ellipsoid that particles can be spawned.  Setting it to 0 will allow particles to spawn anywhere from the center core of the ellipsoid to the outer-most range.  Setting it to 1 will restrict spawn locations to the outer-most range of the ellipsoid.
+「Min Emitter Range」は、粒子を発生させることができる楕円内の深さを決定します。  0 に設定すると、楕円の中心から最外部の範囲の任意の場所に粒子を発生させることができます。  1 に設定すると、楕円の最外部の範囲に粒子の場所を限定できます。
 
 Attach:EmitterRange0.png\\
-''``Min Emitter Range`` of 0''
+「Min Emitter Range が 0 の場合」
 
 Attach:EmitterRange1.png\\
-''``Min Emitter Range`` of 1''
+「Min Emitter Range が 1 の場合」
 
-!! Hints
+!! ヒント
 
 (:include comp-ParticleEmitterHints:)

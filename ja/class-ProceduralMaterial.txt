@@ -1,56 +1,56 @@
-! Procedural Material Assets
+! 手順マテリアル アセット
 
-Procedural Material Assets are textures that are generated for you at run-time.  See [[Main.ProceduralMaterials|Procedural Materials]] in the User Guide for more information.  A Procedural Material asset can contain one or more procedural materials.  These can be viewed in the Inspector just like regular materials. Note however that often procedural materials have many tweakable parameters.  As with Material assets the Inspector shows a preview of the Procedural Material at the bottom of the window.
+手順マテリアル アセットは、ランタイムで生成されるテクスチャです。  詳細については、ユーザー ガイドの [[Main.ProceduralMaterials|Procedural Materials]] を参照してください。  手順マテリアル アセットは、1 つまたは複数の手順マテリアルを含むことができます。  これらは、通常のマテリアル同様、インスペクタで表示できます。 しかし、手順マテリアルには、多くの場合、微調整可能なパラメータが多く含まれています。  マテリアル アセット同様、インスペクタは、ウィンドウの下部に手順マテリアルのプレビューを表示します。
 
 Attach:Inspector-ProceduralMaterial1.png\\
-''A Procedural Material viewed in the Inspector.''
+''インスペクタに表示される手順マテリアル''
 
-The Inspector window has 4 main panes.
+インスペクタのウィンドウは次の 4 つのペインで構成されます。
 
-# Substance Archive Manager.
-# Properties.
-# Generated Textures.
-# Preview.
-
-
-!! Substance Archive Manager
-
-The archive view shows you all the procedural materials that the Procedural Material asset contains.  Select the procedural material you are interested in from the row of previews.  Procedural Materials can be Added and Deleted to the Procedural Material Asset archive using the plus and minus buttons.  Adding a procedural material will create a new material using the prototype encoded in the archive.  The third, Duplicate button will create a new procedural material that is a copy of the currently selected one, including all its settings.  Procedural materials can be renamed by typing in a new name in the material header name field.
+# サブスタンス アーカイブ マネージャ
+# プロパティ
+# 生成テクスチャ
+# プレビュー
 
 
-!! Properties
+!! サブスタンス アーカイブ マネージャ
 
-!!! Material Properties
+アーカイブ ビューには、手順マテリアルが含むすべての手順マテリアルが表示されます。  プレビューの行から対象の手順マテリアルを選択します。  + および - ボタンを使用して、手順マテリアル アセットに手順マテリアルを追加または削除できます。  手順マテリアルを追加すると、アーカイブで符号化されたプロトタイプを使用して、新しいマテリアルが作成されます。  3 つ目の''Duplicate''ボタンにより、設定をすべて含む、現在選択されている手順マテリアルのコピーである新しい手順マテリアルが作成されます。  マテリアル境界名フィールドに新しい名前を入力することで、手順マテリアルの名前を変更できます。
 
-These are the regular properties of the material, which are dependent on which shader is chosen. They work the same as for regular materials.
 
-!!! Procedural Properties
+!! プロパティ
 
-The properties of any Procedural Material will change according to how the procedural material was created.
+!!! マテリアル プロパティ
+
+これらは、どのシェーダを選択したかに基づいた、マテリアルの通常のプロパティです。 通常のマテリアルに対するのと同じ働きをします。
+
+!!! 手順プロパティ
+
+手順マテリアルのプロパティは、手順マテリアルがどのように作成されたかによって変わります。
 ||PROPS
-||``Generate at Load`` ||Generate the substance when the scene loads. If disabled, it will only be generated when prompted from scripting. ||
-||``Random Seed`` ||Procedural materials often need some randomness. The Random Seed can be used to vary the generated appearance.  Often this will be zero.  Just click the Randomize button to get a different seed and observe how the material changes. ||
+||``Generate at Load`` ||シーンを読み込む際にサブスタンスを生成します。 無効にすると、スクリプティングから促された時にのみ生成されます。 ||
+||``Random Seed`` ||手順マテリアルは、ある程度のランダム性を必要とする場合が多くあります。 Random Seed は、生成された外観を帰るのに使用できます。  これは多くの場合、ゼロになります。  ''Randomize''ボタンをクリックすると、別のシードを取得し、マテリアルの変わる様子を確認できます。 ||
 
 
-!! Generated Textures
+!! # 生成テクスチャ
 
 Attach:Inspector-ProceduralMaterial2.png\\
-''The Generated Textures pane.''
+''生成テクスチャペイン''
 
-This area allows you to visualize textures that the procedural material generates.  The dropdown below each of the generated textures allows you to choose which texture map should supply the alpha channel for that texture.  You could, for example, specify that the base alpha comes from the Transparency image, or from the Specular image.  The screen-shot below shows the base alpha channel coming from the Specular image.
-
-
-!!! Per-Platform Overrides
-
-When you are building for different platforms, you have to think on the resolution of your textures for the target platform, the size and the quality. You can override these options and assign specific values depending on the platform you are deploying to. Note that if you don't select any value to override, the Editor will pick the default values when building your project.
-
-||``Target Size`` ||The targeted size of the generated textures. Most procedural textures are designed to be resolution independent and will respect the chosen target size, but in rare cases they will use a fixed size instead, or have the possible sizes limited to within a certain range. The actual size of the generated textures can be read in the preview at the bottom of the Inspector. ||
-||``Texture Format`` ||What internal representation is used for the texture in memory, once it is generated. This is a tradeoff between size and quality: ||
-||>>>``Compressed`` ||Compressed RGB texture. This will result in considerably less memory used. ||
-||>>>``RAW`` ||Uncompressed truecolor, this is the highest quality. At 256 KB for a 256x256 texture. ||
+このエリアでは、手順マテリアルが生成するテクスチャを表示できます。  生成されたテクスチャのそれぞれの下にあるドロップダウンにより、テクスチャに対してアルファ チャンネルを提供するテキスチャ マップを選択できます。  例えば、ベース アルファが Transparency 画像または Specular 画像のいずれかからくるよう指定できます。  下のスクリーンショットは、Specular 画像から来ているベース アルファ チャンネルを示しています。
 
 
-!! Preview
+!!! プラットフォームごとの無効
 
-The procedural material preview operates in an identical manner to the material preview. However, unlike the regular material preview it shows the pixel dimensions of the generated textures.
+異なるプラットフォームを作成する場合、対象のプラットフォームに対するテクスチャの解像度やサイズ、画質を考慮する必要があります。 展開しているプラットフォームに応じて、これらのオプションを無効にし、特定の値を割当てることができます。 無効にする値を選択しない場合、プロジェクト作成時にエディタはデフォルトの値を選択します。
+
+||``Target Size`` ||生成されたテクスチャの対象サイズ。 ほとんどの手順テクスチャは、独立した解像度になるよう設計され、選択した対象サイズを考慮しますが、代わりに固定のサイズを使用し、考えられるサイズを一定の範囲内に制限することはめったにありません。 生成されたテクスチャの実際のサイズは、インスペクタの下部にあるプレビューで確認できます。 ||
+||``Texture Format`` ||一旦生成されると、メモリ内のテクスチャに対して使用される内部表示。 サイズと画質間でのトレードオフとなります。 ||
+||>>>``Compressed`` ||圧縮された RGB テクスチャ。 これにより、浪費されるメモリ量が大幅に減ります。 ||
+||>>>``RAW`` ||非圧縮の》トゥルーカラーで、最高画質になります。 256x256 テクスチャの場合は、256 KB。 ||
+
+
+!! プレビュー
+
+手順マテリアル プレビューは、マテリアル プレビューと同じ方法で動作します。 しかし、通常のマテリアル プレビューとは違い、生成されたテクスチャのピクセル寸法を表示します。
 

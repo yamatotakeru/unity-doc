@@ -1,11 +1,10 @@
-! Providing vertex data to vertex programs
+! 頂点プログラムへ頂点データの流し込み
 
-For Cg/HLSL [[SL-ShaderPrograms | vertex programs]], the vertex data must be passed in as a structure. Several commonly used vertex structures are defined in [[SL-BuiltinIncludes | $$UnityCG.cginc$$ include file]], and in most cases it's enough just to use them. The structures are:
-* $$appdata_base$$: vertex consists of position, normal and one texture coordinate.
-* $$appdata_tan$$: vertex consists of position, tangent, normal and one texture coordinate.
+Cg/HLSL [[SL-ShaderPrograms | vertex programs]] に対して、頂点データを構造として渡す必要があります。 幾つかのよく使用される頂点構造は、[[SL-BuiltinIncludes | $$UnityCG.cginc$$ include file]] で定義され、ほとんどの場合、使用するだけなら十分です。 構造は以下のようになります。
+* $$appdata_base$$: 頂点は、位置、法線および 1 つのテクスチャ座標で構成されます。
+* $$appdata_tan$$: 頂点は、位置、接線、法線および 1 つのテクスチャ座標で構成されます。
 * $$appdata_full$$: vertex consists of position, tangent, normal, two texture coordinates and color.
-
-For example, this shader colors the mesh based on it's normals and just uses $$appdata_base$$ as vertex program input:
+例えば、このシェーダは、その法線に基づいて、メッシュに色を付け、頂点プログラム入力として、$$appdata_base$$ を使用します。
 [@
 Shader "VertexInputSimple" {
   SubShader {
@@ -36,19 +35,19 @@ Shader "VertexInputSimple" {
 }
 @]
 
-If you want to access different vertex data, you have to declare vertex structure yourself. The structure __members must be__ from the following list:
-* $$float4 vertex$$ is the vertex position
-* $$float3 normal$$ is the vertex normal
-* $$float4 texcoord$$ is the first UV coordinate
-* $$float4 texcoord1$$ is the second UV coordinate
-* $$float4 tangent$$ is the tangent vector (used for normal mapping)
-* $$float4 color$$ is per-vertex color
+各種頂点データにアクセスしたい場合は、頂点構造を自身で宣言する必要があります。 この構造__メンバーは、次のリストから選択する必要があります__。
+* $$float4 vertex$$ は、頂点の位置です。
+* $$float3 normal$$ は、頂点の法線です。
+* $$float4 texcoord$$ は、1 つ目の UV　座標です。
+* $$float4 texcoord1$$ は、2 つ目の UV　座標です。
+* $$float4 tangent$$ は、接線ベクトルです (法線マッピングに使用されます)。
+* $$float4 color$$ は、頂点ごとの色です。
 
-!! Examples
+!! 例
 
-!!! Visualizing UVs
+!!! UV の表示
 
-The following shader example uses vertex position and first texture coordinate as vertex shader input (defined in structure $$appdata$$). It is very useful to debug UV coordinates of the mesh. UV coordinates are visualized as red and green colors, and coordinates outside of 0..1 range have additional blue tint applied.
+次のシェーダのサンプルは、(構造 $$appdata$$ で定義された) 頂点シェーダ入力として、頂点位置と 1 つ目のテクスチャ座標を使用します。 メッシュの UV 座標をデバッグするのに非常に便利です。 UV 座標は、赤色および緑色で表示され、0 〜 1 の範囲外にある座標には、更に青色が適用されます。
 
 [@
 Shader "!Debug/UV 1" {
@@ -87,10 +86,11 @@ ENDCG
 }@]
 
 
-Attach:SL-DebugUV1.png\\
-''Debug UV1 shader applied to a torus knot model''
 
-Similarly, this shader vizualizes the second UV set of the model:
+Attach:SL-DebugUV1.png\\
+''トーラス ノット モデルに適用された UV1 シェーダをデバッグ''
+
+同様に、このシェーダは、モデルの 2 つ目の UV を表示します。
 [@Shader "!Debug/UV 2" {
 SubShader {
     Pass {
@@ -126,9 +126,9 @@ ENDCG
 }
 }@]
 
-!!! Visualizing vertex colors
+!!! 頂点色の表示
 
-The following shader uses vertex position and per-vertex colors as vertex shader input (defined in structure $$appdata$$).
+次のシェーダは、(構造 $$appdata$$ で定義された) 頂点シェーダ入力として、頂点位置と頂点ごとの色を使用します。
 
 [@Shader "!Debug/Vertex color" {
 SubShader {
@@ -161,12 +161,12 @@ ENDCG
 }@]
 
 Attach:SL-DebugColors.png\\
-''Debug Colors shader applied to a model that has illumination baked into colors''
+''照明が色にベークされたモデルに適用された色シェーダをデバッグ''
 
 
-!!! Visualizing normals
+!!! 法線の表示
 
-The following shader uses vertex position and normal as vertex shader input (defined in structure $$appdata$$). Normal's X,Y,Z components are visualized as R,G,B colors. Because the normal components are in -1..1 range, we scale and bias them so that the output colors are in displayable 0..1 range.
+次のシェーダは、(構造 $$appdata$$ で定義された) 頂点シェーダ入力として、頂点位置と法線を使用します。 法線の X、Y、Z 成分は、R、G、B 色として表示されます。 法線成分は、-1..1 の範囲で、色は -1..1 の範囲にあるため、出力色が表示可能な 0..1 の範囲になるよう、法線をスケールおよびバイアスします。
 
 [@Shader "!Debug/Normals" {
 SubShader {
@@ -200,14 +200,14 @@ ENDCG
 }@]
 
 Attach:SL-DebugNormals.png\\
-''Debug Normals shader applied to a model. You can see that the model has hard shading edges.''
+''モデルに適用された法線シェーダをデバッグ。 モデルにハード シェーディング エッジがあるのが分かるでしょう。''
 
 
-!!! Visualizing tangents and binormals
+!!! 接線および従法線の表示
 
-Tangent and binormal vectors are used for normal mapping. In Unity only the tangent vector is stored in vertices, and binormal is derived from normal and tangent.
+接線および従法線ベクトルは、法線マッピングに使用されます。 Unity では、接線ベクトルは、頂点に格納され、従法線ベクトルは、法線および接線から派生します。
 
-The following shader uses vertex position and tangent as vertex shader input (defined in structure $$appdata$$). Tangent's X,Y,Z components are visualized as R,G,B colors. Because the normal components are in -1..1 range, we scale and bias them so that the output colors are in displayable 0..1 range.
+次のシェーダは、(構造 $$appdata$$ で定義された) 頂点シェーダ入力として、頂点位置と接線を使用します。 接線の X、Y、Z 成分は、R、G、B 色として表示されます。 法線成分は、-1..1 の範囲で、色は -1..1 の範囲にあるため、出力色が表示可能な 0..1 の範囲になるよう、法線をスケールおよびバイアスします。
 
 [@Shader "!Debug/Tangents" {
 SubShader {
@@ -217,7 +217,7 @@ CGPROGRAM
 #pragma vertex vert
 #pragma fragment frag
 
-// vertex input: position, tangent
+// 頂点入力: position, tangent
 struct appdata {
     float4 vertex : POSITION;
     float4 tangent : TANGENT;
@@ -240,9 +240,9 @@ ENDCG
 }@]
 
 Attach:SL-DebugTangents.png\\
-''Debug Tangents shader applied to a model.''
+''モデルに適用された接線シェーダをデバッグ。''
 
-The following shader visualizes binormals. It uses vertex position, normal and tangent as vertex input. Binormal is calculated from normal and tangent. Just like normal or tangent, it needs to be scaled and biased into a displayable 0..1 range.
+次のシェーダは従法線を表示します。 これは、頂点入力として、位置、法線および接線を使用します。 従法線は、法線および接線から計算されます。 法線または接線と同様、表示可能な 0..1 の範囲になるよう、スケールおよびバイアスする必要があります。
 
 [@Shader "!Debug/Binormals" {
 SubShader {
@@ -252,7 +252,7 @@ CGPROGRAM
 #pragma vertex vert
 #pragma fragment frag
 
-// vertex input: position, normal, tangent
+// 頂点入力: position, normal, tangent
 struct appdata {
     float4 vertex : POSITION;
     float3 normal : NORMAL;
@@ -266,7 +266,7 @@ struct v2f {
 v2f vert (appdata v) {
     v2f o;
     o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
-    // calculate binormal
+    // 従法線を計算
     float3 binormal = cross( v.normal, v.tangent.xyz ) * v.tangent.w;
     o.color.xyz = binormal * 0.5 + 0.5;
     o.color.w = 1.0;
@@ -279,4 +279,4 @@ ENDCG
 }@]
 
 Attach:SL-DebugBinormals.png\\
-''Debug Binormals shader applied to a model. Pretty!''
+''モデルに適用された従法線シェーダをデバッグ。 すばらしい!''

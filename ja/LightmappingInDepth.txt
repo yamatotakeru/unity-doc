@@ -1,147 +1,149 @@
-! Lightmapping In-Depth
+! ライトマッピング詳細
 
-If you are about to lightmap your first scene in Unity, this [[Main.Lightmapping | Quickstart Guide]] might help you out.
+Unity で最初のシーンにライトマップ使用している場合、この [[Main.Lightmapping | Quickstart Guide]] が役に立つでしょう。
 
-Lightmapping is fully integrated in Unity, so that you can build entire levels from within the Editor, lightmap them and have your materials automatically pick up the lightmaps without you having to worry about it. Lightmapping in Unity means that all your lights' properties will be mapped directly to the Beast lightmapper and baked into textures for great performance. Unity Pro extends this functionality by Global Illumination, allowing for baking realistic and beautiful lighting, that would otherwise be impossible in realtime. Additionally Unity Pro brings you sky lights and emissive materials for even more interesting scene lighting.
+ライトマッピングは、Unity に完全に統合されているため、エディタ内からレベル全体を作成し、そのレベルにライトマップを行い、気にすることなく、マテリアルに自動的にライトマップを選択させることができます。 Unity でのライトマッピングは、パフォーマンス向上のため、すべてのライトのプロパティが Beast ライトマッパに直接マッピングされ、テクスチャにベークされるということです。 Unity Pro は、グローバル照明によってこの機能を拡張しますが、これにより、そうでない場合は、リアルタイムでは不可能な、よりリアルで美しいライティングをベークできます。 さらに、Unity Pro には、より素晴らしいシーン ライティングのためのスカイ ライトや発光マテリアルが用意されています。
 
-In this page you will find a more in-depth description of all the attributes that you can find in the Lightmapping window. To open the Lightmapping window select __^^Window^^ &ndash; ^^Lightmapping^^__.
+このページでは、ライト マッピング ウィンドウにあるすべての属性の詳細な説明を記載します。 ライト マッピング ウィンドウを開くには、 __^^Window^^ &ndash; ^^Lightmapping^^__ を選択します。
 
 
 Attach:LightmappingMain.png
 
+
 !!Scene filters
 At the top of the inspector are three ''Scene Filter'' buttons that enable you to apply the operation to all objects or to restrict it to lights or renderers.
 
-!!Object
-Per-object bake settings for lights, mesh renderers and terrains - depending on the current selection.
+!!オブジェクト
+ライト、メッシュ レンダラおよび地形に対するオブジェクトごとのベーク設定 - 現在の選択内容によって決まります。
 
-__Mesh Renderers and Terrains:__
-
-||PROPS
-||``Lightmap Static``||Mesh Renderers and Terrains have to marked as static to be lightmapped.||
-||``Scale In Lightmap``||(Mesh Renderers only) Bigger value will result in more resolution to be dedicated to the give mesh renderer. The final resolution will be proportional (Scale in lightmap)*(Object's word-space surface area)*(Global bake settings Resolution value). A value of 0 will result in the object not being lightmapped (it will still affect other lightmapped objects). ||
-||``Lightmap Size``||(Terrains only) Lightmap size for this terrain instance. Terrains are not atlased as other objects - they get their individual lightmaps instead.||
-||``Atlas``||Atlasing information &ndash; will be updated automatically, if $$Lock Atlas$$ is disabled. If $$Lock Atlas$$ is enabled, those parameters won't be modified automatically and can be edited manually. ||
-||>>>``Lightmap Index``||An index into the lightmap array.||
-||>>>``Tiling``||(Mesh Renderers only) Tiling of object's lightmap UVs.||
-||>>>``Offset``||(Mesh Renderers only) Offset of object's lightmap UVs.||
-
-__Lights:__
+__メッシュ レンダラおよび地形:__
 
 ||PROPS
-||``Lightmapping``||The Lightmapping mode: Realtime Only, Auto or Baked Only. See [[#DualLightmaps | Dual Lightmaps]] description below.||
-||``Color``||The color of the light. Same property is used for realtime rendering.||
-||``Intensity``||The intensity of the light. Same property is used for realtime rendering.||
-||``Bounce Intensity``||A multiplier to the intensity of indirect light emitted from this particular light source.||
-||``Baked Shadows``||Controls whether shadows are casted from objects lit by this light (controls realtime shadows at the same time in case of Auto lights).||
-||>>>``Shadow Radius``||(Point and Spot lights only) Increase this value for soft direct shadows - it increases the size of the light for the shadowing (but not lighting) calculations.||
-||>>>``Shadow Angle``||(Directional lights only) Increase this value for soft direct shadows - it increases the angular coverage of the light for the shadowing (but not lighting) calculations.||
-||>>>``Shadow Samples``||If you've set Shadow Radius or Angle above zero, increase the number of Shadow Samples as well. Higher sample numbers remove noise from the shadow penumbra, but might increase rendering times.||
+||``Lightmap Static``||メッシュ レンダラおよび地形は、ライトマッピングされるように、スタティックとしてマーキングする必要があります。||
+||``Scale In Lightmap``||(メッシュ レンダラのみ) この値が大きいと、解像度が所定のメッシュ レンダラ専用になります。 最終的な解像度は比例します (ライトマップでのスケール)*(オブジェクトの世界空間表面エリア)*(グローバル ベーク設定解像度値)。 0 の値の場合、オブジェクトはライトマッピングされません (その他のライトマッピングされたオブジェクトには影響します)。 ||
+||``Lightmap Size``||(地形のみ) この地形インスタンスのライトマップ サイズ。 地形は他のオブジェクトとして変更されません。代わりに、個々にライトマップされます。||
+||``Atlas``||$$Lock Atlas$$ が無効になると、アトラスティング情報 &ndash; が自動的に更新されます。 $$Lock Atlas$$ が有効になると、これらのパラメータは自動的に編集されなくなり、手動で編集できます。 ||
+||>>>``Lightmap Index``||ライトマップ配列への索引。||
+||>>>``Tiling``||(メッシュ レンダラのみ) オブジェクトのライトマップ UV のタイリング。||
+||>>>``Offset``||(メッシュ レンダラのみ) オブジェクトのライトマップ UV のオフセット。||
 
-
-!!Bake
-Global bake settings.
+__ライト:__
 
 ||PROPS
-||``Mode``||Controls both offline lightmap baking and runtime lightmap rendering modes. In Dual Lightmaps mode both near and far lightmaps will be baked; only deferred rendering path supports rendering dual lightmaps. Single Lightmaps mode results in only the far lightmap being baked; can also be used to force single lightmaps mode for the deferred rendering path.||
+||``Lightmapping``||ライトマッピング モード。 Realtime Only、Auto または Baked Only のいずれかになります。 下記の [[#DualLightmaps | Dual Lightmaps]] を参照してください。||
+||``Color`` ||ライトの色。 リアルタイムのレンダリングに同じプロパティが使用されます。||
+||``Intensity``||ライトの強度。 リアルタイムのレンダリングに同じプロパティが使用されます。||
+||``Bounce Intensity``||この特定の光源から放出される間接的な光の強度への乗数。||
+||``Baked Shadows``||シャドウがこのライトで照らされたオブジェクトから投影されるかどうかをコントロールします (自動ライトの場合と同時にリアルタイムのシャドウをコントロールします)。||
+||>>>``Shadow Radius``||(ポイントおよびスポット ライトのみ) 柔らかい直接のシャドウの場合はこの値を上げます。シャドーイング (ライティングは対象外) 計算に対して、ライトのサイズを上げます。||
+||>>>``Shadow Angle``||(ディレクショナル ライトのみ) (ポイントおよびスポット ライトのみ) 柔らかい直接のシャドウの場合はこの値を上げます。シャドーイング (ライティングは対象外) 計算に対して、ライトの角度範囲を上げます。||
+||>>>``Shadow Samples``||上記の Shadow Radius または Angle を 0 に設定した場合、Shadow Samples の数も増します。 サンプル数が多いと、シャドウの半影からノイズが減りますが、レンダリング時間が増える場合があります。||
+
+
+!!ベーク
+グローバル ベーク設定
+
+||PROPS
+||``Mode``||オフラインのライトマップ ベーキングとリアルタイムのライトマップ レンダリング モードの両方をコントロールします。 Dual Lightmaps モードでは、近くおよび遠くのライトマップの両方がベークされ、遅延レンダリングパスのみ 2 重ライトマップのレンダリングをサポートします。 Single Lightmaps モードは、遠くのライトマップのみベークし、遅延レンダリング パスに対して、1 つのライトマップ モードを強制するのに使用できます。||
 ||``Use in forward rendering``||(Dual lightmaps only) Enables dual lightmaps in forward rendering. Note that this will require you to create your own shaders for the purpose.||
-||``Quality``||Presets for high (good-looking) and low (but fast) quality bakes. They affect the number of final gather rays, contrast threshold and some other final gather and anti-aliasing settings.||
-||``Bounces``||The number of light bounces in the Global Illumination simulation. At least one bounce is needed to give a soft, realistic indirect lighting. 0 means only direct light will be computed.||
-||``Sky Light Color``||Sky light simulates light emitted from the sky from all the directions - great for outdoor scenes.||
-||``Sky Light Intensity``||The intensity of the sky light - a value of 0 disables the sky light.||
-||``Bounce Boost``||Boosts indirect light, can be used to increase the amount of bounced light within the scene without burning out the render too quickly.||
-||``Bounce Intensity``||A multiplier to the intensity of the indirect light.||
-||``Final Gather Rays``||The number of rays shot from every final gather point - higher values give better quality.||
-||``Contrast Threshold``||Color contrast threshold, above which new final gather points will be created by the adaptive sampling algorithm. Higher values make Beast be more tolerant about illumination changes on the surface, thus producing smoother but less-detailed lightmaps. Lower numbers of final gather rays might need higher contrast threshold values not to force additional final gather points to be created.||
-||``Interpolation``||Controls the way the color from final gather points will be interpolated. 0 for linear interpolation, 1 for advanced, gradient-based interpolation. In some cases the latter might introduce artifacts.||
-||``Interpolation Points``||The number of final gather points to interpolate between. Higher values give more smooth results, but can also smooth out details in the lighting.||
-||``Ambient Occlusion``||The amount of ambient occlusion to be baked into the lightmaps. Ambient occlusion is the visibility function integrated over the local hemisphere of size Max Distance, so doesn't take into account any lighting information.||
-||``Lock Atlas``||When Lock Atlas is enabled, automatic atlasing won't be run and lightmap index, tiling and offset on the objects won't be modified.||
-||``Resolution``||The resolution of the lightmaps in texels per world unit, so a value of 50 and a 10unit by 10unit plane will result in the plane occupying 500x500 pixels in the lightmap.||
+||``Quality``||ベークの質を高 （見た目が良くなります） および低 （高速） に設定します。 これらは、最終集光数、コントラスト閾値、その他の最終収集およびアンチエイリアス処理設定に影響します。||
+||``Bounces``||グローバル照明シミュレーションでのライト バウンスの数。 柔らかく、リアルな間接ライティングを得るには、1 つ以上のバウンスが必要です。 0 の場合、直接光のみ計算されます。||
+||``Sky Light Color``||スカイ ライトは、すべての方向に空から放出サれる光をシミュレートします。屋外のシーンに最適です。||
+||``Sky Light Intensity``||スカイ ライトの強度。0 の場合、スカイ ライトは無効になります。||
+||``Bounce Boost``||間接的な光を強化します。レンダリングを過剰に速くバーンアウトさせずに、シーン内で跳ね返りのライトの量を増やすのに使用できます。||
+||``Bounce Intensity``||間接的な光の強度の乗数。||
+||``Final Gather Rays``||すべての最後の集光点から放たれる光の数。値が高いほど、質が向上します。||
+||``Contrast Threshold``||色コントラスト閾値。この上で、新しい最終集光点が適応サンプリング アルゴリズムによって作成されます。 値が高いほど、Beast の表面上の照明の変更に対する許容度が上がり、円滑ですが、細部の少ないライトマップが生成されます。 最終集光の数が少ないと、これ以上最終集光点が作成されないようにするため、高いコントラスト閾値が必要になる場合があります。||
+||``Interpolation``||最終集光点からの色がどのように補間されるかをコントロールします。 0 は、線形補間、1 は高度な、階調度ベースの補間になります。 後者のほうがアーティファクトが増える場合があります。||
+||``Interpolation Points``||間に補間される最終集光点の数。 値が高いほど、結果が円滑になりますが、ライティングでの細部も円滑になります。||
+||``Ambient Occlusion``||ライトマップにベークされる周囲オクルージョンの量。 周囲オクルージョンはサイズ Max Distance のローカルな半球上で統合された表示関数のため、ライティング情報は考慮しません。||
+||``Lock Atlas``||ロック アトラスが有効になると、自動アトラシングは実行されなくなり、オブジェクト上の Lightmap Index、Tiling および Offset は編集されなくなります。||
+||``Resolution``||世界単位ごとのテクセルたんいのライトマップの解像度。50 の値と 10x10 の面の場合、ライトマップで面が 500x500 ピクセルを有する面になります。||
 ||``Padding`` ||The blank space left between individual items on the atlas, given in texel units (0..1). ||
-!!Maps
-The editable array of all the lightmaps.
+
+!!マップ
+すべてのライトマップの編集可能な配列。
 
 ||PROPS
-||``Compressed``||Toggles compression on all lightmap assets for this scene.||
-||``Array Size``||Size of the lightmaps array (0 to 254).||
-||``Lightmaps Array``||The editable array of all the lightmaps in the current scene. Unassigned slots are treated as black lightmaps. Indices correspond to the Lightmap Index value on Mesh Renderers and Terrains. Unless Lock Atlas is enabled, this array will get auto-resized and populated whenever you bake lightmaps.||
+||``Compressed``||このシーンに対するすべてのライトマップ上での圧縮を切り替えます。||
+||``Array Size``||ライトマップのサイズ (0 〜 254)。||
+||``Lightmaps Array``||現在のシーンでのすべてのライトマップの編集可能な配列。 割り当てていないスロットは黒いライトマップとして扱われます。 メッシュ レンダラと地形上のライトマップ インデックス値に対応したインデックス。 ロック アトラスが有効にならない限り、この配列は、自動でリサイズさ、ライトマップのベーク時に常に投入されます。||
 
-!!Lightmap Display
-Utilities for controlling how lightmaps are displayed in the editor. Lightmap Display is a sub window of the Scene View, visible whenever the Lightmapping window is visible.
+!!ライトマップ ディスプレイ
+エディタでのライトマップがどのように表示されるかをコントロールするユーティリティ。 ライトマップ ディスプレイ はシーン ビューのサブウィンドウで、ライトマッピング ウィンドウの表示時に毎回表示されます。
 
 ||PROPS
-||``Use Lightmaps``||Whether to use the lightmaps during the rendering or not.||
-||``Shadow Distance``||The distance at which Auto lights and Close By lightmaps fade out to just Far Away lightmaps. This setting overrides but not overwrites the QualitySettings.shadowDistance setting.||
-||``Show Resolution``||Toggles the scene view Lightmap Resolution mode, which allows you to preview how you spend your lightmap texels on objects marked as static.||
+||``Use Lightmaps``||レンダリング中にライトマップを使用するかしないか。||
+||``Shadow Distance``||Auto ライトと Close By ライトマップが Far Away ライトマップにフェードアウトする距離。 この設定は QualitySettings.shadowDistance 設定をク項にしますが、上書きはしません。||
+||``Show Resolution``||シーン ビューのライトマップ解像度モードを切り替えます。これにより、スタティックとマーキングされたオブジェクトでライトマップのテクセルがどのように消費されるかをプレビューできます。||
 
 
 
-!! Details
+!! 詳細
 
 
 [[#DualLightmaps]]
 
-!!! Dual Lightmaps
+!!! 二重ライトマップ
 
-Dual lightmaps is Unity's approach to make lightmapping work with __specular__, __normal mapping__ and proper blending of baked and realtime shadows. It's also a way to make your lightmaps look good even if the lightmap resolution is low.
+二重ライトマップは、ライトマッピングを__スペキュラ__、__法線マッピング__および__ベークされたおよびリアルタイムのシャドウの適切なブレンディングを連携させる Unity の手法です。 また、ライトマップ解像度が低くても、ライトマップの見た目を良くする方法もあります。
 
-Dual lightmaps by default can only be used in the [[Main.RenderingPaths | Deferred Lighting]] rendering path. In Forward rendering path, it's possible to enable Dual Lightmaps by writing custom shaders (use @@[[SL-SurfaceShaders|dualforward]]@@ surface shader directive).
+2 重ライトマップはデフォルトでは、[[Main.RenderingPaths | Deferred Lighting]] レンダリング パスでのみ使用できます。 フォワード レンダリング パスでは、カスタムのシェーダを記述することで、2 重ライトマップを有効に出来ます (@@[[SL-SurfaceShaders|dualforward]]@@ 表面シェーダ ディレクティブを使用します)。
 
-Dual lightmaps use two sets of lightmaps: 
-* __Far__: Contains full illumination
-* __Near__: Contains indirect illumination from lights marked as __Auto__, full illumination from lights marked as __Bake Only__, emissive materials and sky lights. 
+2 重ライトマップは、次の 2 組みのライトマップを使用します。 
+* __Far__: 完全な署名を含みます。
+* __Near__:  __Auto__とマーキングされたライトからの間接照明、__Bake Only__とマーキングされたライトからの完全な照明、放射マテリアルおよびスカイ ライトを含みます。 
 
-__Realtime Only__ lights are never baked. The __Near__ lightmap set is used within the distance from the camera smaller than the Shadow Distance quality setting.\\
-Within this distance __Auto__ lights are rendered as realtime lights with specular bump and realtime shadows (this makes their shadows blend correctly with shadows from Realtime Only lights) and their indirect light is taken from the lightmap. Outside Shadow Distance __Auto__ lights no longer render in realtime and full illumination is taken from the __Far__ lightmap (__Realtime Only__ lights are still there, but with disabled shadows).
+__Realtime Only__ ライトはベークされません。 __Near__ ライトマップ セットは、Shadow Distance 質設定よりもカメラからの距離内で使用されます。\\
+この距離内では、__Auto__ライトは、スペキュラおよびリアルタイム シャドウのあるリアルタイム ライトとしてレンダリングされ (これにより、そのシャドウが Realtime Only ライトからのシャドウと正しくブレンドされます)、その間接的な光はライトマップから取られます。 Outside Shadow Distance __Auto__ ライトは、リアルタイムでレンダリングを行わなくなり、_完全な照明は、__Far__ライトマップから取られます (__Realtime Only__ライトはまだそこにありますが、シャドウは無効になります)。
 
-The scene below contains one directional light with lightmapping mode set to the default Auto, a number of static lightmapped objects (buildings, obstacles, immovable details) and some dynamic moving or movable objects (dummies with guns, barrels). The scene is baked and rendered in dual lightmaps mode: behind the shadow distance buildings are fully lit only by lightmaps, while the two dummies are dynamically lit but don't cast shadows anymore; in front of the shadow distance both the dummy and static lightmapped buildings and ground are lit in realtime and cast realtime shadows, but the soft indirect light comes from the near lightmap.
+下のシーンには、ライトマッピング モードがデフォルトの Auto に設定された  1 つのディレクショナル ライトと、多くのライトマップが適用されたスタティック オブジェクト （建物、障害物、動かせない細部） および一部の動的移動および可動オブジェクト （銃、銃身のあるダミー） が含まれます。 シーンは、2 重ライトマップ モードでベークおよびレンダリングされます。 シャドウ距離の裏では、ライトマップによってのみ建物が完全に照らされ、2 つのダミーは自動的に照らされますが、シャドウを投影しません。シャドウ距離の前では、両方のダミーとライトマップが適用されたスタティックな建物および地面がリアルタイムで照らされ、リアルタイムのシャドウを投影しますが、柔らかい間接的な光は近くのライトマップから放たれます。
 
 Attach:DualLightmapsInAction.png
 
 Attach:DualLightmapsInActionDetail.png
 
-!!! Single Lightmaps
+!!! シングル ライトマップ
 
-Single Lightmaps is a much simpler technique, but it can be used in any [[Main.RenderingPaths | rendering path]]. All static illumination (i.e. from baked only and auto lights, sky lights and emissive materials) gets baked into one set of lightmaps. These lightmaps are used on all lightmapped objects regardless of shadow distance.
+シングル ライトマップははるかに簡単な手法ですが、どの [[Main.RenderingPaths | rendering path]] で使用できます。 すべてのスタティック照明 (つまり、ベーク済みのものと自動ライト、スカイ ライトおよび放射マテリアル) は 1 つのライトマップのセットにベークされます。 これらのライトマップは、シャドウの距離に関係なく、ライトマップが適用されたオブジェクトすべてに使用されます。
 
-To match the strength of dynamic shadows to baked shadows, you need to manually adjust the ``Shadow Strength`` property of your light:
+動的シャドウの強度をベークされたシャドウに一致させるには、ライトの''Shadow Strength''プロパティを手動で調整する必要があります。
 
 Attach:SingleLightmapsShadow2.png Attach:SingleLightmapsShadow.png\\
-''Adjusting Shadow Strength of a light from the original value of 1.0 to 0.7.''
+''ライトのシャドウの強度を元の値 1.0 から、0.7 に調整''
 
-!!! Lightmapped Materials
+!!! ライトマップが適用されたマテリアル:
 
-Unity doesn't require you to select special materials to use lightmaps. Any shader from the built-in shaders (and any Surface Shader you write, for that matter) already supports lightmaps out of box, without you having to worry about it - it just works.
+Unity では、ライトマップに使用する特殊なマテリアルを使用する必要はありません。 組み込みシェーダからのシェーダ (およびその場合は、記述した表面シェーダ) は、木にする必要なく、ボックスからのライトマップをサポートしているので、ただ機能するだけです。
 
-!!! Lightmap Resolution
+!!! ライトマップ解像度
 
-With the ''Resolution'' bake setting you control how many texels per unit are needed for your scene to look good. If there's a 1x1 unit plane in your scene and the resolution is set to 10 texels per unit, your plane will take up 10x10 texels in the lightmap. Resolution bake setting is a global setting. If you want to modify it for a special object (make it very small or very big in the lightmap) you can use ``Scale in Lightmap`` property of Mesh Renderers. Setting Scale in Lightmap to 0 will result in the object not being lightmapped at all (it will still influence lightmaps on other objects). Use the ''Lightmap Resolution'' scene view render mode to preview how you spend your lightmap texels.
+''Resolution''ベーク設定により、見た目を良くするためにシーンに必要な単位ごとのテクセル数をコントロールできます。 シーンに 1x1 単位面があり、解像度を単位あたり 10 に設定すると、ライトマップで面が 10x10 テクセルを使用します。 解像度ベーク設定はグローバル設定です。 特殊なオブジェクトに対してこれを編集したい (ライトマップで非常に小さくまたは非常に大きくしたい) 場合、メッシュ レンダラの''Scale in Lightmap''プロパティを使用します。 ライトマップでスケールを 0 に設定すると、オブジェクトはライトマッピングされません (その他のオブジェクトのライトマップには影響します)。 ''Lightmap Resolution''シーン ビュー レンダー モードを使用すると、ライトマップ テクセルがどのように消費されるかをプレビューできます。
 
 Attach:LightmapResolution40.png\\
-''Lightmap Resolution scene view mode visualising how the lightmap texels are spent (each square is one texel).''
+''ライトマップ テクセルがどのように使用されるかを示すライトマップ解像度シーン ビュー (各正方形が 1 つのテクセル)。''
 
-!!! UVs
+!!! UV
 
-A mesh that you're about to lightmap needs to have UVs suitable for lightmapping. The easiest way to ensure that is to enable the Generate Lightmap UVs option in Mesh Import Settings for a given mesh.
+ライトマップしたいメッシュに、ライトマッピング用の適切な UV があることを確認してください。 最も簡単な方法は、所定のメッシュのメッシュ インポート設定で Generate Lightmap UVｓ オプションを有効にすることです。
 
-For more information see the [[Main.LightmappingUV | Lightmap UVs]] page.
+詳細については、[[Main.LightmappingUV | Lightmap UVs]] ページを参照してください。
 
-!!! Material Properties
+!!! マテリアル プロパティ
 
-The following material properties are mapped to Beast's internal scene representation:
-* Color
-* Main Texture
-* Specular Color
-* Shininess
-* Transparency
-** Alpha-based: when using a transparent shader, main texture's alpha channel will control the transparency
-** Color-based: Beast's RGB transparency can be enabled by adding a texture property called $$_TransparencyLM$$ to the shader. Bear in mind that this transparency is defined in the opposite way compared to the alpha-based transparency: here a pixel with value (1, 0, 0) will be fully transparent to red light component and fully opaque to green and blue component, which will result in a red shadow; for the same reason white texture will be fully transparent, while black texture - fully opaque.
-* Emission
-** Self Illuminated materials will emit light tinted by the Color and Main Texture and masked by the Illum texture. The intensity of emitted light is proportional to the Emission property (0 disables emission).
-** Generally large and dim light sources can be modeled as objects with emissive materials. For small and intense lights normal light types should be used, since emissive materials might introduce noise in the rendering.
+次のマテリアル プロパティが、Beast の内部シーン表示にマッピングされます。
+* カラー
+* ムービー テクスチャ
+* スペキュラ色
+* 輝かしさ
+* 透明度
+** アルファ ベース: 透明シェーダを使用すると、メイン テクスチャのアルファ チャンネルは透明度をコントロールします。
+** 色ベース: Beast の RGB 透明度は、$$_TransparencyLM$$ というプロパティをシェーダに追加することで有効にできます。 この透明度は、アルファ ベースの透明度に比べ、逆方向に定義されます。 値 (1, 0, 0) のあるピクセルは、赤色のライト コンポーネントの場合完全に透明で、緑および青のコンポーネントの場合は完全に不透明になります。これにより、赤色の影が生じます。同じ理由で、白のテクスチャは完全に透明になり、黒のテクスチャは完全に不透明になります。
+* 放出
+** 自己発光マテリアルは色およびメイン テクスチャで色のついた光を放ち、照明テクスチャでマスクされます。 放出された光の強度は、放出プロパティに比例します (0 は放出を無効にします)。
+** 一般に大きくて、ぼんやりとした光源は、放出マテリアルのあるオブジェクトとしてモデリングできます。 放出マテリアルはレンダリング時にノイズを生じる場合があるので、小さくて、強い光の場合、法線ライト タイプを使用する必要があります。
 
-''Note: When mapping materials to Beast, Unity detects the 'kind' of the shader by the shader's properties and path/name keywords such as:  'Specular', 'Transparent', 'Self-Illumin', etc.''
+''注意: Beast にマテリアルをマッピングすると、Unity は、シェーダのプロパティおよび''スペキュラ''、''透明さ''、''自己発光''などのパス/名前キーワードによって  シェーダの''種類''を検出します。
 
 !!! Skinned Mesh Renderers
 Having skinned meshes that are static makes your content more flexible, since the shape of those meshes can be changed in Unity after import and can be tweaked per level. Skinned Mesh Renderers can be lightmapped in exactly the same way as Mesh Renderers and are sent to the lightmapper in their current pose.
@@ -149,29 +151,29 @@ Having skinned meshes that are static makes your content more flexible, since th
 Lightmapping can also be used if the vertices of a mesh are moved at runtime a bit -- the lighting won't be completely accurate, but in a lot of cases it will match well enough.
 
 
-!! Advanced
+!! 詳細
 
-!!! Automatic Atlasing
+!!! 自動アトラシング
 
-Atlasing (UV-packing) is performed automatically every time you perform a bake and normally you don't have to worry about it - it just works.
+アトラシング (UV パッキング) は、ベークを行う際に毎回自動的に実行されるので、通常は気にする必要はありません。ただ機能するだけです。
 
-Object's world-space surface area is multiplied by the per-object Scale In Lightmap value and by the global Resolution and the result determines the size of the object's UV set (more precisely: the size of the [0,1]x[0,1] UV square) in the lightmap. Next, all objects are packed into as few lightmaps as possible, while making sure each of them occupies the amount of space calculated in the previous step. If a UV set for a given object occupies only part of the [0,1]x[0,1] square, in many cases atlasing will move neighboring UV sets closer, to make use of the empty space.
+オブジェクトの世界空間の表面エリアはオブジェクトごとの Scale In Lightmap 値よって乗算され、、グローバル解像度と結果によって、ライトマップでのオブジェクトの UV セットのサイズを決定します (より正確には: [0,1]x[0,1] UV 正方形のサイズ)。 次に、すべてのオブジェクトは、極力少ない数のライトマップにパックされ、それぞれが前のステップで計算された空間量を占めるようにします。 所定のオブジェクトに対する UV セットが [0,1]x[0,1] 正方形の部分のみ占める場合、ほとんどの場合、アトラシングは、近隣の UV セットを近くに移動させ、開いている空間を使用します。
 
-As a result of atlasing, every object to be lightmapped has it's place in one of the lightmaps and that space doesn't overlap with any other object's space. The atlasing information is stored as three values: Lightmap Index, Tiling (scale) and Offset in Mesh Renderers and as one value: Lightmap Index in Terrains and can be viewed and modified via the Object pane of the lightmapping window.
+アトラシングの結果、ライトマップが適用されるすべてのオブジェクトがライトマップのいずれかにその場所を持ち、どの空間はその他のオブジェクトの空間に重なりません。 アトラシング情報は、メッシュ レンダラの ライトマップ インデックス、タイリング (スケール)、オフセットの 3 つの値として、 地形でのライトマップ インデックスとして格納され、 ライトマッピング ウィンドウのオブジェクト ペインを介して、表示および編集できます。
 
 Attach:LightmapUsers40.png\\
-''Right-clicking a lightmap lets you select all game objects that use the chosen lightmap. Lightmaps of the active object from the current selection are highlighted in yellow.''
+''ライトマップを右クリックすると、選択したライトマップを使用しているすべてのゲーム オブジェクトを選択できます。'' 現在の選択内容からのアクティブなオブジェクトのライトマップは黄色で強調表示されます。''
 
-Atlasing can only modify per-object data which is Lightmap Index, Tiling and Offset and can not modify the UV set of an object, as the UV set is stored as part of the shared mesh. Lightmap UVs for a mesh can only be created at import time using Unity's built-in auto-unwrapper or in an external 3D package before importing to Unity.
+Atlasing は、Lightmap Index、Tiling および Offset であるオブジェクトごとのデータのみ編集可能で、 オブジェクトの UV セットは、共有されたメッシュの部分として格納されるため、編集できません。 メッシュの Lightmap UV は、インポート時にのみ、Unity の組み込み自動ラッパーを使用して、または Unity 外部 3D パッケージでのみ作成できます。
 
 !!! Lock Atlas
 
-When Lock Atlas is enabled, automatic atlasing won't be run and Lightmap Index, Tiling and Offset on the objects won't be modified. Beast will rely on whatever is the current atlasing, so it's the user's responsibility to maintain correct atlasing (e.g. no overlapping objects in the lightmaps, no objects referencing a lightmap slot past the lightmap array end, etc.).
+Lock Atlas が有効になると、自動アトラシングは実行されなくなり、オブジェクト上の Lightmap Index、Tiling および Offset は編集されなくなります。 Beast は、現在のアトラシングであるものに依存しているため、ユーザーが行うのは、正しいアトラシングの維持のみになります （例えば、ライトマップでのラッピング オブジェクトなし、ライトマップ配列の端を過ぎた、ライトマップ スロットを参照するオブジェクトなし）。
 
-Lock Atlas opens up the possibility for alternative workflows when sending your object's for lightmapping. You can then perform atlasing manually or via scripting to fit you specific needs; you can also lock the automatically generated atlasing if you are happy with the current atlasing, have baked more sets of lightmaps for your scene and want to make sure, that after adding one more object to the scene the atlasing won't change making the scene incompatible with other lightmap sets.
+Lock Atlas は、ライトマッピングのためのオブジェクトの送信時の別のワークフローの可能性を開きます。 手動またはスクリプティングを介して、特定のニーズに合うよう、アトラシングを実行できます。また、現在のアトラシングに満足し、シーンに対してより多くのライトマップの接テオをベークし、シーンに更にオブジェクトを追加した後に、アトラシングがその他のライトマップ セットとの互換性を持たせないようにしたい場合、自動生成されたアトラシングをロックできます。
 
-Remember that Lock Atlas locks only atlasing, not the mesh UVs. If you change your source mesh and the mesh importer is set to generate lightmap UVs, the UVs might be generated differently and your current lightmap will look incorrectly on the object - to fix this you will need to re-bake the lightmap.
+Lock Atlas は、アトラシングのみロックし、メッシュの UV はしません。 ソース メッシュを変更し、メッシュ インポータをライトマップ UV を生成するよう設定すると、UV が異なる形で生成され、現在のライトマップがオブジェクトで正しく表示されません。これを修復するには、ライトマップを再ベークする必要があります。
 
-!!!Custom Beast bake settings
+!!!カスタムの Beast ベーク設定
 
-If you need even more control over the bake process, see the [[LightmappingCustomSettings | custom Beast settings]] page.
+ベーク処理をよりコントロールしたい場合は、 [[LightmappingCustomSettings | custom Beast settings]] ページを参照してください。

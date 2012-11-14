@@ -1,5 +1,5 @@
-! Advanced ShaderLab topics
+! 詳細な ShaderLab トピック
 
-Read those to improve your ShaderLab-fu!
+ShaderLab を学びたい場合はお読みください。
 
 (:tocportion:)

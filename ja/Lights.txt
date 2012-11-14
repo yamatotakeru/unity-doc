@@ -1,34 +1,34 @@
-! Lights
+! ライト
 
-$$Lights$$ are an essential part of every scene.  While meshes and textures define the shape and look of a scene, lights define the color and mood of your 3D environment. You'll likely work with more than one light in each scene.  Making them work together requires a little practice but the results can be quite amazing.
+$$Lights$$ は、すべてのシーンの重要な部分です。  メッシュおよびテクスチャは、シーンの形状と見た目を定義し、ライトは 3D 環境の色やムードを定義します。  各シーンで複数のライトを扱うことになるでしょう。  これらを連携させるには、少しの実践が必要ですが、結果は驚くほど素晴らしいものになるでしょう。
 
 Attach:LightTwoLights.png
-''A simple, two-light setup''
+''簡単な、2 つのライトのある設定''
 
-Lights can be added to your scene from the ^^GameObject->Create Other^^ menu. Once a light has been added, you can manipulate it like any other GameObject. Additionally, you can add a Light Component to any selected GameObject by using ^^Component->Rendering->Light^^.
+ライトは、^^GameObject->Create Other^^ メニューからシーンに追加できます。 ライトを追加すると、その他の GameObject のように操作できます。  また、^^Component->Rendering->Light^^ を使用して、選択した GameObject にライト コンポーネントを追加できます。
 
-There are many different options within the Light Component in the $$Inspector$$.
+$$Inspector$$ のライト コンポーネントには多くの各種オプションがあります。
 
 Attach:LightInspectorV3.png
-''Light Component properties in the Inspector''
+''インスペクタ内のライト コンポーネント プロパティ''
 
-By simply changing the ``Color`` of a light, you can give a whole different mood to the scene.
+ライトの''Color''を変更するだけで、シーンのムード全体を変えることができます。
 
 Attach:LightMood1.png
-''Bright, sunny lights''
+''明るい太陽のようなライト''
 
 Attach:LightMood2.png
-''Dark, medieval lights''
+''暗い中世のライト''
 
 Attach:LightMood3.png
-''Spooky night lights''
+''不気味な夜のライト''
 
-The lights you create this way are $$realtime$$ lights - their lighting is calculated each frame while the game is running. If you know the light will not change, you can make your game faster and look much better by using [[Lightmapping]].
+このように作成したライトは、$$realtime$$ ライトになります。そのライティングは、ゲーム実行中、フレームごとに計算されます。 ライトが変わらないと分かっている場合、[[Lightmapping]] を使用して、ゲームをより高速かつ、見た目も向上できます。
 
-!!Rendering paths
-Unity supports different Rendering Paths, these paths affect mainly Lights and Shadows, so choosing the correct rendering path depending on your game requirements can improve your project's performance.
-For more info about rendering paths you can visit the [[RenderingPaths | Rendering paths section]].
+!!レンダリング パス
+Unity は、各種レンダリング パスをサポートしています。これらのパスは、主にライトやシャドウに影響するため、ゲームの要件に基づいた正しいレンダリング パスの選択により、プロジェクトのパフォーマンスを向上できます。
+レンダリング パスの詳細については、 [[RenderingPaths | Rendering paths section]] を参照してください。
 
 
-!! More information
-For more information about using Lights, check the [[class-Light | Lights page]] in the [[Reference | Reference Manual]].
+!! 詳細
+ライトの使用に関する詳細については、[[Reference | Reference Manual]] の [[class-Light | Lights page]] を参照してください。

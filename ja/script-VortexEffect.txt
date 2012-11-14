@@ -1,15 +1,15 @@
-! Vortex image effect
+! Vortex 画像効果
 
-The $$Vortex$$ image effect distorts the rendered image within a circular region. Pixels in the image are displaced around a central circular area by a specified angle; the amount of displacement reduces with distance from the centre, diminishing to zero at the circle's edge. Vortex is similar to another image effect called [[script-TwirlEffect|Twirl]], although Twirl distorts the image around a point rather than a circle.
+$$Vortex$$ 画像効果は、レンダリングされた画像を歪めます。 中心付近のピクセルは特別な角度で回転します。つまり 変位量は、円の端でゼロに減少し、中心部からの距離と共に減少します。 Vortexは [[script-TwirlEffect|Twirl]] と似ていますが、Twirl は円というよりもポイントを中心に画像を歪ませます。
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+すべての [[comp-ImageEffects|image effects]] のように、Vortex は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FxVortex.png\\
-''Vortex image effect applied to the scene''
+''シーンに適用された Vortex 効果''
 
 ||PROPS
-||``Radius`` ||The radius of the circle where distortion occurs, given in normalized screen coordinates (ie, a radius of 0.5 is half the size of the screen). ||
-||``Angle``  ||The angle by which pixels are displaced around the central circle. ||
-||``Center`` ||The center of the circular region of distortion.||
+||``Radius`` ||画像の歪みが発生する楕円の半径。 半径が 0.5 の場合、画面の半分のサイズになります。 ||
+||``Angle`` ||適用される歪みの量を制御します。 ||
+||``Center`` ||画面上に歪みエリアを配置します。 ||
 
 (:include imagefx-SM2:)

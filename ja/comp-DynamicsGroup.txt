@@ -1,28 +1,28 @@
-! Physics Components
+! 物理コンポーネント
 
 (:include PhysicsBase:)
 
-!! Component Details
+!! コンポーネント詳細
 
-!!! Physics Control
-* [[class-Rigidbody|Rigidbody]] - Rigidbodies put objects under physics control.
-* [[class-ConstantForce|Constant Force]] - A utility component that adds a constant force to a rigidbody. Great for rockets and other quick functionality.
+!!! 物理特性制御
+* [[class-Rigidbody|Rigidbody]] - リジッドボディ がオブジェクトを物理特性制御下に置きます。
+* [[class-ConstantForce|Constant Force]] - リジッドボディに一定力を素早く加えるためのユーティリティ コンポーネント。 ロケットやその他の迅速な機能に最適です。
 
-!!! Colliders
-* [[class-SphereCollider|Sphere Collider]] - use for sphere-shaped objects.
-* [[class-BoxCollider|Box Collider]] - use for box-shaped objects.
-* [[class-CapsuleCollider|Capsule Collider]] - use for capsule-like (a cylinder with hemisphere ends) objects.
-* [[class-MeshCollider|Mesh Collider]] - takes the graphical [[class-Mesh|mesh]] and uses it as a collision shape.
-* [[class-PhysicMaterial|Physic Material]] - contains settings allowing you to fine-tune your object's physical properties (friction, bounce, etc).
+!!! コライダ
+* [[class-SphereCollider|Sphere Collider]] - 球体形のオブジェクトに使用されます。
+* [[class-BoxCollider|Box Collider]] - 箱形のオブジェクトに使用されます。
+* [[class-CapsuleCollider|Capsule Collider]] - カプセル形 (両端が半球) のオブジェクトに使用されます。
+* [[class-MeshCollider|Mesh Collider]] - グラフィカルな [[class-Mesh|mesh]] を取り、衝突形状として使用します。
+* [[class-PhysicMaterial|Physic Material]] - オブジェクトの物理的特定 (摩擦、跳ね返りなど) の微調整を可能にする設定を含みます。
 
-!!! Joints
-* [[class-HingeJoint|Hinge Joint]] - Used to make door hinges.
-* [[class-SpringJoint|Spring Joint]] - A spring-like joint.
-* [[class-FixedJoint|Fixed Joint]] - Use to "lock" objects together.
-* [[class-ConfigurableJoint|Configurable Joint]] - Use create complex joint behaviors of virtually any kind
+!!! ジョイント
+* [[class-HingeJoint|Hinge Joint]] - ドアのヒンジの作成に使用します。
+* [[class-SpringJoint|Spring Joint]] - ばねに似たジョイント。
+* [[class-FixedJoint|Fixed Joint]] - オブジェクトを''まとめて''ロックします。
+* [[class-ConfigurableJoint|Configurable Joint]] - ほぼあらゆる種類のジョイントの複雑な動作を作詞するのに使用します。
 
-!!! Special Function
-* [[class-CharacterController|Character Controller]] and [[class-CharacterJoint|Character Joint]] - Used to make character controllers.
-* [[class-WheelCollider|Wheel Collider]] - A special collider for grounded vehicles.
-* [[class-SkinnedCloth | Skinned Cloth]] - Used to create Skinned cloth
-* [[class-InteractiveCloth | Interactive Cloth]] - Used to create Interactive cloths, this is just normal cloth being simulated. 
+!!! 特殊な機能
+* [[class-CharacterController|Character Controller]] と [[class-CharacterJoint|Character Joint]] - キャラクター コントローラーを作成するのに使用します。
+* [[class-WheelCollider|Wheel Collider]] - 地上車両用に特殊コライダ。
+* [[class-SkinnedCloth | Skinned Cloth]] - スキン クロスを作成するのに使用します。
+* [[class-InteractiveCloth | Interactive Cloth]] - インタラクティブ クロスの作成にしようされますが、シミュレートされる通常のクロスにすぎません。 

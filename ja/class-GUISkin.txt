@@ -1,113 +1,113 @@
-! GUI Skin
+! GUI スキン
 
-$$GUISkins$$ are a collection of $$GUIStyles$$ that can be applied to your GUI.  Each $$Control$$ type has its own Style definition.  Skins are intended to allow you to apply style to an entire UI, instead of a single Control by itself.
+$$GUISkins$$ は、GUI に適用できる $$GUIStyles$$ です。  $$Control$$ はその種類によって、型の定義が異なります。  スキンは、単独の制御の代わりに、UI 全体にスタイルを適用させることをができます。
 
 Attach:Inspector-GUISkin.png\\
-''A GUI Skin as seen in the $$Inspector$$''
+''$$Inspector$$ で確認される GUI スキン''
 
-To create a GUISkin, select ^^Assets->Create->GUI Skin^^ from the menubar.
+GUI スキンを作成するには、メニューバーから ^^Assets->Create->GUI Skin^^  を選択します。
 
-GUISkins are part of the $$UnityGUI$$ system.  For more detailed information about UnityGUI, please take a look at the [[GUI Scripting Guide]].
+GUI スキンは、$$UnityGUI$$ システムの一部です。  UnityGUI の詳細については[[GUI Scripting Guide]] を参照してください。
 
 
-!! Properties
+!! プロパティ
 
-All of the properties within a GUI Skin are an individual [[class-GUIStyle | GUIStyle]].  Please read the [[class-GUIStyle | GUIStyle]] page for more information about how to use Styles.
+GUI スキン内のプロパティはすべて、[[class-GUIStyle | GUIStyle]] となります。  スタイルの使用法の詳細については、[[class-GUIStyle | GUIStyle]] ページを参照してください。
 
 ||PROPS
-||``Font`` ||The global Font to use for every Control in the GUI ||
-||``Box`` ||The [[class-GUIStyle | Style]] to use for all Boxes ||
-||``Button`` ||The [[class-GUIStyle | Style]] to use for all Buttons ||
-||``Toggle`` ||The [[class-GUIStyle | Style]] to use for all Toggles ||
-||``Label`` ||The [[class-GUIStyle | Style]] to use for all Labels ||
-||``Text Field`` ||The [[class-GUIStyle | Style]] to use for all Text Fields ||
-||``Text Area`` ||The [[class-GUIStyle | Style]] to use for all Text Areas ||
-||``Window`` ||The [[class-GUIStyle | Style]] to use for all Windows ||
-||``Horizontal Slider`` ||The [[class-GUIStyle | Style]] to use for all Horizontal Slider bars ||
-||``Horizontal Slider Thumb`` ||The [[class-GUIStyle | Style]] to use for all Horizontal Slider Thumb Buttons ||
-||``Vertical Slider`` ||The [[class-GUIStyle | Style]] to use for all Vertical Slider bars ||
-||``Vertical Slider Thumb`` ||The [[class-GUIStyle | Style]] to use for all Vertical Slider Thumb Buttons ||
-||``Horizontal Scrollbar`` ||The [[class-GUIStyle | Style]] to use for all Horizontal Scrollbars ||
-||``Horizontal Scrollbar Thumb`` ||The [[class-GUIStyle | Style]] to use for all Horizontal Scrollbar Thumb Buttons ||
-||``Horizontal Scrollbar Left Button`` ||The [[class-GUIStyle | Style]] to use for all Horizontal Scrollbar scroll Left Buttons ||
-||``Horizontal Scrollbar Right Button`` ||The [[class-GUIStyle | Style]] to use for all Horizontal Scrollbar scroll Right Buttons ||
-||``Vertical Scrollbar`` ||The [[class-GUIStyle | Style]] to use for all Vertical Scrollbars ||
-||``Vertical Scrollbar Thumb`` ||The [[class-GUIStyle | Style]] to use for all Vertical Scrollbar Thumb Buttons ||
-||``Vertical Scrollbar Up Button`` ||The [[class-GUIStyle | Style]] to use for all Vertical Scrollbar scroll Up Buttons ||
-||``Vertical Scrollbar Down Button`` ||The [[class-GUIStyle | Style]] to use for all Vertical Scrollbar scroll Down Buttons ||
-||``Custom 1-20`` ||Additional custom Styles that can be applied to any Control ||
-||``Custom Styles`` ||An array of additional custom Styles that can be applied to any Control ||
-||``Settings`` ||Additional Settings for the entire GUI ||
-||>>>``Double Click Selects Word`` ||If enabled, double-clicking a word will select it ||
-||>>>``Triple Click Selects Line`` ||If enabled, triple-clicking a word will select the entire line ||
-||>>>``Cursor Color`` ||Color of the keyboard cursor ||
-||>>>``Cursor Flash Speed`` ||The speed at which the text cursor will flash when editing any Text Control ||
-||>>>``Selection Color`` ||Color of the selected area of Text ||
+||``Font`` ||GUI でのすべての制御に対して使用されるグローバル フォント。 ||
+||``Box`` ||すべてのボックスに使用される [[class-GUIStyle | Style]] 。||
+||``Button`` ||すべてのボタンに使用される [[class-GUIStyle | Style]] 。||
+||``Toggle`` ||すべてのトグルに使用される [[class-GUIStyle | Style]] 。||
+||``Label`` ||すべてのラベルに使用される [[class-GUIStyle | Style]] 。 ||
+||``Text Field`` ||すべてのテキスト フィールドに使用される [[class-GUIStyle | Style]] 。||
+||``Text Area`` ||すべてのテキスト エリアに使用される [[class-GUIStyle | Style]] 。 ||
+||``Window`` ||すべてのウィンドウに使用される [[class-GUIStyle | Style]] 。 ||
+||``Horizontal Slider`` ||すべての水平スライダ バーに使用される [[class-GUIStyle | Style]] 。 ||
+||``Horizontal Slider`` ||すべての水平スライダ サム ボタンに使用される [[class-GUIStyle | Style]] 。 ||
+||``Vertical Slider`` ||すべての垂直スライダ バーに使用される [[class-GUIStyle | Style]] 。 ||
+||``Vertical  Slider`` ||すべての垂直スライダ サム ボタンに使用される [[class-GUIStyle | Style]] 。 ||
+||``Horizontal Scrollbar`` ||すべての水平スクロール バーに使用される [[class-GUIStyle | Style]] 。 ||
+||``Horizontal Scrollbar Thumb`` ||すべての水平スクロールバー サム ボタンに使用される [[class-GUIStyle | Style]] 。||
+||``Horizontal Scrollbar Left Button`` ||すべての水平スクロールバー左ボタンに使用される [[class-GUIStyle | Style]] 。||
+||``Horizontal Scrollbar Right Button`` ||すべての水平スクロールバー右ボタンに使用される [[class-GUIStyle | Style]] 。||
+||``Vertical Scrollbar`` ||すべての垂直スクロール バーに使用される [[class-GUIStyle | Style]] 。 ||
+||``Vertical Scrollbar Thumb`` ||すべての垂直スクロールバー サム ボタンに使用される [[class-GUIStyle | Style]] 。||
+||``Vertical Scrollbar Up Button`` ||すべての垂直スクロールバー上ボタンに使用される [[class-GUIStyle | Style]] 。||
+||``Vertical Scrollbar Down Button`` ||すべての垂直スクロールバー下ボタンに使用される [[class-GUIStyle | Style]] 。||
+||``Custom 1-20`` ||制御に適用できる追加のカスタムのスタイル。||
+||``Custom Styles`` ||制御に適用できる追加のカスタムのスタイルの配列。||
+||``Settings`` ||GUI 全体の追加の設定。||
+||>>>``Double Click Selects Word`` ||有効にした場合、単語をダブルクリックすると、その単語が選択されます。||
+||>>>``Triple Click Selects Word`` ||有効にした場合、単語をトリプルクリックすると、その単語が選択されます。||
+||>>>``Cursor Color`` ||キーボード カーソルの色。||
+||>>>``Cursor Flash Speed`` ||テキスト コントロール編集時に、テキスト カーソルが点滅する速度。||
+||>>>``Selection Color`` ||テキストの選択したエリアの色。||
 
 
-!! Details
+!! 詳細
 
-When you are creating an entire GUI for your game, you will likely need to do a lot of customization for every different Control type.  In many different game genres, like real-time strategy or role-playing, there is a need for practically every single Control type.
+ゲームに対して、GUI 全体を作成する際、異なる制御タイプすべてに対して、多くのカスタマイズを行う必要がある場合があります。  リアルタイム戦略ゲームやロールプレイングなど、多くの各ジャンルで、1 つ 1 つの制御タイプが必要になります。
 
-Because each individual Control uses a particular Style, it does not make sense to create a dozen-plus individual Styles and assign them all manually.  GUI Skins take care of this problem for you.  By creating a GUI Skin, you have a pre-defined collection of Styles for every individual Control.  You then apply the Skin with a single line of code, which eliminates the need to manually specify the Style of each individual Control.
+個々の制御は特定のスタイルを使用するため、10 数個の個々のスタイルを作成し、そのすべてを手動で割り当てても意味がありません。  GUI スキンはこの問題を解決します。  GUI スキンを作成することで、個々の制御すべてに対して、事前定義された各種スタイルを設定できます。  1 つのコード行でスキンを適用することで、個々の制御に対してスタイルを手動で指定する必要がなくなります。
 
 
-!!! Creating GUISkins
+!!! GUI スキンの作成
 
-GUISkins are asset files.  To create a GUI Skin, select ^^Assets->Create->GUI Skin^^ from the menubar.  This will put a new GUISkin in your $$Project View$$.
+GUI スキンはアセット ファイルです。  GUI スキンを作成するには、メニューバーから ^^Assets->Create->GUI Skin^^  を選択します。  これにより、$$Project View$$ に新しい GUIスキンが置かれます。
 
 Attach:GUISkin-ProjectView.png\\
-''A new GUISkin file in the Project View''
+''プロパティ ビューでの新しい GUIスキン''
 
 
-!!! Editing GUISkins
+!!! GUI スキンの編集
 
-After you have created a GUISkin, you can edit all of the [[class-GUIStyle | Styles]] it contains in the Inspector.  For example, the ``Text Field`` [[class-GUIStyle | Style]] will be applied to all Text Field Controls.
+GUIスキン 作成後、インスペクタに含まれるすべての  [[class-GUIStyle | Styles]] を編集できます。  例えば、''Text Field''の [[class-GUIStyle | Style]] がすべてのテキスト フィールド制御に適用できます。
 
 Attach:GUISkin-EditingTextField.png\\
-''Editing the Text Field Style in a GUISkin''
+''GUI スキンでのテキスト フィールド スタイルの編集''
 
-No matter how many Text Fields you create in your script, they will all use this [[class-GUIStyle | Style]].  Of course, you have control over changing the styles of one Text Field over the other if you wish.  We'll discuss how that is done next.
+スクリプトで作成したテキスト フィールドの数に関係なく、すべてこの  [[class-GUIStyle | Style]] を使用します。  もちろん、必要な場合、別のテキスト フィールドに対する 1 つのテキスト フィールドのスタイル変更を制御できます。  どのように行われるかについては後述します。
 
 
-!!! Applying GUISkins
+!!! GUI スキンの適用
 
-To apply a GUISkin to your GUI, you must use a simple script to read and apply the Skin to your Controls.
+GUI にGUIスキンを適用するには、制御にスキンを読み込み、適用する簡単なスクリプトを使用する必要があります。
 
 [@
-// Create a public variable where we can assign the GUISkin
+//GUIスキンを割り当てられるパブリック変数を作成します
 var customSkin : GUISkin;
 
-// Apply the Skin in our OnGUI() function
+// OnGUI() 関数でスキンを適用します
 function OnGUI () {
 	GUI.skin = customSkin;
 
-	// Now create any Controls you like, and they will be displayed with the custom Skin
-	GUILayout.Button ("I am a re-Skinned Button");
+	// 希望する制御が作成され、カスタムのスキンと共に表示されます
+	GUILayout.Button ("私は再スキンされたボタンです");
 
-	// You can change or remove the skin for some Controls but not others
+	// スキンを変更または削除できる制御とできない制御があります
 	GUI.skin = null;
 
-	// Any Controls created here will use the default Skin and not the custom Skin
-	GUILayout.Button ("This Button uses the default UnityGUI Skin");
+	// 個々で作成された制御は、デフォルトのスキンを使用しますが、カスタムのスキンは使用しません
+	GUILayout.Button ("このボタンはデフォルトの UtilityGUI スキンを使用します");
 }
 @]
 
-In some cases you want to have two of the same Control with different Styles.  For this, it does not make sense to create a new Skin and re-assign it.  Instead, you use one of the ``Custom`` Styles in the skin.  Provide a ``Name`` for the custom Style, and you can use that name as the last argument of the individual Control.
+スタイルが異なる同じ制御が 2 つ必要になる場合があります。  このために、新しいスキンを作成し、それを再度割り当てても意味がありません。  代わりに、スキンで''Custom''スタイルの 1 つを使用します。  カスタムのスタイルに''Name''を与えると、その名前を、個々の制御の最後の引数として使用できます。
 
 [@
-// One of the custom Styles in this Skin has the name "MyCustomControl"
+// このスキンのカスタムのスタイルの 1 つには、''MyCustomControl''という名前を持っています
 var customSkin : GUISkin;
 
 function OnGUI () {
 	GUI.skin = customSkin;
 
-	// We provide the name of the Style we want to use as the last argument of the Control function
-	GUILayout.Button ("I am a custom styled Button", "MyCustomControl");
+	// 制御関数の最後の引数として使用したいスタイルの名前を与えます。
+	GUILayout.Button ("私は再スキンされたボタンです"、"MyCustomControl");
 
-	// We can also ignore the Custom Style, and use the Skin's default Button Style
-	GUILayout.Button ("I am the Skin's Button Style");
+	// カスタムのスタイルを無視し、スキンのデフォルトのボタン スタイルを使用することもできます
+	GUILayout.Button ("私は再スキンされたボタンです");
 }
 @]
 
-For more information about working with GUIStyles, please read the [[class-GUIStyle | GUIStyle]] page.  For more information about using UnityGUI, please read the [[GUI Scripting Guide]].
+GUIスタイルの扱いに関する詳細については、[[class-GUIStyle | GUIStyle]] ページを参照してください。  UnityGUI の使用に関する詳細については、[[GUI Scripting Guide]] を参照してください。

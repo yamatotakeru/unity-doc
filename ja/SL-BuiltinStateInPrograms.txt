@@ -1,20 +1,20 @@
-! Built-in state variables in shader programs
+! シェーダ プログラム内の組み込み状態変数
 
-Often in [[SL-ShaderPrograms | shader programs]] you need to access some global state, for example, the current model*view*projection matrix, the current ambient color, and so on. There's no need to declare these variables for the built-in state, you can just use them in shader programs.
+[[SL-ShaderPrograms | shader programs]] ではよくありますが、現在の model*view*projection マトリクスや現在の周囲色などの一部のグローバル状態にアクセスする必要があります。 組み込みの状態に対して、これらの変数を宣言する必要はありません。ただシェーダ プログラムで使用できます。
 
-!! Built-in matrices
+!! 組み込みマトリクス
 
-Matrices (float4x4) supported:
+以下のマトリクス (float4x4) がサポートされています。
 
-: ``UNITY_MATRIX_MVP`` : Current model*view*projection matrix
-: ``UNITY_MATRIX_MV`` : Current model*view matrix
-: ``UNITY_MATRIX_P`` : Current projection matrix
-: ``UNITY_MATRIX_T_MV`` : Transpose of model*view matrix
-: ``UNITY_MATRIX_IT_MV`` : Inverse transpose of model*view matrix
-: ``UNITY_MATRIX_TEXTURE0`` to ``UNITY_MATRIX_TEXTURE3`` : Texture transformation matrices
+: ``UNITY_MATRIX_MVP`` : 現在のモデル *view* 投影マトリクス
+: ``UNITY_MATRIX_MV`` : 現在のモデル *view* マトリクス
+: ``UNITY_MATRIX_P`` : 現在の投影マトリクス
+: ``UNITY_MATRIX_T_MV`` : モデル *view* マトリクスの転置行列
+: ``UNITY_MATRIX_IT_MV`` : モデル *view* マトリクスの逆転値
+: ``UNITY_MATRIX_TEXTURE0`` - ``UNITY_MATRIX_TEXTURE3`` : テクスチャ変形マトリクス
 
-!! Built-in vectors
+!! 組み込みベクトル
 
-Vectors (float4) supported:
+以下のベクトル (float4) がサポートされています。
 
-: ``UNITY_LIGHTMODEL_AMBIENT`` : Current ambient color.
+: ``UNITY_LIGHTMODEL_AMBIENT`` : 現在の周辺色。

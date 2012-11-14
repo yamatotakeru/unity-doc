@@ -1,47 +1,46 @@
-! Render Settings
+! レンダー設定
 
-The $$Render Settings$$ contain default values for a range of visual elements in your scene, like $$Lights$$ and $$Skyboxes$$.
+$$Render Settings$$ には、 $$Light$$ や $$Skybox$$ のような、各種視覚要素のデフォルトの値をシーンに含めます。
 
-To see the Render Settings choose ^^Edit->Render Settings^^ from the menu bar.
+レンダー設定を確認するには、メニューバーから ^^Edit->Render Settings^^ を選択します。
 
 Attach:RenderSet.png
 
-
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Fog`` ||If enabled, fog will be drawn throughout your scene. ||
-||``Fog Color`` ||Color of the fog. ||
-||``Fog Mode`` ||Fog mode: Linear, Exponential (Exp) or Exponential Squared (Exp2). This controls the way fog fades in with distance. ||
-||``Fog Density`` ||Density of the fog; only used by Exp and Exp2 fog modes. ||
-||``Linear Fog Start/End`` ||Start and End distances of the fog; only used by Linear fog mode. ||
-||``Ambient Light`` ||Color of the scene's ambient light. ||
-||``Skybox Material`` ||Default skybox that will be rendered for cameras that have no skybox attached. ||
-||``Halo Strength`` ||Size of all light halos in relation to their ``Range``. ||
-||``Flare Strength`` ||Intensity of all flares in the scene. ||
-||``Halo Texture`` ||Reference to a [[class-Texture2D|Texture]] that will appear as the glow for all Halos in lights. ||
-||``Spot Cookie`` ||Reference to a Texture2D that will appear as the cookie mask for all Spot lights. ||
+||``Fog`` ||有効にすると、霧はシーンを通じて描画されます。 ||
+||``Fog Color`` ||霧の色。 ||
+||``Fog Mode`` ||霧のモード。 Linear、Exponential (Exp) または Exponential Squared (Exp2) 。 遠くで霧がフェードインする方法を制御します。 ||
+||``Fog Density`` ||霧の密度で、Exp と Exp2 霧モードでのみ使用されます。 ||
+||``Linear Fog Start/End`` ||霧の開始および終了距離で、Linear 霧モードでのみ使用されます。 ||
+||``Ambient Light`` ||シーンの周辺光の色。 ||
+||``Skybox Material`` ||スカイボックスが追加されていないカメラに対してレンダリングされるデフォルトのスカイボックス。 ||
+||``Halo Strength`` ||''Range''に関連したすべての光ハローのサイズ。 ||
+||``Flare Strength`` ||シーン内のすべてのフレアの強度。 ||
+||``Halo Texture`` ||ライト内のすべてのハローに対する白熱光として現れる [[class-Texture2D|Texture]] への参照。 ||
+||``Spot Cookie`` ||すべてのスポット ライトに対する Cookie マスクとして現れる Texture2D への参照。 ||
 
 
-!! Details
+!! 詳細
 
-The Render Settings is used to define some basic visual commonalities of any individual scene in your project.  Maybe you have two levels in the same environment: one at daytime and one at nighttime.  You can use the same meshes and Prefabs to populate the scene, but you can change the ``Ambient Light`` to be much brighter at daytime, and much darker at night.
+レンダー設定は、プロジェクト内の個々の視覚的共通点を定義するのに使用されます。  おそらく同じ環境に 2 つのレベルがあります。 1 つは昼間、もう 1 つは夜間。  同じメッシュやプレハブを使用して、シーンを投入することができますが、''Ambient Light''を昼間ははるかに明るく、夜はより暗い状態に変更できます。
 
 
-!!! Fog
+!!! 霧
 
-Enabling ``Fog`` will give a misty haze to your scene.  You can adjust the look and color of the Fog with ``Fog Density`` and ``Fog Color``, respectively.
+''霧''を有効にすると、シーンに霧のようなもやをかけることができます。  ''Fog Density''と''Fog Color''で個々に霧の見た目や色を調整できます。
 
-Adding fog is often used to optimize performance by making sure that far away objects fade out and are not drawn.  Please note that enabling fog is not enough to enable this performance optimization. To do that you also need to adjust your [[class-Camera|Camera's]] ``Far Clip Plane``, so that geometry far away will not be drawn. It is best to tweak the fog to look correct first. Then make the [[class-Camera|Camera's]] far clip plane smaller until you see the geometry being clipped away before the fog fades it out.
+霧の追加は、遠くのオブジェクトをフェードアウトさせ、描画しないようにすることで、パフォーマンスを最適化するのに使用されます。  霧を有効化は、このパフォーマンスの最適化を有効化するのには十分ではありません。 これを行うには、遠くのジオメトリが描画されないように、[[class-Camera|Camera]] の''Far Clip Plane''を調整する必要があります。 最初に霧がちゃんと見えるように調整するのがベストです。 次に [[class-Camera|Camera]] のファー クリップ プレーンを、霧がフェードアウトする前に、ジオメトリが切り取られるまで小さくします。
 
 Attach:RenderSettings-FogOff.png\\
-''A scene with Fog turned off''
+''霧をオフにしたシーン''
 
 Attach:RenderSettings-FogOn.png\\
-''The same scene with Fog turned on''
+''霧をオンにした同じシーン''
 
-Note that fog is rendered uniformly in orthographic camera mode. This is because in our shaders, we output post-perspective space Z coordinate as the fog coordinate. But post-perspective Z is not really suitable for fog in orthographic cameras. Why do we do this? Because it's fast and does not need any extra computations; handling orthographic cameras would make all shaders be a bit slower.
+霧は、並行投影カメラモードで均一にレンダリングされます。 これは、シェーダで、透視後空間の Z 座標を霧座標として出力します。 透視後の Z 座標は、実際、並行投影カメラでの霧に適していません。 これを行う理由は、 高速に行われ、余計な計算を必要としないため、並行投影カメラを扱うと、すべてのシェーダが若干遅くなります。
 
-!! Hints
-* Don't under-estimate the visual impact your game can make by thoughtfully tweaking the Render Settings!
-* Render Settings are per-scene: each scene in your game can have different Render Settings.
+!! ヒント
+* ゲームがレンダー設定を徹底して微調整することで与える視覚的を過小評価しないでください。
+* レンダー設定は、シーンごとに行われます。 ゲーム内のシーンによってレンダー設定は異なります。

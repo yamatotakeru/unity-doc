@@ -1,34 +1,34 @@
-! Unity's Rendering Pipeline
+! Unity のレンダリング パイプライン
 
-Shaders define both how an object looks by itself (its material properties) and how it reacts to the light. Because lighting calculations must be built into the shader, and there are many possible light & shadow types, writing quality shaders that "just work" would  be an involved task. To make it easier, Unity 3 introduces [[SL-SurfaceShaders | Surface Shaders]], where all the lighting, shadowing, lightmapping, forward vs. deferred lighting things are taken care of automatically.
+シェーダは、オブジェクト自体の見た目 (そのマテリアル プロパティ) およびライトにどのように反応するかを定義します。 ライティングの計算をシェーダに作成する必要があるため、また多くのライトやシャドウのタイプがあるため、''機能するだけの''質の高いシェーダを記述することは、複雑な作業です。 これを簡単にするため、Unity 3 では、[[SL-SurfaceShaders | Surface Shaders]] を導入しています。ここでは、すべてのライティング、シャドーイング、ライトマッピング、フォワード対遅延ライティングが自動で配慮されます。
 
-This document describes the pecularities of Unity's lighting & rendering pipeline and what happens behind the scenes of [[SL-SurfaceShaders | Surface Shaders]].
-
-
-!! Rendering Paths
-
-How lighting is applied and which [[SL-Pass|Passes]] of the shader are used depends on which [[RenderingPaths|Rendering Path]] is used. Each pass in a shader communicates its lighting type via [[SL-PassTags | Pass Tags]].
-* In [[RenderTech-DeferredLighting | Deferred Lighting]], @@PrepassBase@@ and @@PrepassFinal@@ passes are used.
-* In [[RenderTech-ForwardRendering | Forward Rendering]], @@ForwardBase@@ and @@ForwardAdd@@ passes are used.
-* In [[RenderTech-VertexLit | Vertex Lit]], @@Vertex@@, @@VertexLMRGBM@@ and @@VertexLM@@ passes are used.
-* In any of the above, to render [[Shadows]], @@ShadowCaster@@ and @@ShadowCollector@@ passes are used.
+本書では、Unity のライティングおよびレンダリング パイプラインの特徴および [[SL-SurfaceShaders | Surface Shaders]] のシーン裏で起きていることについて説明します。
 
 
-!! Deferred Lighting path
+!! レンダリング パス
 
-@@PrepassBase@@ pass renders normals & specular exponent; @@PrepassFinal@@ pass renders final color by combining textures, lighting & emissive material properties. All regular in-scene lighting is done separately in screen-space. See [[RenderTech-DeferredLighting | Deferred Lighting]] for details.
-
-
-!! Forward Rendering path
-
-@@ForwardBase@@ pass renders ambient, lightmaps, main directional light and not important (vertex/SH) lights at once. @@ForwardAdd@@ pass is used for any additive per-pixel lights; one invocation per object illuminated by such light is done. See [[RenderTech-ForwardRendering | Forward Rendering]] for details.
-
-If forward rendering is used, but a shader does not have forward-suitable passes (i.e. neither @@ForwardBase@@ nor @@ForwardAdd@@ pass types are present), then that object is rendered just like it would in Vertex Lit path, see below.
+ライティングがどのように適用されるか、およびシェーダのどの [[SL-Pass|Passes]] が使用されるかは、どの [[RenderingPaths|Rendering Path]] が使用されるかで決まります。 シェーダ内の各パスは、[[SL-PassTags | Pass Tags]] を介して、そのライティング タイプと通信します。
+* [[RenderTech-DeferredLighting | Deferred Lighting]] では、@@PrepassBase@@ and @@PrepassFinal@@ パスが使用されます。
+* [[RenderTech-ForwardRendering | Forward Rendering]] では、@@ForwardBase@@ and @@ForwardAdd@@ パスが使用されます。
+* [[RenderTech-VertexLit | Vertex Lit]] では、@@Vertex@@, @@VertexLMRGBM@@ and @@VertexLM@@ パスが使用されます。
+* 上のどの場合でも、 [[Shadows]] をレンダリングするために、 @@ShadowCaster@@ と @@ShadowCollector@@ パスが使われます。
 
 
-!! Vertex Lit Rendering path
+!! 遅延ライティング パス
 
-Since vertex lighting is most often used on platforms that do not support programmable shaders, Unity can't create multiple shader permutations internally to handle lightmapped vs. non-lightmapped cases. So to handle lightmapped and non-lightmapped objects, multiple passes have to be written explicitly. 
-* @@Vertex@@ pass is used for non-lightmapped objects. All lights are rendered at once, using a fixed function OpenGL/Direct3D lighting model ([[http://en.wikipedia.org/wiki/Blinn-Phong_shading|Blinn-Phong]])
-* @@VertexLMRGBM@@ pass is used for lightmapped objects, when lightmaps are RGBM encoded (this happens on most desktops and consoles). No realtime lighting is applied; pass is expected to combine textures with a lightmap.
-* @@VertexLMM@@ pass is used for lightmapped objects, when lightmaps are double-LDR encoded (this happens on mobiles and old desktops). No realtime lighting is applied; pass is expected to combine textures with a lightmap.
+@@PrepassBase@@ パスは、法線およびスペキュラ指数をレンダリングします。@@PrepassFinal@@ パスは、テクスチャ、ライティングおよび放出マテリアル プロパティを結合することで最終的な色をレンダリングします。 通常のシーン内のライティングはすべて、シーン空間で個別に行われます。 詳細については、[[RenderTech-DeferredLighting | Deferred Lighting]] を参照してください。
+
+
+!! フォワード レンダリング パス
+
+@@ForwardBase@@ パスは、周囲、ライトマップ、メインのディレクショナル ライトおよび重要でない (頂点/SH) ライトを一度にレンダリングします。 @@ForwardAdd@@ パスは、追加の頂点ごとのライトに使用されます。このようなライトによって照らされるオブジェクトごとに 1 回の呼び出しが行われます。 詳細については、[[RenderTech-ForwardRendering | Forward Rendering]] を参照してください。
+
+もしフォワードレンダリングが使われるならば、シェーダーはforward-suitableパス（ @@ForwardBase@@ や @@ForwardAdd@@ のどちらも）を持ちませんが、そのオブジェクトは頂点リットパスでレンダリングされます。詳しくは下の項目を見て下さい。
+
+
+!! 頂点リット レンダリング パス細部
+
+頂点ライティングは、プログラム可能なシェーダをサポートしていないプラットフォームで頻繁に使用されるため、Unity は、ライトマップ使用時対未使用時の場合を処理するために内部で複数のシェーダ順列を作成できます。 そのため、ライトマップ使用時対未使用オブジェクトを処理するため、複数のパスを明示的に記述する必要があります。 
+* @@Vertex@@ パスは、ライトマップが使用されていないオブジェクトに使用されます。 すべてのライトは、固定関数 OpenGL/Direct3D ライティング モデル ([[http://en.wikipedia.org/wiki/Blinn-Phong_shading|Blinn-Phong]]) を使用して、一度にレンダリングされます。
+* @@VertexLMRGBM@@ パスは、ライトマップが RGBM 符号化される場合に、ライトマップ使用オブジェクトに使用されます (これは、ほとんどのデスクトップおよびコンソールで行われます)。 リアルタイム ライティングは適用されません。パスはテクスチャとライトマップの結合に使用されます。
+* @@VertexLMM@@ パスは、ライトマップが 2 重 LDR 符号化される場合に、ライトマップ使用オブジェクトに使用されます (これは、携帯機器および古いデスクトップで行われます)。 リアルタイム ライティングは適用されません。パスはテクスチャとライトマップの結合に使用されます。

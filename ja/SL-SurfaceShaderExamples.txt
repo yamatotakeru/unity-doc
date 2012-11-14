@@ -1,10 +1,10 @@
-! Surface Shader Examples
+! サーフェスシェーダの例
 
-Here are some examples of [[SL-SurfaceShaders | $$Surface Shaders$$]]. The examples below focus on using built-in lighting models; examples on how to implement custom lighting models are in [[SL-SurfaceShaderLightingExamples | Surface Shader Lighting Examples]].
+[[SL-SurfaceShaders | $$Surface Shaders$$]] の例です。 以下の例は、組み込みライティング モデルの使用に集中しています。カスタムのライティング モデルの実装方法については、[[SL-SurfaceShaderLightingExamples | Surface Shader Lighting Examples]] にあります。
 
-!! Simple 
+!! 簡単 
 
-We'll start with a very simple shader and build up on that. Here's a shader that just sets surface color to "white". It uses built-in Lambert (diffuse) lighting model.
+非常に基本的なシェーダとその作成から始めましょう。 以下は、表面の色を''白''にするだけのシェーダです。 これは、組み込み Lambert (デフューズ) ライティング モデルを使用します。
 
 
   Shader "Example/Diffuse Simple" {
@@ -23,12 +23,12 @@ We'll start with a very simple shader and build up on that. Here's a shader that
     Fallback "Diffuse"
   }
 
-Here's how it looks like on a model with two [[class-Light | lights]] set up: \\
+以下は、2 つの [[class-Light | lights]] が設定されたモデルでどのように見えるかです。 \\
 Attach:SurfaceShaderSimple.png
 
-!! Texture
+!! テクスチャ
 
-An all-white object is quite boring, so let's add a texture. We'll add a [[SL-Properties | Properties block]] to the shader, so we get a texture selector in our Material. Other changes are in bold below.
+真っ白なオブジェクトはかなりつまらないので、テクスチャを追加しましょう。 [[SL-Properties | Properties block]] をこのシェーダに追加するので、マテリアルからテクスチャ セレクタを取得します。 その他の変更は以下に太字で記載されています。
 
   Shader "Example/Diffuse Texture" {
     __Properties {__
@@ -52,13 +52,13 @@ An all-white object is quite boring, so let's add a texture. We'll add a [[SL-Pr
 
 Attach:SurfaceShaderDiffuseTex.png
 
-!! Normal mapping
+!! 法線マッピング
 
-Let's add some normal mapping:
+法線マッピングを追加しましょう。
 
   Shader "Example/Diffuse Bump" {
     Properties {
-      _MainTex ("Texture", 2D) = "white" {}
+      _MainTex ("Texture", 2D) = "white" { }
       ___BumpMap ("Bumpmap", 2D) = "bump" {}__
     }
     SubShader {
@@ -83,13 +83,13 @@ Let's add some normal mapping:
 Attach:SurfaceShaderDiffuseBump.png
 
 
-!! Rim Lighting
+!! リム ライティング
 
-Now, try to add some Rim Lighting to highlight the edges of an object. We'll add some emissive light based on angle between surface normal and view direction. For that, we'll use @@viewDir@@ built-in surface shader variable.
+今度は、リム ライティングを追加して、オブジェクトの縁をハイライトします。 表面の法線とビュー方向間の角度に基づいて、放射光を追加します。 そのため、@@viewDir@@ 組み込みサーフェスシェーダ変数を使用します。
 
   Shader "Example/Rim" {
     Properties {
-      _MainTex ("Texture", 2D) = "white" {}
+      _MainTex ("Texture", 2D) = "white" { }
       _BumpMap ("Bumpmap", 2D) = "bump" {}
       ___RimColor ("Rim Color", Color) = (0.26,0.19,0.16,0.0)__
       ___RimPower ("Rim Power", Range(0.5,8.0)) = 3.0__
@@ -121,13 +121,13 @@ Now, try to add some Rim Lighting to highlight the edges of an object. We'll add
 Attach:SurfaceShaderRim.png
 
 
-!! Detail Texture
+!! 細部テクスチャ
 
-For a different effect, let's add a detail texture that is combined with the base texture. Detail texture uses the same UVs, but usually different Tiling in the Material, so we have to use different input UV coordinates.
+異なる効果を与えるため、ベース テクスチャと結合する細部テクスチャを追加しましょう。 細部テクスチャは、同じ UV。 を使用しますが、通常、マテリアルでのタイリングが異なるため、異なる入力 UV 座標を使用する必要があります。
 
   Shader "Example/Detail" {
     Properties {
-      _MainTex ("Texture", 2D) = "white" {}
+      _MainTex ("Texture", 2D) = "white" { }
       _BumpMap ("Bumpmap", 2D) = "bump" {}
       ___Detail ("Detail", 2D) = "gray" {}__
     }
@@ -153,17 +153,17 @@ For a different effect, let's add a detail texture that is combined with the bas
     Fallback "Diffuse"
   }
 
-Using a checker texture does not make much practical sense, but illustrates what happens: \\
+チェッカー テクスチャを使用してもあまり意味はありませんが、何が起こるかが分かります。 \\
 Attach:SurfaceShaderDetailTex.png
 
 
-!! Detail Texture in Screen Space
+!! 画面空間内の細部テクスチャ
 
-How about a detail texture in screen space? It does not make much sense for a soldier head model, but illustrates how a built-in @@screenPos@@ input might be used:
+画面空間での細部テクスチャはどうなりますか? 兵士の頭部モデルにはあまり意味はありませんが、組み込み @@screenPos@@ 入力がどのように使用されるかが分かります。
 
   Shader "Example/ScreenPos" {
     Properties {
-      _MainTex ("Texture", 2D) = "white" {}
+      _MainTex ("Texture", 2D) = "white" { }
       _Detail ("Detail", 2D) = "gray" {}
     }
     SubShader {
@@ -187,17 +187,17 @@ How about a detail texture in screen space? It does not make much sense for a so
     Fallback "Diffuse"
   }
 
-I removed normal mapping from the shader above, just to make it shorter: \\
+短くするために、上記シェーダから法線マッピングを削除しました。 \\
 Attach:SurfaceShaderDetailTexScreenPos.png
 
 
-!! Cubemap Reflection
+!! キューブマップ反射
 
-Here's a shader that does cubemapped reflection using built-in @@worldRefl@@ input. It's actually very similar to built-in Reflective/Diffuse shader:
+以下は組み込み @@worldRefl@@ 入力を使用してキューブマッピング反射を行うシェーダです。 組み込みの反射/デフューズ シェーダを使うのと実際非常に似ています。
 
   Shader "Example/WorldRefl" {
     Properties {
-      _MainTex ("Texture", 2D) = "white" {}
+      _MainTex ("Texture", 2D) = "white" { }
       ___Cube ("Cubemap", CUBE) = "" {}__
     }
     SubShader {
@@ -219,15 +219,15 @@ Here's a shader that does cubemapped reflection using built-in @@worldRefl@@ inp
     Fallback "Diffuse"
   }
 
-And since it assigns the reflection color as Emission, we get a very shiny soldier: \\
+放出として反射色を割り当てるので、非常に輝いた兵士が得られます。 \\
 Attach:SurfaceShaderWorldRefl.png
 
 
-If you want to do reflections that are affected by normal maps, it needs to be slightly more involved: @@INTERNAL_DATA@@ needs to be added to the Input structure, and @@WorldReflectionVector@@ function used to compute per-pixel reflection vector after you've written the Normal output.
+法線マップに影響される反射を行たい場合、わずかに関与させる必要があります。 @@INTERNAL_DATA@@ を入力構造に追加し、@@WorldReflectionVector@@ 関数を、法線出力記述後にピクセルごとの反射ベクトルを計算するために使用する必要があります。
 
   Shader "Example/WorldRefl Normalmap" {
     Properties {
-      _MainTex ("Texture", 2D) = "white" {}
+      _MainTex ("Texture", 2D) = "white" { }
       _BumpMap ("Bumpmap", 2D) = "bump" {}
       _Cube ("Cubemap", CUBE) = "" {}
     }
@@ -254,17 +254,17 @@ If you want to do reflections that are affected by normal maps, it needs to be s
     Fallback "Diffuse"
   }
 
-Here's a normal mapped shiny soldier: \\
+これは、法線マッピングされた輝いている兵士です。 \\
 Attach:SurfaceShaderWorldReflNormalmap.png
 
 
-!! Slices via World Space Position
+!! 世界空間の位置を介したスライス
 
-Here's a shader that "slices" the object by discarding pixels in nearly horizontal rings. It does that by using @@clip()@@ Cg/HLSL function based on world position of a pixel. We'll use @@worldPos@@ built-in surface shader variable.
+以下は、ほぼ水平の輪の中のピクセルを破棄することで、オブジェクトを''スライス''するシェーダです。 これは、ピクセルの世界での位置に基づいて、@@clip()@@ Cg/HLSL 関数を使用して行います。 @@worldPos@@ 組み込みサーフェスシェーダ変数を使用します。
 
   Shader "Example/Slices" {
     Properties {
-      _MainTex ("Texture", 2D) = "white" {}
+      _MainTex ("Texture", 2D) = "white" { }
       _BumpMap ("Bumpmap", 2D) = "bump" {}
     }
     SubShader {
@@ -293,15 +293,15 @@ Attach:SurfaceShaderSlices.png
 
 
 
-!! Normal Extrusion with Vertex Modifier
+!! 頂点修飾子のある法線押し出し
 
-It is possible to use a "vertex modifier" function that will modify incoming vertex data in the vertex shader. This can be used for procedural animation, extrusion along normals and so on. Surface shader compilation directive @@vertex:functionName@@ is used for that, with a function that takes @@inout appdata_full@@ parameter.
+頂点シェーダで入ってくる頂点データを修正する''vertex modifier''関数を使用することができます。 これは、手続き型アニメーションや法線に沿った押し出しなどに使用できます。 このため、サーフェスシェーダ コンパイル ディレクティブ @@vertex:functionName@@ が使用されますが、これは、@@inout appdata_full@@ パラメータを取る関数です。
 
-Here's a shader that moves vertices along their normals by the amount specified in the material:
+以下は、マテリアルで指定した量だけ法線に沿って頂点を動かすシェーダです。
 
   Shader "Example/Normal Extrusion" {
     Properties {
-      _MainTex ("Texture", 2D) = "white" {}
+      _MainTex ("Texture", 2D) = "white" { }
       ___Amount ("Extrusion Amount", Range(-1,1)) = 0.5__
     }
     SubShader {
@@ -324,16 +324,16 @@ Here's a shader that moves vertices along their normals by the amount specified 
     Fallback "Diffuse"
   }
 
-Moving vertices along their normals makes a fat soldier: \\
+法線に沿って頂点を動かすことで、兵士が太った外見になります。 \\
 Attach:SurfaceShaderNormalExtrusion.png
 
 
 
-!! Custom data computed per-vertex
+!! 頂点ごとに計算されたカスタムのデータ
 
-Using a vertex modifier function it is also possible to compute custom data in a vertex shader, which then will be passed to the surface shader function per-pixel. The same compilation directive @@vertex:functionName@@ is used, but the function should take two parameters: @@inout appdata_full@@ and @@out Input@@. You can fill in any Input member that is not a built-in value there.
+頂点修飾子関数を使用すると、頂点シェーダ内のカスタムのデータを計算でき、これが、ピクセルごとにサーフェスシェーダ関数に渡されます。 同じコンパイル ディレクティブ @@vertex:functionName@@ が使用されますが、この関数は、 @@inout appdata_full@@ @@out Input@@ の 2 つのパラメータを摂る必要があります。 ここで組み込み値ではない入力メンバーを記入できます。
 
-Example below defines a custom @@float3 customColor@@ member, which is computed in a vertex function:
+下の例では、カスタムの　@@float3 customColor@@ メンバーを定義しますが、これは、頂点関数で計算されます。
 
 >>u30<<
   Shader "Example/Custom Vertex Data" {
@@ -389,17 +389,17 @@ Example below defines a custom @@float3 customColor@@ member, which is computed 
   }
 >><<
 
-In this example @@customColor@@ is set to the absolute value of the normal: \\
+この例では、@@customColor@@ が、法線の絶対値に設定されます。 \\
 Attach:SurfaceShaderCustomVertexData.png
 
-More practical uses could be computing any per-vertex data that is not provided by built-in Input variables; or optimizing shader computations. For example, it's possible to compute Rim lighting at object's vertices, instead of doing that in the surface shader per-pixel.
+より実践的な使用により、組み込み入力変数では提供していない頂点ごとのデータが計算されるか、シェーダの計算が最適化されます。 例えば、ピクセルごとにサーフェスシェーダで計算する代わりに、オブジェクトの頂点でリム ライティングを計算することができます。
 
 
-!! Final Color Modifier
+!! 最終色モディファイア
 
-It is possible to use a "final color modifier" function that will modify final color computed by the shader. Surface shader compilation directive @@finalcolor:functionName@@ is used for that, with a function that takes @@Input IN, SurfaceOutput o, inout fixed4 color@@ parameters.
+"final color modifier"関数を使うと、シェーダで最終段階の色を計算して適応できます。 @@finalcolor:functionName@@ で指定されたサーフェスシェーダはそのために使います。そこでは @@Input IN, SurfaceOutput o, inout fixed4 color@@ パラメータを使います。
 
-Here's a simple shader that applies tint to final color. This is different from just applying tint to surface Albedo color: this tint will also affect any color that came from lightmaps, light probes and similar extra sources.
+以下は最終色モディファイアの簡単なシェーダです。これは表面アルベドカラーに違う色を適応しています。この色はライトマップやライトプローブなどから持ってきたどんな色でも影響される色です。
 
   Shader "Example/Tint Final Color" {
     Properties {
@@ -431,11 +431,11 @@ Here's a simple shader that applies tint to final color. This is different from 
 Attach:SurfaceShaderFinalColorSimple.png
 
 
-!! Custom Fog with Final Color Modifier
+!! 最終色モディファイアを使ったカスタムフォグ
 
-Common use case for final color modifier (see above) would be implementing completely custom Fog. Fog needs to affect the final computed pixel shader color, which is exactly what the @@finalcolor@@ modifier does.
+上の最終色モディファイアを使ったよくあるケースとして、カスタムフォグの実装があります。フォグは最後にコピュートシェーダで影響しなければいけません。つまり、まさに @@finalcolor@@ モディファイアが行うのです。
 
-Here's a shader that applies fog tint based on distance from screen center. This combines both the vertex modifier with custom vertex data (@@fog@@) and final color modifier. When used in forward rendering additive pass, Fog needs to fade to black color, and this example handles that as well with a check for @@UNITY_PASS_FORWARDADD@@.
+これはスクリーンの中心からの距離に応じたフォグ色を適応したシェーダの例です。これはカスタム頂点データ（ @@fog@@ ）頂点モディファイアと最終色モディファイアが組合わさっています。フォワードレンダリングの加算パスを使うときは、フォグは黒色にフェードする必要があります。この例では、@@UNITY_PASS_FORWARDADD@@ のチェックと同様にことをしています。
 
 >>u30<<
   Shader "Example/Fog via Final Color" {

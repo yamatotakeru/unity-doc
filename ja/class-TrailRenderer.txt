@@ -1,55 +1,55 @@
-! Trail Renderer
+! トレイル レンダラ
 
-The $$Trail Renderer$$ is used to make trails behind objects in the scene as they move about.
+$$Trail Renderer$$ は、オブジェクトが動くに連れ、シーン内のオブジェクトの後ろにトレイルを作成するのに使用します。
 
 Attach:Inspector-TrailRenderer.png\\
-''The Trail Renderer $$Inspector$$''
+''トレイル レンダラ $$Inspector$$''
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Materials`` ||An array of materials used for rendering the trail. Particle shaders work the best for trails.
-||>>>``Size`` ||The total number of elements in the ``Material`` array. ||
-||>>>``Element 0`` ||Reference to the $$Material$$ used to render the trail.  The total number of elements is determined by the ``Size`` property. ||
-||``Time`` ||Length of the trail, measured in seconds. ||
-||``Start Width`` ||Width of the trail at the object's position. ||
-||``End Width`` ||Width of the trail at the end. ||
-||``Colors`` ||Array of colors to use over the length of the trail.  You can also set alpha transparency with the colors. ||
-||>>>``Color0`` to ``Color4`` ||The trail's colors, initial to final. ||
-||``Min Vertex Distance`` ||The minimum distance between anchor points of the trail. ||
-||``AutoDestruct`` ||Enable this to make the object be destroyed when the object has been idle for ``Time`` seconds. ||
+||``Materials`` ||トレイルをレンダリングのに使用される $$Material$$ の配列。 粒子シェーダはトレイルに最適に機能します。
+||>>>``Size`` ||''Material''配列内の要素数。 ||
+||>>>``Element 0`` ||トレイルをレンダリングするのに使用されるむ $$Material$$ への参照。  要素の総数は、''Size''プロパティで決定されます。 ||
+||``Time`` ||トレイルの長さ、単位は秒。 ||
+||``Start Width`` ||オブジェクトの位置でのトレイルの幅。 ||
+||``End Width`` ||最後でのトレイルの幅。 ||
+||``Colors`` ||トレイルの長さ全体で使用する色の配列。  色でアルファ透明度を設定することもできます。 ||
+||>>>``Color0`` to ``Color4`` ||最初から最後までのトレイルの色。 ||
+||``Min Vertex Distance`` ||トレイルのアンカー点間の最小距離。 ||
+||``AutoDestruct`` ||''Time''秒間でオブジェクトが休止していた場合にオブジェクトを破壊するのに、これを有効にします。 ||
 
 
-!! Details
+!! 詳細
 
-The Trail Renderer is great for a trail behind a projectile, or contrails from the tip of a plane's wings. It is good when trying to add a general feeling of speed.
+トレイル レンダラは、自動推進体の裏のトレイルまたは、飛行機の翼の先端からの飛行機雲に最適です。 一般的な速度感を出すのに適しています。
 
-When using a Trail Renderer, no other renderers on the $$GameObject$$ are used.  It is best to create an empty GameObject, and attach a Trail Renderer as the only renderer.  You can then parent the Trail Renderer to whatever object you would like it to follow.
-
-
-!!! Materials
-
-Trail Renderers should use a material that has a Particle $$Shader$$.  The $$Texture$$ used for the Material should be of square dimensions (e.g. 256x256 or 512x512).
+トレイル レンダラを使用する際は、$$GameObject$$ のその他のレンダラは使用されません。  空の GameObject を作成し、トレイル レンダラを唯一のレンダラとして追加するのがベストです。  これにより、トレイル レンダラをそれにフォローさせたいオブジェクトにパレンディングできます。
 
 
-!!! Trail Width
+!!! マテリアル
 
-By setting the Trail's ``Start`` and ``End Width``, along with the ``Time`` property, you can tune the way it is displayed and behaves.  For example, you could create the wake behind a boat by setting the ``Start Width`` to 1, and the ``End Width`` to 2.  These values would probably need to be fine-tuned for your game.
+トレイル レンダラは、粒子 $$Shader$$ を持つマテリアルを使用する必要があります。  マテリアルに使用される $$Texture$$ は、正方形の寸法である必要があります （256x256 or 512x512)。
 
 
-!!! Trail Colors
+!!! トレイル幅
 
-You can cycle your trail through 5 different color/opacity combinations.  Using colors could make a bright green plasma trail gradually dim down to a dull grey dissipation, or cycle through the other colors of the rainbow.  If you don't want to change the color, it can be very effective to change only the opacity of each color to make your trail fade in and out at the head and/or tail.
+''Time''プロパティと共に、トレイルの''Start''と''End Width''を設定することで、トレイルの表示のされ方や動作の仕方を調整できます。  例えば、''Start Width''を 1、''End Width''を 2 に設定することで、船の後ろにウェイクを作成できます。これらの値はおそらく、ゲーム向けに微調整する必要があります。
+
+
+!!! トレイル色
+
+5 つの異なる色 / 不透明度の組み合わせを通じて、トレイルを循環できます。  色を使うことで、明るい緑のプラズマ トレイルを徐々に薄暗くし、最終的に鈍い灰色の消失にするか、虹のその他の色を循環させることができます。  色を変更したくない場合は、各色の不透明度を変更し、トレイルを先頭や末尾でフェードインおよびフェードアウトさせると、非常に効率的です。
 
 
 !!! Min Vertex Distance
 
-The ``Min Vertex Distance`` value determines how far the object that contains the trail must travel before a segment of the trail is solidified.  Low values like 0.1 will create trail segments more often, creating smoother trails.  Higher values like 1.5 will create segments that are more jagged in appearance.  There is a slight performance trade off when using lower values/smoother trails, so try to use the largest possible value to achieve the effect you are trying to create.
+''Min Vertex Distance''値は、トレイルを含むオブジェクトが、トレイルの部分が固定される前にどの程度遠くまで移動するを決定します。  0.1 などの値が低いと、トレイル の部分がより頻繁に作成され、トレイルが滑らかになります。  1.5 のように高い値の場合、外観がよりギザギザになります。  低めの値やより滑らかなトレイルを使用する場合パフォーマンスを若干犠牲にすることになりますが、作成しい効果を達成するには、できる限り最大の値を使用してみてください。
 
 
-!! Hints
+!! ヒント
 
-* Use Particle Materials with the Trail Renderer.
-* Trail Renderers must be laid out over a sequence of frames, they can't appear instantaneously.
-* Trail Renderers rotate to display the face toward the camera, similar to other $$Particle Systems$$.
+* 粒子マテリアルはトレイル レンダラと併用してください。
+* トレイル レンダラは、連続するフレームの上に配置する必要があり、すぐには表示できません。
+* トレイル レンダラが回転し、その他の $$Particle Systems$$ 同様、カメラの方を向く面を表示します。 

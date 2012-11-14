@@ -1,66 +1,66 @@
-! Wheel Collider
+! ホイール コライダ
 
-The $$Wheel Collider$$ is a special collider for grounded vehicles. It has built-in collision detection, wheel physics, and a slip-based tire friction model.  It can be used for objects other than wheels, but it is specifically designed for vehicles with wheels.
+$$Wheel Collider$$ は、陸上車両用の特殊なコライダです。 組み込み衝突検出、ホイール物理特性、スリップ ベースのタイヤ摩擦モデルを含みます。  ホイール以外のオブジェクトにも使用できますが、特にホイールのある車両向けに設計されています。
 
 Attach:Inspector-WheelCollider.png\\
-''The Wheel Collider Component. Car model courtesy of ATI Technologies Inc.''
+''ホイール コライダ コンポーネント。 ATI Tchnologies 社により無料提供された車両モデル。''
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Center`` ||Center of the wheel in object local space. ||
-||``Radius`` ||Radius of the wheel. ||
-||``Suspension Distance`` ||Maximum extension distance of wheel suspension, measured in local space. Suspension always extends downwards through the local Y-axis. ||
-||``Suspension Spring`` ||The suspension attempts to reach a ``Target Position`` by adding spring and damping forces. ||
-||>>>``Spring`` ||Spring force attempts to reach the ``Target Position``. A larger value makes the suspension reach the ``Target Position`` faster. ||
-||>>>``Damper`` ||Dampens the suspension velocity. A larger value makes the ``Suspension Spring`` move slower. ||
-||>>>``Target Position`` ||The suspension's rest distance along Suspension Distance. 0 maps to fully extended suspension, and 1 maps to fully compressed suspension. Default value is zero, which matches the behavior of a regular car's suspension. ||
-||``Mass`` ||The Mass of the wheel. ||
-||``Forward/Sideways Friction`` ||Properties of tire friction when the wheel is rolling forward and sideways. See [[#Friction|Wheel Friction Curves]] section below. ||
+||``Center`` ||オブジェクトのローカル空間でのホイールの中心。 ||
+||``Radius`` ||ホイールの半径。 ||
+||``Suspension Distance`` ||ホイール サスペンションの最大延長距離で、ローカル空間で測定されます。 サスペンションは常にローカルな Y 軸を通じて下に伸びます。 ||
+||``Suspension Spring`` ||サスペンションが、スプリングと制動力を追加して、''Target Position''に達しようとします。 ||
+||>>>``Spring`` ||スプリング力が''Target Position''に到達しようとします。 値が大きいほど、サスペンションが''Target Position''に到達する速度が上がります。 ||
+||>>>``Damper`` ||サスペンションの速度を制動します。 値が小さいほど''Suspension Spring''の速度が下がります。 ||
+||>>>``Target Position`` |Suspension Distance に沿ったサスペンションの残りの距離。 0 は、完全に伸びきったサスペンションをマッピングし、1 は完全に縮まったサスペンションをマッピングします。 デフォルトは 0 で、通常の車両のサスペンションの動作に一致します。 ||
+||``Mass`` ||ホイールの質量。 ||
+||``Forward/Sideways Friction`` ||ホイールが前転または横転する際のタイヤの摩擦のプロパティ。 下記の [[#Friction|Wheel Friction Curves]] を参照してください。 ||
 
 
-!! Details
+!! 詳細
 
-The wheel's collision detection is performed by casting a ray from ``Center`` downwards through the local Y-axis. The wheel has a ``Radius`` and can extend downwards according to the ``Suspension Distance``. The vehicle is controlled from scripting using different properties: ``motorTorque``, ``brakeTorque`` and ``steerAngle``. See the [[ScriptRef:WheelCollider.html|Wheel Collider scripting reference]] for more information.
+ホイールの衝突検出は、ローカルな Y 軸を通じて、''Center''から下に光線を放つことで実行されます。 ホイールには、''Radius''があり、''Suspension Distance''に応じて、下に延長できます。 車両は、次の各種プロパティを使用して、スクリプティングから制御されます。 ''motorTorque''、''brakeTorque''と''steerAngle''。 詳細については、[[ScriptRef:WheelCollider.html|Wheel Collider scripting reference]] を参照してください。
 
-The Wheel Collider computes friction separately from the rest of physics engine, using a slip-based friction model. This allows for more realistic behaviour but also causes Wheel Colliders to ignore standard [[class-PhysicMaterial|Physic Material]] settings.
+ホイール コライダは、スリップ ベースの摩擦モデルを用いて、物理特性エンジンの残りとは別に摩擦を計算します。 これにより、より現実的な動作が可能になりますが、標準の [[class-PhysicMaterial|Physic Material]] 設定を無視するようになります。
 
 
-!!! Wheel collider setup
+!!! ホイール コライダの設定
 
-You do not turn or roll WheelCollider objects to control the car - the objects that have WheelCollider attached should always be fixed relative to the car itself. However, you might want to turn and roll the graphical wheel representations. The best way to do this is to setup separate objects for Wheel Colliders and visible wheels:
+ホイール コライダ オブジェクトを転動または回転させて、車両を制御しません。ホイール コライダが追加されたオブジェクトは常に車両自体に関連して固定される必要があります。 しかし、ホイールのグラフィック表示を回転および転動させたい場合があります。 これを行う最良の方法は、ホイール コライダと表示されているホイールに対して個々のオブジェクトを設定することです。
 
 Attach:WheelsSetup.png\\
-''Wheel Colliders are separate from visible Wheel Models''
+''ホイール コライダは、表示されているホイール モデルから切り離されます''
 
 
-!!! Collision geometry
+!!! 衝突ジオメトリ
 
-Because cars can achieve large velocities, getting race track collision geometry right is very important. Specifically, the [[class-MeshCollider|collision mesh]] should not have small bumps or dents that make up the visible models (e.g. fence poles). Usually a collision mesh for the race track is made separately from the visible mesh, making the collision mesh as smooth as possible. It also should not have thin objects - if you have a thin track border, make it wider in a collision mesh (or completely remove the other side if the car can never go there).
+車両は高い速度を達成できるため、レース トラックでの衝突ジオメトリを正しく設定することは非常に重要です。 特に、[[class-MeshCollider|collision mesh]]に、表示されているモデル (フェンスのポールなど) を構成する小さい凹凸があってはいけません。 レース トラックに対する衝突メッシュは通常、表示メッシュとは独立して生成され、衝突メッシュをできるだけ滑らかにします。 また、薄いオブジェクトがあってもいけません。トラックの境界が薄い場合、衝突メッシュでそれを広くします (あるいは、車両がそこにいけない場合は、反対側を完全に除去します)。
 
 Attach:WheelGeometries.png\\
-''Visible geometry (left) is much more complex than collision geometry (right)''
+''表示ジオメトリ (左) は衝突ジオメトリ (右) よりもはるかに複雑になります。'' 
 
 
 [[#Friction|Wheel Friction Curves]]
 !!!Wheel Friction Curves
 
-Tire friction can be described by the ''Wheel Friction Curve'' shown below. There are separate curves for the wheel's forward (rolling) direction and sideways direction. In both directions it is first determined how much the tire is slipping (based on the speed difference between the tire's rubber and the road). Then this slip value is used to find out tire force exerted on the contact point.
+摩擦は、下記の''Wheel Friction Curve''によって説明できます。 ホイールの前進 (転動) 方向および横方向に対し、個々の曲線があります。 両方向で、タイヤがスリップする量を最初に決定します (タイヤのゴムと道路間の速度差に基づきます)。 次に、接点にかけられるタイヤの力を突き止めるのにこのスリップ値が使用されます。
 
-The curve takes a measure of tire slip as an input and gives a force as output. The curve is approximated by a two-piece spline. The first section goes from ''(0 , 0)'' to ''(``ExtremumSlip`` , ``ExtremumValue``)'', at which point the curve's tangent is zero. The second section goes from ''(``ExtremumSlip`` , ``ExtremumValue``)'' to ''(``AsymptoteSlip`` , ``AsymptoteValue``)'', where curve's tangent is again zero:
+曲線は、入力として、タイヤのスリップを測定し、出力として、力を供給します。 この曲線は、2 片のスプラインによって近似化されます。 1 つ目の片が''(0 , 0)''から''(``ExtremumSlip`` , ``ExtremumValue``)''に移ります。この点では、曲線の接線が 0 になります。 2 つ目の片が''(0 , 0)''から''(``ExtremumSlip`` , ``ExtremumValue``)''に移ります。この点では、曲線の接線が 0 になります。
 
 Attach:WheelFrictionCurve.png\\
-''Typical shape of a wheel friction curve''
+''ホイールの摩擦曲線の一般的な形状''
 
-The property of real tires is that for low slip they can exert high forces, since the rubber compensates for the slip by stretching. Later when the slip gets really high, the forces are reduced as the tire starts to slide or spin. Thus,  tire friction curves have a shape like in the image above.
+ゴムは延長することで、スリップを補正するので、現実のタイヤのプロパティは、低スリップの場合、強い力を発揮します。 後でスリップが非常に高くなった場合、タイヤが滑ったり、回ったりし始めた時に力が減ります。 そのため、タイヤの摩擦曲線は、上記画像のような形状になります。
 
 ||PROPS
-||``Extremum Slip/Value`` ||Curve's extremum point. ||
-||``Asymptote Slip/Value`` ||Curve's asymptote point. ||
-||``Stiffness`` ||Multiplier for the ``Extremum Value`` and ``Asymptote Value`` (default is 1). Changes the stiffness of the friction. Setting this to zero will completely disable all friction from the wheel. Usually you modify stiffness at runtime to simulate various ground materials from scripting. ||
+||``Extremum Slip/Value`` ||曲線の極値点。 ||
+||``Asymptote Slip/Value`` ||曲線の漸近線点。 ||
+||``Stiffness`` ||''Extremum Value''および''Asymptote Value''に対する乗数 (デフォルトは 1)。 摩擦の剛性を変化させます。 これを 0 に設定すると、ホイールからのすべての摩擦が完全に無効になります。 通常、ランタイム時に剛性を修正して、スクリプティングから各種地盤材料をシミュレートします。 ||
 
 
-!!Hints
-* You might want to decrease physics timestep length in [[class-TimeManager|Time Manager]] to get more stable car physics, especially if it's a racing car that can achieve high velocities.
-* To keep a car from flipping over too easily you can lower its [[class-Rigidbody|Rigidbody]] center of mass a bit from script, and apply "down pressure" force that depends on car velocity.
+!!ヒント
+* より安定した車両の物理特性を得るため、特に高い速度を達成できるレーシング カーの場合に、[[class-TimeManager|Time Manager]] で、物理特性タイムスタンプの長さを減らしたい場合があります。
+* 車両があまりにも簡単に転倒するのを防ぐには、スクリプトから、その ''[[class-Rigidbody|Rigidbody]] 質量中心を若干下げ、車両の速度に応じた''下方への圧力''を加えます。

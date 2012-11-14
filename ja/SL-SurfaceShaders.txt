@@ -1,20 +1,20 @@
-! Writing Surface Shaders
+! サーフェスシェーダの記述
 
-Writing shaders that interact with lighting is complex. There are different light types, different shadow options, different rendering paths (forward and deferred rendering), and the shader should somehow handle all that complexity.
+ライティングと相互作用するシェーダの記述は複雑です。 各種ライト、各種シャドウ オプション、各種レンダリング パス (フォワードおよび遅延レンダリング) があり、シェーダはその複雑さを処理する必要があります。
 
-$$Surface Shaders$$ in Unity is a code generation approach that makes it much easier to write lit shaders than using low level [[SL-ShaderPrograms | vertex/pixel shader programs]]. Note that there is no custom languages, magic or ninjas involved in Surface Shaders; it just generates all the repetitive code that would have to be written by hand. You still write shader code in Cg / HLSL.
+Unity の $$Surface Shaders$$ は、低いレベルの [[SL-ShaderPrograms | vertex/pixel shader programs]] を使用した場合よりも、リット シェーダの記述を遥かに簡単にするコード 生成 手法です。 サーフェスシェーダで関与するカスタムの言語、魔法または忍者などはありません。手動で記述する必要なる繰り返しコードをすべて生成するだけです。 それでも、Cg/HLSL でシェーダ コードを記述します。
 
-For some examples, take a look at [[SL-SurfaceShaderExamples | $$Surface Shader Examples$$]] and [[SL-SurfaceShaderLightingExamples | $$Surface Shader Custom Lighting Examples$$]].
+サンプルが必要な場合は、[[SL-SurfaceShaderExamples | $$Surface Shader Examples$$]] および [[SL-SurfaceShaderLightingExamples | $$Surface Shader Custom Lighting Examples$$]] を参照してください。
 
 
 
-!! How it works
+!! どのように機能するか
 
-You define a "surface function" that takes any UVs or data you need as input, and fills in output structure @@SurfaceOutput@@. SurfaceOutput basically describes ''properties of the surface'' (it's albedo color, normal, emission, specularity etc.). You write this code in Cg / HLSL.
+入力として必要菜 UV またはデータを取り、UV 出力構造 @@SurfaceOutput@@ に記入するる''表面関数''を定義します。 SurfaceOutput は基本的に、''表面のプロパティ''を記述します (そのアルベド、色、法線など)。 Cg/HLSL で、このコードを記述します。
 
-Surface Shader compiler then figures out what inputs are needed, what outputs are filled and so on, and generates actual [[SL-ShaderPrograms | vertex&pixel shaders]], as well as rendering passes to handle forward and deferred rendering.
+サーフェスシェーダ コンパイラは、フォワードおよび遅延レンダリングを処理するために、パスをレンダリングする他、必要な入力や満たす出力などを見つけ出し、実際の [[SL-ShaderPrograms | vertex&pixel shaders]] を生成します。
 
-Standard output structure of surface shaders is this:
+表明シェーダの標準的な出力構造は次のようになります。
 [@
 struct SurfaceOutput {
     half3 Albedo;
@@ -27,73 +27,72 @@ struct SurfaceOutput {
 @]
 
 
-!! Samples
+!! サンプル
 
 >>u30<<
-See [[SL-SurfaceShaderExamples | $$Surface Shader Examples$$]] and [[SL-SurfaceShaderLightingExamples | $$Surface Shader Custom Lighting Examples$$]] pages.
+[[SL-SurfaceShaderExamples | $$Surface Shader Examples$$]] および [[SL-SurfaceShaderLightingExamples | $$Surface Shader Custom Lighting Examples$$]] ページを参照してください。
 >><<
 >>u40<<
-See [[SL-SurfaceShaderExamples | $$Surface Shader Examples$$]], [[SL-SurfaceShaderLightingExamples | $$Surface Shader Custom Lighting Examples$$]] and [[SL-SurfaceShaderTessellation | $$Surface Shader Tessellation$$]] pages.
+[[SL-SurfaceShaderExamples | $$Surface Shader Examples$$]] 、 [[SL-SurfaceShaderLightingExamples | $$Surface Shader Custom Lighting Examples$$]] 、 [[SL-SurfaceShaderTessellation | $$Surface Shader Tessellation$$]] ページを参照して下さい.
 >><<
 
 
-!! Surface Shader compile directives
+!! サーフェスシェーダ コンパイル ディレクティブ
 
-Surface shader is placed inside @@CGPROGRAM..ENDCG@@ block, just like any other shader. The differences are:
-* It must be placed inside [[SL-SubShader | SubShader]] block, not inside [[SL-Pass|Pass]]. Surface shader will compile into multiple passes itself.
-* It uses @@#pragma surface ...@@ directive to indicate it's a surface shader.
+その他のシェーダ同様、表明シェーダは @@CGPROGRAM..ENDCG@@ ブロック内に置かれます。 差は以下のようになります。
+* [[SL-Pass|Pass]] ではなく、[[SL-SubShader | SubShader]] ブロック内に配置される必要があります。 サーフェスシェーダは複数のパス字体にコンパイルします。
+* これは、@@#pragma surface ...@@ ディレクティブを使用して、これがサーフェスシェーダであることを示しています。
 
-The @@#pragma surface@@ directive is:
+@@#pragma surface@@ ディレクティブは次のようになります。
 
     #pragma surface __surfaceFunction__ __lightModel__ ''[optionalparams]''
 
-Required parameters:
-* surfaceFunction - which Cg function has surface shader code. The function should have the form of @@void surf (Input IN, inout SurfaceOutput o)@@, where Input is a structure you have defined. Input should contain any texture coordinates and extra automatic variables needed by surface function.
-* lightModel - lighting model to use. Built-in ones are @@Lambert@@ (diffuse) and @@BlinnPhong@@ (specular). See [[SL-SurfaceShaderLighting | Custom Lighting Models]] page for how to write your own.
+必要なパラメータ:
+* surfaceFunction - Cg 関数にサーフェスシェーダ コードがあります。 この関数には、@@void surf (Input IN、入力 SurfaceOutput o)@@ が必要で、ここでは入力は定義した構造になります。 入力は、表面関数が必要とするテクスチャ座標と追加の自動変数を含む必要があります。
+* lightModel - 使用するライティング モデル。 組み込みライティング モデルは、@@Lambert@@ (デフューズ) と @@BlinnPhong@@ (スペキュラ) です。 自身のライティング モデルを記述する方法に関しては、[[SL-SurfaceShaderLighting | Custom Lighting Models]] ページを参照してください。
 
 
-Optional parameters:
-* @@alpha@@ - Alpha blending mode. Use this for semitransparent shaders.
-* @@alphatest:VariableName@@ - Alpha testing mode. Use this for transparent-cutout shaders. Cutoff value is in float variable with VariableName.
-* @@vertex:VertexFunction@@ - Custom vertex modification function. See Tree Bark shader for example.
-* @@finalcolor:ColorFunction@@ - Custom final color modification function. See [[SL-SurfaceShaderExamples | Surface Shader Examples]].
-* @@exclude_path:prepass@@ or @@exclude_path:forward@@ - Do not generate passes for given rendering path.
-* @@addshadow@@ - Add shadow caster & collector passes. Commonly used with custom vertex modification, so that shadow casting also gets any procedural vertex animation.
-* @@dualforward@@ - Use [[LightmappingInDepth#DualLightmaps | dual lightmaps]] in [[RenderTech-ForwardRendering | forward]] rendering path.
-* @@fullforwardshadows@@ - Support all shadow types in [[RenderTech-ForwardRendering | Forward]] rendering path.
-* @@decal:add@@ - Additive decal shader (e.g. terrain AddPass).
-* @@decal:blend@@ - Semitransparent decal shader.
-* @@softvegetation@@ - Makes the surface shader only be rendered when Soft Vegetation is on.
-* @@noambient@@ - Do not apply any ambient lighting or spherical harmonics lights.
-* @@novertexlights@@ - Do not apply any spherical harmonics or per-vertex lights in Forward rendering.
-* @@nolightmap@@ - Disables lightmap support in this shader (makes a shader smaller).
-* @@nodirlightmap@@ - Disables directional lightmaps support in this shader (makes a shader smaller).
-* @@noforwardadd@@ - Disables [[RenderTech-ForwardRendering | Forward]] rendering additive pass. This makes the shader support one full directional light, with all other lights computed per-vertex/SH. Makes shaders smaller as well.
-* @@approxview@@ - Computes normalized view direction per-vertex instead of per-pixel, for shaders that need it. This is faster, but view direction is not entirely correct when camera gets close to surface.
-* @@halfasview@@ - Pass half-direction vector into the lighting function instead of view-direction. Half-direction will be computed and normalized per vertex. This is faster, but not entirely correct.
+オプションのパラメータ:
+* @@alpha@@ - アルファ ブレンディング モード。 半透明のシェーダに使用します。
+* @@alphatest:VariableName@@ - アルファ テスティング モード。 透明カットアウトシェーダに使用します。 カットオフ値は、VariableName のある浮動小数点変数になります。
+* @@vertex:VertexFunction@@ - カスタムの頂点編集関数。 例については、樹皮シェーダを参照。
+* @@finalcolor:ColorFunction@@ - カスタムの最終色モディファイア。詳しくは [[SL-SurfaceShaderExamples | Surface Shader Examples]] を参照して下さい。
+* @@exclude_path:prepass@@ or @@exclude_path:forward@@ - 所定のレンダリング パスにパスを生成しません。
+* @@addshadow@@ - シャドウ キャスタおよびコレクタ パスを追加します。 通常、カスタム頂点編集で使用されるので、シャドウ キャスティングも手続き的頂点アニメーションを取得します。
+* @@dualforward@@ - [[RenderTech-ForwardRendering | forward]] レンダリング パスで、[[LightmappingInDepth#DualLightmaps | dual lightmaps]] を使用します。
+* @@fullforwardshadows@@ - [[RenderTech-ForwardRendering | Forward]] レンダリング パスで、すべてのタイプのシャドウをサポートします。
+* @@decal:add@@ - 追加のデカール シェーダ (例: 地形 AddPass)。
+* @@decal:blend@@ - 半透明のデカール シェーダ。
+* @@softvegetation@@ - Soft Vegetation をオンにすると、サーフェスシェーダのみレンダリングするようにします。
+* @@noambient@@ - 周囲ライティングと球体ハーモニクス ライトを適用しません。
+* @@novertexlights@@ - フォワード レンダリングで、球体ハーモニクスまたは頂点ごとのライトを適用しません。
+* @@nolightmap@@ - このシェーダでライトマップのサポートを無効にします（シェーダをより小さくします）。
+* @@nodirlightmap@@ - このシェーダでディレクショナルライトマップを向こうにします（シェーダをより小さくします）。
+* @@noforwardadd@@ - [[RenderTech-ForwardRendering | Forward]] レンダリング追加パスを無効にします。 これにより、シェーダは完全なディレクショナル ライトサポートし、その他すべてのライトは、頂点ごと/SH で計算されます。シェーダもより小さくなります。
+* @@approxview@@ - 標準化されたビュー方向をピクセルごとではなく、頂点ごとに計算します。これを必要としているシェーダに行われます。 これは、より速いですが、カメラが表面に近づくと、ビュー方向は全体的に正しくありません。
+* @@halfasview@@ - 半分方向のベクトルを、ビュー方向ではなくｍライティング関数に渡します。 半距離は頂点ごとに計算および標準化されます。 これはより高速ですが、全体的に正しくりません。
 >>u40<<
-* @@tessellate:TessFunction@@ - use DX11 GPU tessellation; the function computes tessellation factors. See [[SL-SurfaceShaderTessellation | Surface Shader Tessellation]] for details.
+* @@tessellate:TessFunction@@ - DX11 GPUテッセレーションを使います。詳しくは [[SL-SurfaceShaderTessellation | Surface Shader Tessellation]] をご覧ください。
 >><<
 
-
-Additionally, you can write @@#pragma debug@@ inside CGPROGRAM block, and then surface compiler will spit out a lot of comments of the generated code. You can view that using Open Compiled Shader in shader inspector.
-
-
-!! Surface Shader input structure
-
-The input structure @@Input@@ generally has any texture coordinates needed by the shader. Texture coordinates must be named "@@uv@@" followed by texture name (or start it with "@@uv2@@" to use second texture coordinate set).
-
-Additional values that can be put into Input structure:
-* @@float3 viewDir@@ - will contain view direction, for computing Parallax effects, rim lighting etc.
-* @@float4@@ with @@COLOR@@ semantic - will contain interpolated per-vertex color.
-* @@float4 screenPos@@ - will contain screen space position for reflection effects. Used by WetStreet shader in Dark Unity for example.
-* @@float3 worldPos@@ - will contain world space position.
-* @@float3 worldRefl@@ - will contain world reflection vector ''if surface shader does not write to o.Normal''. See Reflect-Diffuse shader for example.
-* @@float3 worldNormal@@ - will contain world normal vector ''if surface shader does not write to o.Normal''.
-* @@float3 worldRefl; INTERNAL_DATA@@ - will contain world reflection vector ''if surface shader writes to o.Normal''. To get the reflection vector based on per-pixel normal map, use @@WorldReflectionVector (IN, o.Normal)@@. See Reflect-Bumped shader for example.
-* @@float3 worldNormal; INTERNAL_DATA@@ - will contain world normal vector ''if surface shader writes to o.Normal''. To get the normal vector based on per-pixel normal map, use @@WorldNormalVector (IN, o.Normal)@@.
+また、CGPROGRAM　ブロック内に @@#pragma debug@@ を記述し、表面コンパイラは、生成されたコードの多くのコメントを生成できます。 シェーダ  インスペクタでオープン コンパイルド シェーダでを使用してこれを表示できます。
 
 
-!! Further Documentation
+!! サーフェスシェーダ入力構造
+
+入力構造 @@Input@@ には一般に、シェーダによって必要とされるテクスチャ座標があります。 テクスチャ座標の名前は、''@@uv@@''の後にテクスチャ名が来る形にする必要があります (第 2 のテクスチャ座標セットを使用するには、''@@uv2@@''で始めます)。
+
+以下の値が入力構造に入力できます。
+* @@float3 viewDir@@ - ビュー方向を含みます。視差効果、リム ライティングなどの計算に使用されます。
+* @@float4@@ with @@COLOR@@ セマンティック - 補間された頂点ごとの色を含みます。
+* @@float4 screenPos@@ - 反射効果の画面空間位置を含みます。 例えば、Dark Unity では、WetStreet シェーダによって使用されます。
+* @@float3 worldPos@@ - 世界空間の位置を含みます。
+* @@float3 worldRefl@@ - ''サーフェスシェーダが o.Normal に書き込まない場合''の世界反射ベクトルを含みます。 例については、反射 - デフューズ シェーダを参照。
+* @@float3 worldNormal@@ -  ''サーフェスシェーダが o.Normal に書き込まない場合''の世界法線ベクトルを含みます。
+* @@float3 worldRefl; INTERNAL_DATA@@ -  ''サーフェスシェーダが o.Normal に書き込む場合''の世界反射ベクトルを含みます。 ピクセルごとの法線マップに基づいて、反射ベクトルを取得するには、@@WorldReflectionVector (IN, o.Normal)@@ を使用します。 例については、反射 - バンプ型 シェーダを参照。
+* @@float3 worldNormal; INTERNAL_DATA@@ - ''サーフェスシェーダが o.Normal に書き込む場合''の世界反射ベクトルを含みます。 ピクセルごとの法線マップに基づいて、法線ベクトルを取得するには、@@WorldNormalVector (IN, o.Normal)@@ を使用します。
+
+
+!! 参考文献
 
 (:tocportion:)

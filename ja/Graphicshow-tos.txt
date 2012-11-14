@@ -1,8 +1,8 @@
-! Graphics Questions
+! グラフィックに関する質問
 
-The following is a list of common graphics-related questions in Unity and how to accomplish them.
+以下は、Unity の共通のグラフィック関連の質問およびその実現方法の一覧です。
 
-There is an excellent tutorial for creating textures, including color, bump, specular, and reflection mapping [[http://forums.cgsociety.org/showthread.php?t=373024 | here]].
+色や突起、スペキュラ、反射マッピングなどのテクスチャのための素晴らしいチュートリアルは、[[http://forums.cgsociety.org/showthread.php?t=373024 | ここにあります ]] 。
 
 (:tocportion:)
 

@@ -1,40 +1,39 @@
-! Reducing File Size
+! ファイル サイズの削減
+
+!! Unity はインポートされたすべてのアセットを後処理します。
+
+Unity は常にインポートされたファイルを後処理するので、jpg ではなく、マルチレイヤー化 psd ファイルとしてファイルを格納すると、配備するプレイヤーのサイズの差が一切なくなります。 作業を楽にするため、作業している形式 (例：.mb ファイル、.psd ファイル .tiff ファイル) で保存します。
 
 
-!! Unity post-processes all imported assets
+!! Unity は未使用のアセットを除去します。
 
-Unity always post-processes imported files, thus storing a file as a multi-layered psd file instead of a jpg will make absolutely zero difference in the size of the player you will deploy. Save your files in the format you are working with (eg. .mb files, .psd files, .tiff files) to make your life easier.
-
-
-!! Unity strips out unused assets
-
-The amount of assets in your project folder does __not__ influence the size of your built player. Unity is very smart about detecting which assets are used in your game and which are not. Unity follows all references to assets before building a game and generates a list of assets that need to be included in the game. Thus you can safely keep unused assets in your project folder.
+プロジェクト フォルダのアセットの数は、ビルド プレイヤーのサイズには影響__しません__。 Unity は非常にスマートなため、ゲーム内で使用サれているアセットとそうでないアセットを検出できます。 Unity は、ゲームの作成前にアセットへのすべての参照に従い、ゲームに含める必要のあるアセットのリストを生成します。 従って、プロジェクト フォルダで未使用のアセットを安全に保存できます。
 
 
-!! Unity prints an overview of the used file size
+!! Unity は使用されているファイル サイズの概要を出力します。
 
-After Unity has completed building a player, it prints an overview of what type of asset took up the most file size, and it prints which assets were included in the build. To see it just open the editor console log: ^^Open Editor Log^^ button in the Console window (^^Window -> Console^^).
+Unity は、プレイヤーの作成終了後、ほとんどのファイル サイズを使用しているアセットのタイプを出力し、ビルド内に含まれていたアセットを出力します。これを確認するにはエディターのコンソールログをご覧ください: コンソールウィンドウの ^^Open Editor Log^^ ボタン (または ^^Window -> Console^^ ).
 
 Attach:FileSizeOptimization.png
-''An overview of what took up space''
+''スペースを消費するものの概要''
 
 
-!! Optimizing texture size
+!! テクスチャ サイズの最大化
 
-Often textures take up most space in the build. The first to do is to use compressed texture formats (DXT($$Desktop platforms$$) or PVRTC) where you can.
+多くの場合、テクスチャはビルド内のほとんどのスペースを消費します。 最初に、圧縮テクスチャ形式  (DXT($$Desktop platforms$$) または PVRTC) を使用できる場所で使用します。
 
-If that doesn't get the size down, try to reduce the size of the textures. The trick here is that you don't need to modfiy the actual source content. Simply select the texture in the Project view and set ``Max Texture Size`` in Import Settings. It is a good idea to zoom in on an object that uses the texture, then adjust the ``Max Texture Size`` until it starts looking worse in the $$Scene View$$.
+サイズが減らない場合は、テクスチャのサイズを減らしてみてください。 ここでのポイントは、実際のソースの内容を編集する必要がないということです。 プロジェクト ビューでテクスチャを選択し、インポート設定で''Max Texture Size''を設定します。 $$Scene View$$ で見た目が悪くなり始めるまで、テクスチャを使用するオブジェクトを拡大し、''Max Texture Size''を調整するのはよい考えです。
 
 Attach:FileSizeOptimizationTexture.png\\
-''Changing the Maximum Texture Size will not affect your texture asset, just its resolution in the game''
+''Max Texture Size を変更しても、テクスチャ アセットには影響せず、ゲーム内の解像度のみに影響します''
 
 
-!!! How much memory does my texture take up?
+!!! ''テクスチャはどのくらいのメモリを消費しますか?''
 
-!Desktop!
->>desktop<<
-||__Compression__      ||__Memory consumption__ ||
-||``RGB Compressed DXT1``  ||0.5 bpp (bytes/pixel)  ||
+!デスクトップ!
+>>デスクトップ<<
+||__Compression__      ||__メモリの消費__ ||
+||``RGB Compressed DXT1``  ||0.5 bpp (バイト/ピクセル)  ||
 ||``RGBA Compressed DXT5`` ||1 bpp ||
 ||``RGB 16bit``            ||2 bpp ||
 ||``RGB 24bit``            ||3 bpp ||
@@ -44,8 +43,8 @@ Attach:FileSizeOptimizationTexture.png\\
 >><<
 !iOS!
 >>ios<<
-||__Compression__      ||__Memory consumption__ ||
-||``RGB Compressed PVRTC 2 bits`` ||0.25 bpp (bytes/pixel) ||
+||__Compression__      ||__メモリの消費__ ||
+||``RGB Compressed PVRTC 2 bits``||0.25 bpp (バイト/ピクセル)  ||
 ||``RGBA Compressed PVRTC 2 bits`` ||0.25 bpp ||
 ||``RGB Compressed PVRTC 4 bits`` ||0.5 bpp ||
 ||``RGBA Compressed PVRTC 4 bits`` ||0.5 bpp ||
@@ -57,11 +56,11 @@ Attach:FileSizeOptimizationTexture.png\\
 >><<
 !Android!
 >>android<<
-||__Compression__      ||__Memory consumption__ ||
-||``RGB Compressed DXT1``  ||0.5 bpp (bytes/pixel)  ||
+||__Compression__      ||__メモリの消費__ ||
+||``RGB Compressed DXT1``  ||0.5 bpp (バイト/ピクセル)  ||
 ||``RGBA Compressed DXT5`` ||1 bpp ||
 ||``RGB Compressed ETC1`` ||0.5 bpp ||
-||``RGB Compressed PVRTC 2 bits`` ||0.25 bpp (bytes/pixel) ||
+||``RGB Compressed PVRTC 2 bits``||0.25 bpp (バイト/ピクセル)  ||
 ||``RGBA Compressed PVRTC 2 bits`` ||0.25 bpp ||
 ||``RGB Compressed PVRTC 4 bits`` ||0.5 bpp ||
 ||``RGBA Compressed PVRTC 4 bits`` ||0.5 bpp ||
@@ -71,31 +70,31 @@ Attach:FileSizeOptimizationTexture.png\\
 ||``RGBA 16bit``           ||2 bpp ||
 ||``RGBA 32bit``           ||4 bpp ||
 >><<
-To figure out total texture size: width * height * bpp.
-Add 33% if you have Mipmaps.
+テクスチャの合計サイズの求め方: 幅 * 高さ * bpp。
+ミニマップがある場合は 33% を追加します。
 
-By default Unity compresses all textures when importing. This can be turned off in the ^^Preferences^^ for faster workflow. But when building a game, all not-yet-compressed textures will be compressed.
-
-
-
-!! Optimizing mesh and animation size
-
-[[class-Mesh | Meshes]] and imported Animation Clips can be compressed so they take up less space in your game file. Compression can be turned on in Mesh Import Settings.
-
-Mesh and Animation compression uses quantization, which means it takes less space but the compression can introduce some inaccuracies. Experiment with what level of compression is still acceptable for your models.
-
-Note that mesh compression only produces smaller data files, and does not use less memory at run time. Animation ``Keyframe reduction`` produces smaller data files ''and'' uses less memory at run time, and generally you should always use keyframe reduction.
-
-Additionally, you can choose not to store normals and/or tangents in your Meshes, to save space both in the game builds and memory at run time. This can be set in ``Tangent Space Generation`` drop down in Mesh Import Settings. Rules of thumb:
-* Tangents are used for normal-mapping. If you don't use normal-mapping, you probably don't need to store tangents in those meshes.
-* Normals are used for lighting. If you don't use realtime lighting on some of your meshes, you probably don't need to store normals in them.
+デフォルトでは、Unity はインポート時にすべてのテクスチャを圧縮します。 ワークフローをより高速にするため、^^Preferences^^ でこれをオフにできます。 ゲーム作成時、圧縮されていないすべてのテクスチャが圧縮されます。
 
 
-!! Reducing included dlls in the Players
 
-When building a player (Desktop, Android or iOS) it is important to not depend on $$System.dll$$ or $$System.Xml.dll$$.  Unity does not include $$System.dll$$ or $$System.Xml.dll$$ in the players installation.  That means, if you want to use Xml or some Generic containers which live in $$System.dll$$ then the required dlls will be included in the players.  This usually adds 1mb to the download size, obviously this is not very good for the distribution of your players and you should really avoid it.  If you need to parse some Xml files, you can use a smaller xml library like this one [[Attach:Mono.Xml.zip|Mono.Xml.zip]].  While most Generic containers are contained in mscorlib, Stack<> and few others are in $$System.dll$$. So you really want to avoid those.
+!! メッシュおよびアニメーション サイズの最大化
+
+ゲーム ファイルでの使用スペースを減らすよう、[[class-Mesh | Meshes]] およびインポートされたアニメーション クリップを圧縮できます。 メッシュ インポート設定で圧縮をオンにできます。
+
+ゲーム ファイルでの使用スペースを減らすよう、[[class-Mesh | Meshes]] およびインポートされたアニメーション クリップを圧縮できます。 モデルで許容可能な圧縮のレベルを試してみてください。
+
+メッシュ圧縮は小さいデータ ファイルしか生成せず、ランタイムで使用するメモリは少なくなります。 アニメーション''Keyframe reduction''は、小さいデータ ファイルしか生成せず、ランタイムで使用するメモリは少なくなり、一般に、常にキーフレーム削減を使用します。
+
+また、メッシュで法線および/または接線を格納しないようにし、ランタイム時にゲーム ビルドとメモリにスペースを保存するよう選択できます。 これは、メッシュ インポート設定の''Tangent Space Generation''ドロップダウンで設定できます。 経験則:
+* 接線は、法線マッピングに使用されます。 * 法線マッピングを使用しない場合は、おそらくこれらのメッシュで接線を格納する必要はありません。
+* 接線は、ライティングに使用されます。 メッシュの一部でリアルタイムのライティングを使用しない場合は、おそらくこれらに法線を格納する必要はありません。
+
+
+!! プレイヤーに含まれている dll を減らす
+
+プレイヤー (デスクトップ、Android または iOS) $$System.dll$$ または $$System.Xml.dll$$ に依存しないことは重要です。  Unity は、プレイヤー インストールで $$System.dll$$ または $$System.Xml.dll$$ を含みません。  つまり、Xml または、$$System.dll$$ にある一部の汎用コンテナを使用したい場合、必要な dll はプレイヤーに含まれます。  これは通常、ダウンロード サイズに 1mb を追加しますが、これは明らかにプレイヤーの配布にはあまりよくないので、回避する必要があります。  Xml ファイルを構文解析する必要がある場合、[[Attach:Mono.Xml.zip|Mono.Xml.zip]] などのより小さい xml ライブラリを使用できます。  ほとんどの汎用コンテナは、mscorlib に含まれますが、Stack<> やその他の幾つかは、$$System.dll$$ に含まれます。 そのため、本当にこれらを回避したいと思うでしょう。
 
 Attach:FileSizeMonoDependency.png \\
-''As you can see, Unity is including System.Xml.dll and System.dll, when building a player''
+''お分かりのように、Unity には、プレイヤー作成時、System.Xml.dll および System.dll が含まれます''
 
-Unity includes the following DLLs with the players distribution $$mscorlib.dll$$, $$Boo.Lang.dll$$, $$UnityScript.Lang.dll$$ and $$UnityEngine.dll$$.
+Unity には、プレイヤー配布 $$mscorlib.dll$$、$$Boo.Lang.dll$$、$$UnityScript.Lang.dll$$ および $$UnityEngine.dll$$ と共に、次の DLL が含まれます。

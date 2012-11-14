@@ -1,44 +1,44 @@
-!Spring Joint
-The $$Spring Joint$$ groups together two $$Rigidbodies$$, constraining them to move like they are connected by a spring.
+!スプリング ジョイント
+$$Spring Joint$$ は、2 つの $$Rigidbody$$ をグループ化し、スプリングで連結されているかのように動くよう制約します。
 
 Attach:Inspector-SpringJoint.png\\
-''The Spring Joint $$Inspector$$''
+''スプリング ジョイント $$Inspector$$''
 
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Connected Body`` ||Optional reference to the Rigidbody that the joint is dependent upon.||
-||``Anchor``         ||Position in the object's local space (at rest) that defines the center of the joint. This is not the point that the object will be drawn toward.||
-||>>>``X``           ||Position of the joint's local center along the X axis. ||
-||>>>``Y``           ||Position of the joint's local center along the Y axis. ||
-||>>>``Z``           ||Position of the joint's local center along the Z axis. ||
-||``Spring``       ||Strength of the spring.||
-||``Damper``       ||Amount that the spring is reduced when active. ||
-||``Min Distance`` ||Distances greater than this will not cause the Spring to activate. ||
-||``Max Distance`` ||Distances less than this will not cause the Spring to activate. ||
-||``Break Force``  ||The force that needs to be applied for this joint to break. ||
-||``Break Torque`` ||The torque that needs to be applied for this joint to break. ||
+||``Connected Body`` ||ジョイントが依存する剛体へのオプションのオプションの参照。||
+||``Anchor``         ||ジョイントの中心を定義するオブジェクトのローカル空間での位置 (静止時)。 これは、オブジェクトがびょうがされる先の点ではありません。||
+||>>>``X``           ||X 軸に沿ったジョイントのローカル点の位置。 ||
+||>>>``Y``           ||Y 軸に沿ったジョイントのローカル点の位置。 ||
+||>>>``Z``           ||Z 軸に沿ったジョイントのローカル点の位置。 ||
+||``Spring``       ||スプリングの強さ。||
+||``Damper``       ||有効な場合にスプリングを減らす量。 ||
+||``Min Distance`` ||この距離を超えると、スプリングが起動しません。 ||
+||``Max Distance`` ||この距離を未満の場合、スプリングが起動しません。 ||
+||``Break Force``   ||このジョイントが分解するのに適用される必要のある力。 ||
+||``Break Torque``  ||このジョイントが分解するのに適用される必要のあるトルク。 ||
 
-!!Details
+!!詳細
 
-Spring Joints allows a Rigidbodied $$GameObject$$ to be pulled toward a particular "target" position.  This position will either be another Rigidbodied GameObject or the world.  As the GameObject travels further away from this "target" position, the Spring Joint applies forces that will pull it back to its original "target" position.  This creates an effect very similar to a rubber band or a slingshot.
+スプリング ジョイントにより、剛体 $$GameObject$$ は特定の''目標：位置に引っ張られます。  この位置は、別のリジッド ボディの GameObject か世界のいずれかになります。  GameObject がこの''目標''位置から更に離れると、スプリング ジョイントがその元の''目標''位置に引き戻す力を加えます。  これにより、ボムバンドやパチンコに非常に似た効果を作成できます。
 
-The "target" position of the Spring is determined by the relative position from the ``Anchor`` to the ``Connected Body`` (or the world) when the Spring Joint is created, or when Play mode is entered.  This makes the Spring Joint very effective at setting up Jointed characters or objects in the Editor, but is harder to create push/pull spring behaviors in runtime through scripting.  If you want to primarily control a GameObject's position using a Spring Joint, it is best to create an empty GameObject with a Rigidbody, and set that to be the ``Connected Rigidbody`` of the Jointed object.  Then in scripting you can change the position of the ``Connected Rigidbody`` and see your Spring move in the ways you expect.
+スプリングの''目標''位置は、スプリング ジョイントを作成するか、再生モードに入った時に、''Anchor''から''Connected Body''(または世界)までの相対位置によって決定されます。  これにより、ジョイントしたキャラクターまたはオブジェクトをエディタで設定する際ににスプリング ジョイントが効率的になりますが、スプリングのプッシュ / プル 動作をスクリプティングを通じて、ランタイムで作成するのがより難しくなります。  スプリング ジョイントを使用して、主に GameObject の位置を変更したい場合、リジッドボディで空の GameObject を作成し、それをジョイントされたオブジェクトの''Connected Rigidbody''に設定します。  次にスクリプティングで、''Connected Rigidbody''の位置を変更でき、期待通りにスプリングが移動します。
 
 !!!Connected Rigidbody
-You do not need to use a ``Connected Rigidbody`` for your joint to work.  Generally, you should only use one if your object's position and/or rotation is dependent on it.  If there is no ``Connected Rigidbody``, your Spring will connect to the world.
+* ジョイントを起動させるのに、''Connected Body''がを使用する必要はありません。  一般に、オブジェクトの位置および / または回転が依存していない場合のみに使用する必要があります。  ''Connected Rigidbody''がない場合は、スプリングはワールドに接続します。
 
-!!!Spring & Damper
+!!!!スプリングとダンパー
 
-``Spring`` is the strength of the force that draws the object back toward its "target" position.  If this is 0, then there is no force that will pull on the object, and it will behave as if no Spring Joint is attached at all.
+''スプリング''は、オブジェクトをその''目的の''位置に引っ張り戻す力の強さです。  0 の場合、オブジェクトに引っ張る力はかからず、スプリング ジョイントがかからないかのよう動作します。
 
-``Damper`` is the resistance encountered by the ``Spring`` force.  The lower this is, the springier the object will be.  As the ``Damper`` is increased, the amount of bounciness caused by the Joint will be reduced.
+''Damper''は、''Spring''の力に対する抵抗力です。  この値が低いほど、オブジェクトのスプリング力は強くなります。  ''Damper''が増えると、ジョイントによる跳ね返りの量は減ります。
 
 !!!Min & Max Distance
 
-If the position of your object falls in-between the ``Min`` & ``Max Distances``, then the Joint will not be applied to your object.  The position must be moved outside of these values for the Joint to activate.
+オブジェクトの位置が''Min''と''Max Distances''間にある場合、ジョイントはオブジェクトに適用されません。  この位置を、有効にするジョイントに対して、これらの値外に移動させる必要があります。
 
-!!Hints
-* You do not need to assign a ``Connected Body`` to your Joint for it to work.
-* Set the ideal positions of your Jointed objects in the Editor prior to entering Play mode.
-* Spring Joints require your object to have a Rigidbody attached.
+!!ヒント
+* ジョイントが機能するよう、''Connected Body''をジョイントに割り当てる必要はありません。
+* 再生モードに入る前に、エディタでジョイント オブジェクトの理想的な位置を設定します。
+* スプリング ジョイントは、リジッドボディを追加する必要があります。

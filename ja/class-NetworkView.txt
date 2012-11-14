@@ -1,77 +1,77 @@
-! Network View
+! ネットワーク ビュー
 
-$$Network Views$$ are the gateway to creating networked multiplayer games in Unity.  They are simple to use, but they are extremely powerful.  For this reason, it is recommended that you understand the fundamental concepts behind networking before you start experimenting with Network Views.  You can learn and discover the fundamental concepts in the [[Network Reference Guide]].
+$$Network View$$ は、Unity でマルチプレイヤーのネットワーク ゲームを作成するための入り口です。  使いやすく、強力です。  このため、ネットワーク ビューで作業を開始する前に、ネットワークに関する基本的な原理を理解しておくことをお勧めします。   [[Network Reference Guide]] で基本的な原理を学ぶことができます。
 
 Attach:Inspector-NetworkView.png\\
-''The Network View $$Inspector$$''
+''ネットワーク ビュー $$Inspector$$''
 
-In order to use any networking capabilities, including $$State Synchronization$$ or $$Remote Procedure Calls$$, your $$GameObject$$ must have a Network View attached.
+$$State Synchronization$$ または $$Remote Procedure Calls$$を含むネットワーク機能を使用するには、$$GameObject$$ にネットワーク ビューを追加させる必要があります。
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``State Synchronization`` ||The type of [[net-StateSynchronization | State Synchronization]] used by this Network View ||
-||>>>``Off`` ||No State Synchronization will be used. This is the best option if you only want to send [[net-RPCDetails | RPCs]] ||
-||>>>``Reliable Delta Compressed`` ||The difference between the last state and the current state will be sent, if nothing has changed nothing will be sent. This mode is ordered. In the case of packet loss, the lost packet is re-sent automatically ||
-||>>>``Unreliable`` ||The complete state will be sent. This uses more bandwidth, but the impact of packet loss is minimized ||
-||``Observed`` ||The $$Component$$ data that will be sent across the network ||
-||``View ID`` ||The unique identifier for this Network View. These values are read-only in the Inspector ||
-||>>>``Scene ID`` ||The number id of the Network View in this particular scene ||
-||>>>``Type`` ||Either saved to the ``Scene`` or ``Allocated`` at runtime ||
+||``State Synchronization`` ||このネットワーク ビューで使用される [[net-StateSynchronization | State Synchronization]] のタイプ。 ||
+||>>>``Off`` ||State Synchronization が使用されません。 [[net-RPCDetails | RPCs]] のみを送信したい場合に最適です。||
+||>>>``Reliable Delta Compressed`` ||最後の状態と現在の状態の差が送信されます。何も変更されていない場合は、何も送信されません。 このモードは順序付けられます。 パケットが失われた場合は、失われたパケットが自動的に再送信されます。||
+||>>>``Unreliable`` ||完全な状態が送信されます。 より多くの帯域幅を使用しますが、パケット損失の影響は最小化されます。
+||``Observed`` ||ネットワークに送信される $$Component$$ データ。||
+||``View ID`` ||このネットワーク ビューでに対する一意の識別子。 これらの値はインスペクタでは読み取り専用です。||
+||>>>``Scene ID`` ||この特定のシーンでのネットワーク ビューの ID 番号。||
+||>>>``Type`` ||ランタイムで''Scene''または''Allocated''のいずれかに保存されます。||
 
 
-!! Details
+!! 詳細
 
-When you add a Network View to a GameObject, you must decide two things
+GameObject をネットワーク ビューに追加する場合、次の 2 つを決定する必要があります。
 
-# What kind of data you want the Network View to send
-# How you want to send that data
-
-
-!!! Choosing data to send
-
-The ``Observed`` property of the Network View can contain a single Component.  This can be a $$Transform$$, an $$Animation$$, a $$RigidBody$$, or a script.  Whatever the ``Observed`` Component is, data about it will be sent across the network. You can select a Component from the drop-down, or you can drag any Component header directly to the variable. If you are not directly sending data, just using RPC calls, then you can turn off synchronization (no data directly sent) and nothing needs to be set as the Observed property. RPC calls just need a single network view present so you don't need to add a view specifically for RPC if a view is already present.
+# ネットワーク ビューに送信されたいデータの種類。
+# そのデータの送信方法。
 
 
-!!! How to send the data
+!!! 送信データの選択
 
-You have 2 options to send the data of the ``Observed`` Component: $$State Synchronization$$ and $$Remote Procedure Calls$$.
+ネットワーク ビューの''Observed''プロパティは、1 つのコンポーネントを含むことができます。  このコンポーネントには、$$Transform$$、$$Animation$$、$$RigidBody$$ またはスクリプトがあります。  ''Observed''コンポーネントがなんであれ、それに関するデータがネットワーク上で送信されます。 ドロップダウンからコンポーネントを選択するか、コンポーネント ヘッダを直接変数にドラッグできます。 RPC コールなどを使用して、直接データを送信しない場合は、同期化をオフにし (データが直接送信されません)、Observed プロパティとして何も設定する必要はありません。 RPC コールは、ネットワーク ビューが 1 つあればよいので、ビューがすでに存在している場合は、RPC にビューを追加する必要はありません。
 
-To use State Synchronization, set ``State Synchronization`` of the Network View to ``Reliable Delta Compressed`` or ``Unreliable``.  The data of the ``Observed`` Component will now be sent across the network automatically. 
 
-``Reliable Delta Compressed`` is ordered.  Packets are always received in the order they were sent.  If a packet is dropped, that packet will be re-sent.  All later packets are queued up until the earlier packet is received. Only the difference between the last transmissions values and the current values are sent and nothing is sent if there is no difference.
+!!! データの送信方法
 
-If it is observing a Script, you must explicitly Serialize data within the script.  You do this within the ``OnSerializeNetworkView()`` function.
+''Observed''コンポーネントのデータを送信するには、 $$State Synchronization$$ か $$Remote Procedure Calls$$ のいずれかを用います。
+
+State Synchronization を使用するには、ネットワーク ビューの''State Synchronization''を''Reliable Delta Compressed''か''Unreliable''のいずれかに設定します。  ''Observed''コンポーネントのデータがネットワーク上で自動的に送信されます。 
+
+''Reliable Delta Compressed''は順序付けられます。  パケットは常に送信順に受信されます。  パケットがドロップすると、そのパケットは再送信されます。  以降のパケットはすべて最初のパケットが受信されるまで、列に入れられます。 最後の送信値と現在の送信値間の差のみが送信され、差がない場合は何も送信されません。
+
+スクリプトに従う場合は、スクリプト内でデータを明確に直列化する必要があります。  これは''OnSerializeNetworkView()''関数内で行います。
 
 [@
 function OnSerializeNetworkView (stream : BitStream, info : NetworkMessageInfo) {
-	var horizontalInput : float = Input.GetAxis ("Horizontal");
+	var horizontalInput : float = Input.GetAxis ("水平");
 	stream.Serialize (horizontalInput);
 }
 @]
 
-The above function always writes (an update from the stream) into horizontalInput, when receiving an update and reads from the variable writing into the stream otherwise. If you want to do different things when receiving updates or sending you can use the ``isWriting`` attribute of the BitStream class.
+アップデートを受信し、そうでない場合に、ストリームに書きこむ変数からの読み取り値を受信すると、上記の関数は常に (ストリームからのアップデートを) horizontalInput に書き込みます。 アップデートを受信または、送信した際にこれと別のことを行いたい場合、BitStream クラスの''isWriting''属性を使用できます。
 
 [@
 function OnSerializeNetworkView (stream : BitStream, info : NetworkMessageInfo) {
 	var horizontalInput : float = 0.0;
 	if (stream.isWriting) {
-		// Sending
-		horizontalInput = Input.GetAxis ("Horizontal");
+		// 送信
+		horizontalInput = Input.GetAxis ("水平");
 		stream.Serialize (horizontalInput);
-	} else {
+	else
 
-		// Receiving
+		// 受信
 		stream.Serialize (horizontalInput);
-		// ... do something meaningful with the received variable
+		// ... 受信した変数で意味のある何かを行います
 	}
 }
 @]
 
-``OnSerializeNetworkView`` is called according to the ``sendRate`` specified in the network manager project settings. By default this is 15 times per second.
+''OnSerializeNetworkView''が、ネットワーク マネージャのプロジェクト設定で指定された''sendRate''に従って呼び出されます。 デフォルトでは、これは 1 秒あたり 15 回になります。
 
-If you want to use Remote Procedure Calls in your script all you need is a NetworkView component present in the same GameObject the script is attached to. The NetworkView can be used for something else, or in case it's only used for sending RPCs it can have no script observed and state synchronization turned off. The function which is to be callable from the network must have the  ``@RPC`` attribute. Now, from any script attached to the same GameObject, you call [[ScriptRef:NetworkView.RPC.html | networkView.RPC()]] to execute the Remote Procedure Call.
+スクリプトでリモート プロシージャ コールを使用したい場合は、スクリプトが追加された同じ GameProject にある NetworkView コンポーネントだけ必要になります。 NetworkView は、他の何かを行うのに使用でき、あるいは、RPC の送信にのみ使用する場合は、スクリプトに従わず、状態同期化をオフできます。 ネットワークから呼び出せる関数には、''@RPC''属性が必要です。 同じ GameObject に追加されたスクリプトから、 [[ScriptRef:NetworkView.RPC.html | networkView.RPC()]] を呼び出して、リモート プロシージャ コールを実行します。
 
 [@
 var playerBullet : GameObject;
@@ -88,11 +88,11 @@ function PlayerFire () {
 }
 @]
 
-RPCs are transmitted reliably and ordered. For more information about RPCs, see the [[net-RPCDetails | RPC Details]] page.
+RPC は高い信頼性で送信され、順序付けられます。 RPC の詳細については、[[net-RPCDetails | RPC Details]] ページを参照してください。
 
 
-!!Hints
+!!ヒント
 
-* Read through the [[Network Reference Guide]] if you're still unclear about how to use Network Views
-* State Synchronization does not need to be disabled to use Remote Procedure Calls
-* If you have more than one Network View and want to call an RPC on a specific one, use ``GetComponents(NetworkView)[i].RPC()``.
+* ネットワーク ビューの使用方法がまだ不明の方は、[[Network Reference Guide]] を参照してください。
+* リモート プロシージャ コールを使用するのに、State Synchronization を無効にする必要はありません。
+* 複数のネットワーク ビューがあり、その内の 1 つで RPC を呼び出したい場合は、''GetComponents(NetworkView)[i].RPC()''を使用してください。

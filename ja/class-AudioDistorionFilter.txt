@@ -1,19 +1,19 @@
-! Audio Distortion Filter (PRO only)
+! オーディオ歪みフィルタ (PROのみ)
 
-The $$Audio Distortion Filter$$ distorts the sound from an [[class-AudioSource|AudioSource]] or sounds reaching the [[class-AudioListener|AudioListener]].
+$$Audio Distortion Filter$$ は、[[class-AudioSource|AudioSource]] からの音声または [[class-AudioListener|AudioListener]] に達した音声を歪曲させます。
 
 Attach:AudioDistortionFilter.png\\
-''The Audio Distortion Pass filter properties in the inspector.''
+''オーディオ歪みフィルタ プロパティはインスペクタにあります。''
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Distortion`` ||Distortion value. 0.0 to 1.0. Default = 0.5.||
+||``Distortion`` ||歪み値。 0.0 〜 1.0。 デフォルト = 0.5。||
 
 
-!! Adding a Distortion filter
-To add an $$Audio Distortion Filter$$ to a selected [[class-AudioSource|AudioSource]] or [[class-AudioListener|AudioListener]] select the object in the inspector and then select ``Component->Audio->Audio Distortion Filter``.
+!! 歪みフィルタの追加
+$$Audio Distortion Filter$$ を選択した [[class-AudioSource|AudioSource]] または [[class-AudioListener|AudioListener]] に追加するには、インスペクタ内でオブジェクトを選択し、[Component->Audio->Audio Distortion Filter] を選択します。
 
-!!Hints
-* Apply the $$Audio Distortion Filter$$ to simulate the sound of a low quality radio transmission.
+!!ヒント
+* $$Audio Distortion Filter$$ を適用し、低品質の無線伝送の音声をシミュレートします。

@@ -1,44 +1,44 @@
-! Character Joint
+! キャラクタ ジョイント
 
-$$Character Joints$$ are mainly used for Ragdoll effects. They are an extended ball-socket joint which allows you to limit the joint on each axis.
+$$Character Joint$$ は、主にラグドール効果に使用されます。 これは、各軸でジョイントを制限できるボール ソケット型の拡張ジョイントです。
 
-If you just want to set up a ragdoll read about [[wizard-RagdollWizard | Ragdoll Wizard]].
+ラグドールの設定をしたい場合は、[[wizard-RagdollWizard | Ragdoll Wizard]] を参照してください。
 
 Attach:Inspector-CharacterJoint.png\\
-''The Character Joint on a Ragdoll''
+''ラグドールのキャラクター ジョイント''
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Connected Body`` ||Optional reference to the $$Rigidbody$$ that the joint is dependent upon. If not set, the joint connects to the world. ||
-||``Anchor`` ||The point in the $$GameObject's$$ local space where the joint rotates around. ||
-||``Axis`` ||The twist axes. Visualized with the orange gizmo cone. ||
-||``Swing Axis`` ||The swing axis. Visualized with the green gizmo cone. ||
-||``Low Twist Limit`` ||The lower limit of the joint. ||
-||``High Twist Limit`` ||The higher limit of the joint. ||
-||``Swing 1 Limit`` ||Lower limit around the defined ``Swing Axis`` ||
-||``Swing 2 Limit`` ||Upper limit around the defined ``Swing Axis`` ||
-||``Break Force`` ||The force that needs to be applied for this joint to break. ||
-||``Break Torque`` ||The torque that needs to be applied for this joint to break. ||
+||``Connected Body`` ||ジョイントが依存する $$Rigidbody$$ へのオプションの参照。 設定しないと、ジョイントはワールドに接続します。 ||
+||``Anchor``   ||ジョイントがその周辺で回転する、$$GameObject$$ のローカルなスペースにおける点。 ||
+||``Axis`` ||ツイスト軸。 オレンジ色のギズモの円錐で表示されます。 ||
+||``Swing Axis`` ||スイング軸。 緑色のギズモの円錐で表示されます。 ||
+||``Low Twist Limit`` ||ジョイントの下限。 ||
+||``High Twist Limit`` ||ジョイントの上限。 ||
+||``Swing 1 Limit`` ||定義された''Swing Axis''周辺の下限。||
+||``Swing 2 Limit`` ||定義された''Swing Axis''周辺の上限。||
+||``Break Force``   ||このジョイントが分解するのに適用される必要のある力。 ||
+||``Break Torque``  ||このジョイントが分解するのに適用される必要のあるトルク。 ||
 
 
-!! Details
+!! 詳細
 
-Character joint's give you a lot of possibilities for constraining motion like with a universal joint.
+キャラクター ジョイントは、ユニバーサル ジョイントの場合と同様、動きを制限する多くの機能を提供します。
 
-The twist axis (visualized with the orange gizmo) gives you most control over the limits as you can specify a lower and upper limit in degrees (the limit angle is measured relative to the starting position). A value of -30 in ``Low Twist Limit``->``Limit`` and 60 in ``High Twist Limit``->``Limit`` limits the rotation around the twist axis (orange gizmo) between -30 and 60 degrees.
+ツイスト軸 （オレンジ色のギズモで表示）により、上下限 （限界角度は、開始位置に対して測定されます）を°で指定できるため、制限を最も制御できます。 ''Low Twist Limit''->''Limit''での -30 の値および''High Twist Limit''->''Limit''での 60 は、-30° と 60°の間で、ツイスト軸 （オレンジ色のギズモ） 周辺での回転を制限します。
 
-The ``Swing 1 Limit`` limits the rotation around the swing axis (green axis). The limit angle is symmetric. Thus a value of eg. 30 will limit the rotation between -30 and 30.
+''Swing 1 Limit''は、スイング軸 （緑色の軸） 周辺での回転を制限します。 限界角度は、対称的です。 従って、例えば、30 の値は、-30 と 30 の間で回転を制限します。
 
-The ``Swing 2 Limit`` axis doesn't have a gizmo but the axis is orthogonal to the 2 other axes.
-Just like the previous axis the limit is symmetric, thus a value of eg. 40 will limit the rotation around that axis between -40 and 40 degrees.
+''Swing 2 Limit''軸にはギズモはありませんが、この軸は他の 2 つの軸に対して直角です。
+前述の軸のように、制限は対称的であるため、例えば、40 の値は、-40 と 40の間で回転を制限します。
 
 
-!!! Breaking joints
+!!! ジョイントの分解
 
-You can use the ``Break Force`` and ``Break Torque`` properties to set limits for the joint's strength.  If these are less than infinity, and a force/torque greater than these limits are applied to the object, its Fixed Joint will be destroyed and will no longer be confined by its restraints.
+''分解力''や''分解トルク''プロパティを使用して、ジョイントの強さに上限を設定できます。  これらが無限ではなく、上限より大きい力 / トルクがオブジェクトに適用される場合、その固定ジョイントは分介されず、またその制約によって限定されることはありません。
 
-!!Hints
-* You do not need to assign a ``Connected Body`` to your joint for it to work.
-* Character Joints require your object to have a Rigidbody attached.
+!!ヒント
+* ''Connected Body''が機能するよう、ジョイントに割り当てる必要はありません。
+* キャラクター ジョイントは、リジッドボディを追加する必要があります。

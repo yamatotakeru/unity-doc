@@ -1,19 +1,19 @@
-! Image Effect Scripts
+! 画像効果
 
-This group handles all $$Render Texture$$-based fullscreen image postprocessing effects. They are only available with Unity Pro. They add a lot to the look and feel of your game without spending much time on artwork.
+このグループはすべての $$Render Texture$$ ベースの全画面画像後処理効果を処理します。 Unity Pro 内でのみ使用できます。 創作に多くの時間をつぎ込むことなく、ゲームのルック アンド フィール を多くのものを追加します。
 
-All image effects make use of Unity's ``OnRenderImage`` function which any MonoBehavior attached to a camera can overwrite to accomplish a wide range of custom effects. 
+全ての画像効果は、Unityの ``OnRenderImage`` 関数で作られています。これにより、カメラに付いているどんなMonoBehaviorでも、様々なカスタム効果と一緒に利用できるように、上書きできます。
 
-Image effects can be executed directly after the opaque pass or after opaque and transparent passes (default). The former behavior can very easily be acquired by adding the attribute ``ImageEffectOpaque`` to the OnRenderImage function of the effect in question. For an example of an effect doing this, have a look at the [[script-EdgeDetectEffectNormals|Edge Detection effect]].
+画像効果はopaque描画パスの後、またはopaque & transparent描画パス（デフォルトではこちら）の後に実行されます。 前者の振る舞いはとても簡単で　OnRenderImage 関数に ``ImageEffectOpaque`` の属性を付けるだけでできます。 この効果の例としては、 [[script-EdgeDetectEffectNormals|Edge Detection effect]] をご覧ください。
 
 (:tocportion:)
 
-The scene used in above pages looks like this without any image effects applied:
+上記ページで使用されるシーンは、画像効果を適用することなく、このような見た目になります。
 
 Attach:FxNone.png\\
-''Scene with no image postprocessing effects.''
+''画像後処理効果なしのシーン''
 
-Multiple image effects can be "stacked" on the same camera. Just add them and it will work.
+複数の画像効果を、同じカメラで''スタック''されます。 ただ追加するだけで、機能します。
 
 Attach:FxBlurNoise.png\\
-''Blur and Noise applied to the same camera. Yay for noisy blur!''
+''同じカメラに追加されたぼやけとノイズ。 ノイズのあるぼやけができました''

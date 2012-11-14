@@ -1,36 +1,33 @@
-! Hardware Requirements for Unity's Graphics Features
+! Unity のグラフィック機能のハードウェア要件
 
-!! Summary
+!! 要約
 
 ||                       ||PC/Mac             ||iOS/Android             ||Flash   ||360/PS3      ||
-||Deferred lighting      ||SM3.0, GPU support ||-                       ||-       ||Yes          ||
-||Forward rendering      ||SM2.0              ||OpenGL ES 2.0           ||Yes     ||Yes          ||
-||Vertex Lit rendering   ||Yes                ||Yes                     ||Yes     ||-            ||
-||Realtime Shadows       ||SM2.0, GPU support ||-                       ||Kind-of ||Yes          ||
-||Image Effects          ||Most need SM2.0    ||Most need OpenGL ES 2.0 ||Kind-of ||Yes          ||
-||Vertex Shaders         ||SM1.1              ||OpenGL ES 2.0           ||Yes     ||Yes          ||
-||Pixel Shaders          ||SM2.0              ||OpenGL ES 2.0           ||Yes     ||Yes          ||
-||Fixed Function Shaders ||Yes                ||Yes                     ||Yes     ||-            ||
+||遅延ライティング           ||SM3.0, GPU サポート ||-                       ||-       ||はい          ||
+||フォワード レンダリング     ||SM2.0              ||OpenGL ES 2.0           ||はい     ||はい          ||
+||頂点リット レンダリング     ||はい                ||はい                     ||はい     ||-            ||
+||リアルタイム ライティング   ||SM2.0, GPU サポート  ||-                       ||一部     ||はい          ||
+||画像効果                 ||最も必要 SM2.0       ||最も必要 OpenGL ES 2.0   ||一部     ||はい          ||
+||頂点シェーダ              ||SM1.1              ||OpenGL ES 2.0           ||はい     ||はい         ||
+||ピクセル シェーダ          ||SM2.0              ||OpenGL ES 2.0           ||はい     ||はい          ||
+||固定機能シェーダ           ||はい                ||はい                     ||はい     ||-            ||
 
+!! リアルタイム シェーダ
 
-!! Realtime Shadows
+リアルタイム シャドーは現在、デスクトップとコンソール プラットフォームで機能します。 デスクトップでは、一般に シェーダ モデル 2.0 capable GPU が必要です。 Windows (Direct3D) 上でも、GPU は、影マッピング機能をサポートする必要があり、大半の ディスクリート GPU は、2003 年以降、大半の統合 GPU は、2007 年以降サポートしています。技術的には、Direct3D 9 では、GPU は [[http://aras-p.info/texts/D3D9GPUHacks.html | D16/D24X8 or DF16/DF24]] テクスチャ形式をサポートする必要があり、OpenGLでは、GL_ARB_depth_texture 拡張子をサポートする必要があります。
 
-Realtime Shadows currently work on desktop & console platforms. On desktops, they generally need Shader Model 2.0 capable GPU. On Windows (Direct3D), the GPU also needs to support shadow mapping features; most discrete GPUs support that since 2003 and most integrated GPUs support that since 2007. Technically, on Direct3D 9 the GPU has to support [[http://aras-p.info/texts/D3D9GPUHacks.html | D16/D24X8 or DF16/DF24]] texture formats; and on OpenGL it has to support GL_ARB_depth_texture extension.
-
-Flash does support realtime shadows, but due to lack of depth bias and shader limitations, they can have self-shadowing artifacts (increase light's shadow bias) and somewhat more "hard" edges.
+Flashでもリアルタイムシャドウはサポートされますが、深度バイアス（セルフシャドウが可能になる）の欠如とシェーダー制限（エッジが多少ガタガタになる等）があります。
 
 >>u40<<
-Mobile shadows (iOS/Android) require OpenGL ES 2.0 and GL_OES_depth_texture extension. Most notably, the extension is __not__ present on Tegra-based Android devices, so shadows do not work there.
+モバイルシャドウ(iOS/Android)はOpenGL ES 2.0と GL_OES_depth_texture 拡張が必要です。特にこの拡張はTegraのAndroidでバイスでは__利用出来ない__ことに注意して下さい。ですので、影も表示出来ません。
 >><<
 
+!! 画像効果
 
-!! Image Effects
-
-[[comp-ImageEffects | Image Effects]] require render-to-texture functionality, which is generally supported on anything made in this millenium. However, all except the simplest effects require quite programmable pixel shaders, so for all practical purposes they require Shader Model 2.0 on desktop (discrete GPUs since 2003; integrated GPUs since 2005) and OpenGL ES 2.0 on mobile platforms.
+[[comp-ImageEffects | Image Effects]] は、render-to-texture 機能を必要としてます。これは、一般にこのミレニアムで作成されたものならどれにおいてもサポートされています。 しかし、最も簡単な効果を除きすべてが、プログラム可能なピクセル シェーダを必要としているため、すべての実践的な目的のために、デスクトップでは、シェーダ モデル 2.0 (2003 年以降のディスクリート GPU　、2005 年以降の統合 GPU)、携帯プラットフォームでは、OpenGL ES 2.0 を必要としています。
 
 Some image effects work on Flash, but quite a lot of them do not; either due to no support for non-power-of-two textures, shader limitations or lacking features like depth texture support.
 
+!! シェーダ
 
-!! Shaders
-
-In Unity, you can write fixed function or programmable shaders. Fixed function is supported everywhere except consoles (Xbox 360 & Playstation 3). Programmable shaders default to Shader Model 2.0 (desktop) and OpenGL ES 2.0 (mobile). On desktop platforms, it is possible to target Shader Model 1.1 for vertex shaders.
+Unity では、固定機能またはプログラム可能なシェーダを記述できます。 固定機能は、コンソール (Xbox 360 と Playstation 3) 以外のどこででもサポートされています。 プログラム可能なシェーダは、デフォルトの Model 2.0 (デスクトップ) および OpenGL ES 2.0 (携帯) になります。 デスクトップ プラットフォームでは、頂点シェーダに対して、シェーダ モデル 1.1 を対象とできます。

@@ -1,39 +1,39 @@
-! Lens Flare
+! レンズ フレア
 
-$$Lens Flares$$ simulate the effect of lights refracting inside camera lens. They are used to represent really bright lights or, more subtly, just to add a bit more atmosphere to your scene.
+$$Lens Flare$$ は、カメラのレンズ内で屈折する光の効果をシミュレートします。 明るい、あるいはぼんやりとした光を表現するのに、、シーンにちょっとした雰囲気を加えるために使用されます。
 
 Attach:Inspector-LensFlare.png\\
-''The Lens Flare $$Inspector$$''
+''フレア レンズ $$Inspector$$'''
 
-The easiest way to setup a Lens Flare is just to assign the Flare property of the [[class-Light|Light]]. Unity contains a couple of pre-configured Flares in the [[HOWTO-InstallStandardAssets | Standard Assets package]].
+レンズ フレアを最も簡単に設定するには、[[class-Light|Light]] のフレア プロパティを割り当てます。 Unity では、[[HOWTO-InstallStandardAssets | Standard Assets package]] に事前設定されたフレアのサンプルを用意しています。
 
-Otherwise, create an empty $$GameObject$$ with ^^GameObject->Create Empty^^ from the menu bar and add the Lens Flare $$Component$$ to it with ^^Component->Rendering->Lens Flare^^.  Then and choose the ``Flare`` in the Inspector.
+ない場合は、メニューバーから  ^^GameObject->Create Empty^^ で空の $$GameObject$$ を作成し、 ^^Component->Rendering->Lens Flare^^ でレンズ フレア $$Component$$ を追加します。  次に、インスペクタで''Flare''を選択します。
 
-To see the effect of Lens Flare in the $$Scene View$$, check the ^^Fx^^ button in the Scene View toolbar:
+$$Scene View$$でレンズ フレアの効果を確認するには、シーン ビュー ツールバーで ^^Fx^^ ボタンをチェックします。
 
 Attach:LensFlare-FXButton.png\\
-''Enable the ^^Fx^^ button to view Lens Flares in the Scene View''
+''シーン ビュー ツールバーでレンズ フレアを表示するには、^^Fx^^ ボタンを有効にします''
 
 
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Flare``       ||The [[class-Flare|Flare]] to render. The flare defines all aspects of the lens flare's appearance. ||
-||``Color``       ||Some flares can be colorized to better fit in with your scene's mood. ||
-||``Brightness``  ||How large and bright the Lens Flare is. ||
-||``Directional`` ||If set, the flare will be oriented along positive Z axis of the game object. It will appear as if it was infinitely far away, and won't track object's position, only the direction of Z axis. ||
+||``Flare``       ||レンダリングする [[class-Flare|Flare]] 。 フレアは、レンズ フレアの外観のすべての側面を定義します。 ||
+||``Color``       ||シーンのムードによりフィットするよう、一部のフレアに色を付けることができます。 ||
+||``Brightness``  ||レンズ フレアの大きさと明るさ。 ||
+||``Directional`` ||設定すると、フレアがゲーム オブジェクトの正の Z 軸に沿って方向付けられます。 まるで無限の彼方にあるように表示され、オブジェクトの位置を追跡せず、Z 軸の方向のみ追跡します。 ||
 
 
-!!Details
+!!詳細
 
-You can directly set flares as a property of a [[class-Light|Light]] Component, or set them up separately as Lens Flare component. If you attach them to a light, they will automatically track the position and direction of the light. To get more precise control, use this Component.
+[[class-Light|Light]] コンポーネントのプロパティとしてフレアを直接設定しするか、またはレンズ フレア コンポーネントとして個別に設定できます。 光に追加すると、自動的にその光の位置と方向を追跡します。 より正確に制御する場合に、このコンポーネントを使用します。
 
-A [[class-Camera|Camera]] has to have a [[class-FlareLayer|Flare Layer]] Component attached to make Flares visible (this is true by default, so you don't have to do any set-up).
+フレアを表示するには、[[class-Camera|Camera]] は、[[class-FlareLayer|Flare Layer]] コンポーネントを追加する必要があります （これはデフォルトで適用されるので、設定は必要ありません）。
 
 
-!!Hints
+!!ヒント
 
-* Be discrete about your usage of Lens Flares.
-* If you use a very bright Lens Flare, make sure its direction fits with your scene's primary light source.
-* To design your own Flares, you need to create some Flare Assets. Start by duplicating some of the ones we provided in the the ^^Lens Flares^^ folder of the Standard Assets, then modify from that.
-* Lens Flares are blocked by $$Colliders$$.  A Collider in-between the Flare GameObject and the Camera will hide the Flare, even if the Collider does not have a $$Mesh Renderer$$.
+* レンズ フレアの使用に関しては注意してください。
+* 非常に明るいレンズ フレアを使用する場合は、その方向がシーンの最初の光源にフィットするようにしてください。
+* 自身のフレアを設計するには、フレア アセットを作成する必要があります。 まず標準アセットの ^^Lens Flares^^  フォルダ内て提供されているフレア アセットの一部をコピーし、次にそれを修正します。
+* レンズ フレアは、$$Colliders$$ にブロックされます。  フレア GameObject とカメラ間のコライダが $$Mesh Renderer$$ を持たない場合でも、コライダはフレアを非表示にします。

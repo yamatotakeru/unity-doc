@@ -1,14 +1,14 @@
-! Controls
+! コントロール
 
 
-!! Control Types
+!! コントロールのタイプ
 
-There are a number of different GUI $$Controls$$ that you can create.  This section lists all of the available display and interactive Controls.  There are other GUI functions that affect layout of Controls, which are described in the [[gui-Layout | Layout]] section of the Guide.
+各種 GUI $$Controls$$ を作成できます。  本項では、すべての表示および相互作用コントロールを一覧表示します。  その他にもコントロールのレイアウトに影響する GUI 機能があり、詳細については、本ガイドの [[gui-Layout | Layout]] に記載されています。
 
 
 !!! [[ScriptRef:GUI.Label.html | Label]]
 
-The ``Label`` is non-interactive.  It is for display only.  It cannot be clicked or otherwise moved.  It is best for displaying information only.
+''ラベル''は非インタラクティブです。  表示専用です。  クリックまたは移動できません。  情報表示目的のみにするのがベストです。
 
 [@
 /* GUI.Label example */
@@ -34,15 +34,15 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-LabelExample.png\\
-''The Label created by the example code''
+''サンプルのコードで作成されたラベル''
 
 
 !!! [[ScriptRef:GUI.Button.html | Button]]
 
-The ``Button`` is a typical interactive button.  It will respond a single time when clicked, no matter how long the mouse remains depressed.  The response occurs as soon as the mouse button is released.
+''ボタン''は一般的なインタラクティブ ボタンです。  マウスを押したままにする時間に関係なく、クリックすると、1 回に対応します。  この対応はボタンを押した途端に発生します。
 
-!!!! Basic Usage
-In UnityGUI, Buttons will return ``true`` when they are clicked.  To execute some code when a Button is clicked, you wrap the the GUI.Button function in an ``if`` statement.  Inside the ``if`` statement is the code that will be executed when the Button is clicked.
+!!!! 基本的な使用
+UnityGUI で、ボタンをクリックすると、''真''を返します。  ボタンをクリックした際に、コードを実行するには、''if''文で GUI.Button 関数をラップします。  ''if''文内には、ボタンをクリックした際に実行されるコードがあります。
 
 [@
 /* GUI.Button example */
@@ -51,7 +51,7 @@ In UnityGUI, Buttons will return ``true`` when they are clicked.  To execute som
 // JavaScript
 function OnGUI () {
 	if (GUI.Button (Rect (25, 25, 100, 30), "Button")) {
-		// This code is executed when the Button is clicked
+		// このコードは、ボタンをクリックすると実行されます。
 	}
 }
 
@@ -64,7 +64,7 @@ public class GUITest : MonoBehaviour {
 					
 	void OnGUI () {
 		if (GUI.Button (new Rect (25, 25, 100, 30), "Button")) {
-			// This code is executed when the Button is clicked
+			// このコードは、ボタンをクリックすると実行されます。
 		}
 	}
 
@@ -72,15 +72,15 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-ButtonExample.png\\
-''The Button created by the example code''
+''サンプルのコードで作成されたボタン''
 
 
 !!! [[ScriptRef:GUI.RepeatButton.html | RepeatButton]]
 
-``RepeatButton`` is a variation of the regular ``Button``.  The difference is, ``RepeatButton`` will respond every frame that the mouse button remains depressed.  This allows you to create click-and-hold functionality.
+''RepeatButton''は、通常の''Button''の一種です。  違いは、''RepeatButton''は、マウス ボタンが押されたままの毎フレームごとに反応するということです。  これにより、クリック アンド ホールド機能を作成できます。
 
-!!!! Basic Usage
-In UnityGUI, RepeatButtons will return ``true`` for every frame that they are clicked.  To execute some code while the Button is being clicked, you wrap the the GUI.RepeatButton function in an ``if`` statement.  Inside the ``if`` statement is the code that will be executed while the RepeatButton remains clicked.
+!!!! 基本的な使用
+UnityGUI で、RepeatButton をクリックすると、毎フレームごとに''真''を返します。  ボタンをクリックした際にコードを実行するには、''if''文で GUI.RepeatButton 関数をラップします。  ''if''文内には、RepeatButton がクリックされたまま実行されるコードがあります。
 
 [@
 /* GUI.RepeatButton example */
@@ -89,7 +89,7 @@ In UnityGUI, RepeatButtons will return ``true`` for every frame that they are cl
 // JavaScript
 function OnGUI () {
 	if (GUI.RepeatButton (Rect (25, 25, 100, 30), "RepeatButton")) {
-		// This code is executed every frame that the RepeatButton remains clicked
+		// このコードは、RepeatButton をクリックしたままの毎フレームで実行されます。
 	}
 }
 
@@ -102,7 +102,7 @@ public class GUITest : MonoBehaviour {
 					
 	void OnGUI () {
 		if (GUI.RepeatButton (new Rect (25, 25, 100, 30), "RepeatButton")) {
-			// This code is executed every frame that the RepeatButton remains clicked
+			// このコードは、RepeatButton をクリックしたままの毎フレームで実行されます。
 		}
 	}
 
@@ -110,16 +110,16 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-RepeatButtonExample.png\\
-''The Repeat Button created by the example code''
+''サンプルのコードで作成されたリピート ボタン''
 
 
 
 !!! [[ScriptRef:GUI.TextField.html | TextField]]
 
-The ``TextField`` Control is an interactive, editable single-line field containing a text string.
+''TextField''コントロールは、テキスト文字列を含む、インタラクティブで、編集可能な 1 行のフィールドです。
 
-!!!! Basic Usage
-The TextField will always display a string.  You must provide the string to be displayed in the TextField.  When edits are made to the string, the TextField function will return the edited string.
+!!!! 基本的な使用
+TextField は、常に文字列を表示します。  TextField に表示する文字列を渡す必要があります。  文字列に編集を行うと、TextField 関数は編集した文字列を返します。
 
 [@
 /* GUI.TextField example */
@@ -149,16 +149,16 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-TextFieldExample.png\\
-''The TextField created by the example code''
+''サンプルのコードで作成された TextField''
 
 
 
 !!! [[ScriptRef:GUI.TextArea.html | TextArea]]
 
-The ``TextArea`` Control is an interactive, editable multi-line area containing a text string.
+''TextField''コントロールは、テキスト文字列を含む、インタラクティブで、編集可能な複数行のエリアです。
 
-!!!! Basic Usage
-The TextArea will always display a string.  You must provide the string to be displayed in the TextArea.  When edits are made to the string, the TextArea function will return the edited string.
+!!!! 基本的な使用
+TextArea は、常に文字列を表示します。  TextArea に表示する文字列を渡す必要があります。  文字列に編集を行うと、TextArea 関数は編集した文字列を返します。
 
 [@
 /* GUI.TextArea example */
@@ -188,15 +188,15 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-TextAreaExample.png\\
-''The TextArea created by the example code''
+''サンプルのコードで作成された TextArea''
 
 
 !!! [[ScriptRef:GUI.Toggle.html | Toggle]]
 
-The ``Toggle`` Control creates a checkbox with a persistent on/off state.  The user can change the state by clicking on it.
+''Toggle''コントロールは、持続するオン/オフ状態を持つチェックボックスを作成します。  ユーザーは、状態をクリックすることで、状態を変更できます。
 
-!!!! Basic Usage
-The Toggle on/off state is represented by a true/false boolean. You must provide the boolean as a parameter to make the Toggle represent the actual state. The Toggle function will return a new boolean value if it is clicked.  In order to capture this interactivity, you must assign the boolean to accept the return value of the Toggle function.
+!!!! 基本的な使用
+''Toggle''のオン/オフ状態は、真/偽のブール値で表されます。 Toggle に実際の状態を表示させるために、パラメータとして、ブール値を渡す必要があります。 Toggle 関数は、クリックすると、新しいブール値をかえします　。  この相互作用を理解するためには、Toggle 関数の返された値を許可するため、ブール値を割り当てる必要があります。
 
 [@
 /* GUI.Toggle example */
@@ -226,18 +226,18 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-ToggleExample.png\\
-''The Toggle created by the example code''
+''サンプルのコードで作成されたトグル''
 
 
 !!! [[ScriptRef:GUI.Toolbar.html | Toolbar]]
 
-The ``Toolbar`` Control is essentially a row of ``Buttons``.  Only one of the Buttons on the Toolbar can be active at a time, and it will remain active until a different Button is clicked. This behavior emulates the behavior of a typical Toolbar.  You can define an arbitrary number of Buttons on the Toolbar.
+''Toolbar''コントロールは基本的に''Button''の行です。''  一度に有効にできるのは ツールバー上の Button 1 つだけで、別の Button がクリックされるまで、有効になります。 この動作は、通常のツールバーの動作をエミュレートします。  ツールバー出任意の数の Button を定義できます。
 
-!!!! Basic Usage
-The active Button in the Toolbar is tracked through an integer.  You must provide the integer as an argument in the function.  To make the Toolbar interactive, you must assign the integer to the return value of the function.  The number of elements in the content array that you provide will determine the number of Buttons that are shown in the Toolbar.
+!!!! 基本的な使用
+ツールバーでアクティブな Button は、整数を通じて追跡できます。  関数の引数として整数を渡す必要があります。  ツールバーをインタラクティブにするには、関数の返す値に整数を割り当てる必要があります。  渡す内容配列内の要素数によって、ツールバー内に表示される Button の数が決まります。
 
 [@
-/* GUI.Toolbar example */
+/* GUI.Toolbar の例 */
 
 
 // JavaScript
@@ -266,15 +266,15 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-ToolbarExample.png\\
-''The Toolbar created by the example code''
+''サンプルのコードで作成されたツールバー''
 
 
 !!! [[ScriptRef:GUI.SelectionGrid.html | SelectionGrid]]
 
-The ``SelectionGrid`` Control is a multi-row ``Toolbar``.  You can determine the number of columns and rows in the grid.  Only one Button can be active at time.
+''SelectionGrid''コントロールは複数行の''ツールバー''です。  グリッドの行列の数を決定できます。  一度にアクティブにできる Button の数は 1 つだけです。
 
-!!!! Basic Usage
-The active Button in the SelectionGrid is tracked through an integer.  You must provide the integer as an argument in the function.  To make the SelectionGrid interactive, you must assign the integer to the return value of the function.  The number of elements in the content array that you provide will determine the number of Buttons that are shown in the SelectionGrid.  You also can dictate the number of columns through the function arguments.
+!!!! 基本的な使用
+SelectionGrid でアクティブな Button は、整数を通じて追跡できます。  関数の引数として整数を渡す必要があります。  SelectionGrid をインタラクティブにするには、関数の返す値に整数を割り当てる必要があります。  渡す内容配列内の要素数によって、SelectionGrid 内に表示される Button の数が決まります。  関数の引数を通じて、列の数も指定できます。
 
 
 [@
@@ -309,15 +309,15 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-SelectionGridExample.png\\
-''The SelectionGrid created by the example code''
+''サンプルのコードで作成された SelectionGrid''
 
 
 !!! [[ScriptRef:GUI.HorizontalSlider.html | HorizontalSlider]]
 
-The ``HorizontalSlider`` Control is a typical horizontal sliding knob that can be dragged to change a value between predetermined min and max values.
+''HorizontalSlider''コントロールは、ドラッグして、事前に決定された最小および最大値間の値を変更できる通常の水平スライディング ノブです。
 
-!!!! Basic Usage
-The position of the Slider knob is stored as a float.  To display the position of the knob, you provide that float as one of the arguments in the function.  There are two additional values that determine the minimum and maximum values.  If you want the slider knob to be adjustable, assign the slider value float to be the return value of the Slider function.
+!!!! 基本的な使用
+The position of the Slider knob is stored as a float.  ノブの位置を表示するには、関数内の引数の 1 つとして、その浮動小数を与えます。  さらに、最小値および最大値を決定する 2 つの値があります。  スライダ ノブを調整可能にするため、スライダ値の浮動小数を Slider 関数の返し値に割り当てます。
 
 [@
 /* Horizontal Slider example */
@@ -347,18 +347,18 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-HorizontalSliderExample.png\\
-''The Horizontal Slider created by the example code''
+''サンプルのコードで作成された水平スライダ''
 
 
 !!! [[ScriptRef:GUI.VerticalSlider.html | VerticalSlider]]
 
-The ``VerticalSlider`` Control is a typical vertical sliding knob that can be dragged to change a value between predetermined min and max values.
+''VerticalSlider''コントロールは、ドラッグして、事前に決定された最小および最大値間の値を変更できる通常の水平スライディング ノブです。
 
-!!!! Basic Usage
-The position of the Slider knob is stored as a float.  To display the position of the knob, you provide that float as one of the arguments in the function.  There are two additional values that determine the minimum and maximum values.  If you want the slider knob to be adjustable, assign the slider value float to be the return value of the Slider function.
+!!!! 基本的な使用
+スライダ ノブの位置は浮動小数として記憶されます。  ノブの位置を表示するには、関数内の引数の 1 つとして、その浮動小数を与えます。  さらに、最小値および最大値を決定する 2 つの値があります。  スライダ ノブを調整可能にするため、スライダ値の浮動小数を Slider 関数の返し値に割り当てます。
 
 [@
-/* Vertical Slider example */
+/* Vertical Slider の例 */
 
 
 // JavaScript
@@ -385,15 +385,15 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-VerticalSliderExample.png\\
-''The Vertical Slider created by the example code''
+''サンプルのコードで作成された垂直スライダ''
 
 
 !!! [[ScriptRef:GUI.HorizontalScrollbar.html | HorizontalScrollbar]]
 
-The ``HorizontalScrollbar`` Control is similar to a ``Slider`` Control, but visually similar to Scrolling elements for web browsers or word processors.  This control is used to navigate the ``ScrollView`` Control.
+''HorizontalScrollbar''コントロールは、''Slider''コントロールと同じですが、ウェブ ブラウザまたはワード プロセッサに対するスクローリング要素に視覚的に似ています。  このコントロールは、''ScrollView''コントロールをナビゲートするのに使用されます。
 
-!!!! Basic Usage
-Horizontal Scrollbars are implemented identically to Horizontal Sliders with one exception: There is an additional argument which controls the width of the Scrollbar knob itself.
+!!!! 基本的な使用
+Horizontal Scrollbar は、1 つの例外除いて、Horizontal Slider と同じく実行されます。 Scrollbar のノブ自体の幅をコントロールする引数が他にもあります。
 
 [@
 /* Horizontal Scrollbar example */
@@ -423,15 +423,15 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-HorizontalScrollbarExample.png\\
-''The Horizontal Scrollbar created by the example code''
+''サンプルのコードで作成された水平スクロール バー''
 
 
 !!! [[ScriptRef:GUI.VerticalScrollbar.html | VerticalScrollbar]]
 
-The ``VerticalScrollbar`` Control is similar to a ``Slider`` Control, but visually similar to Scrolling elements for web browsers or word processors.  This control is used to navigate the ``ScrollView`` Control.
+''VerticalScrollbar''コントロールは、''Slider''コントロールと同じですが、ウェブ ブラウザまたはワード プロセッサに対するスクローリング要素に視覚的に似ています。  このコントロールは、''ScrollView''コントロールをナビゲートするのに使用されます。
 
-!!!! Basic Usage
-Vertical Scrollbars are implemented identically to Vertical Sliders with one exception: There is an additional argument which controls the height of the Scrollbar knob itself.
+!!!! 基本的な使用
+Vertical Scrollbar は、1 つの例外除いて、Vertical Slider と同じく実行されます。 Scrollbar のノブ自体の高さをコントロールする引数が他にもあります。
 
 
 [@
@@ -462,15 +462,15 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-VerticalScrollbarExample.png\\
-''The Vertical Scrollbar created by the example code''
+''サンプルのコードで作成された垂直スクロール バー''
 
 
 !!! [[ScriptRef:GUI.BeginScrollView.html | ScrollView]]
 
-``ScrollViews`` are Controls that display a viewable area of a much larger set of Controls.
+''ScrollViews''は、はるかに大きいコントロールのセットの表示エリアを表示するコントロールです。
 
-!!!! Basic Usage
-ScrollViews require two ``Rects`` as arguments.  The first ``Rect`` defines the location and size of the viewable ScrollView area on the screen.  The second ``Rect`` defines the size of the space contained inside the viewable area.  If the space inside the viewable area is larger than the viewable area, Scrollbars will appear as appropriate.  You must also assign and provide a 2D Vector which stores the position of the viewable area that is displayed.
+!!!! 基本的な使用
+ScrollViews は、引数として、2 つの''Rects''を必要とします。  1 つ目の''Rect''は、画面上の表示できる ScrollView エリアの位置とサイズを定義します。  2 つ目の''Rect''は、表示できるエリア内に含まれるスペースのサイズを定義します。  表示できるエリア内のスペースが、表示できるエリアよりも大きい場合、スクロール バーは必要に応じて表示されます。  表示される表示できるエリアの位置を格納する 2D Vector を割り当て、渡す必要もあります。
 
 [@
 /* ScrollView example */
@@ -481,13 +481,13 @@ var scrollViewVector : Vector2 = Vector2.zero;
 var innerText : String = "I am inside the ScrollView";
 
 function OnGUI () {
-	// Begin the ScrollView
+	// ScrollView を開始します。
 	scrollViewVector = GUI.BeginScrollView (Rect (25, 25, 100, 100), scrollViewVector, Rect (0, 0, 400, 400));
 
-	// Put something inside the ScrollView
+	// ScrollView 内に何かを挿入します。
 	innerText = GUI.TextArea (Rect (0, 0, 400, 400), innerText);
 
-	// End the ScrollView
+	// ScrollView を終了します。
 	GUI.EndScrollView();
 }
 
@@ -502,13 +502,13 @@ public class GUITest : MonoBehaviour {
 	private string innerText = "I am inside the ScrollView";
 	
 	void OnGUI () {
-		// Begin the ScrollView
+		// ScrollView を開始します。
 		scrollViewVector = GUI.BeginScrollView (new Rect (25, 25, 100, 100), scrollViewVector, new Rect (0, 0, 400, 400));
 	
-		// Put something inside the ScrollView
+		// ScrollView 内に何かを挿入します。
 		innerText = GUI.TextArea (new Rect (0, 0, 400, 400), innerText);
 	
-		// End the ScrollView
+		// ScrollView を終了します。
 		GUI.EndScrollView();
 	}
 
@@ -516,16 +516,16 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-ScrollViewExample.png\\
-''The ScrollView created by the example code''
+''サンプルのコードで作成された ScrollView''
 
 
 
 !!! [[ScriptRef:GUI.Window.html | Window]]
 
-``Windows`` are drag-able containers of Controls.  They can receive and lose focus when clicked.  Because of this, they are implemented slightly differently from the other Controls.  Each Window has an ``id`` number, and its contents are declared inside a separate function that is called when the Window has focus.
+''Window''は、コントロールのドラッグ可能な容器です。  Window はクリックすると、フォーカスを得たり、失ったりします。  このため、Window は他のコントロールとは若干異なる形で実行されます。  各 Window には''ID''があり、その内容は、Window がフォーカスを持っている時に呼び出される個々の関数内で宣言されます。
 
-!!!! Basic Usage
-Windows are the only Control that require an additional function to work properly.  You must provide an ``id`` number and a function name to be executed for the Window.  Inside the Window function, you create your actual behaviors or contained Controls.
+!!!! 基本的な使用
+Window は、適切に機能するのに別の関数を必要とする唯一のコントロールです。  ''ID''番号と Window で実行される関数名を渡す必要があります。  Window 関数内で、実際の行動または含まれるコントロールを作成します。
 
 [@
 /* Window example */
@@ -539,7 +539,7 @@ function OnGUI () {
 }
 
 function WindowFunction (windowID : int) {
-	// Draw any Controls inside the window here
+	// ウィンドウ内にコントロールを描画します。
 }
 
 
@@ -556,21 +556,21 @@ public class GUITest : MonoBehaviour {
 	}
 	
 	void WindowFunction (int windowID) {
-		// Draw any Controls inside the window here
+		// ウィンドウ内にコントロールを描画します。
 	}
 
 }
 @]
 
 Attach:gsg-WindowExample.png\\
-''The Window created by the example code''
+''サンプルのコードで作成されたウィンドウ''
 
 
 !!! [[ScriptRef:GUI-changed.html | GUI.changed]]
 
-To detect if the user did any action in the GUI (clicked a button, dragged a slider, etc), read the ``GUI.changed`` value from your script. This gets set to true when the user has done something, making it easy to validate the user input.  
+ユーザーが GUI で何らかのアクション (ボタンのクリック、スライダのドラッグなど) を行ったかを検出するには、スクリプトから''GUI.changed''値を読みます。 ユーザーが何かを行なっている場合、真を設定し、ユーザー入力を簡単に検証できます。  
 
-A common scenario would be for a Toolbar, where you want to change a specific value based on which Button in the Toolbar was clicked.  You don't want to assign the value in every call to ``OnGUI()``, only when one of the Buttons has been clicked.  
+よくあるシナリオは、ツールバーで、ツールバーでクリックされたボタンに基づき、特定の値を変更したい場合です。  ボタンの 1 つがクリックされている場合にのみ、''OnGUI()''を呼び出すたびに値を割り当てたくないとします。  
 
 [@
 /* GUI.changed example */
@@ -581,10 +581,10 @@ private var selectedToolbar : int = 0;
 private var toolbarStrings = ["One", "Two"];
 
 function OnGUI () {
-	// Determine which button is active, whether it was clicked this frame or not
+	// どのボタンがアクティブ化、このフレームでクリックされたかを決定します。
 	selectedToolbar = GUI.Toolbar (Rect (50, 10, Screen.width - 100, 30), selectedToolbar, toolbarStrings);
 
-	// If the user clicked a new Toolbar button this frame, we'll process their input
+	// ユーザーがこのフレームで新しいツールバーのボタンをクリックしている場合、その入力を処理します。
 	if (GUI.changed)
 	{
 		print ("The toolbar was clicked");
@@ -611,10 +611,10 @@ public class GUITest : MonoBehaviour {
 	private string[] toolbarStrings = {"One", "Two"};
 	
 	void OnGUI () {
-		// Determine which button is active, whether it was clicked this frame or not
+		// どのボタンがアクティブ化、このフレームでクリックされたかを決定します。
 		selectedToolbar = GUI.Toolbar (new Rect (50, 10, Screen.width - 100, 30), selectedToolbar, toolbarStrings);
 	
-		// If the user clicked a new Toolbar button this frame, we'll process their input
+		// ユーザーがこのフレームで新しいツールバーのボタンをクリックしている場合、その入力を処理します。
 		if (GUI.changed)
 		{
 			Debug.Log("The toolbar was clicked");
@@ -633,4 +633,4 @@ public class GUITest : MonoBehaviour {
 }
 @]
 
-``GUI.changed`` will return true if any GUI Control placed before it was manipulated by the user.
+ユーザーが操作する前に、GUI コントロールが押された場合に、''GUI.changed''は真を返します。

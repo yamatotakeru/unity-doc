@@ -1,63 +1,63 @@
-! Web Player Streaming
+! ウェブプレイヤーのストリーミング
 
-Web Player Streaming is critical for providing a great web gaming experience for the end user.  The idea behind web games is that the user can view your content almost immediately and start playing the game as soon as possible instead of making him wait for a progress bar. This is very achievable, and we will explain how.
+ストリーミング ウェブ プレイヤーは、エンド ユーザーに素晴らしいウェブ ゲーム体験を提供するために重要です。  ウェブ ゲームの裏にある考えは、進捗バーを待つ代わりに、ユーザーがほぼすぐに内容を確認し、できる限りすぐにゲーム プレイを開始できるということです。 これは、簡単に達成できます。以下で方法について説明します。
 
 
-!! Tuning for Portals
+!! ポータルのための調整
 
-This section will focus on publishing to online game portals. Streaming is useful for all kinds of contents, and it can easily be applied to many other situations.
+本項では、主にオンライン ゲーム ポータルのパブリッシュについて説明します。 ストリーミングはあらゆる種類のコンテンツに便利で、その他多くのシチュエーションに簡単に適用できます。
 
-Online game portals expect that some form of game play really starts after downloading at most 1 MB of data. If you don't reach this makes it that much less likely for a portal to accept your content. From the user's perspective, the game needs to start quickly. Otherwise his time is being wasted and he might as well close the window.
+オンライン ゲーム ポータルは、ある形態のゲーム プレイが多くても 1 MB のデータをダウンロード後に本当に開始されることを期待します。 到達しない場合、ポータルがコンテンツを受け入れる可能性は低くなります。 ユーザーの観点から言えば、ゲームは素早く開始する必要があります。 そうでない場合、時間が無駄になり、プレイヤーがウィンドウを閉じてしまうかもしれません。
 
-On a 128 kilobit cable connection you can download 16 KB per second or 1 MB per minute. This is the low end of bandwidth online portals target.
+128 キロビットのケーブル接続では、毎秒 16KB または毎分 1MB をダウンロードできます。 これはオンライン ポイントが対象としている帯域幅の低い側です。
 
-The game would optimally be set up to stream something like this:
+ゲームは以下の内容をストリームするよう、最適に設定されます。
 
-# 50 KB display the logo and menu (4 seconds)
-# 320 KB let the user play a tiny tutorial level or let him do some fun interaction in the menu (20 seconds)
-# 800 KB let the user play the first small level (50 seconds)
-# Finish downloading the entire game within 1-5 MB (1-5 minutes)
+# 50 KB は、ロゴとメニューを表示します (4 秒)
+# 320 KB により、ユーザーは小さいチュートリアル レベルを再生またはメニューで楽しい相互作用を行うことができます (20 秒)
+# 800 KB により、ユーザーは最初の小さいレベルを再生できます (50 秒)
+# 1-5 MB 内でゲーム全体のダウンロードを終了します (1〜5 分)
 
-The key point to keep in mind is to think in wait times for a user on a slow connection. Never let him wait.
+覚えておくべきことは、遅い接続でユーザーにとっての待ち時間で考えるということです。 決してプレイヤーを待たせてはいけません。
 
-Now, don't panic if your web player currently is 10 MB.  It seems daunting to optimize it, but it turns out that with a little effort it is usually quite easy to structure your game in this fashion.  Think of each above step as an individual scene.  If you've made the game, you've done the hard part already.  Structuring some scenes around this loading concept is a comparative breeze!
+ウェブ プレイヤーが現在、10MB でも慌てないでください。  これを最適化するのは気が遠くなるように思えますが、通常わずかな量力で極めて簡単にこの方法によりゲームを構築できます。  上記の各手ステップは個別のシーンと考えてください。  ゲームを作成したら、すでに難しい部分は終了しました。  このローディング コンセプト周辺でシーンを構築するのは非常に簡単です!
 
-If you open the console log (^^Open Editor Log^^ button in the Console window($$Desktop Platforms$$); ^^Help -> Open Editor console log^^ menu $$OSX$$) after or during a build, you can see the size of each individual scene file.  The console will show something like this:
+ビルド後またはビルド中に、コンソール ログを開くと (コンソール ウィンドウ ($$Desktop Platforms$$) の^^Open Editor Log^^、^^Help -> Open Editor console log^^ メニュー $$OSX$$)、個々のシーン ファイルのサイズを確認できます。  コンソールは以下の内容を表示します。
 
 [@
-***Player size statistics***
-Level 0 'Main Menu' uses 95.0 KB compressed.
-Level 1 'Character Builder' uses 111.5 KB compressed.
-Level 2 'Level 1' uses 592.0 KB compressed.
-Level 3 'Level 2' uses 2.2 MB compressed.
-Level 4 'Level 3' uses 2.3 MB compressed.
-Total compressed size 5.3 MB. Total decompressed size 9.9 MB.
+***プレイヤー サイズ統計***
+Level 0「メイン メニュー」は、圧縮された 95.0 KB を使用します。
+Level 1「キャラクター ビルダー」は、圧縮された 111.5 KB を使用します。
+Level 2「レベル 1」は、圧縮された 592.0 KB を使用します。
+Level 3「レベル 2」は、圧縮された 2.2 MB を使用します。
+Level 4「レベル 3」は、圧縮された 2.3 MB を使用します。
+合計圧縮サイズ 5.3 MB。 合計解凍サイズ 9.9 MB。
 @]
 
-This game could use a little more optimization!  For more information, we recommend you read the [[ReducingFilesize | reducing file size page]].
+このゲームは、更にもう少し最適化を使用できます!  詳細については、[[ReducingFilesize | reducing file size page]] を参照してください。
 
 
-!! The Most Important Steps
+!! 最も重要なステップ
 
-# Load the menu first. Showing an animated logo is a great way to make time go by unnoticed, thus letting the download progress further.
+# 最初にメニューをロードします。 アニメート化されたロゴを表示することで、意識されることなく時間が経過し、ダウンロードを更に進めることができます。
 
-# Make the first level be short and not use a lot of assets. This way, the first level can be loaded quickly, and by keeping the player occupied playing it for a minute or two you can be sure that the download of all remaining assets can be completed in the background. Why not have a mini tutorial level where the user can learn the controls of the game? No reason for high-res textures here or loads of objects, or having all your enemies in the first level.  Use the one with the lowest poly-count.  And yes, this means you might have to design your game with the web player experience in mind.
+# 最初のレベルは短くし、多くのアセットを使用しないこと。 このようにして、最初のレベルは素早くダウンロードでき、占有しているプレイヤーに 1、2 分プレイを続けさせることで、残っているアセットのすべてのダウンロードがバックグラウンドで完了するようにできます。 ユーザーゲームのコントロールを学ぶことができるミニ チュートリアル レベルを用意してみては? ここでの高レス テクスチャまたはオブジェクトのロード、最初のレベルですべての敵を配置する理由はありません。  最も低いポリゴン数のものを使用します。  そう、これは、ウェブ プレイヤーでゲームをデザインする必要がある場合があるということです。
 
-# There is no reason why all music must be available when the game starts. Externalize the music and load it via the [[ScriptRef:WWW.html|WWW]] class. Unity compresses audio with the high quality codec, Ogg Vorbis. However even when compressed, audio takes up a lot of space, and if you have to fit things into 3 MB, if you have 5 minutes of music all the compression in the world won't save you. Sacrifices are needed. Load a very short track that you can loop until more music has been downloaded. Only load more music when the player is hooked on the first level.
+# ゲーム開始時にすべての音楽が利用できる理由はありません。 音楽を外部に置き、[[ScriptRef:WWW.html|WWW]] クラスを介してロードします。 Unity は、高品質コーデック、Ogg Vorbis でオーディオを圧縮します。 しかし、圧縮されても、オーディオは多くの容量を使用します。3MB に合わせる場合、5 分間の音楽の場合は、世界での圧縮はすべて時間を省きません。 犠牲が必要です。 更に音楽がダウンロードされるまでループ再生できる非常に短いトラックをロードします。 プレイヤーが最初のレベルでフックされた場合にのみより多くの音楽をロードします。
 
-# Optimize your textures using their Import Settings. After you externalize music, textures easily take up 90% of the game. Typical texture sizes are too big for web deployment. In a small browser window, sometimes big textures don't even increase the visual fidelity at all. Make sure you use textures that are only as big as they must be (and be ready for more sacrifices here). Halving the texture resolution actually makes the texture size a quarter of what it was. And of course all textures should be DXT compressed.
+# インポート設定を使用してテクスチャを最適化します。 音楽を外部に置いた後、テクスチャは簡単にゲームの 90% を使用します。 通常のテクスチャのサイズは、ウェブでの配備には大きすぎます。 小さいブラウザ ウィンドウ、大きいテクスチャは視覚的信頼性を増しません。 必要な大きさしかないテクスチャを使用してください (ここでより多くの犠牲の準備ができました)。 テクスチャ解像度を半分にすると、実際、テクスチャのサイズは 1/4 になります。 当然、すべてのテクスチャは、DXT 圧縮する必要があります。
 
-# Generally reduce the size of your web players. There is a manual page committed to the utilities Unity offers for optimizing file size [[ReducingFilesize | here]]. Although Unity uses cutting edge LZMA-based compression which usually compresses game data to anywhere from one half to a third of the uncompressed size, you'll need to try everything you can.
+# 一般にウェブ プレイヤーのサイズを減らします。 Unity が提供するファイル サイズの最適化のためのユーティリティ用のマニュアル ページは、[[ReducingFilesize | here]]。 Unity は、通常ゲーム データを圧縮されていないサイズの 1/2 から 1/3 の間に圧縮する最新の LZMA ベース圧縮を使用していますが、できることはすべて試す必要があります。
 
-# Try to avoid Resources.Load.  While Resources.Load can be very handy, Unity will not be able to order your assets by when they are first used when you use Resources.Load, because any script could attempt to load the Resource.  You can set which level will include all assets that can be loaded through Resources.Load in the ^^Edit->Project Settings->Player^^ using the ``First Streamed Level With Resources`` property.  Obviously you want to move Resources.Load assets as late as possible into the game or not use the feature at all.
+# Resources.Load を避けてみてください。  Resources.Load は非常に便利ですが、Unity は、スクリプトがリソースをロードしようとするため、Resources.Load 使用時に、最初に使用されるタイミングでアセットを順序付けることはできません。  「`First Streamed Level With Resources」プロパティを使用して、^^Edit->Project Settings->Player^^ で、Resources.Load を通じてロードできるすべてのアセットを含めるレベルを設定できます。  明らかに、ゲームにできるだけ後で Resources.Load アセットを移動したいか、またはこの機能を使用したくないことでしょう。
 
 
-!! Publishing Streaming Web Players
+!! ストリーミング ウェブ プレイヤーのパブリッシュ
 
-Streaming in Unity is level based, and there is an easy workflow to set this up. Internally, Unity does all the dirty work of tracking assets and organizing them in the compressed data files optimally, ordering it by the first scene that uses them.  You simply have to ensure that the first levels in the Build Settings use as few assets as possible. This comes naturally for a "menu level", but for a good web experience you really need make sure that the first actual game levels the player is going to play are small too.
+Unity でのストリーミングは、レベル ベースで、これを設定するための簡単なワークフローがあります。 内部では、Unity はアセットの追跡や圧縮データ ファイル内でのその最適な配置、使用する最初のシーンによる順序付けなどの汚い仕事をすべて行なっています。  単純に、ビルド設定での最初のレベルが使用するアセットの数をできるだけ少なくする必要があります。 これは、当然「メニュー レベル」が目的ですが、よいウェブ体験をのためには、プレイヤーがプレイしようとしている最初の実際のゲーム レベルも小さくする必要があります。
 
-In order to use streaming in Unity, you select ``Web Player Streamed`` in the Build Settings. Then the content automatically starts as soon as all assets used by the first level are loaded. Try to keep the "menu level" to something like 50-100 KB. The stream continues to load as fast as it can, and meanwhile live decompresses.  When you look at the Console during/after a build, you can see how large
+Unity でストリーミングを使用するには、ビルド設定で「Web Player Streamed」を選択します。 次に、最初のレベルによって使用されるすべてのアセットがロードサれるとすぐに、コンテンツが自動で開始されます。 「メニュー レベル」を 50-100 KB ぐらいに維持してみてください。 ストリームは可能な限り高速でロードし続けますが、一方でリアルタイムで解凍を行います。  ビルド中/後にコンソールを見ると、どのくらいの大きさかが分かります。
 
-You can query the progress of the stream by level, and once a level is available it can be loaded. Use [[ScriptRef:Application.GetStreamProgressForLevel.html|GetStreamProgressForLevel]] for displaying a progress bar and [[ScriptRef:Application.CanStreamedLevelBeLoaded.html|CanStreamedLevelBeLoaded]] to check if all the data is available to load a specific level.
+レベル別にストリームの進捗を問い合わせることができ、レベルが利用可能になると、ロードできるようになります。 進捗バーを表示するには、[[ScriptRef:Application.GetStreamProgressForLevel.html|GetStreamProgressForLevel]] を使用し、特定のレベルをロードするのにすべてのデータが利用できるかをチェックするには、[[ScriptRef:Application.CanStreamedLevelBeLoaded.html|CanStreamedLevelBeLoaded]] を使用します。
 
-This form of streaming is of course linear, which matches how games work in most cases. Sometimes that's not enough. Therefore Unity also provides you with API's to load a .unity3d file manually using the [[ScriptRef:WWW.html|WWW]] class. Video and audio can be streamed as well, and can start playing almost immediately, without requiring the movie to be downloaded first. Finally Textures can easily be downloaded via the [[ScriptRef:WWW.html|WWW]] class, as can any textual or binary data your game might depend on.
+このストリーミングの形式は当然線形で、これはほとんどの場合でのゲームがどのように機能するかに一致します。 これでは不十分なことがあります。 そのため、[[ScriptRef:WWW.html|WWW]] クラスを使用して、.unity3d ファイルをロードできるよう、Unity では API も提供しています。 ビデオやオーディオもストリーミングされ、動画を最初にダウンロードする必要なく、ほぼすぐに再生できます。 最後に、テクスチャは、ゲームが依存しているかもしれないテクスチャまたはバイナリ データ同様、[[ScriptRef:WWW.html|WWW]] クラスを介して簡単にダウンロードできます。

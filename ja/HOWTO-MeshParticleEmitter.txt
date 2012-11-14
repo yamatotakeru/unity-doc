@@ -1,29 +1,29 @@
-! How do I make a Mesh Particle Emitter? (Legacy Particle System)
+! メッシュ粒子エミッタはどのように作成しますか? (旧パーティクルシステム)
 
-$$Mesh Particle Emitters$$ are generally used when you need high control over where to emit particles.
+$$Mesh Particle Emitters$$ は一般に、粒子を放出する場所に対する高いコントロールが必要な場合に使用されます。
 
-For example, when you want to create a flaming sword:
+例えば、炎の剣などを作成したい場合などです。
 
-# Drag a mesh into the scene.
-# Remove the ``Mesh Renderer`` by right-clicking on the ``Mesh Renderer's`` $$Inspector$$ title bar and choose ``Remove Component``.
-# Choose ^^Mesh Particle Emitter^^ from the ^^Component->Effects->Legacy Particles^^ menu.
-# Choose ^^Particle Animator^^ from the ^^Component->Effects->Legacy Particles^^ menu.
-# Choose ^^Particle Renderer^^ from the ^^Component->Effects->Legacy Particles^^ menu.
+# メッシュをシーンにドラッグします。
+# 「Mesh Renderer」の $$Inspector$$ タイトル バーを右クリックして、「Mesh Renderer」を削除し、「Remove Component」を選択します。
+# ^^Component->Effects->Legacy Particles^^ メニューから、$$Mesh Particle Emitter$$ を選択します。
+# ^^Component->Effects->Legacy Particles^^ メニューから、$$Particle Animator$$ を選択します。
+# ^^Component->Effects->Legacy Particles^^ メニューから、$$Particle Renderer$$ を選択します。
 
-You should now see particles emitting from the mesh.
+メッシュから放出される粒子が確認できます。
 
-Play around with the values in the [[class-MeshParticleEmitter|Mesh Particle Emitter]].
+[[class-MeshParticleEmitter|Mesh Particle Emitter]] の値を試してみてください。
 
-Especially enable ``Interpolate Triangles`` in the Mesh Particle Emitter Inspector and set ``Min Normal Velocity`` and ``Max Normal Velocity`` to 1.
+特に、メッシュ粒子エミッタのインスペクタで「Interpolate Triangles」を有効にし、「Min Normal Velocity」と「Max Normal Velocity」を 1 に設定します。
 
-To customize the look of the particles that are emitted:
+放出される粒子の見た目をカスタマイズするには、
 
-# Choose ^^Assets->Create->Material^^ from the menu bar.
-# In the Material Inspector, select ^^Particles->Additive^^ from the shader drop-down.
-# Drag & drop a texture from the $$Project view$$ onto the texture slot in the Material Inspector.
-# Drag the Material from the Project View onto the Particle System in the $$Scene View$$.
+# メニューバーから ^^Assets->Create->Material^^ を選択します。
+# マテリアル インスペクタで、シェーダ ドロップダウンから ^^Particles->Additive^^ を選択します。
+# $$Project View$$ からテクスチャをマテリアル インスペクタのテクスチャ スロットにドラッグします。
+# $$Scene View$$ で、プロジェクト ビューからマテリアルを粒子システムにドラッグします。
 
-You should now see textured particles emitting from the mesh.
+メッシュから放出されるテクスチャ化粒子が確認できます。
 
-!!See Also
+!!以下も併せて参照してください。
 * [[class-MeshParticleEmitter|Mesh Particle Emitter Component Reference page]]

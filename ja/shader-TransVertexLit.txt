@@ -1,4 +1,4 @@
-!Transparent Vertex-Lit
+!透明頂点ライティング
 
 Attach:Shaders./Shader-TransVertex.png
 
@@ -6,5 +6,5 @@ Attach:Shaders./Shader-TransVertex.png
 
 (:include shader-VertexLitSubsetImport:)
 
-!! Performance
-Generally, this shader is very cheap to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].
+!! パフォーマンス
+一般に、このシェーダでは少ない費用でレンダリングできます。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。

@@ -1,16 +1,16 @@
-!Layer-Based Collision Detection.
-In Unity 3.x we introduce Layer-Based collision detection, which is a way to make $$Game Objects$$ collide with another specific $$Game Objects$$ that are tied up to specific layers.
+!!レイヤーベースの衝突検出
+Unity 3.x では、レイヤー ベースの衝突検出を導入しています。これにより、$$Game Object$$ を特定のレイヤーに連結された別の $$Game Object$$ に衝突させることができます。
 
 Attach:LayerBasedCollision.png\\
-''Objects Colliding with their own layer.''
+''自身のレイヤーとして衝突するオブジェクト''
 
-In the image above you can see 6 GameObjects, (3 planes, 3 cubes) and the "Collision Matrix" to the right that states which Objects can collide with which layer.
-In the example, we have set the Collision Matrix in a way that only GameObjects that belong to same layers can collide.
+上記の画像には、6 つの GameObject （3 つの平面と 3の立方体) と、右側にどのオブジェクトがどのレイヤーと衝突するかを記述している''Collision Matrix''があります。
+例では、同じレイヤーに属する GameObject のみが衝突できるよう、''Collision Matrix''を設定しています。
 
-!Setting GameObjects to detect Collisions Based on Layers.
-# Select a layer your Game Objects will belong to
+!レイヤーに基づいて衝突を検出するよう GameObject を設定
+# GameObject が属するレイヤーを選択します。
   Attach:LayerBasedCollisionLayer.png
-# Repeat 1 for each Game Object until you have finished assigning your Game Objects to the layers.
-# Open the Physics Preference Panel by clicking on ^^Edit->Project Settings->Physics^^.
-# Select which layers on the Collision Matrix will interact with the other layers by checking them.
+# レイヤーへの GameObject の割り当てが終了するまで、各 GameObject に 1 を繰り返します。
+# ^^Edit->Project Settings->Physics^^ を選択して、物理特性設定パネルを開きます。
+# レイヤーにチェックを入れ、衝突マトリクスで、どのレイヤーが他のレイヤーと相互作用するかを選択します。
   Attach:LayerCollisionMatrix.png

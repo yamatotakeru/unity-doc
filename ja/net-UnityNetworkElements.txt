@@ -1,76 +1,76 @@
-! Networking Elements in Unity
+! Unity でのネットワーキング要素
 
-Unity's native networking supports everything discussed on the previous page.  Server creation and client connection, sharing data between connected clients, determining which player controls which objects, and punching through network configuration variations are all supported out of the box.  This page will walk you through the Unity-specific implementation of these networking practices.
-
-
-!! Creating a Server
-
-Before you can begin playing a networked game, you have to determine the different computers you will be communicating with.  To do this, you have to create a server.  This can be a machine that is also running the game or it can be a dedicated machine that is not participating in the game.  To create the server, you simply call [[ScriptRef:Network.InitializeServer.html | Network.InitializeServer()]] from a script.  When you want to connect to an existing server as a client, you call [[ScriptRef:Network.Connect.html | Network.Connect()]] instead.
-
-In general, you will find it very useful to familiarize yourself with the entire [[ScriptRef:Network.html | Network class]].
+Unity のネイティブなネットワーキングは、前のページで説明位したものすべてをサポートしています。  サーバー作成およびクライアント接続、接続されたクライアント間でのデータの共有、どのプレイヤーがどのオブジェクトをコントロールするか、ネットワーク設定のバリエーションはすべて、ボックスからサポートされます。  このページでは、これらのネットワーキング作業の Unity 固有のUnity の実装について説明します。
 
 
-!! Communicating using Network Views
+!! サーバーの作成
 
-The $$Network View$$ is a Component that sends data across the network.  Network Views make your GameObject capable of sending data using RPC calls or State Synchronization.  The way you use Network Views will determine how your game's networking behaviors will work.  Network Views have few options, but they are incredibly important for your networked game.
+ネットワーク ゲームのプレイを開始する前に、通信する各種コンピュータを決定する必要があります。  これを行うには、サーバーを作成する必要があります。  サーバーは、ゲームも実行しているマシンであったり、ゲームに参加している専用のマシンでもあります。  サーバーを作成するには、スクリプトから [ScriptRef:Network.InitializeServer.html | Network.InitializeServer()]] を呼び出します。  クライアントとして、既存のサーバーに接続したい場合は、代わりに [[ScriptRef:Network.Connect.html | Network.Connect()]] を呼び出します。
 
-For more information on using Network Views, please read the [[net-NetworkView | Network View Guide page]] and [[class-NetworkView | Component Reference page]].
-
-
-!! Remote Procedure Calls
-
-Remote Procedure Calls (RPCs) are functions declared in scripts that are attached to a GameObject that contains a Network View.
-The Network View must point to the script which contains the RPC function. The RPC function can then be called from any script within that GameObject.
-
-For more information on using RPCs in Unity, please read the [[net-RPCDetails | RPC Details page]].
+一般的に、[[ScriptRef:Network.html | Network class]] 全体に習熟するのに非常に便利なのが分かります。
 
 
-!! State Synchronization
+!! ネットワーク ビューを使用しての通信
 
-State Synchronization is the continual sharing of data across all game clients. This way a player's position can be synchronized over all clients, so it seems it is controlled locally when data is actually being delivered over a network. To synchronize state within a GameObject you just need to add a NetworkView to that object and tell it what to observe. The observed data is then synchronized across all clients in the game.
+$$Network View$$ は、ネットワーク上でデータを送信するコンポーネントです。  ネットワーク ビューにより、GameObject は RPC コールまたは状態同期を使用してデータを送信できます。  ネットワーク ビューの使用方法は、ゲームのネットワーキング動作がどのように機能するかを決定します。  ネットワーク ビューにはほとんどオプションはありませんが、ネットワーク ゲームにとっては非常に重要です。
 
-For more information on using State Synchronization in Unity, please read the [[net-StateSynchronization | State Synchronization page]].
+ネットワーク ビューの使用に関する詳細は、[[net-NetworkView | Network View Guide page]] および [[class-NetworkView | Component Reference page]] を参照してください。
+
+
+!! リモート プロシージャ コール
+
+リモート プロシージャ コール (RPC) は、ネットワーク ビューを含む GameObject に追加されるスクリプトで宣言される関数です。
+ネットワーク ビューは、RPC 関数を含むスクリプトを示す必要があります。 次に、その GameObject 内のスクリプトから、RPC 関数を呼び出すことができます。
+
+Unity での RPC の使用に関する詳細については、[[net-RPCDetails | RPC Details page]] を参照してください。
+
+
+!! 状態同期
+
+状態同期は、すべてのゲーム クライアント上でデータを継続的に共有します。 このように、プレイヤーの位置をすべてのクライアント上で同期できるので、データが実際ネットワーク上で配信される際に、ローカルでコントロールされているように見えます。 GameObject 内で状態を同期させるには、そのオブジェクトにネットワーク ビューを追加し、何を観察するかを伝える必要があります。 観測されたデータはが、ゲーム内のすべてのクライアント上で同期されます。
+
+Unity での状態同期の使用に関する詳細については、[[net-StateSynchronization | State Synchronization page]] を参照してください。
 
 
 !! Network.Instantiate()
 
-``Network.Instantiate()`` lets you instantiate a prefab on all clients in a natural and easy way. Essentially this is an ``Instantiate()`` call, but it performs the instantiation on all clients.
+''Network.Instantiate()''により、ナチュラルで簡単な方法で全てのクライアント上のプレハブをインスタンス化できます。 基本的に、これは、''`Instantiate()''ですが、すべてのクライアント上でのインスタンス化を実行します。
 
-Internally Network.Instantiate is simply a buffered RPC call which is executed on all clients (also locally). It allocates a NetworkViewID and assigns it to the instantiated prefab which makes sure it synchronizes across all clients correctly.
+内部では、Network.Instantiate は、すべてのクライアントで実行される単にバッファされた RPC コールにすぎません (ローカルでも)。 NetworkViewID を割り当て、すべてのクライアント上で同期させるインスタンス化プレハブに割り当てます。
 
-For more information please read the [[net-NetworkInstantiate | Network Instantiate]] page.
+詳細については、[[net-NetworkInstantiate | Network Instantiate]] ページを参照してください。
 
 
 !! NetworkLevelLoad()
 
-Dealing with sharing data, state of client players, and loading levels can be a bit overwhelming.  The [[net-NetworkLevelLoad | Network Level Load]] page contains a helpful example for managing this task.
+データの共有、クライアント プレイヤーの状態、レベルのロードなどの処理は若干難しい場合があります。  [[net-NetworkLevelLoad | Network Level Load]] ページに、このタスクの管理のための便利なサンプルが用意されています。
 
 
-!! Master Server
+!! マスター サーバー
 
-The $$Master Server$$ helps you match games.  When you start a server you connect to the master server, and it provides a list of all the active servers.
+$$Master Server$$ はゲームを一致させるのに便利です。  マスター サーバーに接続したいサーバーを起動する際、マスター サーバーはすべてのアクティブなサーバーのリストを提供します。
 
-The $$Master Server$$ is a meeting place for servers and clients where servers are advertised and compatible clients can connect to running games. This prevents the need for fiddling with IP addresses for all parties involved. It can even help users host games without them needing to mess with their routers where, under normal circumstances, that would be required. It can help clients bypass the server's firewall and get to private IP addresses which are normally not accessible through the public internet. This is done with help from a facilitator which ''facilitates'' connection establishment.
+$$Master Server$$ は、サーバーとクライアントの出会いの場で、ここではサーバーが宣伝され、互換性のあるクライアントは実行されているゲームに接続できます。 これにより、関与するすべてのパーティに対して IP アドレスを調整する必要がなくなります。 これは、ユーザーが、通常の状況下ではこれが必要とされるルーターに干渉せずに、ゲームのホストとなることもできます。 これは、クライアントがサーバーのファイアウォールをバイパスして、パブリック インターネットを通じて、通常はアクセス出来ないプライベートの IP アドレスに到達するのに役に立ちます。 これは、接続の確立を''容易にする''ファシリテータにより行われます。
 
-For more information please read the [[net-MasterServer | Master Server page]].
-
-
-!! Minimizing Bandwidth
-
-Using the minimum amount of bandwidth to make your game run correctly is essential. There are different methods for sending data, different techniques for deciding ''what'' or ''when'' to send and other tricks at your disposal.
-
-For tips and tricks to reduce bandwidth usage, please read the [[net-MinimizingBandwidth | Minimizing Bandwith page]].
+詳細については、[[net-MasterServer | Master Server page]] ページを参照してください。
 
 
-!! Debugging Networked Games
+!! 帯域幅の最小化
 
-Unity comes with several facilities to help you debug your Networked game.
+最小の帯域幅を使用して、ゲームを正しく実行させることは重要です。 各種データ送信方法、''何を''または''いつ''送信するかを決める各種手法および好きな様に使用できるその他の手法があります。
 
-# The [[class-NetworkManager|Network Manager]] can be used for logging all incoming and outgoing network traffic.
-# Using the Inspector and Hierarchy View effectively you can track object creation and inspect view id's etc.
-# You can launch Unity two times on the same machine, and open different projects in each. On Windows, this can be done by just launching another Unity instance and opening the project from the project wizard. On Mac OS X, multiple Unity instances can be opened from the terminal, and a ^^-projectPath^^ argument can be specified:
+使用される帯域幅を減らすためのヒントおよび手法については、[[net-MinimizingBandwidth | Minimizing Bandwith page]] を参照してください。
+
+
+!! ネットワーク ゲームのデバッグ
+
+Unity には、ネットワーク ゲームのデバッグを支援するいくつかの機能が用意されています。
+
+# [[class-NetworkManager|Network Manager]] を使用して、すべての入出するネットワーク トラフィックをログできます。
+# インスペクタおよび階層ビューを効率的に使用すれば、オブジェクト作成の追跡やビュー ID の検査などを行うことができます。
+# Unity を同じマシン上で 2 回起動でき、それぞれで異なるプロジェクトを開くことができます。 Windows 上で、これは、別の Unity インスタンスを起動し、プロジェクト ウィザードからプロジェクトを開くだけで行うことができます。 Mac OS X では、 複数の Unity インスタンスを端末から開くことができ、^^-projectPath^^ 引数を指定できます。
     /Applications/Unity/Unity.app/Contents/MacOS/Unity -projectPath "/Users/MyUser/MyProjectFolder/"
     /Applications/Unity/Unity.app/Contents/MacOS/Unity -projectPath "/Users/MyUser/MyOtherProjectFolder/"
 
 
-Make sure you make the player run in the background when debugging networking because, for example, if you have two instances running at once, one of them doesn't have focus. This will break the networking loop and cause undesirable results. You can enable this in Edit->Project Settings->Player in the editor or with [[ScriptRef:Application-runInBackground.html|Application.runInBackground]]
+例えば、1 度に実行しているインスタンスが 2 つある場合、1 つにはフォーカスがあるため、ネットワーキングのデバッグ時に、バックグラウンドでプレイヤーに実行させます。 これにより、ネットワーキングのループが断たれ、望まない結果が生じます。 これは、エディタの Edit->Project Settings->Player か、[[ScriptRef:Application-runInBackground.html|Application.runInBackground]] で有効にできます。

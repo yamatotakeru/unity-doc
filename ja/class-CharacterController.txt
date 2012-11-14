@@ -1,57 +1,57 @@
-! Character Controller
+! キャラクタ コントローラ
 
-The $$Character Controller$$ is mainly used for third-person or first-person player control that does not make use of $$Rigidbody$$ physics.
+$$Character Controller$$ は、$$Rigidbody$$ 物理特性を使用しない 3 人称または 1 人称のプレイヤー制御も主に使用されます。
 
 Attach:Inspector-CharacterController.png\\
-''The Character Controller''
+''キャラクタ コントローラ''
 
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Height`` ||The Character's $$Capsule Collider$$ height.  Changing this will scale the collider along the Y axis in both positive and negative directions. ||
-||``Radius`` ||Length of the Capsule Collider's radius.  This is essentially the width of the collider. ||
-||``Slope Limit`` ||Limits the collider to only climb slopes that are equal to or less than the indicated value. ||
-||``Step Offset`` ||The character will step up a stair only if it is closer to the ground than the indicated value. ||
-||``Min Move Distance`` ||If the character tries to move below the indicated value, it will not move at all. This can be used to reduce jitter. In most situations this value should be left at 0. ||
-||``Skin width`` ||Two colliders can penetrate each other as deep as their Skin Width. Larger Skin Widths reduce jitter. Low Skin Width can cause the character to get stuck. A good setting is to make this value 10% of the Radius. ||
-||``Center`` ||This will offset the Capsule Collider in world space, and won't affect how the Character pivots. ||
+||``Height`` ||キャラクターの $$Capsule Collider$$ の高さ。  この値を変更すると、正負の方向で Y 軸に沿ってコライダが拡大縮小されます。 ||
+||``Radius`` ||カプセル コライダのローカルの半径。  これは基本的にコライダの幅となります。 ||
+||``Slope Limit`` ||コライダが、示された値以下の勾配のみを登るよう制限します。 ||
+||``Step Offset`` ||示された値よりも地面に近い場合にのみ、キャラクターが階段を登ります。 ||
+||``Min Move Distance`` ||キャラクターが示された値未満で動こうとしても、全く移動しません。 ジッタを減らすのに使用できます。 ほとんどの場合、この値は 0 のままにしておいてください。 ||
+||``Skin width`` ||2 つのコライダが、Skin Width と同じ深さで互いに突き抜けます。 Skin Wdith が大きくなると、ジッタが減ります。 Skin Width が低いと、キャラクターが動けなくなる場合があります。 Radius の 10% にこの値を設定しておくとよいでしょう。 ||
+||``Center`` ||これにより、ワールド スペースでカプセル コライダが相殺されますが、キャラクターがどのように旋回するかには影響しません。 ||
 
 
-!! Details
+!! 詳細
 
-The traditional Doom-style first person controls are not physically realistic. The character runs 90 miles per hour, comes to a halt immediately and turns on a dime. Because it is so unrealistic, use of Rigidbodies and physics to create this behavior is impractical and will feel wrong. The solution is the specialized Character Controller. It is simply a capsule shaped $$Collider$$ which can be told to move in some direction from a script. The Controller will then carry out the movement but be constrained by collisions. It will slide along walls, walk up stairs (if they are lower than the ``Step Offset``) and walk on slopes within the ``Slope Limit``.
+従来の Doom 形式の 1 人称制御は物理的に現実的ではありません。 キャラクターは、時速 90 マイルで走り、すぐに停止し、急旋回します。 これはあまり現実的でないため、剛体と物理特性を使用し、この動作を作成するのは、非実践的で、感じが悪くなります。 これを解決するため、専用のキャラクター コントローラを使用します。 これは単にカプセル型の $$Collider$$ で、スクリプトからある方向に移動するよう指示します。 コントローラは、移動を実行しますが、衝突により制約されます。 壁に沿って滑り、（''Step Offset''よりも低い場合）階段を登り、''Slope Limit''内で勾配を登ります。
 
-The Controller does not react to forces on its own and it does not automatically push Rigidbodies away.
+コントローラは、それ自体への力には反応せず、自動的に剛体を離しません。
 
-If you want to push Rigidbodies or objects with the Character Controller, you can apply forces to any object that it collides with via the ``OnControllerColliderHit()`` function through scripting.
+キャラクターコントローラでリジッドボディまたはオブジェクトを離したい場合は、スクリプティングを通じて、''OnControllerColliderHit()''関数を介して衝突するオブジェクトに力を適用できます。
 
-On the other hand, if you want your player character to be affected by physics then you might be better off using a [[class-Rigidbody|Rigidbody]] instead of the Character Controller.
-
-
-!!! Fine-tuning your character
-
-You can modify the ``Height`` and ``Radius`` to fit your Character's mesh. It is recommended to always use around 2 meters for a human-like character. You can also modify the ``Center`` of the capsule in case your pivot point is not at the exact center of the Character.
-
-``Step Offset`` can affect this too, make sure that this value is between 0.1 and 0.4 for a 2 meter sized human.
-
-``Slope Limit`` should not be too small. Often using a value of 90 degrees works best. The Character Controller will not be able to climb up walls due to the capsule shape.
+一方、プレイヤー キャラクターが物理特性の影響をうけるようにしたい場合は、キャラクター コントローラの代わりに、[[class-Rigidbody|Rigidbody]] を使用した方がよいでしょう。
 
 
-!!! Don't get stuck
+!!! キャラクターの微調整
 
-The ``Skin Width`` is one of the most critical properties to get right when tuning your Character Controller.
-If your character gets stuck it is most likely because your ``Skin Width`` is too small. The ``Skin Width`` will let objects slightly penetrate the Controller but it removes jitter and prevents it from getting stuck.
+キャラクターのメッシュに合うように、''Height''と''Radius''を修正できます。 人間のキャラクターの場合は、約 2 メートルを常に使用することをお勧めします。 また、回転軸がキャラクターの中心でない場合に、カプセルの''Center''を修正できます。
 
-It's good practice to keep your ``Skin Width`` at least greater than 0.01 and more than 10% of the ``Radius``.
+''Step Offset''もこれに影響するので、2 メートル サイズの人間の場合は、この値を 0.1 と 0.4 の間にしてください。
 
-We recommend keeping ``Min Move Distance`` at 0.
+''Slope Limit''は小さすぎないようにしてください。 多くの場合、90°を使用されるのがベストです。 キャラクター コントローラはカプセルの形状のために、壁を登ることができません。
 
-See the Character Controller script reference [[ScriptRef:CharacterController.html | here]]
 
-You can download an example project showing pre-setup animated and moving character controllers from the [[http://www.unity3d.com/support/resources | Resources]] area on our website.
+!!! 動きを停止させない
 
-!!Hints
-* Try adjusting your ``Skin Width`` if you find your character getting stuck frequently.
-* The Character Controller can affect objects using physics if you write your own scripts.
-* The Character Controller can not be affected by objects through physics.
-* Note that changing Character Controller properties in the inspector will recreate the controller in the scene, so any existing Trigger contacts will get lost, and you will not get any OnTriggerEntered messages until the controller is moved again.
+''Skin Width''は、キャラクター コントローラを調整する際に、正しく機能させるための最も重要なプロパティの 1 つです。
+キャラクターが動かなくなった場合、多くは''Skin Width''が小さすぎることが原因です。 ''Skin Width''により、オブジェクトが若干コントローラを突き抜けますが、ジッタが減り、動作停止を回避できます。
+
+''Skin Width''を 0.01 より大きい値で維持し、''Radius''を 10% より大きい値にしておくとよいでしょう。
+
+''Min Move Distance''は 0 にしておくことをお勧めします。
+
+キャラクター コントローラのスクリプト リファレンス [[ScriptRef:CharacterController.html | here]] を参照してください。
+
+当社ウェブサイトの [[http://www.unity3d.com/support/resources | Resources]] エリアから、事前設定されたアニメート化および移動するキャラクター コントローラを示すプロジェクトのサンプルをダウンロードできます。
+
+!!ヒント
+* キャラクターが頻繁に動作停止する場合は、''Skin Width''を調整してみてください。
+* 自身でスクリプトを記述する場合、キャラクター コントローラが物理特性を使用して、オブジェクトに影響する場合があります。
+* キャラクター コントローラは、物理特性を通じて、オブジェクトの影響を受けることはありません。
+* 注意：Inspectorでキャラクターコントローラープロパティを変更することはシーン内でコントローラーを再生成することになります。ですから今あるトリガーは全て関連がいったん切れてしまいますし、再びコントローラーが動くまでOnTriggerEntered messagesを受け取ることも出来ません。

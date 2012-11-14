@@ -1,28 +1,28 @@
-! Features currently not supported by Unity iOS
+! Unity iOS が現在サポートしていない機能
 
-!! Graphics
-* DXT texture compression is not supported; use PVRTC formats instead. Please see the [[class-Texture2D | Texture2D Component page]] for more information.
-* Rectangular textures can not be compressed to PVRTC formats.
-* Movie Textures are not supported; use a full-screen streaming playback instead. Please see the [[Main.VideoFiles | Movie playback page]] for more information.
-* Open GL ES2.0 is not supported on iPhone, iPhone 3G, iPod Touch 1st and iPod Touch 2nd Generation hardware.
+!! グラフィックス
+* DXT テクスチャ圧縮はサポートされていません。代わりに、PVRTC 形式を使用します。 詳細については、[[class-Texture2D|Texture2D Component page]] を参照してください。
+* 正方形テクスチャは、PVRTC 形式に圧縮できません。
+* ムービー テクスチャはサポートされていませんので、代わりにフルスクリーンのストリーミング再生を使用します。 詳細については、[[Main.VideoFiles | Movie playback page]] を参照してください。
+* Open GL ES2.0 は、iPhone、iPhone 3G、iPod Touch 1st および iPod Touch 2nd Generation ハードウェアではサポートされていません。
 
 
-!! Audio
-* Ogg audio compression is not supported. Ogg audio will be  automatically converted to MP3 when you switch to iOS platform in the Editor. Please see the [[class-AudioClip | AudioClip Component page]] for more information about audio support in Unity iOS.
+!! オーディオ
+* Ogg オーディオ圧縮はサポートされていません。 Ogg オーディオは、 エディタで iOS プラットフォームに切り替えると、MP3 に自動的に変換されます。 Unity iOS でのオーディオ サポートの詳細については、[[class-AudioClip | AudioClip Component page]] を参照してください。
 
-!! Scripting
-* ``OnMouseDown``, ``OnMouseEnter``, ``OnMouseOver``, ``OnMouseExit``, ``OnMouseDown``, ``OnMouseUp``, ``OnMouseDrag`` events are not supported. 
-* Dynamic features like Duck Typing are not supported. Use @@#pragma strict@@ for your scripts to force the compiler to report dynamic features as errors.
-* Video streaming via ``WWW`` class is not supported.
-* FTP support by ``WWW`` class is limited.
+!! スクリプティング
+* ''OnMouseDown''、''OnMouseEnter''、''OnMouseOver''、''OnMouseExit''、''OnMouseDown''、''OnMouseUp''、および''OnMouseDrag''イベントはサポートされていません。 
+* ダック タイピングなどの動的機能はサポートされていません。 コンパイラに動的機能をエラーとして報告させる場合は、スクリプトに @@#pragma strict@@ を使用します。
+* ''WWW''クラスを介したビデオ ストリーミングはサポートされていません。
+* ''WWW''クラスによる FTP サポートは制限されています。
 
-!! Features Restricted to Unity iOS Advanced License
-* Static batching is only supported in __Unity iOS Advanced__.
-* Video playback is only supported in __Unity iOS Advanced__.
-* Splash-screen customization is only supported in __Unity iOS Advanced__.
-* AssetBundles are only supported in __Unity iOS Advanced__.
-* Code stripping is only supported in __Unity iOS Advanced__.
-* .NET sockets are only supported in __Unity iOS Advanced__.
+!! Unity iOS Advanced License に制限された機能
+* スタティック バッチングは、__Unity iOS Advanced__でのみサポートされています。
+* ビデオ再生は、__Unity iOS Advanced__でのみサポートされています。
+* スプラッシュ画面カスタマイズは、__Unity iOS Advanced__でのみサポートされています。
+* AssetBundles は、__Unity iOS Advanced__でのみサポートされています。
+* コード スクリプティングは、__Unity iOS Advanced__でのみサポートされています。
+* .NET ソケットは、__Unity iOS Advanced__でのみサポートされています。
 
-__Note:__ it is recommended to minimize your references to external libraries, because 1 MB of .NET CIL code roughly translates to 3-4 MB of ARM code. For example, if your application references System.dll and System.Xml.dll then it means additional 6 MB of ARM code __if stripping is not used__. At some point application will reach limit when linker will have troubles linking the code.
-If you care a lot about application size you might find C# a more suitable language for your code as is has less dependencies than JavaScript.
+__注意:__ .NET CIL コードの 1MB は、ARM コードの約 3〜4MB に変換されるので、外部ライブラリへの参照は最小限にすることをお勧めします。 例えば、アプリケーションが System.dll と System.Xml.dll を参照する場合、__ストリッピングが使用されていない場合__、さらに ARM コードが 6MB 必要になります。 ある点では、リンカがコードのリンクに問題がある場合、アプリケーションが制限に達します。
+アプリケーションのサイズを重視する場合、JavaScript に比べ依存性が低いため、C# の方がコードには適しているかもしれません。 

@@ -1,72 +1,73 @@
-!Execution Order of Event Functions
-In Unity scripting, there are a number of event functions that get executed in a predetermined order as a script executes. This execution order is described below:
+! イベント関数の実行順
+Unity のスクリプティングには、スクリプトが実行される所定の順番で実行される多くのイベント関数があります。 以下に実行順を記載します。
 
-!! First Scene Load
-These functions get called when a scene starts (once for each object in the scene). 
-* __Awake:__ This function is always called before any Start functions and also just after a prefab is instantiated. (If a GameObject is in-active during start up Awake is not called until it is made active, or a function in any script attached to it is called.)
-* __OnEnable:__ (only called if the Object is active): This function is called just after the object is enabled. This happens when a MonoBehaviour is instance is created, such as when a level is loaded or a GameObject with the script component is instantiated. 
+!! 最初のシーンロード
+これらの関数は、シーンが始まると呼び出されます (シーン内の各オブジェクトに対して一度)。
+* __Awake:__ この関数は常に Start 関数の前およびプレハブのインスタンス化直後に呼び出されます。 (If a GameObject is in-active during start up Awake is not called until it is made active, or a function in any script attached to it is called.)
+* __OnEnable:__ (オブジェクトがアクティブな場合にのみ呼び出されます): この関数は、オブジェクトを有効化した直後に呼び出されます。This happens when a MonoBehaviour is instance is created, such as when a level is loaded or a GameObject with the script component is instantiated. 
 
-!! Before the first frame update
-* __Start:__ Start is called before the first frame update only if the script instance is enabled.
+!! 最初のフレームのアップデート前
+* __Start:__ スクリプトのインスタンスが有効になると、最初のフレームのアップデート前に Start が呼び出されます。
 
-!! In between frames
+!! フレーム間
 * __OnApplicationPause:__ This is called at the end of the frame where the pause is detected, effectively between the normal frame updates. One extra frame will be issued after ``OnApplicationPause`` is called to allow the game to show graphics that indicate the paused state.
 
-!! Update Order
-When you're keeping track of game logic and interactions, animations, camera positions, etc., there are a few different events you can use.  The common pattern is to perform most tasks inside the ``Update()`` function, but there are also other functions you can use.
+!! アップデート順
+ゲーム ロジック、インタラクション、アニメーション、カメラ位置などを追跡している場合、各種イベントを使用できます。  共通のパターンは、''Update()''関数内のほとんどのタスクを実行することですが、その他の関数も使用できます。
 
-* __FixedUpdate:__ ``FixedUpdate()`` is often called more frequently than ``Update()``.  It can be called multiple times per frame, if the frame rate is low and it may not be called between frames at all if the frame rate is high.  All physics calculations and updates occur immediately after ``FixedUpdate()``.  When applying movement calculations inside ``FixedUpdate()``, you do not need to multiply your values by ``Time.deltaTime``.  This is because ``FixedUpdate()`` is called on a reliable timer, independent of the frame rate.
+* __FixedUpdate:__ ''FixedUpdate()''は''Update()''よりも頻繁に呼び出されることが多くあります。  フレーム レートが低くい場合には、フレームごとに数回呼び出すことができますが、フレーム レートが高い場合は、フレーム間で呼び出すことができません。  ''FixedUpdate()''直後にすべての物理特性の計算とアップデートが発生します。  ''FixedUpdate()''内で移動計算を適用する際、''Time.deltaTime''で値を乗算する必要はありません。  これは、フレーム レートとして独立して、''FixedUpdate()''が信頼できるタイマーで呼び出されます。
 
-* __Update:__ ``Update()`` is called once per frame.  It is the main workhorse function for frame updates.
+* __Update:__ ''Update()''はフレームごとに一度呼び出されます。  これは、フレームのアップデートに対する主力関数です。
 
-* __LateUpdate:__ ``LateUpdate()`` is called once per frame, after ``Update()`` has finished.  Any calculations that are performed in ``Update()`` will have completed when ``LateUpdate()`` begins.  A common use for ``LateUpdate()`` would be a following third-person camera.  If you make your character move and turn inside ``Update()``, you can perform all camera movement and rotation calculations in ``LateUpdate()``.  This will ensure that the character has moved completely before the camera tracks its position.
+* __LateUpdate:__ ''LateUpdate()''は、''Update()''後にフレームごとに一度呼び出されます。  ''Update()''で実行される計算は、''LateUpdate()''が始まると完了します。  ''LateUpdate()''の一般的な使用は次の三人称カメラです。  ''Update()''内でキャラクターを動かし、回転させる場合、''LateUpdate()''でカメラの移動と回転の計算をすべて実行できます。  これにより、キャラクターがカメラがその位置を追跡する前に完全に移動します。
 
 
-!!Rendering
-* __OnPreCull:__ Called before the camera culls the scene. Culling determines which objects are visible to the camera. OnPreCull is called just before culling takes place.
-* __OnBecameVisible/OnBecameInvisible:__ Called when an object becomes visible/invisible to any camera.
-* __OnWillRenderObject:__ Called __once__ for each camera if the object is visible.
-* __OnPreRender:__ Called before the camera starts rendering the scene.
-* __OnRenderObject:__ Called after all regular scene rendering is done. You can use GL class or Graphics.DrawMeshNow to draw custom geometry at this point.
-* __OnPostRender:__ Called after a camera finishes rendering the scene.
-* __OnRenderImage(Pro only):__ Called after scene rendering is complete to allow postprocessing of the screen image.
-* __OnGUI:__ Called multiple times per frame in response to GUI events. The Layout and Repaint events are processed first, followed by a Layout and keyboard/mouse event for each input event.
-* __OnDrawGizmos__ Used for drawing Gizmos in the scene view for visualisation purposes.
+!!レンダリング
+* __OnPreCull:__ カメラがシーンを間引く前に呼び出されます。 カリングにより、カメラにどのオブジェクトを表示するかが決定されます。 OnPreCull は、カリングが発生する直前に呼び出されます。
+* __OnBecameVisible/OnBecameInvisible:__ オブジェクトがカメラに対して表示または非表示になる際に呼び出されます。
+* __OnWillRenderObject:__ オブジェクトが表示されると、各カメラに対して __一度__ 呼び出されます。
+* __OnPreRender:__ カメラがシーンのレンダリングを開始する前に呼び出されます。
+* __OnRenderObject:__ すべてのシーン レンダリング終了後に呼び出されます。 GL クラスまたは Graphics.DrawMeshNow を使用して、この点にカスタムのジオメトリを描画できます。
+* __OnPostRender:__ カメラがシーンのレンダリングを終了した後に呼び出されます。
+* __OnRenderImage(Pro only):__ 画面レンダリングが完了し、画面画像の処理が可能になった後に呼び出されます。
+* __OnGUI:__ GUI イベントに応じて、フレームごとに複数回呼び出されます。 レイアウトおよびリペイント イベントが最初に処理され、その後にレイアウトおよびキーボード/マウスイベントが各入力イベントに対して処理されます。
+* __OnDrawGizmos__ 可視化のためにシーン ビュー内でのギズモの描画に使用されます。
 
-!! Coroutine
-Normal coroutine updates are run after the Update function returns. A coroutine is function that can suspend its execution (yield) until the given given YieldInstruction finishes.
-Different uses of Coroutines:
-* __yield;__ The coroutine will continue after all Update functions have been called on the next frame.
-* __yield WaitForSeconds(2);__ Continue after a specified time delay, after all Update functions have been called for the frame
-* __yield WaitForFixedUpdate();__ Continue after all FixedUpdate has been called on all scripts
-* __yield WWW__ Continue after a WWW download has completed.
-* __yield StartCoroutine(MyFunc);__ Chains the coroutine, and will wait for the MyFunc coroutine to complete first.
+!! コルーチン
+法線コルーチン アップデートは、Update 関数が返した後で実行されます。 コルーチンは、所定の YieldInstruction が終了するまで、その実行 (生成) を中止できる関数です。
+コルーチンには下記の用法があります。
+* __yield;__ コルーチンは、次のフレームですべての Update 関数が呼び出された後に続行します。
+* __yield WaitForSeconds(2);__ フレームに対してすべての Update 関数が呼び出された後、指定された時間遅延後に続行します。
+* __yield WaitForFixedUpdate();__ すべてのスクリプトですべての FixedUpdate 呼び出し後に続行します。
+* __yield WWW__ WWW ダウンロード完了後に続行します。
+* __yield StartCoroutine(MyFunc);__ コルーチンを連鎖し、MyFunc コルーチンが最初に完了するのを待ちます。
 
-!!When the Object is Destroyed
+!! オブジェクト破棄時
 
 * __OnDestroy:__ This function is called after all frame updates for the last frame of the object's existence (the object might be destroyed in response to Object.Destroy or at the closure of a scene).
 
-!!When Quitting
-These functions get called on all the active objects in your scene, :
-* __OnApplicationQuit:__ This function is called on all game objects before the application is quit. In the editor it is called when the user stops playmode. In the web player it is called when the web view is closed.
-* __OnDisable:__ This function is called when the behaviour becomes disabled or inactive.
 
-!!!So in conclusion, this is the execution order for any given script:
+!! 終了時
+これらの関数は、シーン内のすべてのアクティブなオブジェクトで呼び出されます。
+* __OnApplicationQuit:__ この関数は、アプリケーション終了前に、すべてのゲーム オブジェクトで呼び出されます。 エディタでは、ユーザーが再生モードを停止すると呼び出されます。 ウェブ プレイヤーでは、ウェブ ビューが閉じられると呼び出されます。
+* __OnDisable:__ この関数は、動作が無効になると呼び出されます。
 
-* All Awake calls 
-* All Start Calls 
-*__while__ (stepping towards variable delta time)
-** All FixedUpdate functions 
-** Physics simulation 
-** OnEnter/Exit/Stay trigger functions 
-** OnEnter/Exit/Stay collision functions 
+!!!そのため、コルーチンでは、これが所定のスクリプトに対する実行順になります。
+
+* すべての Awake 呼び出し 
+* すべての Start 呼び出し 
+*__while__ (可変デルタ時間に対するステッピング)
+** すべての FixedUpdate 関数 
+** 物理特性シミュレーション 
+** OnEnter/Exit/Stay トリガー関数 
+** OnEnter/Exit/Stay 衝突関数 
  
-* Rigidbody interpolation applies transform.position and rotation 
-* OnMouseDown/OnMouseUp etc. events 
-* All Update functions 
-* Animations are advanced, blended and applied to transform 
-* All LateUpdate functions 
-* Rendering
+リジッドボディ補間は、transform.position および rotation を適用します。 
+* OnMouseDown/OnMouseUp などのイベント 
+** すべての Update 関数 
+* アニメーションが、トランスフォームに対して、進行、ブレンドおよび適用されます。 
+** すべての LateUpdate 関数 
+* レンダリング
 
-!!Hints
-* Coroutines are executed after all Update functions.
+!! ヒント
+* コルーチンは、すべての Update 関数後に実行されます。

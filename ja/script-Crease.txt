@@ -1,17 +1,17 @@
 ! Crease
 
-The $$Crease$$ is a common non-photorealistic (NPR) rendering technique that enhances the visibility of objects by adding outlines of variable thickness.
+$$Crease$$ は、可変的にサイズ変更される外郭を作成することで、オブジェクトの可視性を強化する一般的な非写実的 (NPR) レンダリング手法です。
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:CreaseExample.png\\
-''Crease shading creates depth based outlines.''
+''クリース シェーディングは、外郭に基づいた深度を作成します。''
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Intensity`` ||The intensity of the crease shading. ||
-||``Softness`` ||The smoothness and softness of the applied crease shading. ||
-||``Spread`` ||The blur radius, which also determines the thickness of outlines. ||
+||``Intensity`` ||クリース シェーディングの輝度。 ||
+||``Softness`` ||適用されたクリース シェーディングの円滑さと柔らかさ。 ||
+||``Spread`` ||外側の厚みを決定するためのぼやけ半径。 ||
 
 (:include imagefx-SM2Depth:)

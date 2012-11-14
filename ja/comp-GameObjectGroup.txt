@@ -1,5 +1,5 @@
-! The GameObject
+! GameObject
 
-$$GameObjects$$ are containers for all other [[Components]]. All objects in your game are GameObjects that contain different Components. Technically you can create a Component without GameObject, but you won't be able to use it until you apply it to a GameObject.  
+$$GameObject$$ は、その他すべての [[Components]] を格納する容器です。 ゲーム内のすべてのオブジェクトはすべて異なるコンポーネントを含む GameObject になります。 技術的には、GameObject なしでコンポーネントを作成できますが、GameObject に追加するまでは使用できません。  
 
 (:tocportion:)

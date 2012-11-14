@@ -1,43 +1,43 @@
-! Debugger
+! デバッガ
 
-The Unity Debugger lets you inspect your code at runtime. For example, it can help you determine when a function is called and with which values. Furthermore, it allows you to look at the value of scripts' variables at a given time while running your game. You can locate bugs or logic problems in your scripts by executing them step by step.
+Unity デバッガにより、ランタイム時にコードを検査できます。 例えば、関数を呼び出すタイミングやどの値と呼び出すかを決定するのに便利です。 また、ゲーム実行中の所定の時間にスクリプトの変数値を確認できます。 段階的にスクリプトを実行することで、スクリプト内のバグやロジックの問題を突き止めることができます。
 
-Unity uses the MonoDevelop IDE to debug the scripts in your game. You can debug all the languages supported by the engine (JavaScript, C#, and Boo).
+Unity は、MonoDevelop IDE を使用して、ゲーム内のスクリプトをデバッグします。 エンジンがサポートしているすべての言語をデバッグできます。 (JavaScript、C# および Boo)。
 
-Note that the debugger has to load all your code and all symbols, so bear in mind that this can have a small impact on the performance of your game during execution.  Typically, this overhead is not large enough to affect the game framerate.
+デバッガは、すべてのコードとすべてのシンボルをロードする必要があるため、実行中にゲームのパフォーマンスに若干の影響を及ぼす場合があります。  通常、このオーバーヘッドはゲームのフレーム レートに影響するほど大きいものではありません。
 [[<<]]
 [[<<]]
 Attach:DebuggerWindow.png[[<<]]
-''MonoDevelop window debugging a script in unity.''
+''Unity のスクリプトをデバッグする MonoDevelop ウィンドウ''
 [[<<]]
 [[<<]]
 [[<<]]
-!! Debugging in Unity.
-On Windows, users must choose to install MonoDevelop as part of the Unity installation (selected by default).
+!! Unity でのデバッギング
+Windows では、ユーザーは、Unity のインストールの一部として、MonoDevelop をインストールするよう選択する必要があります (デフォルトで選択)。
 
-* If you haven't used MonoDevelop with your project before, synchronize your MonoDevelop project. This will open your project inside MonoDevelop.
+* 以前にプロジェクトで MonoDevelop を使用していない場合、MonoDevelop プロジェクトを同期させます。 これにより、MonoDevelo 内のプロジェクトが開きます。
       Attach:MonoDevelopSync.png
 [[<<]]
 [[<<]]
-* Set the necessary breakpoints on your scripts by clicking the lines that you want to analyze.
+* 分析したい行をクリックすることで、スクリプト上に必要なブレーク ポイントを設定します。
       Attach:MonoDevelopSetBreakPoints.png
 [[<<]]
 [[<<]]
 
-* Launch Unity or your player.
-** Unity: Ensure you have "Editor Attaching" checked in the Preferences window.
-** Players: Ensure that you have built your player with the "Development build" and "Allow script debugging" options enabled. For webplayers, additionally check that the development release channel setting is enabled on the player's context menu (right click on Windows or cmd-click on Mac OSX)
+* Unity またはプレイヤーを起動します。
+** Unity: 設定ウィンドウで''Editor Attaching''にチェックを入れます。
+** プレイヤー: ''Development build''および''Allow script debugging''オプションを有効にして、プレイヤーが作成されていることを確認してください。For webplayers, additionally check that the development release channel setting is enabled on the player's context menu (right click on Windows or cmd-click on Mac OSX)
 
 Attach:WebContextMenuDebug.png\\
 ''Enabling debugging in the webplayer''
 
-* Open your project in MonoDevelop.
-* In MonoDevelop, click the Attach button in the toolbar, or choose __Attach__ from the __Run__ menu.
-* From the dialog that appears, choose the item you wish to debug.
-* __Notes:__
-** Currently supported debugging targets: Unity editors, desktop standalone players, Android and iOS players
-** If your player is set not to run in the background (the default), you may need to focus your player for a few seconds in order for it to appear in the list.
-** Android and iOS players need to have networking enabled when script debugging is enabled. All players need to be on the same network subnet as the computer running MonoDevelop.
+* MonoDevelop でプロジェクトを開きます。
+* MonoDevelop で、ツールバーの [追加] ボタンをクリックするか、__実行__メニューから__追加__を選択します。
+* 表示されるダイアログから、デバッグしたい項目を選択します。
+* __注意:__
+** 以下の対象が現在サポートされています。 Unityエディタ、デスクトップ スタンドアロン プレイヤー、Android および iOS プレイヤー
+** バックグラウンドでプレイヤーを実行するよう設定しない場合は (デフォルト)、リスト内でプレイヤーを表示させるためには、プレイヤーにフォーカスを数秒合わせる必要がある場合があります。
+** スクリプト のデバッギングを有効にした場合、Android および iOS プレイヤーで、ネットワーキングを有効にする必要があります。 すべてのプレイヤーは、MonoDevelop を実行しているコンピュータと同じネットワーク サブネット上にある必要があります。
 
 [[<<]]
       Attach:MonoDevelopAttach.png
@@ -47,27 +47,27 @@ Attach:WebContextMenuDebug.png\\
 
 [[<<]]
 [[<<]]
-** When you enter play mode, your script code will execute in the debugger.
-** When a breakpoint occurs, script execution will stop, and you will be able to use MonoDevelop to step over, into, and out of your script methods, inspect your variables, examine the call stack, etc.
-*** ''Note:'' When you're done debugging a toplevel method (e.g. @@Update()@@), or you just want to jump to the next breakpoint, you will experience better debugger performance by using the __Continue__ command instead of stepping out or over the end of your function.
+** 再生モードに入ると、スクリプト コードがデバッガで実行されます。
+** ブレークポイントが発生すると、スクリプトの実行が停止し、MonoDevelop を使用して、スクリプトのステップ オーバー、ステップ イン、ステップ アウト、変数の検査、呼び出しスタックの試験を行うことができます。
+*** ''注意：'' トップ レベルのメソッド (@@Update()@@ など) のデバッグを終了した場合、または次のブレークポイントに移りたい場合、関数の最後をステップ アウトまたはステップ オーバーする代わりに、__Continue__コマンドを使用することで、パフォーマンスが改善します。
       Attach:MonoDevelopUnityDebugging.png
       Attach:MonoDevelopDebugView.png
 [[<<]]
 [[<<]]
 
-* When you're done debugging, click the Detach or Stop buttons in the toolbar, or choose __Detach__ or __Stop__ from the __Run__ menu.
+* デバッグ終了時に、ツールバーの [解除] または [停止] ボタンをクリックするか、__実行__メニューから__解除__または__停止__を選択します。
 
-!! Hints.
-* If you add a watch to the __''this''__ object, you can inspect the internal values (position, scale, rotation...) of the GameObject to which the script is attached.
+!! ヒント
+* Iウォッチを__''この''__ オブジェクトに追加する場合、スクリプトを追加するゲーム オブジェクトの内部値 (位置、スケール、回転) を検査できます。
 [[<<]]
 [[<<]]
 >>ios<<
-!! iOS remote debugging instructions
-In addition to the instructions described above, Unity iOS applications require some additional steps for successful debugging:
-# Attach your iDevice to your WiFi network (the same requirement as for remote profiling). 
-# Hit build & run in the Unity editor. 
-# When the application builds, installs & launches via Xcode, click ``Stop`` in Xcode. 
-# Manually find & launch your application on your iDevice. (__Note:__ if the application is launched via Xcode you won't be able to resume after reaching a breakpoint).
-# When the app is running on the device, switch to MonoDevelop and click on the attach icon in the debugging toolbar. Select your device from the available instances list (if there are several instances shown, then select the bottom one).
+!! iOS リモート デバッギングに関する指示
+前述の指示に加え、Unity iOS アプリケーションで、デバッグをうまく行うには、更に必要な手順があります。
+# WiFi ネットワークに iDevice を追加します (リモート プロファイリングの場合と同じ要件)。 
+# Unity エディタで''作成''と''実行''を押します。 
+# Xcode を介して、アプリケーションを作成、インストールおよび起動する場合、Xcode の''停止''をクリックします。 
+# iDevice でアプリケーションを手動で検索、起動します。 (__注意:__ アプリケーションを Xcode を介して実行する場合は、ブレークポイントに達した後は再開できません)。
+# アプリケーションを機器で実行している場合、MonoDevelop に切り替え、デバッギング ツールバーの追加アイコンをクリックします。 使用できるインスタンス リストから機器を選択します (複数のインスタンスが表示されている場合、一番下のインスタンスを選択します)。
 [[<<]]
 >><< 

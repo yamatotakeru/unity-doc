@@ -1,36 +1,36 @@
-!Grayscale image effect
+!Grayscale 画像効果
 
-$$Grayscale$$ is a simple image effect that changes colors to grayscale by default. It can also use a ``Texture Ramp`` texture to remap luminance to arbitrary colors.
+$$Grayscale$$ は、デフォルトで色をグレースケールに変えるシンプルな画像効果です。 また、''Texture Ramp''テクスチャを使用して、照明を任意の色に再マッピングできます。
 
-Like all [[comp-ImageEffects|image effects]], Grayscale is available in Unity Pro only. Make sure to have the [[HOWTO-InstallStandardAssets|Pro Standard Assets installed]].
+すべての [[comp-ImageEffects|image effects]] のように、Grayscale は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FxGrayscale.png
-''Grayscale image effect applied to the scene''
+''シーンに適用された Grayscale 効果''
 
 
-!!Remapping colors
+!!色の再マッピング
 
-Grayscale can do a simple version of color correction, i.e. remap grayscale image into arbitrary colors. This can be used for effects like heat vision.
+Grayscale は、簡単に色修正を行えます。つまり、グレースケールの画像を任意の色に再マッピングできます。 ヒート ビジョンなどの効果を生み出すのに使用できます。
 
-The process of color remapping is very similar to [[script-ColorCorrectionEffect|ColorCorrection]] effect:
-# Take a screenshot of a typical scene in your game.
-# Open it in Photoshop and convert to grayscale.
-# Color correct it using the ^^Image->Adjustments->Curves^^.
-# Save the __.acv__ file file from the dialog using ^^Save...^^
-# Open ^^Pro Standard Assets->Image Based->color correction ramp.png^^ in Photoshop
-# Now apply color correction to the ramp image: open ^^Image->Adjustments->Curves^^ again and load your saved __.acv__ file
-# Select your camera in Unity and select ^^Component->Image Effects->Grayscale^^ to add the effect. Select your modified color ramp.
-# Hit Play to see the effect in action!
+色を再マッピングする処理は、[[script-ColorCorrectionEffect|ColorCorrection]] 効果に非常に似ています。
+# ゲーム内での通常のシーンのスクリーンショットを撮影します。
+# Photoshop 出開いて、グレースケールに変えます。
+# ^^Image->Adjustments->Curves^^ を使用して色補正を行います。
+# ^^Save...^^を使用して、ダイアログから__.acv__ ファイルを保存します。
+# Photoshop で ^^Pro Standard Assets->Image Based->color correction ramp.png^^ を開きます。
+# ランプ画像に色補正を適用します。 ^^Image->Adjustments->Curves^^ をサイド開いて、保存した__.acv__ファイルをロードします。
+# Unity でカメラを選択し、^^Component->Image Effects->Color Correction^^ を選択して、効果を追加します。 修正した色ランプを選択します。
+# 再生を押して、動作中の効果を確認します!
 
-!!! Details
+!!! 詳細
 
-Color remapping works by remapping the original image luminance through the color ramp image (sized 256x1):
-* result color = pixel's color in the ramp image at (OriginalLuminance + ``RampOffset``) index. For example, to invert the colors in the image you only need to flip the original color ramp horizontally (so that it goes from white to black instead of from black to white):
+色ランプ画像 (サイズ: 256x1) を通じて、元の画像の色を再マッピングすると、色補正が機能します。
+# result.color = ランプ画像 (OriginalLuminance + ''RampOffset'') インデックスでのピクセルの色 例えば、画像の色を反転するには、元の色ランプを水平にひっくり返すだけです (黒から白になる代わりに、白から黒になるよう)。
 
 Attach:FxGrayscaleNegative.png
-''Grayscale applied to the scene with color ramp that goes from white to black.''
+''白から黒に変わる色ランプのあるシーンに適用される Grayscale。''
 
 
-A more complex version of color remapping that does arbitrary color correction can be achieved with [[script-ColorCorrectionEffect|ColorCorrection]] image effect.
+任意の色への修正を行う色再マッピングのより複雑なバージョンは、[[script-ColorCorrectionEffect|ColorCorrection]] 画像効果で達成できます。
 
 (:include imagefx-SM2:)

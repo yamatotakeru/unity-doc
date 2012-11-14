@@ -1,6 +1,6 @@
-! Text Asset
+! テキスト アセット
 
-$$Text Assets$$ are a format for imported text files.  When you drop a text file into your Project Folder, it will be converted to a Text Asset.  The supported text formats are:
+$$Text Asset$$ は、インポートされたテキスト ファイルのための形式です。  プロジェクト フォルダにテキストをドロップすると、テキスト アセットに変換されます。  以下のファイル形式がサポートされています。
 
 *__.txt__
 *__.html__
@@ -9,33 +9,33 @@ $$Text Assets$$ are a format for imported text files.  When you drop a text file
 *__.bytes__
 
 Attach:TextAssetInspector.png\\
-''The Text Asset $$Inspector$$''
+''テキスト アセット $$Inspector$$''
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Text`` ||The full text of the asset as a single string. ||
+||``Text`` ||1 つの文字列としての、アセットの完全なテキスト。 ||
 
 
-!! Details
+!! 詳細
 
-The Text Asset is a very specialized use case.  It is extremely useful for getting text from different text files into your game while you are building it.  You can write up a simple .txt file and bring the text into your game very easily.  It is not intended for text file generation at runtime.  For that you will need to use traditional Input/Output programming techniques to read and write external files.
+テキスト アセットは、非常に特殊な使用事例です。  ゲームの作成中に、別のテキストからのテキストをゲーム内に挿入するのに非常に便利です。  簡単な .txt ファイルを記述し、テキストをゲーム内に簡単に挿入できます。  ランタイムでのテキスト ファイル生成のためのものです。  これを行うには、従来の入出力プログラミング技術を使用して、外部ファイルを読み書きする必要があります。
 
-Consider the following scenario.  You are making a traditional text-heavy adventure game.  For production simplicity, you want to break up all the text in the game into the different rooms.  In this case you would make one text file that contains all the text that will be used in one room.  From there it is easy to make a reference to the correct Text Asset for the room you enter.  Then with some customized parsing logic, you can manage a large amount of text very easily.
+以下の 2 つのシナリオを考えてください。  あなたは、従来のテキストの多いアドベンチャー ゲームを作成しています。  制作を簡単にするため、ゲームのテキストをすべて別々の部屋に分割したいと思っています。  この場合、1 つの部屋で使用されるすべてのテキストを含む 1 つのテキスト ファイルを作成します。  そこから、入る部屋に対して正しいテキスト アセットを参照するのは簡単です。  次に、カスタマイズされた構文解析ロジックで、大量のテキストを非常に簡単に管理できます。
 
 
-!!! Binary data
-A special feature of the text asset is that it can be used to store binary data. By giving a file the extension __.bytes__ it can be loaded as a text asset and the data can be accessed through the $$bytes$$ property.
+!!! バイナリ データ
+テキスト アセットの特殊機能は、テキスト アセットはバイナリ データを格納できるということです。 ファイルに拡張子__.bytes__を与えると、テキスト アセットとしてロードされ、$$bytes$$ プロパティを通じてアクセスできます。
 
-For example put a jpeg file into the Resources folder and change the extension to __.bytes__, then use the following script code to read the data at runtime:
+例えば、jpeg ファイルを Resources フォルダに入れ、拡張子を __.bytes__ に変え、次のスクリプト コードを使用して、ランタイムでデータを読み込みます。
 [@
-//Load texture from disk
+//ディスクからのテクスチャのロード
 TextAsset bindata= Resources.Load("Texture") as TextAsset;
 Texture2D tex = new Texture2D(1,1);
 tex.LoadImage(bindata.bytes); 
 @]
 
-!! Hints
-* Text Assets are serialized like all other assets in a build.  There is no physical text file included when you publish your game.
-* Text Assets are not intended to be used for text file generation at runtime.
+!! ヒント
+* テキスト アセットは、ビルド内のその他すべてのアセットのように直列化できます。  ゲームのパブリッシュ時に含まれる物理テキスト ファイルはありません。
+* テキスト アセットは、ランタイムでのテキスト ファイル生成に使用するためのものではありません。

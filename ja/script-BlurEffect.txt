@@ -1,17 +1,17 @@
-! Blur image effect
+! ブラー効果
 
-The $$Blur$$ image effect blurs the rendered image in real-time.
+$$ブラー$$ 効果は、レンダリングされた画像をリアルタイムでぼやけさせます。
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FxBlur.png\\
-''Blur effect applied to the scene''
+''シーンに適用された ブラー効果''
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Iterations`` ||The number of times the basic blur operation will be repeated. More iterations typically give a better result but each has a cost in processing time. ||
-||``Blur Spread`` ||Higher values will spread out the blur more at the same iteration count but at some cost in quality. Usually values from 0.6 to 0.7 are a good compromise between quality and speed. ||
+||``Iterations`` ||必要なぼやけの量 繰り返しが多いほど、画像のぼやけが増しますが、繰り返しを増やすたび、パフォーマンス コストが生じます。 ||
+||``Blur Spread`` ||この値が高いほど、同じ繰り返し数でもぼやけがより広がりますが、画質がある程度下がります。 速度と画質のバランスを取るには、通常、0.6 〜 0.7 の値を取ると良いでしょう。 ||
 
 (:include imagefx-SM2:)

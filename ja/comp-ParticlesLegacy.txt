@@ -1,8 +1,8 @@
-!Particle Systems (Legacy, prior to release 3.5)
+! パーティクルシステム (Unity4.0以降では「旧パーティクルシステム」)
 
-$$Particles$$ are essentially 2D images rendered in 3D space.  They are primarily used for effects such as smoke, fire, water droplets, or leaves.  A ``Particle System`` is made up of three separate Components: ``Particle Emitter``, ``Particle Animator``, and a ``Particle Renderer``.  You can use a Particle Emitter and Renderer together if you want static particles.  The Particle Animator will move particles in different directions and change colors.  You also have access to each individual particle in a particle system via scripting, so you can create your own unique behaviors that way if you choose.
+$$パーティクル$$ は主に３次元空間に2Dのイメージを描画します。煙、火、水滴、落ち葉などのようなエフェクトに主に利用されます。 ``パーティクルシステム`` は三つのコンポーネントでできています。それは ``パーティクルエミッター``, ``パーティクルアニメーター`` , ``パーティクルレンダラー``です。 もし静的なパーティクルを作りたいなら、パーティクルエミッターとレンダラーを一緒に使いましょう。 パーティクルアニメーターは違った方向に動かしたらり、色を変更したりするときに使います。 また、スクリプトでそれぞれのパーティクルを独立した動きもつけることもできます。ですので、独自の振る舞いをしたい場合はスクリプトで行うと良いでしょう。
 
-Please view the Particle Scripting Reference [[Path:../ScriptReference/ParticleEmitter.html|here]].
+詳しくは [[Path:../ScriptReference/ParticleEmitter.html|パーティクルスクリプトリファレンス]] を参照して下さい。
 
 (:include class-EllipsoidParticleEmitter:)
 (:include class-MeshParticleEmitter:)

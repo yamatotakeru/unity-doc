@@ -1,47 +1,47 @@
-! Grass
+! 草
 
-The $$Paint Foliage$$ button Attach:TerrainGuide-PaintFoliageButton.png allows you to paint grass, rocks, or other decorations around the Terrain.  To paint grass, choose ^^Edit Details button->Add Grass Texture^^.  You don't need to create a mesh for grass, just a texture.
+$$Paint Foliage$$ button Attach:TerrainGuide-PaintFoliageButton.png により、草や岩、または地形周辺のその他の黄色をペイントできます。  草をペイントするには、^^Edit Details button->Add Grass Texture^^ を選択します。  草にメッシュを作成する必要はありません。ただのテクスチャです。
 
 Attach:TerrainGuide-AddGrassTextureDialog.png\\
-''The Add Grass Texture dialog''
+''Add Grass Texture ダイアログ''
 
-At this dialog, you can fine-tune the appearance of the grass with the following options:
+このダイアログでは、次のオプションを使用して、草の外観を微調整できます。
 
 ||PROPS
-||``Detail Texture`` ||The texture to be used for the grass. ||
-||``Min Width`` ||Minimum width of each grass section in meters. ||
-||``Max Width`` ||Maximum width of each grass section in meters. ||
-||``Min Height`` ||Minimum height of each grass section in meters. ||
-||``Max Height`` ||Maximum height of each grass section in meters. ||
-||``Noise Spread`` ||The size of noise-generated clusters of grass. Lower numbers mean less noise. ||
-||``Healthy Color`` ||Color of healthy grass, prominent in the center of ``Noise Spread`` clusters. ||
-||``Dry Color`` ||Color of dry grass, prominent on the outer edges of ``Noise Spread`` clusters. ||
-||``Grayscale Lighting`` ||If enabled, grass textures will not be tinted by any colored light shining on the Terrain. ||
-||``Lightmap Factor`` ||How much the grass will be influenced by the Lightmap. ||
-||``Billboard`` ||If checked, this grass will always rotate to face the main $$Camera$$. ||
+||``Detail Texture`` ||草に使用するメッシュ。 ||
+||``Min Width`` ||各草セクションの最小幅 (メートル)。 ||
+||``Max Width`` ||各草セクションの最大幅 (メートル)。 ||
+||``Min Height`` ||各草セクションの最小高さ (メートル)。 ||
+||``Max Height`` ||各草セクションの最大高さ (メートル)。 ||
+||``Noise Spread`` ||草のノイズ生成クラスタのサイズ。 数値が低いほど、ノイズが減ります。 ||
+||``Healthy Color`` ||健康な草の色。''Noise Spread''クラスタの中心ほど顕著になります。 ||
+||``Dry Color`` ||乾燥した草の色。''Noise Spread''クラスタの中心ほど顕著になります。 ||
+||``Grayscale Lighting`` ||有効にすると、草テクスチャには、地形で輝く色つきライトで色付けられません。 ||
+||``Lightmap Factor`` ||草に対するライトマップの影響の度合い。 ||
+||``Billboard`` ||有効にすると、この草が常にメインの $$Camera$$ を向くように回転します。 ||
 
-After you've clicked the ^^Add^^ button, you'll see the grass appear selectable in the $$Inspector$$.
+^^Add^^ ボタンクリック後、$$Inspector$$ に選択できる草が表示されます。
 
 Attach:TerrainGuide-AddedGrassInspector.png\\
-''The added grass appears in the Inspector''
+''インスペクタで選択された新しく追加された草が表示されます''
 
-!! Painting Grass
+!! 草のペイント
 
-Painting grass works the same as painting textures or trees.  Select the grass you want to paint, and paint right onto the Terrain in the $$Scene View$$
+草のペイントは、テクスチャや木のペイントと同じです。  ペイントしたい草を選択し、$$Scene View$$ で地形に適切にペイントします。
 
 Attach:TerrainGuide-PaintingGrass.png\\
-''Painting grass is easy as pie''
+''草のペイントは非常に簡単です''
 
-__Note:__When you have a brush selected, move your mouse over the Terrain in the Scene View and press ^^F^^.  This will center the Scene View over the mouse pointer position and automatically zoom in to the ``Brush Size`` distance.  This is the quickest & easiest way to navigate around your Terrain while creating it.
+__注意:__ブラシを選択したら、シーン ビューでの地形にマウスを併せて、^^F^^ を押します。  これは、マウス ポインタの位置でシーン ビューを中心に配置し、自動的に''Brush Size''距離に拡大されます。  これは、地形を作成しながら、地形周辺でナビゲートする最も素早く、簡単な方法です。
 
-!! Editing Grass
+!! 草の編集
 
-To change any import parameters for a particular Grass Texture, select it choose ^^Edit Details button->Edit^^.  You can also double-click it.  You will then see the $$Edit Grass$$ dialog appear, and be able to adjust the parameters described above.
+細草テクスチャへのインポート パラメータを変更するには、草テクスチャを選択し、^^Edit Details button->Edit^^ を選択します。  草テクスチャをダブルクリックすることもできます。  $$Edit Grass$$ ダイアログが表示され、上記のパラメータを調整できます。
 
-You'll find that changing a few parameters can make a world of difference.  Even changing the ``Max/Min Width`` and ``Height`` parameters can vastly change the way the grass looks, even with the same number of grass objects painted on the Terrain.
+幾つかのパラメータを変えると、世界に違いが生じます。  ''Max/Min Width''と''Height''パラメータを変えると、草の見え方が大幅に変わりますが、地形にペイントされた草オブジェクトの数は同じです。
 
 Attach:TerrainGuide-GrassParam1.png\\
-''Grass created with the default parameters''
+''デフォルトのパラメータで作成した草''
 
 Attach:TerrainGuide-GrassParam2.png\\
-''The same number of painted grass objects, now wider and taller''
+''同じ数のペイントされた草ですが、今度は幅と高さが増しています''

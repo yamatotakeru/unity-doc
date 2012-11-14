@@ -1,23 +1,23 @@
-! Motion Blur image effect
+! Motion Blur 画像効果
 
-$$Motion Blur$$ image effect enhances fast-moving scenes by leaving "motion trails" of previously rendered frames.
+$$Motion Blur$$ 画像効果は、前にレンダリングしたフレームの''モーション トレイル''を残すことで、高速で移動するシーンを強化します。
 >>u40<<
-For a modern implementation of Motion Blur, please refer to the new [[script-CameraMotionBlur|Camera Motion Blur Effect]].
+より最新のMotion Blurの実装は、新しい [[script-CameraMotionBlur|Camera Motion Blur Effect]] を参照して下さい。
 >><<
 
-Like all [[comp-ImageEffects|image effects]], Motion Blur is only available in Unity Pro. Make sure to have the [[HOWTO-InstallStandardAssets|Pro Standard Assets installed]].
+すべての [[comp-ImageEffects|image effects]] のように、Motion Blur は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FxMotionBlur.png\\
-''Motion Blur effect applied to the rotating scene''
+''回転するシーンに適用される Motion Blur 効果''
 
 ||PROPS
-||``Blur Amount`` ||How much of the previous frames to leave in the image. Higher values make longer motion trails. ||
-||``Extra Blur``  ||If checked, this makes motion trails more blurry, by applying some extra blur to previous frames. ||
+||``Blur Amount`` ||画像内に残す前のフレームの量。 値が高くなるほど、モーション トレイルが長くなります。 ||
+||``Extra Blur``  ||チェックを入れると、前のフレームにさらにぶれを適用することで、モーション トレイルがよりぼやけます。 ||
 
 
-!!!Tips:
-* Motion Blur only works while in play mode because it's time based.
+!!!ヒント:
+* Motion Blur は、時間ベースのため、再生モード中のみ機能します。
 
-!!!Hardware support
+!!!ハードウェア サポート
 
-Motion Blur effect works all graphics cards that support rendering to a texture. E.g. GeForce2, Radeon 7000 and up. All image effects automatically disable themselves when they can not run on an end-users graphics card.
+Motion Blur 効果はテクスチャへのレンダリングをサポートするすべてのグラフィック カードを機能させます。GeForce2、Radeon 7000 以降など。 すべての画像効果は、エンドユーザーのグラフィック カードで実行できないため、自動的に無効になります。

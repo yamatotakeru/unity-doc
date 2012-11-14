@@ -1,61 +1,61 @@
-! Flare
+! フレア
 
-$$Flare$$ objects are the source assets that are used by [[class-LensFlare | Lens Flare Components]]. The Flare itself is a combination of a texture file and specific information that determines how the Flare behaves.  Then when you want to use the Flare in a $$Scene$$, you reference the specific Flare from inside a $$LensFlare$$ $$Component$$ attached to a $$GameObject$$.
+$$Flare$$ オブジェクトは、[[class-LensFlare | Lens Flare Components]] によって使用されるソース アセットです。 フレア自体は、テクスチャ ファイルと、フレアの動作を決定する特定の情報の組み合わせです。  そのため、$$Scene$$でフレアを使用したい場合は、$$GameObject$$ に追加された $$LensFlare$$ $$Component$$ 内から特定のフレアを参照します。
 
-There are some sample Flares in the [[HOWTO-InstallStandardAssets | Standard Assets]] package. If you want to add one of these to your scene, attach a [[class-LensFlare | Lens Flare]] Component to a GameObject, and drag the Flare you want to use into the ``Flare`` property of the Lens Flare, just like assigning a $$Material$$ to a $$Mesh Renderer$$.
+[[HOWTO-InstallStandardAssets | Standard Assets]]  パッケージにフレアのサンプルが置いてあります。 シーンにこれらのいずれかを追加したい場合は、 [[class-LensFlare | Lens Flare]] コンポーネントを GameObject に追加し、$$Material$$ を $$Mesh Renderer$$ に割り当てるのと同様、使用したいフレアをレンズ フレアの''Flare''プロパティにドラッグします。
 
 Attach:FlareInspector.png\\
-''The Flare $$Inspector$$''
+''フレア $$Inspector$$'''
 
-Flares work by containing several Flare ``Elements`` on a single $$Texture$$.  Within the Flare, you pick & choose which ``Elements`` you want to include from any of the Textures. 
+フレアは、単一の $$Texture$$ にあるいくつかのフレア''要素''を含めることで機能します。  フレア内で、テクスチャのいずれかから含めたい''要素''をつかんで、選択します。 
 
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Elements`` ||The number of Flare images included in the Flare. ||
-||>>>``Image Index`` ||Which Flare image to use from the ``Flare Texture`` for this Element.  See the [[#FlareTextures | Flare Textures]] section below for more information. ||
-||>>>``Position`` ||The Element's offset along a line running from the containing GameObject's position through the screen center. 0 = GameObject position, 1 = screen center. ||
-||>>>``Size`` ||The size of the element. ||
-||>>>``Color`` ||Color tint of the element. ||
-||>>>``Use Light Color`` ||If the Flare is attached to a Light, enabling this will tint the Flare with the Light's color. ||
-||>>>``Rotate`` ||If enabled, bottom of the Element will always face the center of the screen, making the Element spin as the Lens Flare moves around on the screen. ||
-||>>>``Zoom`` ||If enabled, the Element will scale up when it becomes visible and scale down again when it isn't. ||
-||>>>``Fade`` ||If enabled, the Element will fade in to full strength when it becomes visible and fade out when it isn't. ||
-||``Flare Texture`` ||A texture containing images used by this Flare's ``Elements``. It must be arranged according to one of the ``TextureLayout`` options. ||
-||``Texture Layout`` ||How the individual Flare Element images are laid out inside the ``Flare Texture``.\\
+||``Elements`` ||フレア内に含まれたフレア画像の数。 ||
+||>>>``Image Index`` |この要素に対して、''Flare Texture''から使用されるフレア画像。  詳細については、下の[[#FlareTextures | Flare Textures]] を参照してください。 ||
+||>>>``Position`` ||画面中央を通る含まんでいる GameObject の位置からくる線にそった要素のオフセット。 0 = GameObject position, 1 = screen center. ||
+||>>>``Size`` ||要素のサイズ。 ||
+||>>>``Color`` ||要素の色。 ||
+||>>>``Use Light Color`` ||フレアを光に追加する場合、これを有効にすることで、その光の色がフレアに付きます。 ||
+||>>>``Rotate`` ||有効にすると、要素の下部が常に画面の中央を向き、レンズ フレアが画面周辺で回転すると共に、要素を回転させます。 ||
+||>>>``Zoom`` ||有効にすると、表示した時に要素が拡大し、非表示にすると、再度縮小します。||
+||>>>``Fade`` ||有効にすると、表示した時に要素がフェードインし、非表示にすると、フェードアウトします。||
+||``Flare Texture`` ||このフレアの''要素''によって使用される画像を含むテクスチャ。 ''TextureLayout''オプションのいずれかに応じて配置する必要があります。 ||
+||``Texture Layout`` ||''Flare Texture''内での個々のフレア要素画像の配置のされ方。\\
 Attach:FlareLayouts.png ||
-||``Use Fog`` ||If enabled, the Flare will fade away with distance fog. This is used commonly for small Flares. ||
+||``Use Fog`` ||有効にすると、フレアは遠くにある霧と共にフェードアウェイします。 一般に小さいフレアに使用されます。 ||
 
 
-!!Details
+!!詳細
 
-A Flare consists of multiple ``Elements``, arranged along a line. The line is calculated by comparing the position of the GameObject containing the Lens Flare to the center of the screen.  The line extends beyond the containing GameObject and the screen center.  All Flare ``Elements`` are strung out on this line.
+フレアは、線にそって配置された複数の''要素''で構成されます。 この線は、レンズ フレアを含む GameObject の位置と、画面の中心を比較することで計算されます。  線は、含んでいる GameObject と画面の中心を超えて伸びます。  フレア''要素''はすべてこの線上で伸びます。
 
 
 [[#FlareTextures]]
-!! Flare Textures
+!! フレア テクスチャ
 
-For performance reasons, all ``Elements`` of one Flare must share the same Texture. This Texture contains a collection of the different images that are available as Elements in a single Flare. The ``Texture Layout`` defines how the ``Elements`` are laid out in the ``Flare Texture``.
+パフォーマンス上の理由から、1 つのフレアのすべての''要素''は、同じテクスチャを共有する必要があります。 このテクスチャには、1 つのフレア内の要素として使用できる様々な画像が含まれます。 ''テクスチャ レイアウト''は、''フレア テクスチャ''内で''要素''がどのように配置されるかを定義します。
 
 
-!!! Texture Layouts
+!!! テクスチャ レイアウト
 
-These are the options you have for different Flare ``Texture Layouts``.  The numbers in the images correspond to the ``Image Index`` property for each ``Element``.
+異なるフレア''テクスチャ レイアウト''に対するオプションです。  画像内の数字は、各''要素''に対する''画像インデックス''プロパティに対応しています。
 
 ||PROPS
 ||``1 Large 4 Small`` ||Attach:FlaresLayout0.png\\
-Designed for large sun-style Flares where you need one of the ``Elements`` to have a higher fidelity than the others.  This is designed to be used with Textures that are twice as high as they are wide. ||
+''要素''の 1 つに他の要素よりも高い忠実度を与える必要がある大きい宋式のフレア向けに設計されています。  幅と高さが 2 倍のテクスチャで使用するよう設計されています。 ||
 ||``1 Large 2 Medium 8 Small`` ||Attach:FlaresLayout1.png\\
-Designed for complex flares that require 1 high-definition, 2 medium & 8 small images.  This is used in the standard assets "50mm Zoom Flare" where the two medium Elements are the rainbow-colored circles. This is designed to be used with textures that are twice as high as they are wide. ||
+1 つの高解像度画像、2 つの中サイズ画像と 8 つの詳細図画像を必要とする複雑なフレア向けに設計されています。  これは、2 つの中サイズの要素が虹色の円である標準の''50mm Zoom Flare''アセットで使用されます。 幅と高さが 2 倍のテクスチャで使用するよう設計されています。 ||
 ||``1 Texture`` ||Attach:FlaresLayout2.png\\
-A single image. ||
+1 つの画像。 ||
 ||``2x2 grid`` ||Attach:FlaresLayout3.png\\
-A simple 2x2 grid. ||
+シンプルな 2x2 グリッド。 ||
 ||``3x3 grid`` ||Attach:FlaresLayout4.png\\
-A simple 3x3 grid. ||
+シンプルな 3x3 グリッド。 ||
 ||``4x4 grid`` ||Attach:FlaresLayout5.png\\
-A simple 4x4 grid. ||
+シンプルな 4x4 グリッド。 ||
 
-!! Hints
-* If you use many different Flares, using a single ``Flare Texture`` that contains all the ``Elements`` will give you best rendering performance.
-* Lens Flares are blocked by $$Colliders$$.  A Collider in-between the Flare GameObject and the Camera will hide the Flare, even if the Collider does not have a $$Mesh Renderer$$.
+!! ヒント
+* 異なる多くのフレアを使用する場合、すべての要素を含む 1 つの''フレア　テクスチャ''を使用すると、最高のレンダリング パフォーマンスが得られます。
+* レンズ フレアは、$$Colliders$$ にブロックされます。  フレア GameObject とカメラ間のコライダが $$Mesh Renderer$$ を持たない場合でも、コライダはフレアを非表示にします。

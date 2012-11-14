@@ -1,21 +1,21 @@
-!Customizing the Unity Web Player loading screen
+! Unity ウェブ プレイヤー ロード画面
 
-By default the Unity $$Web Player$$ displays a small Unity logo and a progress bar while loading web player content. It is possible to customize the appearance of that loading screen, including both the logo and progress bar display.
+デフォルトで、Unity $$Web Player$$ は、小さい Unity ロゴとウェブ プレイヤーの内容を表示する進捗バーを表示します。 ロゴと進捗バーの両方を含むロード画面の外観をカスタマイズできます。
 
-Please note that modifying the loader images is only possible with $$Unity Pro$$.
+ロード画面の編集は、$$Unity Pro$$ でのみ行うことができます。
 
-There are six optional parameters that can be passed to ``UnityObject``, which can be used to customize the appearance of the Unity Web Player loading screen. Those optional parameters are:
+Unity ウェブ プレイヤー ロード画面の外観をカスタマイズに使用できる6 つのオプションのパラメータがあります。 以下のパラメータがあります。
 
-* ``backgroundcolor``: The background color of the web player content display region during loading, the default is white.
-* ``bordercolor``: The color of the one pixel border drawn around the web player content display region during loading, the default is white.
-* ``textcolor``: The color of error message text (when data file fails to load for example). The default is black or white, depending on the background color.
-* ``logoimage``: The path to a custom logo image, the logo image is drawn centered within the web player content display region during loading.
-* ``progressbarimage``: The path to a custom image used as the progress bar during loading. The progress bar image's width is clipped based on the amount of file loading completed, therefore it starts with a zero pixel width and animates to its original width when the loading is complete. The progress bar is drawn beneath the logo image.
-* ``progressframeimage``: The path to a custom image used to frame the progress bar during loading.
+* ``backgroundcolor``: ロード中のウェブ プレイヤーの内容表示領域の背景色で、デフォルトは白。
+* ``bordercolor``: ロード中のウェブ プレイヤーの内容表示領域の1 ピクセルの境界色で、デフォルトは白。
+* ``textcolor``: エラー メッセージのテキストの色 （データ ファイルのロード失敗時など）。 背景色に応じて、デフォルトは黒か白になります。
+* ``logoimage``: カスタムのロゴ画像へのパスで、ロード中、ウェブ プレイヤー内容の表示領域内の中心にロゴ画像が描画されます。
+* ``progressbarimage``: ロード中に進捗バーとして使用されるカスタム画像へのパス。 進捗バー画像の幅は、完了したファイルのロード量に基づいて切り抜かれます。そのため、0 ピクセル幅で始まり、ロード完了時に、元の幅にアニメート化されます。 進捗バーはロゴ画像の下に描画されます。
+* ``progressframeimage``: ロード中に進捗バーを構成するのに使用されるカスタム画像へのパス。
 
-All color values provided must be 6-digit hexidecimal colors, (eg. FFFFFF, 020F16, etc.). The image paths provided can be either relative or absolute links. All images must be PNG files in RGB format (without transparency) or RGBA format (with transparency) stored at eight bits per channel. Finally, the ``progressframeimage`` and the ``progressbarimage`` should be the same height.
+渡されるすべての色値は、6 桁の 16 進数色 (FFFFFF, 020F16 など)。 渡される画像パスは相対リンクか絶対リンクのいずれかです。すべての画像ファイルは RGB (透明度なし) または RGBA (透明度あり) の 8 ビット/チャンネルの PNG ファイルである必要があります。 最後に、''progressframeimage''と''progressbarimage''は同じ高さにする必要があります。
 
-Here is an example script that customizes the appearance of the Unity Web Player loading screen. The background color is set to light gray (``A0A0A0``), border color to black (``000000``), text color to white (``FFFFFF``) and loader images to ``MyLogo.png``, ``MyProgressBar.png`` and ``MyProgressFrame.png``. All parameters are grouped into single ``params`` object and passed to ``unityObject.embedUnity`` method.
+以下は、Unity ウェブ プレイヤーのロード画面の外観をカスタマイズするサンプルのスクリプトです。 背景色をライトグレー (''A0A0A0'')、境界色を黒 (''000000'')、テキスト色を白 (''FFFFFF'')、ローダ画像を''MyLogo.png''、''MyProgressBar.png''、''MyProgressFrame.png''に設定します。 パラメータはすべて、1 つの''params''オブジェクトにグループ化され、''unityObject.embedUnity''メソッドに渡されます。
 [@
 var params = {
 	backgroundcolor: "A0A0A0",

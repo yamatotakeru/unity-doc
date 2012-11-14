@@ -1,7 +1,8 @@
 ! Game Interface Elements
 
-Unity gives you a number of options for creating your game's graphic user interface (GUI).  You can use [[class-GuiText | GUI Text]] and [[class-GuiTexture | GUI Texture]] objects in the scene, or generate the interface from scripts using $$UnityGUI$$.
+Unity はいくつものゲーム制作のためのグラフィックユーザーインターフェース(GUI)を提供します。 
+ [[class-GuiText | GUI Text]] と [[class-GuiTexture | GUI Texture]] オブジェクトを使用するか、$$UnityGUI$$ を使ったスクリプトからインターフェースを生成することで利用出来ます。
 
-The rest of this page contains a detailed guide for getting up and running with UnityGUI.
+このページの残りには、UnityGUI で起動および実行するための詳細なガイドが含まれています。
 
 (:include GUIScriptingGuide:)

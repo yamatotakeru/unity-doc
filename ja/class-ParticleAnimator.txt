@@ -1,66 +1,66 @@
-! Particle Animator (Legacy)
+! 粒子 アニメータ（旧パーティクルシステム）
 
-$$Particle Animators$$ move your particles over time, you use them to apply wind, drag & color cycling to your particle systems.
+$$Particle Animator$$ は、時間の経過と共に粒子を移動させます。その粒子に風を適用したり、粒子システムにドラッグしたり、色循環を適用することができます。
 
 Attach:Inspector-ParticleAnimator.png\\
-''The Particle Animator $$Inspector$$''
+''粒子アニメータ $$Inspector$$''
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Does Animate Color`` ||If enabled, particles cycle their color over their lifetime. ||
-||``Color Animation`` ||The 5 colors particles go through. All particles cycle over this - if some have a shorter life span than others, they will animate faster. ||
-||``World Rotation Axis`` ||An optional world-space axis the particles rotate around. Use this to make advanced spell effects or give caustic bubbles some life. ||
-||``Local Rotation Axis`` ||An optional local-space axis the particles rotate around. Use this to make advanced spell effects or give caustic bubbles some life. ||
-||``Size Grow`` ||Use this to make particles grow in size over their lifetime. As randomized forces will spread your particles out, it is often nice to make them grow in size so they don't fall apart. Use this to make smoke rise upwards, to simulate wind, etc. ||
-||``Rnd Force`` ||A random force added to particles every frame. Use this to make smoke become more alive. ||
-||``Force`` ||The force being applied every frame to the particles, measure relative to the world. ||
-||``Damping`` ||How much particles are slowed every frame. A value of 1 gives no damping, while less makes them slow down. ||
-||``Autodestruct`` ||If enabled, the GameObject attached to the Particle Animator will be destroyed when all particles disappear. ||
+||``Does Animate Color`` ||有効にすると、粒子が寿命中色を循環させます。 ||
+||``Color Animation`` ||5 色の粒子が通過します。 この上を通るすべての粒子サイクル - その他よりも寿命の短い粒子は、より高速で動きます。 ||
+||``World Rotation Axis`` ||粒子がその周囲で回転する、オプションのワールド空間の軸。 これにより、より高度な魔法の効果を作成したり、腐食性のある泡を生物にぶつけることができます。 ||
+||``Local Rotation Axis`` ||粒子がその周囲で回転する、オプションのローカル空間の軸。 これにより、より高度な魔法の効果を作成したり、腐食性のある泡を生物にぶつけることができます。 ||
+||``Size Grow`` ||これを使用すると、寿命中、粒子のサイズが拡大していきます。 ランダム化された力が粒子を拡散させるため、バラバラにならないよう、サイズを拡大させる場合に適しています。 これを使って、煙を上に昇らせたり、風をシミュレートしたりできます。
+||``Rnd Force`` ||全フレームで粒子に追加されるランダムの力。 煙により現実的な動きをさせるのに使用します。 ||
+||``Force`` ||全フレームで粒子に追加されるランダムの力で、世界に関連した測定値です。 ||
+||``Damping`` ||全フレームで粒子を減速させる度合い。 1 の値だと、ダンピングなしで、粒子はあまり減速しません。 ||
+||``Autodestruct`` ||有効にすると、粒子アニメータに追加された GameObject は、すべての粒子が消えると破壊されます。 ||
 
-!! Details
+!! 詳細
 
-Particle Animators allow your particle systems to be dynamic.  They allow you to change the color of your particles, apply forces and rotation, and choose to destroy them when they are finished emitting.  For more information about Particle Systems, reference [[class-MeshParticleEmitter|Mesh Particle Emitters]], [[class-EllipsoidParticleEmitter|Ellipsoid Particle Emitters]], and [[class-ParticleRenderer|Particle Renderers]].
+粒子アニメータにより、粒子システムを動的にすることができます。  粒子の色の変更や、力や回転の適用、放出終了時に破壊するよう選択することができます。  粒子システムの詳細については、[[class-MeshParticleEmitter|Mesh Particle Emitters]]、[[class-EllipsoidParticleEmitter|Ellipsoid Particle Emitters]] および [[class-ParticleRenderer|Particle Renderers]] を参照してください。
 
 
-!!! Animating Color
+!!! 色のアニメート化
 
-If you would like your particles to change colors or fade in/out, enable them to ``Animate Color`` and specify the colors for the cycle.  Any particle system that animates color will cycle through the 5 colors you choose.  The speed at which they cycle will be determined by the Emitter's ``Energy`` value.
+粒子の色を変えたり、フェードイン、フェードアウトしたい場合は、''Animate Color''を有効にして、サイクルに色を指定します。  色をアニメート化する粒子システムは、選択した 5 色でサイクルします。  サイクルの速度は、エミッタの''Energy''値で決定されます。
 
-If you want your particles to fade in rather than instantly appear, set your first or last color to have a low Alpha value.
+粒子をすぐに表示されるのではなく、フェードインさせたい場合は、アルファ値が低くなるように、最初または最後の色を設定します。
 
 Attach:ParticleRainbow.png\\
-''An ``Animating Color`` Particle System''
+''''Animating Color''粒子システム''
 
 
 !!! Rotation Axes
 
-Setting values in either the Local or World ``Rotation Axes`` will cause all spawned particles to rotate around the indicated axis (with the $$Transform's$$ position as the center).  The greater the value is entered on one of these axes, the faster the rotation will be.
+ローカルまたはワールドの''Rotation Axes''のいずれかで値を設定すると、発生した粒子を指定した軸で回転させることができます （''$$Transform$$ の位置が中心となります）。  これらの軸のいずれかに入力する値が大きいほど、回転速度が上がります。
 
-Setting values in the Local Axes will cause the rotating particles to adjust their rotation as the Transform's rotation changes, to match its local axes.
+ローカル軸で値を設定すると、トランスフォームの回転の変更に合わせ、そのローカル軸に合うよう、回転する粒子の回転を調節できます。
 
-Setting values in the World Axes will cause the particles' rotation to be consistent, regardless of the Transform's rotation.
-
-
-!!! Forces & Damping
-
-You use force to make particles accelerate in the direction specified by the force.
-
-``Damping`` can be used to decelerate or accelerate without changing their direction:
-* A value of 1 means no ``Damping`` is applied, the particles will not slow down or accelerate.
-* A value of 0 means particles will stop immediately.
-* A value of 2 means particles will double their speed every second.
+ワールド軸で値を設定すると、トランスフォームの回転の変更に関係なく、粒子の回転は一定になります。
 
 
-!!! Destroying GameObjects attached to Particles
+!!! 力とダンピング
 
-You can destroy the Particle System and any attached $$GameObject$$ by enabling the ``AutoDestruct`` property.  For example, if you have an oil drum, you can attach a Particle System that has ``Emit`` disabled and ``AutoDestruct`` enabled.  On collision, you enable the Particle Emitter.  The explosion will occur and after it is over, the Particle System and the oil drum will be destroyed and removed from the scene.
+力を加えて、力が指定する方向に粒子を加速化できます。
 
-Note that automatic destruction takes effect only after some particles have been emitted. The precise rules for when the object is destroyed when ``AutoDestruct`` is on:
-* If there have been some particles emitted already, but all of them are dead now, ''or''
-* If the [[class-EllipsoidParticleEmitter | emitter]] did have ``Emit`` on at some point, but now ``Emit`` is off.
+''Damping''を使用して、方向を変えずに粒子を加速または減速できます。
+* 値が 1 の場合、''Damping''は適用されず、粒子は加速も減速もしません。
+* 値が 0 の場合は、粒子はすぐに停止します。
+* 値が 2 の場合は、粒子は毎秒その速度が 2 倍になります。
 
-!! Hints
-* Use the ``Color Animation`` to make your particles fade in & out over their lifetime - otherwise, you will get nasty-looking pops.
-* Use the ``Rotation Axes`` to make whirlpool-like swirly motions.
+
+!!! 粒子に追加された GameObject の破壊
+
+''AutoDestruct''プロパティを有効にすることで、粒子システムと 追加された $$GameObject$$ を破壊できます。  例えば、ドラム缶がある場合、''Emit''を無効にし、''AdutoDestruct''を有効にした粒子システムを追加できます。  衝突時、粒子エミッタを有効にします。  爆発が発生し、爆発後、粒子システムとドラム缶が破壊され、シーンから除去されます。
+
+自動破壊は、粒子が放出後にのみ効果を発揮します。 厳密に言うと、オブジェクトは''AutoDestruct''をオンにした時に、以下の場合に破壊されます。
+* すでに一部の粒子が放出されたが、そのすべてが今は存在しない場合、または
+* ある時点で [[class-EllipsoidParticleEmitter | emitter]] が''Emit''をオンにしたが、今はオフになっている場合。
+
+!! ヒント
+* ''Color Animation''を使用して、寿命中、粒子をフェードインおよびフェードアウトさせることができます。そうでない場合、不快な見た目の泡になります。
+* ''Rotation Axes''を使用して、渦巻きのような動きを作成できます。

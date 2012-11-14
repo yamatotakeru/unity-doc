@@ -1,31 +1,31 @@
-! Fixed Joint
+! 固定ジョイント
 
-$$Fixed Joints$$ restricts an object's movement to be dependent upon another object.  This is somewhat similar to $$Parenting$$ but is implemented through physics rather than $$Transform$$ hierarchy.  The best scenarios for using them are when you have objects that you want to easily break apart from each other, or connect two object's movement without parenting.
+$$Fixed Joints$$ は、オブジェクトの動きを別のオブジェクトに依存するよう制限します。  これは、$$Parenting$$ に若干似ていますが、$$Transform$$ 階層ではなく、物理特性を通じて実施されます。  パレンディングなしで、簡単に分解したいオブジェクトがある場合や、2 つのオブジェクトの動きを繋げたいシナリオで使用するのに最適です。
 
 Attach:Inspector-FixedJoint.png\\
-''The Fixed Joint $$Inspector$$''
+''固定ジョイント $$Inspector$$'''
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Connected Body`` ||Optional reference to the Rigidbody that the joint is dependent upon. If not set, the joint connects to the world. ||
-||``Break Force``   ||The force that needs to be applied for this joint to break. ||
-||``Break Torque``  ||The torque that needs to be applied for this joint to break. ||
+||``Connected Body`` ||ジョイントが依存するリジッドボディへのオプションの参照。 設定しないと、ジョイントはワールドに接続します。 ||
+||``Break Force``   ||このジョイントが分解するのに適用される必要のある力。 ||
+||``Break Torque``  ||このジョイントが分解するのに適用される必要のあるトルク。 ||
 
 
-!! Details
+!! 詳細
 
-There may be scenarios in your game where you want objects to stick together permanently or temporarily.  Fixed Joints may be a good $$Component$$ to use for these scenarios, since you will not have to script a change in your object's hierarchy to achieve the desired effect. The trade-off is that you must use $$Rigidbodies$$ for any objects that use a Fixed Joint.
+ゲーム内で、オブジェクトを完全にまたは一時的に結合したいシナリオがあることがあります。  固定ジョイントは、必要な効果を達成するのにオブジェクトの階層で変更を記述する必要がないため、こうしたシナリオに使用するのに適した $$Component$$ です。 矛盾点は、固定ジョイントを使用する任意のオブジェクトに $$Rigidbody$$ を使用する必要があることです。
 
-For example, if you want to use a "sticky grenade", you can write a script that will detect collision with another Rigidbody (like an enemy), and then create a Fixed Joint that will attach itself to that Rigidbody.  Then as the enemy moves around, the joint will keep the grenade stuck to them.
-
-
-!!! Breaking joints
-
-You can use the ``Break Force`` and ``Break Torque`` properties to set limits for the joint's strength.  If these are less than infinity, and a force/torque greater than these limits are applied to the object, its Fixed Joint will be destroyed and will no longer be confined by its restraints.
+例えば、''粘着手榴弾''を使用したい場合、別のリジッドボディ （敵など） との衝突を検出するスクリプトを記述し、固定ジョイント自体をそのリジッドボディに追加する固定ジョイントを作成できます。  これで、敵が動くと、ジョイントが手榴弾にくっついたままになります。
 
 
-!! Hints
-* You do not need to assign a ``Connected Body`` to your joint for it to work.
-* Fixed Joints require a Rigidbody.
+!!! ジョイントの分解
+
+''分解力''や''分解トルク''プロパティを使用して、ジョイントの強さに上限を設定できます。  これらが無限ではなく、上限より大きい力 / トルクがオブジェクトに適用される場合、その固定ジョイントは分介されず、またその制約によって限定されることはありません。
+
+
+!! ヒント
+* ''Connected Body''が機能するよう、ジョイントに割り当てる必要はありません。
+* 固定ジョイントには、リジッドボディが必要です。

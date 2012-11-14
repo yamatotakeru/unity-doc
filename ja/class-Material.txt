@@ -1,64 +1,64 @@
-! Material
+! マテリアル
 
-Materials are used in conjunction with [[class-MeshRenderer|Mesh]] or [[class-ParticleRenderer|Particle Renderers]] attached to the $$GameObject$$.  They play an essential part in defining how your object is displayed.  Materials include a reference to the $$Shader$$ used to render the $$Mesh$$ or $$Particles$$, so these Components can not be displayed without some kind of Material.
+マテリアルは、$$GameObject$$ に追加された [[class-MeshRenderer|Mesh]] または [[class-ParticleRenderer|Particle Renderers]] と併せて使用できます。  マテリアルは、オブジェクトの表示のされ方を定義する上で重要な役割を担っています。  マテリアルには、$$Mesh$$ または $$Particles$$のレンダリングに使用される $$Shader$$ への参照が含まれているため、これらのコンポーネントは、一部のマテリアルなしでは表示できない場合があります。
 
 Attach:Inspector-MaterialSimple.png\\
-''A Diffuse Shader Material has only two properties - a color and a texture.''
+''拡散シェーダ マテリアルには、色とテクスチャの 2 つのプロパティしかありません。''
 
-!!Properties
-The properties of any Material will change depending on the selected __Shader__.  These are the most often used properties:
+!!プロパティ
+マテリアルのプロパティは、選択した__シェーダ__によって変わります。  下記のプロパティは、最もよく使用されるプロパティです。
 ||PROPS
-||``Shader`` ||The Shader that will be used by the Material. For more information, read the [[Built-in Shader Guide]]. ||
-||``Main Color`` ||Any kind of color tint can be applied.  Use white for no tint. ||
-||``Base`` ||The $$Texture$$ that will be displayed. ||
+||``Shader`` ||マテリアルによって使用されるシェーダ。 詳細については、[[Built-in Shader Guide]] を参照してください。 ||
+||``Main Color`` ||適用できる色合い。  白の場合、色合いは付きません。 ||
+||``Base`` ||表示される $$Texture$$。 ||
 
 
-!! Details
+!! 詳細
 
-Materials are used to place [[class-Texture2D|Textures]] onto your GameObjects.  You cannot add a Texture directly without a Material, and doing so will implicitly create a new Material.  The proper workflow is to create a Material, select a Shader, and choose the Texture asset(s) to display along with it.  For more information on Materials, take a look at the Manual's page about [[Materials]].
+マテリアルを使用して、[[class-Texture2D|Textures]] を GameObject に置くことができます。  マテリアルなしでテクスチャを直接追加することはできません。追加しても、暗黙のうちに新しいマテリアルが作成されます。  適切なワークフローは、マテリアルを作成し、シェーダを選択、それと共に表示するテクスチャ アセットを選択することです。  マテリアルの詳細については、[[Materials]] に関するマニュアルのページを参照してください。
 
 
-!!! Choosing Shaders
+!!! シェーダの選択
 
-After you create your material, the first thing you should decide is which Shader to use.  You choose it from the drop-down ``Shader`` menu.
+マテリアル作成後は、まずどのシェーダを使用するかを決めます。  ドロップダウンの''Shader''メニューから選択します。
 
 Attach:Material-ShaderMenu.png
-''The ``Shader`` drop-down menu''
+''''Shader''ドロップダウン メニュー''
 
-You can choose any Shader that exists in your project's assets folder or one of the built-in Shaders. You can also create your own Shaders.  For more information on using the built-in Shaders, view the [[Built-in Shader Guide]].  For information on writing your own shaders, take a look at the [[Shaders]] section of the Manual and [[SL-Reference | ShaderLab Reference]].
+プロジェクトの Assets フォルダにあるシェーダか、または組み込みのシェーダを選択できます。 自身でシェーダを作成することもできます。  組み込みシェーダの使用の詳細については、[[Built-in Shader Guide]] を参照してください。  シェーダの作成の詳細については、マニュアルの [[Shaders]] および [[SL-Reference | ShaderLab Reference]] を参照してください。
 
 
-!!!Setting shader properties
+!!!シェーダ プロパティの設定
 
-Depending on the type of shader selected, a number of different properties can appear in the $$Inspector$$.
+選択したシェーダのタイプに応じて、各種プロパティが $$Inspector$$ に表示されます。
 
 Attach:Inspector-MaterialSpec.png\\
-''Properties of a Specular shader''
+''反射鏡シェーダのプロパティ''
 
 Attach:Inspector-MaterialBump.png\\
-''Properties of a Normal mapped shader''
+''法線マップ シェーダのプロパティ''
 
 Attach:Inspector-MaterialBumpSpec.png\\
-''Properties of a Normal mapped Specular shader''
+''法線マップ反射鏡シェーダのプロパティ''
 
-The different types of Shader properties are:
+シェーダには次の各種プロパティがあります。
 
 ||PROPS
-||$$Color pickers$$ ||Used to choose colors. ||
-||$$Sliders$$ ||Used to tweak a number value across the allowed range. ||
-||$$Textures$$ ||Used to select textures. ||
+||$$Color pickers$$ ||色を選択するのに使用されます。 ||
+||$$Sliders$$ ||許容範囲上で数値を微調整するのに使用されます。 ||
+||$$Textures$$ ||テクスチャの選択に使用されます。 ||
 
 
-!!!Texture placement
+!!!テクスチャの貼り付け
 
-The placement of the textures can be altered by changing the ``Offset`` and ``Tiling`` properties.
+''Offset''と''Tiling''プロパティを変更することで、テクスチャの貼り付けを変更できます。
 
 Attach:Material-Placement.png\\
-''This texture is tiled 2x2 times by changing the ``Tiling`` properties''
+''''Tiling''プロパティを変更することで、このテクスチャには 2x2 倍のタイルが貼られます''
 
 ||PROPS
-||``Offset`` ||Slides the Texture around. ||
-||``Tiling`` ||Tiles the Texture along the different axes. ||
+||``Offset`` ||テクスチャをスライドします。 ||
+||``Tiling`` ||異なる軸に沿ってテクスチャにタイルを張ります。 ||
 
-!!Hints
-* It is a good practice to share a single Material across as many GameObjects as possible.  This has great performance benefits.
+!!ヒント
+* できるだけ多くの GameObject 上で、1 つのマテリアルを共有する方がいいでしょう。  これには、非常に大きなパフォーマンス上の利点があります。

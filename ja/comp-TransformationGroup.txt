@@ -1,5 +1,5 @@
-! Transform Component
+! トランスフォーム コンポーネント
 
-This group is for all $$Components$$ that handle object positioning outside of Physics.
+このグループには、物理特性外に位置するオブジェクトを扱うすべての $$Component$$ が含まれます。
 
 (:tocportion:)

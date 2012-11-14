@@ -1,26 +1,26 @@
-! Layout Modes
+! レイアウト モード
 
 
-!! Fixed Layout vs Automatic Layout
+!! 固定レイアウトと自動レイアウト
 
-There are two different modes you can use to arrange and organize your GUIs: Fixed and Automatic.  Up until now, every UnityGUI example provided in this guide has used Fixed Layout.  To use Automatic Layout, write ``GUILayout`` instead of ``GUI`` when calling control functions.  You do not have to use one Layout mode over the other, and you can use both modes at once in the same ``OnGUI()`` function.
+GUI の配置と整理を行うには、 固定と自動の 2 つの方法があります。  本ガイドにUnityGUI　のすべての例では、固定レイアウトを使用してきました。  自動レイアウトを使用するには、コントロール関数を呼び出す際に、''GUI''の代わりに、''GUILayout''を記述します。  他方に対して、1 つのレイアウト モードを使用する必要はありませんが、同じ''OnGUI()''関数で一度に両方のモードを使用することができます。
 
-Fixed Layout makes sense to use when you have a pre-designed interface to work from.  Automatic Layout makes sense to use when you don't know how many elements you need up front, or don't want to worry about hand-positioning each Control.  For example, if you are creating a number of different buttons based on Save Game files, you don't know exactly how many buttons will be drawn.  In this case Automatic Layout might make more sense.  It is really dependent on the design of your game and how you want to present your interface.
+固定レイアウトは、事前に設計されたインターフェースで作業する場合に使用します。  自動レイアウトは、前もって必要な要素の数が分からない場合、または各コントロールの配置について気にしたくない場合に使用します。  例えば、Save Game ファイルに基づいて、各種ボタンを作成している場合、描画するボタンの数が分からないとします。  この場合、自動レイアウトを使用する方が便利です。  ゲームの設計とどのようにインターフェースを表示したいかに強く依存しています。
 
-There are two key differences when using Automatic Layout:
-* ``GUILayout`` is used instead of ``GUI``
-* No ``Rect()`` function is required for Automatic Layout Controls
+自動レイアウトを使用した場合、2 つの大きな差があります。
+* ''GUI''の代わりに、''GUILayout''を使用します。
+* 自動レイアウト コントロールには、''Rect()''関数が必要です。
 
 [@
-/* Two key differences when using Automatic Layout */
+/* 自動レイアウトを使用した場合の 2 つの大きな差 */
 
 
 // JavaScript
 function OnGUI () {
-	// Fixed Layout
+	// 固定レイアウト
 	GUI.Button (Rect (25,25,100,30), "I am a Fixed Layout Button");
 
-	// Automatic Layout
+	// 自動レイアウト
 	GUILayout.Button ("I am an Automatic Layout Button");
 }
 
@@ -32,10 +32,10 @@ using System.Collections;
 public class GUITest : MonoBehaviour {
 	
 	void OnGUI () {
-		// Fixed Layout
+		// 固定レイアウト
 		GUI.Button (new Rect (25,25,100,30), "I am a Fixed Layout Button");
 	
-		// Automatic Layout
+		// 自動レイアウト
 		GUILayout.Button ("I am an Automatic Layout Button");
 	}
 
@@ -43,31 +43,31 @@ public class GUITest : MonoBehaviour {
 @]
 
 
-!! Arranging Controls
+!! コントロールの配置
 
-Depending on which Layout Mode you're using, there are different hooks for controlling where your Controls are positioned and how they are grouped together.  In Fixed Layout, you can put different Controls into $$Groups$$.  In Automatic Layout, you can put different Controls into $$Areas$$, $$Horizontal Groups$$, and $$Vertical Groups$$
+使用しているレイアウト モードに応じて、コントロールを配置する場所やグループ化する方法をコントロールするための各種仕掛けがあります。  固定レイアウトでは、各種コントロールを $$Groups$$ に分けることができます。  自動レイアウトでは、各種コントロールを Areas$$、$$Horizontal Groups$$ および $$Vertical Groups$$ に分けることができます。
 
-!!! Fixed Layout - Groups
+!!! 固定レイアウト - グループ
 
-Groups are a convention available in Fixed Layout Mode.  They allow you to define areas of the screen that contain multiple Controls.  You define which Controls are inside a Group by using the ``GUI.BeginGroup()`` and ``GUI.EndGroup()`` functions. All Controls inside a Group will be positioned based on the Group's top-left corner instead of the screen's top-left corner.  This way, if you reposition the group at runtime, the relative positions of all Controls in the group will be maintained.
+グループを固定レイアウト モードで利用できる手法です。  これにより、複数のコントロールを含む画面のエリアを定義できます。  ''GUI.BeginGroup()''および''GUI.EndGroup()''関数を使用することで、グループ内に置くコントロールを定義できます。 グループ内にあるすべてのコントロールは、画面の左上ではなく、グループの左上に基づいて配置されます。  このように、ランタイム時にグループを最配置する場合、グループ内のすべてのコントロールの相対位置は維持されます。
 
-As an example, it's very easy to center multiple Controls on-screen.
+例として、画面上で複数のコントロールを中心に置くと非常に簡単です。
 
 [@
-/* Center multiple Controls on the screen using Groups */
+/* グループを使用して、画面上で複数のコントロールを中心に配置 */
 
 
 // JavaScript
 function OnGUI () {
-	// Make a group on the center of the screen
+	// 画面中心にグループを配置します
 	GUI.BeginGroup (Rect (Screen.width / 2 - 50, Screen.height / 2 - 50, 100, 100));
-	// All rectangles are now adjusted to the group. (0,0) is the topleft corner of the group.
+	// 今度は長方形がすべてグループに調整されます。 (0,0) はグループの左上です。
 	
-	// We'll make a box so you can see where the group is on-screen.
+	// グループが画面上のどこにあるかが分かるよう、ボックスを作成します。
 	GUI.Box (Rect (0,0,100,100), "Group is here");
 	GUI.Button (Rect (10,40,80,30), "Click me");
 	
-	// End the group we started above. This is very important to remember!
+	// 上で開始したグループを終了します。 これは覚えておいてください!
 	GUI.EndGroup ();
 }
 
@@ -79,15 +79,15 @@ using System.Collections;
 public class GUITest : MonoBehaviour {
 	
 	void OnGUI () {
-		// Make a group on the center of the screen
+		// 画面中心にグループを配置します
 		GUI.BeginGroup (new Rect (Screen.width / 2 - 50, Screen.height / 2 - 50, 100, 100));
-		// All rectangles are now adjusted to the group. (0,0) is the topleft corner of the group.
+		// 今度は長方形がすべてグループに調整されます。 (0,0) はグループの左上です。
 	
-		// We'll make a box so you can see where the group is on-screen.
+		// グループが画面上のどこにあるかが分かるよう、ボックスを作成します。
 		GUI.Box (new Rect (0,0,100,100), "Group is here");
 		GUI.Button (new Rect (10,40,80,30), "Click me");
 	
-		// End the group we started above. This is very important to remember!
+		// 上で開始したグループを終了します。 これは覚えておいてください!
 		GUI.EndGroup ();
 	}
 
@@ -95,12 +95,12 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-GroupCenteredControls.png\\
-''The above example centers controls regardless of the screen resolution''
+''上記の例では、画面解像度に関係なく、コントロールを中心に置きます''
 
-You can also nest multiple Groups inside each other. When you do this, each group has its contents clipped to its parent's space.
+それぞれの内部で複数のグループをネストすることもできます。 これを行うと、各グループは、その内容をその親の空間に対して、切り取らせます。
 
 [@
-/* Using multiple Groups to clip the displayed Contents */
+/* 複数のグループを使用して、表示内容を切り取ります */
 
 
 // JavaScript
@@ -109,21 +109,21 @@ var fgImage : Texture2D; // foreground image that is 256 x 32
 var playerEnergy = 1.0; // a float between 0.0 and 1.0
 
 function OnGUI () {
-	// Create one Group to contain both images
-	// Adjust the first 2 coordinates to place it somewhere else on-screen
+	// 両方の画像を含む 1 つのグループを作成します。
+	// 最初の 2 つの画像を調整して、画面上の任意の場所に置きます。
 	GUI.BeginGroup (Rect (0,0,256,32));
 
-	// Draw the background image
+	// 背景画像を描画します。
 	GUI.Box (Rect (0,0,256,32), bgImage);
 	
-	// Create a second Group which will be clipped
-	// We want to clip the image and not scale it, which is why we need the second Group
+	// 切り取られる 2 つ目のグループを作成します。
+	// 画像を切り取り、拡大したくないので、2 つ目のグループが必要になります。
 	GUI.BeginGroup (Rect (0,0,playerEnergy * 256, 32));
 
-	// Draw the foreground image
+	// 両方のグループを終了します
 	GUI.Box (Rect (0,0,256,32), fgImage);
 
-	// End both Groups
+	// 両方のグループを終了します。
 	GUI.EndGroup ();
 	GUI.EndGroup ();
 }
@@ -145,21 +145,21 @@ public class GUITest : MonoBehaviour {
 	public float playerEnergy = 1.0f; 
 	
 	void OnGUI () {
-		// Create one Group to contain both images
-		// Adjust the first 2 coordinates to place it somewhere else on-screen
+		// 両方の画像を含む 1 つのグループを作成します。
+		// 最初の 2 つの画像を調整して、画面上の任意の場所に置きます。
 		GUI.BeginGroup (new Rect (0,0,256,32));
 	
-		// Draw the background image
+		// 背景画像を描画します。
 		GUI.Box (new Rect (0,0,256,32), bgImage);
 	
-			// Create a second Group which will be clipped
-			// We want to clip the image and not scale it, which is why we need the second Group
+			// 切り取られる 2 つ目のグループを作成します。
+			// 画像を切り取り、拡大したくないので、2 つ目のグループが必要になります。
 			GUI.BeginGroup (new Rect (0,0,playerEnergy * 256, 32));
 		
-			// Draw the foreground image
+			// 両方のグループを終了します
 			GUI.Box (new Rect (0,0,256,32), fgImage);
 		
-			// End both Groups
+			// 両方のグループを終了します
 			GUI.EndGroup ();
 		
 		GUI.EndGroup ();
@@ -169,17 +169,17 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-NestedGroupsClipping.png\\
-''You can nest Groups together to create clipping behaviors''
+''切り取り動作を作成するため、グループを一緒にネストします。''
 
 
-!!! Automatic Layout - Areas
+!!! 自動レイアウト - エリア
 
-Areas are used in Automatic Layout mode only.  They are similar to Fixed Layout Groups in functionality, as they define a finite portion of the screen to contain GUILayout Controls.  Because of the nature of Automatic Layout, you will nearly always use Areas.
+エリアは、自動レイアウトでのみ使用されます。  GUILayout コントロールを含ませるための画面の制限された部分を定義するため、機能は固定レイアウトに似ています。  自動レイアウトの性質上、ほとんど常にエリアを使用することになります。
 
-In Automatic Layout mode, you do not define the area of the screen where the Control will be drawn at the Control level.  The Control will automatically be placed at the upper-leftmost point of its containing area.  This might be the screen.  You can also create manually-positioned Areas.  GUILayout Controls inside an area will be placed at the upper-leftmost point of that area.
+自動レイアウト モードでは、コントロールがコントロール レベルで描画される画面のエリアを定義しません。  コントロールは自動的に含んでいるエリアの左上に配置されます。  これは画面の場合があります。  自身で手動配置されたエリアを作成することもできます。  エリア内の GUILayout コントロールは、エリアの左上に配置されます。
 
 [@
-/* A button placed in no area, and a button placed in an area halfway across the screen. */
+/* エリアに配置されていないボタン、画面の途中のエリアで配置されたボタン。 */
 
 
 // JavaScript
@@ -207,19 +207,19 @@ public class GUITest : MonoBehaviour {
 }
 @]
 
-Notice that inside an Area, Controls with visible elements like Buttons and Boxes will stretch their width to the full length of the Area.
+エリア内で、ボタンやボックスのような表示要素は、その幅をエリアの全体の長さにまで延長します。
 
 
-!!! Automatic Layout - Horizontal and Vertical Groups
+!!! 自動レイアウト - 水平と垂直グループ
 
-When using Automatic Layout, Controls will by default appear one after another from top to bottom.  There are plenty of occasions you will want finer level of control over where your Controls are placed and how they are arranged.  If you are using the Automatic Layout mode, you have the option of Horizontal and Vertical Groups.
+自動レイアウトを使用すると、コントロールはデフォルトで次々と上から下に表示されます。  コントロールを配置する場所および配置方法をより繊細にコントロールする必要がある場合が多くあります。  自動レイアウト モードを使用している場合、水平および垂直グループのオプションがあります。
 
-Like the other layout Controls, you call separate functions to start or end these groups.  The specific functions are ``GUILayout.BeginHoriztontal()``, ``GUILayout.EndHorizontal()``, ``GUILayout.BeginVertical()``, and ``GUILayout.EndVertical()``.
+その他のレイアウト コントロール同様、個々の関数を呼び出して、これらのグループを開始または終了できます。  この関数は、''GUILayout.BeginHoriztontal()''、''GUILayout.EndHorizontal()''、''GUILayout.BeginVertical()''および''GUILayout.EndVertical()''です。
 
-Any Controls inside a Horizontal Group will always be laid out horizontally.  Any Controls inside a Vertical Group will always be laid out vertically.  This sounds plain until you start nesting groups inside each other.  This allows you to arrange any number of controls in any imaginable configuration.
+水平グループ内のコントロールは常に水平に配置されます。  垂直グループ内のコントロールは常に垂直に配置されます。  これは、グループをそれぞれの内部でネスト化するまでは簡単に聞こえます。  これにより、想像できる構成で、任意の数のコントロールを配置できます。
 
 [@
-/* Using nested Horizontal and Vertical Groups */
+/* ネスト化された水平と垂直グループの使用 */
 
 
 // JavaScript
@@ -228,27 +228,27 @@ var maxSliderValue = 10.0;
 
 function OnGUI()
 {
-	// Wrap everything in the designated GUI Area
+	// 指定した GUI エリア内のすべてをラップします。
 	GUILayout.BeginArea (Rect (0,0,200,60));
 
-	// Begin the singular Horizontal Group
+	// 1 つの水平グループを開始します。
 	GUILayout.BeginHorizontal();
 
-	// Place a Button normally
+	// ボタンを通常通りに配置します。
 	if (GUILayout.RepeatButton ("Increase max\nSlider Value"))
 	{
 		maxSliderValue += 3.0 * Time.deltaTime;
 	}
 
-	// Arrange two more Controls vertically beside the Button
+	// 2 つ以上のコントロールをボタン内に垂直に配置します。
 	GUILayout.BeginVertical();
 	GUILayout.Box("Slider Value: " + Mathf.Round(sliderValue));
 	sliderValue = GUILayout.HorizontalSlider (sliderValue, 0.0, maxSliderValue);
 
-	// End the Groups and Area
+	// グループとエリアを終了します。
 	GUILayout.EndVertical();
 	GUILayout.EndHorizontal();
-	GUILayout.EndArea();
+	GUILayout.EndArea ();
 }
 
 
@@ -290,17 +290,17 @@ public class GUITest : MonoBehaviour {
 @]
 
 Attach:gsg-NestedGroupsLayout.png\\
-''Three Controls arranged with Horizontal & Vertical Groups''
+''水平と垂直グループで配置された 3 つのコントロール''
 
 
-!! Using GUILayoutOptions to define some controls
+!! 一部のコントロールを制御するための GUILayoutOptions の使用
 
-You can use GUILayoutOptions to override some of the Automatic Layout parameters.  You do this by providing the options as the final parameters of the GUILayout Control.
+GUILayoutOptions を使用して、自動レイアウト パラメータの一部を無効にできます。  これは、GUILayout コントロールの最終パラメータを渡すことで行います。
 
-Remember in the Areas example above, where the button stretches its width to 100% of the Area width?  We can override that if we want to.
+上記の例のエリアでは、ボタンはその幅をエリアの最大幅に延長します。  必要な場合はこれを無効にできます。
 
 [@
-/* Using GUILayoutOptions to override Automatic Layout Control properties */
+/* 自動レイアウト コントロール プロパティを無効にするための GUILayoutOptions の使用 */
 
 
 //JavaScript
@@ -328,4 +328,4 @@ public class GUITest : MonoBehaviour {
 }
 @]
 
-For a full list of possible GUILayoutOptions, please read the [[ScriptRef:GUILayoutOption.html | GUILayoutOption Scripting Reference page]].
+考えられる GUILayoutOptions の完全なリストに関しては、[[ScriptRef:GUILayoutOption.html | GUILayoutOption Scripting Reference page]] を参照してください。

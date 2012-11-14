@@ -1,5 +1,5 @@
-! Mesh Components
+! メッシュ コンポーネント
 
-3D $$Meshes$$ are the main graphics primitive of Unity. Various components exist in Unity to render regular or skinned meshes, trails or 3D lines.
+3D $$Mesh$$ は、Unity の主なグラフィック プリミティブです。 通常またはスキン メッシュ、トレイルまたは 3D 線をレンダリングするための、Unity にある各種コンポーネント。
 
 (:tocportion:)

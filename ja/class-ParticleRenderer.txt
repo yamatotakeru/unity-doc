@@ -1,62 +1,62 @@
-! Particle Renderer (Legacy)
+! 粒子レンダラ（旧パーティクルシステム）
 
-The $$Particle Renderer$$ renders the $$Particle System$$ on screen.
+$$Particle Renderer$$ は、画面上の $$Particle System$$ をレンダリングします。
 
 Attach:Inspector-ParticleRenderer.png\\
-''The Particle Renderer $$Inspector$$''
+''粒子レンダラ $$Inspector$$''
 
 
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Materials`` ||Reference to a list of $$Materials$$ that will be displayed in the position of each individual particle. ||
-||``Camera Velocity Scale`` ||The amount of stretching that is applied to the Particles based on [[class-Camera|Camera]] movement. ||
-||``Stretch Particles`` ||Determines how the particles are rendered. ||
-||>>>``Billboard`` ||The particles are rendered as if facing the camera. ||
-||>>>``Stretched`` ||The particles are facing the direction they are moving. ||
-||>>>``SortedBillboard`` ||The particles are sorted by depth. Use this when using a blending material. ||
-||>>>``VerticalBillboard`` ||All particles are aligned flat along the X/Z axes. ||
-||>>>``HorizontalBillboard`` ||All particles are aligned flat along the X/Y axes. ||
-||``Length Scale`` ||If ``Stretch Particles`` is set to ``Stretched``, this value determines how long the particles are in their direction of motion. ||
-||``Velocity Scale`` ||If ``Stretch Particles`` is set to ``Stretched``, this value determines the rate at which particles will be stretched, based on their movement speed. ||
-||``UV Animation`` ||If either of these are set, the UV coordinates of the particles will be generated for use with a tile animated texture. See the section on [[#AnimatedTextures|Animated Textures]] below. ||
-||>>>``X Tile`` ||Number of frames located across the X axis. ||
-||>>>``Y Tile`` ||Number of frames located across the Y axis. ||
-||>>>``Cycles`` ||How many times to loop the animation sequence. ||
+||``Materials`` ||個々の粒子の位置に表示される $$Materials$$ のリストへの参照。 ||
+||``Camera Velocity Scale`` ||[[class-Camera|Camera]] ノ動きに基づいて粒子に適用される伸張の量。 ||
+||``Stretch Particles`` ||粒子をどのようにレンダリングするかを決定します。 ||
+||>>>``Billboard`` ||粒子がカメラの方を向くようにレンダリングされます。 ||
+||>>>``Stretched`` ||粒子が移動している方向を向きます。 ||
+||>>>``SortedBillboard`` ||粒子が深さで並び替えられます。 ブレンディング マテリアル使用時に使用します。 ||
+||>>>``VerticalBillboard`` ||すべての粒子が X/Z 軸に沿って一律で配列されます。 ||
+||>>>``HorizontalBillboard`` ||すべての粒子が X/Y 軸に沿って一律で配列されます。 ||
+||``Length Scale`` ||''Stretch Particles''を''Stretched''に設定すると、この値は、粒子が動きの方向にある時間を決定します。 ||
+||``Velocity Scale`` ||''Stretch Particles''を''Stretched''に設定すると、この値は、粒子の移動速度に基づき、粒子が伸長される速度を決定します。 ||
+||``UV Animation`` ||これらのいずれかを設定すると、タイルのアニメート化テクスチャで使用するために、粒子のUV 座標が生成されます。 下記の [[#AnimatedTextures|Animated Textures]] に関する項目を参照してください。 ||
+||>>>``X Tile`` ||X 軸にあるフレーム数。 ||
+||>>>``Y Tile`` ||Y 軸にあるフレーム数。 ||
+||>>>``Cycles`` ||アニメーション シーケンスをループさせる回数。 ||
 
 
-!! Details
+!! 詳細
 
-Particle Renderers are required for any Particle Systems to be displayed on the screen.
+画面上で粒子システムを表示するには、粒子レンダラが必要です。
 
 Attach:ParticleRendererExhaust.png\\
-''A Particle Renderer makes the Gunship's engine exhaust appear on the screen''
+''粒子レンダラにより、武装ヘリのエンジンが画面上で消耗しているように見せます''
 
 
-!!! Choosing a Material
+!!! マテリアルの選択
 
-When setting up a Particle Renderer it is very important to use an appropriate material and shader that renders both sides of the material. Most of the time you want to use a Material with one of the built-in Particle Shaders. There are some premade materials in the ^^Standard Assets->Particles->Sources^^ folder that you can use.
+粒子レンダラを設定する際、適切なマテリアルと、そのマテリアルの両側をレンダリングするシェーダを使用する必要があります。 組み込みの粒子シェーダのいずれかを使用したいことが多くあるでしょう。 使用できる ^^Standard Assets->Particles->Sources^^ フォルダ内に予め用意されたマテリアルがあります。
 
-Creating a new material is easy:
-# Select ^^Assets->Create Other->Material^^ from the menu bar.
-# The [[class-Material|Material]] has a shader popup, choose one of the shaders in the Particles group. Eg. ^^Particles->Multiply^^.
-# Now assign a Texture. The different shaders use the alpha channel of the textures slightly differently, but most of the time a value of black will make it invisible and white in the alpha channel will display it on screen.
+マテリアルは、以下の手順で簡単に作成できます。
+# メニューバーから ^^GameObject->Create Other->Materia^^ を選択します。
+# [[class-Material|Material]] には、シェーダ ポップアップがあり、^^Particles->Multiply^^ などから粒子グループでそのシェーダの 1 つを選択します。
+# 次にテクスチャを割り当てます。 シェーダによって、使用するテクスチャのアルファ チャンネルが若干異なりますが、ほとんどの場合、アルファ チャンネルが黒の値だと、画面に表示されず、白の値だと画面に表示されます。
 
 
-!!! Distorting particles
+!!! 粒子の歪曲
 
-By default particles are rendered billboarded. That is simple square sprites. This is good for smoke and explosions and most other particle effects.
+デフォルトでは、粒子はビルボードでレンダリングされます。 簡単な正方形のスプライトになります。 煙や爆発、その他ほとんどの粒子効果に適しています。
 
-Particles can be made to either stretch with the velocity. This is useful for sparks, lightning or laser beams. ``Length Scale`` and ``Velocity Scale`` affects how long the stretched particle will be.
+粒子を作成して、速度ありで伸張させることができます。 火花や稲妻、レーザー光を作成するのに便利です。 ''Length Scale''と''Velocity Scale''は、伸張された粒子の時間に影響します。
 
-``Sorted Billboard`` can be used to make all particles sort by depth. Sometimes this is necessary, mostly when using ^^Alpha Blended^^ particle shaders. This can be expensive and should only be used if it really makes a quality difference when rendering.
+''Sorted Billboard''を使用して、すべての粒子を深さで並び替えることができます。 これが必要な場合があります （殆どの場合は、^^Alpha Blended^^ 粒子シェーダの使用時）。 これは高価なので、レンダリング時に画質に差を出したい時にのみ使用した方がよいでしょう。
 
 
 [[#AnimatedTextures]]
 
-!!! Animated textures
+!!! アニメート化テクスチャ
 
-Particle Systems can be rendered with an animated tile texture. To use this feature, make the texture out of a grid of images. As the particles go through their life cycle, they will cycle through the images. This is good for adding more life to your particles, or making small rotating debris pieces.
+粒子システムはアニメート化タイル テクスチャでレンダリングできます。 この機能を使用するには、テクスチャを画像のグリッド外に置く必要があります。 粒子の寿命が尽きると、粒子は画像を循環します。 これは、粒子に寿命を更に追加する場合や、回転する小さい破片を作成するのに便利です。
 
-!!Hints
-* Use Particle Shaders with the Particle Renderer.
+!!ヒント
+* 粒子シェーダは粒子レンダラと併用してください。

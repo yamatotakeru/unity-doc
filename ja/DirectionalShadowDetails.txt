@@ -1,25 +1,24 @@
-! Directional Shadow Details
-
-This page explains [[Shadows|shadows]] from $$Directional$$ lights in detail.
-
+! ディレクショナル シャドウ詳細
 
 >>u30<<
-__Note on Mobile platforms__: realtime shadows are not supported on iOS & Android.
+__モバイルプラットフォームにおける注意__: リアルタイムシャドウはiOSとAndroidでは対応していません。
 >><<
 >>u40<<
-__Note on Mobile platforms__: realtime shadows for directional lights __always__ use 1 shadow cascade, and are always "hard shadows".
+__モバイルプラットフォームにおける注意__: ディレクショナルライトによるリアルタイムシャドウは__いつも__１つのシャドウカスケードを使います。''hard shadows''限定です。
 >><<
 
-Directional lights are mostly used as a key light - sunlight or moonlight - in an outdoor game. Viewing distances can be huge, especially in first and third person games, and shadows often require some tuning to get the best quality vs. performance balance for your situation.
+本ページでは、 $$Directional$$ からの [[Shadows|shadows]] ライトの詳細について説明します。
 
-Let's start out with a good looking shadow setup for a 3rd person game:
+ディレクショナル ライトは多くの場合、屋外のゲームで主光線 (日光や月光) として使用されます。 特に一人称視点および三人称視点のゲームで、表示距離が大きい場合があり、シャドウを微調整して、状況に対して、画質とパフォーマンスの最適なバランスを得る必要がある場合が多くあります。
+
+三人称視点のゲームで見た目のよい影の作成から始めましょう。
 
 Attach:Shadow50-4hs.png\\
-''Shadows here look pretty good!''
+''ここの影はかなり見た目がいいです!''
 
-Here, visible distance is about 50 game units, so ``Shadow Distance`` was set to 50 in [[class-QualitySettings|Quality Settings]]. Also, ``Shadow Cascades`` was set to 4, ``Shadow Resolution`` to High, and the light uses ``Soft Shadows``.
+ここでは、表示距離は、およそ 50 ゲーム単位であるため、''Shadow Distance''が [[class-QualitySettings|Quality Settings]] で 50 に設定しています。 また、''Shadow Cascades''を 4、''Shadow Resolution''を High、ライトとして、''Soft Shadows''を使用しています。
 
-Chapters below dissect each aspect of directional light shadows:
+以降の章では、ディレクショナル ライトのシャドウの各面について詳しく説明します。
 * [[#hardvssoft | Hard versus Soft shadows]]
 * [[#cascades | Shadow Cascade count]]
 * [[#distance | Shadow Distance is Important!]]
@@ -28,66 +27,66 @@ Chapters below dissect each aspect of directional light shadows:
 [[#hardvssoft]]
 !! Hard versus Soft shadows
 
-Using the same light setup, if we switch ``Shadow Type`` to ``Hard Shadows``, then the transition from lit to shadowed regions is "hard" - either something is 100% in shadow, or 100% lit. Hard shadows are faster to render but often they look less realistic.
+U同じライト設定を使用して、''Shadow Type''から''Hard Shadows''に切り替える場合、明るいエリアから影のエリアへの移行は''Hard''で、100% 影、または100% 明るいかのいずれかになります。 Hard shadows は、高速でレンダリングされますが、見た目が現実的でなくなります。
 
 Attach:Shadow50-4hh.png\\
-''Hard shadows with distance of 50 and four cascades.''
+''距離が 50 で、4 つのカスケードのある Hard shadows。''
 
 
 [[#cascades]]
 !! Shadow Cascade count
 
-For Directional lights Unity can use so called $$Cascaded Shadow Maps$$ (alternatively called "Parallel Split Shadow Maps") which give very good shadow quality, especially for long viewing distances. Cascaded shadows work by dividing viewing area into progressively larger portions and using the same size shadow map on each. The result is that objects close to the viewer get more shadow map pixels than objects far away.
+ディレクショナル ライトの場合、Unity はいわゆる $$Cascaded Shadow Maps$$ (別名''Parallel Split Shadow Maps'')を使用できます。これは、特に長い表示距離の場合に、非常に質が優れた影を提供します。 カスケード シャドウは、表示エリアを徐々に大きい部分に分割し、それぞれで同じサイズのシャドウを使用することで、機能します。 この結果、ビューワに近いオブジェクトは、遠くにあるオブジェクトよりもシャドウ マップ ピクセルが多くなります。
 
-In the images below we'll use Hard shadows because shadow pixels are better visible there.
+下の画像では、シャドウ ピクセルがよりよく見えるようになるため、Hard shadows を使用します。
 
-If no cascaded shadow maps were used, the entire shadow distance (still 50 units in our case) must be covered by the shadow texture uniformly. Hard shadows would look like this with no cascades:
+カスケード シャドウ マップを使用していないため、シャドウ ディスタンス全体 （この場合は、まだ 50 単位) がシャドウ テクスチャによって均一に覆われる必要があります。 ハード シャドウは、カスケードなしで次のように見えます。
 
 Attach:Shadow50-1hh.png\\
-''Hard shadows with distance of 50 and no cascades.''
+''距離が 50 で、カスケードなしのハード シャドウ。''
 
-The pixels of the shadow texture are the same size everywhere, and while they look good in distance, the quality is not stellar up close. The shadow texture covers the entire viewing area, and if visualized it would look like this:
+シャドウ テクスチャのピクセルは、どこでの同じサイズで、遠くにあると見た目はよいですが、近くに来るに連れ、画質は下がります。 シャドウ マップは、表示エリア全体を覆い、視覚化すると、次のように見えます。
 
 Attach:Cascades1.png\\
-''With no cascades, shadow texture covers viewing area uniformly.''
+''カスケードがないと、シャドウ テクスチャが表示エリアを均一に覆います。''
 
-When two shadow cascades are used, the entire shadow distance is divided into a smaller chunk near the viewer and a larger chunk far away. Hard shadows would look like this with two cascades:
+2 つのシャドウ カスケードが使用されると、シャドウ ディスタンス全体がビューワ近くだと小さな塊に、遠くだと大きな塊に分割されます。 カスケードが 2 つの場合、ハード シャドウは次のように見えます。
 
 Attach:Shadow50-2hh.png\\
-''Hard shadows with distance of 50 and two cascades.''
+''距離が 50 で、2 つのカスケードのあるハード シャドウ。''
 
-In exchange for some performance, we get better shadow resolution up close.
+パフォーマンスと引き換えに、近づくに連れ、シャドウの解像度が上がります。
 
 Attach:Cascades2.png\\
-''With two cascades, two shadow textures cover different sized portions of viewing area.''
+''カスケードが 2 つの場合、2 つのシャドウ テクスチャは、表示エリアの異なるサイズの部分を覆います。''
 
-And finally when four shadow cascades are used, the shadow distance is divided into four progressively larger portions. Hard shadows would look like this with four cascades:
+最後に、4 つのカスケードを使用すると、シャドウ ディスタンスは、次第に 4 つの大きな部分に分割されます。 カスケードが 4 つの場合、ハード シャドウは次のように見えます。
 
 Attach:Shadow50-4hh.png\\
-''Hard shadows with distance of 50 and four cascades. Hey, we've seen this already!''
+''距離が 50 で、4 つのカスケードのあるハード シャドウ。'' これはすでに見ました!''
 
 Attach:Cascades4.png\\
-''With four cascades, four shadow textures cover different sized portions of viewing area.''
+''カスケードが 4 つの場合、4 つのシャドウ テクスチャは、表示エリアの異なるサイズの部分を覆います。''
 
 
 [[#distance]]
-!!Shadow Distance is Important!
+!!Shadow Distance は重要です!
 
-``Shadow Distance`` is extremely important for both quality and performance of directional light shadows. Just like shadow cascade count, shadow distance can be set in [[class-QualitySettings|Quality Settings]] and allows an easy way to scale shadows down on less performant hardware.
+''Shadow Distance''は、ディレクショナル ライトのシャドウの画質およびパフォーマンスの両方にとって非常に重要です。 シャドウ カスケード カウントの数同様、シャドウ ディスタンスは、[[class-QualitySettings|Quality Settings]] で設定でき、少ないハードウェアのパフォーマンスで、簡単にシャドウを縮小できます。
 
-Shadows fade out at the end of shadow distance, and further than that objects are not shadowed. In most situations shadows further than some distance in the game would not be noticeable anyway!
+Shadow Distance の端でシャドウがフェードアウトし、そこから先では、オブジェクトにシャドウは投影されません。 ほとんどの場合、ゲーム内の一定の距離を超えたシャドウは目立たなくなります!
 
-With no shadow cascades, hard shadows and shadow distance set to 20 units our shadows look like picture below. Note that shadows do fade out in the distance, but at the same time shadow quality is much better than it was with no cascades and a distance of 50 units.
+シャドウ カスケードがない場合、20 単位に設定されたハード シャドウとシャドウ ディスタンスは、下の写真のようになります。 シャドウは遠くではフェードアウトしますが、同時にシャドウの画質はカスケードなしで、距離が 50 単位の場合よりもはるかに上がります。
 
 Attach:Shadow20-1hh.png
-''Hard shadows with distance of 20 and no cascades.''
+''距離が 20 で、カスケードなしのハード シャドウ。''
 
-If on the other hand we set shadow distance too high, shadows won't look good at all. Setting distance to 100 here only decreases both performance and quality and does not make much sense - no objects in the scene are further than about 50 meters anyway!
+一方、シャドウ ディスタンスが高すぎると、シャドウの見た目は完全に悪くなります。 距離を 100 に設定すると、パフォーマンスと画質の両方が下がり、意味がなくなります。50 メートルより遠くなると、シーン内にオブジェクトはありません。
 
 Attach:Shadow100-1hh.png
-''Hard shadows with distance of 100 and no cascades. Ouch!''
+''距離が 100 で、カスケードなしのハード シャドウ。'' 痛い!
 
-Shadow maps with cascades scale with distance much better. For example, four cascade soft shadows with covering 300 units in front of the camera look like picture below. It's somewhat worse than the picture at the top of this page, but not very bad either for a 6x increase in shadowing distance (of course in this scene that high shadow distance does not make much sense).
+カスケードのあるシャドウ マップは距離と共によりよく拡大します。 例えば、カメラの前で 300 単位をカバーする 4 つのカスケード ソフト シャドウは下の写真のように見えます。 このページの上にある写真よりも悪くなりますが、シャドーイング距離を 6x に増やすと、あまり悪くはなりません (当然、このシーンでは、シャドウ ディスタンスを高くしても意味はありません)。
 
 Attach:Shadow300-4hs.png
-''Soft shadows with distance of 300 and four cascades.''
+''距離が 300 で、4 つのカスケードのあるソフト シャドウ。''

@@ -1,13 +1,13 @@
-! GameObjects
+! GameObject
 
-$$GameObjects$$ are the most important objects in Unity.  It is very important to understand what a GameObject is, and how it can be used.  This page will explain all that for you.
+$$GameObjects$$ は、Unity で最も重要なオブジェクトです。  GameObject とは何か、どのように使用できるかを理解することが非常に重要です。  このページでは、そのすべてについて説明します。
 
-!! What are GameObjects?
+!! GameObject とは何ですか?
 
-Every object in your game is a GameObject.  However, GameObjects don't do anything on their own.  They need special properties before they can become a character, an environment, or a special effect.  But every one of these objects does so many different things.  If every object is a GameObject, how do we differentiate an interactive power-up object from a static room?  What makes these GameObjects different from each other?
+ゲーム内のすべてのオブジェクトはすべて本質的に、GameObject になります。  しかし、GameObject は自身では何もしません。  キャラクターや環境、特殊効果になるには、特殊なプロパティが必要です。  これらのオブジェクトはすべて動作が異なります。  すべてのオブジェクトが GameOnject の場合、相互作用パワーアップオブジェクトをスタティック ルームとどのように区別するでしょうか?  これらの GameObject を互いに差別化するものは何でしょうか?
 
-The answer to this question is that GameObjects are containers.  They are empty boxes which can hold the different pieces that make up a lightmapped island or a physics-driven car.  So to really understand GameObjects, you have to understand these pieces; they are called $$Components$$.  Depending on what kind of object you want to create, you will add different combinations of Components to the GameObject.  Think of a GameObject as an empty cooking pot, and Components as different ingredients that make up your recipe of gameplay.  You can also make your own Components using Scripts.
+この質問の回答は、GameObject は容器です。  これらは空の箱で、ライトマップされた孤島または物理特性駆動の車両を構成する各種ピースを格納できる空の箱です。  そのため、GameObject を本当に理解するには、これらのピースを理解する必要があります。これらのピースは $$Components$$ と呼ばれます。  作成したいオブジェクトの種類に応じて、異なる組み合わせのコンポーネントを GameObject に追加します。  GameObject は、空の鍋、コンポーネントはゲームプレイというレシピを構成する各種材料と考えてください。  スクリプトを使用して、自身でコンポーネントを作成することもできます。
 
-You can read more about GameObjects, Components, and Script Components on the pages in this section:
+本項のページでは、GameObject、コンポーネントおよびスクリプト コンポーネントについて記載されています。
 
 (:tocportion:)

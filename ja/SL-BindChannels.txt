@@ -1,44 +1,44 @@
-! ShaderLab syntax: BindChannels
+! ShaderLab 構文: BindChannels
 
-$$BindChannels$$ command allows you to specify how vertex data maps to the graphics hardware.
+$$BindChannels$$ コマンドにより、頂点データがグラフィック ハードウェアにどのようにマッピングされるかを指定できます。
 
-''BindChannels has no effect when programmable vertex shaders are used, as in that case bindings are controlled by vertex shader inputs.''
+''BindChannels は、プログラム可能な頂点シェーダの使用タイミングには影響しません。その場合、バインディングは頂点 シェーダ入力で制御されます。''
 
-By default, Unity figures out the bindings for you, but in some cases you want custom ones to be used. 
+デフォルトでは、Unity がバインディングを算定しますが、カスタムのバインディングを使用したい場合もあるでしょう。 
 
-For example you could map the primary UV set to be used in the first texture stage and the secondary UV set to be used in the second texture stage; or tell the hardware that vertex colors should be taken into account.
+例えば、1 つ目のテクスチャ ステージで使用されるよう設定された 1 つ目の UV と 2 つ目のテクスチャ ステージで使用されるように設定された 2 つ目の UV  をマッピングするか、頂点色を考慮するようハードウェアに指示できます。
 
-!! Syntax
-:__BindChannels__ __{__ __Bind__ "''source''", ''target'' __}__ : Specifies that vertex data ''source'' maps to hardware ''target''.
+!! 構文
+:__BindChannels__ __{__ __Bind__ "''source''", ''target'' __}__ : ハードウェアの''ターゲット''に頂点データの''ソース''マップを指定します。
 
-__Source__ can be one of:
-* ``Vertex``: vertex position
-* ``Normal``: vertex normal
-* ``Tangent``: vertex tangent
-* ``Texcoord``: primary UV coordinate
-* ``Texcoord1``: secondary UV coordinate
-* ``Color``: per-vertex color
+__ソース__は、次のうちのいずれかになります。
+* ``Vertex``: 頂点の位置
+* ``Normal``: 頂点の法線
+* ``Tangent``: 頂点の接線
+* ``Texcoord``: 1 つ目の UV 座標
+* ``Texcoord1``: 2 つ目の UV 座標
+* ``Color``: 頂点ごとの色
 
-__Target__ can be one of:
-* ``Vertex``: vertex position
-* ``Normal``: vertex normal
-* ``Tangent``: vertex tangent
-* ``Texcoord0``, ``Texcoord1``, ...: texture coordinates for corresponding texture stage
-* ``Texcoord``: texture coordinates for all texture stages
-* ``Color``: vertex color
+__ターゲット__は、次のうちのいずれかになります。
+* ``Vertex``: 頂点の位置
+* ``Normal``: 頂点の法線
+* ``Tangent``: 頂点の接線
+* ``Texcoord0``, ``Texcoord1``, ...: 対応するテクスチャ ステージに対するテクスチャ座標
+* ``Texcoord``: すべてのテクスチャ ステージに対するテクスチャ座標
+* ``Color``: 頂点の色
 
-!! Details
+!! 詳細
 
-Unity places some restrictions on which sources can be mapped to which targets. Source and target must match for ``Vertex``, ``Normal``, ``Tangent`` and ``Color``. Texture coordinates from the mesh (``Texcoord`` and ``Texcoord1``) can be mapped into texture coordinate targets (``Texcoord`` for all texture stages, or ``TexcoordN`` for a specific stage).
+Unity には、ターゲットと、それにマッピングされるソースに関して厳しい制約があります。 ソースと目標は、''Vertex''、''Normal''、''Tangent''および''Color''に対して一致する必要があります。 メッシュからのテクスチャ (''Texcoord''および''Texcoord1'') はテクスチャ座標のターゲット (すべてのテクスチャ ステージに対しては''Texcoord''、指定したステージに対して、''TexcoordN'') にマッピングできます。
 
-There are two typical use cases for BindChannels:
-* Shaders that take vertex colors into account.
-* Shaders that use two UV sets.
+BindChannels に対して、通常、次の 2 つの使用事例があります。
+* 頂点色を考慮するシェーダ。
+* 2 つの UV セットを使用するシェーダ。
 
-!! Examples
+!! 例
 
-[@// Maps the first UV set to the first texture stage
-// and the second UV set to the second texture stage
+[@// 1 つ目の UV を 1 つ目のテクスチャ ステージに設定させます。
+[@// 2 つ目の UV を 2 つ目のテクスチャ ステージに設定させます。
 BindChannels {
    Bind "Vertex", vertex
    Bind "texcoord", texcoord0
@@ -46,8 +46,8 @@ BindChannels {
 } @]
 
 
-[@// Maps the first UV set to all texture stages
-// and uses vertex colors
+[@// 1 つ目の UV すべてのテクスチャ ステージに設定させます。
+// 頂点色を使用します。
 BindChannels {
    Bind "Vertex", vertex
    Bind "texcoord", texcoord

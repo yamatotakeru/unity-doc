@@ -1,26 +1,26 @@
-! Audio Listener
+! オーディオ リスナー
 
-The $$Audio Listener$$ acts as a microphone-like device. It receives input from any given [[class-AudioSource|Audio Source]] in the scene and plays sounds through the computer speakers. For most applications it makes the most sense to attach the listener to the Main [[class-Camera|Camera]]. If an audio listener is within the boundaries of a [[ class-AudioReverbZone | Reverb Zone]] reverberation is applied to all audible sounds in the scene. (PRO only) Furthermore, [[class-AudioEffect | Audio Effects]] can be applied to the listener and it will be applied to all audible sounds in the scene.   
+$$Audio Listener$$ は、マイクのような機器として機能します。 これは、シーン内で所定の  [[class-AudioSource|Audio Source]] 空の入力を受信し、コンピュータのスピーカーを通じて音声を再生します。 ほとんどのアプリケーションで、メインの [[class-Camera|Camera]] にリスナーを追加するのは最も有用です。 オーディオ リスナーが [[ class-AudioReverbZone | Reverb Zone]] の境界内にある場合、シーン内のすべての可聴音声に反響が適用されます。 (PRO のみ) さらに、[[class-AudioEffect | Audio Effects]] をリスナーに適用でき、シーン内のすべての可聴音声に適用されます。   
 
 Attach:audio_listener_inspector.png\\
-''The Audio Listener, attached to the Main Camera''
+''メイン カメラに追加されたオーディオ リスナー''
 
 
-!! Properties
+!! プロパティ
 
-The Audio Listener has no properties.  It simply must be added to work.  It is always added to the Main Camera by default.
+オーディオ リスナーにはプロパティはありません。  作業するために追加する必要があるだけです。  デフォルトでは、常にメイン カメラに追加されます。
 
 
-!! Details
+!! 詳細
 
-The Audio Listener works in conjunction with [[class-AudioSource|Audio Sources]], allowing you to create the aural experience for your games.  When the Audio Listener is attached to a $$GameObject$$ in your scene, any Sources that are close enough to the Listener will be picked up and output to the computer's speakers.  Each scene can only have 1 Audio Listener to work properly.
+オーディオ リスナーは、[[class-AudioSource|Audio Sources]] と連携し、ゲームのための聴覚体験を作成できます。  オーディオ リスナーがシーン内で $$GameObject$$ に追加されると、リスナーに十分近いソースが選択され、コンピュータのスピーカーに出力されます。  各シーンで適切に機能できるオーディオ リスナーは 1 つだけです　。
 
-If the Sources are 3D (see import settings in [[class-AudioClip | Audio Clip]]), the Listener will emulate position, velocity and orientation of the sound in the 3D world (You can tweak attenuation and 3D/2D behavior in great detail in [[class-AudioSource|Audio Source]]) .  2D will ignore any 3D processing. For example, if your character walks off a street into a night club, the night club's music should probably be 2D, while the individual voices of characters in the club should be mono with their realistic positioning being handled by Unity.
+ソースが 3D の場合 （[[class-AudioClip | Audio Clip]] でのインポート設定を参照)、リスナーは、3D ワールドにおける音声の位置や、速度、方向をエミュレートします ([[class-AudioSource|Audio Source]] で、減衰レベルや 3D/2D の動作を微調整できます)。  2D は、3D 処理を無視します。 例えば、街を歩いているキャラクターがナイト クラブに入った場合、ナイト クラブの音楽はおそらく 2D で、クラブ内の個々のキャラクターの声は、Unity が扱う現実的な位置づけにより、モノになっているはずです。
 
-You should attach the Audio Listener to either the Main Camera or to the GameObject that represents the player. Try both to find what suits your game best.
+オーディオ リスナーをメイン カメラまたはプレイヤーを表す GameObject のいずれかに追加する必要があります。 両方試して、ゲームに最適な方を見つけてください。
 
-!!Hints
+!!ヒント
 
-* Each scene can only have one Audio Listener.
-* You access the project-wide audio settings using the [[class-AudioManager | Audio Manager]], found in the ^^Edit->Project Settings->Audio^^ menu.
-* View the [[class-AudioClip | Audio Clip]] Component page for more information about Mono vs Stereo sounds.
+* 各シーンで使用できるオーディオ リスナーは 1 つだけです。
+* ^^Edit->Project Settings->Audio^^ メニューから [[class-AudioManager | Audio Manager]] を使用して、プロジェクト全体のオーディオ設定をにアクセスできます。
+* モノとステレオ音声の詳細については、[[class-AudioClip | Audio Clip]] コンポーネント ページを参照してください。

@@ -1,31 +1,31 @@
-! Skybox
+! スカイボックス
 
-$$Skyboxes$$ are a wrapper around your entire scene that display the vast beyond of your world.
+$$Skybox$$ は、広大に広がる世界を表示する画面全体周辺のラッパーです。
 
 Attach:Inspector-Skybox.png\\
-''One of the default Skyboxes found under ^^Standard Assets->Skyboxes^^''
+''^^Standard Assets->Skyboxes^^ の下にあるデフォルトのスカイボックスの 1 つ''
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Material`` ||The $$Material$$ used to render the Skybox, which contains 6 $$Textures$$. This Material should use the Skybox Shader, and each of the textures should be assigned to the proper global direction. ||
+||``Materials`` ||スカイボックスをレンダリングするのに使用される $$Material$$ で、6 つの $$Texture$$ を含みます。 このマテリアルは、スカイボックス シェーダを使用する必要があり、適切なグローバル方向に割り当てる必要があります。 ||
 
 
-!! Details
+!! 詳細
 
-Skyboxes are rendered before anything else in the scene in order to give the impression of complex scenery at the horizon. They are a box of 6 textures, one for each primary direction (+/-X, +/-Y, +/-Z).
+スカイボックスは、水平線に複雑な景色の印象を与えるために、シーン内の何かの前でレンダリングされます。 スカイボックスは、6 つのテクスチャの箱で、それぞれが主要な方向 (+/-X, +/-Y, +/-Z) に対応しています。
 
-You have two options for implementing Skyboxes.  You can add them to an individual [[class-Camera|Camera]] (usually the main Camera) or you can set up a default Skybox in [[class-RenderSettings|Render Settings's]] ``Skybox Material`` property.  The [[class-RenderSettings | Render Settings]] is most useful if you want all Cameras in your scene to share the same Skybox.
+スカイボックスを実施するためのオプションは 2 つあります。  スカイボックスを [[class-Camera|Camera]] (通常はメイン カメラ) に追加するか、[[class-RenderSettings|Render Settings's]] ''Skybox Material''プロパティ内のデフォルトのスカイボックスを設定できます。  [[class-RenderSettings | Render Settings]] は、シーン内のすべてのカメラで同じスカイボックスを共有させたい場合に最も便利です。
 
-Adding the Skybox $$Component$$ to a Camera is useful if you want to override the default Skybox set up in the Render Settings.  E.g. You might have a split screen game using two Cameras, and want the Second camera to use a different Skybox.  To add a Skybox Component to a Camera, click to highlight the Camera and go to ^^Component->Rendering->Skybox^^.
+レンダー設定でデフォルトのスカイボックスの設定を無効にしたい場合、スカイボックス $$Component$$ のカメラへの追加は便利です。例えば、2 台のカメラを使用した分割画面のゲームで、2 台目のカメラに別のスカイボックスを使用させたいとします。  カメラにスカイボックス コンポーネントを追加するには、クリックして、カメラを強調表示し、^^Component->Rendering->Skybox^^ に移ります。
 
-Unity's Standard Assets contain 2 pre-setup Skybox materials in ^^Standard Assets->Skyboxes^^.
+Unity の標準アセットは、^^Standard Assets->Skyboxes^^ 内の 2 つの事前設定されたスカイボックス マテリアルを含みます。
 
-If you want to create a new Skybox, [[HOWTO-UseSkybox|use this guide]].
+スカイボックスを新規作成したい場合は、[[HOWTO-UseSkybox|use this guide]] を参照してください。
 
 
-!! Hints
+!! ヒント
 
-* If you have a Skybox assigned to a Camera, make sure to set the Camera's ``Clear mode`` to Skybox.
-* It's a good idea to match your Fog color to the skybox's color. Fog color can be set in [[class-RenderSettings | Render Settings]].
+* カメラにスカイボックスを割り当てる場合は、そのカメラの''Clear mode''をスカイボックスに設定します。
+* 霧の色をスカイボックスの色に合わせるとよいでしょう。 霧の色は、[[class-RenderSettings | Render Settings]] で設定できます。

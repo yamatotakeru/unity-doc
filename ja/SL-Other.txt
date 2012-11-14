@@ -1,8 +1,8 @@
-! ShaderLab syntax: other commands
+! ShaderLab 構文: その他のコマンド
 
-!! Category
+!! カテゴリ
 
-__Category__ is a logical grouping of any commands below it. This is mostly used to "inherit" rendering state. For example, your shader might have multiple [[SL-SubShader | subshaders]], and each of them requires [[SL-Fog|fog]] to be off, [[SL-Blend|blending]] set to additive, etc. You can use Category for that:
+__カテゴリ__ は、下のコマンドの論理的グルーピングです。 これは、多くの場合、レンダリング状態を''継承''するのに使用されます。 例えば、シェーダに複数の [[SL-SubShader | subshaders]] がある場合、それぞれが、[[SL-Fog|fog]] をオフににし、[[SL-Blend|blending]] を追加に指定する必要があるとします。カテゴリを使ってこれを行うことができます。
 [@
 Shader "example" {
 Category {
@@ -19,4 +19,4 @@ Category {
 }
 @]
 
-Category block only affects shader parsing, it's exactly the same as "pasting" any state set inside Category into all blocks below it. It does not affect shader execution speed at all.
+カテゴリ ブロックは、シェーダの構文解析にのみ影響しますが、下のすべてのブロックにカテゴリ内で設定した状態を''構文解析''するのとまったく同じです。 シェーダの実行速度には一切影響しません。

@@ -1,24 +1,24 @@
-! Constant Force
+! 一定力
 
-$$Constant Force$$ is a quick utility for adding constant forces to a $$Rigidbody$$.  This works great for one shot objects like rockets, if you don't want it to start with a large velocity but instead accelerate.
+$$Constant Force$$ は、$$Rigidbody$$ に一定力を素早く加えるためのユーティリティです。  これは、高い速度で始めたくないが、代わりに加速していく場合に、ロケットのような 1 回限りのオブジェクトに最適です。
 
 Attach:Inspector-ConstantForce.png\\
-''A rocket propelled forward by a Constant Force''
+''一定の力で前進するロケット''
 
 
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Force`` ||The vector of a force to be applied in world space. ||
-||``Relative Force`` ||The vector of a force to be applied in the object's local space. ||
-||``Torque`` ||The vector of a torque, applied in world space. The object will begin spinning ''around'' this vector. The longer the vector is, the faster the rotation. ||
-||``Relative Torque`` ||The vector of a torque, applied in local space. The object will begin spinning ''around'' this vector. The longer the vector is, the faster the rotation. ||
+||``Force`` ||ワールド空間で適用される力のベクトル。 ||
+||``Relative Force`` ||オブジェクトのローカル空間で適用される力のベクトル。 ||
+||``Torque`` ||ワールド空間で適用されるトルクのベクトル。 オブジェクトが、このベクトル''周辺''で回転し始めます。 ベクトルが長いほど、回転が速くなります。 ||
+||``Relative Torque`` ||ローカル空間で適用されるトルクのベクトル。 オブジェクトが、このベクトル''周辺''で回転し始めます。 ベクトルが長いほど、回転が速くなります。 ||
 
 
-!!! Details
+!!! 詳細
 
-To make a rocket that accelerates forward set the ``Relative Force`` to be along the positive z-axis. Then use the Rigidbody's ``Drag`` property to make it not exceed some maximum velocity (the higher the drag the lower the maximum velocity will be). In the Rigidbody, also make sure to turn off gravity so that the rocket will always stay on its path.
+加速しながら前進するロケットを作成するには、''Relative Force''を正の Z 軸に沿って設定します。 次に、''剛体''の''Drag''プロパティを使用して、一定の最大速度を超えないようにします （ドラッグが高くなるほど、最大速度が下がります）。 剛体で、ロケットが常に軌道上にあるよう、重力をオフにします。
 
-!!Hints
-* To make an object flow upwards, add a Constant Force with the ``Force`` property having a positive Y value.
-* To make an object fly forwards, add a Constant Force with the ``Relative Force`` property having a positive Z value.
+!!ヒント
+* オブジェクトを上に流すには、正の Y 値のある''Force''プロパティを持つ一定力を追加します。
+* オブジェクトを上に飛ばすには、正の Z 値のある''Relative Force''プロパティを持つ一定力を追加します。

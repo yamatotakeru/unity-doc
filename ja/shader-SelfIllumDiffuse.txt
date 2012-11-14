@@ -1,4 +1,4 @@
-!Self-Illuminated Diffuse
+自己発光デフューズ
 
 Attach:Shaders./Shader-IllumDiffuse.png
 
@@ -6,6 +6,6 @@ Attach:Shaders./Shader-IllumDiffuse.png
 
 (:include shader-DiffuseSubsetImport:)
 
-!! Performance
+!! パフォーマンス
 
-Generally, this shader is cheap to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].
+一般に、このシェーダでは少ない費用でレンダリングできます。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。

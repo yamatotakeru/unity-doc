@@ -1,37 +1,37 @@
-! Projector
+! プロジェクタ
 
-A $$Projector$$ allows you to project a $$Material$$ onto all objects that intersect its frustum. The material must use a special type of shader for the projection effect to work correctly - see the projector prefabs in Unity's standard assets for examples of how to use the supplied Projector/Light and Projector/Multiply shaders.
+$$Projector$$ により、$$Material$$ を錐台と交錯するすべてのオブジェクトに投影できます。 このマテリアルは、投影効果を正しく機能させるための特殊なタイプのシェーダです。提供されている Projector/Light と Projector/Multiply シェーダの使用法の例については、Unity の標準アセットのプロジェクタ プレハブを参照してください。
 
 Attach:Inspector-Projector.png\\
-''The Projector $$Inspector$$''
+''プロジェクタ $$Inspector$$'''
 
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Near Clip Plane``    ||Objects in front of the near clip plane will not be projected upon. ||
-||``Far Clip Plane``     ||Objects beyond this distance will not be affected. ||
-||``Field Of View``      ||The field of view in degrees. This is only used if the Projector is not Ortho Graphic. ||
-||``Aspect Ratio``       ||The Aspect Ratio of the Projector. This allows you to tune the height vs width of the Projector. ||
-||``Is Ortho Graphic``   ||If enabled, the Projector will be Ortho Graphic instead of perspective. ||
-||``Ortho Graphic Size`` ||The Ortho Graphic size of the Projection. this is only used if Is Ortho Graphic is turned on. ||
-||``Material``           ||The Material that will be Projected onto Objects. ||
-||``Ignore Layers``      ||Objects that are in one of the Ignore Layers will not be affected. By default, Ignore Layers is none so all geometry that intersects the Projector frustum will be affected. ||
+||``Near Clip Plane``    ||クリップ近面前のオブジェクトは投影されません。 ||
+||``Far Clip Plane``     ||この距離を超えたオブジェクトは影響を受けません。 ||
+||``Field Of View``      ||ビューのフィールド （単位: °）。 これは、プロジェクタが Orthographic でない場合にのみ使用されます。 ||
+||``Aspect Ratio``       ||プロジェクタのアスペクト比。 これにより、プロジェクタの高さと幅を調整でいます。 ||
+||``Is Ortho Graphic``   ||有効にすると、景色の代わりに、Orthographic になります。 ||
+||``Ortho Graphic Size`` ||投影の Orthographic サイズ。''Is Orthographic''がオンになっている時にのみ使用されます。 ||
+||``Materials`` ||オブジェクトに投影されるマテリアル。|| ||
+||``Ignore Layers``      ||''Ignore Layers''の 1 つにあるオブジェクトは影響を受けません。 デフォルトでは、''Ignore Layers''はないため、プロジェクタの錐体と交差するすべてのジオメトリは影響を受けません。 ||
 
 
-!!Details
+!!詳細
 
-With a projector you can:
-# Create shadows.
-# Make a real world projector on a tripod with another [[class-Camera|Camera]] that films some other part of the world using a $$Render Texture$$.
-# Create bullet marks.
-# Funky lighting effects.
+プロジェクタでは以下の操作が可能です。
+# 影の作成。
+# $$Render Texture$$ を使用して、世界の別の部分を撮影する別の [[class-Camera|Camera]] のある三脚に現実の世界のプロジェクタの作成。
+# 弾痕の作成。
+# 独創的な照明効果。
 
 Attach:Projector-BlobShadow.png\\
-''A Projector is used to create a Blob Shadow for this Robot''
+''プロジェクタは、このロボットに Blob Shadow を作成するのに使用されます''
 
-If you want to create a simple shadow effect, simply drag the ^^StandardAssets->Blob-Shadow->Blob shadow projector^^ $$Prefab$$ into your scene. You can modify the Material to use a different Blob shadow texture.
+簡単な影効果を作成したい場合は、^^StandardAssets->Blob-Shadow->Blob shadow projector^^ $$Prefab$$ をシーンにドラッグするだけです。 マテリアルを修正して、異なる Blob Shadow テクスチャを作成できます。
 
-__Note:__ When creating a projector, always be sure to set the wrap mode of the texture's material of the projector to ''clamp''. else the projector's texture will be seen repeated and you will not achieve the desired effect of shadow over your character.
-!!Hints
-* Projector Blob shadows can create very impressive Splinter Cell-like lighting effects if used to shadow the environment properly.
-* When no ``Falloff`` Texture is used in the projector's Material, it can project both forward and backward, creating "double projection". To fix this, use an alpha-only Falloff texture that has a black leftmost pixel column.
+__注意:__ プロジェクタを作成する際は必ず、プロジェクタのテクスチャのマテリアルのラップ モードを''clamp''に設定してください。そうでない場合、プロジェクタのテクスチャは繰り返し表示され、キャラクターで必要な影の効果が得られません。
+!!ヒント
+* プロジェクタの Blob shadow は、環境に適切に影を投影するのに使用すれば、印象的なスプリンター セルのような照明効果を作成できます。
+* ''Falloff''テクスチャをプロジェクタのマテリアルで使用しない場合、前後両方に投影し、''二重投影''が生じる場合があります。 これを修正するには、左側のピクセル列が黒の、アルファのみの Falloff テクスチャを使用します。

@@ -1,41 +1,41 @@
 ! GameObject
 
-$$GameObjects$$ are containers for all other [[Components]]. All objects in your game are inherently GameObjects.
+$$GameObject$$ は、その他すべての [[Components]] を格納する容器です。 ゲーム内のすべてのオブジェクトはすべて本質的に、GameObject になります。
 
 Attach:Inspector-GameObject.png\\
-''An empty GameObject''
+''空の GameObject''
 
 
-!! Creating GameObjects
+!! GameObject の作成
 
-GameObjects do not add any characteristics to the game by themselves.  Rather, they are containers that hold Components, which implement actual functionality. For example, a [[class-Light|Light]] is a Component which is attached to a GameObject. 
+GameObject は、自身でゲームに特性を追加しません。  むしろ、実際の機能を実行するコンポーネントを格納する容器として機能します。 例えば、[[class-Light|Light]] は、GameObject に追加されるコンポーネントです。 
 
-If you want to create a Component from script, you should create and empty GameObject and then add required Component using ``gameObject.AddComponent(''ClassName'')`` function. You can't create Component and then make a reference from object to it.
+スクリプトからコンポーネントを作成したい場合、 空の GameObject を作成し、''gameObject.AddComponent(''ClassName'')''関数を使って、必要なコンポーネントを追加します。 コンポーネントを作成し、オブジェクトからそれを参照することはできません。
 
-From scripts, Components can easily communicate with each other through message sending or the ``GetComponent(''TypeName'')`` function. This allows you to write small, reusable scripts that can be attached to multiple GameObjects and reused for different purposes.
+スクリプトから、メッセージの送信または''GetComponent(''TypeName'')''関数により、コンポーネントは互いに簡単に通信することができます。 これにより、複数の GameObject に追加し、別の目的に再利用できる小さい、再利用可能なスクリプトを記述できます。
 
-!! Details
+!! 詳細
 
-Aside from being a container for the components, GameObjects have a $$Tag$$, a $$Layer$$ and a $$Name$$.
+コンポーネントを格納する容器としての機能とは別に、GameObject は、$$Tag$$、$$Layer$$ および $$Name$$ を含みます。
 
-Tags are used to quickly find objects, utilizing the Tag name. Layers can be used to cast rays, render, or apply lighting to certain groups of objects only. Tags and Layers can be set with the [[class-TagManager|Tag Manager]], found in ^^Edit->Project Settings->Tags^^.
+タグ名を使用して、オブジェクトを素早く検索するためにタグが使用されます。 レイヤーを使用して、オブジェクトの特定のグループにのみ、光線を投射し、光をレンダリングまたは適用できます。 タグとレイヤーは、^^Edit->Project Settings->Tags^^ にある [[class-TagManager|Tag Manager]] で設定できます。
 
 
-!! Static Checkbox
-In Unity, there is a new checkbox in the GameObject called ``Static``. This checkbox is used for:
-* preparing static geometry for automatic batching
-* calculating [[OcclusionCulling | Occlusion Culling]]
+!! Static チェックボックス
+Unity ''Static''と呼ばれる GameObject に新しいチェックボックスがあります。 このチェックボックスは次の目的に使用されます。
+* 自動バッチ処理のためのスタティック ジオメトリの作成
+* [[OcclusionCulling | Occlusion Culling]] の計算
 
 Attach:StaticTagInspector.png\\
-''The Static checkbox is used when generating Occlusion data''
+''Static チェックボックスは、オクルージョン データの生成時に使用されます''
 
-When generating Occlusion data, marking a GameObject as ``Static`` will enable it to cull (or disable) mesh objects that cannot be seen behind the Static object.  Therefore, any environmental objects that are not going to be moving around in your scene __should be marked__ as Static.
+オクルージョン データを生成すると、GameObject に''Static''と表示され、Static オブジェクトの裏で見えないメッシュ オブジェクトを間引く （または無効にする）ことができるようになります。  そのため、シーンで動かない環境オブジェクトには、Static __と表示される__ はずです。
 
-For more information about how Occlusion Culling works in Unity please read the [[Occlusion Culling]] page.
+Unity でのオクルージョン カリングの機能の詳細については、[[Occlusion Culling]] ページを参照してください。
 
 
-!!Hints
+!!ヒント
 
-* For more information see the [[ScriptRef:GameObject.html| GameObject scripting reference page]].
-* More information about how to use layers can be found [[Layers|here]].
-* More information about how to use tags can be found [[Tags|here]].
+* 詳細については、[[ScriptRef:GameObject.html| GameObject scripting reference page]] を参照してください。
+* レイヤーの使用法については、[[Layers|here]] を参照してください。
+* タグの使用法については、[[Tags|here]] を参照してください。

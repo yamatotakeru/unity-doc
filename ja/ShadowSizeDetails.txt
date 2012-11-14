@@ -1,34 +1,33 @@
-! Shadow Size Computation
+! シャドウ サイズの計算
 
 >>u30<<
-__Note on Mobile platforms__: realtime shadows are not supported on iOS & Android.
+__モバイルプラットフォームでの注意__ ：リアルタイムシャドウはiOSとAndroidではサポートされていません
 >><<
 
+Unity では、[[Shadows | shadow map]] サイズは以下のように計算されます。
 
-Unity computes [[Shadows | shadow map]] sizes this way:
+画面上の最初のライトの''収束ボックス''が計算されます。 これは、ライトが示す画面上の長方形になります。
+* ディレクショナル ライトの場合、画面全体になります。
+* スポット ライトの場合、画面に投影されるライトのピラミッドの跳ね返り長方形になります。
+* ポイント ライトの場合、画面に投影されるライトの球体の跳ね返り長方形になります。
+このボックスの幅と高さに大きい値が選択されます。それに、@@pixel size@@ を呼び出します。
 
-First light's "coverage box" on the screen is computed. This is what rectangle on the screen the light possibly illuminates:
-* For Directional lights that is the whole screen.
-* For Spot lights it's the bounding rectangle of light's pyramid projected on the screen.
-* For Point lights it's the bounding rectangle of light's sphere projected on the screen.
-Then the larger value of this box' width & height is chosen; call that @@pixel size@@.
+シャドウ解像度が''High''の場合、シャドウ マップのサイズは次のようになります。
+* ディレクショナル ライト: @@NextPowerOfTwo( pixel size * 1.9 )@@、ですが、@@2048@@ ほどです。
+* スポット ライト: @@NextPowerOfTwo( pixel size )@@、ですが、@@1024@@ ほどです。
+* ポイント ライト: @@NextPowerOfTwo( pixel size * 0.5 )@@、ですが、@@512@@ ほどです。
 
-At "High" shadow resolution, the size of the shadow map then is:
-* Directional lights: @@NextPowerOfTwo( pixel size * 1.9 )@@, but no more than @@2048@@.
-* Spot lights: @@NextPowerOfTwo( pixel size )@@, but no more than @@1024@@.
-* Point lights: @@NextPowerOfTwo( pixel size * 0.5 )@@, but no more than @@512@@.
+512MB 以上のビデオ メモリーのあるグラフィック カードの場合、シャドウ マップの上限は増えます (ディレクショナル ライトの場合、4096、スポット ライトの場合、2048、ポイント ライトの場合、1024)
 
-When graphics card has 512MB or more video memory, the upper shadow map limits are increased (4096 for Directional, 2048 for Spot, 1024 for Point lights).
+シャドウ解像度が''Middle''の場合、シャドウ マップのサイズは''High''よりも 2 倍小さくなります。 シャドウ解像度が''Low''の場合、シャドウ マップのサイズは''High''よりも 4 倍小さくなります。
 
-At "Medium" shadow resolution, shadow map size is 2X smaller than at "High" resolution. And at "Low" resolution, it's 4X smaller than at "High" resolution.
-
-The seemingly low limit on Point lights is because they use cubemaps for shadows. That means six cubemap faces at this resolution must be in video memory. They are also quite expensive to render, as potential shadow casters must be rendered into up to six cubemap faces. 
+ポイント ライトでは、シャドウにキューブマップを使用するため、明らかに制限が低くなります。 つまり、この解像度での、6 つのキューブマップの面をビデオ メモリに入れる必要があります。 これらはまた、潜在的なシャドウ キャスタを最大 6 つのキューブマップ面にレンダリングする必要があるため、レンダリングにかなりのコストがかかります。 
 
 
-!! Shadow size computation when running close to memory limits
+!! メモリーの制限に近づいた場合のシャドウ サイズの計算
 
-When running close to video memory limits, Unity will automatically drop shadow map resolution computed above.
+ビデオ メモリーの制限に近づくと、Unity は自動的に上記で計算されたシャドウ　マップの解像度を落とします。
 
-Generally memory for the screen (backbuffer, frontbuffer, depth buffer) has to be in video memory; and memory for render textures has to be in video memory, Unity will use both to determine allowed memory usage of shadow maps. When allocating a shadow map according to size computed above, it's size will be reduced until it fits into @@(TotalVideoMemory - ScreenMemory - RenderTextureMemory) / 3@@.
+一般に画面のメモリー (バックバッファ、フロントバッファ、深さバッファ) はビデオ メモリーにある必要があります。レンダーテウｋスチャのメモリーは、ビデオ メモリーにある必要があり、Unity はこの両方を使用して、シャドウ マップの許可されたメモリー 使用を決定します。 上記で計算されたサイズに応じて、シャドウ マップを配置する際、@@(TotalVideoMemory - ScreenMemory - RenderTextureMemory) / 3@@ に合うまで、そのサイズが減ります。
 
-Assuming all regular textures, vertex data and other graphics objects can be swapped out of video memory, maximum VRAM that could be used by a shadow map would be @@(TotalVideoMemory-ScreenMemory-RenderTextureMemory)@@. But exact amounts of memory taken by screen and render textures can never be determined, and some objects can not be swapped out, and performance would be horrible if all textures would be constantly swapping in and out. So Unity does not allow a shadow map to exceed one third of "generally available" video memory, which works quite well in practice.
+すべての通常のテクスチャ、頂点データおよびグラフィック オブジェクトがビデオ メモリーからスワップされると仮定すると、シャドウ マップが使用できる最大 VRAM は、@@(TotalVideoMemory-ScreenMemory-RenderTextureMemory)@@ となります。 しかし、画面やレンダー テクスチャが使用する正確なメモリー量はわからないため、また一部のオブジェクトはスワップアウトできないため、すべてのテクスチャが常にスワップインおよびアウトする場合、パフォーマンスはひどいものになります。 そのため、Unity では、シャドウ マップが''一般的に使用できる''ビデオ メモリーの 1/3 (非常に効果のある) を超えないようにしています。

@@ -1,38 +1,38 @@
-!Working with UnityObject
+!オブジェクトの取り扱い
 
-$$UnityObject$$ is a JavaScript script that simplifies Unity content embedding into HTML. It has functions to detect the Unity $$Web Player$$ plugin, initiate Web Player installation and embed Unity content. Although it's possible to deploy ``UnityObject.js`` file on the web server alongside the HTML file it's best to load it directly from the Unity server at ``[=http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js=]``. That way you will always reference the most up to date version of UnityObject. Please note that the ``UnityObject.js`` file hosted on the Unity server is minified to make it smaller and save traffic. If you want to explore the source code you can find the original file in the ``Data\Resources`` folder on Windows and the ``Contents/Resources`` folder on Mac OS X.  UnityObject by defaults sends anonymous data to GoogleAnalytics which is used to help us identify installation type and conversion rate.
+$$UnityObject$$ は、HTML への Unity コンテンツの組み込みを簡素化する JavaScript です。 これには、$$Unity Web Player$$ プラグインを検出し、ウェブ プレイヤーのインストールを開始し、Unity のコンテンツを組み込む機能があります。 HTML ファイルと共に、「UnityObject.js」ファイルをウェブ サーバー上に配備しますが、「[=http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js=]」で直接 Unity からロードするのがベストです。 そのようにして、UnityObject のほとんどの最新版を常に参照します。 Unity サーバーがホストになっている「UnityObject.js」ファイルは、より小さくして、トラフィックを保存するために小さくされます。 ソース コードを探したい場合、Windows の「Data\Resources」フォルダおよびMac OS X の「Contents/Resources」フォルダに元のファイルがあります。UnityObject はデフォルトでは、匿名のデータをインストールのタイプと変換率を特定するのに便利な GoogleAnalytics に送信します。
 
-!!Functions
+!!関数
 
 !!!embedUnity
 
-Embeds Unity content into HTML.
+HTML に Unity のコンテンツを組み込みます。
 
-''Parameters:''
+「パラメータ:」
 
-*``id`` - HTML element (placeholder) to be replaced by Unity content.
-*``src`` - Path to the web player data file. Can be relative or absolute.
-*``width`` - Width of Unity content. Can be specified in pixel values (i.e. ``600``, ``"450"``) or in percentage values (i.e. ``"50%"``, ``"100%"``).
-*``height`` - Height of Unity content. Can be specified in pixel values (i.e. ``600``, ``"450"``) or in percentage values (i.e. ``"50%"``, ``"100%"``).
-*``params`` - ''Optional.'' Object containing list of parameters. See [[CustomizingtheUnityWebPlayerloadingscreen|Customizing the Unity Web Player loading screen]] and [[WebPlayerBehaviorTags|Customizing the Unity Web Player's Behavior]] for possible values.
-*``attributes`` - ''Optional.'' Object containing list of attributes. These will be added to underlying ``<object>`` or ``<embed>`` tag depending on the browser.
-*``callback`` - ''Optional.'' Function that will be called once Web Player is loaded. Function must accept single argument that contains following properties:
-**``success`` - Boolean value indicating whether operation has succeeded.
-**``id`` - Identifier of the Web Player object that has been loaded (same as placeholder).
-**``ref`` - Web Player object that has been loaded.
+*``id`` - Unity コンテンツに置換される HTML 要素 (プレースホルダー)。
+*``src`` - ウェブ プレイヤーのデータ ファイルへのパス。 相対値か絶対値のいずれかです。
+*``width`` - Unity コンテンツの幅。 ピクセル値 (「600」、「450」など) またはパーセント値 (「50%」、「100%」) のいずれかで指定できます。
+*``height`` - Unity コンテンツの高さ。 ピクセル値 (「600」、「450」など) またはパーセント値 (「50%」、「100%」) のいずれかで指定できます。
+*``params`` - 「オプション」。 パラメータのリストを含むオブジェクト。 値については、[[CustomizingtheUnityWebPlayerloadingscreen|Customizing the Unity Web Player loading screen]] および [[WebPlayerBehaviorTags|Customizing the Unity Web Player's Behavior]] を参照してください。
+*``attributes`` - 「オプション」。 属性のリストを含むオブジェクト。 これらは、ブラウザに応じて、基本となる「<object>」または「<embed>」タグに追加されます。
+*``callback`` - 「オプション」。 ウェブ プレイヤーがロードされると呼び出される関数。 関数は、次のプロパティを含む 1 つの引数を受ける必要があります。
+**``success`` - 操作が成功したかどうかを示すブール値。
+**``id`` - ロードされたウェブ プレイヤー オブジェクトの識別子 (プレースホルダーと同じ)。
+**``ref`` - ロードされたウェブ プレイヤー オブジェクト。
 
-''Notes:''
+「注意:」
 
-This function usually returns before the operation fully completes. Thus it is not safe to access the Web Player object immediately. A callback function can be provided to get notification on completion. Alternatively call ``getObjectById`` repeatedly until it doesn't return a ``null`` value.
+この関数は通常、操作が完全に終了する前に戻ります。 従って、すぐにウェブ プレイヤー オブジェクトにアクセスするのは安全ではありません。 終了時に通知を得るため、コールバック関数を渡すことができます。 あるいは、「null」値が返されなくなるまで、「getObjectById」を繰り返し呼び出します。
 
-''Example:''
+「例:」
 
 [@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Unity Web Player | Example</title>
-		<script type="text/javascript" src="http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js"></script>
+		<title>Unity ウェブ プレイヤー | 例</title>
+ 		<script type="text/javascript" src="http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js"></script>
 		<script type="text/javascript">
 		<!--
 		if (typeof unityObject != "undefined") {
@@ -42,41 +42,41 @@ This function usually returns before the operation fully completes. Thus it is n
 			if (result.success) {
 				var unity = result.ref;
 				var version = unity.GetUnityVersion("3.x.x");
-				alert("Unity Web Player loaded!\nId: " + result.id + "\nVersion: " + version);
+				alert("Unity ウェブ プレイヤーがロードされました!\nId: " + result.id + "\nVersion: " + version);
 			}
 			else {
-				alert("Please install Unity Web Player!");
+				alert("Unity ウェブ プレイヤーをインストールしてください!\nId:
 			}
 		}
 		-->
 		</script>
-	</head>
+	<head>
 	<body>
-		<!-- This will be replaced by Unity content. -->
-		<div id="unityPlayer">Unity content can't be played. Make sure you are using compatible browser with JavaScript enabled.</div>
-	</body>
+		<!-- これは Unity のコンテンツに置換されます。 -->
+		<div id="unityPlayer">Unity コンテンツが再生できません。 JavaScript が組み込まれた互換性のあるブラウザを使用してください。</div>
+	<body>
 </html>
 @]
 
 !!!getObjectById
 
-Retrieves the Web Player object.
+ウェブ プレイヤー オブジェクトの検索
 
-''Parameters:''
+「パラメータ:」
 
-* ``id`` - Identifier of the Web Player object.
-* ``callback`` - ''Optional.'' Function that will be called once Web Player is retrieved. This function must accept a single parameter that contains the Web Player object.
+* ``id`` - ウェブ プレイヤー オブジェクトの識別子。
+*``callback`` - 「オプション」。 ウェブ プレイヤーが検索されると呼び出される関数。 この関数は、ウェブ プレイヤー オブジェクトを含む 1 つのパラメータを受ける必要があります。
 
-Returns the Web Player object or ``null`` if the Web Player is not loaded yet.
+ウェブ プレイヤーがロードサれていない場合に、ウェブ プレイヤー オブジェクトまたは「null」を返します。
 
-''Example:''
+「例:」
 
 [@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Unity Web Player | Example</title>
-		<script type="text/javascript" src="http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js"></script>
+		<title>Unity ウェブ プレイヤー | 例</title>
+ 		<script type="text/javascript" src="http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js"></script>
 		<script type="text/javascript">
 		<!--
 		if (typeof unityObject != "undefined") {
@@ -94,69 +94,69 @@ Returns the Web Player object or ``null`` if the Web Player is not loaded yet.
 		}
 		-->
 		</script>
-	</head>
+	<head>
 	<body>
-		<!-- This will be replaced by Unity content. -->
-		<div id="unityPlayer">Unity content can't be played. Make sure you are using compatible browser with JavaScript enabled.</div>
+		<!-- これは Unity のコンテンツに置換されます。 -->
+		<div id="unityPlayer">Unity コンテンツが再生できません。 JavaScript が組み込まれた互換性のあるブラウザを使用してください。</div>
 		<div>
 			<input id="versionButton" type="button" value="Version" disabled="disabled" onclick="versionButtonClick();" />
 		</div>
-	</body>
+	<body>
 </html>
 @]
 
 !!!enableFullInstall
 
-Installs the full Web Player if not available. Normally only a small part of the Web Player is installed and the remaining files are automatically downloaded later. The default value is ``false``.
+利用できない場合は完全なウェブ プレイヤーをインストールします。 通常、ウェブ プレイヤーのほんのわずかな部分がインストールされ、残りのファイルは後で自動的にダウンロードされます。 デフォルト値は、「false」です。
 
-''Parameters:''
+「パラメータ:」
 
-* ``value`` - Boolean value that enables or disables the feature.
+* ``value`` - この機能を有効または無効にするブール値。
 
 !!!enableAutoInstall
 
-Automatically starts Web Player installation if not available. Some platforms don't support this feature. Default value is ``false``.
+利用できない場合は完全なウェブ プレイヤーを自動的に起動します。 一部のプラットフォームはこの機能をサポートしていません。 デフォルト値は、「false」です。
 
-''Parameters:''
+「パラメータ:」
 
-* ``value`` - Boolean value that enables or disables the feature.
+* ``value`` - この機能を有効または無効にするブール値。
 
 !!!enableJavaInstall
 
-Enables Java based installation. Some platforms doesn't support this feature. Default value is ``true``.
+Java ベースのインストールを有効にします。 一部のプラットフォームはこの機能をサポートしていません。 デフォルト値は、「true」です。
 
-''Parameters:''
+「パラメータ:」
 
-* ``value`` - Boolean value that enables or disables the feature.
+* ``value`` - この機能を有効または無効にするブール値。
 
 !!!enableClickOnceInstall
 
-Enables ClickOnce based installation. Some platforms doesn't support this feature. Default value is ``true``.
+ClickOnce ベースのインストールを有効にします。 一部のプラットフォームはこの機能をサポートしていません。 デフォルト値は、「true」です。
 
-''Parameters:''
+「パラメータ:」
 
-* ``value`` - Boolean value that enables or disables the feature.
+* ``value`` - この機能を有効または無効にするブール値。
 
 !!!enableGoogleAnalytics
 
-Notifies Unity about Web Player installation. This doesn't do anything if the Web Player is already installed. Default value is ``true``.
+Unity にウェブ プレイヤーのインストールを通知します。 これは、ウェブ プレイヤーがインストール済みの場合は何もしません。 デフォルト値は、「true」です。
 
-''Parameters:''
+「パラメータ:」
 
-* ``value`` - Boolean value that enables or disables the feature.
+* ``value`` - この機能を有効または無効にするブール値。
 
 !!!addLoadEvent
 
-Registers a function that will be called once the web page is loaded.
+ウェブ ページがロードされると呼び出される関数を登録します。
 
-''Parameters:''
+「パラメータ:」
 
-* ``event`` - Function that will be called once the web page is loaded. This function does not expect any parameters.
+* ``event`` - ウェブ ページがロードされると呼び出される関数。 この機能には、パラメータを予期しません。
 
 !!!addDomLoadEvent
 
-Registers a function that will be called once the web page's DOM is loaded.
+ウェブ ページの DOM がロードされると呼び出される関数を登録します。
 
-''Parameters:''
+「パラメータ:」
 
-* ``event`` - Function that will be called once web page's DOM is loaded. This function does not expect any parameters.
+* ``event`` - ウェブ ページの DOMは がロードされると呼び出される関数。 この機能には、パラメータを予期しません。

@@ -1,79 +1,79 @@
-! Positioning GameObjects
+! GameObjects の配置
 
-When building your games, you'll place lots of different objects in your game world.
-
-
-!! Focusing
-
-It can be useful to focus the Scene View Camera on an object before manipulating it.  Select any GameObject and press the ^^F^^ key.  This will center the Scene View and pivot point on the selection.  This is also known as Frame Selection.
+ゲーム作成時に、ゲームの世界に各種オブジェクトを置くことになるでしょう。
 
 
-!! Translate, Rotate, and Scale
+!! フォーカシング
 
-Use the Transform Tools in the Toolbar to Translate, Rotate, and Scale individual GameObjects.  Each has a corresponding Gizmo that appears around the selected GameObject in the Scene View.  You can use the mouse and manipulate any Gizmo axis to alter the $$Transform$$ Component of the GameObject, or you can type values directly into the number fields of the Transform Component in the Inspector. Each of the three transform modes can be selected with a hotkey - __W__ for Translate, __E__ for Rotate and __R__ for Scale.
+操作前にシーン ビュー カメラのフォーカスをオブジェクトに合わせると便利な場合があります。  GameObject を選択して、^^F^^ キーを押します。  これにより、選択範囲でシーン ビューおよびピボット点が中央に配置されます。  これはフレーム選択とも呼ばれます。
+
+
+!! 移動、回転および縮小拡大
+
+ツールバーのトランスフォーム ツールを使用して、個々の GameObject を移動、回転、縮小拡大します。  それぞれに、シーンビュー内で選択した GameObject 周辺に表示される対応するギズモがあります。  マウスを使用し、ギズモ軸を操作して、GameObject の $$Transform$$ コンポーネントを変更したり、またはインスペクタのトランスフォーム コンポーネントの数字フィールドに直接値を入力できます。Each of the three transform modes can be selected with a hotkey - __W__ for Translate, __E__ for Rotate and __R__ for Scale.
 
 Attach:TransformGizmo35.png
 (:comment Source psd is TransformGizmo35.psd :)
 
-* Click and drag in the center of the Gizmo to manipulate the object on all axes at once.
+* クリックして、ギズモの中心でドラッグすると、オブジェクトをすべての軸で一度に操作することができます。
 * At the center of the Translate gizmo, there are three small squares that can be used to drag the object within a single plane (ie, two axes can be moved at once while the third is kept still).
-* If you have a three button mouse, you can click the middle button to adjust the last-adjusted axis (which turns yellow) without clicking directly on it.
-* Be careful when using the scaling tool, as non-uniform scales (e.g. 1,2,1) can cause unusual scaling of child objects.
-* For more information on transforming GameObjects, please view the [[class-Transform|Transform Component]] page.
+* 3 ボタン マウスの場合、中央ボタンをクリックして、最後に調整した軸 (黄色に変わります) を直接クリックせずに、調整できます。
+* スケーリング ツール使用時は、不均一なスケール (1、2、1 など) により子オブジェクトに対して、異常なスケーリングが発生する場合があります。
+* GameObject の変形の詳細については、[[class-Transform|Transform Component]] ページを参照してください。
 
 
 !! Gizmo Display Toggles
 
-The $$Gizmo Display Toggles$$ are used to define the location of any Transform Gizmo. 
+$$Gizmo Display Toggles$$ は、トランスフォーム ギズモの位置を定義します。 
 
 Attach:HandlePositionButtons.png\\
 ''Gizmo Display Toggles''
 
-* Position:
-** ^^Center^^ will position the Gizmo at the center of the object's rendered bounds.
-** ^^Pivot^^ will position the Gizmo at the actual pivot point of a Mesh.
+* 位置:
+** ^^Center^^ は、オブジェクトのレンダリング バウンドの中心にギズモを配置します。
+** ^^Pivot^^ は、メッシュの実際のピボット点にギズモを配置します。
 
-* Rotation:
-** ^^Local^^ will keep the Gizmo's rotation relative to the object's.
-** ^^Global^^ will clamp the Gizmo to world space orientation.
+* 回転:
+** ^^Local^^ オブジェクトの回転に対して、ギズモの回転を維持します。
+** ^^Global^^ は、ギズモを世界空間の方向に固定します。
 
 
 !! Unit Snapping
 
-While dragging any Gizmo Axis using the Translate Tool, you can hold the ^^Control^^ key (^^Command^^ on Mac) to snap to increments defined in the $$Snap Settings$$.
+移動ツールを使用して、ギズモ軸をドラッグしたまま、^^Control^^ キー (Mac の場合、^^Command^^) を押したままにすると、$$Snap Settings$$ で定義された増分にスナップできます。
 
-You can change the unit distance that is used for the unit snapping using the menu ^^Edit->Snap Settings...^^
+メニュー ^^Edit->Snap Settings...^^ を使用して、単位スナッピングに使用される単位距離を変更できます。
 
 Attach:SceneViewUnitSnappingSettings.png\\
-''Scene View Unit Snapping settings.''
+''シーン ビューの単位スナッピング設定''
 
 
 !! Surface Snapping
 
-While dragging in the center using the Translate Tool, you can hold ^^Shift^^ and ^^Control^^ (^^Command^^ on Mac) to snap the object to the intersection of any $$Collider$$. This makes precise positioning of objects incredibly fast.
+移動ツールを使用して、中心でドラッグしたまま、^^Shift^^ と　^^Control^^ キー (Mac の場合、^^Command^^) を押したままにすると、$$Collider$$ の交差部にオブジェクトをスナップできます。 これによって、オブジェクトを驚くほど素早く正確に配置できます。
 
 !! Look-At Rotation
 
-While using the Rotate Tool, you can hold ^^Shift^^ and ^^Control^^ (^^Command^^ on Mac) to rotate the object towards a point on the surface of any $$Collider$$. This makes orientation of objects relative to one another simple.
+回転ツールを使用して、^^Shift^^ と　^^Control^^ キー (Mac の場合、^^Command^^) を押したままにすると、$$Collider$$ の表面の点に対して、オブジェクトを回転できます。 これにより、それぞれに対するオブジェクトの方向をシンプルできます。
 
 
 !! Vertex Snapping
 
-You can assemble your worlds more easily with a feature called $$Vertex Snapping$$. This feature is a really simple but powerful tool in Unity. It lets you take any vertex from a given mesh and with your mouse place that vertex in the same position as any vertex from any other mesh you choose.
+$$Vertex Snapping$$ 機能を使用して、世界をより簡単に組み立てることができます。 この機能は非常にシンプルですが、強力な Unity のツールです。 これにより、所定のメッシュから頂点を取り、マウスで、その頂点を選択したほかのメッシュからの頂点と同じ位置に配置できます。
 
-With this you can assemble your worlds really fast. For example, you can place roads in a racing game with high precision and add power up items on the vertices of a mesh.
+この機能を使えば、世界を実に素早く組み立てることができます。 例えば、レース ゲームで高精度の道路を置いたり、メッシュの頂点にパワアップアイテムを追加したりできます。
 
 Attach:SceneViewVertexSnapping.png\\
-''Assembling roads with Vertex Snapping.''
+''Vertex Snapping での道路の組み立て''
 
-Using vertex snapping in Unity is simple. Just follow these steps:
+Unityでの Vertex Snapping の使用は非常に簡単です。 次の手順に従うだけで使用できます。
 
-* Select the mesh you want to manipulate and make sure the Transform Tool is active.
-* Press and __hold__ the ^^V^^ key to activate the vertex snapping mode.
-* Move your cursor over the vertex on your mesh that you want to use as the pivot point.
-* __Hold__ down the left button once your cursor is over the desired vertex and drag your mesh next to any other vertex on another mesh.
-* Release your mouse button and the ^^V^^ key when you are happy with the results.
-* ^^Shift-V^^ acts as a toggle of this functionality.
-* You can snap vertex to vertex, vertex to surface and pivot to vertex.
+* 操作したいメッシュを選択し、トランスフォーム ツールがアクティブになるのを確認します。
+* ^^V^^ キーを押した__まま__にすると、Vertex Snapping モードが起動します。
+* ピボット点として使用したいメッシュ上の頂点にマウスのカーソルを合わせます。
+* カーソルを希望の頂点に合わせたら、左ボタンを__押したまま__にし、メッシュを別のメッシュ上の別の頂点の隣にドラッグします。
+* 結果に満足したら、マウスのボタンと ^^V^^ キーを離します。
+* ^^Shift-V^^ で、この機能のオンオフを切り替えることができます。
+* 頂点から頂点、頂点から表面、ピボットから頂点へとスナップできます。
 
-A video on how to use vertex snapping can be found [[http://vimeo.com/10945727 | here]].
+Vertex snapping の使用法を映したビデオは、[[http://vimeo.com/10945727 | here]] にあります。

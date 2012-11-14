@@ -1,33 +1,33 @@
-! Physic Material
+! 物理特性マテリアル
 
-The $$Physic Material$$ is used to adjust friction and bouncing effects of colliding objects.
+$$Physic Material$$ を使用して、衝突するオブジェクトの摩擦や跳ね返り効果を調整できます。
 
-To create a Physic Material select ^^Assets->Create->Physic Material^^ from the menu bar.  Then drag the Physic Material from the Project View onto a $$Collider$$ in the scene.
+物理特性マテリアルを作成するには、メニューバーから ^^Assets->Create->Physic Material^^  を選択します。  次に、シーン内の $$Collider$$ にプロジェクト ビューから物理特性マテリアルをドラッグします。
 
 Attach:Inspector-PhysicMaterial.png\\
-''The Physic Material $$Inspector$$''
+''物理特性マテリアル $$Inspector$$'''
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Dynamic Friction`` ||The friction used when already moving. Usually a value from 0 to 1. A value of zero feels like ice, a value of 1 will make it come to rest very quickly unless a lot of force or gravity pushes the object. ||
-||``Static Friction`` ||The friction used when an object is laying still on a surface. Usually a value from 0 to 1. A value of zero feels like ice, a value of 1 will make it very hard to get the object moving. ||
-||``Bouncyness`` ||How bouncy is the surface? A value of 0 will not bounce. A value of 1 will bounce without any loss of energy. ||
-||``Friction Combine Mode`` ||How the friction of two colliding objects is combined. ||
-||>>>``Average`` ||The two friction values are averaged. ||
-||>>>``Min`` ||The smallest of the two values is used. ||
-||>>>``Max`` ||The largest of the two values is used. ||
-||>>>``Multiply`` ||The friction values are multiplied with each other. ||
-||``Bounce Combine`` ||How the bouncyness of two colliding objects is combined. It has the same modes as Friction Combine Mode ||
-||``Friction Direction 2`` ||The direction of anisotropy. Anisotropic friction is enabled if this direction is not zero. Dynamic Friction 2 and Static Friction 2 will be applied along Friction Direction 2. ||
-||``Dynamic Friction 2`` ||If anisotropic friction is enabled, DynamicFriction2 will be applied along Friction Direction 2. ||
-||``Static Friction 2`` ||If anisotropic friction is enabled, StaticFriction2 will be applied along Friction Direction 2. ||
+||``Dynamic Friction`` ||すでに移動中の場合に使用される摩擦。 通常は、0 から 1　の間の値を使用します。0 の場合、氷のような感じになります。1 の場合、多くの力または重力がオブジェクトを押さない限り、非常に素早く停止します。 ||
+||``Static Friction`` ||オブジェクトが面上で静止したままの場合に使用される摩擦。 通常は、0 から 1　の間の値を使用します。0 の場合、氷のような感じになります。1 の場合、オブジェクトをかなり強く動かそうとします。 ||
+||``Bouncyness`` ||面の跳ね返し度合い。 0 の場合、跳ね返りません。 1 の場合はエネルギー損失なしで跳ね返ります。 ||
+||``Friction Combine Mode`` ||2 つの衝突するオブジェクトの摩擦がどのように結合されるか。 ||
+||>>>``Average`` ||2 つの摩擦値が平均化されます。 ||
+||>>>``Min`` ||2 つの摩擦値の内最小の値が使用されます。 ||
+||>>>``Max`` ||2 つの摩擦値の内最大の値が使用されます。 ||
+||>>>``Multiply`` ||2 つの摩擦値が互いに乗算されます。 ||
+||``Bounce Combine`` ||2 つの衝突するオブジェクトの跳ね返し度合いがどのように結合されるか。 Friction Combine Mode と同じです。||
+||``Friction Direction 2`` ||異方性の方向。 この方向が 0 でない場合、異方性摩擦が有効になります。 Dynamic Friction 2 と Static Friction 2 Friction Direction 2に沿って適用されます。||
+||``Dynamic Friction 2`` ||異方性摩擦を有効にすると、DynamicFriction2 が、Friction Direction 2 に沿って適用されます。||
+||``Static Friction 2`` ||異方性摩擦を有効にすると、StaticFriction2 が、Friction Direction 2 に沿って適用されます。||
 
 
-!! Details
+!! 詳細
 
-Friction is the quantity which prevents surfaces from sliding off each other. This value is critical when trying to stack objects. Friction comes in two forms, dynamic and static. ``Static friction`` is used when the object is lying still. It will prevent the object from starting to move. If a large enough force is applied to the object it will start moving. At this point ``Dynamic Friction`` will come into play. ``Dynamic Friction`` will now attempt to slow down the object while in contact with another.
+摩擦は、面が互いに外れるのを防ぐ量です。 この値は、オブジェクトを重ねる時に重要です。 摩擦には動的と静的の 2 種類があります。 ''Static friction''は、オブジェクトが静止している際に使用されます。 これは、オブジェクトが動き始めるのを防ぎます。 強い力が加えられると、オブジェうとは動き始めます。 動き始めると、''Dynamic Friction''が作用し始めます。 オブジェクトが別のオブジェクトと接触中に、''Dynamic Friction''はオブジェクトを減速させようとします。
 
-!!Hints
-* Don't try to use a standard physic material for the main character. Make a customized one and get it perfect.
+!!ヒント
+* メイン キャラクターには、標準の物理特性マテリアルを使用しないでください。 カスタマイズしたマテリアルを使用して、より完璧なキャラクターを実現してください。

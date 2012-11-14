@@ -38,14 +38,18 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 *****[[DeactivatingGameObjects]]
 ****[[Using The Inspector]]
 *****[[Editing Value Properties40]]
+>>jpn<<
 *****[[Editing Reference Properties]]
+>><<
 *****[[Multi-Object Editing]]
 >>jpn<<
 *****[[Inspector Options]]
 >><<
 ****[[Using The Scene View]]
 *****[[Scene View Navigation]]
+>>jpn<<
 *****[[Positioning GameObjects]]
+>><<
 *****[[View Modes]]
 *****[[Gizmo and Icon Visibility]]
 ****[[Searching]]
@@ -57,7 +61,9 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 >><<
 ***[[Asset Import and Creation]]
 ****[[Importing Assets]]
+>>jpn<<
 ****[[Meshes]]
+>><<
 *****[[3D-formats]]
 ****[[Animations40|Animations (Legacy)]]
 ****[[Materials]]
@@ -147,7 +153,9 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 **** [[iphone-InternalProfiler]]
 **** [[iphone-playerSizeOptimization]]
 *** [[iphone-accountsetup]]
+>>jpn<<
 *** [[iphone-unsupported]]
+>><<
 *** [[PluginsForIOS | iphone-Plugins]]
 *** [[iphone-Downloadable-Content]]
 *** [[MobileCustomizeSplashScreen]]
@@ -302,7 +310,9 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[Example - Creating a Billboard Plane]]
 ***[[StyledText]]
 ***[[UsingDLL]]
+>>jpn<<
 ***[[Execution Order]]
+>><<
 ***[[iphone-PracticalGuide]]
 **** [[iphone-FutureDevices]]
 **** [[iphone-OptimizedGraphicsMethods]]
@@ -313,15 +323,17 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 **** [[Draw Call Batching]]
 **** [[Modeling Optimized Characters]]
 ****[[RenderingStatistics]]
+>>jpn<<
 ***[[Reducing File size]]
+>><<
 ***[[Understanding Automatic Memory Management]]
 ***[[PlatformDependentCompilation | Platform Dependent Compilation]]
 ***[[GenericFunctions | Generic Functions]]
 >>jpn<<
 ***[[Debugging]]
->><<
 ****[[Console]]
 ****[[Debugger]]
+>><<
 ****[[LogFiles | Log Files]]
 *****[[AccessingHiddenFolders | Accessing Hidden Folders]]
 ***[[Plugins]]
@@ -470,8 +482,8 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[class-WheelCollider]]
 ***[[comp-GameObjectGroup]]
 ****[[class-GameObject]]
->><<
 *** [[comp-ImageEffects]]
+>><<
 **** [[script-AntialiasingAsPostEffect]]
 >>u40<<
 **** [[script-Bloom]]
@@ -504,16 +516,12 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 **** [[script-GlowEffect]]
 >>jpn<<
 **** [[script-GrayscaleEffect]]
->><<
 **** [[script-MotionBlur]]
->>jpn<<
 **** [[script-NoiseEffect]]
 **** [[script-SepiaToneEffect]]
 **** [[script-SSAOEffect]]
->><<
 **** [[script-TwirlEffect]]
 **** [[script-VortexEffect]]
->>jpn<<
 *** [[comp-ManagerGroup]]
 >><<
 **** [[class-AudioManager]]
@@ -535,8 +543,8 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 >>jpn<<
 *** [[comp-MeshGroup]]
 **** [[class-MeshFilter]]
->><<
 **** [[class-MeshRenderer]]
+>><<
 **** [[class-SkinnedMeshRenderer]]
 **** [[class-TextMesh]]
 >>jpn<<
@@ -548,19 +556,15 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 >>jpn<<
 **** [[class-Halo]]
 **** [[class-LensFlare]]
->><<
 **** [[class-LineRenderer]]
->>jpn<<
 **** [[class-TrailRenderer]]
 **** [[class-Projector]]
->><<
 **** [[comp-ParticlesLegacy]]
 ***** [[class-EllipsoidParticleEmitter]]
 ***** [[class-MeshParticleEmitter]]
 ***** [[class-ParticleAnimator]]
 ***** [[class-ParticleRenderer]]
 ***** [[class-WorldParticleCollider]]
->>jpn<<
 *** [[comp-RenderingGroup]]
 >><<
 **** [[class-Camera]]
@@ -600,11 +604,15 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 *** [[script-Terrain#Lightmapping | Terrain Lightmapping]]
 *** [[terrain-OtherSettings]]
 ** [[class-Tree]]
+>>jpn<<
 *** [[tree-FirstTree]]
+>><<
 *** [[tree-Structure]]
 *** [[tree-Branches]]
 *** [[tree-Leaves]]
+>>jpn<<
 *** [[class-WindZone]]
+>><<
 ** [[AnimationEditorGuide]]
 *** [[animeditor-UsingAnimationEditor]]
 *** [[animeditor-AnimationCurves]]
@@ -712,7 +720,9 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 >><<
 ***[[SL-ShaderPrograms]]
 ****[[SL-PropertiesInPrograms]]
+>>jpn<<
 ****[[SL-VertexProgramInputs]]
+>><<
 ****[[SL-BuiltinIncludes]]
 ****[[SL-BuiltinMacros]]
 >>jpn<<

@@ -1,5 +1,5 @@
-! Unity's Rendering behind the scenes
+! シーン上の裏で動いている Unity のレンダリング
 
-This section explains the technical details behind various aspects of Unity's rendering engine.
+本項では、Unity のレンダリング エンジンの様々な側面の裏にある技術的詳細について説明します。
 
 (:tocportion:)

@@ -1,9 +1,9 @@
-! UnityGUI Group
+! UnityGUI グループ
 
-$$UnityGUI$$ is the GUI creation system built into Unity.  It consists of creating different $$Controls$$, and defining the content and appearance of those controls.
+$$UnityGUI$$ は、Unity に組み込まれた GUI 作成システムです。  異なる $$Control$$ の作成およびこれら制御の内容と概観で構成されます。
 
-The $$Components$$ of UnityGUI allow you to define the appearance of Controls.
+UnityGUI の $$Component$$ により、制御の外観を定義できます。
 
 (:tocportion:)
 
-For information about using UnityGUI to create Controls and define their content, please read the [[GUI Scripting Guide]].
+UnityGUI を使用した制御の作成およびその内容の定義の詳細については、[[GUI Scripting Guide]] を参照してください。

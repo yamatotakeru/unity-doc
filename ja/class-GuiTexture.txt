@@ -1,58 +1,58 @@
-! GUI Texture
+! GUI テクスチャ
 
-$$GUI Textures$$ are displayed as flat images in 2D. They are made especially for user interface elements, buttons, or decorations.  Their positioning and scaling is performed along the x and y axes only, and they are measured in $$Screen Coordinates$$, rather than $$World Coordinates$$.
+$$GUI Texture$$ は、2D での平坦画像として表示されます。 特に、ユーザー インターフェースの要素、ボタンまたはデコレーション向けです。  その配置や拡大縮小はX および Y 軸に沿って実行され、$$World Coordinates$$ よりも、$$Screen Coordinates$$ で測定されます。
 
 Attach:Inspector-GUITexture.png\\
-''The GUI Texture $$Inspector$$''
+''GUI テクスチャ $$Inspector$$''
 
-__Please Note__: Unity 2.0 introduced $$UnityGUI$$, a GUI Scripting system.  You may prefer creating user interface elements with UnityGUI instead of GUI Textures.  Read more about how to use UnityGUI in the [[GUI Scripting Guide]].
+__注意__: Unity 2.0 は、GUI スクリプティング システムである $$UnityGUI$$ を採用しています。  GUI テクスチャの代わりに、UnityGUI でユーザー インタフェース要素を作成したい場合もあるでしょう。  [[GUI Scripting Guide]] のUnityGUI の使用法について続きを読んでください。
 
 
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Texture``     ||Reference to the [[class-Texture2D|Texture]] that will be used as the texture's display. ||
-||``Color``       ||Color that will tint the ``Texture`` drawn on screen. ||
-||``Pixel Inset`` ||Used for pixel-level control of the scaling and positioning of the GUI Texture. All values are measured relative to the position of the GUI Texture's $$Transform$$. ||
-||>>>``X`` ||Left-most pixel position of the texture.   ||
-||>>>``Y`` ||Bottom-most pixel position of the texture. ||
-||>>>``Width`` ||Right-most pixel position of the texture.  ||
-||>>>``Height`` ||Top-most pixel position of the texture.    ||
-||``Left Border``   ||Number of pixels from the left that are not affected by scale.   ||
-||``Right Border``  ||Number of pixels from the right that are not affected by scale.  ||
-||``Top Border``    ||Number of pixels from the top that are not affected by scale.    ||
-||``Bottom Border`` ||Number of pixels from the bottom that are not affected by scale. ||
+||``Texture``     ||テクスチャの表示として使用される [[class-Texture2D|Texture]] への参照。 ||
+||``Color``       ||画面上で描画される''Texture''に付ける色。 ||
+||``Pixel Inset`` ||GUI テクスチャの拡大縮小および配列のピクセルレベルでの制御に使用されます。 値はすべて GUI テクスチャの $$Transform$$ の位置に関連して測定されます。 ||
+||>>>``X`` ||テクスチャの最も左のピクセル位置。   ||
+||>>>``Y`` ||テクスチャの最も下のピクセル位置。 ||
+||>>>``Width`` ||テクスチャの最も右のピクセル位置。  ||
+||>>>``Height`` ||テクスチャの最も上のピクセル位置。    ||
+||``Left Border`` ||スケールの影響を受けない左からのピクセル数。   ||
+||``Right Border``  ||スケールの影響を受けない右からのピクセル数。  ||
+||``Top Border``    ||スケールの影響を受けない上からのピクセル数。    ||
+||``Bottom Border`` ||スケールの影響を受けない下からのピクセル数。 ||
 
-!! Details
+!! 詳細
 
-To create a GUITexture:
+GUI テクスチャを作成するには、次の手順に従います。
 
-# Select a Texture in the $$Project View$$
-# Choose ^^GameObject->Create Other->GUI Texture^^ from the menu bar
+# $$Project View$$ で、テクスチャを選択します。
+# メニューバーから ^^GameObject->Create Other->GUI Texture^^ を選択します。
 
-GUI Textures are perfect for presenting game interface backgrounds, buttons, or other elements to the player.  Through scripting, you can easily provide visual feedback for different "states" of the texture -- when the mouse is hovering over the texture, or is actively clicking it for example.  Here is the basic breakdown of how the GUI Texture is calculated:
+GUI テクスチャは、ゲームのインターフェースの背景やボタン、その他の要素をプレイヤーに表示するのに最適です。  スクリプティングを通じて、例えば、テクスチャ上にマウスのカーソルを合わせた場合や、積極的にテクスチャをクリックした場合に、テクスチャの各''状態''に視覚的なフィードバックを簡単に提供できます。  GUI テクスチャがどのように計算されるかの基本的な分析になります。
 
 Attach:GUITexture-Layout.jpg\\
-''GUI Textures are laid out according to these rules''
+''GUI テクスチャは、これらのルールに従って配置されます''
 
 Attach:GUITexture-Example.png\\
-''The GUI elements seen here were all created with GUI Textures''
+''ここで確認される GUI 要素はすべて GUI テクスチャで作成されています''
 
 
-!!! Borders
+!!! 境界
 
-The number of pixels that will not scale with the texture at each edge of the image.  As you rarely know the resolution your game runs in, chances are your GUI will get scaled. Some GUI textures have a border at the edge that is meant to be an exact number of pixels. In order for this to work, set the border sizes to match those from the texture.
+画像の各端でテクスチャで縮小拡大されないピクセル数。  ゲームが実行される解像度がほとんどわからないため、GUI が縮小拡大されるでしょう。 GUI テクスチャの中には、端に境界があり、この境界はピクセルの正確な数となります。 これを機能させるためには、テクスチャから境界のサイズを一致させるように設定します。
 
 
 !!! Pixel Inset
 
-The purpose of the ``Pixel Inset`` is to prevent textures from scaling with screen resolution, and keeping thim in a fixed pixel size. This allows you to render a texture without any scaling.  This means that players who run your game in higher resolutions will see your textures in smaller areas of the screen, allowing them to have more screen real-estate for your gameplay graphics.
+''Pixel Inset''は、テクスチャが画面の解像度で縮小拡大されないようにし、固定されたピクセルサイズで維持するために使用します。 これにより、縮小拡大なしでテクスチャをレンダリングできます。  つまり、高解像度でゲームを実行するプレイヤーには、画面のより小さいエリアにテキストが表示され、ゲームプレイの画像に対して、より多くの画面上の場所を持つことができます。
 
-To use it effectively, you need to set the scale of the GUI Texture's Transform to (0, 0, 0). Now, the ``Pixel Inset`` is in full control of the texture's size and you can set the ``Pixel Inset`` values to be the exact pixel size of your Texture.
+これを効率的に使用するには、GUI テクスチャのトランスフォームノスケールを (0, 0, 0)に設定する必要があります。 ''Pixel Inset''がテクスチャのサイズを完全に制御している場合、''Pixel Inset''をテクスチャの正確なピクセルサイズに設定できます。
 
 
-!! Hints
+!! ヒント
 
-* The depth of each layered GUI Texture is determined by its individual Z Transform position, not the global Z position.
-* GUI Textures are great for making menu screens, or pause/escape menu screens.
-* You should use ``Pixel Inset`` on any GUI Textures that you want to be a specific number of pixels for the width and height.
+* 各階層化された GUI テクスチャの深さは、グローバルな Z 位置ではなく、その個々の Z トランスフォームの位置によって決定されます。
+* GUI テクスチャは、メニュー画面や、停止 / エスケープ メニュー画面の作成に最適です。
+* 幅と高さに特定のピクセル数を指定したい任意の GUI テクスチャで''Pixel Inset''を使用する必要があります。

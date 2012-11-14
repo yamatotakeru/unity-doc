@@ -1,46 +1,46 @@
-! Time Manager
+! タイム マネージャ
 
 Attach:TimeSet.png\\
-''The Time Manager''
+''タイム マネージャ''
 
 
-!!Properties
+!!プロパティ
 
 
 ||PROPS
-||``Fixed Timestep`` ||A framerate-independent interval that dictates when physics calculations and ``FixedUpdate()`` events are performed. ||
-||``Maximum Allowed Timestep`` ||A framerate-independent interval that caps the worst case scenario when frame-rate is low. Physics calculations and ``FixedUpdate()`` events will not be performed for longer time than specified. ||
-||``Time Scale`` ||The speed at which time progress. Change this value to simulate bullet-time effects. A value of 1 means real-time. A value of .5 means half speed; a value of 2 is double speed. ||
+||``Fixed Timestep`` ||物理特性計算および''FixedUpdate()''イベントの実行時を示すフレーム レートに依存しない間隔。 ||
+||``Maximum Allowed Timestep`` ||フレーム レートが低い場合に、最悪のシナリオを制限するフレーム レートに依存しない間隔。 物理特性計算および''FixedUpdate()''イベントは、指定した時間を超えて実行されません。 ||
+||``Time Scale`` ||時間が進む速度。 ブレット タイム効果をシミュレートするには、この値を変更します。 1 は、リアルタイムになります。 0.5 だとその半分の速度で、2 だと速度が 2 倍になります。 ||
 
-!! Details
+!! 詳細
 
 !!! Fixed Timestep
 
-Fixed time stepping is very important for stable physics simulation. Not all computers are made equal, and different hardware configurations will run Unity games with varying performance.  Therefore, physics must be calculated independently of the game's frame rate.  Physics calculations like collision detection and Rigidbody movement are performed in discrete fixed time steps that are not dependent on frame rate. This makes the simulation more consistent across different computers or when changes in the frame rate occur. For example, the frame rate can drop due to an appearance of many game onscreen, or because the user launched another application in the background.
+Fixed time stepping は、安定した物理特性のシミュレーションを行うには非常に重要です。 すべてのコンピュータが平等に作られているわけではなく、Unity のゲームは異なるハードウェア構成で実行されるため、パフォーマンスも異なります。  そのため、物理特性は、ゲームのフレーム レートとは独立して、計算される必要があります。  衝突検出や剛体移動などの物理特性計算は、フレーム レートに依存しない個々の固定手順で実行されます。 これにより、異なるコンピュータ上あるいはフレーム レートに変更が発生した場合に、シミュレーションがより一貫したものになります。 例えば、多くのゲーム画面上の表示により、あるいは、ユーザーがバックグラウンドで別のアプリケーションを起動したために、フレーム レートがドロップする場合があります。
 
-Here's how the fixed time step is calculated.  Before every frame is drawn onscreen, Unity advances the fixed time by fixed delta time and performs physics calculations until it reaches the current time.  This directly correlates to the ``Fixed Timestep`` property.  The smaller the value of ``Fixed Timestep``, the more frequently physics will be calculated.  The number of Fixed frames per second can be calculated by dividing 1 by ``Fixed Timestep``.  Therefore, 1 / 0.02 = 50 fixed frames per second and 1 / 0.05 = 20 fixed frames per second.
+固定時間ステップはこのように計算されます。  各フレームが画面上で描画される前に、Unity は、固定デルタ時間で固定時間を進め、現在の時間に達するまで、物理特性計算を実行します。  これは直接''Fixed Timestep''プロパティに関連しています。  ''Fixed Timestep''の値が小さいほど、物理特性計算が頻繁に行われます。  1 秒あたりの固定フレームの数は、1 を''Fixed Timestep''で割ることで計算されます。  そのため、1 / 0.02 = 50 固定フレーム毎秒、1 / 0.05 = 20 固定フレーム毎秒となります。
 
-Simply put, a smaller fixed update value leads to more accurate physics simulation but is heavier on the CPU.
+簡単に言えば、固定アップデート値が小さくなるほど、物理特性計算の精度は高くなりますが、その分、CPU への負担も大きくなります。
 
 !!! Maximum Allowed Timestep
-Fixed time stepping ensures stable physics simulation. However it can cause negative impact on performance if game is heavy on physics and is already running slow or occasionally dips to low frame rate. Longer the frame takes to process - more fixed update steps will have to be executed for the next frame. This results in performance degradation. To prevent such scenario Unity iOS introduced ``Maximum Allowed Timestep`` which ensures that physics calculations will not run longer than specified threshold.
+Fixed time stepping により、物理特性のシミュレーションが安定します。 しかし、ゲームが物理特性に大きく依存し、すでにか実行速度が遅いか、フレーム レートが下がることがある場合、パフォーマンスに悪影響を及ぼします。 フレームの処理時間がかかるほど、次のフレームに対して、より多くの固定アップデート ステップを実行する必要があります。 これにより、パフォーマンスが悪化します。 このシナリオを回避するため、Unity iOS は、物理特性計算が指定した閾値より長く実行されないようにするための、''Maximum Allowed Timestep''を導入しています。
 
-If frame takes longer to process than time specified in ``Maximum Allowed Timestep``, then physics will "pretend" that frame took only ``Maximum Allowed Timestep`` seconds. In other words if frame rate drops below some threshold, then rigid bodies will slow down a bit allowing CPU to catch up.
+フレームが''Maximum Allowed Timestep''で指定した時間よりも処理に時間がかかる場合、物理特性は、そのフレームの処理に''''秒しかかからないような''ふりをします''。 言い換えれば、フレーム レートがある閾値以下になると、剛体が若干減速し、CPU が追いつくことができるようになります。
 
-``Maximum Allowed Timestep`` affects both physics calculation and ``FixedUpdate()`` events.
+''Maximum Allowed Timestep''は、物理特性と''FixedUpdate()''イベントの両方に影響します。
 
-``Maximum Allowed Timestep`` is specified in seconds as ``Fixed Timestep``. Therefore setting 0.1 will make physics and ``FixedUpdate()`` events to slow down, if frame rate dips below 1 / 0.1 = 10 frames per second.
+''Maximum Allowed Timestep''は、''Fixed Timestep''で、秒単位で指定されます。 そのため、0.1 を設定すると、フレーム レートが 1 / 0.1 = 10 フレーム毎秒を下回ると、物理特性と''FixedUpdate()''イベントが減速します。
 
-!!! Typical scenario
-# Let's assume ``Fixed Timestep`` is 0.01, which means that physx, fixedUpdate and animations should be processed every 10 ms.
-# When your frame time is ~33 ms then fixed loop is executed 3 times per visual frame on average.
-# But frametime isn't fixed constant and depends on many factors including your scene state, OS background taks, etc.
-# Because of 3. reasons frametime sometimes can reach 40-50 ms, which means that fixed step loop will be executed 4-5 times.
-# When your fixed timestep tasks are pretty heavy then time spent on physx, fixedUpdates and animations extend your frametime by another 10 ms, which means one more additional iteration of all these fixed timestep tasks.
-# In some unlucky cases process described in 5. could extend to 10 and more times of processing fixed step loop.
-# That's why ``Maximum Allowed Timestep`` was introduced, it is the method to limit how much times physx, fixedUpdates and animations can be processed during single visual frame. If you have ``Maximum Allowed Timestep`` set to 100 ms and your ``Fixed Timestep`` is 10 ms, then for fixed step tasks will be executed up to 10 times per visual frame. So sometimes small performance hitch could trigger big performance hitch because of increased fixed timestep iteration count. By decreasing ``Maximum Allowed Timestep`` to 30 ms, you are limiting max fixed step iteration count to 3 and this means that your physx, fixedUpdate and animation won't blow your frametime up very much, but there is some negative effect of this limiting. Your animations and physics will slow down a bit when performance hitch occurs.
+!!! 通常のシナリオ
+# ''Fixed Timestep''が 0.01 の場合、physx、fixedUpdate およびアニメーションは 10ms ごとに処理する必要があります。
+# フレーム レートが 〜33 ms の場合、固定ループは、平均で、視覚フレームごとに 3 回実行されます。
+# しかし、フレーム時間が一定の値に固定されず、シーンの状態、OS バックグラウンド タスクなどを含む多くの要因に依存します。
+# 3 つの理由から、フレーム時間が 40〜50msに達することがありますが、これは、固定ステップ ループが 4〜5回実行されるということです。
+# 固定時間ステップ タスクがかなり重く、physx で時間が消費される場合、fixedUpdates とアニメーションによりフレーム時間が更に10ms 延長されますが、これは、これらのすべての固定時間ステップ タスクがもう 1 回繰り返されるということです。
+# 5 に記載するプロセスが 10 まで延長し、固定ステップのループにより時間がかかる場合があります。
+# そのため、''Maximum Allowed Timestep''が導入され、これが、1 つの視覚フレーム 中に処理できる physx、fixedUpdates および アニメーションの回数を制限する方法になります。 ''Maximum Allowed Timestep''を 100 ms に設定し、''Fixed Timestep''が 10 ms の場合、固定ステップ タスクが視覚フレームごとに 10 回まで実行されます。 そのため、固定タイムステップの繰り返し数の増加による、軽いパフォーマンス障害が大きなパフォーマンス障害を引き起こすことがあります。 ''Maximum Allowed Timestep''を 30 ms まで下げると、最大固定ステップの繰り返し数が 3 に制限されますが、これは、physx、fixedUpdates および アニメーションの回数がフレーム時間を吹き飛ばすことありませんが、この制限に対して悪影響をおよぼすことがあります。 パフォーマンス障害が発生すると、アニメーションと物理特性が若干減速します。
 
 
-!!Hints
-* Give the player control over time by changing ``Time Scale`` dynamically through scripting.
-* If your game is physics heavy or spends significant amount of time in ``FixedUpdate()`` events, then set ``Maximum Allowed Timestep`` to 0.1. This will prevent physics from driving your game below 10 frames per second.
+!!ヒント
+* スクリプティングを通じて、''Time Scale''を動的に変更することで、時間の経過と共にプレイヤーに制御を与えます。
+* ゲームの物理特性が重いか、''FixedUpdate()''イベントでかなりの時間を消費する場合、''Maximum Allowed Timestep''を 0.1 に設定します。 これにより、物理特性が 1 秒あたり 10 フレーム以下でゲームを駆動するのを防ぎます。

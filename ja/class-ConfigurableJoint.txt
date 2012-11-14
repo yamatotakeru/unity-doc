@@ -1,130 +1,130 @@
-! Configurable Joint
+! 設定可能なジョイント
 
-$$Configurable Joints$$ are extremely customizable.  They expose all joint-related properties of PhysX, so they are capable of creating behaviors similar to all other joint types.
+$$Configurable Joint$$ は、極めて自由にカスタマイズできます。  PhysX のジョイント関係のプロパティをすべて露出するため、その他すべての種類のジョイントに似た動作を作成できます。
 
 Attach:ConfigurableJointImage.png\\
-''Properties of the Configurable Joint''
+''設定可能なジョイントのプロパティ''
 
 
-!! Details
+!! 詳細
 
-There are two primary functions that the Configurable Joint can perform: movement/rotation restriction and movement/rotation acceleration.  These functions depend on a number of inter-dependent properties.  It may require some experimentation to create the exact behavior you're trying to achieve.  We'll now give you an overview of the Joint's functionality to make your experimentation as simple as possible.
-
-
-!! Movement/Rotation Restriction
-
-You specify restriction per axis and per motion type.  ``XMotion``, ``YMotion``, and ``ZMotion`` allow you to define translation along that axis.  ``Angular XMotion``, ``Angular YMotion``, and ``Angular ZMotion`` allow you to define rotation around that axis.  Each one of these properties can be set to ``Free`` (unrestricted), ``Limited`` (restricted based on limits you can define), or ``Locked`` (restricted to zero movement).
-
-!!! Limiting Motion
-
-When you have any of the ``"Motion"`` properties set to ``Limited``, you can define the limitations of movement for that axis.  You do this by changing the values of one of the ``"Limit"`` properties.
-
-For translation of movement (non-angular), the ``Linear Limit`` property will define the maximum distance the object can move from its origin.  Translation on any ``"Motion"`` properties set to ``Limited`` will be restricted according to ``Linear Limit->Limit``.  Think of this ``Limit`` property as setting a border around the axis for the object.
-
-``Bouncyness``, ``Spring``, and ``Damper`` will define the behavior of the object when it reaches the ``Limit`` on any of the ``Limited`` ``"Motion"`` axes.  If all of these values are set to 0, the object will instantly stop moving when it reaches the border.  ``Bouncyness`` will make the object bounce back away from the border.  ``Spring`` and ``Damper`` will use springing forces to pull the object back to the border.  This will soften the border, so the object will be able to pass through the border and be pulled back instead of stopping immediately.
+設定可能なジョイントは、 移動 /回転の制限と移動 / 回転の加速という 2 つの基本的な機能を実行できます。  これらの機能は、中間依存のプロパティに依存します。  達成しようとしている正確な動作を作成するには、ある程度の実験が必要な場合があります。  実験をできる限り簡単にするための、ジョイントの機能の概要を提供します。
 
 
-!!! Limiting Rotation
+!! 移動 / 回転の制限
 
-Limiting rotation works almost the same as limiting motion.  The difference is that the three ``"Angular Motion"`` properties all correspond to different ``"Angular Limit"`` properties.  Translation restriction along all 3 axes are defined by the ``Linear Limit`` property, and rotation restriction along each of the 3 axes is defined by a separate ``"Angular Limit"`` property per axis.
+軸および動作のタイプごとに制限を指定します。  ''XMotion''、''YMotion''、''ZMotion''で、軸に沿った移転を定義できます。  ''Angular XMotion''、''Angular YMotion''、''Angular ZMotion''で、軸に沿った回転を定義できます。  これらのプロパティに対して、それぞれ''Free （制限なし）''、''Limited (定義できる制限に基づいて制限)''、''Locked (移動なしに制限)''を設定できます。
 
-``Angular XMotion`` limitation is the most robust, as you can define a ``Low Angular XLimit`` and a ``High Angular XLimit``.  Therefore if you want to define a low rotation limit of -35 degrees and a high rotation limit of 180 degrees, you can do this.  For the Y and Z axes, the low and high rotation limits will be identical, set together by the ``Limit`` property of ``Angular YLimit`` or ``Angular ZLimit``.
+!!! 動作の制限
 
-The same rules about object behavior at the rotation limits from the Limiting Motion section applies here.
+いずれかの''Movement''プロパティが''Limited''に制限されている場合、その軸に対して、移動の制限を定義できます。  これは、''Limit''プロパティのいずれかの値を変更することで行います。
 
+移動 （角のない） の内の移転場合、''Linear Limit''プロパティは、原点からオブジェクトが移動できる最大距離を定義します。  ''Limited''に設定された''Motion''プロパティでの移転は、''Linear Limit->Limit''に従って制限されます。  この''Limit''プロパティは、オブジェクトに対する軸周辺の境界の設定と考えてください。
 
-!! Movement/Rotation Acceleration
-
-You specify object movement or rotation in terms of moving the object toward a particular position/rotation, or velocity/angular velocity.  This system works by defining the ``"Target"`` value you want to move toward, and using a ``"Drive"`` to provide acceleration which will move the object toward that target.  Each ``"Drive"`` has a ``Mode``, which you use to define which ``"Target"`` the object is moving toward.
-
-
-!!! Translation Acceleration
-
-The ``XDrive``, ``YDrive``, and ``ZDrive`` properties  are what start the object moving along that axis.  Each ``Drive``'s ``Mode`` will define whether the object should be moving toward the ``Target Position`` or ``Target Velocity`` or both.  For example, when ``XDrive``'s mode is set to ``Position``, then the object will try to move to the value of ``Target Position->X``.
-
-When a ``Drive`` is using ``Position`` in its ``Mode``, its ``Position Spring`` value will define how the object is moved toward the ``Target Position``.  Similarly, when a ``Drive`` is using ``Velocity`` in its ``Mode``, its ``Maximum Force`` value will define how the object is accelerated to the ``Target Velocity``.
+''Bouncyness''、''Spring''、''Damper''は、''Limited''''Motion''軸のいずれかで、''Limit''に達した際のオブジェクトの動作を定義します。  これらの値をすべて 0 に設定すると、境界に達した時に、オブジェクトをすぐに動きを止めます。  ''Bouncyness''は、境界からオブジェクトを跳ね返らせます。  ''Spring''と''Damper''は、跳躍力を使用して、オブジェクトを境界に引き戻します。  これにより、境界が柔らかくなるため、オブジェクトはすぐに停止するのではなく、境界を通過し、引き戻されることができるようになります。
 
 
-!!! Rotation Acceleration
+!!! 回転の制限
 
-Rotation acceleration properties: ``Angular XDrive``, ``Angular YZDrive``, and ``Slerp Drive`` function the same way as the translation ``Drives``.  There is one substantial difference.  ``Slerp Drive`` behaves differently from the ``Angular Drive`` functionality.  Therefore you can choose to use either both ``Angular Drives`` or ``Slerp Drive`` by choosing one from the ``Rotation Drive Mode``.  You cannot use both at once.
+回転の制限は、動作の制限とほとんど同じです。  ただし、3 つの''Angular Motion''プロパティがすべて、異なる''Angular Limit''プロパティに対応している点が違います。  3 つの軸に沿った移転制限は、''Linear Limit''プロパティによって定義され、3 津の軸それぞれに沿った回転制限は、軸ごとの個々の''Angular Limit''で定義されます。
+
+''Low Angular XLimit''と''High Angular XLimit''を定義できるため、''Angular XMotion''制限は、最も厳しい制限です。  そのため、-35°の低回転制限と 180°の高回転制限を定義したい場合にこれを行うことができます。  Y および Z 軸の場合、''Angular YLimit''または''Angular ZLimit''の''Limit''プロパティで一緒に設定された低および高回転制限は同一になります　。
+
+回転制限でのオブジェクトの動作に関して、動作の制限から同じルールがここで適用されます。
 
 
-!! Properties
+!! 移動 / 回転の加速
+
+特定の位置 /回転、または速度 / 角速度に対してオブジェクトを移動させる点に関して、オブジェクトの移動または回転を指定します。  このシステムは、前進させたい''Target''値を定義し、オブジェクトをその目標に向かって前進させる加速度を提供するために、''Drive''を使用することで機能します。  各''Drive''には、''Mode''があります。これは、オブジェクトの前進の目標となる''Target''を定義するのに使用します。
+
+
+!!! 転移の加速
+
+''XDrive''、''YDrive''と''ZDrive''プロパティは、軸に沿ったオブジェクトの移動を開始するプロパティです。  各''Drive''の''Mode''は、''Target Position''または''Target Velocity''またはその両方に移動するかどうかを定義します。  例えば、、''XDrive''のモードが''Position''に設定されると、オブジェクトは、''Target Position->X''の値に移動しようとします。
+
+''Drive''がその''Mode''で''Position''を使用すると、その''Position Spring''値がオブジェクトが''Target Position''に対してどのように移動するかを定義します。  ''Drive''がその''Mode''で''Velocity''を使用すると、その''Maximum Force''値がオブジェクトが''Target Position''に対してどのように加速するかを定義します。
+
+
+!!! 回転の加速
+
+回転の加速には、 ''Angular XDrive''、''Angular YZDrive''と''Slerp Drive''があり、転移''Drives''と同じように機能します。  しかし、1 つ大きな違いがあります。  ''Slerp Drive''は、''Angular Drive''機能とは動作が異なります。  そのため、''Rotation Drive Mode''から 1 つを選択して、''Angular Drives''の両方または''Slerp Drive''のいずれかを使用するよう選択できます。  一度に両方を使用することはできません。
+
+
+!! プロパティ
 
 ||PROPS
-||``Anchor`` ||The point where the center of the joint is defined.  All physics-based simulation will use this point as the center in calculations ||
-||``Axis`` ||The local axis that will define the object's natural rotation based on physics simulation ||
-||``Secondary Axis`` ||Together, ``Axis`` and ``Secondary Axis`` define the local coordinate system of the joint. The third axis is set to be orthogonal to the other two. ||
-||``XMotion`` ||Allow movement along the X axis to be Free, completely Locked, or Limited according to ``Linear Limit`` ||
-||``YMotion`` ||Allow movement along the Y axis to be Free, completely Locked, or Limited according to ``Linear Limit`` ||
-||``ZMotion`` ||Allow movement along the Z axis to be Free, completely Locked, or Limited according to ``Linear Limit`` ||
-||``Angular XMotion`` ||Allow rotation around the X axis to be Free, completely Locked, or Limited according to ``Low`` and ``High Angular XLimit`` ||
-||``Angular YMotion`` ||Allow rotation around the Y axis to be Free, completely Locked, or Limited according to ``Angular YLimit`` ||
-||``Angular ZMotion`` ||Allow rotation around the Z axis to be Free, completely Locked, or Limited according to ``Angular ZLimit`` ||
-||``Linear Limit`` ||Boundary defining movement restriction, based on distance from the joint's origin ||
-||>>>``Limit`` ||The distance in units from the origin to the wall of the boundary ||
-||>>>``Bouncyness`` ||Amount of bounce-back force applied to the object when it reaches the ``Limit`` ||
-||>>>``Spring`` ||Strength of force applied to move the object back to the ``Limit``.  Any value other than 0 will implicitly soften the boundary ||
-||>>>``Damper`` ||Resistance strength against the ``Spring`` ||
-||``Low Angular XLimit`` ||Boundary defining lower rotation restriction, based on delta from original rotation ||
-||>>>``Limit`` ||The rotation in degrees that the object's rotation should not drop below ||
-||>>>``Bouncyness`` ||Amount of bounce-back torque applied to the object when its rotation reaches the ``Limit`` ||
-||>>>``Spring`` ||Strength of force applied to move the object back to the ``Limit``.  Any value other than 0 will implicitly soften the boundary ||
-||>>>``Damper`` ||Resistance strength against the ``Spring`` ||
-||``High Angular XLimit`` ||Boundary defining upper rotation restriction, based on delta from original rotation. ||
-||>>>``Limit`` ||The rotation in degrees that the object's rotation should not exceed ||
-||>>>``Bouncyness`` ||Amount of bounce-back torque applied to the object when its rotation reaches the ``Limit`` ||
-||>>>``Spring`` ||Strength of force applied to move the object back to the ``Limit``.  Any value other than 0 will implicitly soften the boundary ||
-||>>>``Damper`` ||Resistance strength against the ``Spring`` ||
-||``Angular YLimit`` ||Boundary defining rotation restriction, based on delta from original rotation ||
-||>>>``Limit`` ||The rotation in degrees that the object's rotation should not exceed ||
-||>>>``Bouncyness`` ||Amount of bounce-back torque applied to the object when its rotation reaches the ``Limit`` ||
-||>>>``Spring`` ||Strength of torque applied to move the object back to the ``Limit``.  Any value other than 0 will implicitly soften the boundary ||
-||>>>``Damper`` ||Resistance strength against the ``Spring`` ||
-||``Angular ZLimit`` ||Boundary defining rotation restriction, based on delta from original rotation ||
-||>>>``Limit`` ||The rotation in degrees that the object's rotation should not exceed ||
-||>>>``Bouncyness`` ||Amount of bounce-back torque applied to the object when its rotation reaches the ``Limit`` ||
-||>>>``Spring`` ||Strength of force applied to move the object back to the ``Limit``.  Any value other than 0 will implicitly soften the boundary ||
-||>>>``Damper`` ||Resistance strength against the ``Spring`` ||
-||``Target Position`` ||The desired position that the joint should move into ||
-||``Target Velocity`` ||The desired velocity that the joint should move along ||
-||``XDrive`` ||Definition of how the joint's movement will behave along its local X axis ||
-||>>>``Mode`` ||Set the following properties to be dependent on ``Target Position``, ``Target Velocity``, or both ||
-||>>>``Position Spring`` ||Strength of a rubber-band pull toward the defined direction. Only used if ``Mode`` includes ``Position`` ||
-||>>>``Position Damper`` ||Resistance strength against the ``Position Spring``. Only used if ``Mode`` includes ``Position`` ||
-||>>>``Maximum Force`` ||Amount of strength applied to push the object toward the defined direction. Only used if ``Mode`` includes ``Velocity`` ||
-||``YDrive`` ||Definition of how the joint's movement will behave along its local Y axis ||
-||>>>``Mode`` ||Set the following properties to be dependent on ``Target Position``, ``Target Velocity``, or both ||
-||>>>``Position Spring`` ||Strength of a rubber-band pull toward the defined direction. Only used if ``Mode`` includes ``Position``. ||
-||>>>``Position Damper`` ||Resistance strength against the ``Position Spring``. Only used if ``Mode`` includes ``Position``. ||
-||>>>``Maximum Force`` ||Amount of strength applied to push the object toward the defined direction. Only used if ``Mode`` includes ``Velocity``. ||
-||``ZDrive`` ||Definition of how the joint's movement will behave along its local Z axis ||
-||>>>``Mode`` ||Set the following properties to be dependent on ``Target Position``, ``Target Velocity``, or both. ||
-||>>>``Position Spring`` ||Strength of a rubber-band pull toward the defined direction. Only used if ``Mode`` includes ``Position`` ||
-||>>>``Position Damper`` ||Resistance strength against the ``Position Spring``. Only used if ``Mode`` includes ``Position`` ||
-||>>>``Maximum Force`` ||Amount of strength applied to push the object toward the defined direction. Only used if ``Mode`` includes ``Velocity`` ||
-||``Target Rotation`` ||This is a Quaternion. It defines the desired rotation that the joint should rotate into ||
-||``Target Angular Velocity`` ||This is a Vector3. It defines the desired angular velocity that the joint should rotate into ||
-||``Rotation Drive Mode`` ||Control the object's rotation with either ``X & YZ`` or ``Slerp Drive`` by itself ||
-||``Angular XDrive`` ||Definition of how the joint's rotation will behave around its local X axis. Only used if ``Rotation Drive Mode`` is ``Swing & Twist`` ||
-||>>>``Mode`` ||Set the following properties to be dependent on ``Target Rotation``, ``Target Angular Velocity``, or both ||
-||>>>``Position Spring`` ||Strength of a rubber-band pull toward the defined direction. Only used if ``Mode`` includes ``Position`` ||
-||>>>``Position Damper`` ||Resistance strength against the ``Position Spring``. Only used if ``Mode`` includes ``Position`` ||
-||>>>``Maximum Force`` ||Amount of strength applied to push the object toward the defined direction. Only used if ``Mode`` includes ``Velocity``. ||
-||``Angular YZDrive`` ||Definition of how the joint's rotation will behave around its local Y and Z axes. Only used if ``Rotation Drive Mode`` is ``Swing & Twist`` ||
-||>>>``Mode`` ||Set the following properties to be dependent on ``Target Rotation``, ``Target Angular Velocity``, or both ||
-||>>>``Position Spring`` ||Strength of a rubber-band pull toward the defined direction. Only used if ``Mode`` includes ``Position`` ||
-||>>>``Position Damper`` ||Resistance strength against the ``Position Spring``. Only used if ``Mode`` includes ``Position`` ||
-||>>>``Maximum Force`` ||Amount of strength applied to push the object toward the defined direction. Only used if ``Mode`` includes ``Velocity`` ||
-||``Slerp Drive`` ||Definition of how the joint's rotation will behave around all local axes. Only used if ``Rotation Drive Mode`` is ``Slerp Only`` ||
-||>>>``Mode`` ||Set the following properties to be dependent on ``Target Rotation``, ``Target Angular Velocity``, or both ||
-||>>>``Position Spring`` ||Strength of a rubber-band pull toward the defined direction. Only used if ``Mode`` includes ``Position`` ||
-||>>>``Position Damper`` ||Resistance strength against the ``Position Spring``. Only used if ``Mode`` includes ``Position`` ||
-||>>>``Maximum Force`` ||Amount of strength applied to push the object toward the defined direction. Only used if ``Mode`` includes ``Velocity`` ||
-||``Projection Mode`` ||Properties to track to snap the object back to its constrained position when it drifts off too much||
-||``Projection Distance`` ||Distance from the ``Connected Body`` that must be exceeded before the object snaps back to an acceptable position ||
-||``Projection Angle`` ||Difference in angle from the ``Connected Body`` that must be exceeded before the object snaps back to an acceptable position ||
-||``Congfigure in World Space`` ||If enabled, all Target values will be calculated in World Space instead of the object's Local Space ||
-||``Break Force`` ||Applied Force values above this number will cause the joint to be destroyed ||
-||``Break Torque`` ||Applied Torque values above this number will cause the joint to be destroyed ||
+||``Anchor``   ||ジョイントの中心が定義される点。  物理特性ベースシミュレーションは、この点を計算の中心として使用します。||
+||``Axis`` ||物理特性シミュレーションに基づいて、オブジェクトの自然な回転を定義するローカルの軸。 ||
+||``Secondary Axis`` ||''Axis''と''Secondary Axis''は共に、ジョイントのローカルな座標系を定義します。 第 3 の軸は、他の 2 つに対して、直角になるよう設定されます。 ||
+||``XMotion`` ||''Linear Limit''に応じて、X 軸に沿った移動を、Free、完全 Locked または Limited にすることができます。||
+||``YMotion`` ||''Linear Limit''に応じて、Y 軸に沿った移動を、Free、完全 Locked または Limited にすることができます。 ||
+||``YMotion`` ||''Linear Limit''に応じて、Y 軸に沿った移動を、Free、完全 Locked または Limited にすることができます。 ||
+||``Angular XMotion`` ||''Low''または''High''の''Angular XLimit''に応じて、X 軸周辺の回転を、Free、完全 Locked または Limited にすることができます。 ||
+||``Angular YMotion`` ||''Angular YLimit''に応じて、Y 軸周辺の回転を、Free、完全 Locked または Limited にすることができます。 ||
+||``Angular ZMotion`` ||''Angular ZLimit''に応じて、Z 軸周辺の回転を、Free、完全 Locked または Limited にすることができます。 ||
+||``Linear Limit`` ||ジョイントの原点からの距離に基づいた、移動制限を定義する境界。||
+||>>>``Limit`` ||原点から境界の壁までの単位での距離。||
+||>>>``Bouncyness`` ||''Limit''に到達した時に、オブジェクトに適用される跳ね返り力の量。||
+||>>>``Spring`` ||オブジェクトを''Limit''に戻すのに適用される力の強さ。  0 以外の値は、暗黙的に境界を柔らかくします。
+||>>>``Damper`` ||''Spring''に対する抵抗の強さ。 ||
+||``Low Angular XLimit`` ||原点の回転からのデルタに基づいた、低い回転制限を定義する境界。||
+||>>>``Limit`` ||オブジェクトの回転が下回らない回転の限界 （単位: °） ||
+||>>>``Bouncyness`` ||回転が''Limit''に到達した時に、オブジェクトに適用される跳ね返りトルクの量。||
+||>>>``Spring`` ||オブジェクトを''Limit''に戻すのに適用される力の強さ。  0 以外の値は、暗黙的に境界を柔らかくします。
+||>>>``Damper`` ||''Spring''に対する抵抗の強さ。 ||
+||``High Angular XLimit`` ||原点の回転からのデルタに基づいた、高い回転制限を定義する境界。|| ||
+||>>>``Limit`` ||オブジェクトの回転が超えない回転の限界 （単位: °） ||
+||>>>``Bouncyness`` ||回転が''Limit''に到達した時に、オブジェクトに適用される跳ね返りトルクの量。||
+||>>>``Spring`` ||オブジェクトを''Limit''に戻すのに適用される力の強さ。  0 以外の値は、暗黙的に境界を柔らかくします。
+||>>>``Damper`` ||''Spring''に対する抵抗の強さ。 ||
+||``Angular YLimit`` ||原点の回転からのデルタに基づいた、回転制限を定義する境界。||
+||>>>``Limit`` ||オブジェクトの回転が超えない回転の限界 （単位: °） ||
+||>>>``Bouncyness`` ||回転が''Limit''に到達した時に、オブジェクトに適用される跳ね返りトルクの量。||
+||>>>``Spring`` ||オブジェクトを''Limit''に戻すのに適用されるトルクの強さ。  0 以外の値は、暗黙的に境界を柔らかくします。
+||>>>``Damper`` ||''Spring''に対する抵抗の強さ。 ||
+||``Angular ZLimit`` ||原点の回転からのデルタに基づいた、回転制限を定義する境界。||
+||>>>``Limit`` ||オブジェクトの回転が超えない回転の限界 （単位: °） ||
+||>>>``Bouncyness`` ||回転が''Limit''に到達した時に、オブジェクトに適用される跳ね返りトルクの量。||
+||>>>``Spring`` ||オブジェクトを''Limit''に戻すのに適用される力の強さ。  0 以外の値は、暗黙的に境界を柔らかくします。
+||>>>``Damper`` ||''Spring''に対する抵抗の強さ。 ||
+||``Target Position`` ||ジョイントが移動する希望の位置。||
+||``Target Velocity`` ||ジョイントが移動する希望の速度。||
+||``XDrive`` ||ローカルの X 軸に沿ってジョイントの移動がどのように動作するかの定義。 ||
+||>>>``Mode`` ||次のプロパティを''Target Position''、''Target Velocity''またはその両方に依存させるように設定します。 ||
+||>>>``Position Spring`` ||定義した方向に引っ張られるゴムバンドの強さ。 ''Mode''が''Position''を含む場合にのみ使用されます。||
+||>>>``Position Damper`` ||''Position Spring''に対する抵抗の強さ。 ''Mode''が''Position''を含む場合にのみ使用されます。||
+||>>>``Maximum Force`` ||定義した方向にオブジェクトを押すのに適用される力の量。 ''Mode''が''Velocity''を含む場合にのみ使用されます。||
+||``YDrive`` ||ローカルの Y 軸に沿ってジョイントの移動がどのように動作するかの定義。 ||
+||>>>``Mode`` ||次のプロパティを''Target Position''、''Target Velocity''またはその両方に依存させるように設定します。 ||
+||>>>``Position Spring`` ||定義した方向に引っ張られるゴムバンドの強さ。 ''Mode''が''Position''を含む場合にのみ使用されます。|| ||
+||>>>``Position Damper`` ||''Position Spring''に対する抵抗の強さ。 ''Mode''が''Position''を含む場合にのみ使用されます。|| ||
+||>>>``Maximum Force`` ||定義した方向にオブジェクトを押すのに適用される力の量。 ''Mode''が''Velocity''を含む場合にのみ使用されます。|| ||
+||``ZDrive`` ||ローカルの Z 軸に沿ってジョイントの移動がどのように動作するかの定義。 ||
+||>>>``Mode`` ||次のプロパティを''Target Position''、''Target Velocity''またはその両方に依存させるように設定します。 || ||
+||>>>``Position Spring`` ||定義した方向に引っ張られるゴムバンドの強さ。 ''Mode''が''Position''を含む場合にのみ使用されます。||
+||>>>``Position Damper`` ||''Position Spring''に対する抵抗の強さ。 ''Mode''が''Position''を含む場合にのみ使用されます。||
+||>>>``Maximum Force`` ||定義した方向にオブジェクトを押すのに適用される力の量。 ''Mode''が''Velocity''を含む場合にのみ使用されます。||
+||``Target Rotation`` ||これは四元数です。 ジョイントが回転する希望の回転を定義します。||
+||``Target Angular Velocity`` ||これはVector3です。 ジョイントが回転する希望の角速度を定義します。||
+||``Rotation Drive Mode`` ||''X & YZ''または''Slerp Drive''のいずれかでオブジェクトの回転を制御します。||
+||``Angular XDrive`` ||ローカルの X 軸周辺でジョイントの回転がどのように動作するかの定義。 ''Rotation Drive Mode''が''Swing & Twist''を含む場合にのみ使用されます。||
+||>>>``Mode`` ||次のプロパティを''Target Position''、''Target Angular Velocity''またはその両方に依存させるように設定します。 ||
+||>>>``Position Spring`` ||定義した方向に引っ張られるゴムバンドの強さ。 ''Mode''が''Position''を含む場合にのみ使用されます。||
+||>>>``Position Damper`` ||''Position Spring''に対する抵抗の強さ。 ''Mode''が''Position''を含む場合にのみ使用されます。||
+||>>>``Maximum Force`` ||定義した方向にオブジェクトを押すのに適用される力の量。 ''Mode''が''Velocity''を含む場合にのみ使用されます。|| ||
+||``Angular YZDrive`` ||ローカルの Y 軸と Z 軸周辺でジョイントの回転がどのように動作するかの定義。 ''Rotation Drive Mode''が''Swing & Twist''を含む場合にのみ使用されます。||
+||>>>``Mode`` ||次のプロパティを''Target Position''、''Target Angular Velocity''またはその両方に依存させるように設定します。 ||
+||>>>``Position Spring`` ||定義した方向に引っ張られるゴムバンドの強さ。 ''Mode''が''Position''を含む場合にのみ使用されます。||
+||>>>``Position Damper`` ||''Position Spring''に対する抵抗の強さ。 ''Mode''が''Position''を含む場合にのみ使用されます。||
+||>>>``Maximum Force`` ||定義した方向にオブジェクトを押すのに適用される力の量。 ''Mode''が''Velocity''を含む場合にのみ使用されます。||
+||``Slerp Drive`` ||すべてのローカルな軸周辺でジョイントの回転がどのように動作するかの定義。 ''Rotation Drive Mode''が''Slerp Only''を含む場合にのみ使用されます。||
+||>>>``Mode`` ||次のプロパティを''Target Position''、''Target Angular Velocity''またはその両方に依存させるように設定します。 ||
+||>>>``Position Spring`` ||定義した方向に引っ張られるゴムバンドの強さ。 ''Mode''が''Position''を含む場合にのみ使用されます。||
+||>>>``Position Damper`` ||''Position Spring''に対する抵抗の強さ。 ''Mode''が''Position''を含む場合にのみ使用されます。||
+||>>>``Maximum Force`` ||定義した方向にオブジェクトを押すのに適用される力の量。 ''Mode''が''Velocity''を含む場合にのみ使用されます。||
+||``Projection Mode`` ||オブジェクトが||オブジェクトが停止しすぎている場合に、制限された位置にオブジェクトを戻して、追跡するプロパティ。
+||``Projection Distance`` ||許容可能な位置にオブジェクトが跳ね返る前に超える必要がある''Connected Body''からの距離。||
+||``Projection Angle`` ||許容可能な位置にオブジェクトが跳ね返る前に超える必要がある''Connected Body''からの角度の差。||
+||``Congfigure in World Space`` |有効にすると、オブジェクトのローカル スペースでなく、ワールド スペースですべての Target 値が計算されます。
+||``Break Force``   ||この数字以上の Force 値が適用されると、ジョイントが破壊されます。||
+||``Break Torque``   ||この数字以上の Torque 値が適用されると、ジョイントが破壊されます。||

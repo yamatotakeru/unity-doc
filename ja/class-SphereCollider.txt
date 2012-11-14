@@ -1,34 +1,34 @@
-!Sphere Collider
-The $$Sphere Collider$$ is a basic sphere-shaped collision primitive.
+!球体コライダ
+$$Sphere Collider$$ は、基本的な球体形状の衝突プリミティブです。
 
 Attach:Inspector-SphereCollider.png\\
-''A pile of Sphere Colliders''
+''球体コライダの積み重ね''
 
 
-!!Properties
+!!プロパティ
 
 ||PROPS
 (:include comp-ColliderProps:)
-||``Radius`` ||The size of the Collider. ||
-||``Center`` ||The position of the Collider in the object's local space. ||
+||``Radius`` ||コライダのサイズ。 ||
+||``Center`` ||オブジェクトのローカル空間でのコライダの位置。 ||
 
 
-!!Details
+!!詳細
 
-The Sphere Collider can be resized to uniform scale, but not along individual axes. It works great for falling boulders, ping pong balls, marbles, etc.
+球体コライダは、均一なスケールにサイズ変更できますが、個々の軸に沿ってサイズ変更はされません。 落下する医師や、卓球の球、ビー玉などに最適です。
 
 Attach:spherecollider.png
-''A standard Sphere Collider''
+''標準の球体コライダ''
 
 (:include comp-ColliderDetails:)
 
 
-!!Compound Colliders
+!!合成物コライダ
 (:include comp-ColliderCompound:)
 
 
-!!Hints
+!!ヒント
 (:include comp-ColliderHints:)
-* If you make an explosion, it can be very effective to add a rigidbody with lots of drag and a sphere collider to it in order to push it out a bit from the wall it hits.
+* 爆発を作成したい場合、リジッドボディが衝突する壁から若干押し出すためには、何度もドラッグして、リジッドボディと球体コライダをそこに追加すると非常に有効な場合があります。
 
 (:include comp-ColliderAdvanced:)

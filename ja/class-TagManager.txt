@@ -1,20 +1,20 @@
-!Tag Manager
+!タグ マネージャ
 
-The $$Tag Manager$$ allows you to set up $$Layers$$ and $$Tags$$. To see it choose ^^Edit->Project Settings->Tags^^.
+$$Tag Manager$$ により、$$Layer$$ と $$Tag$$ を設定できます。 これを表示するには、^^Edit->Project Settings->Tags^^ を選択します。
 
 Attach:TagSet.png\\
-''The Tag Manager''
+''タグ マネージャ''
 
 
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Tags`` ||You can add new elements by typing in the last element. ||
-||``User Layer 8-31`` ||You can add custom named User Layers ||
+||``Tags`` ||最後の要素を入力することで新しい要素を追加できます。 ||
+||``User Layer 8-31`` ||カスタムで名前を付けられたユーザー レイヤーを追加できます。||
 
 
-!!Details
+!!詳細
 
-Layers can be used to cast rays, render, or apply lighting to certain groups of objects only. You can choose the Layer in the [[class-GameObject|GameObject inspector]]. More information about how to use Layers can be found [[Layers | here]], while Tags are covered [[Tags | here]].
+レイヤーを使用して、オブジェクトの特定のグループにのみ、光線を投射し、光をレンダリングまたは適用できます。 [[class-GameObject|GameObject inspector]] のレイヤーを選択できます。 * レイヤーの使用法については、[[Layers|here]] を、タグについては、[[Tags | here]] を参照してください。
 
-Tags are used to quickly find objects from scripts, utilizing the Tag name. When a new tag is added, you can choose it from the [[class-GameObject|GameObject]] tag popup.
+タグ名を使用して、スクリプトからオブジェクトを素早く検索するためにタグが使用されます。 新しいタグを追加すると、[[class-GameObject|GameObject]] タグ ポップからそのタグを選択できます。

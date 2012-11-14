@@ -1,33 +1,33 @@
-!Line Renderer 
+! ライン レンダラ
 
-The $$Line Renderer$$ takes an array of two or more points in 3D space and draws a straight line between each one. A single Line Renderer Component can thus be used to draw anything from a simple straight line, to a complex spiral. The line is always continuous; if you need to draw two or more completely separate lines, you should use multiple GameObjects, each with its own Line Renderer.
+$$Line Renderer$$ は、3D 空間における 2 つ以上の点の配列を取り、それぞれの間に直線を描画します。 従って、1 つのライン レンダラ コンポーネントを使用して、1 本の直線から、複雑な螺旋まで描画できます。 線は必ず連続した状態になっています。2 本以上の完全に個別の線を描画したい場合、それぞれ自身のライン レンダラを持つ、複数の GameObject を使用する必要があります。
 
-The Line Renderer does not render one pixel thin lines. It renders billboard lines that have width and can be textured. It uses the same algorithm for line rendering as the [[class-TrailRenderer|Trail Renderer]].
+ライン レンダラは、1 ピクセルの細い線はレンダリングしません。 幅があり、テクスチャを貼れるビルボード線をレンダリングします。 [[class-TrailRenderer|Trail Renderer]] と同じ線レンダリング用のアルゴリズムを使用します。
 
 Attach:Inspector-LineRenderer.png\\
-''The Line Renderer $$Inspector$$''
+''ライン レンダラ $$Inspector$$''
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Materials``     ||The first material from this list is used to render the lines. ||
-||``Positions``     ||Array of Vector3 points to connect. ||
-||>>>``Size``       ||The number of segments in this line. ||
-||``Parameters``    ||List of parameters for each line: ||
-||>>>``StartWidth`` ||Width at the first line position. ||
-||>>>``EndWidth``   ||Width at the last line position. ||
-||>>>``Start Color``||Color at the first line position. ||
-||>>>``End Color``  ||Color at the last line position. ||
-||``Use World Space``   ||If enabled, the object's position is ignored, and the lines are rendered around world origin. ||
+||``Materials`` ||このリストの最初のマテリアルが線をレンダリングするのに使用されます。 ||
+||``Positions``     ||接続する Vector3 点の配列。 ||
+||>>>``Size`` ||この線でのセグメントの数。 ||
+||``Parameters``    ||各線に対するパラメータのリスト。 ||
+||>>>``StartWidth`` ||最初の線の位置での幅。 ||
+||>>>``EndWidth``   ||最後の線の位置での幅。 ||
+||>>>``Start Color``||最初の線の位置での色。 ||
+||>>>``End Color``  ||最後の線の位置での色。 ||
+||``Use World Space``   ||有効にすると、オブジェクトの位置が無視され、線がワールドの原点周辺でレンダリングされます。 ||
 
-!! Details
+!! 詳細
 
-To create a line renderer:
-# Choose ^^GameObject->Create Empty^^
-# Choose ^^Component->Miscellaneous->Line Renderer^^
-# Drag a texture or $$Material$$ on the Line Renderer. It looks best if you use a particle shader in the Material.
+ライン レンダラを作成するには、次の手順に従います。
+# ^^GameObject->Create Empty^^ を選択します。
+# ^^Component->Miscellaneous->Line Renderer^^ を選択します。
+# ライン レンダラにテクスチャか $$Material$$ をドラッグします。 マテリアル粒子 シェーダを使用するのに最適です。
 
-!!Hints
-* Line Renderers are good to use for effects when you need to lay out all the vertices in one frame.
-* The lines may seem to rotate as you move the $$Camera$$. This is intentional.
-* The Line Renderer should be the only Renderer on a GameObject.
+!!ヒント
+* ライン レンダラは、1 つのフレームにすべての頂点を配置する必要がある場合の高価に使用するのに適しています。
+* この線は、$$Camera$$ を動かすと共に回転するように見える場合があります。 これは意図的なものです。
+* ライン オブジェクトは、GameObject で唯一のレンダラである必要があります。

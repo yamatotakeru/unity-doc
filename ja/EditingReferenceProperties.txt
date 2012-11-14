@@ -1,48 +1,48 @@
-! Assigning References
+! リファレンスの割り当て
 
-Reference properties are properties that reference other objects such as GameObjects, Components, or Assets. The reference slot will show what kind of objects can be used for this reference.
+リファレンス プロパティは、ゲーム オブジェクトやコンポーネント、アセットなどのその他のオブジェクトを参照するプロパティです。 リファレンス スロットは、このリファレンスに使用するオブジェクトの種類を表示します。
 
 Attach:AudioGO.png
-''The ``Audio Clip`` property slot shows that it accept references to objects of type ``Audio Clip``''
+''オーディオ クリップ''プロパティ スロットは、''オーディオ クリップ''のオブジェクトへのリファレンスを受け付けることを示します。
 Attach:AudioReference.png
-''Now an ``Audio Clip`` file is referenced in the ``Audio Clip`` property.''
+''現在、''オーディオ クリップ''ファイルは、''オーディオ クリップ''プロパティで参照されています。''
 
-This type of referencing is very quick and powerful, especially when using scripting. To learn more about using scripts and properties, see the Scripting Tutorial on the [[Main.Tutorials | Tutorials]] page.
+このタイプのリファレンスは、特にスクリプティング使用時には非常に高速で、強力です。 スクリプトとプロパティの使用については、チュートリアル ページのスクリプティング チュートリアルを参照してください。
 
-Object references can be assigned to a reference property either by drag and drop or by using the $$Object Picker$$.
+オブジェクト リファレンスは、ドラッグ & ドロップか、$$Object Picker$$ を使用するかのいずれかで、リファレンス プロパティに割り当てることができます。
 
-!! Drag and Drop
+!! ドラッグ & ドロップ
 
-You can use drag and drop simply by selecting the desired object in the Scene View, Hierarchy, or Project View and dragging it into the slot of the reference property.
+シーン ビュー、ヒエラルキー、またはプロジェクト ビューで対象のオブジェクトを選択して、リファレンス プロパティのスロットにドラッグするだけで、ドラッグ & ドロップを使用できます。
 
-If a reference property accepts a specific Component type (for example a Transform) then dragging a GameObject or a Prefab onto the reference property will work fine provided that the GameObject or Prefab contains a component of the correct type. The property will then reference the component in question, even though it was a GameObject or Prefab you dragged onto it.
+リファレンス プロパティが特定のコンポーネント タイプ (トランスフォームなど) を受け付ける場合、ゲーム オブジェクトまたはプレハブが正しいタイプのコンポーネントを含んでいれば、そのゲーム オブジェクトまたはプレハブをリファレンス プロパティにドラッグすると、うまくいきます。 ドラッグしたのはゲーム オブジェクトまたはプレハブですが、このプロパティが対象のコンポーネントを参照します。
 
-If you drag an object onto an reference property, and the object is not of the correct type, or does not contain the right component, then you won't be able to assign the object to the reference property.
+オブジェクトをリファレンス プロパティにドラッグし、そのオブジェクトが正しいタイプでない場合、または正しいコンポーネントを含まない場合、そのオブジェクトをリファレンス プロパティに割り当てることはできません。
 
 [[#ObjectPicker]]
-!! The Object Picker
-You can click on the small target icon next to a reference slot to open the Object Picker.
+!! Object Picker
+リファレンス スロットの隣にある小さい対象アイコンをクリックして、Object Picker を開くことができます。
 
 Attach:ObjectPickerReference.png\\
-''References to the Object Picker from the Editor.''
+''エディタから Object Picker へのリファレンス。''
 
-The Object Picker is a simple window for assigning objects in the inspector after allowing you to preview and search those available.
+Object Picker は、インスペクタ内のオブジェクトを割り当てる小さなウィンドウで、その前に、オブジェクトをプレビュー表示したり、使用可能にすることができます。
 
-Although the Object Picker is really easy to use, there are a few things you should be aware of. These are described below.
+Object Picker は、非常に使いやすいのですが、気を付けなければならない点が幾つかあります。 以下に説明します。
 
 Attach:ObjectPickerAnatomy.png\\
-''Anatomy of the Object Picker.''
+''Object Picker の構造''
 
-# $$Search:$$ When there are lots of objects in the picker, you can use the Search field to filter them. This search field can also search objects using their [[AssetWorkflow#AssetLabels | Labels]].
-# $$View Selector:$$ Switches the base of the search between objects in the scene and assets.
-# $$Preview Size:$$ This horizontal scroll bar lets you increase/decrease the size of your preview objects in the preview window. With this you can see more or fewer objects in the preview window at any moment.
-# $$Preview Window:$$ Here are all the objects that reside in your $$Scene/Assets folder$$ filtered by the $$Search$$ field.
-# $$Object Info:$$ Displays information about the currently selected object. The content of this field depends on the type of object being viewed, so if for example you pick a mesh, it will tell you the number of vertices and triangles, and whether or not it has UVs and is skinned. However, if you pick an audio file it will give you information such as the bit rate of the audio, the length, etc.
-# $$Object Preview:$$ This also depends on the type of object you are viewing. If you select a mesh, it will display you how the mesh looks, but if you select a script file, it will just display an icon of the file.
+# $$Search:$$ ピッカーにオブジェクトがたくさんある場合、Search フィールドを使用してフィルタリングできます。 この検索フィールドで、[[AssetWorkflow#AssetLabels | Labels]] を使用してオブジェクトを検索できます。
+# $$View Selector:$$ シーンとアセット内のオブジェクト間の検索のベースを切り替えます。
+# $$Preview Size:$$ この水平スクロール バーで、プレビュー ウィンドウ内でのプレビュー オブジェクトのサイズを大きくしたり、小さくしたりできます。 これにより、いつでもプレビュー ウィンドウでのオブジェクトを数を増やしたり、減らしたりできます。
+# $$Preview Window:$$ $$Search$$ フィールドでフィルタリングされた $$Scene/Assets folder$$ 内のすべてのオブジェクトが表示されます。
+# $$Object Info:$$ 現在選択されているオブジェクトに関する情報を表示します。 このフィールドの内容は、表示されているオブジェクトの種類によって決まるため、例えば、メッシュを選択すると、頂点と三角形の数、UV があるか、スキンされているかが表示されます。 しかし、オーディオ ファイルを選択すると、オーディオのビット レートや長さなどの情報が表示されます。
+# $$Object Preview:$$ これも表示されているオブジェクトの種類によって決まります。 メッシュを選択すると、メッシュの外観を表示しますが、スクリプト ファイルを選択すると、ファイルのアイコンのみを表示します。
 
-The Object Picker works on any asset you have in your project, which can be a video, a song, a terrain, a GUI skin, a scripting file, or a mesh; it is a tool you will use often.
+Object Picker は、プロジェクト内のアセットで機能しますが、これには、ビデオや歌、地形、GUI スキン、スクリプティング ファイル、またはメッシュなどが該当します。頻繁に使うツールです。
 
-!!! Hints
-* Use [[AssetWorkflow#AssetLabels | Labels]] on your Assets and you will be able to find them more easily by searching for them using the search field of the Object Picker.
-* If you dont want to see the descriptions of the objects you can move the slider in the bottom middle of the preview window downward.
-* If you want to see a detailed preview of the object, you can enlarge the object preview by dragging the slider in the bottom middle of the preview window.
+!!! ヒント
+* アセットで [[AssetWorkflow#AssetLabels | Labels]] を使用すると、Object Picker の検索フィールドを使用して、アセットをより簡単に検索できます。
+* オブジェクトの説明を確認したくない場合は、プレビュー ウィンドウの下中央にあるスライダーを下方に動かします。
+* オブジェクトの詳細なプレビューを確認したい場合は、プレビュー ウィンドウの下中央にあるスライダーをドラッグすることで、オブジェクトを拡大できます。

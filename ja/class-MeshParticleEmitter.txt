@@ -1,65 +1,65 @@
-! Mesh Particle Emitter (Legacy)
+! メッシュ粒子エミッタ（旧パーティクルシステム）
 
-The $$Mesh Particle Emitter$$ emits particles around a mesh. Particles are spawned from the surface of the mesh, which can be necessary when you want to make your particles interact in a complex way with objects.
+$$Mesh Particle Emitter$$ は、メッシュ周辺に粒子を放出します。 粒子はメッシュ表面に放出されます。これは、粒子をオブジェクトと複雑な方法で相互に作用させたい場合に必要になる場合があります。
 
 Attach:Inspector-MeshPE.png\\
-''The Mesh Particle Emitter $$Inspector$$''
+''メッシュ粒子エミッタ $$Inspector$$''
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
 (:include comp-ParticleEmitterProps:)
-||``Interpolate Triangles`` ||If enabled, particles are spawned all over the mesh's surface. If disabled, particles are only spawned from the mesh's vertrices. ||
-||``Systematic`` ||If enabled, particles are spawned in the order of the vertices defined in the mesh. Although you seldom have direct control over vertex order in meshes, most 3D modelling applications have a very systematic setup when using primitives. It is important that the mesh contains no faces in order for this to work. ||
-||``Min Normal Velocity`` ||Minimum amount that particles are thrown away from the mesh. ||
-||``Max Normal Velocity`` ||Maximum amount that particles are thrown away from the mesh. ||
+||``Interpolate Triangles`` ||有効にすると、粒子がメッシュ表面全体に発生します。 無効にすると、粒子はメッシュの頂点からのみ発生します。 ||
+||``Systematic`` ||有効にすると、粒子は、メッシュで定義した頂点の順番に発生します。 メッシュでの頂点の順番をめったに直接制御しない場合でも、ほとんどの 3D モデリング アプリケーションでは、プリミティブ使用時に非常に対称的な設定を用意しています。 これを機能させるためには、メッシュに面が含まれていない必要があります。 ||
+||``Min Normal Velocity`` ||粒子がメッシュから排出される最小量。 ||
+||``Max Normal Velocity`` ||粒子がメッシュから排出される最大量。 ||
 
 
-!! Details
+!! 詳細
 
-Mesh Particle Emitters (MPEs) are used when you want more precise control over the spawn position & directions than the simpler $$Ellipsoid Particle Emitter$$ gives you.  They can be used for making advanced effects.
+メッシュ粒子エミッタ （MPE） は、より簡単な $$Ellipsoid Particle Emitter$$ よりも発生位置や方向をより正確に制御したい場合に使用します。  高度な効果を生み出すのに使用できます。
 
-MPEs work by emitting particles at the vertices of the attached mesh. Therefore, the areas of your mesh that are more dense with polygons will be more dense with particle emission.
+MPE は、追加されたメッシュの頂点で粒子を発生させることで機能します。 そのため、ポリゴンの密度がより高いメッシュのエリアでは、より粒子発生の密度が高くなります。
 
 (:include comp-ParticleEmitterDetails:)
 
 
 !!Interpolate Triangles
 
-Enabling your emitter to ``Interpolate Triangles`` will allow particles to be spawned between the mesh's vertices.  This option is off by default, so particles will only be spawned at the vertices.
+エミッタを''Interpolate Triangles''するよう設定すると、粒子をメッシュの頂点間で発生させることができます。  このオプションはデフォルトではオフになっているため、粒子は頂点にのみ発生します。
 
 Attach:MeshPE-InterpolateOff.png\\
-''A sphere with ``Interpolate Triangles`` off (the default)''
+''''Interpolate Triangles''をオフにした球体 （デフォルト）''
 
-Enabling this option will spawn particles on and in-between vertices, essentially all over the mesh's surface (seen below).
+このオプションを有効にすると、頂点上および頂点間と、基本的にメッシュの面全体に粒子を発生させることができます （下記参照）。
 
 Attach:MeshPE-InterpolateOn.png\\
-''A sphere with ``Interpolate Triangles`` on''
+''''Interpolate Triangles''をオンにした球体''
 
-It bears repeating that even with ``Interpolate Triangles`` enabled, particles will still be denser in areas of your mesh that are more dense with polygons.
+''Interpolate Triangles''を有効にした場合でも繰り返しを生じ、粒子はポリゴンの密度が高いメッシュのエリアでも更に密になります。
 
 
 !! Systematic
 
-Enabling ``Systematic`` will cause your particles to be spawned in your mesh's vertex order.  The vertex order is set by your 3D modeling application.
+''Systematic''を有効にすると、粒子がメッシュの頂点順に発生します。  頂点順は、3D モデリング アプリケーションで設定します。
 
 Attach:MeshPE-Systematic.png\\
-''An MPE attached to a sphere with ``Systematic`` enabled''
+''''Systematic''を有効にした球体に追加された MPE''
 
 
 !! Normal Velocity
 
-``Normal Velocity`` controls the speed at which particles are emitted along the normal from where they are spawned.
+''Normal Velocity''は、粒子が発生した場所から法線に沿って放出される速度を制御します。
 
-For example, create a Mesh Particle System, use a cube mesh as the emitter, enable ``Interpolate Triangles``, and set ``Normal Velocity Min`` and ``Max`` to 1. You will now see the particles emit from the faces of the cube in a straight line.
+例えば、メッシュ粒子システムを作成し、エミッタとして立方体メッシュを使用し、''Interpolate Triangles''を有効にして、''Normal Velocity Min''、''Max''を 1 に設定します。これで、立方体の面から直線で粒子が放出されます。
 
 
-!! See Also
+!! 以下も併せて参照してください。
 * [[HOWTO-MeshParticleEmitter|How to make a Mesh Particle Emitter]]
 
 
-!! Hints
+!! ヒント
 
 (:include comp-ParticleEmitterHints:)
-* MPEs can also be used to make glow from a lot of lamps placed in a scene. Simply make a mesh with one vertex in the center of each lamp, and build an MPE from that with a halo material. Great for evil sci-fi worlds.
+* MPE は、シーン内に配置された多くのランプからの光を作成するのにも使用できます。 各ランプの中心に 1 つの頂点を持つメッシュを作成し、そこからハロー マテリアルのある MPE を作成します。 悪のサイエンス フィクションの世界に適しています。

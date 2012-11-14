@@ -1,50 +1,50 @@
-! GUI Style
+! GUI スタイル
 
-$$GUI Styles$$ are a collection of custom attributes for use with $$UnityGUI$$.  A single GUI Style defines the appearance of a single UnityGUI $$Control$$.
+$$GUI Style$$ は、$$UnityGUI$$ で使用するためのカスタムの属性の集合です。  1 つのGUI スタイルは、UnityGUI $$Control$$ の外観を定義します。
 
 Attach:GuiStyleInspector.png\\
-''A GUI Style in the $$Inspector$$''
+''$$Inspector$$ での GUI スタイル」
 
-If you want to add style to more than one control, use a [[class-GUISkin | GUI Skin]] instead of a GUI Style.  For more information about UnityGUI, please read the [[GUI Scripting Guide]].
+スタイルを複数の制御に追加したい場合、GUI スタイルの代わりに、[[class-GUISkin | GUI Skin]] を使用します。  UnityGUI の詳細については、[[GUI Scripting Guide]] を参照してください。
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Name`` ||The text string that can be used to refer to this specific Style ||
-||``Normal`` ||Background image & Text Color of the Control in default state ||
-||``Hover`` ||Background image & Text Color when the mouse is positioned over the Control ||
-||``Active`` ||Background image & Text Color when the mouse is actively clicking the Control ||
-||``Focused`` ||Background image & Text Color when the Control has keyboard focus ||
-||``On Normal`` ||Background image & Text Color of the Control in enabled state ||
-||``On Hover`` ||Background image & Text Color when the mouse is positioned over the enabled Control ||
-||``On Active`` ||Properties when the mouse is actively clicking the enabled Control ||
-||``On Focused`` ||Background image & Text Color when the enabled Control has keyboard focus ||
-||``Border`` ||Number of pixels on each side of the ``Background`` image that are not affected by the scale of the Control' shape ||
-||``Padding`` ||Space in pixels from each edge of the Control to the start of its contents. ||
-||``Margin`` ||The margins between elements rendered in this style and any other GUI Controls. ||
-||``Overflow`` ||Extra space to be added to the background image. ||
-||``Font`` ||The Font used for all text in this style ||
-||``Image Position`` ||The way the background image and text are combined. ||
-||``Alignment`` ||Standard text alignment options. ||
-||``Word Wrap`` ||If enabled, text that reaches the boundaries of the Control will wrap around to the next line ||
-||``Text Clipping`` ||If ``Word Wrap`` is enabled, choose how to handle text that exceeds the boundaries of the Control ||
-||>>>``Overflow`` ||Any text that exceeds the Control boundaries will continue beyond the boundaries ||
-||>>>``Clip`` ||Any text that exceeds the Control boundaries will be hidden ||
-||``Content Offset`` ||Number of pixels along X and Y axes that the Content will be displaced in addition to all other properties ||
-||>>>``X`` ||Left/Right Offset ||
-||>>>``Y`` ||Up/Down Offset ||
-||``Fixed Width`` ||Number of pixels for the width of the Control, which will override any provided ``Rect()`` value ||
-||``Fixed Height`` ||Number of pixels for the height of the Control, which will override any provided ``Rect()`` value ||
-||``Stretch Width`` ||If enabled, Controls using this style can be stretched horizontally for a better layout. ||
-||``Stretch Height`` ||If enabled, Controls using this style can be stretched vertically for a better layout. ||
+||``Name`` ||このスタイルを参照するのに使用できるテキスト文字列。||
+||``Normal`` ||デフォルトの状態の制御の背景画像およびテキスト色。||
+||``Hover`` ||制御にマウス カーソルを合わせた時の背景画像およびテキスト色。||
+||``Active`` ||制御をクリックした時の背景画像およびテキスト色。||
+||``Focused`` ||制御にキーボードの焦点を合わせた時の背景画像およびテキスト色。 ||
+||``On Normal`` ||制御が有効化状態にある時の背景画像およびテキスト色。||
+||``On Hover`` ||有効な制御にマウス カーソルを合わせた時の背景画像およびテキスト色。 ||
+||``On Active`` ||有効な制御をクリックした時のプロパティ。 ||
+||``On Focused`` ||有効な制御にキーボードの焦点を合わせた時の背景画像およびテキスト色。||
+||``Border`` ||制御の形状のスケールによって影響されない''Background」画像の各側でのピクセル数。||
+||``Padding`` ||制御の各端から制御の内容の開始点までのピクセル単位の空白。 ||
+||``Margin`` ||このスタイルでレンダリングされる要素とその他の GUI 制御間の余白。 ||
+||``Overflow`` ||背景画像に追加される余分な空白。 ||
+||``Font`` ||このスタイルですべてのテキストに使用されるフォント。||
+||``Image Position`` ||背景画像とテキストの結合のされ方。 ||
+||``Alignment`` ||標準のテキスト配置オプション。 ||
+||``Word Wrap`` ||有効にすると、制御の境界に達したテキストが次の行に配置されます。||
+||``Text Clipping`` ||''Word Wrap」が有効の場合、制御の境界を超えたテキストをどのように扱うを選択します。||
+||>>>``Overflow`` ||制御の境界を超えたテキストは境界を超えて表示され続けます。||
+||>>>``Clip`` ||制御の境界を超えたテキストは非表示になります。||
+||``Content Offset`` ||その他のプロパティの他、内容が移動される X および Y 軸に沿ったピクセル数。||
+||>>>``X`` ||左 / 右のオフセット。||
+||>>>``Y`` ||上 / 下のオフセット。||
+||``Fixed Width`` ||制御の幅のピクセル数で、与えられた''Rect()」値を無効にします。||
+||``Fixed Height`` ||制御の幅のピクセル数で、与えられた''Rect()」値を無効にします。||
+||``Stretch Width`` ||有効にすると、このスタイルを使用する制御が水平に延長され、レイアウトが改善されます。 ||
+||``Stretch Width`` ||有効にすると、このスタイルを使用する制御が垂直に延長され、レイアウトが改善されます。 ||
 
 
-!! Details
+!! 詳細
 
-GUIStyles are declared from scripts and modified on a per-instance basis.  If you want to use a single or few Controls with a custom Style, you can declare this custom Style in the script and provide the Style as an argument of the Control function.  This will make these Controls appear with the Style that you define.
+GUI スタイルは、スクリプトから宣言され、インスタンスごとに修正されます。  カスタムのスタイルのある 1 つまたは少数の制御を使用したい場合、スクリプトでこのスタイルを宣言し、制御関数の引数として、スタイルを与えることができます。  これにより、これらの制御を定義したスタイルで表示できます。
 
-First, you must declare a GUI Style from within a script.
+まず、スクリプト内から GUIスキンスタイルを宣言する必要があります。
 
 [@
 /* Declare a GUI Style */
@@ -53,26 +53,26 @@ var customGuiStyle : GUIStyle;
 ...
 @]
 
-When you attach this script to a GameObject, you will see the custom Style available to modify in the $$Inspector$$.
+GameObject にこのスクリプトを追加すると、$$Inspector$$ で修正できるカスタムのスタイルが表示されます。
 
 Attach:ModifyingStyleInInspector.png\\
-''A Style declared in a script can be modified in each instance of the script''
+''スクリプトで宣言されたスタイルは、スクリプトの各インスタンスで修正できます」
 
-Now, when you want to tell a particular Control to use this Style, you provide the name of the Style as the last argument in the Control function.
+特定の制御にこのスタイルを使用するよう指示したい場合に、制御関数の最後の引数として、スタイルの名前を与えます。
 
 [@
 ...
 
 function OnGUI () {
-	// Provide the name of the Style as the final argument to use it
-	GUILayout.Button ("I am a custom-styled Button", customGuiStyle);
+	// スタイルを使用するために最後の引数として、スタイルの名前を与えます
+	GUILayout.Button ("私はカスタム スタイルのボタンです"、customGuiStyle);
 
-	// If you do not want to apply the Style, do not provide the name
-	GUILayout.Button ("I am a normal UnityGUI Button without custom style");
+	// スタイルを適用したくない場合は、名前を渡さないでください
+	GUILayout.Button ("私はカスタム スタイルなしの通常の UnityGUI ボタンです");
 }
 @]
 
 Attach:guiStyle-TwoButtonsOneIsStyled.png\\
-''Two Buttons, one with Style, as created by the code example''
+''コードのサンプルで作成されたように、2 つのボタンで、1 つはスタイルあり''
 
-For more information about using UnityGUI, please read the [[GUI Scripting Guide]].
+UnityGUI の使用に関する詳細については、[[GUI Scripting Guide]] を参照してください。
