@@ -1,64 +1,64 @@
-! ���߂Ẵc���[�쐬
+! 初めてのツリー作成
 
-Unity�̃c���[�@�N���G�[�^�[�̎g�p�菇��ǂ��Đ������܂��B�ŏ��ɁA�v���W�F�N�g�Ƀc���[�@�N���G�[�^�@�p�b�P�[�W���܂܂�Ă��邱�Ƃ��m�F���Ă��������B�Ȃ������ꍇ�A���j���[����^^Assets->Import Package...^^�ƑI�����AUnity�̃C���X�g�[���t�H���_�Ɉړ����AStandard Packages�t�H���_���J���܂��B�v���W�F�N�g�ɕK�v�ȃA�Z�b�g��ǉ����邽�߂�Tree  Creator.unityPackage�p�b�P�[�W��I�����܂��B
+Unityのツリー　クリエーターの使用手順を追って説明します。最初に、プロジェクトにツリー　クリエータ　パッケージが含まれていることを確認してください。なかった場合、メニューから^^Assets->Import Package...^^と選択し、Unityのインストールフォルダに移動し、Standard Packagesフォルダを開きます。プロジェクトに必要なアセットを追加するためにTree  Creator.unityPackageパッケージを選択します。
 
-!! �V���ȃc���[�i�؁j�̒ǉ�
-�V����$$�c���[$$�A�Z�b�g�̍쐬�ɂ̓��j���[���� ^^GameObject->Create Other->Tree^^��I�����܂��B
+!! 新たなツリー（木）の追加
+新しい$$ツリー$$アセットの作成にはメニューから ^^GameObject->Create Other->Tree^^を選択します。
 
 Attach:TreeCreator-CreatingBasic.png\\
 
-�V�����c���[�A�Z�b�g���v���W�F�N�g�r���[�ō쐬����A���݊J���Ă���V�[���ŃC���X�^���X������\������܂��B�o���オ�����V�����c���[�͒P��̃u�����`�����̃V���v���Ȃ��̂Ȃ̂ŁA�����Ɠ���������ɂ��Ă����܂��B
+新しいツリーアセットがプロジェクトビューで作成され、現在開いているシーンでインスタンス化され表示されます。出来上がった新しいツリーは単一のブランチだけのシンプルなものなので、もっと特徴あるもにしていきます。
 
-!! �u�����`�i�}�j�̒ǉ�
+!! ブランチ（枝）の追加
 
-�Y�t�FTreeCreator-BasicBranch.png \ \
-''�V�[���ɂ���^�V������''
+添付：TreeCreator-BasicBranch.png \ \
+''シーンにある真新しい木''
 
-$$�C���X�y�N�^$$���$$�c���[�@�N���G�[�^�[$$�� �ŕ\���������c���[��I�����܂��B�c���[�̃C���^�[�t�F�C�X��ʂ��āA�c���[�̕ό`�A���`�ɕK�v�Ȃ��ׂẴc�[�����񋟂���܂��B$$�c���[�K�w$$���2�̃m�[�h���\������܂��i$$�c���[�@���[�g$$�m�[�h�ƁA�P���$$�u�����`�O���[�v$$�m�[�h�j
+$$インスペクタ$$上の$$ツリー　クリエーター$$を で表示したいツリーを選択します。ツリーのインターフェイスを通して、ツリーの変形、整形に必要なすべてのツールが提供されます。$$ツリー階層$$上で2つのノードが表示されます（$$ツリー　ルート$$ノードと、単一の$$ブランチグループ$$ノード）
 
 
 
-$$�c���[�K�w$$�ŁA�؂̊��ɂ�����$$�u�����`�O���[�v$$��I�����܂��B$$Add Branch Group$$�{�^�����N���b�N����ƁA���C���̃u�����`�ɂȂ������V���ȃu�����`�O���[�v���\������܂��B���x�́A$$�u�����`�O���[�v�̃v���p�e�B$$�𒲐����ăg�����N�ɂȂ������u�����`�̃o���G�[�V�������݂邱�Ƃ��o���܂��B
+$$ツリー階層$$で、木の幹にあたる$$ブランチグループ$$を選択します。$$Add Branch Group$$ボタンをクリックすると、メインのブランチにつながった新たなブランチグループが表示されます。今度は、$$ブランチグループのプロパティ$$を調整してトランクにつながったブランチのバリエーションをみることが出来ます。
 
 Attach:TreeCreator-AddingBranches1.png\\
-�g�����N�i���j�Ƀu�����`�i�}�j��ǉ�
+トランク（幹）にブランチ（枝）を追加
 
-�g�����N�ɐڑ�����Ă���u�����`���쐬������A����Ƀu�����`�O���[�v�m�[�h�ɒǉ����Ă������ƂŁA��菬���ȃu�����`�i���}�j���쐬�ł��܂��B��߂�$$�u�����`�O���[�v$$��I������$$Add Branch Group$$�{�^�����N���b�N���܂��B���̃O���[�v�̃v���p�e�B�l�𒲐����āB��߂̃u�����`�ɂ�葽���̃u�����`���쐬�����悤�ɂ��܂��B
+トランクに接続されているブランチを作成した後、さらにブランチグループノードに追加していくことで、より小さなブランチ（小枝）を作成できます。二つめの$$ブランチグループ$$を選択して$$Add Branch Group$$ボタンをクリックします。このグループのプロパティ値を調整して。二つめのブランチにより多くのブランチが作成されるようにします。
 
 Attach:TreeCreator-AddingBranches2.png\\
-��߂̃u�����`�ɂ���Ƀu�����`��ǉ�
+二つめのブランチにさらにブランチを追加
 
-����ɂ��u�����`�̍\�����o���オ��܂��B�Q�[���̑z�肪�~�łȂ����̂Ƃ��āA���̓��[�t�i�t�j��ǉ����܂��B
+これによりブランチの構造が出来上がります。ゲームの想定が冬でないものとして、次はリーフ（葉）を追加します。
 
-!! ���[�t�i�t�j�̒ǉ�
+!! リーフ（葉）の追加
 
-$$���[�t�O���[�v$$�̒ǉ��ɂ��c���[�����[�t�i�t�j�ŏ���܂��B���[�t�̎d�g�݂͂����܂ł݂Ă����u�����`�O���[�v�Ɠ����ł��B��߂̃u�����`�O���[�v�@�m�[�h��I������$$Add Leaf Group$$�{�^�����N���b�N���܂��B����ɋÂ�̂Ȃ�A�c���[�̏�ɂق�̏����ȃu�����`�ɂ����[�t�O���[�v��ǉ����邱�Ƃ��ł��܂��B
+$$リーフグループ$$の追加によりツリーをリーフ（葉）で飾ります。リーフの仕組みはここまでみてきたブランチグループと同じです。二つめのブランチグループ　ノードを選択して$$Add Leaf Group$$ボタンをクリックします。さらに凝るのなら、ツリーの上にほんの小さなブランチにもリーフグループを追加することができます。
 
 Attach:TreeCreator-AddingLeaves.png\\
-��߂̃u�����`�A�ق�̏����ȃu�����`�ɒǉ����ꂽ���[�t
+二つめのブランチ、ほんの小さなブランチに追加されたリーフ
 
-���̎��_�ł̓��[�t�͓����łȂ����ʂƂ��ă����_�����O����܂��B����́A�}�e���A����ǉ�����O�Ƀ��[�t�̃v���p�e�B�l�i�傫���A�ʒu�A��]�Ȃǁj�𒲐����邽�߂ł��B�v���ǂ���̐ݒ�ɂȂ�܂ŁA���[�t�̒l�͔��������Ă����܂��B
+この時点ではリーフは透明でない平面としてレンダリングされます。これは、マテリアルを追加する前にリーフのプロパティ値（大きさ、位置、回転など）を調整するためです。思いどおりの設定になるまで、リーフの値は微調整していきます。
 
-!! �}�e���A���̒ǉ�
-�c���[�̃��A���e�B�𑝂����߂ɂ́A�u�����`�⃊�[�t$$�}�e���A��$$��K�p����K�v������܂��B�V�����}�e���A�����쐬����ɂ́A���j���[��^^Assets->Create->Material^^��I�����܂�My Tree Bark�ɖ��O�ύX���A�V�F�[�_�̃h���b�v�_�E������^^Nature->Tree Creator Bark^^��I�����܂��B���������ł́A�c���[�@�N���G�[�^�@�p�b�P�[�W�ɂĒ񋟂���Ă���$$�e�N�X�`��$$���x�[�X�}�b�v�A�@���}�b�v�A�����Bark�}�e���A����Gloss�v���p�e�B�Ɋ��蓖�Ă邱�Ƃ��ł��܂��B�x�[�X�}�b�v�ƃO���X�}�b�v�̃v���p�e�B�Ƃ��Ă� "BigTree_bark_diffuse"���A�@���v���p�e�B�̂Ƃ��Ă�"BigTree_bark_normal"���g�p���邱�Ƃ������߂��܂��B
+!! マテリアルの追加
+ツリーのリアリティを増すためには、ブランチやリーフ$$マテリアル$$を適用する必要があります。新しいマテリアルを作成するには、メニューで^^Assets->Create->Material^^を選択しますMy Tree Barkに名前変更し、シェーダのドロップダウンから^^Nature->Tree Creator Bark^^を選択します。ここから先では、ツリー　クリエータ　パッケージにて提供されている$$テクスチャ$$をベースマップ、法線マップ、およびBarkマテリアルのGlossプロパティに割り当てることができます。ベースマップとグロスマップのプロパティとしては "BigTree_bark_diffuse"を、法線プロパティのとしては"BigTree_bark_normal"を使用することをお勧めします。
 
-���[�t�̃}�e���A���쐬����������菇�ɏ]���܂��B�V�����}�e���A�����쐬���A�V�F�[�_�[��^^Nature->Tree Creator Leaves^^�Ɗ��蓖�Ă܂��B�c���[�@�N���G�[�^�̃p�b�P�[�W����̃e�N�X�`���̃X���b�g�Ƀ��[�t�̃e�N�X�`�������蓖�Ă܂��B
+リーフのマテリアル作成するも同じ手順に従います。新しいマテリアルを作成し、シェーダーを^^Nature->Tree Creator Leaves^^と割り当てます。ツリー　クリエータのパッケージからのテクスチャのスロットにリーフのテクスチャを割り当てます。
 
 Attach:TreeCreator-LeavesMaterial.png\\
-���[�t�̂��߂̃}�e���A��
+リーフのためのマテリアル
 
-�����̃}�e���A�����쐬���ꂽ�Ƃ��A�c���[�̈قȂ�O���[�v�m�[�h�Ɋ��蓖�Ă邱�Ƃ��ł��܂��B�c���[��I�����A�C�ӂ̃u�����`�܂��̓��[�t�m�[�h���N���b�N���āA$$�u�����`�O���[�v�̃v���p�e�B$$��$$Geometry�Z�N�V������W�J���܂��B���łɑI�������m�[�h�̎�ނ̃}�e���A���̊��蓖�ăX���b�g���\������܂��B�쐬�����}�e���A�������蓖�āA���ʂ��m�F���܂��B
+両方のマテリアルが作成されたとき、ツリーの異なるグループノードに割り当てることができます。ツリーを選択し、任意のブランチまたはリーフノードをクリックして、$$ブランチグループのプロパティ$$の$$Geometryセクションを展開します。すでに選択したノードの種類のマテリアルの割り当てスロットが表示されます。作成したマテリアルを割り当て、結果を確認します。
 
 Attach:TreeCreator-AddingMaterialToLeaves.png\\
-���[�t�}�e���A���̐ݒ�
+リーフマテリアルの設定
 
-�c���[���d�グ�邽�߂ɁA���ׂĂ�$$�u�����`$$��$$���[�t�O���[�v$$�m�[�h�����Ȃ��̍ޗ������蓖�Ăĉ������B����ł��Ȃ��̓Q�[���ɍŏ��̃c���[�����鏀���������܂����I
+ツリーを仕上げるために、すべての$$ブランチ$$に$$リーフグループ$$ノードをあなたの材料を割り当てて下さい。これであなたはゲームに最初のツリーを入れる準備が整いました！
 
 Attach:TreeCreator-FinalTree.png\\
-�}�e���A�����������[�t��u�����`
+マテリアルをつけたリーフやブランチ
 
 
-!!  �q���g
-* �c���[�̍쐬�́A���s����̃v���Z�X�ł��B
-* ���܂�ɂ������̃��[�t/�u�����`���쐬�������Ȃ��ł��������A�Q�[���̃p�t�H�[�}���X�ɉe����^���܂��B
-* �J�X�^�����[�t���쐬���邽�߂̃K�C�h�ɂ̓A���t�@�}�b�v���Q�Ɖ������B
+!!  ヒント
+* ツリーの作成は、試行錯誤のプロセスです。
+* あまりにも多くのリーフ/ブランチを作成しすぎないでください、ゲームのパフォーマンスに影響を与えます。
+* カスタムリーフを作成するためのガイドにはアルファマップを参照下さい。

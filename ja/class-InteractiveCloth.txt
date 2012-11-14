@@ -1,53 +1,53 @@
-! �C���^���N�e�B�u �N���X
+! インタラクティブ クロス
 
-�C���^���N�e�B�u �N���X�́A���b�V���ł́u�z�̂悤�ȁv������V�~�����[�g����R���|�[�l���g�ł��B �V�[���ŃN���X���g�p�������ꍇ�ɂ��̃R���|�[�l���g���g�p���܂��B
+インタラクティブ クロスは、メッシュでの「布のような」動作をシミュレートするコンポーネントです。 シーンでクロスを使用したい場合にこのコンポーネントを使用します。
 
 Attach:InteractiveCloth.png\\
-�u�V�[�� �r���[�ł̃C���^���N�e�B�u �N���X�ƃC���X�y�N�^�ł̂��̃v���p�e�B�v
+「シーン ビューでのインタラクティブ クロスとインスペクタでのそのプロパティ」
 
 
-!! �v���p�e�B
-!!�C���^���N�e�B�u �N���X
+!! プロパティ
+!!インタラクティブ クロス
 ||PROPS
-||``Bending Stiffness`` ||�N���X�̋Ȃ������B||
-||``Bending Stiffness`` ||�N���X�̐L�������B||
-||``Damping`` ||�G�ꂽ�N���X�̓����B||
-||``Use Gravity`` ||�N���X�̃V�~�����[�V�����ɏd�͂��e�������邩�ǂ����B||
-||``External Acceleration`` ||�N���X�ɓK�p�������́A�O�������x�B||
-||``Random Acceleration`` ||�N���X�ɓK�p����郉���_���́A�O�������x�B||
-||``Mesh`` ||�V�~�����[�V�����ɑ΂��ăC���^���N�e�B�u �N���X���g�p���郁�b�V���B||
-||``Thickness`` ||�N���X�\�ʂ̌����B||
-||``Friction`` ||�N���X�̖��C�B||
-||``Density`` ||�N���X�̖��x�B.||
-||``Pressure`` ||T�N���X�����̈��́B||
-||``Collision Response`` ||�Փ˂��郊�W�b�h�{�f�B�ɓK�p�����̗͂ʁB||
-||``Attachment Tear Factor`` ||�ǉ����ꂽ���W�b�h�{�f�B��􂭂̂ɕK�v�ȐL�΂������B||
-||``Attachment Response`` ||�ǉ����ꂽ���W�b�h�{�f�B�ɓK�p�����̗͂ʁB||
-||``Tear Factor`` ||�N���X��􂭂̂ɕK�v�ȃN���X�̒��_��L�΂������B||
-||``Attached Colliders`` ||���̃N���X�ɑ΂��Ēǉ����ꂽ�R���C�_���܂ޔz��B||
-||``Self Collision`` ||�N���X�����ꎩ�g�ƏՓ˂��邩�ǂ����B||
+||``Bending Stiffness`` ||クロスの曲げ剛性。||
+||``Bending Stiffness`` ||クロスの伸張剛性。||
+||``Damping`` ||濡れたクロスの動き。||
+||``Use Gravity`` ||クロスのシミュレーションに重力を影響させるかどうか。||
+||``External Acceleration`` ||クロスに適用される一定の、外部加速度。||
+||``Random Acceleration`` ||クロスに適用されるランダムの、外部加速度。||
+||``Mesh`` ||シミュレーションに対してインタラクティブ クロスが使用するメッシュ。||
+||``Thickness`` ||クロス表面の厚さ。||
+||``Friction`` ||クロスの摩擦。||
+||``Density`` ||クロスの密度。.||
+||``Pressure`` ||Tクロス内部の圧力。||
+||``Collision Response`` ||衝突するリジッドボディに適用される力の量。||
+||``Attachment Tear Factor`` ||追加されたリジッドボディを裂くのに必要な伸ばす距離。||
+||``Attachment Response`` ||追加されたリジッドボディに適用される力の量。||
+||``Tear Factor`` ||クロスを裂くのに必要なクロスの頂点を伸ばす距離。||
+||``Attached Colliders`` ||このクロスに対して追加されたコライダを含む配列。||
+||``Self Collision`` ||クロスがそれ自身と衝突するかどうか。||
 
-�C���^���N�e�B�u �N���X �R���|�[�l���g�́A�N���X �����_���@�R���|�[�l���g�Ɉˑ����܂��B�܂�A���̃R���|�[�l���g�́A�N���X �����_�����Q�[�� �I�u�W�F�N�g�ɕ\������Ă���ꍇ�́A�폜�ł��Ȃ��Ƃ������Ƃł��B
+インタラクティブ クロス コンポーネントは、クロス レンダラ　コンポーネントに依存します。つまり、このコンポーネントは、クロス レンダラがゲーム オブジェクトに表示されている場合は、削除できないということです。
 
-!!�N���X �����_��
-||``Cast Shadows`` ||�L���ɂ���ƁA�N���X���e�𓊉e���܂��B||
-||``Receive Shadows`` ||�L���ɂ���ƁA�N���X�͉e���󂯂邱�Ƃ��ł��܂��B||
-||``Lightmap Index`` ||���̃����_���ɓK�p����郉�C�g�}�b�v�̍����B||
-||``Lightmap Tiling Offset`` |���C�g�}�b�v�Ɏg�p�����^�C�����O�ƃI�t�Z�b�g�B||
-||``Materials`` ||�N���X���g�p����}�e���A���B||
-||``Pause When Not Visible`` ||�I������ƁA�N���X���J�����Ń����_�����O����Ȃ��ꍇ�ɁA�V�~�����[�V�������v�Z����܂���B||
-
-
+!!クロス レンダラ
+||``Cast Shadows`` ||有効にすると、クロスが影を投影します。||
+||``Receive Shadows`` ||有効にすると、クロスは影を受けることができます。||
+||``Lightmap Index`` ||このレンダラに適用されるライトマップの索引。||
+||``Lightmap Tiling Offset`` |ライトマップに使用されるタイリングとオフセット。||
+||``Materials`` ||クロスが使用するマテリアル。||
+||``Pause When Not Visible`` ||選択すると、クロスがカメラでレンダリングされない場合に、シミュレーションが計算されません。||
 
 
-!! �C���^���N�e�B�u �N���X �Q�[�� �I�u�W�F�N�g�̒ǉ�
-�V�[���ɃC���^���N�e�B�u �N���X��ǉ�����ɂ́A�uGameObject->Create Other->Cloth�v��I�����܂��B
 
-!! �q���g
-* �Q�[���ő����̃N���X���g�p����ƁA�w���֐��I�ɃQ�[���̃p�t�H�[�}���X��������܂��B
-* �L�����N�^�[�ŃN���[�V���O���V�~�����[�g�������ꍇ�́A����ɁA SkinnedMeshRenderer �Ƒ��݂ɓ����AInteractiveClotgh �����͂邩�ɑ��� [[class-SkinnedCloth | Skinned Cloth]] �R���|�[�l���g���m�F���܂��B
-* ���̑��̃I�u�W�F�N�g�ɃN���X��ǉ�����ɂ́A�uAttached Colliders�v�v���p�e�B���g�p���āA�ǉ����邻�̑��̃I�u�W�F�N�g�����蓖�Ă܂��B ������s���ɂ́A�R���C�_���N���X ���b�V���̈ꕔ�̒��_���d�˂�K�v������܂��B
-* Attached Colliders �̃I�u�W�F�N�g�́A�ǉ����Ă���N���X�ƌ�������K�v������܂��B
 
-!! ���l
-* �N���X�@�V�~�����[�V�����ɂ��@���}�b�v�͐�������邪�ڐ��͐������Ȃ��B���b�V���ɐڐ�������ꍇ�A�V�F�[�_�ɕύX�Ȃ��œn�����B�܂�ڐ��Ɉˑ������V�F�[�_�i�o���v�}�b�v�V�F�[�_�Ȃǁj���g�p����ꍇ�A�����ʒu����ړ������N���X�ɑ΂��郉�C�e�B���O�͌���Ă���悤�Ɍ�����B
+!! インタラクティブ クロス ゲーム オブジェクトの追加
+シーンにインタラクティブ クロスを追加するには、「GameObject->Create Other->Cloth」を選択します。
+
+!! ヒント
+* ゲームで多くのクロスを使用すると、指数関数的にゲームのパフォーマンスが下がります。
+* キャラクターでクローシングをシミュレートしたい場合は、代わりに、 SkinnedMeshRenderer と相互に働き、InteractiveClotgh よりもはるかに速い [[class-SkinnedCloth | Skinned Cloth]] コンポーネントを確認します。
+* その他のオブジェクトにクロスを追加するには、「Attached Colliders」プロパティを使用して、追加するその他のオブジェクトを割り当てます。 これを行うには、コライダがクロス メッシュの一部の頂点を重ねる必要があります。
+* Attached Colliders のオブジェクトは、追加しているクロスと交差する必要があります。
+
+!! 備考
+* クロス　シミュレーションにより法線マップは生成されるが接線は生成しない。メッシュに接線がある場合、シェーダに変更なしで渡される。つまり接線に依存したシェーダ（バンプマップシェーダなど）を使用する場合、初期位置から移動したクロスに対するライティングは誤っているように見える。

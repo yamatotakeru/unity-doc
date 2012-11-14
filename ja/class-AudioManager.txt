@@ -1,27 +1,27 @@
-! �I�[�f�B�I�}�l�[�W���[
+! オーディオマネージャー
 
-$$Audio Manager$$ �ł́A�V�[���ōĐ�����Ă��邷�ׂẲ����̍ő剹�ʂ�������ł��܂��B
-�����\������ɂ́A^^Edit->Project Settings->Audio^^ ��I�����܂��B
+$$Audio Manager$$ では、シーンで再生されているすべての音声の最大音量を微調整できます。
+これを表示するには、^^Edit->Project Settings->Audio^^ を選択します。
 
 Attach:AudioSet.png
 
 
-!! �v���p�e�B
+!! プロパティ
 
 ||PROPS
-||``Volume`` ||�Đ����̂��ׂẲ����̉��ʁB ||
-||``Rolloff Scale`` ||�ΐ� RollOff �x�[�X�̃\�[�X�ɑ΂��āA�O���[�o���������[���I�t�W����ݒ肵�܂��i[[class-AudioSource| Audio Source]] ���Q�Ɓj�B ���̒l�������قǁA���ʂ̌������x���オ��A�Ⴂ�قǁA�������x�͉�����܂� �i1 �̏ꍇ�́A�������E���V�~�����[�g���܂��j�B||
-||``Speed of Sound`` ||�����̑��x�B �P�ʂɃ��[�g�����g�p���Ă���ꍇ�A343 ���������E�ł̉����̑��x�ɂȂ�܂��B ���̒l�𒲐����āA��葬�����x�A���邢�͂��x�����x�ŁA�I�u�W�F�N�g�ɑ΂��āA�h�b�v���[���ʂ̗ʂ𑝂₵����A���炵����ł��܂��B||
-||``Doppler Factor`` ||�h�b�v���[���ʂ̉��ʁB �[���ɂ���ƁA�I�t�ɂȂ�܂��B 1 �̏ꍇ�́A�����ňړ�����I�u�W�F�N�g�̏ꍇ�ɂ��Ȃ蕷�����₷���Ȃ�܂��B||
-||``Default Speaker Mode`` ||�v���W�F�N�g�ɑ΂��āA�f�t�H���g�ɂ���K�v�̂���X�s�[�J�[ ���[�h���`���܂� �f�t�H���g�́A2�ŁA�X�e���I �X�s�[�J�[NO�ݒ�ɂȂ�܂� �i���[�h�̃��X�g�Ɋւ��ẮA�X�N���v�e�B���O API ���t�@�����X�� [[ScriptRef:AudioSpeakerMode.html |AudioSpeakerMode] ���Q�Ƃ��Ă��������j�B||
-||``DSP Buffer Size``||DSP�o�b�t�@�̃T�C�Y�́A���C�e���V��p�t�H�[�}���X���œK�����邽�߂ɐݒ肷�邱�Ƃ��ł��܂�||
-||>>>``Default``||�f�t�H���g�̃o�b�t�@�E�T�C�Y||
-||>>>``Best Latency``||���C�e���V��ǂ����邽�߃p�t�H�[�}���X���]���ɂ��܂�||
-||>>>``Good Latency``||���C�e���V�ƃp�t�H�[�}���X�̃o�����X���Ƃ�܂�||
-||>>>``Best Performance``||�p�t�H�[�}���X��ǂ����邽�߃��C�e���V���]���ɂ��܂�||
+||``Volume`` ||再生中のすべての音声の音量。 ||
+||``Rolloff Scale`` ||対数 RollOff ベースのソースに対して、グローバル減衰ロールオフ係数を設定します（[[class-AudioSource| Audio Source]] を参照）。 この値が高いほど、音量の減衰速度が上がり、低いほど、減衰速度は下がります （1 の場合は、現実世界をシミュレートします）。||
+||``Speed of Sound`` ||音声の速度。 単位にメートルを使用している場合、343 が現実世界での音声の速度になります。 この値を調整して、より速い速度、あるいはより遅い速度で、オブジェクトに対して、ドップラー効果の量を増やしたり、減らしたりできます。||
+||``Doppler Factor`` ||ドップラー効果の可聴量。 ゼロにすると、オフになります。 1 の場合は、高速で移動するオブジェクトの場合にかなり聞こえやすくなります。||
+||``Default Speaker Mode`` ||プロジェクトに対して、デフォルトにする必要のあるスピーカー モードを定義します デフォルトは、2で、ステレオ スピーカーNO設定になります （モードのリストに関しては、スクリプティング API リファレンスの [[ScriptRef:AudioSpeakerMode.html |AudioSpeakerMode] を参照してください）。||
+||``DSP Buffer Size``||DSPバッファのサイズは、レイテンシやパフォーマンスを最適化するために設定することができます||
+||>>>``Default``||デフォルトのバッファ・サイズ||
+||>>>``Best Latency``||レイテンシを良くするためパフォーマンスを犠牲にします||
+||>>>``Good Latency``||レイテンシとパフォーマンスのバランスをとります||
+||>>>``Best Performance``||パフォーマンスを良くするためレイテンシを犠牲にします||
 
-!!�ڍ�
+!!詳細
 
-�h�b�v���[���ʂ��g�p�������ꍇ�́A�uDoppler Factor�v�� 1 �ɐݒ肵�܂��B���ɁuSpeed of Sound�v�ƁuDoppler Factor�v�̗����𖞑�����܂Ŕ��������܂��B \\
+ドップラー効果を使用したい場合は、「Doppler Factor」を 1 に設定します。次に「Speed of Sound」と「Doppler Factor」の両方を満足するまで微調整します。 \\
 
-�X�s�[�J�[ ���[�h�́A�X�N���v�e�B���O��ʂ��āA�A�v���P�[�V�������烉���^�C���ŕύX�ł��܂��B [[ScriptRef:AudioSettings.html |Audio Settings]] ���Q�Ƃ��Ă��������B
+スピーカー モードは、スクリプティングを通じて、アプリケーションからランタイムで変更できます。 [[ScriptRef:AudioSettings.html |Audio Settings]] を参照してください。

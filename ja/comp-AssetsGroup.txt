@@ -1,7 +1,7 @@
-! �A�Z�b�g�@�R���|�[�l���g
+! アセット　コンポーネント
 
-$$�A�Z�b�g$$�̓Q�[���쐬�Ŏg�p���郂�f���A�e�N�X�`���A�T�E���h�₻�̑��̃R���e���c�t�@�C���ł��B 
+$$アセット$$はゲーム作成で使用するモデル、テクスチャ、サウンドやその他のコンテンツファイルです。 
 
-�{���ł͂��ׂẴA�Z�b�g�^�C�v�ɂ킽����$$�R���|�[�l���g$$�ɂ��Đ������܂��B��ʓI�ȃA�Z�b�g�̊T�v�ɂ��Ă�[[Asset Import and Creation| �A�Z�b�g�T�v�y�[�W]] ���Q�Ƃ̂��ƁB
+本項ではすべてのアセットタイプにわたって$$コンポーネント$$について説明します。一般的なアセットの概要については[[Asset Import and Creation| アセット概要ページ]] を参照のこと。
 
 (:tocportion:)

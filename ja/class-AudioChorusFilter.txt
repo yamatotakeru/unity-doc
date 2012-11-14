@@ -1,28 +1,28 @@
-! �I�[�f�B�I �R�[���X�i�Č��j�t�B���^ (PRO�̂�)
+! オーディオ コーラス（再現）フィルタ (PROのみ)
 
-$$Audio Chorus Filter$$ �́A[[class-AudioClip | Audio Clip]] �����A������������āA�R�[���X���ʂ��쐬���܂��B 
+$$Audio Chorus Filter$$ は、[[class-AudioClip | Audio Clip]] を取り、それを処理して、コーラス効果を作成します。 
 
-�R�[���X���ʂ́A�����g����g���I�V���[�^ �iLFO�j �ɂ���Č��̉�����ϒ����܂��B  �o�͉����́A�኱�̈Ⴂ�̂��铯������ �i�����Ɏ����j ���o�������̃\�[�X�ł��B
+コーラス効果は、正弦波低周波数オシレータ （LFO） によって元の音声を変調します。  出力音声は、若干の違いのある同じ音声 （合唱に似た） を出す複数のソースです。
 
 Attach:AudioChorusFilter.png\\
-�u�I�[�f�B�I �n�C �p�X �t�B���^ �v���p�e�B�̓C���X�y�N�^�ɂ���܂��B�v
+「オーディオ ハイ パス フィルタ プロパティはインスペクタにあります。」
 
 
-!! �v���p�e�B
+!! プロパティ
 
 ||PROPS
-||``Dry Mix`` ||�o�͂ɓn�����̐M���̉��ʁB 0.0 �` 1.0�B �f�t�H���g = 0.5�B||
-||``Wet Mix 1`` ||�ŏ��̃R�[���X �^�b�v�̉��ʁB 0.0 �` 1.0�B �f�t�H���g = 0.5�B||
-||``Wet Mix 2`` ||2 �Ԗڂ̂̃R�[���X �^�b�v�̉��ʁB ���̃^�b�v�́A�ŏ��̃^�b�v�����ʑ��� 90������܂Ă��܂��B 0.0 �` 1.0�B �f�t�H���g = 0.5�B||
-||``Wet Mix 3`` ||3 �Ԗڂ̂̃R�[���X �^�b�v�̉��ʁB ���̃^�b�v�́A2 �ڂ̂̃^�b�v�����ʑ��� 90������܂Ă��܂��B 0.0 �` 1.0�B �f�t�H���g = 0.5�B||
-||``Delay`` ||LFO �̒x�� �i�P��: ms)�B0.1 �` 100.0�B|| �f�t�H���g = 40.0ms�B||
-||``Rate`` ||LFO �̕ϒ����x �i�P��: Hz�j�B 0.0 �` 20.0�B �f�t�H���g = 0.8 Hz�B||
-||``Depth`` ||�R�[���X�ϒ��x�B 0.0 �` 1.0�B �f�t�H���g = 0.03�B||
-||``Feed Back`` ||�R�[���X�̃t�B�[�h�o�b�N�B �t�B���^�̃o�b�t�@�Ƀt�B�[�h�o�b�N�����E�F�b�g�M���̗ʂ𐧌䂵�܂��B 0.0 �` 1.0�B �f�t�H���g = 0.0�B||
+||``Dry Mix`` ||出力に渡す元の信号の音量。 0.0 〜 1.0。 デフォルト = 0.5。||
+||``Wet Mix 1`` ||最初のコーラス タップの音量。 0.0 〜 1.0。 デフォルト = 0.5。||
+||``Wet Mix 2`` ||2 番目ののコーラス タップの音量。 このタップは、最初のタップよりも位相が 90°ずれまています。 0.0 〜 1.0。 デフォルト = 0.5。||
+||``Wet Mix 3`` ||3 番目ののコーラス タップの音量。 このタップは、2 つ目ののタップよりも位相が 90°ずれまています。 0.0 〜 1.0。 デフォルト = 0.5。||
+||``Delay`` ||LFO の遅延 （単位: ms)。0.1 〜 100.0。|| デフォルト = 40.0ms。||
+||``Rate`` ||LFO の変調速度 （単位: Hz）。 0.0 〜 20.0。 デフォルト = 0.8 Hz。||
+||``Depth`` ||コーラス変調度。 0.0 〜 1.0。 デフォルト = 0.03。||
+||``Feed Back`` ||コーラスのフィードバック。 フィルタのバッファにフィードバックされるウェット信号の量を制御します。 0.0 〜 1.0。 デフォルト = 0.0。||
 
-!! �R�[���X �t�B���^�̒ǉ�
-�R�[���X �t�B���^������̃I�[�f�B�I �\�[�X�ɒǉ�����ɂ́A�C���X�y�N�^���ŃI�u�W�F�N�g��I�����A[Component->Audio->Audio Chorus Filter] ��I�����܂��B
+!! コーラス フィルタの追加
+コーラス フィルタを所定のオーディオ ソースに追加するには、インスペクタ内でオブジェクトを選択し、[Component->Audio->Audio Chorus Filter] を選択します。
 
-!! �q���g
-* �t�����W���[�̓R�[���X�̕ό`�Ȃ̂ŁA�R�[���X �t�B���^����������āA�t�B�[�h�o�b�N�������A�x�������炷���ƂŃt�����W���[���ʂ��쐬�ł��܂��B
-* �uRate�v�ƁuDepth�v�� 0 �ɐݒ肵�A�����ƁuDelay�v����������邱�ƂŁA�ȒP�ȃh���C �G�R�[���쐬�ł��܂��B
+!! ヒント
+* フランジャーはコーラスの変形なので、コーラス フィルタを微調整して、フィードバックを下げ、遅延を減らすことでフランジャー効果を作成できます。
+* 「Rate」と「Depth」を 0 に設定し、これらと「Delay」を微調整することで、簡単なドライ エコーを作成できます。

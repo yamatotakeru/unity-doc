@@ -1,11 +1,11 @@
-!���C�g�v���[�u�@�O���[�v
+!ライトプローブ　グループ
 
-$$���C�g�v���[�u�@�O���[�v$$�ɂ��V�[���ɂP�ȏ��[[LightProbes|���C�g�v���[�u]] ���ǉ������B
+$$ライトプローブ　グループ$$によりシーンに１つ以上の[[LightProbes|ライトプローブ]] が追加される。
 
 Attach:InspectorLightProbeGroup.png
 
-�V�����v���[�u�́A�C���X�y�N�^���Add Probe�{�^�����N���b�N���č쐬���邱�Ƃ��ł��܂��B��x�A�v���[�u���쐬����ƁA�Q�[���I�u�W�F�N�g�Ɠ����悤�ɑI���A�ړ����邱�Ƃ��ł��ACtrl/Cmd + Backspace�L�[�ɂ��폜���邱�Ƃ��ł��܂��B
+新しいプローブは、インスペクタ上でAdd Probeボタンをクリックして作成することができます。一度、プローブを作成すると、ゲームオブジェクトと同じように選択、移動することができ、Ctrl/Cmd + Backspaceキーにより削除することができます。
 
 
 Attach:LightProbesTestScene-sourceselected.png\\
-���C�g�v���[�u���V�[���r���[�ŉ��F�̋��Ƃ��ĕ\��
+ライトプローブをシーンビューで黄色の球として表示

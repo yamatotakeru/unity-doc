@@ -1,25 +1,25 @@
-! �I�[�f�B�I�@���[�p�X�t�B���^�[�iUnity Pro�̂݁j
+! オーディオ　ローパスフィルター（Unity Proのみ）
 
-$$Audio Low Pass Filter$$ �t�B���^�́A[[class-AudioSource|AudioSource]] �̒���g�܂��� [[class-AudioListener|AudioListener]] �ɒB���Ă��邷�ׂẲ�����n���A�uCutoff Frequency�v�����������g�����J�b�g���܂��B\\
-�uLowpass resonance Q�v�i�ʖ�: ���[�p�X���i���W���j�́A�t�B���^�̎��ȋ����}�������x���������肵�܂��B 
-�uLowpass resonance Q�v�������Ƃ������Ƃ́A�G�l���M�[��������������A�܂�A���U�̏��ł����x���Ȃ�Ƃ������Ƃł��B
-$$Audio Low Pass Filter$$ �́A Rolloff �Ȑ��Ɗ֘A�t�����Ă���A����ɂ��A�I�[�f�B�I �\�[�X�ƃI�[�f�B�I ���X�i�[�Ԃ̋����ɂ킽���āA�uCutoff Frequency�v��ݒ�ł��܂��B
+$$Audio Low Pass Filter$$ フィルタは、[[class-AudioSource|AudioSource]] の低周波または [[class-AudioListener|AudioListener]] に達しているすべての音声を渡し、「Cutoff Frequency」よりも高い周波数をカットします。\\
+「Lowpass resonance Q」（別名: ローパス共鳴品質係数）は、フィルタの自己共鳴が抑制される度合いを決定します。 
+「Lowpass resonance Q」が高いということは、エネルギー損失率が下がる、つまり、共振の消滅がより遅くなるということです。
+$$Audio Low Pass Filter$$ は、 Rolloff 曲線と関連付けられており、これにより、オーディオ ソースとオーディオ リスナー間の距離にわたって、「Cutoff Frequency」を設定できます。
 
 
 Attach:AudioLowPassFilter.png\\
-�u�I�[�f�B�I ���[ �p�X �t�B���^ �v���p�e�B�̓C���X�y�N�^�ɂ���܂��B�v
+「オーディオ ロー パス フィルタ プロパティはインスペクタにあります。」
 
 
-!! �v���p�e�B
+!! プロパティ
 
 ||PROPS
-||``Cutoff Frequency`` ||���[ �p�X �J�b�g�I�t���g�� �i�P��: Hz�j�B 10.0 �` 22000.0�B �f�t�H���g = 5000.0�B||
-||``Lowpass Resonance Q`` ||���[ �p�X���� Q �̒l�B �͈͂́A10.0 �` 10.0�B �f�t�H���g = 1.0�B||
+||``Cutoff Frequency`` ||ロー パス カットオフ周波数 （単位: Hz）。 10.0 〜 22000.0。 デフォルト = 5000.0。||
+||``Lowpass Resonance Q`` ||ロー パス共鳴 Q の値。 範囲は、10.0 〜 10.0。 デフォルト = 1.0。||
 
 
-!! ���[ �p�X �t�B���^�̒ǉ�
-���[ �p�X �t�B���^������̃I�[�f�B�I �\�[�X�ɒǉ�����ɂ́A�C���X�y�N�^���ŃI�u�W�F�N�g��I�����A[Component->Audio->Audio Low Pass Filter] ��I�����܂��B
+!! ロー パス フィルタの追加
+ロー パス フィルタを所定のオーディオ ソースに追加するには、インスペクタ内でオブジェクトを選択し、[Component->Audio->Audio Low Pass Filter] を選択します。
 
-!!  �q���g
-* �����͊��ɂ���Ă��̓`�d�̎d�����قȂ�܂��B�Ⴆ�΁A���o�I�Ȗ��̌��ʂ̕⊮�́A�����ȃ��[�p�X�̃I�[�f�B�I ���X�i�[�ւ̒ǉ��ɂȂ�܂��B
-* �h�A�̌��Ŕ������鉹���̍����g�̓��X�i�[�ɂ͓͂��܂���B�h�A���J���ۂɁA�uCutoff Frequency�v��ύX���邾���A������V�~�����[�g�ł��܂��B
+!!  ヒント
+* 音声は環境によってその伝播の仕方が異なります。例えば、視覚的な霧の効果の補完は、微妙なローパスのオーディオ リスナーへの追加になります。
+* ドアの後ろで発せられる音声の高周波はリスナーには届きません。ドアを開く際に、「Cutoff Frequency」を変更するだけ、これをシミュレートできます。

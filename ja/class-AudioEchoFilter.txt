@@ -1,25 +1,25 @@
-! �I�[�f�B�I�@�G�R�[�t�B���^�[�iUnity Pro�̂݁j
+! オーディオ　エコーフィルター（Unity Proのみ）
 
-$$Audio Echo Filter$$ �́A����́uDelay�v��ɉ������J��Ԃ��A�uDecay Ratio�v�Ɋ�Â��āA�J��Ԃ����������܂��B\\
-�uWet Mix�v�̓t�B���^�����O���ꂽ�M���̐U�������肵�܂����A�uDry Mix�v�́A�t�B���^�����O����Ă��Ȃ������o�͂̐U�������肵�܂��B
+$$Audio Echo Filter$$ は、所定の「Delay」後に音声を繰り返し、「Decay Ratio」に基づいて、繰り返しを減衰します。\\
+「Wet Mix」はフィルタリングされた信号の振幅を決定しますが、「Dry Mix」は、フィルタリングされていない音声出力の振幅を決定します。
 
 Attach:AudioEchoFilter.png\\
-�u $$Audio Echo Filter$$�̓C���X�y�N�^�ɂ���܂��B�v
+「 $$Audio Echo Filter$$はインスペクタにあります。」
 
 
-!! �v���p�e�B
+!! プロパティ
 
 ||PROPS
-||``Delay`` ||�G�R�[�x�� �i�P��: ms)�B10 �` 5000�BDefault = 500.||||
-||``Decay Ratio`` ||�x�����Ƃ̃G�R�[�����B 0 �` 1. 1.0 = �����Ȃ��A0.0 = ���v���� �i�܂�A1 �s�����̌����j�B �f�t�H���g = 0.5L�B||
-||``Wet Mix`` ||�o�͂ɓn���G�R�[�M���̉��ʁB 0.0 �` 1.0�B �f�t�H���g = 1.0�B||
-||``Dry Mix`` ||�o�͂ɓn�����̐M���̉��ʁB 0.0 �` 1.0�B �f�t�H���g = 1.0�B||
+||``Delay`` ||エコー遅延 （単位: ms)。10 〜 5000。Default = 500.||||
+||``Decay Ratio`` ||遅延ごとのエコー減衰。 0 〜 1. 1.0 = 減衰なし、0.0 = 合計減衰 （つまり、1 行だけの減衰）。 デフォルト = 0.5L。||
+||``Wet Mix`` ||出力に渡すエコー信号の音量。 0.0 〜 1.0。 デフォルト = 1.0。||
+||``Dry Mix`` ||出力に渡す元の信号の音量。 0.0 〜 1.0。 デフォルト = 1.0。||
 
 
 
-!! �G�R�[�t�B���^��ǉ�
-�G�R�[�t�B���^������̃I�[�f�B�I �\�[�X�ɒǉ�����ɂ́A�C���X�y�N�^���ŃI�u�W�F�N�g��I�����A[Component->Audio->Audio Echo Filter] ��I�����܂��B
+!! エコーフィルタを追加
+エコーフィルタを所定のオーディオ ソースに追加するには、インスペクタ内でオブジェクトを選択し、[Component->Audio->Audio Echo Filter] を選択します。
 
-!! �q���g
-* �ł����ʂ͉��̓`�d�𔽉f����B���Ƃ��΁A��K�͂ȋ��J�̂����܂́A$$�I�[�f�B�I �G�R�[�t�B���^�[$$�ɂ������͂��������邱�Ƃ��ł���B
-* �����○���o������΂킩��悤�ɁA���͌����x���`�d���܂��B������V�~�����[�g����ɂ́A�I�[�f�B�I�@�G�R�[�t�B���^�[���C�x���g�T�E���h�ɒǉ����AWet Mix��0.0���Z�b�g���ADelay�̒l��[[class-AudioSource|AudioSource]] ��[[class-AudioListener|AudioListener]] �̊Ԃ̋����ɒ��߂���B
+!! ヒント
+* 固い平面は音の伝播を反映する。たとえば、大規模な峡谷のこだまは、$$オーディオ エコーフィルター$$により説得力をもたせることができる。
+* 落雷や雷を経験すればわかるように、音は光より遅く伝播します。これをシミュレートするには、オーディオ　エコーフィルターをイベントサウンドに追加し、Wet Mixに0.0をセットし、Delayの値を[[class-AudioSource|AudioSource]] と[[class-AudioListener|AudioListener]] の間の距離に調節する。

@@ -1,61 +1,61 @@
-�t�H���g
+フォント
 
-$$Font$$ [[class-GuiText|GUI Text]] �܂��� [[class-TextMesh|Text Mesh]] $$Component$$ �̂����ꂩ�Ŏg�p���邷��ɁA�쐬�܂��̓C���|�[�g�ł��܂��B
+$$Font$$ [[class-GuiText|GUI Text]] または [[class-TextMesh|Text Mesh]] $$Component$$ のいずれかで使用するするに、作成またはインポートできます。
 
 
-!! True Type Font �t�@�C�� (.ttf) �̃C���|�[�g
+!! True Type Font ファイル (.ttf) のインポート
 
-�v���W�F�N�g�Ƀt�H���g��ǉ�����ɂ́AAssets �t�H���_�� __.ttf__ �t�@�C����u���K�v������܂��B Unity ���A�����I�Ƀt�H���g���C���|�[�g���܂��B ���̃t�H���g�Ɋg���q __.ttf__ �����邩�m�F���Ă��������B�Ȃ��ꍇ�AUnity �̓t�H���g��F�����܂���B
+プロジェクトにフォントを追加するには、Assets フォルダに __.ttf__ ファイルを置く必要があります。 Unity が、自動的にフォントをインポートします。 そのフォントに拡張子 __.ttf__ があるか確認してください。ない場合、Unity はフォントを認識しません。
 
-�t�H���g�́u�T�C�Y�v��ύX����ɂ́A$$Project View$$ �ŋ����\������ƁA$$Inspector$$ �� $$Import Settings$$ �ɑ����̃I�v�V�������\������܂��B
+フォントの「サイズ」を変更するには、$$Project View$$ で強調表示すると、$$Inspector$$ の $$Import Settings$$ に多くのオプションが表示されます。
 
 Attach:font_importer.png\\
-�u�t�H���g�p�̃C���|�[�g�ݒ�v
+「フォント用のインポート設定」
 
 ||PROPS
-||``Font Size``  ||���[�h �v���Z�b�T�ɐݒ肳�ꂽ�T�C�Y�Ɋ�Â����A�t�H���g�̃T�C�Y�B ||
-||``Character`` ||�t�H���g�̃e�L�X�g �G���R�[�f�B���O  �����ł́A�t�H���g��啶���܂��͏������݂̂ŕ\�������邱�Ƃ��ł��܂��B ||
-||               ||���̃��[�h�� Dynamic �ɐݒ肷��ƁA���[�e�B���e�B��OS �̊�{�t�H���g �����_�����O ���[�`�����g�p����悤�ɂȂ�܂� �i���L�Q�Ɓj�B||
-||``2.x font placing`` ||Unity 3.x ���A2.x �����A����I�ɂ�萳�����t�H���g�̏c�z�u���g�p���܂��B  �t�H���g �e�N�X�`���������_�����O����ۂɌv�Z�������ɁATrue Type �t�H���g�ɕۑ����ꂽ�t�H���g �A�Z���g���g�p���܂��B  ���̃v���p�e�B�Ƀ`�F�b�N������ƁA2.x �̏c�z�u���g�p����܂��B ||
+||``Font Size``  ||ワード プロセッサに設定されたサイズに基づいた、フォントのサイズ。 ||
+||``Character`` ||フォントのテキスト エンコーディング  ここでは、フォントを大文字または小文字のみで表示させることができます。 ||
+||               ||このモードを Dynamic に設定すると、ユーティリティがOS の基本フォント レンダリング ルーチンを使用するようになります （下記参照）。||
+||``2.x font placing`` ||Unity 3.x が、2.x よりも、印刷的により正しいフォントの縦配置を使用します。  フォント テクスチャをレンダリングする際に計算する代わりに、True Type フォントに保存されたフォント アセントを使用します。  このプロパティにチェックを入れると、2.x の縦配置が使用されます。 ||
 
-�u�� Dynamic �t�H���g�ɌŗL�̃C���|�[�g�ݒ�v
+「非 Dynamic フォントに固有のインポート設定」
 ||PROPS
-||``Font Rendering``	||�t�H���g�ɓK�p�����A���`�G�C���A�X�����̗ʁB||
+||``Font Rendering``	||フォントに適用されるアンチエイリアス処理の量。||
 
-�uDynamic �t�H���g�ɌŗL�̃C���|�[�g�ݒ�v
+「Dynamic フォントに固有のインポート設定」
 ||PROPS
-||``Style``      ||�t�H���g�ɓK�p�����X�^�C���ŁA�ʏ�A�����A�ΆA�����ƎΑ̂̂����ꂩ�B ||
-||``Include Font Data`` ||Dynamic �t�H���g �v���p�e�B�ƕ��p�����ۂɁA���̐ݒ肪�t�H���g�̃p�b�P�[�W���O�𐧌䂵�܂��B  �I������ƁATTF ���r���h�̏o�͂Ɋ܂܂�܂��B  �I�����Ȃ��ƁA�G���h ���[�U�[���}�V���ɃC���X�g�[���ς݂̃t�H���g�������Ă���Ƃ݂Ȃ���܂��B  �t�H���g�͒��쌠�̑ΏۂƂȂ邽�߁A�g�p�������󂯂��t�H���g���A���g�ō쐬���ăt�H���g�̂ݎg�p���Ă��������B ||
-||``Font Names`` ||[Include Font Data] ��I�����Ă��Ȃ��ꍇ�ɂ̂ݎg�p�ł��܂��B  �R���}�ŋ�؂�ꂽ�A�t�H���g���̃��X�g���\������܂��B  �����̃t�H���g�́A������E�ւƏ��Ɏ��s����A�Q�[�}�[ �}�V���ōŏ��Ɍ��o���ꂽ�t�H���g���g�p����܂��B  ||
+||``Style``      ||フォントに適用されるスタイルで、通常、太字、斜体、太字と斜体のいずれか。 ||
+||``Include Font Data`` ||Dynamic フォント プロパティと併用される際に、この設定がフォントのパッケージングを制御します。  選択すると、TTF がビルドの出力に含まれます。  選択しないと、エンド ユーザーがマシンにインストール済みのフォントを持っているとみなされます。  フォントは著作権の対象となるため、使用許諾を受けたフォントか、自身で作成してフォントのみ使用してください。 ||
+||``Font Names`` ||[Include Font Data] を選択していない場合にのみ使用できます。  コンマで区切られた、フォント名のリストが表示されます。  これらのフォントは、左から右へと順に試行され、ゲーマー マシンで最初に検出されたフォントが使用されます。  ||
 
-�t�H���g���C���|�[�g��ɁA�v���W�F�N�g �r���[�ł��̃t�H���g��W�J���A�����������ꂽ�A�Z�b�g�����邩���m�F�ł��܂��B  ����2 �̃A�Z�b�g�̓C���|�[�g���ɍ쐬����܂��B �u�t�H���g �}�e���A���v�Ɓu�t�H���g �e�N�X�`���v
+フォントをインポート後に、プロジェクト ビューでそのフォントを展開し、自動生成されたアセットがあるかを確認できます。  次の2 つのアセットはインポート中に作成されます。 「フォント マテリアル」と「フォント テクスチャ」
 
-!! Dynamic �t�H���g
+!! Dynamic フォント
 
-Unity 3.0 �́ADynamic �t�H���g�̃����_�����O�̃T�|�[�g��ǉ����܂��B �C���|�[�g�ݒ�́uCharacters�v�h���b�v�_�E�����X�g���uDynamic�v�ɐݒ肷��ƁAUnity �͂��ׂẴt�H���g �L�����N�^�[�����e�N�X�`�������O�ɐ������܂���B ����ɁAOS �ɑg�ݍ��܂ꂽ�t�H���g �����_�����O���g�p���āA�I�� �U �t���C�Ńe�N�X�`�����쐬���܂��B ����ɂ́A���Ƀ��[�U�[�V�X�e���Ɉ�ʂɊ܂܂��t�H���g�̎g�p���Ă��邽�߂ɁA�t�H���g �f�[�^���܂߂�K�v���Ȃ��ꍇ��A�W�A�����傫���t�H���g �T�C�Y �i�ʏ�̃t�H���g �e�N�X�`�����g�p����̂ŁA�t�H���g �e�N�X�`�������ɑ傫���Ȃ�j���T�|�[�g����K�v������ꍇ�ɁA�_�E�����[�h�̃T�C�Y��e�N�X�`�� �������ɕۑ��ł���Ƃ������_������܂��B 
+Unity 3.0 は、Dynamic フォントのレンダリングのサポートを追加します。 インポート設定の「Characters」ドロップダウンリストを「Dynamic」に設定すると、Unity はすべてのフォント キャラクターを持つテクスチャを事前に生成しません。 代わりに、OS に組み込まれたフォント レンダリングを使用して、オン ザ フライでテクスチャを作成します。 これには、特にユーザーシステムに一般に含まれるフォントの使用しているために、フォント データを含める必要がない場合やアジア言語や大きいフォント サイズ （通常のフォント テクスチャを使用するので、フォント テクスチャが非常に大きくなる）をサポートする必要がある場合に、ダウンロードのサイズやテクスチャ メモリに保存できるという利点があります。 
 
-!! Unicode �T�|�[�g
-Unity ��Unicode �����S�ɃT�|�[�g���Ă��܂��B Unicode �̃e�L�X�g�ɂ��A�ʏ� ASCII �����Z�b�g�ŃT�|�[�g����Ă��Ȃ��h�C�c��A�t�����X��A�f���}�[�N��A���{��̕�����\�����邱�Ƃ��ł��܂��B �܂��A�t�H���g���T�|�[�g���Ă���ꍇ�ɁA����I�v�V���� �L�[�Ȃǂ̑����̈قȂ����p�r��������͂��邱�Ƃ��ł��܂��B
+!! Unicode サポート
+Unity はUnicode を完全にサポートしています。 Unicode のテキストにより、通常 ASCII 文字セットでサポートされていないドイツ語、フランス語、デンマーク語、日本語の文字を表示することができます。 また、フォントがサポートしている場合に、矢印やオプション キーなどの多くの異なる特殊用途文字を入力することができます。
 
-Unicode �������g�p����ɂ́A�C���|�[�g�ݒ�́uCharacters�v�h���b�v�_�E������uUnicode�v���uDynamic�v�̂����ꂩ��I�����܂��B  ���̃t�H���g�� Unicode ������\���ł��܂��B  $$GUIText$$ �܂��� $$Text Mesh$$ ���g�p���Ă���ꍇ�A�C���X�y�N�^�ɂ���R���|�[�l���g�́uText�v�t�B�[���h�� Unicode ��������͂ł��܂��B  Mac ��̃C���X�y�N�^�ł́AUnicode �������������\������Ȃ��ꍇ������܂��B
+Unicode 文字を使用するには、インポート設定の「Characters」ドロップダウンから「Unicode」か「Dynamic」のいずれかを選択します。  このフォントで Unicode 文字を表示できます。  $$GUIText$$ または $$Text Mesh$$ を使用している場合、インスペクタにあるコンポーネントの「Text」フィールドに Unicode 文字を入力できます。  Mac 上のインスペクタでは、Unicode 文字が正しく表示されない場合があります。
 
-�܂��A�X�N���v�g����\�������e�L�X�g��ݒ肵�����ꍇ�AUnicode �������g�p�ł��܂��B  Javascript �� C# �R���p�C���́AUnicode �x�[�X�̃X�N���v�g�����S�ɃT�|�[�g���Ă��܂��B UTF-16 �G���R�[�f�B���O�ŃX�N���v�g��ۑ����邾���ł��܂��܂���B  $$Unitron$$ �ŁA^^Text->Text Encoding->Unicode (UTF 16)^^�@��I�����邱�ƂŁA���̑�����s�����Ƃ��ł��܂��B  Unicode �������X�N���v�g�̕�����ɒǉ�����ƁA$$UnityGUI$$ ��AGUI �e�L�X�g�A�܂��̓e�L�X�g ���b�V���Ŋ��҂����悤�ɕ\������܂��B  $$UniSciTE$$ ���X�N���v�g �̕ҏW�Ɏg�p����� PC �ŁAUCS-2 Little Endian �G���R�[�f�B���O���g�p���āA�X�N���v�g��ۑ����܂��B
-
-
-!! �t�H���g �J���[�̕ύX
-
-�t�H���g�̎g�p���@�ɉ����āA�\���t�H���g�̐F��ύX������@������������܂��B
+また、スクリプトから表示されるテキストを設定したい場合、Unicode 文字も使用できます。  Javascript と C# コンパイラは、Unicode ベースのスクリプトを完全にサポートしています。 UTF-16 エンコーディングでスクリプトを保存するだけでかまいません。  $$Unitron$$ で、^^Text->Text Encoding->Unicode (UTF 16)^^　を選択することで、この操作を行うことができます。  Unicode 文字をスクリプトの文字列に追加すると、$$UnityGUI$$ や、GUI テキスト、またはテキスト メッシュで期待されるように表示されます。  $$UniSciTE$$ がスクリプト の編集に使用される PC で、UCS-2 Little Endian エンコーディングを使用して、スクリプトを保存します。
 
 
-!!! GUI �e�L�X�g�ƃe�L�X�g ���b�V��
+!! フォント カラーの変更
 
-GUI�@�e�L�X�g�܂��̓e�L�X�g ���b�V�����g�p���āA�t�H���g�ɑ΂��ăJ�X�^���� $$Material$$ ���g�p���āA���̐F��ύX�ł��܂��B �v���W�F�N�g �r���[�ŁA^^Create->Material^^ ���N���b�N���A$$Inspector$$ �ŐV�K�쐬�����}�e���A����I������ѐݒ肵�܂��B �t�H���g �A�Z�b�g���炻�̃}�e���A���Ƀe�N�X�`�������蓖�ĂĂ��������B �t�H���g �}�e���A���ɑg�ݍ��݂́uGUI/Text Shader�v�V�F�[�_�[���g�p���邱�ƂŁA�}�e���A���́u�e�L�X�g �J���[�v�ŐF��I���ł��܂��B
+フォントの使用方法に応じて、表示フォントの色を変更する方法がいくつかあります。
+
+
+!!! GUI テキストとテキスト メッシュ
+
+GUI　テキストまたはテキスト メッシュを使用して、フォントに対してカスタムの $$Material$$ を使用して、その色を変更できます。 プロジェクト ビューで、^^Create->Material^^ をクリックし、$$Inspector$$ で新規作成したマテリアルを選択および設定します。 フォント アセットからそのマテリアルにテクスチャを割り当ててください。 フォント マテリアルに組み込みの「GUI/Text Shader」シェーダーを使用することで、マテリアルの「テキスト カラー」で色を選択できます。
 
 !!! UnityGUI
 
-UnityGUI �X�N���v�e�B���O���g�p���āA�t�H���g����ꍇ�A�قȂ���ŁA�t�H���g�̐F����萧��ł��܂��B  �t�H���g�̐F��ύX����ɂ́A^^Assets->Create->GUI Skin^^ ���� $$GUISkin$$ ���쐬���A^^Label->Normal->Text Color^^ �Ȃǂ���A����̐����ԂɐF���`���܂��B  �ڍׂɂ��ẮA[[class-GUISkin | GUI Skin page]] ���Q�Ƃ��Ă��������B
+UnityGUI スクリプティングを使用して、フォントする場合、異なる環境で、フォントの色をより制御できます。  フォントの色を変更するには、^^Assets->Create->GUI Skin^^ から $$GUISkin$$ を作成し、^^Label->Normal->Text Color^^ などから、特定の制御状態に色を定義します。  詳細については、[[class-GUISkin | GUI Skin page]] を参照してください。
 
-!!�q���g
-* �C���|�[�g���ꂽ�t�H���g����\������ɂ́A�t�H���g��I�����A^^GameObject->Create Other->3D Text^^ ��I�����܂��B
-* �������܂��͑啶���̂ݎg�p���邱�ƂŁA�������ꂽ�e�N�X�`�� �T�C�Y���������Ȃ�܂��B
-* Unity ���񋟂���f�t�H���g�̃t�H���g�́AArial �ɂȂ�܂��B  ���̃t�H���g�́A��Ɏg�p�\�ŁA�v���W�F�N�g �r���[�ɂ͕\������܂���B
+!!ヒント
+* インポートされたフォントｗを表示するには、フォントを選択し、^^GameObject->Create Other->3D Text^^ を選択します。
+* 小文字または大文字のみ使用することで、生成されたテクスチャ サイズが小さくなります。
+* Unity が提供するデフォルトのフォントは、Arial になります。  このフォントは、常に使用可能で、プロジェクト ビューには表示されません。

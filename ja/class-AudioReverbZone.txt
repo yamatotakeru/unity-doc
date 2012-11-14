@@ -1,25 +1,25 @@
-! ���o�[�u (�c��)�]�[��
+! リバーブ (残響)ゾーン
 
-$$Reverb Zone$$ �́A[[class-AudioClip | Audio Clip]] �����A�I�[�f�B�I ���X�i�[�����o�[�u �]�[���̂ǂ��ɂ��邩�ɉ����ăI�[�f�B�I �N���b�v��c�Ȃ����܂��B ���ӌ��ʂ̂Ȃ��ꏊ����A����ꏊ�ɏ��X�Ɉڂ肽���ꍇ�Ɏg�p���܂��B �Ⴆ�Γ��A�ɓ����čs�����ȂǂɎg�p���܂��B
+$$Reverb Zone$$ は、[[class-AudioClip | Audio Clip]] を取り、オーディオ リスナーがリバーブ ゾーンのどこにいるかに応じてオーディオ クリップを歪曲させます。 周辺効果のない場所から、ある場所に徐々に移りたい場合に使用します。 例えば洞窟に入って行く時などに使用します。
 
 Attach:AudioReverbZone.png\\
-�u�I�[�f�B�I ���o�[�u �]�[���@�\�̓C���X�y�N�^�ɂ���܂��B�v
+「オーディオ リバーブ ゾーン機能はインスペクタにあります。」
 
 
-!! �v���p�e�B
+!! プロパティ
 
 ||PROPS
-||``Min Distance`` ||���u���̓��~�̔��a��\���܂��B����́A�i�K�I�ȃ��o�[�u �]�[���Ɗ��S�ȃ��o�[�u �]�[���̂���]�[�������肵�܂��B||
-||``Max Distance`` ||���u���̊O�~�̔��a��\���܂��B����́A���ʂ��Ȃ��A���o�[�u���i�K�I�ɓK�p����n�߂�[�]�[���̂���]�[�������肵�܂��B||
-||``Reverb Preset`` ||���o�[�u �]�[���ɂ���Ďg�p����郊�o�[�u���ʂ����肵�܂��B||
+||``Min Distance`` ||装置内の内円の半径を表します。これは、段階的なリバーブ ゾーンと完全なリバーブ ゾーンのあるゾーンを決定します。||
+||``Max Distance`` ||装置内の外円の半径を表します。これは、効果がなく、リバーブが段階的に適用され始めるーゾーンのあるゾーンを決定します。||
+||``Reverb Preset`` ||リバーブ ゾーンによって使用されるリバーブ効果を決定します。||
 
-���o�[�u �]�[���̃v���p�e�B�̗�����[�߂�ɂ́A���̉摜���N���b�N���܂��B
+リバーブ ゾーンのプロパティの理解を深めるには、次の画像をクリックします。
 Attach:ReverbZoneExpl.png\\
-�u���o�[�u �]�[���ŉ������ǂ̂悤�ɓ������v
+「リバーブ ゾーンで音声がどのように働くか」
 
 
-!! ���o�[�u �]�[���̒ǉ�
-���o�[�u �]�[��������̃I�[�f�B�I �\�[�X�ɒǉ�����ɂ́A�C���X�y�N�^���ŃI�u�W�F�N�g��I�����A[Component->Audio->Audio Reverb Zone] ��I�����܂��B
+!! リバーブ ゾーンの追加
+リバーブ ゾーンを所定のオーディオ ソースに追加するには、インスペクタ内でオブジェクトを選択し、[Component->Audio->Audio Reverb Zone] を選択します。
 
-!! �q���g
-* ���o�[�u �]�[�����������āA�������ʂ��쐬�ł��܂��B
+!! ヒント
+* リバーブ ゾーンを混合して、結合効果を作成できます。

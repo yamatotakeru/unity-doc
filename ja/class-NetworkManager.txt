@@ -1,29 +1,29 @@
-! �l�b�g���[�N �}�l�[�W��
+! ネットワーク マネージャ
 
-$$Network Manager$$ �ɂ́A�l�b�g���[�N �}���`�v���C���[�̃Q�[�����쐬���邽�߂�2 �̏d�v�ȃv���p�e�B���܂܂�Ă��܂��B
+$$Network Manager$$ には、ネットワーク マルチプレイヤーのゲームを作成するための2 つの重要なプロパティが含まれています。
 
 Attach:NetworkSet.png\\
-�u�l�b�g���[�N �}�l�[�W���v
+「ネットワーク マネージャ」
 
-�l�b�g���[�N �}�l�[�W���ɃA�N�Z�X����ɂ́A���j���[�o�[���� ^^Edit->Project Settings->Network^^ ��I�����܂��B
+ネットワーク マネージャにアクセスするには、メニューバーから ^^Edit->Project Settings->Network^^ を選択します。
 
 
-!! �v���p�e�B
+!! プロパティ
 
 ||PROPS
-||``Debug Level`` ||�R���\�[���ɕ\�����ꂽ���b�Z�[�W�̃��x���B||
-||>>>``Off`` ||�G���[�̂ݕ\������܂��B||
-||>>>``Informational`` ||�d�v�ȃl�b�g���[�N �C�x���g���\������܂��B||
-||>>>``Full`` ||���ׂẴl�b�g���[�N �C�x���g���\������܂��B||
-||``Sendrate`` ||�l�b�g���[�N��Ńf�[�^�����M�����b���Ƃ̉񐔁B||
+||``Debug Level`` ||コンソールに表示されたメッセージのレベル。||
+||>>>``Off`` ||エラーのみ表示されます。||
+||>>>``Informational`` ||重要なネットワーク イベントが表示されます。||
+||>>>``Full`` ||すべてのネットワーク イベントが表示されます。||
+||``Sendrate`` ||ネットワーク上でデータが送信される秒ごとの回数。||
 
 
-!! �ڍ�
+!! 詳細
 
-Debug Level �̒����́A�Q�[���̃l�b�g���[�N��ł̓�������������уf�o�b�O�����Ŕ��ɕ֗��ł��B  �ŏ��ɁB������uFull�v�ɐݒ肷��ƁA���s����邷�ׂẴl�b�g���[�N������m�F�ł��܂��B  ����ɂ��A�l�b�g���[�N�ʐM���g�p����p�x��A���ʂƂ��Ďg�p����ш敝�̗ʂ�S�̓I�Ɋm�F�ł��܂��B
+Debug Level の調整は、ゲームのネットワーク上での動作を微調整およびデバッグする上で非常に便利です。  最初に。これを「Full」に設定すると、実行されるすべてのネットワーク動作を確認できます。  これにより、ネットワーク通信を使用する頻度や、結果として使用する帯域幅の量を全体的に確認できます。
 
-�uInformational�v�ɐݒ肷��ƁA�傫���C�x���g���m�F�ł��܂����A1 �� �P �̍s���͊m�F�ł��܂���B  ��ӂ́uNetwork ID�v�����蓖�āA�uRPC�v�Ăяo�����o�b�t�@�����O����ƁA�����Ń��O�Ɏc��܂��B
+「Informational」に設定すると、大きいイベントを確認できますが、1 つ １ つの行動は確認できません。  一意の「Network ID」を割り当て、「RPC」呼び出しをバッファリングすると、ここでログに残ります。
 
-�uOff�v�ɂ���ƁA�l�b�g���[�N����̃G���[�݂̂��R���\�[���ɕ\������܂��B
+「Off」にすると、ネットワークからのエラーのみがコンソールに表示されます。
 
-�uSendrate�v�Ԋu (1 �b / �uSendrate�v = �Ԋu) �ő��M�����f�[�^�́A�e�����I�u�W�F�N�g�� $$Network View$$ �v���p�e�B�Ɋ�Â��ĕς��܂��B  �l�b�g���[�N �r���[���uUnreliable�v���g�p���Ă���ꍇ�A���̃f�[�^�͊e�Ԋu�ő��M����܂��B  �l�b�g���[�N �r���[���uReliable Delta Compressed�v���g�p���Ă���ꍇ�AUnity �͊Ď�����Ă���I�u�W�F�N�g���Ō�̊Ԋu�ȍ~�ɕύX����Ă������`�F�b�N���܂��B  �ύX����Ă���ꍇ�A�f�[�^�����M����܂��B
+「Sendrate」間隔 (1 秒 / 「Sendrate」 = 間隔) で送信されるデータは、各放送オブジェクトの $$Network View$$ プロパティに基づいて変わります。  ネットワーク ビューが「Unreliable」を使用している場合、そのデータは各間隔で送信されます。  ネットワーク ビューが「Reliable Delta Compressed」を使用している場合、Unity は監視されているオブジェクトが最後の間隔以降に変更されてたかをチェックします。  変更されている場合、データが送信されます。

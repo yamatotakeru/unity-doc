@@ -1,94 +1,94 @@
-! ���W�b�h�{�f�B
+! リジッドボディ
 
-$$Rigidbody$$ �ɂ��A $$GameObject$$ �����������̐��䉺�œ��삷��悤�ɂȂ�܂��B ���W�b�h�{�f�B�́A�͂�g���N���󂯁A�����I�ȕ����ɃI�u�W�F�N�g�𓮂������Ƃ��ł��܂��B  GameObject �́A�d�͂̉e�����e�����󂯂郊�W�b�h�{�f�B���܂߂邩�A�X�N���v�e�B���O��ʂ��ĉ������͂̉��œ��삷�邩�ANVIDIA PhysX ���������G���W����ʂ��āA���̑��̃I�u�W�F�N�g�Ƒ��ݍ�p����K�v������܂��B
+$$Rigidbody$$ により、 $$GameObject$$ が物理特性の制御下で動作するようになります。 リジッドボディは、力やトルクを受け、現実的な方向にオブジェクトを動かすことができます。  GameObject は、重力の影響を影響を受けるリジッドボディを含めるか、スクリプティングを通じて加えた力の下で動作するか、NVIDIA PhysX 物理特性エンジンを通じて、その他のオブジェクトと相互作用する必要があります。
 
 Attach:Inspector-Rigidbody.png\\
-�u���W�b�h�{�f�B�ɂ��AGameObject �͕����I�e���̉��œ���ł��܂��v
+「リジッドボディにより、GameObject は物理的影響の下で動作できます」
 
 
-!! �v���p�e�B
+!! プロパティ
 
 ||PROPS
-||``Mass`` ||�I�u�W�F�N�g�̎��� (�P��	: kg)�B ���ʂ����̑��̃��W�b�h�{�f�B�� 100 �{ �ɂ��Ă������Ƃ������߂��܂��B ||
-||``Drag`` ||�͂ɂ�蓮���ۂɁA�I�u�W�F�N�g�ɉe�������C��R�̗ʁB 0 �̏ꍇ�A��C��R�� 0 �ŁA�����̏ꍇ�A�I�u�W�F�N�g�͒����ɓ������~�߂܂��B ||
-||``Angular Drag`` ||�g���N�ɂ���]����ۂɁA�I�u�W�F�N�g�ɉe�������C��R�̗ʁB 0 �̏ꍇ�A��C��R�� 0 �ŁA�����̏ꍇ�A�I�u�W�F�N�g�͒����ɉ�]���~�߂܂��B ||
-||``Use Gravity`` ||�L���ɂ���ƁA�I�u�W�F�N�g�͏d�͂̉e�����󂯂܂��B|| ||
-||``Is Kinematic`` ||�L���ɂ���ƁA�I�u�W�F�N�g�͕��������G���W���ɂ���ċ쓮����܂��񂪁A���� $$Transform$$ �ɂ���Ă̂ݑ���ł��܂��B ����́A�v���b�g�t�H�[�����ڂ������ꍇ��A$$HingeJoint$$ ��ǉ��������W�b�h�{�f�B���A�j���[�g���������ꍇ�ɕ֗��ł��B ||
-||``Interpolate`` ||���W�b�h�{�f�B�̈ړ��ŃM�N�V���N�������������߂Ă���ꍇ�ɂ݂̂��̃I�v�V�����̂����ꂩ�������܂��B ||
-||>>>``None`` ||��Ԃ͓K�p����܂���B ||
-||>>>``Interpolate`` ||�O�̃t���[���̃g�����X�t�H�[���Ɋ�Â��āA�g�����X�t�H�[�����~���ɂ��܂��B ||
-||>>>``Extrapolate`` ||���̃t���[���̐���g�����X�t�H�[���Ɋ�Â��āA�g�����X�t�H�[�����~���ɂ��܂��B || 
-||``Freeze Rotation`` ||�L���ɂ���ƁAGameObject �̓X�N���v�g��ʂ��Ēǉ������Փ˂܂��͗͂Ɋ�Â��ĉ�]���܂���B�utransform.Rotate()�v���g�p�����ꍇ�̂݉�]���܂��B ||
-||``Collision Detection`` ||�����ňړ�����I�u�W�F�N�g���A�Փ˂����o�����ɁA���̃I�u�W�F�N�g��ʉ߂����Ȃ��悤�ɂ���ꍇ�Ɏg�p���܂��B ||
-||>>>``Discrete`` ||�V�[�����̂��̑����ׂẴR���C�_�ɑ΂��āA�ʂ̏Փˌ��o���g�p���܂��B ���̑��̃R���C�_�́A�Փ˂̃e�X�g���ɌʏՓˌ��o���g�p���܂��B �ʏ�̏Փ˂Ɏg�p����܂� (����̓f�t�H���g�l�ł�)�B ||
-||>>>``Continuous`` ||���I�Փ� (���W�b�h�{�f�B�Ƃ�) �ɑ΂���ʏՓˌ��o�ƁA�X�^�e�B�b�N�� MeshColliders �Ƃ̘A���Փˌ��o (���W�b�h�{�f�B�Ȃ�) ���g�p���܂��B Rigidbodies set to Continuous Dynamic �ɐݒ肳�ꂽ���W�b�h�{�f�B�́A���̃��W�b�h�{�f�B�ւ̏Փ˂��e�X�g����ۂɁA�A���Փˌ��o���g�p���܂��B ���̑��̃��W�b�h�{�f�B�́A�ʏՓˌ��o���g�p���܂��B �A���Փˌ��o���Փ˂�K�v�Ƃ���I�u�W�F�N�g�Ɏg�p����܂��B (�����̃I�u�W�F�N�g�̏Փ˂Ɋւ��Ė�肪�Ȃ��ꍇ�́A����́A���������p�t�H�[�}���X�ɑ傫���e�����邽�߁A�ʂɐݒ肵�Ă����܂�) ||
-||>>>``Continuous Dynamic`` ||�A������јA�����I�Փ˂ɐݒ肳�ꂽ�I�u�W�F�N�g�ɑ΂��āA�A���Փˌ��o���g�p���܂��B �X�^�e�B�b�N�� MeshColliders �Ƃ̘A���Փˌ��o���g�p���܂� (���W�b�h�{�f�B�Ȃ�)�B ���̑����ׂẴR���C�_�ɑ΂��ẮA�ʏՓˌ��o���g�p���܂��B �����ړ�����I�u�W�F�N�g�Ɏg�p����܂��B||
-||``Constraints`` ||���W�b�h�{�f�B�̓����Ɋւ��鐧��:-||
-||>>>``Freeze Position``||���E�� X�AY�AZ ���ňړ����郊�W�b�h�{�f�B��I��I�ɒ�~���܂��B||
-||>>>``Freeze Rotation``||���E�� X�AY�AZ ���ŉ�]���郊�W�b�h�{�f�B��I��I�ɒ�~���܂��B||
+||``Mass`` ||オブジェクトの質量 (単位	: kg)。 質量をその他のリジッドボディの 100 倍 にしておくことをお勧めします。 ||
+||``Drag`` ||力により動く際に、オブジェクトに影響する空気抵抗の量。 0 の場合、空気抵抗が 0 で、無限の場合、オブジェクトは直ちに動きを止めます。 ||
+||``Angular Drag`` ||トルクにより回転する際に、オブジェクトに影響する空気抵抗の量。 0 の場合、空気抵抗が 0 で、無限の場合、オブジェクトは直ちに回転を止めます。 ||
+||``Use Gravity`` ||有効にすると、オブジェクトは重力の影響を受けます。|| ||
+||``Is Kinematic`` ||有効にすると、オブジェクトは物理特性エンジンによって駆動されませんが、その $$Transform$$ によってのみ操作できます。 これは、プラットフォームを移したい場合や、$$HingeJoint$$ を追加したリジッドボディをアニメート化したい場合に便利です。 ||
+||``Interpolate`` ||リジッドボディの移動でギクシャクした動きを求めている場合にのみこのオプションのいずれかを試します。 ||
+||>>>``None`` ||補間は適用されません。 ||
+||>>>``Interpolate`` ||前のフレームのトランスフォームに基づいて、トランスフォームを円滑にします。 ||
+||>>>``Extrapolate`` ||次のフレームの推定トランスフォームに基づいて、トランスフォームを円滑にします。 || 
+||``Freeze Rotation`` ||有効にすると、GameObject はスクリプトを通じて追加される衝突または力に基づいて回転しません。「transform.Rotate()」を使用した場合のみ回転します。 ||
+||``Collision Detection`` ||高速で移動するオブジェクトが、衝突を検出せずに、他のオブジェクトを通過させないようにする場合に使用します。 ||
+||>>>``Discrete`` ||シーン内のその他すべてのコライダに対して、個別の衝突検出を使用します。 その他のコライダは、衝突のテスト時に個別衝突検出を使用します。 通常の衝突に使用されます (これはデフォルト値です)。 ||
+||>>>``Continuous`` ||動的衝突 (リジッドボディとの) に対する個別衝突検出と、スタティックな MeshColliders との連続衝突検出 (リジッドボディなし) を使用します。 Rigidbodies set to Continuous Dynamic に設定されたリジッドボディは、このリジッドボディへの衝突をテストする際に、連続衝突検出を使用します。 その他のリジッドボディは、個別衝突検出を使用します。 連続衝突検出が衝突を必要とするオブジェクトに使用されます。 (高速のオブジェクトの衝突に関して問題がない場合は、これは、物理特性パフォーマンスに大きく影響するため、個別に設定しておきます) ||
+||>>>``Continuous Dynamic`` ||連続および連続動的衝突に設定されたオブジェクトに対して、連続衝突検出を使用します。 スタティックな MeshColliders との連続衝突検出も使用します (リジッドボディなし)。 その他すべてのコライダに対しては、個別衝突検出を使用します。 高速移動するオブジェクトに使用されます。||
+||``Constraints`` ||リジッドボディの動きに関する制限:-||
+||>>>``Freeze Position``||是界の X、Y、Z 軸で移動するリジッドボディを選択的に停止します。||
+||>>>``Freeze Rotation``||是界の X、Y、Z 軸で回転するリジッドボディを選択的に停止します。||
 
-!! �ڍ�
+!! 詳細
 
-$$Rigidbody$$ �ɂ��AGameObject �����������G���W���̐��䉺�œ��삷��悤�ɂȂ�܂��B  ����ɂ��A�����I�ȏՓˁA���l�Ȏ�ނ̃W���C���g�A���̑��̃N�[���ȓ���ւ̃Q�[�g�E�F�C���J���܂��B  ���W�b�h�{�f�B�ɗ͂������邱�ƂŁAGameObject �𑀍삷�邱�Ƃɂ���āA $$Component$$ �𒼐ڒ��������ꍇ�Ƃ͈Ⴄ���b�N & �t�B�[�����쐬���܂��B  ��ʂɁA���W�b�h�{�f�B�Ɠ��� GameObject �̃g�����X�t�H�[���̂ǂ��炩��������𑀍삵�Ȃ��ł��������B
+$$Rigidbody$$ により、GameObject が物理特性エンジンの制御下で動作するようになります。  これにより、現実的な衝突、多様な種類のジョイント、その他のクールな動作へのゲートウェイが開きます。  リジッドボディに力を加えることで、GameObject を操作することによって、 $$Component$$ を直接調整した場合とは違うルック & フィールを作成します。  一般に、リジッドボディと同じ GameObject のトランスフォームのどちらか一方だけを操作しないでください。
 
-�g�����X�t�H�[���̑���ƃ��W�b�h�{�f�B�Ԃ̍ő�̍��́A�͂��g�p���邩���Ȃ����ł��B  ���W�b�h�{�f�B�́A�͂�g���N���󂯂邱�Ƃ��ł��܂����A�g�����X�t�H�[���͂ł��܂���B  �g�����X�t�H�[���͈ړ����]�͂ł��܂����A���������̎g�p�Ƃ͈قȂ�܂��B �����Ŏ������ꍇ�́A���̌����ȍ��ɋC�Â��ł��傤�B  ���W�b�h�{�f�B�ɗ�/�g���N��������ƁA���ۂɃI�u�W�F�N�g�̈ʒu��g�����X�t�H�[�� �R���|�[�l���g�̉�]��ύX���܂��B  ���̂��߁A�ǂ������������g�p����K�v������܂��B  ���������g�p���Ƀg�����X�t�H�[����ύX����ƁA�Փ˂₻�̑��̌v�Z�ɖ�肪������ꍇ������܂��B
+トランスフォームの操作とリジッドボディ間の最大の差は、力を使用するかしないかです。  リジッドボディは、力やトルクを受けることができますが、トランスフォームはできません。  トランスフォームは移動や回転はできますが、物理特性の使用とは異なります。 自分で試した場合は、その顕著な差に気づくでしょう。  リジッドボディに力/トルクを加えると、実際にオブジェクトの位置やトランスフォーム コンポーネントの回転を変更します。  このため、どちら一方だけを使用する必要があります。  物理特性使用中にトランスフォームを変更すると、衝突やその他の計算に問題が生じる場合があります。
 
-���W�b�h�{�f�B�́A���������G���W���ɉe�����󂯂�O�ɁAGameObject �ɖ����I�ɒǉ�����K�v������܂��B  ���j���[�o�[�ŁuComponents->Physics->Rigidbody�v����I�������I�u�W�F�N�g�Ƀ��W�b�h�{�f�B��ǉ��ł��܂��B �I�u�W�F�N�g�ŕ��������̏������ł��܂����B�d�͉��ɒu����A�X�N���v�e�B���O����āA�͂��󂯂邱�Ƃ��ł��܂����A $$Collider$$ �܂��̓W���C���g��ǉ����āA���m�Ɋ�]�ʂ�ɓ��삳����K�v������܂��B
-
-
-!!! �e�q�֌W
-
-�I�u�W�F�N�g�����������̐��䉺�ɂ���ꍇ�A�g�����X�t�H�[���̐e���ړ�������@���甼���Ɨ����Ĉړ����܂��B �e���ړ�����ƁA���W�b�h�{�f�B�̎q������ɉ����Ĉ�������܂��B �������A���W�b�h�{�f�B�͏d�͂���яՓ˃C�x���g�ւ̑Ή��ɂ��A�������Ă����܂��B
+リジッドボディは、物理特性エンジンに影響を受ける前に、GameObject に明示的に追加する必要があります。  メニューバーで「Components->Physics->Rigidbody」から選択したオブジェクトにリジッドボディを追加できます。 オブジェクトで物理特性の準備ができました。重力下に置かれ、スクリプティングを介して、力を受けることができますが、 $$Collider$$ またはジョイントを追加して、正確に希望通りに動作させる必要があります。
 
 
-!!! �X�N���v�e�B���O
+!!! 親子関係
 
-���W�b�h�{�f�B���R���g���[�����邽�߁A�ŏ��ɃX�N���v�g���g�p���āA�͂܂��̓g���N��ǉ����܂��B �u[[ScriptRef:Rigidbody.AddForce.html|AddForce()]]�v �Ɓu[[ScriptRef:Rigidbody.AddTorque.html|AddTorque()]] �v���I�u�W�F�N�g�̃��W�b�h�{�f�B�ŌĂяo�����Ƃł�����s���܂��B  �����������g�p����ۂ́A�I�u�W�F�N�g�̃g�����X�t�H�[���𒼐ڔ����Ȃ��悤�ɂ��Ă��������B
-
-
-!!! �A�j���[�V����
-
-�ꕔ�̏󋵂ŁA��Ƀ��O�h�[�����ʂ��쐬����ꍇ�ɁA�A�j���[�V�����ƕ��������ԂŃI�u�W�F�N�g�̃R���g���[����؂�ւ���K�v������܂��B ���̂��߁A���W�b�h�{�f�B�ɂ́A�u[[ScriptRef:Rigidbody-isKinematic.html|isKinematic]] �v�ƕt���邱�Ƃ��ł��܂��B ���W�b�h�{�f�B�ɁuisKinematic�v�ƕt���Ă���ꍇ�A�Փ˂�́AphysX �̂��̑��̕����̉e�����󂯂܂���B This means that you will have to control the object by manipulating the [[class-Transform|Transform]] �R���|�[�l���g�𒼐ڑ��삷�邱�ƂŁA�I�u�W�F�N�g���R���g���[������K�v������Ƃ������Ƃł��B  �L�l�}�e�B�b�N ���W�b�h�{�f�B�͂��̑��̃I�u�W�F�N�g�ɉe�����܂����A����玩�͕̂��������̉e�����󂯂܂���B �Ⴆ�΁A�L�l�}�e�B�b�N �I�u�W�F�N�g�ɒǉ������W���C���g�́A�����ɒǉ����ꂽ���̑��̃��W�b�h�{�f�B�𐧖񂵁A�L�l�}�e�B�b�N ���W�b�h�{�f�B�͏Փ˂�ʂ��āA���̑��̃��W�b�h�{�f�B�ɉe�����܂��B
+オブジェクトが物理特性の制御下にある場合、トランスフォームの親が移動する方法から半分独立して移動します。 親を移動すると、リジッドボディの子をそれに沿って引っ張ります。 しかし、リジッドボディは重力および衝突イベントへの対応により、落下していきます。
 
 
-!!! �R���C�_
+!!! スクリプティング
 
-�R���C�_�́A�Փ˂𔭐������邽�߂ɁA���W�b�h�{�f�B�Ƌ��ɒǉ�����K�v�̂���ʂ̎�ނ̃R���|�[�l���g�ł��B  2 �̃��W�b�h�{�f�B���݂��ɏՓ˂���ꍇ�A���������G���W���́A�����̃I�u�W�F�N�g���R���C�_��ǉ�����܂ŁA�Փ˂��v�Z���܂���B  �R���C�_�̂Ȃ����W�b�h�{�f�B�́A���������V�~�����[�V�������Ɍ݂����ȒP�ɒʉ߂��܂��B
+リジッドボディをコントロールするため、最初にスクリプトを使用して、力またはトルクを追加します。 「[[ScriptRef:Rigidbody.AddForce.html|AddForce()]]」 と「[[ScriptRef:Rigidbody.AddTorque.html|AddTorque()]] 」をオブジェクトのリジッドボディで呼び出すことでこれを行います。  物理特性を使用する際は、オブジェクトのトランスフォームを直接買えないようにしてください。
+
+
+!!! アニメーション
+
+一部の状況で、主にラグドール効果を作成する場合に、アニメーションと物理特性間でオブジェクトのコントロールを切り替える必要があります。 このため、リジッドボディには、「[[ScriptRef:Rigidbody-isKinematic.html|isKinematic]] 」と付けることができます。 リジッドボディに「isKinematic」と付いている場合、衝突や力、physX のその他の部分の影響を受けません。 This means that you will have to control the object by manipulating the [[class-Transform|Transform]] コンポーネントを直接操作することで、オブジェクトをコントロールする必要があるということです。  キネマティック リジッドボディはその他のオブジェクトに影響しますが、これら自体は物理特性の影響を受けません。 例えば、キネマティック オブジェクトに追加されるジョイントは、そこに追加されたその他のリジッドボディを制約し、キネマティック リジッドボディは衝突を通じて、その他のリジッドボディに影響します。
+
+
+!!! コライダ
+
+コライダは、衝突を発生させるために、リジッドボディと共に追加する必要のある別の種類のコンポーネントです。  2 つのリジッドボディが互いに衝突する場合、物理特性エンジンは、両方のオブジェクトもコライダを追加するまで、衝突を計算しません。  コライダのないリジッドボディは、物理特性シミュレーション中に互いを簡単に通過します。
 
 Attach:RigidbodyandCollider.png\\
-�u�R���C�_�̓��W�b�h�{�f�B�̕��������̋��E���`���܂��v
+「コライダはリジッドボディの物理特性の境界を定義します」
 
-�uComponent->Physics�v���j���[�ŃR���C�_��ǉ����܂��B  �ڍׂɂ��ẮA�X�̃R���C�_�̃R���|�[�l���g ���t�@�����X �y�[�W���Q�Ƃ��Ă��������B
-*[[class-BoxCollider|Box Collider]] - �L���[�u�̃v���~�e�B�u�̌`��
-*[[class-SphereCollider|Sphere Collider]] - ���̂̃v���~�e�B�u�̌`��
-*[[class-CapsuleCollider|Capsule Collider]] - �J�v�Z���̃v���~�e�B�u�̌`��
-*[[class-MeshCollider|Mesh Collider]] - �I�u�W�F�N�g�̃��b�V������R���C�_���쐬���A�ʂ̃��b�V�� �R���C�_�Ƃ͏Փ˂ł��܂���
-*[[class-WheelCollider|Wheel Collider]] - �ԗ��܂��͂��̑��̈ړ������蕨�̍쐬�p
+「Component->Physics」メニューでコライダを追加します。  詳細については、個々のコライダのコンポーネント リファレンス ページを参照してください。
+*[[class-BoxCollider|Box Collider]] - キューブのプリミティブの形状
+*[[class-SphereCollider|Sphere Collider]] - 球体のプリミティブの形状
+*[[class-CapsuleCollider|Capsule Collider]] - カプセルのプリミティブの形状
+*[[class-MeshCollider|Mesh Collider]] - オブジェクトのメッシュからコライダを作成し、別のメッシュ コライダとは衝突できません
+*[[class-WheelCollider|Wheel Collider]] - 車両またはその他の移動する乗り物の作成用
 
 
-!!! �����R���C�_
+!!! 複合コライダ
 
 (:include comp-ColliderCompound:)
 
-!!! �A���Փˌ��o
+!!! 連続衝突検出
 
-�A���Փˌ��o�́A�����ړ�����R���C�_���݂��ɒʉ߂��Ȃ��悤�ɂ���@�\�ł��B ����́A�ʏ��(�uDiscrete�v) �Փˌ��o�g�p���A�I�u�W�F�N�g�� 1 �̃t���[���ŃR���C�_�̕Б��ɂ���A���̃t���[���ŃR���C�_��ʉ߂��Ă���ꍇ�ɔ������邱�Ƃ�����܂��B �������������ɂ́A�����ړ�����I�u�W�F�N�g�̃��W�b�h�{�f�B�ŘA���Փˌ��o��L���ɂł��܂��B �Փˌ��o���[�h���uContinuous�v�ɐ؂�ւ��A���W�b�h�{�f�B���X�^�e�B�b�N�� (�܂�A�񃊃W�b�h�{�f�B) MeshColliders ��ʉ߂����Ȃ��悤�ɂ��܂��B �Փˌ��o���[�h���uContinuous Dynamic�v�ɐ؂�ւ��A���W�b�h�{�f�B���A�Փˌ��o���[�h���uContinuous�v�܂��́uContinuous Dynamic�v�ɐݒ肵�����̑��̃T�|�[�g����Ă��郊�W�b�h�{�f�B��ʉ߂����Ȃ��悤�ɂ��܂��B 
-�A���Փˌ��o�́ABox-�ASphere- ����� CapsuleCollider �ŃT�|�[�g����Ă��܂��B
+連続衝突検出は、高速移動するコライダが互いに通過しないようにする機能です。 これは、通常の(「Discrete」) 衝突検出使用時、オブジェクトが 1 つのフレームでコライダの片側にあり、次のフレームでコライダを通過している場合に発生することがあります。 これを解決するには、高速移動するオブジェクトのリジッドボディで連続衝突検出を有効にできます。 衝突検出モードを「Continuous」に切り替え、リジッドボディがスタティックな (つまり、非リジッドボディ) MeshColliders を通過させないようにします。 衝突検出モードを「Continuous Dynamic」に切り替え、リジッドボディが、衝突検出モードを「Continuous」または「Continuous Dynamic」に設定したその他のサポートされているリジッドボディを通過させないようにします。 
+連続衝突検出は、Box-、Sphere- および CapsuleCollider でサポートされています。
 
-!! �������T�C�Y�̎g�p
+!! 正しいサイズの使用
 
-GameObject �̃��b�V���̃T�C�Y�́A���W�b�h�{�f�B�̎��ʂ����͂邩�ɏd�v�ł��B  ���W�b�h�{�f�B�����Ғʂ�ɓ��삵�ȂĂ��Ȃ��ꍇ�A�������ړ����邩�A�������A�������Փ˂��܂���B  Unity �̃f�t�H���g�̒P�ʃX�P�[���́A1 �P�� = 1 ���[�g���Ȃ̂ŁA�C���|�[�g���ꂽ���b�V���̃X�P�[���͈ێ�����A���������v�Z�ɓK�p����܂��B  �Ⴆ�΁A�|�󂵂����Ă��鍂�w�r���́A�ςݖ؂ō�������Ƃ͂��Ȃ�Ⴄ�`�ŕ���邽�߁A���m�ɃX�P�[������ɂ́A�T�C�Y�̈قȂ�I�u�W�F�N�g�����f��������K�v������܂��B
+GameObject のメッシュのサイズは、リジッドボディの質量よりもはるかに重要です。  リジッドボディが期待通りに動作しなていない場合、ゆっくり移動するか、浮くか、正しく衝突しません。  Unity のデフォルトの単位スケールは、1 単位 = 1 メートルなので、インポートされたメッシュのスケールは維持され、物理特性計算に適用されます。  例えば、倒壊しかけている高層ビルは、積み木で作った塔とはかなり違う形で崩れるため、正確にスケールするには、サイズの異なるオブジェクトをモデル化する必要があります。
 
-�l�Ԃ����f�����O���Ă���ꍇ�AUnity �ł́A���̐l�Ԃ̐g���͖� 2���[�g���ɂȂ�܂��B �I�u�W�F�N�g���������T�C�Y���ǂ������m�F����ɂ́A�f�t�H���g�̃L���[�u�Ɣ�r���܂��B ^^GameObject->Create Other->Cube^^ ���g�p���āA�L���[�u��V�K�쐬���܂��B �L���[�u�̍����́A���傤�� 1 ���[�g���ɂȂ邽�߁A�쐬���Ă���l�Ԃ� 2 �{�̐T�d�ɂȂ�܂��B
+人間をモデリングしている場合、Unity では、その人間の身長は約 2メートルになります。 オブジェクトが正しいサイズかどうかを確認するには、デフォルトのキューブと比較します。 ^^GameObject->Create Other->Cube^^ を使用して、キューブを新規作成します。 キューブの高さは、ちょうど 1 メートルになるため、作成している人間は 2 倍の慎重になります。
 
-���b�V�����̂𒲐��ł��Ȃ��ꍇ�A$$Project View$$ �őI�����A���j���[�o�[���� ^^Assets->Import Settings...^^ ��I�����邱�ƂŁA����̃��b�V���@�A�Z�b�g�̋ψ�ȃX�P�[����ύX�ł��܂��B  �����ł́A�X�P�[����ύX���A���b�V�����ăC���|�[�g�ł��܂��B
+メッシュ自体を調整できない場合、$$Project View$$ で選択し、メニューバーから ^^Assets->Import Settings...^^ を選択することで、特定のメッシュ　アセットの均一なスケールを変更できます。  ここでは、スケールを変更し、メッシュを再インポートできます。
 
-�Q�[���ŁAGameObject ���قȂ�X�P�[���ŃC���X�^���X������K�v������ꍇ�A�g�����X�t�H�[���̃X�P�[�����̒l�𒲐����Ă����v�ł��B  ���_�́A���������V�~�����[�V�����́A�I�u�W�F�N�g�̃C���X�^���X�����ɍX�ɑ����̍�Ƃ���K�v������A�Q�[�����Ńp�t�H�[�}���X�̒ቺ�������N�����\��������܂��B  ����͑傫�ȑ����ł͂���܂��񂪁A���� 2 �̃I�v�V�����ŃX�P�[�����d�グ�邱�Ƃقǌ����I�ł͂���܂���B  �s�ψ�ȃX�P�[�����ƁA�p�����f�B���O�g�p���ɖ]�܂ʓ���𐶂���ꍇ������܂��B  ���̂��߁A���f�����O �A�v���P�[�V�����Ő������X�P�[���ŃI�u�W�F�N�g���쐬����̂���ɍœK�ł��B
+ゲームで、GameObject を異なるスケールでインスタンス化する必要がある場合、トランスフォームのスケール軸の値を調整しても大丈夫です。  欠点は、物理特性シミュレーションは、オブジェクトのインスタンス化時に更に多くの作業を剃る必要があり、ゲーム内でパフォーマンスの低下を引き起こす可能性があります。  これは大きな損失ではありませんが、他の 2 つのオプションでスケールを仕上げることほど効率的ではありません。  不均一なスケールだと、パレンディング使用時に望まぬ動作を生じる場合があります。  このため、モデリング アプリケーションで正しいスケールでオブジェクトを作成するのが常に最適です。
 
 
-!! �q���g
-* 2 �̃��W�b�h�{�f�B�̑��ΓI�ȁuMass�v�́A���W�b�h�{�f�B���݂��ɏՓ˂���ۂɁA�ǂ̂悤�ɔ������邩�����肵�܂��B
-* 1 �̃��W�b�h�{�f�B�́uMass�v�𑼕����傫�����Ă��A���R�����ł̗������x�͏オ��܂���B ������s���ɂ́A�uDrag�v���g�p���܂��B
-* �uDrag�v�l���Ⴂ�ƁA�I�u�W�F�N�g���d��������悤�ɂȂ�܂��B ���̒l�������ƁA�y�������܂��B �uDrag�v�̒ʏ�̒l�́A.001 (�����̉�) �� 10 (�H) �̊Ԃł��B
-* �I�u�W�F�N�g�̃g�����X�t�H�[�� �R���|�[�l���g�𒼐ڑ��삵�Ă��邪�A�����������K�v�ȏꍇ�A���W�b�h�{�f�B��ǉ����A�L�l�}�e�B�b�N�ɂ��܂��B
-* �g�����X�t�H�[�� �R���|�[�l���g��ʂ��āAGameObject ���ړ������Ă��邪�A�Փ�/�g���K�[ ���b�Z�[�W����M�������ꍇ�́A���W�b�h�{�f�B���ړ����Ă���I�u�W�F�N�g�ɒǉ�����K�v������܂��B
+!! ヒント
+* 2 つのリジッドボディの相対的な「Mass」は、リジッドボディが互いに衝突する際に、どのように反応するかを決定します。
+* 1 つのリジッドボディの「Mass」を他方より大きくしても、自由落下での落下速度は上がりません。 これを行うには、「Drag」を使用します。
+* 「Drag」値が低いと、オブジェクトが重く見えるようになります。 この値が高いと、軽く見えます。 「Drag」の通常の値は、.001 (金属の塊) と 10 (羽) の間です。
+* オブジェクトのトランスフォーム コンポーネントを直接操作しているが、物理特性が必要な場合、リジッドボディを追加し、キネマティックにします。
+* トランスフォーム コンポーネントを通じて、GameObject を移動させているが、衝突/トリガー メッセージを受信したい場合は、リジッドボディを移動しているオブジェクトに追加する必要があります。

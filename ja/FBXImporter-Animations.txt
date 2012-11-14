@@ -1,32 +1,32 @@
-!FBX�C���|�[�^�@Animations�^�u
+!FBXインポータ　Animationsタブ
 
 Attach:MecanimImporterAnimationsTab.png
 
 ||__''Animations''__ ||
-||``Generation`` ||�A�j���[�V�������C���|�[�g������@�𐧌䂵�܂� ||
-||>>>``Don't Import`` ||�A�j���[�V������X�L�j���O���C���|�[�g���܂���||
-||>>>``Store in Original Roots`` ||�A�j���[�V�������A�j���[�V�����p�b�P�[�W�̃��[�g�I�u�W�F�N�g�Ɋi�[���܂��iUnity��̃��[�g�I�u�W�F�N�g�Ƃ͈قȂ�ꍇ������܂��j�B||
-||>>>``Store in Nodes`` ||�A�j���[�V�����́A���̑ΏۂƂȂ�I�u�W�F�N�g�ƈꏏ�Ɋi�[����܂��B���G�ȃA�j���[�V������ݒ肵�Ă��āA�X�N���v�g�Ŋ��S�ɐ��䂵�����ꍇ�Ɏg�p�Ă��������B||
-||>>>``Store in Root`` ||�A�j���[�V�������V�[���̃g�����X�t�H�[���@���[�g�I�u�W�F�N�g�Ɋi�[����܂��B�K�w�\���������Ă��鉽�����A�j���[�V����������ꍇ�Ɏg�p���ĉ������B||
-||``Bake Animations`` ||�A�j���[�V�����p�b�P�[�W�ŁAIK��V�~�����[�V�������g�p���Ă���ꍇ�I���ɂ��ĉ������BUnity�̓C���|�[�g���Ƀt�H���[�h�@�L�l�}�e�B�N�X�ɕϊ����܂��B���̃I�v�V�����́AMaya�A3dsMax��Cinema4D�t�@�C���ł̂ݗ��p�\�ł��B||
-||``Animation Wrap mode`` ||�C���|�[�g���ꂽ���b�V����̃A�j���[�V�����̃f�t�H���g��$$Wrap Mode$$
-||>>>``Default``||�A�j���[�V���������̃A�j���[�V���������I�v�V�����Ŏw�肵���Ƃ���ɍĐ�||
-||>>>``Once``||�A�j���[�V�����͈�x�����Đ��B���̌�͒�~||
-||>>>``Loop``||�A�j���[�V�����Đ��I����Ƀ��[�v�Đ�||
-||>>>``PingPong``||�A�j���[�V�������Đ��I�����ɁA�J��Ԃ��t�����֍Đ�||
-||>>>``ClampForever``||�A�j���[�V�����Đ���A�Ō�̃t���[���������ɌJ��Ԃ����BOnce���[�h�ł̍Đ��ł͌����ɂ͍Ō�̃t���[���܂œ��B���Ȃ����߁A�Ⴂ������܂��i�A�j���[�V�����̃u�����h�̏ꍇ�Ȃǂŕ֗��ł��j||
-||``Split Animations`` ||���Ȃ����P��̃t�@�C���ɕ����̃A�j���[�V�����������Ă���ꍇ�́A�����̃N���b�v�ɕ������邱�Ƃ��ł��܂��B||
-||>>>``Name``||�����A�j���[�V�����N���b�v�̖��O||
-||>>>``Start``||���f���t�@�C�����̃N���b�v�̍ŏ��̃t���[��||
-||>>>``End``||���f���t�@�C�����̃N���b�v�̍Ō�̃t���[��||
-||>>>``WrapMode``||�������ꂽ�E�N���b�v���A�j���[�V�����Đ��I����̓���i�O�q��Wrap�̃I�v�V�����Ɠ����j�B||
-||>>>``Loop``||�A�j���[�V�����̍쐬���ꂽ���@�ɂ���ẮA�������ꂽ�N���b�v���K�؂Ƀ��[�v���邽�߂ɂ̓A�j���[�V�����ɒǉ���1�t���[���K�v�ȏꍇ������܂��B�A�j���[�V�����̃��[�v���������悤�Ɍ����Ȃ��ꍇ�́A���̃I�v�V������L���ɂ��Ă݂Ă��������B||
+||``Generation`` ||アニメーションをインポートする方法を制御します ||
+||>>>``Don't Import`` ||アニメーションやスキニングをインポートしません||
+||>>>``Store in Original Roots`` ||アニメーションをアニメーションパッケージのルートオブジェクトに格納します（Unity上のルートオブジェクトとは異なる場合があります）。||
+||>>>``Store in Nodes`` ||アニメーションは、その対象となるオブジェクトと一緒に格納されます。複雑なアニメーションを設定していて、スクリプトで完全に制御したい場合に使用てください。||
+||>>>``Store in Root`` ||アニメーションがシーンのトランスフォーム　ルートオブジェクトに格納されます。階層構造を持っている何かをアニメーション化する場合に使用して下さい。||
+||``Bake Animations`` ||アニメーションパッケージで、IKやシミュレーションを使用している場合オンにして下さい。Unityはインポート時にフォワード　キネマティクスに変換します。このオプションは、Maya、3dsMaxとCinema4Dファイルでのみ利用可能です。||
+||``Animation Wrap mode`` ||インポートされたメッシュ上のアニメーションのデフォルトの$$Wrap Mode$$
+||>>>``Default``||アニメーションを下のアニメーション分割オプションで指定したとおりに再生||
+||>>>``Once``||アニメーションは一度だけ再生。その後は停止||
+||>>>``Loop``||アニメーション再生終了後にループ再生||
+||>>>``PingPong``||アニメーションが再生終了時に、繰り返し逆方向へ再生||
+||>>>``ClampForever``||アニメーション再生後、最後のフレームが無限に繰り返される。Onceモードでの再生では厳密には最後のフレームまで到達しないため、違いがあります（アニメーションのブレンドの場合などで便利です）||
+||``Split Animations`` ||あなたが単一のファイルに複数のアニメーションを持っている場合は、複数のクリップに分割することができます。||
+||>>>``Name``||分割アニメーションクリップの名前||
+||>>>``Start``||モデルファイル内のクリップの最初のフレーム||
+||>>>``End``||モデルファイル内のクリップの最後のフレーム||
+||>>>``WrapMode``||分割された・クリップがアニメーション再生終了後の動作（前述のWrapのオプションと同じ）。||
+||>>>``Loop``||アニメーションの作成された方法によっては、分割されたクリップが適切にループするためにはアニメーションに追加で1フレーム必要な場合があります。アニメーションのループが正しいように見えない場合は、このオプションを有効にしてみてください。||
 ||__''Animation Compression''__ ||
-||``Anim. Compression`` ||���b�V���̃A�j���[�V�����ɓK�p����鈳�k�̃^�C�v||
-||>>>``Off`` ||�A�j���[�V�������k���I�t�ɂ���BUnity�ŃC���|�[�g���ɃL�[�t���[�������팸���܂���B�A�j���[�V�����i���͍ō��ɂȂ����ŁA�p�t�H�[�}���X�ቺ�A�t�@�C���T�C�Y����A����у����^�C���@�������[�T�C�Y������Ӗ����܂��B��ʓI�ɁA���̃I�v�V�����̎g�p�͐������܂���B�ʂ̕��@�Ƃ��ẮA��萸�x�̍����A�j���[�V�������K�v�ȏꍇ��Keyframe Reduction���I���ɂ��āAAnimation Compression�̒l�����e�ł���Ƃ���܂ŉ����܂��B||
-||>>>``Keyframe Reduction`` ||�C���|�[�g���ɃL�[�t���[�������炵�܂��B�I�������ꍇ�́AAnimation Compression Errors`�I�v�V�������\������܂��B||
-||>>>``Keyframe Reduction and Compression`` ||�C���|�[�g���ɃL�[�t���[�������炵�A�t�@�C���ɃA�j���[�V�������i�[���鎞�ɃL�[�t���[�������k���܂��B�t�@�C���T�C�Y�݂̂ɉe��������A�����^�C���̃������[�T�C�Y�́AKeyframe Reduction���I���ɂ����ꍇ�Ɠ����ɂȂ�܂��B�I�������ꍇ�́AAnimation Compression Erros�I�v�V�������\������܂��B||
-||``Animation Compression Errors`` ||�����̃I�v�V������Keyframe Reduction���I���̏ꍇ�̂ݎg�p�ł��܂��B||
-||>>>``Rotation Error`` ||��]�J�[�u���팸����x�������`���܂��B�������l�قǍ����A�j���[�V�����i���������܂��B||
-||>>>``Position Error`` ||�ʒu�J�[�u���팸����x�������`���܂��B�������l�قǍ����A�j���[�V�����i���������܂��B||
-||>>>``Scale Error`` ||�傫���J�[�u���팸����x�������`���܂��B�������l�قǍ����A�j���[�V�����i���������܂��B||
+||``Anim. Compression`` ||メッシュのアニメーションに適用される圧縮のタイプ||
+||>>>``Off`` ||アニメーション圧縮をオフにする。Unityでインポート時にキーフレーム数を削減しません。アニメーション品質は最高になる一方で、パフォーマンス低下、ファイルサイズ増大、およびランタイム　メモリーサイズ増大を意味します。一般的に、このオプションの使用は推奨しません。別の方法としては、より精度の高いアニメーションが必要な場合にKeyframe Reductionをオンにして、Animation Compressionの値を許容できるところまで下げます。||
+||>>>``Keyframe Reduction`` ||インポート時にキーフレームを減らします。選択した場合は、Animation Compression Errors`オプションが表示されます。||
+||>>>``Keyframe Reduction and Compression`` ||インポート時にキーフレームを減らし、ファイルにアニメーションを格納する時にキーフレームを圧縮します。ファイルサイズのみに影響があり、ランタイムのメモリーサイズは、Keyframe Reductionをオンにした場合と同じになります。選択した場合は、Animation Compression Errosオプションが表示されます。||
+||``Animation Compression Errors`` ||これらのオプションはKeyframe Reductionがオンの場合のみ使用できます。||
+||>>>``Rotation Error`` ||回転カーブを削減する度合いを定義します。小さい値ほど高いアニメーション品質が得られます。||
+||>>>``Position Error`` ||位置カーブを削減する度合いを定義します。小さい値ほど高いアニメーション品質が得られます。||
+||>>>``Scale Error`` ||大きさカーブを削減する度合いを定義します。小さい値ほど高いアニメーション品質が得られます。||

@@ -1,42 +1,42 @@
-!ƒIƒNƒ‹[ƒWƒ‡ƒ“ƒGƒŠƒAiUnity Pro‚Ì‚Ýj
+!ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒªã‚¢ï¼ˆUnity Proã®ã¿ï¼‰
 
-ƒIƒNƒ‹[ƒWƒ‡ƒ“ƒJƒŠƒ“ƒO‚ð“K—p‚·‚é‚½‚ß‚É‚Í$$ƒIƒNƒ‹[ƒWƒ‡ƒ“ƒGƒŠƒA$$‚ðì¬‚µˆÚ“®ƒIƒuƒWƒFƒNƒg‚ª”z’u‚³‚ê‚éêŠ‚Æ‚È‚é‚æ‚¤ƒTƒCƒY‚ðC³‚·‚é•K—v‚ª‚ ‚è‚Ü‚·i“–‘RAˆÚ“®‚·‚éƒIƒuƒWƒFƒNƒg‚ðStatic‚Æ‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñjƒIƒNƒ‹[ƒWƒ‡ƒ“ƒGƒŠƒA‚ðì¬‚·‚é‚½‚ß‚É‚ÍA‹ó‚ÌƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ÉƒIƒNƒ‹[ƒWƒ‡ƒ“ƒGƒŠƒA@ƒRƒ“ƒ|[ƒlƒ“ƒg‚ð’Ç‰Á‚µ‚Ü‚·B(ƒƒjƒ…[‚Å^^Component->Rendering->Occlusion Area^^ ‚ð‘I‘ð)
+ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚«ãƒªãƒ³ã‚°ã‚’é©ç”¨ã™ã‚‹ãŸã‚ã«ã¯$$ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒªã‚¢$$ã‚’ä½œæˆã—ç§»å‹•ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒé…ç½®ã•ã‚Œã‚‹å ´æ‰€ã¨ãªã‚‹ã‚ˆã†ã‚µã‚¤ã‚ºã‚’ä¿®æ­£ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ï¼ˆå½“ç„¶ã€ç§»å‹•ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’Staticã¨ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“ï¼‰ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒªã‚¢ã‚’ä½œæˆã™ã‚‹ãŸã‚ã«ã¯ã€ç©ºã®ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒªã‚¢ã€€ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’è¿½åŠ ã—ã¾ã™ã€‚(ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§^^Component->Rendering->Occlusion Area^^ ã‚’é¸æŠž)
 
-$$ƒIƒNƒ‹[ƒWƒ‡ƒ“ƒGƒŠƒA$$‚ðì¬‚µ‚½ŒãIsTargetVolumeƒ`ƒFƒbƒNƒ{ƒbƒNƒX‚ðƒIƒ“‚É‚µ‚Ä“®‚­ƒIƒuƒWƒFƒNƒg‚ðƒIƒNƒ‹[ƒWƒ‡ƒ“i–³Ž‹j‚µ‚Ü‚·B
+$$ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒªã‚¢$$ã‚’ä½œæˆã—ãŸå¾ŒIsTargetVolumeãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ã‚’ã‚ªãƒ³ã«ã—ã¦å‹•ãã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ï¼ˆç„¡è¦–ï¼‰ã—ã¾ã™ã€‚
 
 Attach:OcclusionCullingOcclusionArea.png\\
-ˆÚ“®‚·‚éƒIƒuƒWƒFƒNƒg‚ÌƒIƒNƒ‹[ƒWƒ‡ƒ“ƒGƒŠƒA@ƒvƒƒpƒeƒB
+ç§»å‹•ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒªã‚¢ã€€ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 ||PROPS
-||``Size`` ||ƒIƒNƒ‹[ƒWƒ‡ƒ“ƒGƒŠƒA‚ÌƒTƒCƒY‚ð’è‹`||
-||``Center`` ||ƒIƒNƒ‹[ƒWƒ‡ƒ“ƒGƒŠƒA‚Ì’†S‚ðÝ’è‚µ‚Ü‚·BƒfƒtƒHƒ‹ƒg‚Å‚ÍAi0,0,0j‚Å‚ ‚èAƒ{ƒbƒNƒX‚Ì’†‰›‚ÉˆÊ’u‚µ‚Ä‚¢‚Ü‚·B||
-||``Is View Volume`` ||ƒJƒƒ‰‚ð”z’u‚Å‚«‚éêŠ‚ð’è‹`‚µ‚Ü‚·BƒIƒNƒ‹[ƒWƒ‡ƒ“ƒGƒŠƒA“à‚É‚ ‚éStaticƒIƒuƒWƒFƒNƒg‚ðƒIƒNƒ‹[ƒWƒ‡ƒ“‚·‚é‚Æ‚«ƒIƒ“‚É‚µ‚Ü‚·B||
-||``Is Target Volume`` ||__ˆÚ“®‚·‚éƒIƒuƒWƒFƒNƒg‚ðƒIƒNƒ‹[ƒWƒ‡ƒ“‚µ‚½‚¢‚Æ‚«‚É‘I‘ð‚·‚é‚±‚Æ__||
-||``Target Resolution`` ||ƒGƒŠƒA“à‚ÅƒIƒNƒ‹[ƒWƒ‡ƒ“ƒJƒŠƒ“ƒO‚Ì¸“x‚ðŒˆ’è‚µ‚Ü‚·B‚±‚ê‚ÍAƒIƒNƒ‹[ƒWƒ‡ƒ“ƒGƒŠƒA“à‚ÌƒZƒ‹‚ÌƒTƒCƒY‚É‰e‹¿‚µ‚Ü‚·B__’ˆÓF‚±‚ê‚Íƒ^[ƒQƒbƒgƒGƒŠƒA‚Ì‚Ý‚É‰e‹¿‚ð—^‚¦‚Ü‚·B__||
-||>>>``Low`` ||ˆ—ŽžŠÔ‚Í’Z‚­‚È‚é‚à‚Ì‚ÌA¸ãk‚³‚Í—Ž‚¿‚Ü‚·||
-||>>>``Medium`` ||ƒIƒNƒ‹[ƒWƒ‡ƒ“ƒJƒŠƒ“ƒO‚Æˆ—ŽžŠÔ‚Ìƒoƒ‰ƒ“ƒX‚ð‚Æ‚è‚Ü‚·||
-||>>>``High`` ||ƒIƒNƒ‹[ƒWƒ‡ƒ“ƒJƒŠƒ“ƒO‚Æˆ—ŽžŠÔ‚Ìƒoƒ‰ƒ“ƒX‚ð‚Æ‚è‚Ü‚·B||
-||>>>``Very High`` ||HighÝ’è‚Å¸ãk‚³‚ª•s\•ª‚Èê‡‚ÉŽg—p‚µ‚Ü‚·‚ªAˆ—ŽžŠÔ‚ª‚³‚ç‚É’·‚­‚È‚é‚±‚Æ‚É—¯ˆÓ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·||
-||>>>``Extremely High`` ||“®‚­ƒIƒuƒWƒFƒNƒg‚Å‚Ù‚ÚŠ®‘S‚É¸ãk‚ÈƒIƒNƒ‹[ƒWƒ‡ƒ“ƒJƒŠƒ“ƒO‚ª‹‚ß‚ç‚ê‚éê‡‚ÉŒÀ‚èŽg—p‚µ‚Ä‚­‚¾‚³‚¢B’ˆÓF‘å—Ê‚Ìˆ—ŽžŠÔ‚ð˜Q”ï‚µ‚Ü‚·B||
+||``Size`` ||ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒªã‚¢ã®ã‚µã‚¤ã‚ºã‚’å®šç¾©||
+||``Center`` ||ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒªã‚¢ã®ä¸­å¿ƒã‚’è¨­å®šã—ã¾ã™ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ã€ï¼ˆ0,0,0ï¼‰ã§ã‚ã‚Šã€ãƒœãƒƒã‚¯ã‚¹ã®ä¸­å¤®ã«ä½ç½®ã—ã¦ã„ã¾ã™ã€‚||
+||``Is View Volume`` ||ã‚«ãƒ¡ãƒ©ã‚’é…ç½®ã§ãã‚‹å ´æ‰€ã‚’å®šç¾©ã—ã¾ã™ã€‚ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒªã‚¢å†…ã«ã‚ã‚‹Staticã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã™ã‚‹ã¨ãã‚ªãƒ³ã«ã—ã¾ã™ã€‚||
+||``Is Target Volume`` ||__ç§»å‹•ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã—ãŸã„ã¨ãã«é¸æŠžã™ã‚‹ã“ã¨__||
+||``Target Resolution`` ||ã‚¨ãƒªã‚¢å†…ã§ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚«ãƒªãƒ³ã‚°ã®ç²¾åº¦ã‚’æ±ºå®šã—ã¾ã™ã€‚ã“ã‚Œã¯ã€ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒªã‚¢å†…ã®ã‚»ãƒ«ã®ã‚µã‚¤ã‚ºã«å½±éŸ¿ã—ã¾ã™ã€‚__æ³¨æ„ï¼šã“ã‚Œã¯ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚¨ãƒªã‚¢ã®ã¿ã«å½±éŸ¿ã‚’ä¸Žãˆã¾ã™ã€‚__||
+||>>>``Low`` ||å‡¦ç†æ™‚é–“ã¯çŸ­ããªã‚‹ã‚‚ã®ã®ã€ç²¾ç·»ã•ã¯è½ã¡ã¾ã™||
+||>>>``Medium`` ||ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚«ãƒªãƒ³ã‚°ã¨å‡¦ç†æ™‚é–“ã®ãƒãƒ©ãƒ³ã‚¹ã‚’ã¨ã‚Šã¾ã™||
+||>>>``High`` ||ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚«ãƒªãƒ³ã‚°ã¨å‡¦ç†æ™‚é–“ã®ãƒãƒ©ãƒ³ã‚¹ã‚’ã¨ã‚Šã¾ã™ã€‚||
+||>>>``Very High`` ||Highè¨­å®šã§ç²¾ç·»ã•ãŒä¸ååˆ†ãªå ´åˆã«ä½¿ç”¨ã—ã¾ã™ãŒã€å‡¦ç†æ™‚é–“ãŒã•ã‚‰ã«é•·ããªã‚‹ã“ã¨ã«ç•™æ„ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™||
+||>>>``Extremely High`` ||å‹•ãã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã»ã¼å®Œå…¨ã«ç²¾ç·»ãªã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚«ãƒªãƒ³ã‚°ãŒæ±‚ã‚ã‚‰ã‚Œã‚‹å ´åˆã«é™ã‚Šä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚æ³¨æ„ï¼šå¤§é‡ã®å‡¦ç†æ™‚é–“ã‚’æµªè²»ã—ã¾ã™ã€‚||
 
 
-ƒIƒNƒ‹[ƒWƒ‡ƒ“ƒGƒŠƒA‚ðì¬‚µ‚½ŒãA” ‚ðƒZƒ‹‚É•ªŠ„‚·‚é•û–@‚ðŠm”F‚·‚é•K—v‚ª‚ ‚è‚Ü‚·BƒIƒNƒ‹[ƒWƒ‡ƒ“ƒGƒŠƒA‚ª‚Ç‚Ì‚æ‚¤‚ÉŽZo‚³‚ê‚½‚©Šm”F‚·‚é‚½‚ß‚É‚ÍEdit‚ð‘I‘ð‚µAƒIƒNƒ‹[ƒWƒ‡ƒ“ƒJƒŠƒ“ƒOƒvƒŒƒrƒ…[ƒpƒlƒ‹i Occlusion Culling Preview Panelj‚Åƒrƒ…[iViewj‚ðƒgƒOƒ‹‚µ‚Ä‘I‘ð‚µ‚Ä‰º‚³‚¢B
+ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒªã‚¢ã‚’ä½œæˆã—ãŸå¾Œã€ç®±ã‚’ã‚»ãƒ«ã«åˆ†å‰²ã™ã‚‹æ–¹æ³•ã‚’ç¢ºèªã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒªã‚¢ãŒã©ã®ã‚ˆã†ã«ç®—å‡ºã•ã‚ŒãŸã‹ç¢ºèªã™ã‚‹ãŸã‚ã«ã¯Editã‚’é¸æŠžã—ã€ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚«ãƒªãƒ³ã‚°ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼ãƒ‘ãƒãƒ«ï¼ˆ Occlusion Culling Preview Panelï¼‰ã§ãƒ“ãƒ¥ãƒ¼ï¼ˆViewï¼‰ã‚’ãƒˆã‚°ãƒ«ã—ã¦é¸æŠžã—ã¦ä¸‹ã•ã„ã€‚
 
 
 Attach:OcclusionCullingEditView.png\\
 
-!! ¶¬‚³‚ê‚½ƒIƒNƒ‹[ƒWƒ‡ƒ“‚ÌƒeƒXƒg
+!! ç”Ÿæˆã•ã‚ŒãŸã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã®ãƒ†ã‚¹ãƒˆ
 
-ƒIƒNƒ‹[ƒWƒ‡ƒ“‚ðƒZƒbƒgƒAƒbƒv‚µ‚½ŒãAƒIƒNƒ‹[ƒWƒ‡ƒ“ƒJƒŠƒ“ƒOƒvƒŒƒrƒ…[ƒpƒlƒ‹i Occlusion Culling Preview Paneljã‚ÅOcclusion Culling‚ðƒIƒ“‚É‚µ‚ÄAƒƒCƒ“ƒJƒƒ‰‚ðƒV[ƒ“ƒrƒ…[‚Ì‚È‚©‚ÅˆÚ“®‚·‚é‚±‚Æ‚ÅƒeƒXƒg‚ðs‚¤‚±‚Æ‚ªo—ˆ‚Ü‚·B
+ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã—ãŸå¾Œã€ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚«ãƒªãƒ³ã‚°ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼ãƒ‘ãƒãƒ«ï¼ˆ Occlusion Culling Preview Panelï¼‰ä¸Šã§Occlusion Cullingã‚’ã‚ªãƒ³ã«ã—ã¦ã€ãƒ¡ã‚¤ãƒ³ã‚«ãƒ¡ãƒ©ã‚’ã‚·ãƒ¼ãƒ³ãƒ“ãƒ¥ãƒ¼ã®ãªã‹ã§ç§»å‹•ã™ã‚‹ã“ã¨ã§ãƒ†ã‚¹ãƒˆã‚’è¡Œã†ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚
 
 Attach:OcclusionCullingVisualize.png\\
-ƒV[ƒ“ƒrƒ…[‚ÌƒIƒNƒ‹[ƒWƒ‡ƒ“ƒJƒŠƒ“ƒOiOcclusion Cullingjƒ‚[ƒh
+ã‚·ãƒ¼ãƒ³ãƒ“ãƒ¥ãƒ¼ã®ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã‚«ãƒªãƒ³ã‚°ï¼ˆOcclusion Cullingï¼‰ãƒ¢ãƒ¼ãƒ‰
 
 
-ƒƒCƒ“ƒJƒƒ‰‚ðˆÚ“®‚·‚é‚Ì‚É‡‚í‚¹iPlayƒ‚[ƒh‚Å‚È‚¢ê‡‚àjAƒIƒuƒWƒFƒNƒg‚ª–³Œøidisablej‚Æ‚È‚é‚±‚Æ‚ðŠm”Fo—ˆ‚Ü‚·ƒIƒNƒ‹[ƒWƒ‡ƒ“ƒf[ƒ^‚ÅƒGƒ‰[‚ªo‚È‚¢‚±‚Æ‚ðŠm‚©‚ß‚é•K—v‚ª‚ ‚è‚Ü‚·BˆÚ“®‚·‚é‚Ì‚É‚ ‚í‚¹ƒIƒuƒWƒFƒNƒg‚ªƒrƒ…[‚ÉŠ„‚èž‚ñ‚Å‚«‚½‚çƒGƒ‰[‚Å‚ ‚é‚Æ”FŽ¯‚Å‚«‚Ü‚·‚±‚Ìê‡AƒGƒ‰[‚ðC³‚·‚é‚½‚ß‚ÉƒIƒvƒVƒ‡ƒ“‚Æ‚µ‚Ä‚Í‰æ–Ê‰ð‘œ“x‚ð•ÏX‚·‚éiƒ^[ƒQƒbƒgƒ{ƒŠƒ…[ƒ€‚ð•ÏX‚µ‚Ä‚¢‚½ê‡j‚©AƒIƒuƒWƒFƒNƒg‚ðˆÚ“®‚µ‚ÄƒGƒ‰[‚ªo‚È‚¢‚æ‚¤‚É‚·‚é•û–@‚ª‚ ‚è‚Ü‚·BƒIƒNƒ‹[ƒWƒ‡ƒ“‚ÅƒfƒoƒbƒO‚ð‚·‚é‚½‚ß‚É‚ÍƒƒCƒ“ƒJƒƒ‰‚ð–â‘è‚ª”­¶‚µ‚Ä‚¢‚éƒ|ƒWƒVƒ‡ƒ“‚ÉˆÚ“®‚µ‚ÄƒXƒ|ƒbƒg‚Åƒ`ƒFƒbƒN‚ðs‚¤‚±‚Æ‚ªo—ˆ‚Ü‚·B
+ãƒ¡ã‚¤ãƒ³ã‚«ãƒ¡ãƒ©ã‚’ç§»å‹•ã™ã‚‹ã®ã«åˆã‚ã›ï¼ˆPlayãƒ¢ãƒ¼ãƒ‰ã§ãªã„å ´åˆã‚‚ï¼‰ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç„¡åŠ¹ï¼ˆdisableï¼‰ã¨ãªã‚‹ã“ã¨ã‚’ç¢ºèªå‡ºæ¥ã¾ã™ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã§ã‚¨ãƒ©ãƒ¼ãŒå‡ºãªã„ã“ã¨ã‚’ç¢ºã‹ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚ç§»å‹•ã™ã‚‹ã®ã«ã‚ã‚ã›ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒãƒ“ãƒ¥ãƒ¼ã«å‰²ã‚Šè¾¼ã‚“ã§ããŸã‚‰ã‚¨ãƒ©ãƒ¼ã§ã‚ã‚‹ã¨èªè­˜ã§ãã¾ã™ã“ã®å ´åˆã€ã‚¨ãƒ©ãƒ¼ã‚’ä¿®æ­£ã™ã‚‹ãŸã‚ã«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¨ã—ã¦ã¯ç”»é¢è§£åƒåº¦ã‚’å¤‰æ›´ã™ã‚‹ï¼ˆã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’å¤‰æ›´ã—ã¦ã„ãŸå ´åˆï¼‰ã‹ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç§»å‹•ã—ã¦ã‚¨ãƒ©ãƒ¼ãŒå‡ºãªã„ã‚ˆã†ã«ã™ã‚‹æ–¹æ³•ãŒã‚ã‚Šã¾ã™ã€‚ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã§ãƒ‡ãƒãƒƒã‚°ã‚’ã™ã‚‹ãŸã‚ã«ã¯ãƒ¡ã‚¤ãƒ³ã‚«ãƒ¡ãƒ©ã‚’å•é¡ŒãŒç™ºç”Ÿã—ã¦ã„ã‚‹ãƒã‚¸ã‚·ãƒ§ãƒ³ã«ç§»å‹•ã—ã¦ã‚¹ãƒãƒƒãƒˆã§ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚
 
 
 
-ˆ—‚ªŠ®—¹‚·‚é‚Æƒrƒ…[ƒGƒŠƒA‚ÅƒJƒ‰ƒtƒ‹‚ÈƒLƒ…[ƒu‚ðŠm”F‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·BÂ‚¢ƒLƒ…[ƒu‚Í$$ƒ^[ƒQƒbƒgƒ{ƒŠƒ…[ƒ€$$iTarget Volumej‚ÌƒZƒ‹•ªŠ„‚ðˆÓ–¡‚µ‚Ä‚¢‚Ü‚·B”’‚¢ƒLƒ…[ƒu‚Í$$ƒrƒ…[ƒ{ƒŠƒ…[ƒ€$$iView Volumej‚ÌƒZƒ‹•ªŠ„‚ðˆÓ–¡‚µ‚Ä‚¢‚Ü‚·B‚à‚µƒpƒ‰ƒ[ƒ^‚ª³‚µ‚­Ý’è‚³‚ê‚Ä‚¢‚ê‚Î‚¢‚­‚Â‚©‚ÌƒIƒuƒWƒFƒNƒg‚ÍƒŒƒ“ƒ_ƒŠƒ“ƒO‚³‚ê‚Ü‚¹‚ñB‚»‚Ì——R‚ÍƒJƒƒ‰‚Ìƒrƒ…[”ÍˆÍi‰~ój‚ÌŠO‚É‚ ‚é‚©A‘¼‚ÌƒIƒuƒWƒFƒNƒg‚Ì”z’u‚É‚æ‚è–³Ž‹‚³‚ê‚Ä‚¢‚é‚©A‚Ì‚¢‚¸‚ê‚©‚É‚È‚è‚Ü‚·B
+å‡¦ç†ãŒå®Œäº†ã™ã‚‹ã¨ãƒ“ãƒ¥ãƒ¼ã‚¨ãƒªã‚¢ã§ã‚«ãƒ©ãƒ•ãƒ«ãªã‚­ãƒ¥ãƒ¼ãƒ–ã‚’ç¢ºèªã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚é’ã„ã‚­ãƒ¥ãƒ¼ãƒ–ã¯$$ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒœãƒªãƒ¥ãƒ¼ãƒ $$ï¼ˆTarget Volumeï¼‰ã®ã‚»ãƒ«åˆ†å‰²ã‚’æ„å‘³ã—ã¦ã„ã¾ã™ã€‚ç™½ã„ã‚­ãƒ¥ãƒ¼ãƒ–ã¯$$ãƒ“ãƒ¥ãƒ¼ãƒœãƒªãƒ¥ãƒ¼ãƒ $$ï¼ˆView Volumeï¼‰ã®ã‚»ãƒ«åˆ†å‰²ã‚’æ„å‘³ã—ã¦ã„ã¾ã™ã€‚ã‚‚ã—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæ­£ã—ãè¨­å®šã•ã‚Œã¦ã„ã‚Œã°ã„ãã¤ã‹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã•ã‚Œã¾ã›ã‚“ã€‚ãã®ç†ç”±ã¯ã‚«ãƒ¡ãƒ©ã®ãƒ“ãƒ¥ãƒ¼ç¯„å›²ï¼ˆå††éŒçŠ¶ï¼‰ã®å¤–ã«ã‚ã‚‹ã‹ã€ä»–ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®é…ç½®ã«ã‚ˆã‚Šç„¡è¦–ã•ã‚Œã¦ã„ã‚‹ã‹ã€ã®ã„ãšã‚Œã‹ã«ãªã‚Šã¾ã™ã€‚
 
-ƒIƒNƒ‹[ƒWƒ‡ƒ“‚ªŠ®—¹‚µ‚½ŒãAƒV[ƒ“ã‚Å‰½‚àƒIƒNƒ‹[ƒWƒ‡ƒ“‚³‚ê‚È‚¢ê‡AƒIƒuƒWƒFƒNƒg‚ð‚æ‚è¬‚³‚Èƒp[ƒc‚É•ª‰ð‚µ‚»‚ÌƒIƒuƒWƒFƒNƒg‚ªƒZƒ‹‚Ì’†‚É”[‚Ü‚éƒTƒCƒY‚É¬•ª‚¯‚µ‚Ü‚·B
+ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ãŒå®Œäº†ã—ãŸå¾Œã€ã‚·ãƒ¼ãƒ³ä¸Šã§ä½•ã‚‚ã‚ªã‚¯ãƒ«ãƒ¼ã‚¸ãƒ§ãƒ³ã•ã‚Œãªã„å ´åˆã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚ˆã‚Šå°ã•ãªãƒ‘ãƒ¼ãƒ„ã«åˆ†è§£ã—ãã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã‚»ãƒ«ã®ä¸­ã«ç´ã¾ã‚‹ã‚µã‚¤ã‚ºã«å°åˆ†ã‘ã—ã¾ã™ã€‚

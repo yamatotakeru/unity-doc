@@ -1,10 +1,10 @@
-!���b�V��
+!メッシュ
 
-3D���f�����C���|�[�g����ƁAUnity��$$���b�V��$$�Ƃ��ē����I�Ɋi�[���܂��B���b�V����[[class-MeshFilter|���b�V���t�B���^]] �R���|�[�l���g ���g�p���ăQ�[���I�u�W�F�N�g�ɃA�^�b�`����K�v������܂��B���b�V����\���ł���悤�ɂ��邽�߂ɂ́A�Q�[���I�u�W�F�N�g�ɂ͂����[[class-MeshRenderer|���b�V�������_��]] ���邢�͑��̓K�؂ȃ����_���R���|�[�l���g�������Ă���K�v������܂��B�����̃R���|�[�l���g���g�p���邱�ƂŁA���b�V���̓����_���ɂ���Ďg�p�����}�e���A���ǂ���̊O�ςŁA�Q�[���I�u�W�F�N�g�̈ʒu�ɕ\������܂��B
+3Dモデルをインポートすると、Unityは$$メッシュ$$として内部的に格納します。メッシュは[[class-MeshFilter|メッシュフィルタ]] コンポーネント を使用してゲームオブジェクトにアタッチする必要があります。メッシュを表示できるようにするためには、ゲームオブジェクトにはさらに[[class-MeshRenderer|メッシュレンダラ]] あるいは他の適切なレンダラコンポーネントを持っている必要があります。これらのコンポーネントを使用することで、メッシュはレンダラによって使用されるマテリアルどおりの外観で、ゲームオブジェクトの位置に表示されます。
 
 Attach:MeshExample40.png \\
-[[class-MeshFilter | ���b�V���t�B���^�[]] ��[[class-MeshRenderer | ���b�V�������_��]] �Ń��f������ʕ\��
+[[class-MeshFilter | メッシュフィルター]] と[[class-MeshRenderer | メッシュレンダラ]] でモデルを画面表示
 
-Unity�̃��b�V���C���|�[�^�[�̓��b�V���̐����𐧌䂵����A�e�N�X�`����}�e���A���Ɋ֘A�t���邽�߁A�����̃I�v�V������p�ӂ��Ă��܂��B�����̃I�v�V�����́A���̃y�[�W�Ő�������Ă��܂��B
+Unityのメッシュインポーターはメッシュの生成を制御したり、テクスチャやマテリアルに関連付けるため、多くのオプションを用意しています。これらのオプションは、次のページで説明されています。
 
 (:tocportion:)

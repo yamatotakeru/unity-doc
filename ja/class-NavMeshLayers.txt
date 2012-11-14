@@ -1,45 +1,45 @@
 !
-�i�r���b�V�����C���[�iUnity Pro�̂݁j
+ナビメッシュレイヤー（Unity Proのみ）
 
-�i�r�Q�[�V�����V�X�e���̖����̓i�r�Q�[�V���������ԏ�ōœK�Ȍo�H��T�����邱�Ƃł��B�����Ƃ������I�ȗ�ł͍ŒZ�����ƂȂ�܂��B��������荂�x�ȃV�[���ɂ����Ă͓n��ɂ������قȂ�o�H�i�}�X�j�����݂��邱�Ƃ�����܂��i�Ⴆ�ΐ��n�邱�Ƃ͋����킽������ړ��R�X�g�������A�Ȃǁj�B���̏󋵂����f�������邽�߂ɁAUnity�ł́u�R�X�g�v�Ƃ����T�O�����p���u�œK�o�H�v�͂����Ƃ���R�X�g�̌o�H�ƒ�`���Ă��܂��B�R�X�g�̈قȂ��Ԃ��Ǘ����邽�߂�Unity�̓i�r���b�V�����C���Ƃ����T�O�������Ă��܂��B�i�r���b�V���X�^�e�B�b�N�iNavmesh Static�j�Ƃ��ă}�[�N���ꂽ�I�u�W�F�N�g�̓i�r���b�V�����C���ɑ����邱�ƂɂȂ�܂��B
+ナビゲーションシステムの役割はナビゲーションする空間上で最適な経路を探索することです。もっとも初歩的な例では最短距離となります。しかしより高度なシーンにおいては渡りにくさが異なる経路（マス）が存在することがあります（例えば川を渡ることは橋をわたるよりも移動コストが高い、など）。この状況をモデル化するために、Unityでは「コスト」という概念を活用し「最適経路」はもっとも低コストの経路と定義しています。コストの異なる空間を管理するためにUnityはナビメッシュレイヤという概念を持っています。ナビメッシュスタティック（Navmesh Static）としてマークされたオブジェクトはナビメッシュレイヤに属することになります。
 
-�o�H�T���̍ہA�o�H�̒������r����̂ł͂Ȃ��R�X�g�̍����ŕ]�����s���܂��B���̌v�Z���s�����߂Ɍo�H���Z�O�����g�ɕ����A�e�Z�O�����g�̃i�r���b�V�����C���̃R�X�g���o�H�̒����ɏ悶�܂��B���ׂẴR�X�g��1�ɃZ�b�g�����ƁA�œK�o�H���ŒZ�o�H�Ɠ����ł��邱�Ƃɒ��ӂ��Ă��������B
+経路探索の際、経路の長さを比較するのではなくコストの高さで評価を行います。この計算を行うために経路をセグメントに分け、各セグメントのナビメッシュレイヤのコストを経路の長さに乗じます。すべてのコストが1にセットされると、最適経路が最短経路と等価であることに注意してください。
 
-�v���W�F�N�g���Ƃ̃J�X�^�����C���[���`����ɂ�
-*���j���[�́uEdit�v���uProject Settings�v���uNavmesh Layers�v��I�����܂�
+プロジェクトごとのカスタムレイヤーを定義するには
+*メニューの「Edit」→「Project Settings」→「Navmesh Layers」を選択します
 ->Attach:NavMeshLayers.png
 
-*���[�U���C���[�̂ǂꂩ�ֈړ������O�iName�j�ƃR�X�g�iCost�j���Z�b�g�A�b�v���܂�
-**���O�iName�j�ŃV�[����̃i�r���b�V�����C������ӂɎ��ʂ��܂��B
+*ユーザレイヤーのどれかへ移動し名前（Name）とコスト（Cost）をセットアップします
+**名前（Name）でシーン上のナビメッシュレイヤを一意に識別します。
 
-**�R�X�g�iCost�j�Ńi�r���b�V�����C�����ړ������Փx�������܂��B�f�t�H���g�l��1�A�{�̓�Փx��2�A�����̓�Փx��0.5�ȂǂƐݒ肵�܂��B
-*3��ނ̃r���g�C���̃��C��������܂�
-**Default�@�w�肪�Ȃ������ꍇ�̃f�t�H���g�̃R�X�g
-**Not Walkable�@�ړ��ł��Ȃ����ߋ�Ԃ̂��߃R�X�g����
-**Jump�@�����������ꂽ�I�t���b�V�������N�iOff-mesh link�j�̃R�X�g
+**コスト（Cost）でナビメッシュレイヤを移動する難易度を示します。デフォルト値は1、倍の難易度は2、半分の難易度は0.5などと設定します。
+*3種類のビルトインのレイヤがあります
+**Default　指定がなかった場合のデフォルトのコスト
+**Not Walkable　移動できないため空間のためコスト無視
+**Jump　自動生成されたオフメッシュリンク（Off-mesh link）のコスト
 
-�J�X�^���̃��C���[�����̕��̂ɓK�p����ɂ�
-*�G�f�B�^��ŕ��̂�I�����܂�
-*�i�r�Q�[�V�������b�V���E�B���h�E���J���܂��i���j���[�́uWindow�v���uNavigation�v��I�����܂��j
-*�I�u�W�F�N�g�iObject�j�^�u�Ɉړ����A�K�p�������i�r�Q�[�V�������C����I�����܂�
+カスタムのレイヤーを特定の物体に適用するには
+*エディタ上で物体を選択します
+*ナビゲーションメッシュウィンドウを開きます（メニューの「Window」→「Navigation」を選択します）
+*オブジェクト（Object）タブに移動し、適用したいナビゲーションレイヤを選択します
 ->Attach:NavigationMeshObjectWindow.png
 
-Navmesh Display�E�B���h�E�ɂ�Show NavMesh���I���ɂ����ꍇ�A�G�f�B�^��Ŋe�X�̃��C���͈قȂ�F�ŕ\������܂�
+Navmesh DisplayウィンドウにてShow NavMeshをオンにした場合、エディタ上で各々のレイヤは異なる色で表示されます
 
-�G�[�W�F���g���ړ��ł��郌�C���[�����ʂ��邽�߂ɂ́F
-*�G�[�W�F���g�̕��̂ɃA�^�b�`����Ă���i�r���b�V���G�[�W�F���g�R���|�[�l���g���J���܂�
-*NavMesh Walkable������ύX���܂�
-*�X�N���v�g����G�[�W�F���g�̏I�_�idestination�j��K���ݒ肵�܂�
-
-
-���ӁF�R�X�g��1�ȉ��̒l�͐������܂���B���̏ꍇ�A�o�H�T���ɂ��œK�o�H���݂��邱�Ƃ��ۏ؂���܂���
+エージェントが移動できるレイヤーを識別するためには：
+*エージェントの物体にアタッチされているナビメッシュエージェントコンポーネントを開きます
+*NavMesh Walkable属性を変更します
+*スクリプトからエージェントの終点（destination）を必ず設定します
 
 
-�i�r���b�V�����C���[�����p������̕�����₷���g�p��́A���̂Ƃ���ł��B
-*���s�ҁi�G�[�W�F���g�j���n��Ȃ��Ƃ����Ȃ����H������܂�
-*���H�̐^�񒆂ɂ�����������s�҂ɂƂ��Ă����Ɩ]�܂����o�H�ł�
-*���H�p�̃i�r���b�V�����C�����Z�b�g�A�b�v���A�R�X�g�͍����l�A���l�ɕ����p�̃i�r���b�V�����C�����Z�b�g�A�b�v���A�R�X�g�͒Ⴂ�l�Ƃ��܂�
-*����ɂ��G�[�W�F���g�͕������D��ňړ�����悤�ɂȂ�܂�
-���x�Ȍo�H�T���Ɋ֘A�����g�s�b�N�Ƃ��ẮA�I�t���b�V�������N�iOff-mesh link�j���Q�Ƃ��ĉ������B
+注意：コストを1以下の値は推奨しません。この場合、経路探索により最適経路がみつかることが保証されません
 
-([[NavmeshandPathfinding| �i�r�Q�[�V�����ƌo�H�T��]]  �ɖ߂�)
+
+ナビメッシュレイヤーを活用した一つの分かりやすい使用例は、次のとおりです。
+*歩行者（エージェント）が渡らないといけない道路があります
+*道路の真ん中にある歩道が歩行者にとってもっと望ましい経路です
+*道路用のナビメッシュレイヤをセットアップし、コストは高い値、同様に歩道用のナビメッシュレイヤをセットアップし、コストは低い値とします
+*これによりエージェントは歩道を好んで移動するようになります
+高度な経路探索に関連したトピックとしては、オフメッシュリンク（Off-mesh link）を参照して下さい。
+
+([[NavmeshandPathfinding| ナビゲーションと経路探索]]  に戻る)

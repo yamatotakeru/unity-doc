@@ -1,230 +1,230 @@
-!!�e�N�X�`�� 2D
+!!テクスチャ 2D
 
-$$Texture$$ �ɂ��A$$Mesh$$�A$$Particle$$ ��C���^�[�t�F�[�X����芈�C�t���܂��B �����͏d�˂���A�I�u�W�F�N�g���ӂɃ��b�v����摜�⃀�[�r�[ �t�@�C���ɂȂ�܂��B �����͔��ɏd�v�ł��邽�߁A�����̃v���p�e�B��L���Ă��܂��B ���߂Ă���������_�����O����ꍇ�́A[[#details | Details]] �Ɉړ����A�Q�Ƃ��K�v�ȏꍇ�́A���ۂ̐ݒ�ɖ߂�܂��B
+$$Texture$$ により、$$Mesh$$、$$Particle$$ やインターフェースがより活気付きます。 これらは重ねたり、オブジェクト周辺にラップする画像やムービー ファイルになります。 これらは非常に重要であるため、多くのプロパティを有しています。 初めてこれをレンダリングする場合は、[[#details | Details]] に移動し、参照が必要な場合は、実際の設定に戻ります。
 
-�I�u�W�F�N�g�Ɏg�p����V�F�[�_���K�v�ȃe�N�X�`���Ɋւ���v����ǉ����܂����A�摜�t�@�C�����v���W�F�N�g���ɒu�����Ƃ��ł���Ƃ������Ƃ���{�I�Ȍ����ł��B �T�C�Y�v�� (�ȉ��ɋL��) �𖞂����ƁA�C���|�[�g����A�Q�[���ł̎g�p�����ɍœK������܂��B  ����ɂ��A�}���` ���C���[ Photoshop �܂��� TIFF �t�@�C���Ɋg������A�C���|�[�g���ɕ��R������邽�߁A�Q�[���ɑ΂���T�C�Y�̃y�i���e�B�͂���܂���B
+オブジェクトに使用するシェーダが必要なテクスチャに関する要件を追加しますが、画像ファイルをプロジェクト内に置くことができるということが基本的な原理です。 サイズ要件 (以下に記載) を満たすと、インポートされ、ゲームでの使用向けに最適化されます。  これにより、マルチ レイヤー Photoshop または TIFF ファイルに拡張され、インポート時に平坦化されるため、ゲームに対するサイズのペナルティはありません。
 
 
-!! �v���p�e�B
+!! プロパティ
 
-$$Texture Inspector$$ �́A���̑��قƂ�ǂ̂��̂ƌ����ڂ��኱���ƂȂ�܂��B \\
+$$Texture Inspector$$ は、その他ほとんどのものと見た目が若干ことなります。 \\
 Attach:TexImporterFull40.png
 
-��̕����ɂ͊���̐ݒ肪�A���̕����ɂ́A$$Texture Importer$$ �ƃe�N�X�`�� �v���r���[���܂܂�܂��B
+上の部分には幾つかの設定が、下の部分には、$$Texture Importer$$ とテクスチャ プレビューが含まれます。
 
-!! �e�N�X�`�� �C���|�[�^
+!! テクスチャ インポータ
 
-�e�N�X�`���͂��ׂ� $$Project Folder$$ ���̉摜���炫�܂��B �ǂ̂悤�ɃC���|�[�g����邩�́A$$Texture Importer$$ �ɂ���Ďw�肳��܂��B $$Project View$$ �Ńt�@�C�� �e�N�X�`����I�����A$$Inspector$$ �� $$Import Settings$$ ��ҏW���邱�ƂŁA�e�N�X�`����ύX���܂��B
+テクスチャはすべて $$Project Folder$$ 内の画像からきます。 どのようにインポートされるかは、$$Texture Importer$$ によって指定されます。 $$Project View$$ でファイル テクスチャを選択し、$$Inspector$$ で $$Import Settings$$ を編集することで、テクスチャを変更します。
 
-�C���X�y�N�^�̍ŏ�ʂɂ���A�C�e����^^Texture Type^^ ���j���[�ł���\�[�X�摜�t�@�C������쐬����e�N�X�`���̃^�C�v��I���ł��܂��B
+インスペクタの最上位にあるアイテムが^^Texture Type^^ メニューでありソース画像ファイルから作成するテクスチャのタイプを選択できます。
 
 ||PROPS
-||``Texture Type`` ||�e�N�X�`���̖ړI�ɉ����āA�����I�����āA��{�I�ȃp�����[�^��ݒ�ł��܂��B ||
-||>>>``Texture`` ||��ʂɁA���ׂẴe�N�X�`���Ɏg�p�ł���ł���ʓI�Ȑݒ�ł��B ||
-||>>>``Normal Map`` ||�����I������ƁA�F�����A���^�C���̒ʏ�}�b�s���O�ɓK�����`���ɕϊ������܂��B �ڍׂɂ��ẮA���� [[#normalmaps|Normal Maps]] ���Q�Ƃ��Ă��������B||
-||>>>``GUI`` ||�e�N�X�`���� HUD/GUI Control �Ŏg�p����ꍇ�ɂ�����g�p���܂��B ||
-||>>>``Reflection`` ||�ʖ��L���[�u �}�b�v�B�e�N�X�`����ł̔��˂��쐬����̂Ɏg�p���܂��B�ڍׂɂ��ẮA[[class-Cubemap|Cubemap Textures]] ���Q�Ƃ��Ă��������B||
-||>>>``Cookie`` ||���C�g�� Cookie �Ɏg�p�����{�p�����[�^�Ńe�L�X�`����ݒ肵�܂��B||
-||>>>``Advanced`` ||�e�N�X�`���ɓ���̃p�����[�^��ݒ肵�A�e�N�X�`�������S�ɐ��䂵�����ꍇ�ɂ����I�����܂��B ||
+||``Texture Type`` ||テクスチャの目的に応じて、これを選択して、基本的なパラメータを設定できます。 ||
+||>>>``Texture`` ||一般に、すべてのテクスチャに使用できる最も一般的な設定です。 ||
+||>>>``Normal Map`` ||これを選択すると、色をリアルタイムの通常マッピングに適した形式に変換させます。 詳細については、下の [[#normalmaps|Normal Maps]] を参照してください。||
+||>>>``GUI`` ||テクスチャを HUD/GUI Control で使用する場合にこれを使用します。 ||
+||>>>``Reflection`` ||別名キューブ マップ。テクスチャ上での反射を作成するのに使用します。詳細については、[[class-Cubemap|Cubemap Textures]] を参照してください。||
+||>>>``Cookie`` ||ライトの Cookie に使用する基本パラメータでテキスチャを設定します。||
+||>>>``Advanced`` ||テクスチャに特定のパラメータを設定し、テクスチャを完全に制御したい場合にこれを選択します。 ||
 
 Attach:TexImporterTexture40.png\\
-�u�I�����ꂽ��{�e�N�X�`���ݒ�v
+「選択された基本テクスチャ設定」
 
-||``Alpha From Grayscale``||�L���ɂ���ƁA�A���t�@���߃`�����l�����摜�̊����̖��邳�ƈÂ��̒l�Ő�������܂��B||
-||``Wrap Mode`` ||�e�N�X�`�����^�C�������Ƃ��̏��� ||
-||>>>``Repeat`` ||�e�N�X�`�����J��Ԃ��^�C�� ||
-||>>>``Clamp`` ||�e�N�X�`���̒[���X�g���b�`||
-||``Filter Mode`` ||�e�N�X�`����3D�ւ̕ϊ��ɂ��X�g���b�`���ꂽ�Ƃ��̃t�B���^������I�� ||
-||>>>``Point`` ||�e�N�X�`�����߂��ł݂��Ƃ��Ƀu���b�N��ɂȂ�܂� ||
-||>>>``Bilinear`` ||�e�N�X�`�����߂��ł݂��Ƃ��ɂڂ₯�܂� ||
-||>>>``Trilinear`` ||Bilinear�Ɠ����ł����A�e�N�X�`���̓~�b�v�}�b�v�Ԃł��ڂ₯�܂� ||
-||``Aniso Level`` ||�}�Ȋp�x���璭�߂��Ƃ��̃e�N�X�`���i�������コ���܂��B����n�ʂ̃e�N�X�`���ɗǂ��B [[#anisotropy | �ȉ�]] ���Q�Ƃ��ĉ������B||
+||``Alpha From Grayscale``||有効にすると、アルファ透過チャンネルが画像の既存の明るさと暗さの値で生成されます。||
+||``Wrap Mode`` ||テクスチャをタイルしたときの処理 ||
+||>>>``Repeat`` ||テクスチャを繰り返しタイル ||
+||>>>``Clamp`` ||テクスチャの端をストレッチ||
+||``Filter Mode`` ||テクスチャが3Dへの変換によりストレッチされたときのフィルタ処理を選択 ||
+||>>>``Point`` ||テクスチャを近くでみたときにブロック状になります ||
+||>>>``Bilinear`` ||テクスチャを近くでみたときにぼやけます ||
+||>>>``Trilinear`` ||Bilinearと同じですが、テクスチャはミップマップ間でもぼやけます ||
+||``Aniso Level`` ||急な角度から眺めたときのテクスチャ品質を向上させます。床や地面のテクスチャに良い。 [[#anisotropy | 以下]] を参照して下さい。||
 
 Attach:TexImporterNormalMap40.png\\
-�e�N�X�`���C���|�[�^�̖@���}�b�s���O�ݒ�
+テクスチャインポータの法線マッピング設定
 
-||``Create from Greyscale`` ||�I���ɂ����ꍇBumpiness�AFiltering�I�v�V�������\������܂�||
-||``Bumpiness`` ||�o���v�̋��x�𐧌䂵�܂�||
-||``Filtering`` ||�o���v�̋��x���v�Z������@�����肵�܂�||
-||>>>``Smooth`` ||�X���[�Y�Ȗ@���}�b�v�𐶐����܂�||
-||>>>``Sharp`` ||�]�[�x���t�B���^�Ƃ��Ă��m���Ă��܂��B�W�������V���[�v�Ȗ@���}�b�v�𐶐����܂��B||
-||``Wrap Mode`` ||�e�N�X�`�����^�C�������Ƃ��̏��� ||
-||>>>``Repeat`` ||�e�N�X�`�����J��Ԃ��^�C�� ||
-||>>>``Clamp`` ||�e�N�X�`���̒[���X�g���b�`||
-||``Filter Mode`` ||�e�N�X�`����3D�ւ̕ϊ��ɂ��X�g���b�`���ꂽ�Ƃ��̃t�B���^������I�� ||
-||>>>``Point`` ||�e�N�X�`�����߂��ł݂��Ƃ��Ƀu���b�N��ɂȂ�܂� ||
-||>>>``Bilinear`` ||�e�N�X�`�����߂��ł݂��Ƃ��ɂڂ₯�܂� ||
-||>>>``Trilinear`` ||Bilinear�Ɠ����ł����A�e�N�X�`���̓~�b�v�}�b�v�Ԃł��ڂ₯�܂� ||
-||``Aniso Level`` ||�}�Ȋp�x���璭�߂��Ƃ��̃e�N�X�`���i�������コ���܂��B����n�ʂ̃e�N�X�`���ɗǂ��B [[#anisotropy | �ȉ�]] ���Q�Ƃ��ĉ������B||
+||``Create from Greyscale`` ||オンにした場合Bumpiness、Filteringオプションが表示されます||
+||``Bumpiness`` ||バンプの強度を制御します||
+||``Filtering`` ||バンプの強度を計算する方法を決定します||
+||>>>``Smooth`` ||スムーズな法線マップを生成します||
+||>>>``Sharp`` ||ゾーベルフィルタとしても知られています。標準よりもシャープな法線マップを生成します。||
+||``Wrap Mode`` ||テクスチャをタイルしたときの処理 ||
+||>>>``Repeat`` ||テクスチャを繰り返しタイル ||
+||>>>``Clamp`` ||テクスチャの端をストレッチ||
+||``Filter Mode`` ||テクスチャが3Dへの変換によりストレッチされたときのフィルタ処理を選択 ||
+||>>>``Point`` ||テクスチャを近くでみたときにブロック状になります ||
+||>>>``Bilinear`` ||テクスチャを近くでみたときにぼやけます ||
+||>>>``Trilinear`` ||Bilinearと同じですが、テクスチャはミップマップ間でもぼやけます ||
+||``Aniso Level`` ||急な角度から眺めたときのテクスチャ品質を向上させます。床や地面のテクスチャに良い。 [[#anisotropy | 以下]] を参照して下さい。||
 
 Attach:TexImporterGUI40.png\\
-�u�e�N�X�`�� �C���|�[�^�� GUI �ݒ�v
+「テクスチャ インポータの GUI 設定」
 
-||``Filter Mode`` ||�e�N�X�`����3D�ւ̕ϊ��ɂ��X�g���b�`���ꂽ�Ƃ��̃t�B���^������I�� ||
-||>>>``Point`` ||�e�N�X�`�����߂��ł݂��Ƃ��Ƀu���b�N��ɂȂ�܂� ||
-||>>>``Bilinear`` ||�e�N�X�`�����߂��ł݂��Ƃ��ɂڂ₯�܂� ||
-||>>>``Trilinear`` ||Bilinear�Ɠ����ł����A�e�N�X�`���̓~�b�v�}�b�v�Ԃł��ڂ₯�܂� ||
+||``Filter Mode`` ||テクスチャが3Dへの変換によりストレッチされたときのフィルタ処理を選択 ||
+||>>>``Point`` ||テクスチャを近くでみたときにブロック状になります ||
+||>>>``Bilinear`` ||テクスチャを近くでみたときにぼやけます ||
+||>>>``Trilinear`` ||Bilinearと同じですが、テクスチャはミップマップ間でもぼやけます ||
 
 Attach:TexImporterCursor40.png\\
-�e�N�X�`���C���|�[�^��Cursor�ݒ�
+テクスチャインポータのCursor設定
 
-||``Wrap Mode`` ||�e�N�X�`�����^�C�������Ƃ��̏��� ||
-||>>>``Repeat`` ||�e�N�X�`�����J��Ԃ��^�C�� ||
-||>>>``Clamp`` ||�e�N�X�`���̒[���X�g���b�`||
-||``Filter Mode`` ||�e�N�X�`����3D�ւ̕ϊ��ɂ��X�g���b�`���ꂽ�Ƃ��̃t�B���^������I�� ||
-||>>>``Point`` ||�e�N�X�`�����߂��ł݂��Ƃ��Ƀu���b�N��ɂȂ�܂� ||
-||>>>``Bilinear`` ||�e�N�X�`�����߂��ł݂��Ƃ��ɂڂ₯�܂� ||
-||>>>``Trilinear`` ||Bilinear�Ɠ����ł����A�e�N�X�`���̓~�b�v�}�b�v�Ԃł��ڂ₯�܂� ||
+||``Wrap Mode`` ||テクスチャをタイルしたときの処理 ||
+||>>>``Repeat`` ||テクスチャを繰り返しタイル ||
+||>>>``Clamp`` ||テクスチャの端をストレッチ||
+||``Filter Mode`` ||テクスチャが3Dへの変換によりストレッチされたときのフィルタ処理を選択 ||
+||>>>``Point`` ||テクスチャを近くでみたときにブロック状になります ||
+||>>>``Bilinear`` ||テクスチャを近くでみたときにぼやけます ||
+||>>>``Trilinear`` ||Bilinearと同じですが、テクスチャはミップマップ間でもぼやけます ||
 
 Attach:TexImporterReflection40.png\\
-�u�e�N�X�`�� �C���|�[�^�̔��ːݒ�v
+「テクスチャ インポータの反射設定」
 
-||``Mapping`` ||����ɂ��A�e�N�X�`�����L���[�u �}�b�v�ɂǂ̂悤�Ƀ}�b�s���O����邩�����܂�܂��B ||
-||>>>``Sphere Mapped`` ||�u���̏�v�̃L���[�u �}�b�v�Ƀe�N�X�`�����}�b�s���O���܂��B||
-||>>>``Cylindrical`` ||�e�N�X�`�����~���Ƀ}�b�s���O���܂��B�~���̂悤�ȃI�u�W�F�N�g�ɔ��˂��g�p�������ꍇ�Ɏg�p���܂��B||
-||>>>``Simple Sphere`` ||�e�N�X�`�����ȒP�ȋ��̂Ƀ}�b�s���O���A��]����ۂɔ��˂�ό`�����܂��B ||
-||>>>``Nice Sphere`` ||�e�N�X�`�������̂Ƀ}�b�s���O���A��]���ɕό`�����܂����A�e�N�X�`���̃��b�v�͊m�F�ł��܂��B||
-||>>>``6 Frames Layout`` ||�e�N�X�`���͗����̘̂Z�̖ʂɃL���[�u�}�b�v�̃��C�A�E�g��W�J���A�\���˂̌`���A�񏇂̉摜�i +x -x +y -y +z -z�j������ɏc�������I���ł��܂�||
-||``Fixup edge seams`` ||�i�|�C���g���C�g�̂݁j����̋������ˌ��̂���摜�C���[�W�̃G�b�W�̂Ȃ��ڂ̉摜�������菜���܂� ||
-||``Filter Mode`` ||�e�N�X�`����3D�ւ̕ϊ��ɂ��X�g���b�`���ꂽ�Ƃ��̃t�B���^������I�� ||
-||>>>``Point`` ||�e�N�X�`�����߂��ł݂��Ƃ��Ƀu���b�N��ɂȂ�܂� ||
-||>>>``Bilinear`` ||�e�N�X�`�����߂��ł݂��Ƃ��ɂڂ₯�܂� ||
-||>>>``Trilinear`` ||Bilinear�Ɠ����ł����A�e�N�X�`���̓~�b�v�}�b�v�Ԃł��ڂ₯�܂� ||
-||``Aniso Level`` ||�}�Ȋp�x���璭�߂��Ƃ��̃e�N�X�`���i�������コ���܂��B����n�ʂ̃e�N�X�`���ɗǂ��B [[#anisotropy | �ȉ�]] ���Q�Ƃ��ĉ������B||
+||``Mapping`` ||これにより、テクスチャがキューブ マップにどのようにマッピングされるかが決まります。 ||
+||>>>``Sphere Mapped`` ||「球体状」のキューブ マップにテクスチャをマッピングします。||
+||>>>``Cylindrical`` ||テクスチャを円柱にマッピングします。円柱のようなオブジェクトに反射を使用したい場合に使用します。||
+||>>>``Simple Sphere`` ||テクスチャを簡単な球体にマッピングし、回転する際に反射を変形させます。 ||
+||>>>``Nice Sphere`` ||テクスチャを球体にマッピングし、回転時に変形させますが、テクスチャのラップは確認できます。||
+||>>>``6 Frames Layout`` ||テクスチャは立方体の六つの面にキューブマップのレイアウトを展開し、十字架の形か、列順の画像（ +x -x +y -y +z -z）をさらに縦か横か選択できます||
+||``Fixup edge seams`` ||（ポイントライトのみ）光沢の強い反射光のある画像イメージのエッジのつなぎ目の画像乱れを取り除きます ||
+||``Filter Mode`` ||テクスチャが3Dへの変換によりストレッチされたときのフィルタ処理を選択 ||
+||>>>``Point`` ||テクスチャを近くでみたときにブロック状になります ||
+||>>>``Bilinear`` ||テクスチャを近くでみたときにぼやけます ||
+||>>>``Trilinear`` ||Bilinearと同じですが、テクスチャはミップマップ間でもぼやけます ||
+||``Aniso Level`` ||急な角度から眺めたときのテクスチャ品質を向上させます。床や地面のテクスチャに良い。 [[#anisotropy | 以下]] を参照して下さい。||
 
-���䂷��̂ɃO���[�X�P�[�� �e�N�X�`�����g�p������@�ł��B ����́A�ړ�����_�̍쐬��A���W����t�̈�ۂ�^����̂ɕ֗��ł��B [[class-Light|Light]] �y�[�W�ɂ���Ɋւ���ڍׂ��S�ċL�ڂ���Ă��܂����A�e�N�X�`�����g�p�\�ɂ���ɂ́A^^Texture Type^^ ���uCookie�v�ɐݒ肷��K�v������܂��B
+制御するのにグレースケール テクスチャを使用する方法です。 これは、移動する雲の作成や、密集する葉の印象を与えるのに便利です。 [[class-Light|Light]] ページにこれに関する詳細が全て記載されていますが、テクスチャを使用可能にするには、^^Texture Type^^ を「Cookie」に設定する必要があります。
 
 Attach:TexImporterCookie40.png\\
-�u�e�N�X�`�� �C���|�[�^�� Cookie �ݒ�v
+「テクスチャ インポータの Cookie 設定」
 
-||``Light Type`` ||�e�N�X�͂��K�p����郉�C�g�̎�ށB (�X�|�b�g ���C�g�A�|�C���g ���C�g�A�f�B�N�V���i�� ���C�g���Y�����܂�)�B �f�B�N�V���i�� ���C�g�̏ꍇ�A���̃e�N�X�`���̓^�C���ɂȂ邽�߁A�e�N�X�`�� �C���X�y�N�^�ł́A�K�؂Ȍ��ʂ𓾂�ɂ́A�X�|�b�g ���C�g�ɑ΂��āA�G�b�W ���[�h���uRepeat�v�ɐݒ肵�A�N�b�L�[�e�N�X�`���̃G�b�W������F�̂܂܂ɂ��Ă����K�v������܂��B �e�N�X�`�� �C���X�y�N�^�ŁA�G�b�W ���[�h���uClamp�v�ɐݒ肷��K�v������܂��B||
-||``Mapping`` ||����ɂ��A�e�N�X�`�����L���[�u �}�b�v�ɂǂ̂悤�Ƀ}�b�s���O����邩�����܂�܂��B ||
-||>>>``Sphere Mapped`` ||�u���̏�v�̃L���[�u �}�b�v�Ƀe�N�X�`�����}�b�s���O���܂��B||
-||>>>``Cylindrical`` ||�e�N�X�`�����~���Ƀ}�b�s���O���܂��B�~���̂悤�ȃI�u�W�F�N�g�ɔ��˂��g�p�������ꍇ�Ɏg�p���܂��B||
-||>>>``Simple Sphere`` ||�e�N�X�`�����ȒP�ȋ��̂Ƀ}�b�s���O���A��]����ۂɔ��˂�ό`�����܂��B ||
-||>>>``Nice Sphere`` ||�e�N�X�`�������̂Ƀ}�b�s���O���A��]���ɕό`�����܂����A�e�N�X�`���̃��b�v�͊m�F�ł��܂��B||
-||>>>``6 Frames Layout`` ||�e�N�X�`���͗����̘̂Z�̖ʂɃL���[�u�}�b�v�̃��C�A�E�g��W�J���A�\���˂̌`���A�񏇂̉摜�i +x -x +y -y +z -z�j������ɏc�������I���ł��܂�||
-||``Fixup edge seams`` ||�i�|�C���g���C�g�̂݁j����̋������ˌ��̂���摜�C���[�W�̃G�b�W�̂Ȃ��ڂ̉摜�������菜���܂� ||
-||``Alpha From Greyscale``||�L���ɂ���ƁA�A���t�@���߃`�����l�����摜�̊����̖��邳�ƈÂ��̒l�Ő�������܂��B||
+||``Light Type`` ||テクスはが適用されるライトの種類。 (スポット ライト、ポイント ライト、ディクショナリ ライトが該当します)。 ディクショナリ ライトの場合、このテクスチャはタイルになるため、テクスチャ インスペクタでは、適切な効果を得るには、スポット ライトに対して、エッジ モードを「Repeat」に設定し、クッキーテクスチャのエッジを黒一色のままにしておく必要があります。 テクスチャ インスペクタで、エッジ モードを「Clamp」に設定する必要があります。||
+||``Mapping`` ||これにより、テクスチャがキューブ マップにどのようにマッピングされるかが決まります。 ||
+||>>>``Sphere Mapped`` ||「球体状」のキューブ マップにテクスチャをマッピングします。||
+||>>>``Cylindrical`` ||テクスチャを円柱にマッピングします。円柱のようなオブジェクトに反射を使用したい場合に使用します。||
+||>>>``Simple Sphere`` ||テクスチャを簡単な球体にマッピングし、回転する際に反射を変形させます。 ||
+||>>>``Nice Sphere`` ||テクスチャを球体にマッピングし、回転時に変形させますが、テクスチャのラップは確認できます。||
+||>>>``6 Frames Layout`` ||テクスチャは立方体の六つの面にキューブマップのレイアウトを展開し、十字架の形か、列順の画像（ +x -x +y -y +z -z）をさらに縦か横か選択できます||
+||``Fixup edge seams`` ||（ポイントライトのみ）光沢の強い反射光のある画像イメージのエッジのつなぎ目の画像乱れを取り除きます ||
+||``Alpha From Greyscale``||有効にすると、アルファ透過チャンネルが画像の既存の明るさと暗さの値で生成されます。||
 
 Attach:TexImporterLightmap40.png\\
-�u�e�N�X�`���C���|�[�^�ł̃��C�g�}�b�v�ݒ�v
+「テクスチャインポータでのライトマップ設定」
 
-||``Filter Mode`` ||�e�N�X�`����3D�ւ̕ϊ��ɂ��X�g���b�`���ꂽ�Ƃ��̃t�B���^������I�� ||
-||>>>``Point`` ||�e�N�X�`�����߂��ł݂��Ƃ��Ƀu���b�N��ɂȂ�܂� ||
-||>>>``Bilinear`` ||�e�N�X�`�����߂��ł݂��Ƃ��ɂڂ₯�܂� ||
-||>>>``Trilinear`` ||Bilinear�Ɠ����ł����A�e�N�X�`���̓~�b�v�}�b�v�Ԃł��ڂ₯�܂� ||
-||``Aniso Level`` ||�}�Ȋp�x���璭�߂��Ƃ��̃e�N�X�`���i�������コ���܂��B����n�ʂ̃e�N�X�`���ɗǂ��B [[#anisotropy | �ȉ�]] ���Q�Ƃ��ĉ������B||
+||``Filter Mode`` ||テクスチャが3Dへの変換によりストレッチされたときのフィルタ処理を選択 ||
+||>>>``Point`` ||テクスチャを近くでみたときにブロック状になります ||
+||>>>``Bilinear`` ||テクスチャを近くでみたときにぼやけます ||
+||>>>``Trilinear`` ||Bilinearと同じですが、テクスチャはミップマップ間でもぼやけます ||
+||``Aniso Level`` ||急な角度から眺めたときのテクスチャ品質を向上させます。床や地面のテクスチャに良い。 [[#anisotropy | 以下]] を参照して下さい。||
 
 Attach:TexImporterAdvanced40.png\\
-�u�ڍ׃e�N�X�`�� �C���|�[�^�ݒ�_�C�A���O�v
+「詳細テクスチャ インポータ設定ダイアログ」
 
 
-||``Non Power of 2`` |�e�N�X�`���� 2 �ׂ̂���T�C�Y�łȂ��ꍇ�A����ɂ��A�C���|�[�g���̃X�P�[�����O���삪��`����܂� (�ڍׂɂ��ẮA���L�́@[[#texturesizes|Texture Sizes]] ���Q��)�B||
-||>>>``None`` ||GUITexture �R���|�[�l���g�łƕ��p����̂ɁA�e�N�X�`�������̂��傫��2 �ׂ̂���T�C�Y�ɒǉ�����܂��B ||
-||>>>``To nearest`` ||�e�N�X�`�����C���|�[�g���ɍł��߂� 2 �ׂ̂���ɏk���g�傳��܂��B �Ⴆ�΁A257x511 �̃e�N�X�`���́A256x512 �ɂȂ�܂��B PVRTC �`���ɂ́A�e�N�X�`���𐳕��` (���ƍ�����������) �ɂ���K�v�����邽�߁A�ŏI�I�ȃT�C�Y�� 512x512 �Ɋg�傳��܂��B ||
-||>>>``To larger`` ||�e�N�X�`�����C���|�[�g���Ɏ��ɑ傫�� 2 �ׂ̂���ɏk���g�傳��܂��B �Ⴆ�΁A257x511 �̃e�N�X�`���́A512x512 �ɂȂ�܂��B ||
-||>>>``To smaller`` ||�e�N�X�`�����C���|�[�g���Ɏ��ɏ����� 2 �ׂ̂���ɏk���g�傳��܂��B �Ⴆ�΁A257x511 �̃e�N�X�`���́A256x256 �ɂȂ�܂��B ||
-||``Generate Cube Map`` ||�e�퐶�����@���g�p���āA�e�N�X�`������L���[�u �}�b�v�𐶐����܂��B ||
-||>>>``Spheremap`` ||�e�N�X�`��������̃L���[�u�}�b�v�Ƀ}�b�s���O||
-||>>>``Cylindrical`` ||�e�N�X�`�����~���Ƀ}�b�s���O�B�I�u�W�F�N�g�̔��ˌ����~����ɂ������ꍇ�Ɏg�p||
-||>>>``SimpleSpheremap`` ||�e�N�X�`�����V���v���ȋ��Ƀ}�b�s���O�A��]�̂Ƃ��ɂ͔��ˌ��͕���܂� ||
-||>>>``NiceSpheremap`` ||�e�N�X�`�������Ƀ}�b�s���O�A��]�̂Ƃ��ɂ͔��ˌ��͕���܂����e�N�X�`���̓��b�s���O���܂�||
-||>>>``FacesVertical`` ||�e�N�X�`���͗����̘̂Z�̖ʂ��c�ɓW�J�������� +x -x +y -y +z -z ||
-||>>>``FacesHorizontal`` ||�e�N�X�`���͗����̘̂Z�̖ʂ����ɓW�J��������  +x -x +y -y +z -z ||
-||>>>``CrossVertical`` ||�e�N�X�`���͗����̘̂Z�̖ʂ��c���̏\���˂Ƃ��ēW�J||
-||>>>``CrossHorizontal`` ||�e�N�X�`���͗����̘̂Z�̖ʂ������̏\���˂Ƃ��ēW�J ||
-||``Read/Write Enabled`` ||�����I������ƁA�X�N���v�g����e�N�X�`�� �f�[�^�ɃA�N�Z�X�ł��܂� (GetPixels�ASetPixels �� ���̑��� [[ScriptRef:Texture2D.html|Texture2D]] �@�\)�B �������A�e�N�X�`���f�[�^�̃R�s�[���쐬����A�e�N�X�`�� �A�Z�b�g�ɕK�v�ȃ������ʂ� 2�@�{�ɂ��܂��B �{���ɕK�v�ȏꍇ�ɂ̂ݎg�p���Ă��������B �񈳏k����� DTX�@���k�e�N�X�`���ɂ̂ݗL���ł���A���̑��̈��k�e�N�X�`������ǂݎ�邱�Ƃ͂ł��܂���B �f�t�H���g�ł́A�����ɂȂ��Ă��܂��B ||
-||``Import Type`` ||�摜�f�[�^�̏������@||
-||>>>``Default`` ||�W���I�ȃe�N�X�`�� ||
-||>>>``Normal Map`` ||�e�N�X�`����@���}�b�v�Ƃ��ď����i���̃I�v�V������L���ɂ��܂��j||
-||>>>``Lightmap`` ||�e�N�X�`�������C�g�}�b�v�Ƃ��ď����i���̃I�v�V�����𖳌��ɂ��܂��j||
-||``Alpha from grayscale`` ||�iDefault�̂݁j�摜�̖��x��񂩂�A���t�@�`�����l���𐶐� ||
-||``Create from grayscale`` ||�iNormal Map�̂݁j�摜�̖��x����}�b�v�𐶐� ||
-||``Bypass sRGB sampling`` ||�iDefault�̂݁j�K���}�����l�������A�摜�̐F�����̂܂܎g�p�i�e�N�X�`����GUI��摜�f�[�^�ȊO���G���R�[�h����ۂɕ֗��j ||
-||``Generate Mip Maps`` ||�����I������ƁA�~�j �}�b�v�̐������L���ɂȂ�܂��B �~�j �}�b�v�͂�菬�����e�N�X�`���ŁA�e�N�X�`������ʏ�Ŕ��ɏ������ꍇ�Ɏg�p����܂��B �ڍׂɂ��ẮA���� [[#mipmaps|Mip Maps]] ���Q�Ƃ��Ă��������B||
-||``In Linear Space`` ||�~�b�v�}�b�v�����j�A�J���[��ԂŐ������� ||
-||``Border Mip Maps`` ||�����I������ƁA�F�����ʂ̃~�b�v ���x���̒[�ɂɂ��ݏo�邱�Ƃ��Ȃ��Ȃ�܂��B ���C�g Cookie (���L�Q��) �Ɏg�p����܂��B ||
-||``Mip Map Filtering`` ||�掿���œK���ł���~�b�v �}�b�v �t�B���^�����O�ɂ͎��� 2 �̕��@������܂��B ||
-||>>>``Box`` ||�~�b�v �}�b�v���t�F�[�h�A�E�g����ł��ȒP�ȕ��@�B�~�b�v ���x���́A�T�C�Y���������Ȃ�ɘA��A��芊�炩�ɂȂ�܂��B ||
-||>>>``Kaiser`` ||�s�p���J�C�U�[ �A���S���Y���́A�T�C�Y���������Ȃ�ɘA��A�~�b�v �}�b�v�Ŏ��s����܂��B �e�N�X�`���������łڂ₯����������ꍇ�A���̃I�v�V�����������Ă��������B ||
-||``Fade Out Mips`` ||�~�b�v ���x�����オ��ɘA��A�~�b�v �}�b�v���O���[�Ƀt�F�[�h����̂ɁA�����L���ɂ��܂��B ����́A�ڍ׃}�b�v�Ɏg�p����܂��B ��ԍ��̃X�N���[���́A�t�F�[�h�A�E�g���n�߂�ŏ��̃~�b�v ���x���ł��B ��ԉE�̃X�N���[���́A�e�N�X�`�������S�ɃO���[�A�E�g����~�b�v���x�����`���܂��B
-||``Wrap Mode`` ||�e�N�X�`�����^�C�������Ƃ��̏��� ||
-||>>>``Repeat`` ||�e�N�X�`�����J��Ԃ��^�C�� ||
-||>>>``Clamp`` ||�e�N�X�`���̒[���X�g���b�`||
-||``Filter Mode`` ||�e�N�X�`����3D�ւ̕ϊ��ɂ��X�g���b�`���ꂽ�Ƃ��̃t�B���^������I�� ||
-||>>>``Point`` ||�e�N�X�`�����߂��ł݂��Ƃ��Ƀu���b�N��ɂȂ�܂� ||
-||>>>``Bilinear`` ||�e�N�X�`�����߂��ł݂��Ƃ��ɂڂ₯�܂� ||
-||>>>``Trilinear`` ||Bilinear�Ɠ����ł����A�e�N�X�`���̓~�b�v�}�b�v�Ԃł��ڂ₯�܂� ||
-||``Aniso Level`` ||�}�Ȋp�x���璭�߂��Ƃ��̃e�N�X�`���i�������コ���܂��B����n�ʂ̃e�N�X�`���ɗǂ��B [[#anisotropy | �ȉ�]] ���Q�Ƃ��ĉ������B||
+||``Non Power of 2`` |テクスチャが 2 のべき乗サイズでない場合、これにより、インポート時のスケーリング動作が定義されます (詳細については、下記の　[[#texturesizes|Texture Sizes]] を参照)。||
+||>>>``None`` ||GUITexture コンポーネントでと併用するのに、テクスチャが次のより大きい2 のべき乗サイズに追加されます。 ||
+||>>>``To nearest`` ||テクスチャがインポート時に最も近い 2 のべき乗に縮小拡大されます。 例えば、257x511 のテクスチャは、256x512 になります。 PVRTC 形式には、テクスチャを正方形 (幅と高さが等しい) にする必要があるため、最終的なサイズは 512x512 に拡大されます。 ||
+||>>>``To larger`` ||テクスチャがインポート時に次に大きい 2 のべき乗に縮小拡大されます。 例えば、257x511 のテクスチャは、512x512 になります。 ||
+||>>>``To smaller`` ||テクスチャがインポート時に次に小さい 2 のべき乗に縮小拡大されます。 例えば、257x511 のテクスチャは、256x256 になります。 ||
+||``Generate Cube Map`` ||各種生成方法を使用して、テクスチャからキューブ マップを生成します。 ||
+||>>>``Spheremap`` ||テクスチャを球状のキューブマップにマッピング||
+||>>>``Cylindrical`` ||テクスチャを円柱にマッピング。オブジェクトの反射光を円柱状にしたい場合に使用||
+||>>>``SimpleSpheremap`` ||テクスチャをシンプルな球にマッピング、回転のときには反射光は崩れます ||
+||>>>``NiceSpheremap`` ||テクスチャを球にマッピング、回転のときには反射光は崩れますがテクスチャはラッピングします||
+||>>>``FacesVertical`` ||テクスチャは立方体の六つの面を縦に展開し順序は +x -x +y -y +z -z ||
+||>>>``FacesHorizontal`` ||テクスチャは立方体の六つの面を横に展開し順序は  +x -x +y -y +z -z ||
+||>>>``CrossVertical`` ||テクスチャは立方体の六つの面を縦長の十字架として展開||
+||>>>``CrossHorizontal`` ||テクスチャは立方体の六つの面を横長の十字架として展開 ||
+||``Read/Write Enabled`` ||これを選択すると、スクリプトからテクスチャ データにアクセスできます (GetPixels、SetPixels と その他の [[ScriptRef:Texture2D.html|Texture2D]] 機能)。 しかし、テクスチャデータのコピーが作成され、テクスチャ アセットに必要なメモリ量を 2　倍にします。 本当に必要な場合にのみ使用してください。 非圧縮および DTX　圧縮テクスチャにのみ有効であり、その他の圧縮テクスチャから読み取ることはできません。 デフォルトでは、無効になっています。 ||
+||``Import Type`` ||画像データの処理方法||
+||>>>``Default`` ||標準的なテクスチャ ||
+||>>>``Normal Map`` ||テクスチャを法線マップとして処理（他のオプションを有効にします）||
+||>>>``Lightmap`` ||テクスチャをライトマップとして処理（他のオプションを無効にします）||
+||``Alpha from grayscale`` ||（Defaultのみ）画像の明度情報からアルファチャンネルを生成 ||
+||``Create from grayscale`` ||（Normal Mapのみ）画像の明度からマップを生成 ||
+||``Bypass sRGB sampling`` ||（Defaultのみ）ガンマ情報を考慮せず、画像の色をそのまま使用（テクスチャがGUIや画像データ以外をエンコードする際に便利） ||
+||``Generate Mip Maps`` ||これを選択すると、ミニ マップの生成が有効になります。 ミニ マップはより小さいテクスチャで、テクスチャが画面上で非常に小さい場合に使用されます。 詳細については、下の [[#mipmaps|Mip Maps]] を参照してください。||
+||``In Linear Space`` ||ミップマップをリニアカラー空間で生成する ||
+||``Border Mip Maps`` ||これを選択すると、色が下位のミップ レベルの端ににじみ出ることがなくなります。 ライト Cookie (下記参照) に使用されます。 ||
+||``Mip Map Filtering`` ||画質を最適化できるミップ マップ フィルタリングには次の 2 つの方法があります。 ||
+||>>>``Box`` ||ミップ マップをフェードアウトする最も簡単な方法。ミップ レベルは、サイズが小さくなるに連れ、より滑らかになります。 ||
+||>>>``Kaiser`` ||鋭角化カイザー アルゴリズムは、サイズが小さくなるに連れ、ミップ マップで実行されます。 テクスチャが遠くでぼやけが多すぎる場合、このオプションを試してください。 ||
+||``Fade Out Mips`` ||ミップ レベルが上がるに連れ、ミップ マップをグレーにフェードするのに、これを有効にします。 これは、詳細マップに使用されます。 一番左のスクロールは、フェードアウトを始める最初のミップ レベルです。 一番右のスクロールは、テクスチャが完全にグレーアウトするミップレベルを定義します。
+||``Wrap Mode`` ||テクスチャをタイルしたときの処理 ||
+||>>>``Repeat`` ||テクスチャを繰り返しタイル ||
+||>>>``Clamp`` ||テクスチャの端をストレッチ||
+||``Filter Mode`` ||テクスチャが3Dへの変換によりストレッチされたときのフィルタ処理を選択 ||
+||>>>``Point`` ||テクスチャを近くでみたときにブロック状になります ||
+||>>>``Bilinear`` ||テクスチャを近くでみたときにぼやけます ||
+||>>>``Trilinear`` ||Bilinearと同じですが、テクスチャはミップマップ間でもぼやけます ||
+||``Aniso Level`` ||急な角度から眺めたときのテクスチャ品質を向上させます。床や地面のテクスチャに良い。 [[#anisotropy | 以下]] を参照して下さい。||
 
 
-!! �v���b�g�t�H�[�����Ƃ̖�����
+!! プラットフォームごとの無効化
 
-�قȂ�v���b�g�t�H�[�����쐬����ꍇ�A�Ώۂ̃v���b�g�t�H�[���ɑ΂���e�N�X�`���̉𑜓x��T�C�Y�A�掿���l������K�v������܂��B �����̃I�v�V�������f�t�H���g�ݒ�ɂ��A����̃v���b�g�t�H�[���œ���̒l�������Ă邱�Ƃ��ł��܂��B
+異なるプラットフォームを作成する場合、対象のプラットフォームに対するテクスチャの解像度やサイズ、画質を考慮する必要があります。 これらのオプションをデフォルト設定にしつつ、特定のプラットフォームで特定の値を割当てることができます。
 
 Attach:TextureImporterOverride.png\\
-�u���ׂẴv���b�g�t�H�[���p�̃f�t�H���g�ݒ�v
-||``Max Texture Size`` ||�C���|�[�g���ꂽ�e�N�X�`���̍ő�T�C�Y�B �A�[�e�B�X�g�́A�傫�ȃe�N�X�`�������������ꍇ����������܂��B����ŁA�e�N�X�`����K�؂ȃT�C�Y�ɏk�����܂��B ||
-||``Texture Format`` ||�e�N�X�`���ɑ΂��Ďg�p���������\���B �T�C�Y�Ɖ掿�Ԃł̃g���[�h�I�t�ƂȂ�܂��B ���L�̗�ł́A256 x 256 �s�N�Z���̃Q�[�����e�N�X�`���̍ŏI�T�C�Y�������Ă��܂��B||
-||>>>``Compressed`` ||���k���ꂽ RGB �e�N�X�`���B ����́A�f�t���[�Y �e�N�X�`���̍ł���ʓI�Ȍ`���ɂȂ�܂��B �s�N�Z�������� 4 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A32 KB)�B ||
-||>>>``16 bit`` ||��掿 True Color�B 16 �i�K�̐ԁA�΁A�A�A���t�@������܂��B ||
-||>>>``Truecolor`` ||Truecolor�A�ō��掿�ɂȂ�܂��B 256x256 �e�N�X�`���̏ꍇ�́A256 KB�B ||
+「すべてのプラットフォーム用のデフォルト設定」
+||``Max Texture Size`` ||インポートされたテクスチャの最大サイズ。 アーティストは、大きなテクスチャを扱いたい場合が多くあります。これで、テクスチャを適切なサイズに縮小します。 ||
+||``Texture Format`` ||テクスチャに対して使用される内部表示。 サイズと画質間でのトレードオフとなります。 下記の例では、256 x 256 ピクセルのゲーム内テクスチャの最終サイズを示しています。||
+||>>>``Compressed`` ||圧縮された RGB テクスチャ。 これは、デフューズ テクスチャの最も一般的な形式になります。 ピクセルあたり 4 ビット (256x256 テクスチャの場合は、32 KB)。 ||
+||>>>``16 bit`` ||低画質 True Color。 16 段階の赤、緑、青、アルファがあります。 ||
+||>>>``Truecolor`` ||Truecolor、最高画質になります。 256x256 テクスチャの場合は、256 KB。 ||
 
-^^Texture Type^^ �� ^^Advanced^^ �ɐݒ肵�Ă���ꍇ�A^^Texture Format^^ �͈قȂ�l�ɂȂ�܂��B
+^^Texture Type^^ を ^^Advanced^^ に設定している場合、^^Texture Format^^ は異なる値になります。
 
 
-!!�f�X�N�g�b�v
+!!デスクトップ
 >>desktop<<
-||``Texture Format`` ||�e�N�X�`���ɑ΂��Ďg�p���������\���B �T�C�Y�Ɖ掿�Ԃł̃g���[�h�I�t�ƂȂ�܂��B ���L�̗�ł́A256 x 256 �s�N�Z���̃Q�[�����e�N�X�`���̍ŏI�T�C�Y�������Ă��܂��B||
-||>>>``RGB Compressed DXT1`` ||���k���ꂽ RGB �e�N�X�`���B ����́A�f�t���[�Y �e�N�X�`���̍ł���ʓI�Ȍ`���ɂȂ�܂��B �s�N�Z�������� 4 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A32 KB)�B ||
-||>>>``RGBA Compressed DXT5`` ||���k���ꂽ RGBA �e�N�X�`���B ����́A�f�t���[�Y����уX�y�L��������e�N�X�`���Ɏg�p������Ȍ`���ɂȂ�܂��B 1 �o�C�g/�s�N�Z�� (256x256 �e�N�X�`���̏ꍇ�́A64 KB)�B ||
-||>>>``RGB 16 bit`` ||�A���t�@�Ȃ��� 65,000 �F�B ���k DXT�@�`���́A�����������܂�g�p�����A�ʏ�͌����ڂ��悭�Ȃ�܂��B 256x256 �e�N�X�`���̏ꍇ�́A128 KB�B ||
-||>>>``RGB 24 bit`` ||�A���t�@�Ȃ��� TrueColor�B 256x256 �e�N�X�`���̏ꍇ�́A192 KB�B ||
-||>>>``Alpha 8 bit`` ||�F�Ȃ��̍��掿�A���t�@ �`�����l���B 256x256 �e�N�X�`���̏ꍇ�́A64 KB�B ||
-||>>>``RGBA 16 bit`` ||��掿 True Color�B 16 �i�K�̐ԁA�΁A�A�A���t�@������܂��B ���k DXT�@�`���́A�����������܂�g�p�����A�ʏ�͌����ڂ��悭�Ȃ�܂��B 256x256 �e�N�X�`���̏ꍇ�́A128 KB�B ||
-||>>>``RGBA 32 bit`` ||�A���t�@�̂��� Truecolor�B�ō��掿�ɂȂ�܂��B 256x256 �e�N�X�`���̏ꍇ�́A256 KB�ŁA��p��������܂��B �قƂ�ǂ̏ꍇ�A__DXT5__�́A�͂邩�ɏ������T�C�Y�ŏ\���ȉ掿��񋟂��܂��B DXT ���k�͖ڂɌ�����掿�����𐶂��邽�߁A����͎�ɖ@���}�b�v�Ɏg�p���܂��B ||
+||``Texture Format`` ||テクスチャに対して使用される内部表示。 サイズと画質間でのトレードオフとなります。 下記の例では、256 x 256 ピクセルのゲーム内テクスチャの最終サイズを示しています。||
+||>>>``RGB Compressed DXT1`` ||圧縮された RGB テクスチャ。 これは、デフューズ テクスチャの最も一般的な形式になります。 ピクセルあたり 4 ビット (256x256 テクスチャの場合は、32 KB)。 ||
+||>>>``RGBA Compressed DXT5`` ||圧縮された RGBA テクスチャ。 これは、デフューズおよびスペキュラ制御テクスチャに使用される主な形式になります。 1 バイト/ピクセル (256x256 テクスチャの場合は、64 KB)。 ||
+||>>>``RGB 16 bit`` ||アルファなしの 65,000 色。 圧縮 DXT　形式は、メモリをあまり使用せず、通常は見た目もよくなります。 256x256 テクスチャの場合は、128 KB。 ||
+||>>>``RGB 24 bit`` ||アルファなしの TrueColor。 256x256 テクスチャの場合は、192 KB。 ||
+||>>>``Alpha 8 bit`` ||色なしの高画質アルファ チャンネル。 256x256 テクスチャの場合は、64 KB。 ||
+||>>>``RGBA 16 bit`` ||低画質 True Color。 16 段階の赤、緑、青、アルファがあります。 圧縮 DXT　形式は、メモリをあまり使用せず、通常は見た目もよくなります。 256x256 テクスチャの場合は、128 KB。 ||
+||>>>``RGBA 32 bit`` ||アルファのある Truecolor。最高画質になります。 256x256 テクスチャの場合は、256 KBで、費用がかかります。 ほとんどの場合、__DXT5__は、はるかに小さいサイズで十分な画質を提供します。 DXT 圧縮は目に見える画質損失を生じるため、これは主に法線マップに使用します。 ||
 >><<
 !!iOS
 >>ios<<
-||``Texture Format`` ||�e�N�X�`���ɑ΂��Ďg�p���������\���B �T�C�Y�Ɖ掿�Ԃł̃g���[�h�I�t�ƂȂ�܂��B ���L�̗�ł́A256 x 256 �s�N�Z���̃Q�[�����e�N�X�`���̍ŏI�T�C�Y�������Ă��܂��B||
-||>>>``RGB Compressed PVRTC 4 bits`` ||���k���ꂽ RGB �e�N�X�`���B ����́A�f�t���[�Y �e�N�X�`���̍ł���ʓI�Ȍ`���ɂȂ�܂��B �s�N�Z�������� 4 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A32 KB)�B||
-||>>>``RGBA Compressed PVRTC 4 bits`` ||���k���ꂽ RGBA �e�N�X�`���B ����́A�������̂���f�t���[�Y����уX�y�L��������e�N�X�`���Ɏg�p������Ȍ`���ɂȂ�܂��B �s�N�Z�������� 4 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A32 KB)�B||
-||>>>``RGB Compressed PVRTC 2 bits`` ||���k���ꂽ RGB �e�N�X�`���B �f�t���[�Y �e�N�X�`���ɓK�������Ⴂ�掿�`���B �s�N�Z�������� 2 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A16 KB)�B||
-||>>>``RGBA Compressed PVRTC 2 bits`` ||���k���ꂽ RGBA �e�N�X�`���B �f�t���[�Y����уX�y�L���� �R���g���[�� �e�N�X�`���ɓK�������Ⴂ�掿�`���B �s�N�Z�������� 2 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A16 KB)�B||
-||>>>``RGB Compressed DXT1`` ||���k���ꂽ RGB �e�N�X�`���B ���̌`���� iOS �ł̓T�|�[�g����Ă��܂��񂪁A�f�X�N�g�b�v�Ƃ̉��ʌ݊����ɑ΂��Ĉێ�����܂��B ||
-||>>>``RGBA Compressed DXT5`` ||���k���ꂽ RGBA �e�N�X�`���B ���̌`���� iOS �ł̓T�|�[�g����Ă��܂��񂪁A�f�X�N�g�b�v�Ƃ̉��ʌ݊����ɑ΂��Ĉێ�����܂��B ||
-||>>>``RGB 16 bit`` ||�A���t�@�Ȃ��� 65,000 �F�B PVRTC �`�����������̃��������g�p���܂����AUI �܂��͊K���x�̂Ȃ��N���X�v �e�N�X�`���ɂ��K���Ă���ꍇ������܂��B 256x256 �e�N�X�`���̏ꍇ�́A128 KB�B ||
-||>>>``RGB 24 bit`` ||�A���t�@�Ȃ��� TrueColor�B 256x256 �e�N�X�`���̏ꍇ�́A192 KB�B ||
-||>>>``Alpha 8 bit`` ||�F�Ȃ��̍��掿�A���t�@ �`�����l���B 256x256 �e�N�X�`���̏ꍇ�́A64 KB�B ||
-||>>>``RGBA 16 bit`` ||��掿 True Color�B 16 �i�K�̐ԁA�΁A�A�A���t�@������܂��B PVRTC �`�����������̃��������g�p���܂����A���m�ȃA���t�@ �`�����l�����K�v�ȏꍇ�ɕ֗��ȏꍇ������܂��B 256x256 �e�N�X�`���̏ꍇ�́A128 KB�B ||
-||>>>``RGBA 32 bit`` ||�A���t�@�̂��� Truecolor�B�ō��掿�ɂȂ�܂��B 256x256 �e�N�X�`���̏ꍇ�́A256 KB�ŁA��p��������܂��B �قƂ�ǂ̏ꍇ�A__PVRTC__�́A�͂邩�ɏ������T�C�Y�ŏ\���ȉ掿��񋟂��܂��B ||
-||``Compression quality`` ||Fast�ō��p�t�H�[�}���X�ABest�ō��掿�ANormal�łӂ��̃o�����X���Ƃ�܂�
+||``Texture Format`` ||テクスチャに対して使用される内部表示。 サイズと画質間でのトレードオフとなります。 下記の例では、256 x 256 ピクセルのゲーム内テクスチャの最終サイズを示しています。||
+||>>>``RGB Compressed PVRTC 4 bits`` ||圧縮された RGB テクスチャ。 これは、デフューズ テクスチャの最も一般的な形式になります。 ピクセルあたり 4 ビット (256x256 テクスチャの場合は、32 KB)。||
+||>>>``RGBA Compressed PVRTC 4 bits`` ||圧縮された RGBA テクスチャ。 これは、透明性のあるデフューズおよびスペキュラ制御テクスチャに使用される主な形式になります。 ピクセルあたり 4 ビット (256x256 テクスチャの場合は、32 KB)。||
+||>>>``RGB Compressed PVRTC 2 bits`` ||圧縮された RGB テクスチャ。 デフューズ テクスチャに適したより低い画質形式。 ピクセルあたり 2 ビット (256x256 テクスチャの場合は、16 KB)。||
+||>>>``RGBA Compressed PVRTC 2 bits`` ||圧縮された RGBA テクスチャ。 デフューズおよびスペキュラ コントロール テクスチャに適したより低い画質形式。 ピクセルあたり 2 ビット (256x256 テクスチャの場合は、16 KB)。||
+||>>>``RGB Compressed DXT1`` ||圧縮された RGB テクスチャ。 この形式は iOS ではサポートされていませんが、デスクトップとの下位互換性に対して維持されます。 ||
+||>>>``RGBA Compressed DXT5`` ||圧縮された RGBA テクスチャ。 この形式は iOS ではサポートされていませんが、デスクトップとの下位互換性に対して維持されます。 ||
+||>>>``RGB 16 bit`` ||アルファなしの 65,000 色。 PVRTC 形式よりも多くのメモリを使用しますが、UI または階調度のないクリスプ テクスチャにより適している場合があります。 256x256 テクスチャの場合は、128 KB。 ||
+||>>>``RGB 24 bit`` ||アルファなしの TrueColor。 256x256 テクスチャの場合は、192 KB。 ||
+||>>>``Alpha 8 bit`` ||色なしの高画質アルファ チャンネル。 256x256 テクスチャの場合は、64 KB。 ||
+||>>>``RGBA 16 bit`` ||低画質 True Color。 16 段階の赤、緑、青、アルファがあります。 PVRTC 形式よりも多くのメモリを使用しますが、正確なアルファ チャンネルが必要な場合に便利な場合があります。 256x256 テクスチャの場合は、128 KB。 ||
+||>>>``RGBA 32 bit`` ||アルファのある Truecolor。最高画質になります。 256x256 テクスチャの場合は、256 KBで、費用がかかります。 ほとんどの場合、__PVRTC__は、はるかに小さいサイズで十分な画質を提供します。 ||
+||``Compression quality`` ||Fastで高パフォーマンス、Bestで高画質、Normalでふたつのバランスをとります
 >><<
 !Android!
 >>android<<
-||``Texture Format`` ||�e�N�X�`���ɑ΂��Ďg�p���������\���B �T�C�Y�Ɖ掿�Ԃł̃g���[�h�I�t�ƂȂ�܂��B ���L�̗�ł́A256 x 256 �s�N�Z���̃Q�[�����e�N�X�`���̍ŏI�T�C�Y�������Ă��܂��B||
-||>>>``RGB Compressed DXT1`` ||���k���ꂽ RGB �e�N�X�`���B Nvidia Tegra �ŃT�|�[�g����Ă��܂��B �s�N�Z�������� 4 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A32 KB)�B ||
-||>>>``RGBA Compressed DXT5`` ||���k���ꂽ RGBA �e�N�X�`���B Nvidia Tegra �ŃT�|�[�g����Ă��܂��B �s�N�Z�������� 6 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A64 KB)�B ||
-||>>>``RGB Compressed ETC 4 bits`` ||���k���ꂽ RGB �e�N�X�`���B ����́AAndroid �v���W�F�N�g�̃f�t�H���g�̃e�N�X�`���`���ɂȂ�܂��B ETC1 �́AOpenGL ES 2.0 �̈ꕔ�ŁA���ׂĂ� OpenGL ES 2.0 GPU �ŃT�|�[�g����Ă��܂��B �A���t�@�̓T�|�[�g���Ă��܂���B �s�N�Z�������� 4 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A32 KB)�B||
-||>>>``RGB Compressed PVRTC 2 bits`` ||���k���ꂽ RGB �e�N�X�`���B Imagination PowerVR GPU �ŃT�|�[�g����Ă��܂��B �s�N�Z�������� 2 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A16 KB)�B||
-||>>>``RGBA Compressed PVRTC 2 bits`` ||���k���ꂽ RGBA �e�N�X�`���B Imagination PowerVR GPU �ŃT�|�[�g����Ă��܂��B �s�N�Z�������� 2 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A16 KB)�B||
-||>>>``RGB Compressed PVRTC 4 bits`` ||���k���ꂽ RGB �e�N�X�`���B Imagination PowerVR GPU �ŃT�|�[�g����Ă��܂��B �s�N�Z�������� 4 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A32 KB)�B||
-||>>>``RGBA Compressed PVRTC 4 bits`` ||���k���ꂽ RGBA �e�N�X�`���B Imagination PowerVR GPU �ŃT�|�[�g����Ă��܂��B �s�N�Z�������� 4 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A32 KB)�B||
-||>>>``RGB Compressed ATC 4 bits`` ||���k���ꂽ RGB �e�N�X�`���B Qualcomm Snapdragon �ŃT�|�[�g����Ă��܂��B �s�N�Z�������� 4 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A32 KB)�B ||
-||>>>``RGBA Compressed ATC 8 bits`` ||���k���ꂽ RGBA �e�N�X�`���B Qualcomm Snapdragon �ŃT�|�[�g����Ă��܂��B �s�N�Z�������� 6 �r�b�g (256x256 �e�N�X�`���̏ꍇ�́A64 KB)�B ||
-||>>>``RGB 16 bit`` ||�A���t�@�Ȃ��� 65,000 �F�B ���k�`�����������̃��������g�p���܂����AUI �܂��͊K���x�̂Ȃ��N���X�v �e�N�X�`���ɂ��K���Ă���ꍇ������܂��B 256x256 �e�N�X�`���̏ꍇ�́A128 KB�B ||
-||>>>``RGB 24 bit`` ||�A���t�@�Ȃ��� TrueColor�B 256x256 �e�N�X�`���̏ꍇ�́A192 KB�B ||
-||>>>``Alpha 8 bit`` ||�F�Ȃ��̍��掿�A���t�@ �`�����l���B 256x256 �e�N�X�`���̏ꍇ�́A64 KB�B ||
-||>>>``RGBA 16 bit`` ||��掿 True Color�B �A���t�@ �`�����l���̂���e�N�X�`���ɑ΂���f�t�H���g�̈��k�B 256x256 �e�N�X�`���̏ꍇ�́A128 KB�B ||
-||>>>``RGBA 32 bit`` ||�A���t�@�̂��� Truecolor�B�A���t�@�̂���e�N�X�`���ɑ΂���ō��掿���k�ɂȂ�܂��B 256x256 �e�N�X�`���̏ꍇ�́A256 KB�B |
-||``Compression quality`` ||Fast�ō��p�t�H�[�}���X�ABest�ō��掿�ANormal�łӂ��̃o�����X���Ƃ�܂�
+||``Texture Format`` ||テクスチャに対して使用される内部表示。 サイズと画質間でのトレードオフとなります。 下記の例では、256 x 256 ピクセルのゲーム内テクスチャの最終サイズを示しています。||
+||>>>``RGB Compressed DXT1`` ||圧縮された RGB テクスチャ。 Nvidia Tegra でサポートされています。 ピクセルあたり 4 ビット (256x256 テクスチャの場合は、32 KB)。 ||
+||>>>``RGBA Compressed DXT5`` ||圧縮された RGBA テクスチャ。 Nvidia Tegra でサポートされています。 ピクセルあたり 6 ビット (256x256 テクスチャの場合は、64 KB)。 ||
+||>>>``RGB Compressed ETC 4 bits`` ||圧縮された RGB テクスチャ。 これは、Android プロジェクトのデフォルトのテクスチャ形式になります。 ETC1 は、OpenGL ES 2.0 の一部で、すべての OpenGL ES 2.0 GPU でサポートされています。 アルファはサポートしていません。 ピクセルあたり 4 ビット (256x256 テクスチャの場合は、32 KB)。||
+||>>>``RGB Compressed PVRTC 2 bits`` ||圧縮された RGB テクスチャ。 Imagination PowerVR GPU でサポートされています。 ピクセルあたり 2 ビット (256x256 テクスチャの場合は、16 KB)。||
+||>>>``RGBA Compressed PVRTC 2 bits`` ||圧縮された RGBA テクスチャ。 Imagination PowerVR GPU でサポートされています。 ピクセルあたり 2 ビット (256x256 テクスチャの場合は、16 KB)。||
+||>>>``RGB Compressed PVRTC 4 bits`` ||圧縮された RGB テクスチャ。 Imagination PowerVR GPU でサポートされています。 ピクセルあたり 4 ビット (256x256 テクスチャの場合は、32 KB)。||
+||>>>``RGBA Compressed PVRTC 4 bits`` ||圧縮された RGBA テクスチャ。 Imagination PowerVR GPU でサポートされています。 ピクセルあたり 4 ビット (256x256 テクスチャの場合は、32 KB)。||
+||>>>``RGB Compressed ATC 4 bits`` ||圧縮された RGB テクスチャ。 Qualcomm Snapdragon でサポートされています。 ピクセルあたり 4 ビット (256x256 テクスチャの場合は、32 KB)。 ||
+||>>>``RGBA Compressed ATC 8 bits`` ||圧縮された RGBA テクスチャ。 Qualcomm Snapdragon でサポートされています。 ピクセルあたり 6 ビット (256x256 テクスチャの場合は、64 KB)。 ||
+||>>>``RGB 16 bit`` ||アルファなしの 65,000 色。 圧縮形式よりも多くのメモリを使用しますが、UI または階調度のないクリスプ テクスチャにより適している場合があります。 256x256 テクスチャの場合は、128 KB。 ||
+||>>>``RGB 24 bit`` ||アルファなしの TrueColor。 256x256 テクスチャの場合は、192 KB。 ||
+||>>>``Alpha 8 bit`` ||色なしの高画質アルファ チャンネル。 256x256 テクスチャの場合は、64 KB。 ||
+||>>>``RGBA 16 bit`` ||低画質 True Color。 アルファ チャンネルのあるテクスチャに対するデフォルトの圧縮。 256x256 テクスチャの場合は、128 KB。 ||
+||>>>``RGBA 32 bit`` ||アルファのある Truecolor。アルファのあるテクスチャに対する最高画質圧縮になります。 256x256 テクスチャの場合は、256 KB。 |
+||``Compression quality`` ||Fastで高パフォーマンス、Bestで高画質、Normalでふたつのバランスをとります
 
-Tegra �ȂǓ���̃n�[�h�E�F�A��ΏۂƂ��Ă��Ȃ��ꍇ�AETC1 ���k�̎g�p�������߂��܂��B �K�v�ȏꍇ�A�O���̃A���t�@ �`�����l�����i�[���A���Ⴂ�e�N�X�`�� �t�b�g�v�����g���烁���b�g�������܂��B
-�e�N�X�`���ɃA���t�@ �`�����l����{���Ɋi�[�������ꍇ�ARGBA16 �r�b�g�́A���ׂẴn�[�h�E�F�A �x���_�[���Ή����Ă��鈳�k���@�ɂȂ�܂��B
+Tegra など特定のハードウェアを対象としていない場合、ETC1 圧縮の使用をお勧めします。 必要な場合、外部のアルファ チャンネルを格納し、より低いテクスチャ フットプリントからメリットが得られます。
+テクスチャにアルファ チャンネルを本当に格納したい場合、RGBA16 ビットは、すべてのハードウェア ベンダーが対応している圧縮方法になります。
 
-�A�v���P�[�V�������T�|�[�g����Ă��Ȃ��e�N�X�`�����k���g�p����ꍇ�A�e�N�X�`���́ARGBA 32 �ɉ𓀂���A���k�e�N�X�`���Ƌ��Ƀ������Ɋi�[����܂��B
-���̏ꍇ�A�e�N�X�`���̉𓀂ɖ��ʂȎ��Ԃ��g���A2 ��i�[���邱�ƂŃ����������ʂɂȂ�܂��B ����͂܂��A�����_�����O �p�t�H�[�}���X�ɑ傫�Ȉ��e�����y�ڂ��ꍇ������܂��B
+アプリケーションがサポートされていないテクスチャ圧縮を使用する場合、テクスチャは、RGBA 32 に解凍され、圧縮テクスチャと共にメモリに格納されます。
+この場合、テクスチャの解凍に無駄な時間を使い、2 回格納することでメモリも無駄になります。 これはまた、レンダリング パフォーマンスに大きな悪影響を及ぼす場合があります。
 >><<
 !Flash
 ||``Format`` ||Image format ||
@@ -234,56 +234,56 @@ Tegra �ȂǓ���̃n�[�h�E�F�A��ΏۂƂ��Ă��Ȃ��ꍇ�AETC1 ���k�̎g�p�������߂��܂
 ||>>>``RGBA 32-bit`` ||Uncompressed RGBA image data, 8 bits per channel ||
 
 [[#details]]
-!! �ڍ�
+!! 詳細
 
 
-!!! �Ή��`��
-Unity �́A���̉摜�t�@�C���`�����T�|�[�g���Ă��܂��B PSD�ATIFF�AJPG�ATGA�APNG�AGIF�ABMP�AIFF�APICT�B Unity �̓}���` ���C���[ PSD & TIFF �t�@�C����K�؂ɃC���|�[�g�ł��܂��B �����̓C���|�[�g���Ɏ����I�ɕ��R������܂����A���C���[�́A���ꎩ�̃A�Z�b�g�Ɉێ�����邽�߁B�����̃t�@�C���^�C�v���l�C�e�B�u�Ɏg�p����ۂ���Ƃ����ʂɂȂ邱�Ƃ͂���܂���B ����́APhotoshop ����g�p�ł���e�N�X�`���̃R�s�[�� �P �� 3D ���f�����O �A�v���P�[�V�������� Unity �ɍ쐬�ł���̂ŏd�v�ł��B
+!!! 対応形式
+Unity は、次の画像ファイル形式をサポートしています。 PSD、TIFF、JPG、TGA、PNG、GIF、BMP、IFF、PICT。 Unity はマルチ レイヤー PSD & TIFF ファイルを適切にインポートできます。 これらはインポート時に自動的に平坦化されますが、レイヤーは、それ自体アセットに維持されるため。これらのファイルタイプをネイティブに使用する際も作業が無駄になることはありません。 これは、Photoshop から使用できるテクスチャのコピーの １ つを 3D モデリング アプリケーションから Unity に作成できるので重要です。
 
 
 [[#texturesizes]]
-!!! �e�N�X�`�� �T�C�Y
+!!! テクスチャ サイズ
 
-���z�I�ɂ́A�e�N�X�`���͗����� 2 �ׂ̂���ɂȂ�܂��B �����̃T�C�Y�͎��̂悤�ɂȂ�܂��B 2�A4�A8�A16�A32�A64�A128�A256�A512�A1024 �܂��� 2048 �s�N�Z���B �e�N�X�`���͐����`�ł���K�v�͂���܂���B�܂�A���ƍ����͈قȂ��Ă��Ă��\���܂���B
+理想的には、テクスチャは両側が 2 のべき乗になります。 これらのサイズは次のようになります。 2、4、8、16、32、64、128、256、512、1024 または 2048 ピクセル。 テクスチャは正方形である必要はありません。つまる、幅と高さは異なっていても構いません。
 
-Unity �ł͕ʂ̃e�N�X�`�� �T�C�Y (2 �ׂ̂���ȊO) ���g�p���邱�Ƃ��ł��܂��B 2 �ׂ̂���ȊO�̃e�N�X�`�� �T�C�Y�́A[[class-GuiTexture|GUI Textures]] �Ŏg�p�����̂��x�X�g�ł����A���Ŏg�p�����ꍇ�́A�񈳏k�� RGBA 32 �r�b�g�`���ɕϊ�����܂��B �܂�A���̃e�N�X�`�� �T�C�Y�́A�r�f�I ������ (PVRT (iOS)/DXT (�f�X�N�g�b�v) ���k�e�N�X�`��) ���g�p���邽�߁A���[�h�⃌���_�����O�ɂ�莞�Ԃ�������܂� (iOS ���[�h��)�B ��ʂɁA2 �ׂ̂���ȊO�̃T�C�Y�� GUI �ړI�ɂ̂ݎg�p���܂��B
+Unity では別のテクスチャ サイズ (2 のべき乗以外) を使用することができます。 2 のべき乗以外のテクスチャ サイズは、[[class-GuiTexture|GUI Textures]] で使用されるのがベストですが、他で使用される場合は、非圧縮の RGBA 32 ビット形式に変換されます。 つまり、このテクスチャ サイズは、ビデオ メモリ (PVRT (iOS)/DXT (デスクトップ) 圧縮テクスチャ) を使用するため、ロードやレンダリングにより時間がかかります (iOS モード時)。 一般に、2 のべき乗以外のサイズは GUI 目的にのみ使用します。
 
-2 �ׂ̂���ȊO�̃e�N�X�`�� �A�Z�b�g�A�C���|�[�g�ݒ�ɏڍ׃e�N�X�`�� �^�C�v�́uNon Power of 2�v�I�v�V�������g�p���āA�C���|�[�g���Ɋg��ł��܂��B Unity �́A�v���ɉ����āA�e�N�X�`���̓��e���k���g�債�A�Q�[�����ł́A���̃e�N�X�`���̓��e�͑��̃e�N�X�`�����l���삷�邽�߁A���k�ł��A���ɍ����Ń��[�h����܂��B
+2 のべき乗以外のテクスチャ アセット、インポート設定に詳細テクスチャ タイプの「Non Power of 2」オプションを使用して、インポート時に拡大できます。 Unity は、要求に応じて、テクスチャの内容を縮小拡大し、ゲーム内では、このテクスチャの内容は他のテクスチャ同様動作するため、圧縮でき、非常に高速でロードされます。
 
-2 �ׂ̂���ȊO�̃e�N�X�`���̐��ݓI�Ȗ��Ƃ��āAUnity������������2�ׂ̂���̃e�N�X�`���ɕϊ����A�X�g���b�`�������킸���ȉ摜�̗���������N�������Ƃ�����܂��B  
+2 のべき乗以外のテクスチャの潜在的な問題として、Unityが内部処理で2のべき乗のテクスチャに変換し、ストレッチ処理がわずかな画像の乱れを引き起こすことがあります。  
 
-!!! UV �}�b�s���O
+!!! UV マッピング
 
-3D ���f���� 2D �e�N�X�`�����}�b�s���O����ƁA�����̃��b�s���O���s���܂��B ����́A$$UV mapping$$ �ƌĂ΂�A3D ���f�����O �A�v���P�[�V�����ōs���܂��B Unity ���ŁA[[class-Material|Materials]] ���g�p���āA�e�N�X�`�����X�P�[������шړ������邱�Ƃ��ł��܂��B �@������яڍ׃}�b�v�̃X�P�[�����O�͓��ɕ֗��ł��B
+3D モデルに 2D テクスチャをマッピングすると、ある種のラッピングが行われます。 これは、$$UV mapping$$ と呼ばれ、3D モデリング アプリケーションで行われます。 Unity 内で、[[class-Material|Materials]] を使用して、テクスチャをスケールおよび移動させることができます。 法線および詳細マップのスケーリングは特に便利です。
 
 
 [[#mipmaps]]
-!!! �~�b�v �}�b�v
+!!! ミップ マップ
 
-�~�b�v �}�b�v�́A���X�ɏk�����Ă����摜�ŁA���A���^�C���� 3D �G���W���ł̃p�t�H�[�}�����œK������̂Ɏg�p����܂��B �J�������牓���ɂ���I�u�W�F�N�g�́A��菬�����e�N�X�`�����g�p���܂��B �~�b�v �}�b�v���g�p���邱�ƂŁA33% �̃����������g�p���܂��񂪁A�g�p���Ȃ��ƁA�傫�ȃp�t�H�[�}���X�����������܂��B �K���Q�[�����̃e�N�X�`���Ƀ~�b�v �}�b�v���g�p���������悢�ł��傤�B���^������Ȃ��e�N�X�`���̏ꍇ���B��̗�O�ł��B
+ミップ マップは、徐々に縮小していく画像で、リアルタイムの 3D エンジンでのパフォーマンを最適化するのに使用されます。 カメラから遠くにあるオブジェクトは、より小さいテクスチャを使用します。 ミップ マップを使用することで、33% のメモリしか使用しませんが、使用しないと、大きなパフォーマンス損失が生じます。 必ずゲーム内のテクスチャにミップ マップを使用した方がよいでしょう。小型化されないテクスチャの場合が唯一の例外です。
 
 
 [[#normalmaps]]
-!!! �@���}�b�v
+!!! 法線マップ
 
-�@���}�b�v�́A�|���S���̏��Ȃ����f������葽���̍ו��������Ă���悤�Ɍ�����ꍇ�ɖ@���}�b�v �V�F�[�_������悤�Ɍ�����ꍇ�ɂɎg�p����܂��B Unity �́ARGB �摜�Ƃ��ĕ��������ꂽ�@���}�b�v���g�p���܂��B �O���[�X�P�[���̍����}�b�v�摜����@���}�b�v�𐶐�����I�v�V����������܂��B
-
-
-!!! �ڍ׃}�b�v
-
-�n�`���쐬�������ꍇ�́A�ʏ�A���C�� �e�N�X�`�����g�p���āA�������A���Ȃǂ̃G���A���ǂ��ɂ��邩�������܂��B �n�`���K�؂ȃT�C�Y�̏ꍇ�A�ŏI�I�ɂڂ₯�Ă��܂��܂��B ���C�� �e�N�X�`�����߂Â��ɘA��A[[HOWTO-UseDetailTexture|Detail textures]] �́A�ׂ����ו����t�F�[�h�C�����邱�Ƃł��̎������B���܂��B
-
-�ڍ׃e�N�X�`����`�掞�ɁA�j���[�g�����̃O���[����\���ɂȂ�A�������C�� �e�N�X�`���� 2 �{���邭�A�������C�� �e�N�X�`�������S�ȍ��Ɍ����܂��B
+法線マップは、ポリゴンの少ないモデルをより多くの細部を持っているように見せる場合に法線マップ シェーダがあるように見せる場合にに使用されます。 Unity は、RGB 画像として符号化された法線マップを使用します。 グレースケールの高さマップ画像から法線マップを生成するオプションもあります。
 
 
-!!! ���� (�L���[�u �}�b�v)
+!!! 詳細マップ
 
-���˃}�b�v�Ƀe�N�X�`�����g�p�������ꍇ (��F�uReflective�v�g�ݍ��݃V�F�[�_���g�p)�A[[class-Cubemap|Cubemap Textures]] ���g�p����K�v������܂��B
+地形を作成したい場合は、通常、メイン テクスチャを使用して、くさや岩、砂などのエリアがどこにあるかを示します。 地形が適切なサイズの場合、最終的にぼやけてしまいます。 メイン テクスチャが近づくに連れ、[[HOWTO-UseDetailTexture|Detail textures]] は、細かい細部をフェードインすることでこの事実を隠します。
+
+詳細テクスチャを描画時に、ニュートラルのグレーが非表示になり、白がメイン テクスチャを 2 倍明るく、黒がメイン テクスチャを完全な黒に見せます。
+
+
+!!! 反射 (キューブ マップ)
+
+反射マップにテクスチャを使用したい場合 (例：「Reflective」組み込みシェーダを使用)、[[class-Cubemap|Cubemap Textures]] を使用する必要があります。
 
 [[#anisotropy]]
-!!! �ٕ����t�B���^�����O
+!!! 異方性フィルタリング
 
-�ٕ����t�B���^�����O�́A�O���[�W���O�p����\�����ꂽ���ɁA�����_�����O��p��������x�]���ɂ��ĉ掿�����サ�܂� (���̔�p�͑S�̓I�ɃO���t�B�b�N �J�[�h�Ɉˑ����܂�)�B �ٕ������x�����グ��̂͒ʏ�A�n�ʂ���я��e�N�X�`���ɂƂ��Ă悢�A�C�f�B�A�ł��B [[class-QualitySettings | Quality Settings]] �ł́A�ٕ����t�B���^�����O�́A���ׂẴe�N�X�`���ɋ����I�Ɏ��s�ł��邩�A�S�̓I�ɖ����ɂł��܂��B
+異方性フィルタリングは、グレージング角から表示された時に、レンダリング費用をある程度犠牲にして画質を向上します (この費用は全体的にグラフィック カードに依存します)。 異方性レベルを上げるのは通常、地面および床テクスチャにとってよいアイディアです。 [[class-QualitySettings | Quality Settings]] では、異方性フィルタリングは、すべてのテクスチャに強制的に実行できるか、全体的に無効にできます。
 
 Attach:AnisotropicComparison.png \\
-�u�n�ʃe�N�X�`���Ɏg�p������ٕ��� (��)/�ő�ٕ���(�E)�v
+「地面テクスチャに使用される非異方性 (左)/最大異方性(右)」

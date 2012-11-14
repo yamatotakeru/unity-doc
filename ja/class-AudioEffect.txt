@@ -1,16 +1,16 @@
-! �I�[�f�B�I �t�B���^�iUnity Pro�̂݁j
+! オーディオ フィルタ（Unity Proのみ）
 
-[[class-AudioSource | AudioSources]] �܂��� [[class-AudioListener | AudioListener]] ���A�^�b�`����Ă���̂Ɠ����Q�[���I�u�W�F�N�g�Ƀt�B���^�R���|�[�l���g��ǉ����邱�Ƃɂ���ăt�B���^�R���|�[�l���g��K�p���邱�Ƃ��ł��܂��B�t�B���^���ʂ͎��̂悤�ȃR���|�[�l���g�̏����Ŏ��s���܂��F
+[[class-AudioSource | AudioSources]] または [[class-AudioListener | AudioListener]] がアタッチされているのと同じゲームオブジェクトにフィルタコンポーネントを追加することによってフィルタコンポーネントを適用することができます。フィルタ効果は次のようなコンポーネントの順序で実行さます：
 
 Attach:FilterGraph1.png Attach:FilterGraph2.png\\
 
-�t�B���^�R���|�[�l���g��L��/�����ɂ���Ƃ��ƂŃt�B���^���X�L�b�v���邱�Ƃ��o����B���x�ɍœK������Ă�����̂́A�������̃t�B���^�́ACPU���ׂ��傫���ł��BAudio�^�u��[[Profiler#Audio | profiler]] �̃I�[�f�B�ICPU�g�p�����Ď����邱�Ƃ��ł��܂��B
+フィルタコンポーネントを有効/無効にするとことでフィルタをスキップすることが出来る。高度に最適化されているものの、いくつかのフィルタは、CPU負荷が大きいです。Audioタブの[[Profiler#Audio | profiler]] のオーディオCPU使用率を監視することができます。
 
 
-�e�t�B���^�[�^�C�v�̏ڍׂɂ��ẮA���y�[�W���Q�Ƃ��Ă��������B
-* [[class-AudioLowPassFilter | ���[�p�X�t�B���^]]
-* [[class-AudioHighPassFilter |�n�C�p�X�t�B���^]]
-* [[class-AudioEchoFilter |�G�R�[�t�B���^]]
-* [[class-AudioDistorionFilter |�c�݃t�B���^]]
-* [[class-AudioReverbFilter |���o�[�u�t�B���^]]
-* [[class-AudioChorusFilter |�R�[���X�t�B���^]]
+各フィルタータイプの詳細については、次ページを参照してください。
+* [[class-AudioLowPassFilter | ローパスフィルタ]]
+* [[class-AudioHighPassFilter |ハイパスフィルタ]]
+* [[class-AudioEchoFilter |エコーフィルタ]]
+* [[class-AudioDistorionFilter |歪みフィルタ]]
+* [[class-AudioReverbFilter |リバーブフィルタ]]
+* [[class-AudioChorusFilter |コーラスフィルタ]]

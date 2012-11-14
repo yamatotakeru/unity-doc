@@ -1,9 +1,9 @@
-! �}�C�N
+! マイク
 
-�}�C�N�iMicrophone�j�N���X��PC�⃂�o�C���f�o�C�X��̕����I�ȃ}�C�N������͂��L���v�`������̂ɕ֗��ȃN���X�ł��B
+マイク（Microphone）クラスはPCやモバイルデバイス上の物理的なマイクから入力をキャプチャするのに便利なクラスです。
 
-���̃N���X�ŁA�����}�C�N����̘^���J�n����яI���A���p�\�ł���I�[�f�B�I���̓f�o�C�X�ꗗ�̎擾�A���̓f�o�C�X�̏�Ԏ擾���\�ł��B
+このクラスで、内臓マイクからの録音開始および終了、利用可能であるオーディオ入力デバイス一覧の取得、入力デバイスの状態取得が可能です。
 
-�N���X���g�p���邤���ŏڍׂȏ��ɂ��Ă̓X�N���v�g���t�@�����X�iScripting Reference�j���Q�Ɖ������B
+クラスを使用するうえで詳細な情報についてはスクリプトリファレンス（Scripting Reference）を参照下さい。
 
 Attach:Microphone-icon.png

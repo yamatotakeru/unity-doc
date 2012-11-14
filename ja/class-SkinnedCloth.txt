@@ -1,58 +1,58 @@
-! �X�L�� �N���X
+! スキン クロス
 
 Attach:SkinnedCloth.png\\
-�u�V�[�� �r���[�ƃC���X�y�N�^�ł̃X�L�� �N���X�v
+「シーン ビューとインスペクタでのスキン クロス」
 
-$$SkinnedCloth$$ �R���|�[�l���g�́A$$SkinnedMeshRenderer$$ �ƘA�g���āA�L�����N�^�[��ŃN���[�V���O���V�~�����[�g���܂��B SkinnedMeshRenderer ���g�p����A�j���[�g�����ꂽ�L�����N�^�[������ꍇ�ASkinnedMeshRenderer �ŁASkinnedCloth �R���|�[�l���g���Q�[�� �I�u�W�F�N�g�ɒǉ����āA�L�����N�^�[����茻���I�Ɍ����邱�Ƃ��ł��܂��B SkinnedMeshRender �ŁAGameObject ��I�����A^^Component->Physics->Skinned Cloth^^ ���g�p���āASkinnedCloth �R���|�[�l���g��ǉ����܂��B 
+$$SkinnedCloth$$ コンポーネントは、$$SkinnedMeshRenderer$$ と連携して、キャラクター上でクレーシングをシミュレートします。 SkinnedMeshRenderer を使用するアニメート化されたキャラクターがある場合、SkinnedMeshRenderer で、SkinnedCloth コンポーネントをゲーム オブジェクトに追加して、キャラクターをより現実的に見せることができます。 SkinnedMeshRender で、GameObject を選択し、^^Component->Physics->Skinned Cloth^^ を使用して、SkinnedCloth コンポーネントを追加します。 
 
-SkinnedCloth �R���|�[�l���g�́ASkinnedMeshRenderer ����̒��_�̏o�͂��󂯎��A�����ɃN���[�V���O �V�~�����[�V������K�p���܂��B SkinnedCloth �R���|�[�l���g�ɂ́A���_���Ƃ̌W���̃Z�b�g������A�V�~�����[�g���ꂽ�N���X���A�X�L�� ���b�V���Ɋ֘A���Ăǂꂾ�����R�Ɉړ��ł��邩���`���܂��B 
+SkinnedCloth コンポーネントは、SkinnedMeshRenderer からの頂点の出力を受け取り、そこにクローシング シミュレーションを適用します。 SkinnedCloth コンポーネントには、頂点ごとの係数のセットがあり、シミュレートされたクロスが、スキン メッシュに関連してどれだけ自由に移動できるかを定義します。 
 
-�����̌W���́ASkinnedCloth �R���|�[�l���g�̂���Q�[�� �I�u�W�F�N�g��I������ƁA�V�[�� �G�f�B�^�ƃC���X�y�N�^���g�p���āA���o�I�ɕҏW�ł��܂��B �ҏW���[�h�ɂ́A�I�����[�h�ƒ��_�`�惂�[�h�� 2 ��ނ�����܂��B �I�����[�h�ł́A�V�[�� �r���[�Œ��_���N���b�N���āA�I�����A�C���X�y�N�^�ł��̌W����ҏW���܂��B ���_�`�惂�[�h�ł́A�C���X�y�N�^�ŕK�v�ȌW���l��ݒ肵�A�ύX�������W���ׂ̗ɂ���u�`��v�{�^����L���ɂ��āA���_���N���b�N���āA�l�𒸓_�ɓK�p���܂��B
+これらの係数は、SkinnedCloth コンポーネントのあるゲーム オブジェクトを選択すると、シーン エディタとインスペクタを使用して、視覚的に編集できます。 編集モードには、選択モードと頂点描画モードの 2 種類があります。 選択モードでは、シーン ビューで頂点をクリックして、選択し、インスペクタでその係数を編集します。 頂点描画モードでは、インスペクタで必要な係数値を設定し、変更したい係数の隣にある「描画」ボタンを有効にして、頂点をクリックして、値を頂点に適用します。
 
-�X�L�� �N���X�̃V�~�����[�V�����́ASkinnedMeshRenderer �ŃX�L�����ꂽ���_�ɂ���Ă̂݋쓮����A�����łȂ��ꍇ�́A�R���C�_�Ƒ��ݍ�p���܂���B ����ɂ��A���������V�~�����[�V�����̎c��Ɠ����t���[�� ���[�g�Ɠ����X���b�h�ŃV�~���T�[�Ƃ���K�v���Ȃ����߁A�X�L�� �N���X�̃V�~�����[�V�����́A���S�ɕ����I�� [[class-Interactive Cloth | Interactive Cloth]] �R���|�[�l���g��荂���ɂȂ�܂��B
+スキン クロスのシミュレーションは、SkinnedMeshRenderer でスキンされた頂点によってのみ駆動され、そうでない場合は、コライダと相互作用しません。 これにより、物理特性シミュレーションの残りと同じフレーム レートと同じスレッドでシミュサーとする必要がないため、スキン クロスのシミュレーションは、完全に物理的な [[class-Interactive Cloth | Interactive Cloth]] コンポーネントより高速になります。
 
-�X�L�� �N���X �R���|�[�l���g�𖳌��܂��͗L���ɂ��A���ł��I���܂��̓I�t�ɂł��܂��B �I�t�ɂ��邱�ƂŁA�����_�����O��ʏ�� SkinnedMeshRenderer �ɐ؂�ւ��̂ŁA�p�t�H�[�}���X��ς���̂ɓ��I�ɕς���K�v������ꍇ�͂��ł�������؂�ւ��邱�Ƃ��ł��܂��B SkinnedCloth.SetEnabledFading() ���\�b�h���g�p���āA�X�N���v�g���� 2 �̃��[�h�Ԃŉ~���ɃN���X �t�F�[�h���邱�Ƃ��ł��܂��B
+スキン クロス コンポーネントを無効または有効にし、いつでもオンまたはオフにできます。 オフにすることで、レンダリングを通常の SkinnedMeshRenderer に切り替わるので、パフォーマンスを変えるのに動的に変える必要がある場合はいつでもこれらを切り替えることができます。 SkinnedCloth.SetEnabledFading() メソッドを使用して、スクリプトから 2 つのモード間で円滑にクロス フェードすることもできます。
 
-�N���X�@�V�~�����[�V�����ɂ��@���}�b�v�͐�������܂����ڐ��͐������܂���B���b�V���ɐڐ�������ꍇ�A�V�F�[�_�ɕύX�Ȃ��œn����܂��B�܂�ڐ��Ɉˑ������V�F�[�_�i�o���v�}�b�v�V�F�[�_�Ȃǁj���g�p����ꍇ�A�����ʒu����ړ������N���X�ɑ΂��郉�C�e�B���O�͌���Ă���悤�Ɍ����܂��B
+クロス　シミュレーションにより法線マップは生成されますが接線は生成しません。メッシュに接線がある場合、シェーダに変更なしで渡されます。つまり接線に依存したシェーダ（バンプマップシェーダなど）を使用する場合、初期位置から移動したクロスに対するライティングは誤っているように見えます。
 
-!!�N���X�W��
+!!クロス係数
 
-���_���Ƃ� 4 �̌W��������A�N���X�̒��_���A�X�L�����ꂽ���_����і@���ɑ΂��āA�N���X���_���ǂ̂悤�ɓ��������`���܂��B �ȉ��� 4 �̌W��������܂��B
+頂点ごとに 4 つの係数があり、クロスの頂点が、スキンされた頂点および法線に対して、クロス頂点がどのように動くかを定義します。 以下の 4 つの係数があります。
 
-||``Max Distance`` ||���_���X�L�� ���b�V�����_�ʒu����ړ��ł��鋗���B SkinnedCloth �R���|�[�l���g�ɂ��A�N���X���_�́A�X�L�� ���b�V�����_�ʒu���� maxDistance ���ɗ��܂�܂��B maxDistance �� 0 �̏ꍇ�A���_�̓V�~�����[�g����܂��񂪁A�X�L�� ���b�V���ɐݒ肳��܂��B ���̓���́A�N���X���_���A�j���[�g���L�����N�^�[�ɌŒ�A�܂�A�X�L�������Ȃ����_��A�L�����N�^�[�̑� (�x���g�ŌŒ肳�ꂽ�Y�{���̍�) �ɌŒ肳���p�[�c�ɑ΂��Ă�����s�������ꍇ�ɕ֗��ł��B �������A�N���X �V�~�����[�V���� (����Ȃ�) ���g�p���Ȃ��L�����N�^�[�̑傫�ȃp�[�c������ꍇ�A�ō��̃p�t�H�[�}���X�𓾂�ɂ́A������ SkinnedCloth �R���|�[�l���g�������Ȃ��ʌ̃X�L�� ���b�V���Ƃ��Đݒ肵�܂��B||
-||``Distance Bias`` ||�X�L�� ���b�V���̖@���Ɋ�Â��AmaxDistance �Œ�`����鋅�̂�c�߂܂��B ���̋@�\�́A�l�� 0.0 (�f�t�H���g) �ɂ���Ɩ����ɂȂ�܂��B ���̏ꍇ�AmaxDistance ���̂͘c�߂��܂���B maxDistanceBias �� -1.0 �܂ŉ�����ƁA���_���ڐ������Ɉړ��ł��鋗��������܂��B -1.0 the �̏ꍇ�A�X�L�� ���b�V�����_�ʒu��ʂ��āA�X�L�� ���b�V�����_�ʒu�܂ł� maxDistance ���Ŗ@����ɒ��_�����܂�K�v������܂��B  maxDistanceBias �� 1.0 �܂ŏグ��ƁA���_���@�������Ɉړ��ł��鋗��������܂��B 1.0 �̏ꍇ�A���_�́A�X�L�� ���b�V�����_�ʒu����the vertex can only move inside the tangental plane within maxDistance ���Őڕ��ʓ��Œ��_���ړ��ł��܂��B||
-||``Collision Sphere Radius and Collision Sphere Distance`` ||���͂ł��Ȃ����̂̒�`�B ����ɂ��A�A�j���[�g�����ꂽ�N���X�ւ̏Փ˂��\�ɂȂ�܂��B ���̃y�A (collisionSphereRadius�AcollisionSphereDistance) �ɂ��A�e�N���X���_�ɋ��̂���`����܂��B ���̂̒��S�́A�ʒu constrainPosition - constrainNormal * (collisionSphereRadius + collisionSphereDistance) �ɂ���A���̔��a�́AcollisionSphereRadius �ŁA�����ł� constrainPosition �� constrainNormal �́ASkinnedMeshRenderer�@�Ő������ꂽ���_�ʒu�Ɩ@���ɂȂ�܂��B SkinnedCloth �́A�N���X�̒��_�����̋��̂ɓ���Ȃ��悤�ɂ��܂��B �܂�AcollisionSphereDistance �́A�X�L�� ���b�V�����N���X�ɂ���Ăǂꂾ���[���Z�����邩���`���܂��B ����́A�ʏ� 0 �ɐݒ肳��܂��BcollisionSphereRadius �́A�N���X�̒��_���Փˋ��̎��ӂŃX���b�v�ł���悤�A�אڂ��钸�_�Ԃ̋��������傫���l�ɐݒ肷��K�v������܂��B ���̂悤�Ȑݒ�ł́A�N���X�̓X�L�� ���b�V���ɑ΂���Փ˂ɑ΂��ĕ\������܂��B || 
+||``Max Distance`` ||頂点がスキン メッシュ頂点位置から移動できる距離。 SkinnedCloth コンポーネントにより、クロス頂点は、スキン メッシュ頂点位置から maxDistance 内に留まります。 maxDistance が 0 の場合、頂点はシミュレートされませんが、スキン メッシュに設定されます。 この動作は、クロス頂点をアニメート化キャラクターに固定、つまり、スキンさせない頂点や、キャラクターの体 (ベルトで固定されたズボンの腰) に固定されるパーツに対してこれを行いたい場合に便利です。 しかし、クロス シミュレーション (顔や手など) を使用しないキャラクターの大きなパーツがある場合、最高のパフォーマンスを得るには、これらを SkinnedCloth コンポーネントを持たない別個のスキン メッシュとして設定します。||
+||``Distance Bias`` ||スキン メッシュの法線に基づき、maxDistance で定義される球体を歪めます。 この機能は、値を 0.0 (デフォルト) にすると無効になります。 この場合、maxDistance 球体は歪められません。 maxDistanceBias を -1.0 まで下げると、頂点が接線方向に移動できる距離が減ります。 -1.0 the の場合、スキン メッシュ頂点位置を通じて、スキン メッシュ頂点位置までの maxDistance 内で法線上に頂点が留まる必要があります。  maxDistanceBias を 1.0 まで上げると、頂点が法線方向に移動できる距離が減ります。 1.0 の場合、頂点は、スキン メッシュ頂点位置からthe vertex can only move inside the tangental plane within maxDistance 内で接平面内で頂点が移動できます。||
+||``Collision Sphere Radius and Collision Sphere Distance`` ||入力できない球体の定義。 これにより、アニメート化されたクロスへの衝突が可能になります。 このペア (collisionSphereRadius、collisionSphereDistance) により、各クロス頂点に球体が定義されます。 球体の中心は、位置 constrainPosition - constrainNormal * (collisionSphereRadius + collisionSphereDistance) にあり、その半径は、collisionSphereRadius で、ここでは constrainPosition と constrainNormal は、SkinnedMeshRenderer　で生成された頂点位置と法線になります。 SkinnedCloth は、クロスの頂点がこの球体に入らないようにします。 つまり、collisionSphereDistance は、スキン メッシュがクロスによってどれだけ深く浸透するかを定義します。 これは、通常 0 に設定されます。collisionSphereRadius は、クロスの頂点が衝突球体周辺でスリップできるよう、隣接する頂点間の距離よりも大きい値に設定する必要があります。 このような設定では、クロスはスキン メッシュに対する衝突に対して表示されます。 || 
 
-maxDistanceBias �̈قȂ�l�ɑ΂���X�L�����ꂽ���_�Ɩ@���Ɋ֘A���Ă����̌W�����ǂ̂悤�ɋ@�\���邩�Ɋւ��鎋�o�I�\���Ɋւ��ẮA���̉摜���Q�Ƃ��Ă��������B �Ԃ��G���A�́AcollisionSphereRadius �� collisionSphereDistance �ɂ���Ē�`�����Փˋ��̂ɂȂ�܂��B�����ɂ́A�N���X�̒��_�͓���܂���B �]���āA�Ԃ��G���A�ō���������� maxDistance �� maxDistanceBias �Œ�`�����΂̃G���A���N���X���_���ړ��ł����Ԃ��`���܂��B
+maxDistanceBias の異なる値に対するスキンされた頂点と法線に関連してこれらの係数がどのように機能するかに関する視覚的表示に関しては、この画像を参照してください。 赤いエリアは、collisionSphereRadius と collisionSphereDistance によって定義される衝突球体になります。ここには、クロスの頂点は入れません。 従って、赤いエリアで差し引かれる maxDistance と maxDistanceBias で定義される緑のエリアをクロス頂点が移動できる空間を定義します。
 
 Attach:SkinnedClothCoefficients.png\\
 
-!!SkinnedCloth �C���X�y�N�^
+!!SkinnedCloth インスペクタ
 
-SkinnedCloth �̂��� GameObject ��I������ƁASkinnedCloth �C���X�y�N�^���g�p���āA�N���X���_�W������т��̑��̃v���p�e�B��ҏW�ł��܂��B �C���X�y�N�^�ɂ́A���� 3 �̃^�u������܂��B
+SkinnedCloth のある GameObject を選択すると、SkinnedCloth インスペクタを使用して、クロス頂点係数およびその他のプロパティを編集できます。 インスペクタには、次の 3 つのタブがあります。
 
-!!!���_�I���c�[��
+!!!頂点選択ツール
 Attach:SkinnedClothInfo.png\\
 
-���̃��[�h�ł́A�V�[�� �r���[�Œ��_��I�����A�C���X�y�N�^�ŌW����ݒ肵�܂� (�N���X�W���̋@�\�̐����ɂ��ẮA�O�����Q��)�B [Shift] �L�[���������A�}�E�X�Œ����`���h���b�O���邱�ƂŁA�����̌W����ݒ�ł��܂��B �����̒��_��I������ƁA�C���X�y�N�^�͒��_�W���̕��ϒl��\�����܂��B �������A�l��ύX����ƁA���̌W���͂��ׂĂ̒��_�ɑ΂��āA�����l�ɐݒ肳��܂��B �V�[�� �r���[�����C���[�t���[�� ���[�h�ɐ؂�ւ���ƁA�������̒��_���m�F����ёI���ł��܂��B����́A�L�����N�^�[�̊��S�ȕ�����I���������ꍇ�ɕ֗��ł��B
+このモードでは、シーン ビューで頂点を選択し、インスペクタで係数を設定します (クロス係数の機能の説明については、前項を参照)。 [Shift] キーを押すか、マウスで長方形をドラッグすることで、複数の係数を設定でいます。 複数の頂点を選択すると、インスペクタは頂点係数の平均値を表示します。 しかし、値を変更すると、その係数はすべての頂点に対して、同じ値に設定されます。 シーン ビューをワイヤーフレーム モードに切り替えると、後ろ向きの頂点を確認および選択できます。これは、キャラクターの完全な部分を選択したい場合に便利です。
 
-���̌W�������ׂĂ̒��_�ɑ΂��Ăǂ̒l�������Ă��邩�𗝉�����ɂ́A�W���t�B�[���h�̖ڃA�C�R�����N���b�N���āA�G�f�B�^�ɃV�[�� �r���[�ł��̌W����\�������邱�Ƃ��ł��܂��B ����ɂ���āA���̌W���̍ł��Ⴂ�l�̂��钸�_�͗ΐF�ŁA�������̒l�͉��F�A�ō��l�͐ŕ\������܂��B �J���[ �X�P�[���͏�ɂ��̌W���̎g�p�����l�͈̔͂Ɋ֘A���đI������A��Βl����͓Ɨ����Ă��܂��B
+この係数がすべての頂点に対してどの値を持っているかを理解するには、係数フィールドの目アイコンをクリックして、エディタにシーン ビューでその係数を表示させることができます。 これによって、その係数の最も低い値のある頂点は緑色で、中距離の値は黄色、最高値は青で表示されます。 カラー スケールは常にその係数の使用される値の範囲に関連して選択され、絶対値からは独立しています。
 
-!!!���_�y�C���g �c�[��
+!!!頂点ペイント ツール
 Attach:SkinnedClothPaint.png\\
 
-���_�I���Ɏ��Ă��܂����A����́A���_�W���l��ݒ肷�邽�߂̃c�[���ł��B ���_�I���Ƃ͈Ⴂ�A�F��ύX����O�ɒ��_���N���b�N����K�v�͂���܂���B���̃��[�h�ł́A�ݒ肵�����l����͂��A�ύX�������W���ׂ̗ɂ���y���L �u���V �g�O����L���ɂ��āA���̒l��ݒ肵�������ׂĂ̒��_���N���b�N���܂��B
+頂点選択に似ていますが、これは、頂点係数値を設定するためのツールです。 頂点選択とは違い、色を変更する前に頂点をクリックする必要はありません。このモードでは、設定したい値を入力し、変更したい係数の隣にあるペンキ ブラシ トグルを有効にして、その値を設定したいすべての頂点をクリックします。
 
-!!!�ݒ�
+!!!設定
 Attach:SkinnedClothSettings.png\\
 
-3 �ڂ̃^�u�ɂ��A�X�L�� �N���X�̊e��v���p�e�B��ݒ�ł��܂��B
+3 つ目のタブにより、スキン クロスの各種プロパティを設定できます。
 
-||``Bending Stiffness`` ||�N���X�̋Ȃ������B||
-||``Stretching Stiffness`` ||�N���X�̐L�������B||
-||``Damping`` ||�G�ꂽ�N���X�̓����B||
-||``Use Gravity`` ||�N���X�̃V�~�����[�V�����ɏd�͂��e�������邩�ǂ����B||
-||``External Acceleration`` ||�N���X�ɓK�p�������̊O�������x�B||
-||``Random Acceleration`` ||�N���X�ɓK�p����郉���_���̊O�������x�B||
-||``World Velocity Scale`` ||�N���X�̒��_�ɉe��������L�����N�^�[�̃��[���h���W�n�ł̈ړ��ʁB ���̒l�������قǁAGameObject �̃��[���h���W�n�̈ړ��ւ̑Ή��Ƃ��āA�N���X�̈ړ��ʂ������܂��B ��{�I�ɁA����́ASkinnedCloth �̋�C���C���`���܂��B||
-||``World Acceleration Scale`` ||�N���X�̒��_�ɉe��������L�����N�^�[�̃��[���h���W�n�ł̉����x�B ���̒l�������قǁAGameObject �̃��[���h���W�n�̉����ւ̑Ή��Ƃ��āA�N���X�̈ړ��ʂ������܂��B �N���X�̓����������łȂ��悤�Ɍ�����ꍇ�A���̒l���グ�Ă݂Ă��������B �L�����N�^�[�����������ۂɁA���肵�Ă��Ȃ��悤�Ɍ�����ꍇ�A���̒l�����炵�Ă݂Ă��������B||
+||``Bending Stiffness`` ||クロスの曲げ剛性。||
+||``Stretching Stiffness`` ||クロスの伸張剛性。||
+||``Damping`` ||濡れたクロスの動き。||
+||``Use Gravity`` ||クロスのシミュレーションに重力を影響させるかどうか。||
+||``External Acceleration`` ||クロスに適用される一定の外部加速度。||
+||``Random Acceleration`` ||クロスに適用されるランダムの外部加速度。||
+||``World Velocity Scale`` ||クロスの頂点に影響させるキャラクターのワールド座標系での移動量。 この値が高いほど、GameObject のワールド座標系の移動への対応として、クロスの移動量が増えます。 基本的に、これは、SkinnedCloth の空気摩擦を定義します。||
+||``World Acceleration Scale`` ||クロスの頂点に影響させるキャラクターのワールド座標系での加速度。 この値が高いほど、GameObject のワールド座標系の加速への対応として、クロスの移動量が増えます。 クロスの動きが活発でないように見える場合、この値を上げてみてください。 キャラクターが加速した際に、安定していないように見える場合、この値を減らしてみてください。||
