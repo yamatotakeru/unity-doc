@@ -1,25 +1,25 @@
-!Rigidbody Sleeping
+!リジッドボディの睡眠
 
-When Rigidbodies fall to rest - a box landing on the floor - they will start sleeping. Sleeping is an optimization which allows the Physics Engine to stop processing those rigidbodies. This way you can have huge amounts of rigidbodies in your scene as long as you make sure that they normally don't move.
+リジッドボディが休止すると (フロアに降り立つ箱)、寝始めます。 睡眠は、物理特性エンジンがこれらのリジッドボディの処理を停止できる最適化です。 このように、リジッドボディが通常動かないようにしている限りは、シーン内に大量のリジッドボディを置くことができます。
 
-Rigidbody sleeping happens completely automatically. Whenever a rigidbody is slower than the sleepAngularVelocity and sleepVelocity it will start falling asleep. After a few frames of resting it will then be set to sleep. When the body is sleeping, no collision detection or simulation will be performed anymore. This saves a lot of CPU cycles.
+リジッドボディの睡眠は完全に自動で発生します。 リジッドボディが sleepAngularVelocity および sleepVelocity よりも遅くなると、寝始めます。 休止から数分後、睡眠に設定されます。 ボディが睡眠時、衝突検出やシミュレーションは実行されなくなります。 これにより、CPU サイクルを多く省けます。
 
-Rigidbodies automatically wake up when:
-* another rigidbody collides with the sleeping rigidbody
-* another rigidbody connected through a joint is moving.
-* when modifying a property of the rigidbody
-* when [[ScriptRef:Rigidbody.AddForce.html|adding forces]].
+リジッドボディは、以下の場合に自動的に起きます。
+* 別のリジッドボディが寝ているリジッドボディに衝突した場合。
+* ジョイントを通じて接続された別のリジッドボディが移動し始めた場合。
+* リジッドボディのプロパティ編集時。
+* [[ScriptRef:Rigidbody.AddForce.html|adding forces]] 時。
 
-So if you want to make rigidbodies fall to rest, don't modify their properties or add forces when they are about to go into sleep mode.
+リジッドボディを休止させたい場合は、そのプロパティを編集したり、睡眠モードに入ろうとしている際に力を追加しないでください。
 
-There are two variables that you can tune to make sure your rigidbodies automatically fall to rest: [[ScriptRef:Rigidbody-sleepVelocity.html|Rigidbody.sleepVelocity]] and [[ScriptRef:Rigidbody-sleepAngularVelocity.html|Rigidbody.sleepAngularVelocity]]. Those two variables are initialized to the sleepVelocity and sleepAngularVelocity variable defined in the [[class-PhysicsManager|Physics Manager]] (''Edit -> Project Settings -> Physics'').
+リジッドボディを自動的に休止に入らせるために、 [[ScriptRef:Rigidbody-sleepVelocity.html|Rigidbody.sleepVelocity]] と [[ScriptRef:Rigidbody-sleepAngularVelocity.html|Rigidbody.sleepAngularVelocity]] の 2 つの変数を調整できます。 これらの変数は、[[class-PhysicsManager|Physics Manager]] (''Edit -> Project Settings -> Physics'') で定義された sleepVelocity および sleepAngularVelocity 変数に初期化されます。
 
-Rigidbodies can also be forced to sleep using [[ScriptRef:Rigidbody.Sleep.html|rigidbody.Sleep]]. This is useful to start rigidbodies in a rest state when loading a new level.
-
-
-Kinematic rigidbodies wake up sleeping rigidbodies. Static Colliders do not.
-If you have a sleeping rigidbody and you move a static collider (A collider without a Rigidbody attached) into the rigidbody or pull it from underneath the rigidbody, the sleeping rigidbody will __not__ awake.
-If you move a Kinematic Rigidbody out from underneath normal Rigidbodies that are at rest on top of it, the sleeping Rigidbodies will "wake up" and be correctly calculated again in the physics update.  So if you have a lot of Static Colliders that you want to move around and have different objects fall on them correctly, use Kinematic Rigidbody Colliders.
+リジッドボディは、[[ScriptRef:Rigidbody.Sleep.html|rigidbody.Sleep]] を使用しても強制的に睡眠させることができます。 これは、新しいレベルのロード時にリジッドボディを休止状態で開始する際に便利です。
 
 
-Kinematic rigidbodies - they will not be calculated during the physics update since they are not going anywhere.  If you move a Kinematic Rigidbody out from underneath normal Rigidbodies that are at rest on top of it, the sleeping Rigidbodies will "wake up" and be correctly calculated again in the physics update.  So if you have a lot of Static Colliders that you want to move around and have different objects fall on them correctly, use Kinematic Rigidbody Colliders.
+キネマティック リジッドボディは、寝ているリジッドボディを起こします。 スタティック コライダは起こしません。
+リジッドボディが寝ており、スタティック コライダ (リジッドボディを追加していないコライダ) をリジッドボディに移動させるか、リジッドボディの下から引っ張っても、寝ているリジッドボディは__起きません__。
+キネマティック リジッドボディの上で休止しているキネマティック リジッドボディを通常のリジッドボディの下から移動させると、寝ているリジッドボディが起き、物理特性アップデートで再度正確に計算されます。  動かしたいスタティック コライダがたくさんあり、異なるオブジェクトをその上に正しく落としたい場合は、キネマティック リジッドボディ コライダを使用します。
+
+
+キネマティック リジッドボディ - これらは、どこにも移動しないため、物理特性アップデート中に計算されません。  キネマティック リジッドボディの上で休止しているキネマティック リジッドボディを通常のリジッドボディの下から移動させると、寝ているリジッドボディが起き、物理特性アップデートで再度正確に計算されます。  なので、動かしたいスタティック コライダがたくさんあり、異なるオブジェクトをその上に正しく落としたい場合は、キネマティック リジッドボディ コライダを使用します。
