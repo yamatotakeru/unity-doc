@@ -1,0 +1,25 @@
+This is the deal with .apks and .obbs, in Unity 4.0 and in general.
+
+* For any application (.apk) bigger than 50MBs, the .apk has to be split up if you want to publish it on Google Play.
+* The Split App option in 4.0 will create an .apk that includes all the binary code (java, native, plugins etc) AND the first level/scene of your Unity project.
+    Everything else (all additional scenes, resources, streaming assets etc) are placed in the .obb.
+* When starting an .apk built with Split App enabled the application will check to see if it can access the .obb file from it's position on the sdcard (location explained in the Apk Expansion docs from Google).
+  Obviously, if the .obb can't be found only the first level can accessed (since the rest of the data is in the .obb).
+  The first level is then required to make the .obb available on sdcard, before the application can proceed to subsequent levels.
+  If the .obb is found the Application.dataPath will switch from .apk path, to instead point to .obb. Downloading the .obb is then not necessary.
+* The contents of the .obb are never used manually. Always treat the .apk+.obb as a unique bundle, the same way you would treat a single big .apk.
+
+This is what's in Unity 4.0. The Split App option is not the only way to split an .apk into .apk/.obb (you can use 3rd party plugins/asset bundles/whatever), but it's the only automatic splitting officially supported.
+
+Now to the downloading of the .obb.
+
+* The .obb may (but it's not required, in its current form at least) to be hosted on the Google Play servers.
+* If the .obb is published together with the .apk on Google Play, you must also include code to download the .obb. (for those devices that require it, and for scenarios where the .obb is lost)
+* The asset store has a plugin (adapted from the Google Apk Expansion examples) which does this for you. It will download the .obb and put it in the right place on the sdcard.
+* When using the asset store plugin you obviously need to call that plugin from the first scene (as explained above).
+* The asset store plugin can also be used to download .obb's created in some other way (single data file, a zip of asset bundles, etc) - it's agnostic to how the .obb was created.
+
+Finally:
+
+* This is only the first version of the automatic .obb split support.
+* There will be improvements, and we have a long list of things we want to add..
