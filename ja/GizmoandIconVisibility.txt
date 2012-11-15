@@ -31,4 +31,3 @@ Attach:SceneViewGizmosWindow.png\\
 
 The ^^Icon Scaling^^ slider can be used to adjust the size used for icon display in the scene. If the slider is placed at the extreme right, the icon will always be drawn at its natural size. Otherwise, the icon will be scaled according to its distance from the scene view camera (although there is an upper limit on the display size in order that screen clutter be avoided).
 
-

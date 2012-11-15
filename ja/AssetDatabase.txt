@@ -2,7 +2,7 @@
 
 AssetDatabase is an API which allows you to access the assets contained in your project. Among other things, it provides methods to find and load assets and also to create, delete and modify them. The Unity Editor uses the AssetDatabase internally to keep track of asset files and maintain the linkage between assets and objects that reference them. Since Unity needs to keep track of all changes to the project folder, you should always use the AssetDatabase API rather than the filesystem if you want to access or modify asset data.
 
-The AssetDatabase interface is only available in the editor and has no function in the built player. Like all other editor classes, it is only available to scripts placed in the Editor folder (just create a folder named �Editor� in the main Assets folder of your project if there isn't one already).
+The AssetDatabase interface is only available in the editor and has no function in the built player. Like all other editor classes, it is only available to scripts placed in the Editor folder (just create a folder named ''Editor'' in the main Assets folder of your project if there isn't one already).
 
 !!Importing an Asset
 

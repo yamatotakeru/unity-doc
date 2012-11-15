@@ -44,6 +44,3 @@ Layers appear similar to Tags, but are used to define how Unity should render Ga
 ** and "GameController".
 
 * You can use any word you like as a Tag. (You can even use short phrases, but you may need to widen the Inspector to see the tag's full name.)
-
-
-
