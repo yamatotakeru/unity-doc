@@ -1,0 +1,2 @@
+!! Properties
+This shader does not have any special properties like transparency or lightmapping.

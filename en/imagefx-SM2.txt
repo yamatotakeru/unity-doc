@@ -1,0 +1,5 @@
+!! Hardware support
+
+This effect requires a graphics card with pixel shaders (2.0) or OpenGL ES 2.0. PC: NVIDIA cards since 2003 (GeForce FX), AMD cards since 2004 (Radeon 9500), Intel cards since 2005 (GMA 900); Mobile: OpenGL ES 2.0; Consoles: Xbox 360, PS3.
+
+All image effects automatically disable themselves when they can not run on end-users graphics card.

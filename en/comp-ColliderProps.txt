@@ -1,0 +1,2 @@
+||``Material`` ||Reference to the [[class-PhysicMaterial | Physic Material]] that determines how this Collider interacts with others. ||
+||``Is Trigger`` ||If enabled, this Collider is used for triggering events, and is ignored by the physics engine. ||
