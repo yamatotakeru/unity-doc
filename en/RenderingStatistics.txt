@@ -17,3 +17,4 @@ The Statistics window contains the following information:-
 ||``VBO total`` ||The number of unique meshes (Vertex Buffers Objects or VBOs) that are uploaded to the graphics card. Each different model will cause a new VBO to be created. In some cases scaled objects will cause additional VBOs to be created. In the case of a static batching, several different objects can potentially share the same VBO. ||
 ||``Visible Skinned Meshes`` ||The number of skinned meshes rendered. ||
 ||``Animations`` ||The number of animations playing. ||
+

@@ -59,3 +59,4 @@ Steps for adding a label to an asset:
 __Notes:__
 * You can have more than one label for any asset.
 * To separate/create labels, just press __space__ or __enter__ when writing asset label names.
+

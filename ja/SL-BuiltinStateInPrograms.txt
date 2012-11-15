@@ -18,3 +18,4 @@
 以下のベクトル (float4) がサポートされています。
 
 : ``UNITY_LIGHTMODEL_AMBIENT`` : 現在の周辺色。
+

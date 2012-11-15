@@ -236,3 +236,4 @@ __Note:__ The above links reference your locally installed iPhone SDK Reference 
 !! Device geographical location
 Device geographical location can be obtained via the [[ScriptRef:iPhoneInput-lastLocation.html|iPhoneInput.lastLocation]] property. Before calling this property you should start location service updates using [[ScriptRef:iPhoneSettings.StartLocationServiceUpdates.html|iPhoneSettings.StartLocationServiceUpdates()]] and check the service status via [[ScriptRef:iPhoneSettings-locationServiceStatus.html|iPhoneSettings.locationServiceStatus]]. See the [[ScriptRef:iPhoneSettings.StartLocationServiceUpdates.html|scripting reference]] for details.
 >><<
+

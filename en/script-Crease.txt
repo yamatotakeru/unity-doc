@@ -15,3 +15,4 @@ Attach:CreaseExample.png\\
 ||``Spread`` ||The blur radius, which also determines the thickness of outlines. ||
 
 (:include imagefx-SM2Depth:)
+

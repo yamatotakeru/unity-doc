@@ -21,3 +21,4 @@ Finally, the HTML placeholder is placed inside the ``<body>`` section. It could 
 	</div>
 </div>
 @]
+

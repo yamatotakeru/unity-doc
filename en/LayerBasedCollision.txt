@@ -14,3 +14,4 @@ In the example, we have set the Collision Matrix in a way that only GameObjects 
 # Open the Physics Preference Panel by clicking on ^^Edit->Project Settings->Physics^^.
 # Select which layers on the Collision Matrix will interact with the other layers by checking them.
   Attach:LayerCollisionMatrix.png
+

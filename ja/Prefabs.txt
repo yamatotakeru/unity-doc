@@ -45,3 +45,4 @@ Attach:PrefabsVsAssetIcons.png\\
 The asset is instantiated in the scene as a GameObject, linked to the source asset instead of a normal Prefab.   Components can be added and removed from this GameObject as normal.  However, you cannot apply any changes to the asset itself since this would add data to the asset file itself!  If you're creating something you want to re-use, you should make the asset instance into a Prefab following the steps listed above under "Creating Prefabs".
 
 * When you have selected an instance of an asset, the ^^Apply^^ button in the Inspector is replaced with an ^^Edit^^ button.  Clicking this button will launch the editing application for your asset (e.g. Maya or Max).
+

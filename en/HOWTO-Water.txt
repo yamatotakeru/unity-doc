@@ -60,3 +60,4 @@ The rest of properties are not used by Reflective & Refractive shader by itself,
 * Reflective + Refractive water works on graphics cards with pixel shader 2.0 support (GeForce FX and up, Radeon 9500 and up, Intel 9xx). On older cards, Reflective water is used.
 * Reflective water works on graphics cards with pixel shader 1.4 support (GeForce FX and up, Radeon 8500 and up, Intel 9xx). On older cards, Simple water is used.
 * Simple water works about everywhere, with various levels of detail depending on hardware capabilities.
+

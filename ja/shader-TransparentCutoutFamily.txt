@@ -59,3 +59,4 @@ One limitation of this shader is that the ``Base`` texture's alpha channel doubl
 
 [[shader-TransCutBumpedSpecular | &#187; More details]]
 
+

@@ -33,3 +33,4 @@ Attach:FxContrast2.png\\
 * Since Constrast Stretch is applied over a period of time, the full effect is only visible in Play mode.
 
 (:include imagefx-SM2:)
+

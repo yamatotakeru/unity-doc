@@ -32,3 +32,4 @@ Unity は、各種レンダリング パスをサポートしています。こ�
 
 !! 詳細
 ライトの使用に関する詳細については、[[Reference | Reference Manual]] の [[class-Light | Lights page]] を参照してください。
+

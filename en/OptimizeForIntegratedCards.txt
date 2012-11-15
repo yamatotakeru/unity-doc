@@ -30,3 +30,4 @@ The process of generating a lightmapped environment takes only a little longer t
 * And look a lot better since you can bake global illumination.
 
 Even next-gen games still rely on lightmapping a lot. Usually they use lightmapped environments and only use one or two realtime dynamic lights.
+

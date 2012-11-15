@@ -34,3 +34,4 @@ Out of [[Built-inShaderGuide | Built-in Shaders]], they come roughly in this ord
 
 Additionally, Unity has several simplified shaders targeted at mobile platforms, under "Mobile" category. These shaders work on other platforms as well, so if you can live with their simplifications (e.g. approximate specular, no per-material color support etc.), try using them!
 
+

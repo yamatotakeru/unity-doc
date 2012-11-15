@@ -17,3 +17,4 @@ Vertex shader inputs come from predefined GLSL variables (gl_Vertex, gl_MultiTex
 
 Data from vertex to fragment programs is passed through ''varying'' variables, for example:
     varying vec3 lightDir; // vertex shader computes this, fragment shader uses this
+

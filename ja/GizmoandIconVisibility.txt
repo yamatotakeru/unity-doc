@@ -1,4 +1,4 @@
-!Gizmo and Icon Display Controls
+! Gizmo and Icon Display Controls
 
 Gizmos and icons have a few display options which can be used to reduce clutter and improve the visual clarity of the scene during development.
 
@@ -30,3 +30,5 @@ Attach:SceneViewGizmosWindow.png\\
 ''The $$Gizmos dropdown$$, displaying the visibility state of icons and gizmos''
 
 The ^^Icon Scaling^^ slider can be used to adjust the size used for icon display in the scene. If the slider is placed at the extreme right, the icon will always be drawn at its natural size. Otherwise, the icon will be scaled according to its distance from the scene view camera (although there is an upper limit on the display size in order that screen clutter be avoided).
+
+

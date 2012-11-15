@@ -61,3 +61,4 @@ Attach:TreeCreator-FinalTree.png\\
 * Creating trees is a trial and error process.
 * Don't create too many leaves/branches as this can affect the performance of your game.
 * Check the [[HOWTO-alphamaps | alpha maps]] guide for creating custom leaves.
+

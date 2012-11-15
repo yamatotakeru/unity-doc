@@ -64,3 +64,4 @@ Note that automatic destruction takes effect only after some particles have been
 !! Hints
 * Use the ``Color Animation`` to make your particles fade in & out over their lifetime - otherwise, you will get nasty-looking pops.
 * Use the ``Rotation Axes`` to make whirlpool-like swirly motions.
+

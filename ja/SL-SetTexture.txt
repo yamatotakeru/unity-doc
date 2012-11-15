@@ -201,3 +201,4 @@ And finally, we take all the lighting properties of the vertexlit shader and pul
         }
     }
 } @]
+

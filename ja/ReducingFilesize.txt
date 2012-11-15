@@ -98,3 +98,4 @@ Attach:FileSizeMonoDependency.png \\
 ''お分かりのように、Unity には、プレイヤー作成時、System.Xml.dll および System.dll が含まれます''
 
 Unity には、プレイヤー配布 $$mscorlib.dll$$、$$Boo.Lang.dll$$、$$UnityScript.Lang.dll$$ および $$UnityEngine.dll$$ と共に、次の DLL が含まれます。
+

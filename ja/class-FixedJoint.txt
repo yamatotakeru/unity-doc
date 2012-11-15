@@ -29,3 +29,4 @@ Attach:Inspector-FixedJoint.png\\
 !! ヒント
 * ''Connected Body''が機能するよう、ジョイントに割り当てる必要はありません。
 * 固定ジョイントには、リジッドボディが必要です。
+

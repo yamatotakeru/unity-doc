@@ -73,3 +73,4 @@ The magnitude of the result is equal to the magnitudes of the input vectors mult
 Attach:SineValues.png
 
 The cross product can seem complicated since it combines several useful pieces of information in its return value. However, like the dot product, it is very efficient mathematically and can be used to optimize code that would otherwise depend on slow transcendental functions.
+

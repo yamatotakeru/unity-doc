@@ -7,3 +7,4 @@ This shader is a variation of the VertexLit shader.  All lights that shine on it
 
 !! Performance
 This shader is approximately equivalent to the VertexLit shader.  It is marginally more expensive due to the second decal texture, but will not have a noticeable impact.
+

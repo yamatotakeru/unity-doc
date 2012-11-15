@@ -13,3 +13,4 @@ You can explicitly control rendering order of grouped particles (or otherwise sp
 
 Attach:ShurikenOverviewHierarchy.png
 ''Particle Systems in the same hierarchy are considered as part of the same Particle Effect. This hierarchy shows the setup of the effect shown above. ''
+

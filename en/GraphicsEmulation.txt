@@ -36,3 +36,4 @@ Graphics emulation levels are the following:
 ||``OpenGL ES 2.0`` ||OpenGL ES 2.0: Vertex & fragment programs, four texture combiner stages. __Not supported__: HDR, 3D textures. ||
 
 When your graphics card does not support all the capabilities of some emulation level, that level will be disabled. For example, the Intel GMA950 (Intel 915/945/3000) card does not support Shader Model 3.0, so there's no way to emulate that level.
+

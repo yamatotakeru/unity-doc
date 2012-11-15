@@ -48,3 +48,4 @@ __Note:__ If the wind zone is Spherical you should place it so that the trees yo
 
 *To create the effect of an explosion:
 ** Do the same as with the helicopter, but fade the Wind Main and Turbulence quickly to make the effect wear off.
+

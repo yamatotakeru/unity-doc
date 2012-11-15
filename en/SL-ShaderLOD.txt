@@ -18,3 +18,4 @@ Built-in shaders in Unity have their LODs set up this way:
 * Parallax = 500
 * Parallax Specular = 600
 
+

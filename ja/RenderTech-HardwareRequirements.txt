@@ -31,3 +31,4 @@ Some image effects work on Flash, but quite a lot of them do not; either due to 
 !! シェーダ
 
 Unity では、固定機能またはプログラム可能なシェーダを記述できます。 固定機能は、コンソール (Xbox 360 と Playstation 3) 以外のどこででもサポートされています。 プログラム可能なシェーダは、デフォルトの Model 2.0 (デスクトップ) および OpenGL ES 2.0 (携帯) になります。 デスクトップ プラットフォームでは、頂点シェーダに対して、シェーダ モデル 1.1 を対象とできます。
+

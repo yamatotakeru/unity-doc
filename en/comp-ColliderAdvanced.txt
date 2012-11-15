@@ -54,3 +54,4 @@ Depending on the configurations of the two colliding Objects, a number of differ
 
 !!! [[LayerBasedCollision | Layer-Based Collision Detection]]
 In Unity 3.x we introduce something called $$Layer-Based Collision Detection$$, and you can now selectively tell Unity GameObjects to collide with specific layers they are attached to. For more information click [[LayerBasedCollision | here]]
+

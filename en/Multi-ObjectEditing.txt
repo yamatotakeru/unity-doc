@@ -29,3 +29,4 @@ Attach:MultiEditInstanceManagementDisabled.png
 A few object types do not support multi-object editing. When you select multiple objects simultaneously, these objects will show a small note saying "Multi-object editing not supported".
 
 If you have made a custom editor for one of your own scripts, it will also show this message if it doesn't support multi-object editing. See the script reference for the [[ScriptRef:Editor.html|Editor class]] to learn how to implement support for multi-object editing for your own custom editors.
+

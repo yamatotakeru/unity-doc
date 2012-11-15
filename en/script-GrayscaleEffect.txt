@@ -34,3 +34,4 @@ Attach:FxGrayscaleNegative.png
 A more complex version of color remapping that does arbitrary color correction can be achieved with [[script-ColorCorrectionEffect|ColorCorrection]] image effect.
 
 (:include imagefx-SM2:)
+

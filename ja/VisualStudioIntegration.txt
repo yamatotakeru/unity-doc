@@ -36,3 +36,4 @@ Unity の VisualStudio 統合には、次の 2 つのコンポーネントがあ
 * Unity は自動的に Visual Studio .sln および .csproj ファイルを作成および維持します。 誰が Unity 内でファイルを追加、名前変更、移動、削除を行なっても、Unity は .sln および .csproj ファイルを生成します。 Visual Studio からのソリューションにもファイルを追加できます。 Unity はこれらの新しいファイルをインポートし、次に Unity がプロジェクト ファイルを再度作成すると、この新しいファイルを含めて、プロジェクト ファイルを作成します。
 
 * Unity は、AssetServer アップデートまたは SVN アップデート後には、Visual Studio プロジェクト ファイルを生成しません。 メニューを通じて、Unity に Visual Studio プロジェクト ファイルを生成するよう手動で指示できます。 ^^Assets->Sync VisualStudio Project^^
+

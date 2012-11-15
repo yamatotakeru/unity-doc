@@ -24,3 +24,4 @@ Attach:AudioSet.png
 
 If you want to use Doppler Effect set ``Doppler Factor`` to 1. Then tweak both ``Speed of Sound`` and ``Doppler Factor`` until you are satisfied.\\
 Speaker mode can be changed runtime from your application through scripting. See [[ScriptRef:AudioSettings.html |Audio Settings]].
+

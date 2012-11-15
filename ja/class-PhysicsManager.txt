@@ -1,27 +1,28 @@
-! Physics Manager
+! 物理特性マネージャ
 
-You can access the $$Physics Manager$$ by selecting ^^Edit->Project Settings->Physics^^ from the menu bar.
+$$Physics Manager$$ にアクセスするには、メニューバーから ^^Edit->Project Settings->Physics^^ を選択します。
 
-Attach:PhysicsSet4b7.png\\
-''The Physics Manager''
+Attach:PhysicsSet4b7.png
+「物理特性マネージャ」
 
 
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Gravity`` ||The amount of gravity applied to all $$Rigidbodies$$. Usually gravity acts only on the Y-axis (negative is down). Gravity is meters/(seconds^2). ||
-||``Default Material`` ||The default $$Physics Material$$ that will be used if none has been assigned to an individual $$Collider$$. ||
-||``Bounce Threshold`` ||Two colliding objects with a relative velocity below this value will not bounce. This value also reduces jitter so it is not recommended to set it to a very low value. ||
-||``Sleep Velocity`` ||The default linear velocity, below which objects start going to sleep. ||
-||``Sleep Angular Velocity`` ||The default angular velocity, below which objects start going to sleep. ||
-||``Max Angular Velocity`` ||The default maximimum angular velocity permitted for any Rigidbodies. The angular velocity of Rigidbodies is clamped to stay within ``Max Angular Velocity`` to avoid numerical instability with quickly rotating bodies. Because this may prevent intentional fast rotations on objects such as wheels, you can override this value for any Rigidbody by scripting ``Rigidbody.maxAngularVelocity``. ||
-||``Min Penetration For Penalty`` ||How deep in meters are two objects allowed to penetrate before the collision solver pushes them apart. A higher value will make objects penetrate more but reduces jitter. ||
-||``Solver Iteration Count`` ||Determines how accurately joints and contacts are resolved. Usually a value of 7 works very well for almost all situations. ||
-||``Raycasts Hit Triggers`` ||If enabled, any Raycast that intersects with a Collider marked as a Trigger will return a hit.  If disabled, these intersections will not return a hit. ||
-||``Layer Collision Matrix`` ||Defines how the [[LayerBasedCollision | layer-based collision]] detection system will behave.||
+||``Gravity`` ||$$Rigidbody$$ に適用される重力量。 通常重力は Y 軸にのみ働きます （負が下）。 重力の単位は、メートル / (秒 ^2) です。 ||
+||``Default Material`` ||個々の $$Collider$$ に何も割り当てられていない場合に使用されるデフォルトの $$Physic Material$$。 ||
+||``Bounce Threshold`` ||相対速度がこの値未満の 2 つの衝突するオブジェクトは跳ね返りません。 この値により、ジッタも減るため、低すぎる値を設定することはお勧めしません。 ||
+||``Sleep Velocity`` ||デフォルトの直線速度で、これを下回ると、オブジェクトがスリープに入り始めます。 ||
+||``Sleep Angular Velocity`` ||デフォルトの角速度で、これを下回ると、オブジェクトがスリープに入り始めます。 ||
+||``Max Angular Velocity`` ||リジッドボディに対して許可されたデフォルトの最大角速度。 リジッドボディの角速度は、高速で回転するボディとの多くの不安定さを避けるため、「Max Angular Velocity」内に留まるよう固定されます。 これにより、車輪などのオブジェクトでの意図的な高速回転を回避することができるので、「Rigidbody.maxAngularVelocity」を記述することで、リジッドボディに対してこの値を無効にすることができます。 ||
+||``Min Penetration For Penalty`` ||衝突ソルバーが 2 つのオブジェクトを離す前に、これらのオブジェクトが貫通できる深さ （メートル）。 値が高いほど、オブジェクトの貫通度合いは増しますが、ジッターは減ります。 ||
+||``Solver Iteration Count`` ||ジョイントおよび接点が解決される精度を定義します。 通常、7 の値にすると、ほぼすべての状況にうまく機能します。 ||
+||``Raycasts Hit Triggers`` ||有効にすると、トリガーと付けられたコライダと交差するレイキャストがヒットを返します。  無効にすると、これらの交差はヒットを返しません。 ||
+||``Layer Collision Matrix`` ||[[LayerBasedCollision | layer-based collision]] 検出システムの動作を定義します。||
 
-!!Details
-The Physics Manager is where you define the default behaviors of your world.  For an explanation of Rigidbody Sleeping, read this page about [[RigidbodySleeping|sleeping]].
+!!詳細
+物理特性マネージャでは、ワールドのデフォルトの特性を定義します。  Rigidbody Sleeping の説明に関しては、[[RigidbodySleeping|sleeping]] に関するこのページを参照してください。
 
-!!Hints
-* If you are having trouble with connected bodies oscillating and behaving eratically, setting a higher ``Solver Iteration Count`` may improve their stability, but will require more processing power.
+!!ヒント
+* 連結したボディの周期的な振動や、不安定な動作に問題がある場合は、「Solver Iteration Count」に高い値を設定すると、安定性が向上しますが、より高い処理能力が必要となります。
+

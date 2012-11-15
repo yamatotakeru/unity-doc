@@ -16,3 +16,4 @@ The ``Animator`` component references an ``Animator Controller`` which is used f
 ||``Culling Mode`` ||Culling mode for animations||
 ||>>>``Always animate``||Always animate, don't do culling||
 ||>>>``Based on Renderers``||When the renderers are invisible, only root motion is animated. All other body parts will remain static while the character is invisible. ||
+

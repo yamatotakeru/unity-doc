@@ -16,3 +16,4 @@ Halos use the ``Halo Texture`` set up in the [[class-RenderSettings | Render Set
 
 !!Hints
 * To see Halos in the scene view, check ^^Fx^^ button in the $$Scene View$$ Toolbar.
+

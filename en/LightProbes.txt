@@ -55,3 +55,4 @@ Attach:LightProbes-characterandprobes.png
 In Single Lightmaps mode all static lighting (including lights set to 'Auto' lightmapping mode) is baked into the light probes.
 
 In Dual Lightmaps mode light probes will store lighting in the same configuration as 'Near' lightmaps, i.e. full illumination from sky lights, emissive materials, area lights and 'Baked Only' lights, but only indirect illumination from 'Auto' lights. Thanks to that the object can be lit in real-time with the 'Auto' lights and take advantage of dynamic elements such as real-time shadows, but at the same time receive indirect lighting added to the scene by these lights.
+

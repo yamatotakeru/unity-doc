@@ -61,3 +61,4 @@ Built-in shadows require a fragment program (pixel shader 2.0) capable graphics 
 * Vertex-lit lights don't have shadows.
 * Vertex-lit materials won't receive shadows (but do cast shadows).
 * Transparent objects don't cast or receive shadows. Transparent Cutout objects do cast and receive shadows.
+

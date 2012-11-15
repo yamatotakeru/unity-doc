@@ -39,3 +39,4 @@ Attach:LightmappedCubesTut3.png Attach:BakeSettingsGIandSkyLightCrop40.png
 !! Lightmapping In-Depth
 
 For more information about the various lightmapping-related settings, please refer to the [[Main.LightmappingInDepth| in-depth description of lightmapping in Unity]].
+

@@ -42,3 +42,4 @@ Attach:Inspector-CharacterJoint.png\\
 !!ヒント
 * ''Connected Body''が機能するよう、ジョイントに割り当てる必要はありません。
 * キャラクター ジョイントは、リジッドボディを追加する必要があります。
+

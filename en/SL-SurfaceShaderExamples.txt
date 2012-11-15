@@ -515,3 +515,4 @@ Here's a shader that applies fog tint based on distance from screen center. This
 
 
 Attach:SurfaceShaderFinalColorFog.png
+

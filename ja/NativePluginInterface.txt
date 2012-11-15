@@ -64,3 +64,4 @@ An example of a low-level rendering plugin __[[Attach:RenderingPluginExample40.z
 
 The project works with Windows (Visual Studio 2008) and Mac OS X (Xcode 3.2) and uses Direct3D 9, Direct3D 11 or OpenGL depending on the platform. Direct3D 9 code part also demonstrates how to handle "lost" devices.
 >><<
+

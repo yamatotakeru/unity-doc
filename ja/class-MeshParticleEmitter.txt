@@ -63,3 +63,4 @@ Attach:MeshPE-Systematic.png\\
 
 (:include comp-ParticleEmitterHints:)
 * MPE は、シーン内に配置された多くのランプからの光を作成するのにも使用できます。 各ランプの中心に 1 つの頂点を持つメッシュを作成し、そこからハロー マテリアルのある MPE を作成します。 悪のサイエンス フィクションの世界に適しています。
+

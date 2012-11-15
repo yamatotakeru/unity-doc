@@ -24,3 +24,4 @@ Attach:audio_listener_inspector.png\\
 * 各シーンで使用できるオーディオ リスナーは 1 つだけです。
 * ^^Edit->Project Settings->Audio^^ メニューから [[class-AudioManager | Audio Manager]] を使用して、プロジェクト全体のオーディオ設定をにアクセスできます。
 * モノとステレオ音声の詳細については、[[class-AudioClip | Audio Clip]] コンポーネント ページを参照してください。
+

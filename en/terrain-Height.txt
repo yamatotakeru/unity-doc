@@ -60,3 +60,4 @@ Unity works with RAW files which make use of full 16-bit resolution. Any other h
 You also have the option of exporting your Heightmap to RAW format.  Choose ^^Terrain->Export Heightmap - Raw...^^ and you'll see a export settings dialog.  Make any changes you like, and click ^^Export^^ to save your new Heightmap.  
 
 Unity also provides an easy way to flatten your terrain. Choose ^^Terrain->Flatten...^^.  This lets you flatten your terrain to a height you specify in the wizard.
+

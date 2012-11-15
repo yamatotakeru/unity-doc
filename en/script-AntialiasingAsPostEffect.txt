@@ -18,3 +18,4 @@ As with the other [[comp-ImageEffects|image effects]], this effect is only avail
 ||``AA Technique`` ||The algorithm to be used. ||
 
 (:include imagefx-SM3:)
+

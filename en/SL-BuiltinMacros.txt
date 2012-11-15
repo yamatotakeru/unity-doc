@@ -55,3 +55,4 @@ When [[SL-SurfaceShaders | Surface Shaders]] are compiled, they end up generatin
 * @@UNITY_PASS_PREPASSFINAL@@ - deferred lighting final pass (applies lighting & textures).
 * @@UNITY_PASS_SHADOWCASTER@@ - shadow caster rendering pass.
 * @@UNITY_PASS_SHADOWCOLLECTOR@@ - shadow "gathering" pass for directional light shadows.
+

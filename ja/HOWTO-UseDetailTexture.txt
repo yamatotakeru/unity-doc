@@ -24,3 +24,4 @@ Attach:HOWTO-detail3.png
 # 「Tiling」値を高い値に設定します。\\
 Attach:HOWTO-detail4.png
 
+

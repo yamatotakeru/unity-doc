@@ -26,3 +26,4 @@
 * [[class-WheelCollider|Wheel Collider]] - 地上車両用に特殊コライダ。
 * [[class-SkinnedCloth | Skinned Cloth]] - スキン クロスを作成するのに使用します。
 * [[class-InteractiveCloth | Interactive Cloth]] - インタラクティブ クロスの作成にしようされますが、シミュレートされる通常のクロスにすぎません。 
+

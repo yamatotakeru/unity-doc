@@ -80,3 +80,4 @@ Attach:AnimationBrokenFree.png
 Attach:AnimationBrokenLinear.png
 * ^^Constant^^: 曲線は、2 つのキー間で一定の値を保ちます。 左キーの値は曲線線分を決定します。\\
 Attach:AnimationBrokenConstant.png
+

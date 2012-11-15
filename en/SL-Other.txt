@@ -20,3 +20,4 @@ Category {
 @]
 
 Category block only affects shader parsing, it's exactly the same as "pasting" any state set inside Category into all blocks below it. It does not affect shader execution speed at all.
+

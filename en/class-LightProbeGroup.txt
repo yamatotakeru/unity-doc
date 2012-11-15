@@ -9,3 +9,4 @@ A new probe can be created by clicking the ``Add Probe`` button in the inspector
 
 Attach:LightProbesTestScene-sourceselected.png\\
 ``Light probes appear as yellow spheres in the Scene View``
+

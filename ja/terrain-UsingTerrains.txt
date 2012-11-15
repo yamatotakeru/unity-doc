@@ -53,3 +53,4 @@ While Terrain Inspector is active, those keyboard shortcuts can be used for fast
 * Shift-Q to Shift-Y selects active terrain tool.
 * Comma (,) and dot (.) cycle through active brush.
 * Shift-comma (<) and Shift-dot (>) cycle through active tree/texture/detail object.
+

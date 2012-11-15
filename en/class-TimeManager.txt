@@ -44,3 +44,4 @@ If frame takes longer to process than time specified in ``Maximum Allowed Timest
 !!Hints
 * Give the player control over time by changing ``Time Scale`` dynamically through scripting.
 * If your game is physics heavy or spends significant amount of time in ``FixedUpdate()`` events, then set ``Maximum Allowed Timestep`` to 0.1. This will prevent physics from driving your game below 10 frames per second.
+

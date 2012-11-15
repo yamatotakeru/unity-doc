@@ -72,3 +72,4 @@ The ``mono-memory`` section gives you an idea of how memory is being managed by 
 ||``used heap`` ||The portion of the ``allocated heap`` which is currently used up by objects. Every time you create a new class instance (not a struct) this number will grow until the next garbage collection.
 ||``max number of collections`` ||Number of garbage collection passes during the last 30 frames.
 ||``collection total duration`` ||Total time (in milliseconds) of all garbage collection passes that have happened during the last 30 frames.
+

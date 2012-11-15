@@ -190,3 +190,4 @@ Here's a simple specular lighting model. It's quite simple to what built-in Blin
 
 
 Attach:SurfaceShaderSimpleSpecular.png Attach:SurfaceShaderSimpleSpecularNoTex.png
+

@@ -48,3 +48,4 @@ Enable development build and script debugging. Now uncaught null ref exceptions 
 
 #Try to figure out which script the crash happens in and debug it using mono develop on the device.
 #If the crash seems to not be in your code, take a closer look at the stacktrace, there should be a hint of something happening. Take a copy and submit it, and we’ll take a look.
+

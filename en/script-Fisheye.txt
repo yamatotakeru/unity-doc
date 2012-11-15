@@ -14,3 +14,4 @@ Attach:FisheyeExample.png\\
 ||``Strength Y`` ||The vertical distortion. ||
 
 (:include imagefx-SM2:)
+

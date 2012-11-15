@@ -16,3 +16,4 @@ Attach:Inspector-MeshFilter.png\\
 メッシュ アセットをインポートすると、メッシュがスキンされる場合に、Unity が自動的に [[class-SkinnedMeshRenderer|Skinned Mesh Renderer]] を作成し、そうでない場合は、メッシュ レンダラと共に、メッシュ フィルタを作成します。
 
 シーン内のメッシュを確認するには、[[class-MeshRenderer|Mesh Renderer]] を GameObject に追加します。  これは自動で追加されますが、オブジェクトから削除した場合は、再度手動で追加する必要があります。  メッシュ レンダラがない場合も、メッシュはシーン （コンピュータのメモリ） 内に存在していますが、描画はされません。
+

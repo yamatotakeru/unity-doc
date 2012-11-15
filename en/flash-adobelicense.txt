@@ -22,3 +22,4 @@ To obtain a license, you will need to sign into [[https://www.adobefpl.com/ | ht
 * [[http://www.adobe.com/devnet/flashplayer/articles/premium-features-licensing-faq.html | Premium Features for Flash Player FAQs]]
 * [[http://www.adobe.com/devnet/flashplayer/articles/premium-features.html | Adobe Premium Features for Flash Player]]
 * [[http://gaming.adobe.com/ | Adobe gaming]]
+

@@ -15,3 +15,4 @@ Attach:CreaseExample.png\\
 ||``Spread`` ||外側の厚みを決定するためのぼやけ半径。 ||
 
 (:include imagefx-SM2Depth:)
+

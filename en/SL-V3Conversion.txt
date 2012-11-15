@@ -50,3 +50,4 @@ In Unity 2.x, [[class-RenderTexture | RenderTextures]] could be not power of two
 In Unity 3.0 we have decided to remove this OpenGL special case, and treat non power of two RenderTextures the same everywhere. It is recommended to replace @@samplerRECT@@, @@texRECT@@ and similar uses with regular @@sampler2D@@ and @@tex2D@@. Also, if you were doing any special pixel adressing for OpenGL case, you need to remove that from your shader, i.e. just keep the non-OpenGL part (look for @@SHADER_API_D3D9@@ or @@SHADER_API_OPENGL@@ macros in your shaders).
 
 
+

@@ -20,3 +20,4 @@ As with the other [[comp-ImageEffects|image effects]], this effect is only avail
 ||``Global Fog Color`` ||The color of the fog.||
 
 (:include imagefx-SM2Depth:)
+

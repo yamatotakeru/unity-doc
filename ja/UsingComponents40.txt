@@ -68,3 +68,4 @@ Attach:ComponentContextUpDown.png
 !!Removing Components
 
 If you want to remove a Component, option- or right-click on its header in the Inspector, and choose ^^Remove Component^^.  Or you can left-click the options icon next to the __?__ on the Component header.  All the property values will be lost and this cannot be undone, so be completely sure you want to remove the Component before you do.
+

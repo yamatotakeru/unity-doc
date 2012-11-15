@@ -43,3 +43,4 @@ This shader defines a color property ``_Color`` (that shows up in material inspe
 !! Subsections
 
 (:tocportion:)
+

@@ -18,3 +18,4 @@ Attach:FunkyView.png\\
 At any time, you can right-click the tab of any view to view additional options like Maximize or add a new tab to the same window.
 
 Attach:Editor-tabcontext.png
+

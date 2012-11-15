@@ -634,3 +634,4 @@ public class GUITest : MonoBehaviour {
 @]
 
 ユーザーが操作する前に、GUI コントロールが押された場合に、''GUI.changed''は真を返します。
+

@@ -1,9 +1,10 @@
-! Vertex-Lit
+! 頂点ライティング
 
 Attach:Shaders./Shader-NormalVertex.png
 
 (:include shader-VertexLitSubsetImport:)
 
-!!Performance
+!!パフォーマンス
 
-Generally, this shader is very cheap to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].
+一般に、このシェーダでは少ないレンダリングコストで描画できます。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。
+

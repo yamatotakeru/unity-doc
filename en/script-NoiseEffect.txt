@@ -16,3 +16,4 @@ Attach:FxNoise.png\\
 ||``Scratch Jitter`` ||Scratches can jitter slightly while remaining close to their original positions. ||
 
 (:include imagefx-SM2:)
+

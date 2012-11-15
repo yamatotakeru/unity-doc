@@ -45,3 +45,4 @@ This section covers all the other settings associated with Terrains.
 !! Mobile performance note
 
 Rendering terrain is quite expensive, so terrain engine is not very practical on lower-end mobile devices.
+

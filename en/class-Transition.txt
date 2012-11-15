@@ -1,4 +1,4 @@
-!!Animation Transitions
+!Animation Transitions
 
 $$Animation Transitions$$ define ''what'' happens when you switch from one $$Animation State$$ to another. There can be only one transition active at any given time. 
 

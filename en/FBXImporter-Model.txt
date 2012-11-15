@@ -45,3 +45,4 @@ Attach:MecanimImporterModelTab.png\\
 ||>>>``Local`` ||Unity will try to find existing materials only in the "local" Materials folder, ie, the Materials subfolder which is the same folder as the model file. ||
 ||>>>``Recursive-Up`` ||Unity will try to find existing materials in all Materials subfolders in all parent folders up to the Assets folder. ||
 ||>>>``Everywhere`` ||Unity will try to find existing materials in all Unity project folders. ||
+

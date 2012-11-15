@@ -11,3 +11,4 @@ Unity_4.0b7
 @]
 
 If you rename each Editor folder inside a single Unity folder you will overwrite the MonoDevelop folder and this will cause serious stability problems and unexpected crashes.  
+

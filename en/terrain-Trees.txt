@@ -98,3 +98,4 @@ Attach:TerrainCollider.png\\
 ''Terrain Collider Inspector''
 
 If you want to make your trees collide with rigid bodies, make sure you you check the ''Create Tree Colliders'' box. else your objects will go trough the trees you create. Note that the PhysX engine used by Unity only handles a maximum of 65536 colliders in a scene. If you use more trees then that (minus the other colliders already in the scene), then enabling tree colliders will fail with an error.
+

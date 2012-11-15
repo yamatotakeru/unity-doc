@@ -23,3 +23,4 @@ You create Cubemap in one of several ways:
 ||``Mipmap`` ||Enable to create mipmaps. ||
 ||``Format`` ||Format of the created cubemap. ||
 
+

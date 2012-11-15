@@ -14,3 +14,4 @@ Attach:LayerBasedCollision.png\\
 # ^^Edit->Project Settings->Physics^^ を選択して、物理特性設定パネルを開きます。
 # レイヤーにチェックを入れ、衝突マトリクスで、どのレイヤーが他のレイヤーと相互作用するかを選択します。
   Attach:LayerCollisionMatrix.png
+

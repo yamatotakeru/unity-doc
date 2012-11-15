@@ -84,3 +84,4 @@ The $$Animation Clip$$ can be played back at anytime by clicking the ^^Play butt
 Attach:AnimationEditorPlayButton.png  Click the ^^Play button^^ to play back the $$Animation Clip$$.
 
 The playback will loop within the time range that is shown in the ^^Time Line^^. This makes it possible to focus on refining a small part of the $$Animation Clip$$ that is being worked on, without having to play back the entire length of the clip. To play back the whole length of the $$Animation Clip$$, zoom out to view the entire time range, or press ^^F^^ to Frame Select with no $$keys$$ selected. To learn more about navigating the ^^Curve View^^, see the section on [[animeditor-AnimationCurves| Editing Animation Curves]].
+

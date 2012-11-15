@@ -18,3 +18,4 @@ Attach:FunkyView.png\\
 いつでも、ビューのタブを右クリックして、最大化などのオプションを表示したり、同じウィンドウに新しいタブを追加したりできます。
 
 Attach:Editor-tabcontext.png
+

@@ -30,3 +30,4 @@ Attach:terrain-OtherSettings.png\\
 * ``Size``: the areas of grass that are affected by wind all at once.
 * ``Bending``: amount that grass will bend due to wind.
 * ``Grass Tint``: overall tint amount for all Grass and Detail Meshes.
+

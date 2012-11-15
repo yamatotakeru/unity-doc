@@ -111,3 +111,4 @@ function OnGUI () {
 @]
 
 GUIスタイルの扱いに関する詳細については、[[class-GUIStyle | GUIStyle]] ページを参照してください。  UnityGUI の使用に関する詳細については、[[GUI Scripting Guide]] を参照してください。
+

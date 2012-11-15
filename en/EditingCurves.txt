@@ -80,3 +80,4 @@ Attach:AnimationBrokenFree.png
 Attach:AnimationBrokenLinear.png
 * ^^Constant^^: The curve retains a constant value between two keys. The value of the left key determines the value of the curve segment.\\
 Attach:AnimationBrokenConstant.png
+

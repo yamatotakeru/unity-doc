@@ -47,3 +47,4 @@ See [[SL-V3Conversion | Shader Upgrade Guide]] for more details. Largest change 
 * Built-in @@_CameraToWorld@@ and @@_WorldToCamera@@ matrices now do what you'd expect them to do. Previously they only contained the rotation part, and camera-to-world was flipped on Y axis. Yeah, we don't know how that happened either :)
 * Removed @@Shader.ClearAll()@@. Was deprecated since 2007, time to let it go.
 * Vertex shaders are compiled to Shader Model 2.0 now (before was 1.1). If you want to compile to SM1.1, add @@#pragma target 1.1@@ in the shader.
+

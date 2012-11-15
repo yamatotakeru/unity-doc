@@ -1,24 +1,23 @@
-!FBX Importer, Rig options
+!FBXインポータ、リグのオプション
 
-The Rig TAB allows you to assign or create an avatar definition to your imported skinned model so that you can animate it - see [[Main.AssetPreparationandImport|Asset Preparation and Import]]
+リグタブでは、インポートしスキニングモデルのアバター定義をアサインあるいは作成し、アニメーションをつけることができます。[[Main.AssetPreparationandImport|アセット準備およびインポート]] を参照してください。 
 
-If you have a __humanoid character__ e.g. a biped (two legs) that has two arms and a head, then choose Humanoid and 'Create from this model' an Avatar will be created to best match the bone hierarchy - see [[AvatarCreationandSetup|Avatar Creation and Setup]] or you can pick an alternative avatar Definition that has already been set up.
+__ヒューマノイド　キャラクター__、すなわち二足歩行で二本の腕と頭がある場合、Humanoidを選択し、Create from this modelを選択することでボーン階層にもっとも適合したアバターを作成できる。[[AvatarCreationandSetup|アバター作成およびセットアップ]] を参照のこと。別の方法としては既にセットアップされたアバター定義を選択することも出来ます。
 
-If you have a non humanoid character e.g. a quadruped, or any animateable entity that you wish to use with [[MecanimAnimationSystem|Mecanim]] choose __Generic__ after choosing you will then need to identify a bone in the drop down to choose as the 
-root node.
+逆に、非ヒューマノイド　キャラクター、たとえば四足歩行あるいは何らかアニメーション可能である存在があり[[MecanimAnimationSystem|メカニム]] で使用した場合、__Generic__選択した後、ドロップダウンボックスからいずれかのボーンを選択してルートノードとする必要がある。
 
-Choose legacy if you wish to use the legacy animation system and import and use animations as with 3.x
+Unity 3.x以前ののレガシー　アニメーションシステムでインポート、アニメーションを実行したい場合は、Legacyを選択してください。
 
 Attach:MecanimImporterRigTab.png
 
 ||PROPS
-||``Animation Type``           ||The type of animation.||
-||>>>``None``||No animation present||
-||>>>``Legacy``||Legacy animation system||
-||>>>``Generic``||Generic Mecanim animation||
-||>>>``Humanoid``||Humanoid Mecanim animation system||
-||``Avatar Definition``||Where to get the Avatar definition||
-||>>>``Create from this model``||The Avatar should be based on this model||
-||>>>``Copy from other Avatar``||Point to an Avatar config set up on another model. 
-||``Configure...``||Go to the [[ConfiguringtheAvatar|Avatar configuration]]||
+||``Animation Type``           ||アニメーションのタイプ。||
+||>>>``None``||アニメーションなし||
+||>>>``Legacy``||レガシー　アニメーションシステム||
+||>>>``Generic``||ジェネリック　メカニム　アニメーション||
+||>>>``Humanoid``||ヒューマノイド　アニメーションシステム||
+||``Avatar Definition``||アバター定義を取得する場所||
+||>>>``Create from this model``||アバターの作成元とするモデル||
+||>>>``Copy from other Avatar``||別モデルでセットアップされたアバターコンフィグ設定を指定
+||``Configure...``||[[ConfiguringtheAvatar|アバターコンフィグ設定]] を参照のこと||
 ||``Keep additional bones``|| ||

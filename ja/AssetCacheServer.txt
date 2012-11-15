@@ -59,3 +59,4 @@ One of the main distinctions between the Cache Server and version control is tha
 
 We recommend that you run the cache server on a Linux or Mac OS X machine. The Windows file system is not particularly well optimized for how the Asset Cache Server stores data and problems with file locking on Windows can cause issues that don't occur on Linux or Mac OS X.
 
+

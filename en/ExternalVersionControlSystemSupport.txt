@@ -33,3 +33,4 @@ Subversion will open a text editor. Add the Library directory.
 # Finally commit the changes. The project should now be set up and ready:\\
 @@svn ci -m"Finishing project import" MyUnityProject@@
 
+

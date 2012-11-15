@@ -15,3 +15,4 @@ var params = {
 unityObject.embedUnity("unityPlayer", "WebPlayer.unity3d", 600, 450, params);
 @]
 In the above example you'll notice that neither ``disableExternalCall`` nor ``disableFullscreen`` are specified, therefore their default values are used.
+

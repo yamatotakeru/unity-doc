@@ -8,3 +8,4 @@ Attach:OcclusionPortal.png
 ||``Open`` ||Indicates if the portal is open (scriptable)
 ||``Center`` ||Sets the center of the Occlusion Area. By default this is 0,0,0 and is located in the center of the box.||
 ||``Size`` ||Defines the size of the Occlusion Area.||
+

@@ -13,3 +13,4 @@ $$Skybox$$ は、ゲーム内のすべてのグラフィックの裏で描画さ
 # 新しいスカイボックス マテリアルをインスペクタの「Skybox Material」スロットにドラッグします。 [[<<]] Attach:SkyboxRenderSettings.png
 
 [[HOWTO-InstallStandardAssets|Standard Assets]] パッケージには、すぐに使えるスカイボックスが幾つか含まれています。これが、最も速く始める方法です。
+

@@ -18,3 +18,4 @@ If you modify the lxo file, Unity will automatically update whenever you save.
 
 !! Requirements
 * modo 501 or later is required for native import of *.lxo files.
+

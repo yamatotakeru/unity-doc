@@ -128,3 +128,4 @@ Attach:ConfigurableJointImage.png\\
 ||``Congfigure in World Space`` |有効にすると、オブジェクトのローカル スペースでなく、ワールド スペースですべての Target 値が計算されます。
 ||``Break Force``   ||この数字以上の Force 値が適用されると、ジョイントが破壊されます。||
 ||``Break Torque``   ||この数字以上の Torque 値が適用されると、ジョイントが破壊されます。||
+

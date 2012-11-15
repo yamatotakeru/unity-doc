@@ -13,3 +13,4 @@ Attach:FxEdge.png\\
 ||``Threshold`` ||Edges will be displayed wherever the color difference between neighboring pixels exceeds this value. Increasing the value will make edges less sensitive to texture or lighting changes. ||
 
 (:include imagefx-SM2:)
+

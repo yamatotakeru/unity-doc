@@ -1,4 +1,4 @@
-!!Animator Controller
+!Animator Controller
 
 You can view and set up character behavior from the ~~Animator Controller~~ view (Menu: ^^Window > Animator Controller^^).
 

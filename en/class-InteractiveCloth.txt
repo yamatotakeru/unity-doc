@@ -51,3 +51,4 @@ To add an Interactive Cloth in the scene just select ``GameObject->Create Other-
 
 !! Notes.
 * Cloth simulation will generate normals but not tangents. If the source mesh has tangents, these will be passed to the shader unmodified - so if you are using a shader which depends on tangents (such as bump mapped shaders), the lighting will look wrong for cloth which has been moved from it's initial position.
+

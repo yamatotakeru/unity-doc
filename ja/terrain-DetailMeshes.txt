@@ -41,3 +41,4 @@ If you make any updates to your Detail Mesh asset source file, it must be manual
 
 !! Hints:
 * The UVs of the detail mesh objects need to be in the 0-1 range because all the separate textures used for all the detail meshes are packed into a single texture atlas.
+

@@ -23,3 +23,4 @@ If you are in the middle of a project you may not want to update to a new versio
 
 !! Disabling the Update Check
 It is not possible to disable the check for updates.  The Check For Updates tick box on the dialog controls whether you are notified of updates (if they are available) when Unity starts. Even if you have unticked the Check for Updates option you can still check for updates by using the Help->Check for Updates menu item.
+

@@ -169,3 +169,4 @@ class LookAtPointEditor extends Editor {
 OnSceneGUI は、シーン ビューで実行される点を除くと、OnInspectorGUI と同じく機能します。 編集インターフェースの作成に役立つ、[[ScriptRef:Handles.html | Handles]] クラスで定義された関数を使用できます。 そこでの関数はすべて、3D シーン ビューで作業するために設計されています。
 
 2D GUI オブジェクト (GUI、EditorGUI およびその仲間) を入れるたい場合、Handles.BeginGUI() と Handles.EndGUI() の呼び出しにこれらをラップする必要があります。
+

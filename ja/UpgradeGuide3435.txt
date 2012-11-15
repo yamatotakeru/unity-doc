@@ -11,3 +11,4 @@ If the connection between the instance and the FBX file's prefab has been broken
 
 In that case it is recommended that you recreate the prefabs or Game Object hierarchies by dragging your FBX file into your scene and recreating it.
 
+

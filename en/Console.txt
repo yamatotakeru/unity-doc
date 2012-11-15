@@ -17,3 +17,4 @@ Attach:Console-toolbar.png
 * Pressing ^^Open Player Log^^ will open the Player Log in a text editor (or using the Console app on Mac if set as the default app for .log files).
 * Pressing ^^Open Editor Log^^ will open the Editor Log in a text editor (or using the Console app on Mac if set as the default app for .log files).
 
+

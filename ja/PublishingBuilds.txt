@@ -151,3 +151,4 @@ Unity 自体の使用の詳細については、[[Building Scenes|continue readi
 アート アセットの作成の詳細については、本マニュアルの [[Asset Import and Creation | Assets section]] を参照してください。
 
 Unity ユーザーや開発者のコミュニティに参加したい場合は、[[http://forum.unity3d.com|Unity Forums]] にアクセスしてください。  ここでは、質問やプロジェクトの共有、チームの作成などを行えます。あなたの作成した素晴らしいゲームを見たいので、ぜひ 1 度はフォーラムに参加してください。
+

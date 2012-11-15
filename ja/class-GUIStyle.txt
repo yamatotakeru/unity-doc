@@ -76,3 +76,4 @@ Attach:guiStyle-TwoButtonsOneIsStyled.png\\
 ''コードのサンプルで作成されたように、2 つのボタンで、1 つはスタイルあり''
 
 UnityGUI の使用に関する詳細については、[[GUI Scripting Guide]] を参照してください。
+

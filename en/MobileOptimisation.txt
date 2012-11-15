@@ -199,3 +199,4 @@ Downloads are implemented via async API provided by OS, so OS decides how many t
 *If it randomly crashes, try on a devkit or a device with 2 GB memory (like Ipad 3).
 Sometimes there’s nothing in the console, just a random crash
 *Fast script call and stripping may lead to random crashes on iOS. Try without them.
+

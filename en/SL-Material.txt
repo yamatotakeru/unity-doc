@@ -103,3 +103,4 @@ And finally, a full fledged vertex-lit shader (see also [[SL-SetTexture|SetTextu
         }
     }
 } @]
+

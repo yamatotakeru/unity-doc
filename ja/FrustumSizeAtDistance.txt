@@ -18,3 +18,4 @@ Each of these calculations involves the height of the frustum but this can be ob
 
 [@var frustumWidth = frustumHeight * camera.aspect;
 var frustumHeight = frustumWidth / camera.aspect;@]
+

@@ -455,14 +455,12 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[class-GameObject]]
 *** [[comp-ImageEffects]]
 **** [[script-AntialiasingAsPostEffect]]
->>u40<<
 **** [[script-Bloom]]
 **** [[script-CameraMotionBlur]]
 **** [[script-DepthOfFieldScatter]]
 **** [[script-NoiseAndGrain]]
 **** [[script-ScreenOverlay]]
 **** [[script-ColorCorrectionLut]]
->><<
 **** [[script-BloomAndLensFlares]]
 **** [[script-ColorCorrectionCurves]]
 **** [[script-ContrastEnhance]]
@@ -494,9 +492,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 **** [[class-NavMeshLayers]]
 **** [[class-NetworkManager]]
 **** [[class-PhysicsManager]]
->>u40<<
 **** [[class-PlayerSettings40]]
->><<
 **** [[class-QualitySettings]]
 **** [[class-RenderSettings]]
 **** [[class-ScriptExecution]]
@@ -639,9 +635,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[SL-SurfaceShaderExamples]]
 ****[[SL-SurfaceShaderLighting]]
 ****[[SL-SurfaceShaderLightingExamples]]
->>u40<<
 ****[[SL-SurfaceShaderTessellation]]
->><<
 ***[[SL-ShaderPrograms]]
 ****[[SL-PropertiesInPrograms]]
 ****[[SL-VertexProgramInputs]]

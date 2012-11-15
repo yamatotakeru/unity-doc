@@ -23,3 +23,4 @@ Attach:GameObject-maincamera.png\\
 ''The Main Camera, added to each scene by default''
 
 Looking at the Main Camera GameObject, you can see that it contains a different collection of Components.  Specifically, a [[class-Camera | Camera Component]], a [[class-GUILayer | GUILayer]], a [[class-FlareLayer | Flare Layer]], and an [[class-AudioListener | Audio Listener]].  All of these Components provide additional functionality to the GameObject.  Without them, there would be nothing rendering the graphics of the game for the person playing!  Rigidbodies, Colliders, Particles, and Audio are all different Components (or combinations of Components) that can be added to any given GameObject.
+

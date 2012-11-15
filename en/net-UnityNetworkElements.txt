@@ -74,3 +74,4 @@ Unity comes with several facilities to help you debug your Networked game.
 
 
 Make sure you make the player run in the background when debugging networking because, for example, if you have two instances running at once, one of them doesn't have focus. This will break the networking loop and cause undesirable results. You can enable this in Edit->Project Settings->Player in the editor or with [[ScriptRef:Application-runInBackground.html|Application.runInBackground]]
+

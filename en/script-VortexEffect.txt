@@ -13,3 +13,4 @@ Attach:FxVortex.png\\
 ||``Center`` ||The center of the circular region of distortion.||
 
 (:include imagefx-SM2:)
+

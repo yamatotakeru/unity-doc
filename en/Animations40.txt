@@ -32,3 +32,4 @@ Attach:MecanimLegacyAnimationClips.png
 
 The Start and End values can be changed to allow you to use just a part of the original clip (see the page on [[Splittinganimations||splitting animations]] for further details). The ''Add Loop Frame'' option adds an extra keyframe to the end of the animation that is exactly the same as the keyframe at the start. This enables the animation to loop smoothly even when the last frame doesn't exactly match up with the first. The ''Wrap Mode'' setting is identical to the master setting in the main animation properties but applies only to that specific clip.
 
+

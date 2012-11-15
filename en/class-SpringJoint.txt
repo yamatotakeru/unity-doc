@@ -42,3 +42,4 @@ If the position of your object falls in-between the ``Min`` & ``Max Distances``,
 * You do not need to assign a ``Connected Body`` to your Joint for it to work.
 * Set the ideal positions of your Jointed objects in the Editor prior to entering Play mode.
 * Spring Joints require your object to have a Rigidbody attached.
+

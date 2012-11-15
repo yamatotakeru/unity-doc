@@ -35,3 +35,4 @@ You can unload resources of an AssetBundle by calling [[ScriptRef:AssetBundle.Un
 Sometimes you may prefer to load an AssetBundle, instantiate the objects desired and release the memory used up by the bundle while keeping the objects around. The benefit is that you free up memory for other tasks, for instance loading another AssetBundle. In this scenario you would pass ``false`` as the parameter. After the bundle is destroyed you will not be able to load objects from it any more.
 
 If you want to destroy scene objects loaded using [[ScriptRef:Resources.Load.html | Resources.Load()]] prior to loading another level, call [[ScriptRef:Object.Destroy.html | Object.Destroy()]] on them. To release assets, use [[ScriptRef:Resources.UnloadUnusedAssets.html | Resources.UnloadUnusedAssets()]].
+

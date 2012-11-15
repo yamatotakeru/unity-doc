@@ -18,3 +18,4 @@ Sometimes you might want to upgrade your Standard Assets, for example because a 
 # A list of new or replaced assets will be presented, click ^^Import^^.
 
 For the cleanest possible upgrade, it should be considered to remove the old package contents first, as some scripts, effects or prefabs might have become deprecated or unneeded and Unity packages don't have a way of deleting (unneeded) files (but make sure to have a security copy of the old version available). 
+

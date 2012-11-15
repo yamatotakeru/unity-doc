@@ -1,9 +1,10 @@
-! Specular
+! スペキュラ
 
 Attach:Shaders./Shader-NormalSpec.png
 
 (:include shader-SpecularSubsetImport:)
 
-!!Performance
+!!パフォーマンス
 
-Generally, this shader is moderately expensive to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].
+一般に、このシェーダでは少ない費用でレンダリングできます。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。
+

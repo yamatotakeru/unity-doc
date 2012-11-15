@@ -30,3 +30,4 @@ Use the ^^Layer^^ drop-down to assign a rendering Layer to the GameObject.  Use 
 !!Prefabs
 
 If you have a Prefab selected, some additional buttons will be available in the Inspector.  For more information about Prefabs, please view the [[Prefabs | Prefab manual page]].
+

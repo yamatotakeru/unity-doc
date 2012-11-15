@@ -41,3 +41,4 @@ Attach:TreeNode-LeafNodePropertiesAnimation.png
 ||``Main Wind``      ||Primary wind effect. Usually this should be kept as a low value to avoid leaves floating away from the parent branch.||
 ||``Main Turbulence``||Secondary turbulence effect. For leaves this should usually be kept as a low value.||
 ||``Edge Turbulence``||Defines how much wind turbulence occurs along the edges of the leaves.||
+

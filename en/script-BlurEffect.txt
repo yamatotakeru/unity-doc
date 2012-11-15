@@ -15,3 +15,4 @@ Attach:FxBlur.png\\
 ||``Blur Spread`` ||Higher values will spread out the blur more at the same iteration count but at some cost in quality. Usually values from 0.6 to 0.7 are a good compromise between quality and speed. ||
 
 (:include imagefx-SM2:)
+

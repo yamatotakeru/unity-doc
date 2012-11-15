@@ -42,3 +42,4 @@ You can use the ``Break Force`` and ``Break Torque`` properties to set limits fo
 !!Hints
 * You do not need to assign a ``Connected Body`` to your joint for it to work.
 * Character Joints require your object to have a Rigidbody attached.
+

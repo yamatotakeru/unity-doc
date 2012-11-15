@@ -61,3 +61,4 @@ In order to use streaming in Unity, you select ``Web Player Streamed`` in the Bu
 You can query the progress of the stream by level, and once a level is available it can be loaded. Use [[ScriptRef:Application.GetStreamProgressForLevel.html|GetStreamProgressForLevel]] for displaying a progress bar and [[ScriptRef:Application.CanStreamedLevelBeLoaded.html|CanStreamedLevelBeLoaded]] to check if all the data is available to load a specific level.
 
 This form of streaming is of course linear, which matches how games work in most cases. Sometimes that's not enough. Therefore Unity also provides you with API's to load a .unity3d file manually using the [[ScriptRef:WWW.html|WWW]] class. Video and audio can be streamed as well, and can start playing almost immediately, without requiring the movie to be downloaded first. Finally Textures can easily be downloaded via the [[ScriptRef:WWW.html|WWW]] class, as can any textual or binary data your game might depend on.
+

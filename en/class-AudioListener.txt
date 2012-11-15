@@ -24,3 +24,4 @@ You should attach the Audio Listener to either the Main Camera or to the GameObj
 * Each scene can only have one Audio Listener.
 * You access the project-wide audio settings using the [[class-AudioManager | Audio Manager]], found in the ^^Edit->Project Settings->Audio^^ menu.
 * View the [[class-AudioClip | Audio Clip]] Component page for more information about Mono vs Stereo sounds.
+

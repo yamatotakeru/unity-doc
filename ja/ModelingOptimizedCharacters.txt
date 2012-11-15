@@ -24,3 +24,4 @@ The number of polygons you should use depends on the quality you require and the
 !! Keep Forward and Inverse Kinematics Separate
 
 When animations are imported, a model's inverse kinematic (IK) nodes are baked into forward kinematics (FK) and as a result, Unity doesn't need the IK nodes at all. However, if they are left in the model then they will have a CPU overhead even though they don't affect the animation. You can delete the redundant IK nodes in Unity or in the modeling tool, according to your preference.  Ideally, you should keep separate IK and FK hierarchies during modeling to make it easier to remove the IK nodes when necessary.
+

@@ -34,3 +34,4 @@ All built-in Unity shaders have a "$$RenderType$$" tag set that can be used when
 
 A Camera has a built-in capability to render depth or depth+normals texture, if you need that in some of your effects. See [[SL-CameraDepthTexture | Camera Depth Texture]] page. Note that in some cases (depending on the hardware), the depth and depth+normals textures can internally be rendered using shader replacement. So it is important to have the correct "$$RenderType$$" tag in your shaders.
 
+

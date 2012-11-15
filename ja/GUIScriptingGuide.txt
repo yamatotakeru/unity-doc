@@ -64,3 +64,4 @@ UnityGUI is very easy to extend with new Control types. This chapter shows you h
 !! [[gui-ExtendingEditor | Extending Unity Editor]]
 
 The GUI of the Unity editor is actually written using UnityGUI. Consequently, the editor is highly extensible using the same type of code you would use for in-game GUI. In addition, there are a number of Editor-specific GUI controls to help you create custom editor GUI.
+

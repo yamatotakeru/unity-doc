@@ -193,3 +193,4 @@ At some points a game may crash with "out of memory" though it in theory it shou
 **Textures loaded from JPEG/PNGs at runtime are essentially uncompressed.
 **Big mp3 files marked as decompress on loading.
 *Keeping unused assets in weird caches like static monobehavior fields, which are not cleared when changing scenes.
+

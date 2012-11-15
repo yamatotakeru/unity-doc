@@ -37,3 +37,4 @@ __Note:__ If you want to change the font for a Text Mesh, need to set the compon
 * When entering text into the ``Text`` property, you can create a line break by holding ^^Alt^^ and pressing ^^Return^^.
 * You can download free TrueType Fonts from [[http://www.1001freefonts.com/fonts/afonts.htm | 1001freefonts.com]] (download the Windows fonts since they contain TrueType Fonts).
 * If you are scripting the ``Text`` property, you can add line breaks by inserting the escape character "\n" in your strings.
+

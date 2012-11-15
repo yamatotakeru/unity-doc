@@ -71,3 +71,4 @@ This is correct. What you are looking at is the number of vertices/triangles act
 * [[Modeling Optimized Characters]]
 * [[HOWTO-bumpmap | How do I use normal maps?]]
 * [[HOWTO-FixZAxisIsUp | How do I fix the rotation of an imported model?]]
+

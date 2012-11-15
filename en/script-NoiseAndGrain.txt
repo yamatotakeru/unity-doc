@@ -31,3 +31,4 @@ As with the other [[comp-ImageEffects|image effects]], this effect is only avail
 ||``Tiling`` ||Noise pattern tiling (can be tweaked for all color channels individually when in non-DX11 texture mode).||
 
 (:include imagefx-SM2:)
+

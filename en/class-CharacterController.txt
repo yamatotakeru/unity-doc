@@ -55,3 +55,4 @@ You can download an example project showing pre-setup animated and moving charac
 * The Character Controller can affect objects using physics if you write your own scripts.
 * The Character Controller can not be affected by objects through physics.
 * Note that changing Character Controller properties in the inspector will recreate the controller in the scene, so any existing Trigger contacts will get lost, and you will not get any OnTriggerEntered messages until the controller is moved again.
+

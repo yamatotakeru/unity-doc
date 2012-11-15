@@ -25,3 +25,4 @@ As with the other [[comp-ImageEffects|image effects]], this effect is only avail
 
 
 (:include imagefx-SM3Depth:)
+

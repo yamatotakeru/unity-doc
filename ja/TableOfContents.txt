@@ -169,6 +169,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 *** [[TroubleShooting#AndroidTroubleShooting | android-troubleshooting]]
 *** [[android-bugreporting]]
 *** [[android-unsupported]]
+*** [[android-OBBsupport]]
 *** [[class-PlayerSettings#Android | Android Player Settings]]
 *** [[android-API]]
 **** [[Input#AndroidInput | Android-Input]]
@@ -271,7 +272,9 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[scriptsinassetbundles|Including scripts in AssetBundles]]
 ***[[Graphics Features]]
 ****[[HDR]]
+>>jpn<<
 ****[[RenderingPaths]]
+>><<
 ****[[Linear Lighting]]
 ****[[Level Of Detail]]
 ****[[Shaders]]
@@ -397,8 +400,8 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 !Reference Manual
 *[[Reference]]
 **[[Components]]
-***[[comp-AIGroup]]
 >>jpn<<
+***[[comp-AIGroup]]
 ****[[class-NavMeshAgent]]
 ****[[class-OffMeshLink]]
 ****[[class-NavMeshObstacle]]
@@ -414,55 +417,37 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[class-State]]
 ****[[class-Transition]]
 ***[[comp-AssetsGroup]]
->><<
 ****[[class-AudioClip]]
->>jpn<<
 ****[[class-Cubemap]]
->><<
 ****[[class-FBXImporter]]
 *****[[FBXImporter-Model]]
 *****[[FBXImporter-Rig]]
 *****[[FBXImporter-Animations]]
->>jpn<<
 ****[[class-Flare]]
->><<
 ****[[class-Font]]
->>jpn<<
 ****[[class-Material]]
->><<
 ****[[class-Mesh]]
 ****[[class-MovieTexture]]
->>jpn<<
 ****[[class-ProceduralMaterial]]
 ****[[class-RenderTexture]]
 ****[[class-TextAsset]]
->><<
 ****[[class-Texture2D]]
->>jpn<<
 ***[[comp-AudioGroup]]
 ****[[class-AudioListener]]
->><<
 ****[[class-AudioSource]]
 ****[[class-AudioEffect]]
 *****[[class-AudioLowPassFilter]]
->>jpn<<
 *****[[class-AudioHighPassFilter]]
->><<
 *****[[class-AudioEchoFilter]]
->>jpn<<
 *****[[class-AudioDistorionFilter]]
->><<
 *****[[class-AudioReverbFilter]]
 *****[[class-AudioChorusFilter]]
 ****[[class-AudioReverbZone]]
 ****[[class-Microphone]]
->>jpn<<
 ***[[comp-DynamicsGroup]]
 ****[[class-BoxCollider]]
->><<
 ****[[class-CapsuleCollider]]
 ****[[class-CharacterController]]
->>jpn<<
 ****[[class-CharacterJoint]]
 ****[[class-ConfigurableJoint]]
 ****[[class-ConstantForce]]
@@ -470,15 +455,11 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[class-HingeJoint]]
 ****[[class-MeshCollider]]
 ****[[class-PhysicMaterial]]
->><<
 ****[[class-Rigidbody]]
->>jpn<<
 ****[[class-SphereCollider]]
 ****[[class-SpringJoint]]
->><<
 ****[[class-InteractiveCloth]]
 ****[[class-SkinnedCloth]]
->>jpn<<
 ****[[class-WheelCollider]]
 ***[[comp-GameObjectGroup]]
 ****[[class-GameObject]]
@@ -523,24 +504,22 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 **** [[script-TwirlEffect]]
 **** [[script-VortexEffect]]
 *** [[comp-ManagerGroup]]
->><<
 **** [[class-AudioManager]]
->>jpn<<
 **** [[class-EditorManager]]
->><<
 **** [[class-InputManager]]
 **** [[class-NavMeshLayers]]
 **** [[class-NetworkManager]]
 **** [[class-PhysicsManager]]
+>><<
 >>u40<<
 **** [[class-PlayerSettings40]]
 >><<
+>>jpn<<
 **** [[class-QualitySettings]]
 **** [[class-RenderSettings]]
 **** [[class-ScriptExecution]]
 **** [[class-TagManager]]
 **** [[class-TimeManager]]
->>jpn<<
 *** [[comp-MeshGroup]]
 **** [[class-MeshFilter]]
 **** [[class-MeshRenderer]]
@@ -566,28 +545,20 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ***** [[class-ParticleRenderer]]
 ***** [[class-WorldParticleCollider]]
 *** [[comp-RenderingGroup]]
->><<
 **** [[class-Camera]]
->>jpn<<
 **** [[class-FlareLayer]]
 **** [[class-GUILayer]]
 **** [[class-GuiText]]
 **** [[class-GuiTexture]]
->><<
 **** [[class-Light]]
 **** [[class-LightProbeGroup]]
 **** [[class-OcclusionArea]]
 **** [[class-OcclusionPortal]]
->>jpn<<
 **** [[class-Skybox]]
->><<
 **** [[class-LODGroup]]
 **** [[class-Texture3D]]
->>jpn<<
 *** [[comp-TransformationGroup]]
->><<
 **** [[class-Transform]]
->>jpn<<
 *** [[comp-UnityGUIGroup]]
 **** [[class-GUISkin]]
 **** [[class-GUIStyle]]
@@ -701,10 +672,8 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 >><<
 **[[Rendering-Tech]]
 ***[[RenderTech-DeferredLighting]]
->>jpn<<
 ***[[RenderTech-ForwardRendering]]
 ***[[RenderTech-VertexLit]]
->><<
 ***[[RenderTech-HardwareRequirements]]
 >>jpn<<
 **[[SL-Reference]]

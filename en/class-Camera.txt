@@ -133,3 +133,4 @@ Attach:Camera-RenderTexture.png\\
 * Cameras cannot render to the Game Screen and a Render Texture at the same time, only one or the other.
 * Pro license holders have the option of rendering a Camera's view to a texture, called Render-to-Texture, for even more unique effects.
 * Unity comes with pre-installed Camera scripts, found in ^^Components->Camera Control^^.  Experiment with them to get a taste of what's possible.
+

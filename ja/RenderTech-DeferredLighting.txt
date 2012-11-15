@@ -49,3 +49,4 @@ The only lighting model available is Blinn-Phong. If a different model is wanted
 !!! Final Pass
 
 The final pass produces the final rendered image. Here all objects are rendered again with shaders that fetch the lighting, combine it with textures and add any emissive lighting. Lightmaps are also applied in the final pass. Close to the camera, realtime lighting is used, and only baked indirect lighting is added. This crossfades into fully baked lighting further away from the camera.
+

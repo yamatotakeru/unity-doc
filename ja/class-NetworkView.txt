@@ -96,3 +96,4 @@ RPC は高い信頼性で送信され、順序付けられます。 RPC の詳�
 * ネットワーク ビューの使用方法がまだ不明の方は、[[Network Reference Guide]] を参照してください。
 * リモート プロシージャ コールを使用するのに、State Synchronization を無効にする必要はありません。
 * 複数のネットワーク ビューがあり、その内の 1 つで RPC を呼び出したい場合は、''GetComponents(NetworkView)[i].RPC()''を使用してください。
+

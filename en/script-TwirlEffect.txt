@@ -15,3 +15,4 @@ Attach:FxTwirl.png\\
 ||``Center`` ||The point at the centre of the circle where distortion occurs.||
 
 (:include imagefx-SM2:)
+

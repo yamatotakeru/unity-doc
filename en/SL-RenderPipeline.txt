@@ -32,3 +32,4 @@ Since vertex lighting is most often used on platforms that do not support progra
 * @@Vertex@@ pass is used for non-lightmapped objects. All lights are rendered at once, using a fixed function OpenGL/Direct3D lighting model ([[http://en.wikipedia.org/wiki/Blinn-Phong_shading|Blinn-Phong]])
 * @@VertexLMRGBM@@ pass is used for lightmapped objects, when lightmaps are RGBM encoded (this happens on most desktops and consoles). No realtime lighting is applied; pass is expected to combine textures with a lightmap.
 * @@VertexLMM@@ pass is used for lightmapped objects, when lightmaps are double-LDR encoded (this happens on mobiles and old desktops). No realtime lighting is applied; pass is expected to combine textures with a lightmap.
+

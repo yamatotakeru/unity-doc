@@ -8,3 +8,4 @@ Attach:FxSepia.png\\
 ''Sepia Tone image effect applied to the scene''
 
 (:include imagefx-SM2:)
+

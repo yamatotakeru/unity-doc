@@ -9,3 +9,4 @@ Using Networking you can create a game that can be played simultaneously from de
 
 __Note:__
 EDGE / 3G data connections go to sleep very quickly when no data is sent. Thus sometimes you may need to "wake-up" networking. Just make the WWW class connect to your site (and yield until it finishes) before making the Unity networking connection..
+

@@ -25,3 +25,4 @@ The events added to a clip are shown as markers in the event line. Holding the m
 
 Attach:AnimationEditorEventTooltip.png\\
 ''Holding the mouse cursor over an ^^Animation Event marker^^ will show which function it calls as well as the parameter value.''
+

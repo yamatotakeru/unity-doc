@@ -164,3 +164,4 @@ Registers a function that will be called once the web page's DOM is loaded.
 ''Parameters:''
 
 * ``event`` - Function that will be called once web page's DOM is loaded. This function does not expect any parameters.
+

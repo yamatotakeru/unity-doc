@@ -20,3 +20,4 @@ Attach:ContrastEnhanceEnabled.png\\
 ||``Blur Spread`` ||The radius over which contrast comparisons are made. ||
 
 (:include imagefx-SM2:)
+

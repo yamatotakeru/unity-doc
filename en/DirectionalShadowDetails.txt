@@ -91,3 +91,4 @@ Shadow maps with cascades scale with distance much better. For example, four cas
 
 Attach:Shadow300-4hs.png
 ''Soft shadows with distance of 300 and four cascades.''
+

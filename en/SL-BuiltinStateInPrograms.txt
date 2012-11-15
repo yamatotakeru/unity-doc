@@ -18,3 +18,4 @@ Matrices (float4x4) supported:
 Vectors (float4) supported:
 
 : ``UNITY_LIGHTMODEL_AMBIENT`` : Current ambient color.
+

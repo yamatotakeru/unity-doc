@@ -58,3 +58,4 @@ Procedural Materials can also be used purely as a convenience in the editor (ie,
 Since the complexity of a Procedural Material can affect runtime performance, Allegorithmic incorporates profiling features in its ''Substance Player'' tool. This tool is available to download for free from [[http://www.allegorithmic.com/|Allegorithmic's website]].
 
 Substance Player uses the same optimized rendering engine as the one integrated into Unity, so its rendering measurement is more representative of performance in Unity than that of Substance Designer.
+

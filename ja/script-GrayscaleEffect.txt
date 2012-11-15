@@ -34,3 +34,4 @@ Attach:FxGrayscaleNegative.png
 任意の色への修正を行う色再マッピングのより複雑なバージョンは、[[script-ColorCorrectionEffect|ColorCorrection]] 画像効果で達成できます。
 
 (:include imagefx-SM2:)
+

@@ -31,3 +31,4 @@ In some cases, the depth texture might come directly from the native Z buffer. I
 !! Under the hood
 
 Depth texture can come directly from the actual depth buffer, or be rendered in a separate pass, depending on the rendering path used and the hardware. When the depth texture is rendered in a separate pass, this is done through [[SL-ShaderReplacement | Shader Replacement]]. Hence it is important to have correct "$$RenderType$$" tag in your shaders.
+

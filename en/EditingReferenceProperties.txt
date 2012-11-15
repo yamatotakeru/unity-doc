@@ -46,3 +46,4 @@ The Object Picker works on any asset you have in your project, which can be a vi
 * Use [[AssetWorkflow#AssetLabels | Labels]] on your Assets and you will be able to find them more easily by searching for them using the search field of the Object Picker.
 * If you dont want to see the descriptions of the objects you can move the slider in the bottom middle of the preview window downward.
 * If you want to see a detailed preview of the object, you can enlarge the object preview by dragging the slider in the bottom middle of the preview window.
+

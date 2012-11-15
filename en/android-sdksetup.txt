@@ -21,3 +21,4 @@ If you are unsure whether your device is properly installed on your system, plea
 
 !! 4. Add the Android SDK path to Unity
 The first time you build a project for Android (or if Unity later fails to locate the SDK) you will be asked to locate the folder where you installed the Android SDK (you should select the root folder of the SDK installation). The location of the Android SDK can also be changed in the editor by selecting Unity > Preferences from the menu and then clicking on External Tools in the preferences window.
+

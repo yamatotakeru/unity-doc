@@ -87,3 +87,4 @@ Attach:TreeNode-BranchPropertiesAnimation.png
 ||``Main Turbulence`` ||Secondary turbulence effect. Produces more stochastic motion, which is individual per branch. Typically used for branches with fronds, such as ferns and palms.||
 ||``Edge Turbulence`` ||Turbulence along the edge of fronds. Useful for ferns, palms, etc.||
 ||``Create Wind Zone``||Creates a [[class-WindZone | Wind Zone]].||
+

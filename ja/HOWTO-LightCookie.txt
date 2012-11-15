@@ -15,3 +15,4 @@ Cookie を使用してシーンに数々の視覚的詳細を追加する便利�
 # テクスチャ形式を「Alpha 8 Bit」に設定します。
 
 Attach:SpotlightCookie.png
+

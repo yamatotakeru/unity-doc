@@ -26,3 +26,4 @@ Sometimes, the overground heading to a target is required. For example, imagine 
 
 [@var heading = target.position - player.position;
 heading.y = 0;	// This is the overground heading.@]
+

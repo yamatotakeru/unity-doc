@@ -1,13 +1,13 @@
-!Transparent Shader Family
+! 透明シェーダ ファミリ
 
-The Transparent shaders are used for fully- or semi-transparent objects.  Using the alpha channel of the ``Base`` texture, you can determine areas of the object which can be more or less transparent than others.  This can create a great effect for glass, HUD interfaces, or sci-fi effects.
+透明シェーダは、完全に透明または半透明のオブジェクトに使用します。  「Base」テクスチャのアルファ チャンネルを使用すると、他方よりも透明度の多い、あるいは少ないオブジェクトのエリアを決定できます。  これにより、草や HUD インターフェースまたは SCI-FI 効果用の素晴らしい効果を作成できます。
 
 !! [[shader-TransVertexLit|Transparent Vertex-Lit]]
 
 [[shader-TransVertexLit| Attach:Shaders./Thumb-TransVertex.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for Transparency Map
+「必要なアセット」
+* 透明マップのあるアルファ チャンネルのある 1 つの「Base」テクスチャ
 
 [[shader-TransVertexLit | &#187; More details]]
 
@@ -16,8 +16,8 @@ The Transparent shaders are used for fully- or semi-transparent objects.  Using 
 
 [[shader-TransDiffuse| Attach:Shaders./Thumb-TransDiffuse.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for Transparency Map
+「必要なアセット」
+* 透明マップのあるアルファ チャンネルのある 1 つの「Base」テクスチャ
 
 [[shader-TransDiffuse | &#187; More details]]
 
@@ -26,11 +26,11 @@ The Transparent shaders are used for fully- or semi-transparent objects.  Using 
 
 [[shader-TransSpecular| Attach:Shaders./Thumb-TransSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for combined Transparency Map/Specular Map
+「必要なアセット」
+* 結合した透明マップ/スペキュラ マップのあるアルファ チャンネルのある 1 つの「Base」テクスチャ
 
-'''Note:'''
-One limitation of this shader is that the ``Base`` texture's alpha channel doubles as a Specular Map for the Specular shaders in this family.
+「注意：」
+このシェーダの制限の 1 つは、このファミリ内のスペキュラ シェーダに対するスペキュラ マップとして、「Base」テクスチャのアルファ チャンネルが 2 倍になることです。
 
 
 [[shader-TransSpecular | &#187; More details]]
@@ -40,9 +40,9 @@ One limitation of this shader is that the ``Base`` texture's alpha channel doubl
 
 [[shader-TransBumpedDiffuse| Attach:Shaders./Thumb-TransBump.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for Transparency Map
-* One ``Normal map`` normal map, no alpha channel required
+「必要なアセット」
+* 透明マップのあるアルファ チャンネルのある 1 つの「Base」テクスチャ
+* 1 つの「Normal map」法線マップ、アルファ チャンネルは不要
 
 [[shader-TransBumpedDiffuse | &#187; More details]]
 
@@ -51,12 +51,12 @@ One limitation of this shader is that the ``Base`` texture's alpha channel doubl
 
 [[shader-TransBumpedSpecular| Attach:Shaders./Thumb-TransBumpSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for combined Transparency Map/Specular Map
-* One ``Normal map`` normal map, no alpha channel required
+「必要なアセット」
+* 結合した透明マップ/スペキュラ マップのあるアルファ チャンネルのある 1 つの「Base」テクスチャ
+* 1 つの「Normal map」法線マップ、アルファ チャンネルは不要
 
-'''Note:'''
-One limitation of this shader is that the ``Base`` texture's alpha channel doubles as a Specular Map for the Specular shaders in this family.
+「注意：」
+このシェーダの制限の 1 つは、このファミリ内のスペキュラ シェーダに対するスペキュラ マップとして、「Base」テクスチャのアルファ チャンネルが 2 倍になることです。
 
 [[shader-TransBumpedSpecular | &#187; More details]]
 
@@ -65,9 +65,9 @@ One limitation of this shader is that the ``Base`` texture's alpha channel doubl
 
 [[shader-TransParallaxDiffuse| Attach:Shaders./Thumb-TransParallaxBump.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for Transparency Map
-* One ``Normal map`` normal map with alpha channel for Parallax Depth
+「必要なアセット」
+* 透明マップのあるアルファ チャンネルのある 1 つの「Base」テクスチャ
+* 視差深さに対するアルファ チャンネルのある 1 つの「Normal map」法線マップ。
 
 [[shader-TransParallaxDiffuse | &#187; More details]]
 
@@ -76,11 +76,12 @@ One limitation of this shader is that the ``Base`` texture's alpha channel doubl
 
 [[shader-TransParallaxSpecular| Attach:Shaders./Thumb-TransParallaxBumpSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for combined Transparency Map/Specular Map
-* One ``Normal map`` normal map with alpha channel for Parallax Depth
+「必要なアセット」
+* 結合した透明マップ/スペキュラ マップのあるアルファ チャンネルのある 1 つの「Base」テクスチャ
+* 視差深さに対するアルファ チャンネルのある 1 つの「Normal map」法線マップ。
 
-'''Note:'''
-One limitation of this shader is that the ``Base`` texture's alpha channel doubles as a Specular Map for the Specular shaders in this family.
+「注意：」
+このシェーダの制限の 1 つは、このファミリ内のスペキュラ シェーダに対するスペキュラ マップとして、「Base」テクスチャのアルファ チャンネルが 2 倍になることです。
 
 [[shader-TransParallaxSpecular | &#187; More details]]
+

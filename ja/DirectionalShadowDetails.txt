@@ -90,3 +90,4 @@ Attach:Shadow100-1hh.png
 
 Attach:Shadow300-4hs.png
 ''距離が 300 で、4 つのカスケードのあるソフト シャドウ。''
+

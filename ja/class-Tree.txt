@@ -37,3 +37,4 @@ This section explains Wind Zones and how to apply them to your trees.
 This section of the Terrain Engine Guide covers all the basics of integrating your trees into the Terrain Engine.
 
 [[terrain-Trees | Attach:terrain-PlacingTrees.png]]
+
