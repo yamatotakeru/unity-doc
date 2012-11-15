@@ -1,6 +1,6 @@
 !What is a Tag?
 
-A $$Tag$$ is a word which you link to one or more $$GameObjects$$. For instance, you might define “Player” and “Enemy” Tags for player-controlled characters and non-player characters respectively; a “Collectable” Tag could be defined for items the player can collect in the $$Scene$$; and so on. Clearly, Tags are intended to identify GameObjects for scripting purposes. We can use them to write script code to find a GameObject by looking for any object that contains our desired Tag. This is achieved using the ``GameObject.FindWithTag()`` function. 
+A $$Tag$$ is a word which you link to one or more $$GameObjects$$. For instance, you might define "Player" and "Enemy" Tags for player-controlled characters and non-player characters respectively; a "Collectable" Tag could be defined for items the player can collect in the $$Scene$$; and so on. Clearly, Tags are intended to identify GameObjects for scripting purposes. We can use them to write script code to find a GameObject by looking for any object that contains our desired Tag. This is achieved using the ``GameObject.FindWithTag()`` function. 
 
 For example:
 
@@ -11,12 +11,12 @@ var respawnPrefab : GameObject;
 var respawn = GameObject.FindWithTag ("Respawn");
 Instantiate (respawnPrefab, respawn.position, respawn.rotation);@]
 
-This saves us having to manually add our GameObjects to a script’s exposed properties using drag and drop -- a useful timesaver if the same script code is being used in a number of GameObjects. Another example is a [[Trigger Collider -> class-SphereCollider]] control script which needs to work out whether the player is interacting with an enemy, as opposed to, say, a random prop or collectable item. Tags make this kind of test easy.
+This saves us having to manually add our GameObjects to a script's exposed properties using drag and drop -- a useful timesaver if the same script code is being used in a number of GameObjects. Another example is a [[Trigger Collider -> class-SphereCollider]] control script which needs to work out whether the player is interacting with an enemy, as opposed to, say, a random prop or collectable item. Tags make this kind of test easy.
 
 
 !!Applying a Tag
 
-The $$Inspector$$ will show the Tag and [[Layer -> Layers]] drop-down menus just below any GameObject’s name. To apply a Tag to a GameObject, simply open the Tags drop-down and choose the Tag you require:
+The $$Inspector$$ will show the Tag and [[Layer -> Layers]] drop-down menus just below any GameObject's name. To apply a Tag to a GameObject, simply open the Tags drop-down and choose the Tag you require:
 
 Attach:TagDropdown.png
 
@@ -25,7 +25,7 @@ The GameObject will now be associated with this Tag.
 
 !!Creating new Tags
 
-To create a new Tag, click the “Add new tag...” option at the end of the drop-down menu. This will open up the $$Tag Manager$$ in the Inspector. The Tag Manager is described [[class-TagManager | here]].
+To create a new Tag, click the "Add new tag..." option at the end of the drop-down menu. This will open up the $$Tag Manager$$ in the Inspector. The Tag Manager is described [[class-TagManager | here]].
 
 Layers appear similar to Tags, but are used to define how Unity should render GameObjects in the Scene. See the [[Layers | Layers]] page for more information.
 
