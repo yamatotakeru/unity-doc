@@ -15,7 +15,7 @@ There are six optional parameters that can be passed to ``UnityObject``, which c
 
 All color values provided must be 6-digit hexidecimal colors, (eg. FFFFFF, 020F16, etc.). The image paths provided can be either relative or absolute links. All images must be PNG files in RGB format (without transparency) or RGBA format (with transparency) stored at eight bits per channel. Finally, the ``progressframeimage`` and the ``progressbarimage`` should be the same height.
 
-Here is an example script that customizes the appearance of the Unity Web Player loading screen. The background color is set to light gray (``A0A0A0``), border color to black (``000000``), text color to white (``FFFFFF``) and loader images to ``MyLogo.png``, ``MyProgressBar.png`` and ``MyProgressFrame.png``. All parameters are grouped into single ``params`` object and passed to ``unityObject.embedUnity`` method.
+Here is an example script that customizes the appearance of the Unity Web Player loading screen. The background color is set to light gray (``A0A0A0``), border color to black (``000000``), text color to white (``FFFFFF``) and loader images to ``MyLogo.png``, ``MyProgressBar.png`` and ``MyProgressFrame.png``. All parameters are grouped into single ``params`` object and passed to [[WorkingwithUnityObject|UnityObject2 Constructor]].
 [@
 var params = {
 	backgroundcolor: "A0A0A0",
@@ -25,7 +25,80 @@ var params = {
 	progressbarimage: "MyProgressBar.png",
 	progressframeimage: "MyProgressFrame.png"
 };
-
-unityObject.embedUnity("unityPlayer", "WebPlayer.unity3d", 600, 450, params);
+var u = UnityObject2({ params: params });
+u.initPlugin(jQuery("#unityPlayer")[0], "Example.unity3d");
 @]
 
+See [[WorkingwithUnityObject2#constructor|UnityObject2]] for more details.
+
+Example using the above snippet:
+[@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Unity Web Player | "Sample"</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		<!--
+		var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
+		if (document.location.protocol == 'https:')
+			unityObjectUrl.replace("http://", "https://ssl-");
+		document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
+		-->
+	</script>
+        <script type="text/javascript">
+		var params = {
+			backgroundcolor: "A0A0A0",
+			bordercolor: "000000",
+			textcolor: "FFFFFF",
+			logoimage: "MyLogo.png",
+			progressbarimage: "MyProgressBar.png",
+			progressframeimage: "MyProgressFrame.png"
+		};
+		var u = new UnityObject2({ params: params });
+		u.observeProgress(function (progress) {
+			var $missingScreen = jQuery(progress.targetEl).find(".missing");
+			switch(progress.pluginStatus) {
+				case "unsupported":
+					showUnsupported();
+				break;
+				case "broken":
+					alert("You will need to restart your browser after installation.");
+				break;
+				case "missing":
+					$missingScreen.find("a").click(function (e) {
+						e.stopPropagation();
+						e.preventDefault();
+						u.installPlugin();
+						return false;
+					});
+					$missingScreen.show();
+				break;
+				case "installed":
+					$missingScreen.remove();
+				break;
+				case "first":
+				break;
+			}
+		});
+		jQuery(function(){
+			u.initPlugin(jQuery("#unityPlayer")[0], "Example.unity3d");
+		});
+        </script>
+    </head>
+	<body>
+		<p class="header">
+			<span>Unity Web Player | </span>WebPlayer
+		</p>
+		<div class="content">
+			<div id="unityPlayer">
+				<div class="missing">
+					<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
+						<img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<p class="footer">&laquo; created with <a href="http://unity3d.com/unity/" title="Go to unity3d.com">Unity</a> &raquo;</p>
+	</body>
+@]

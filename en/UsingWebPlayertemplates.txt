@@ -42,10 +42,13 @@ Onscreen width and height of the player in pixels.
 Local path to the webplayer file.
 
 ``UNITY_UNITYOBJECT_LOCAL``\\
-A browser JavaScript file called UnityObject.js is generally used to embed the player in the host page and provide part of the interaction between Unity and the host's JavaScript. This is normally supplied to a page by downloading from Unity's website. However, this requires an internet connection and causes problems if the page is to be deployed offline from the user's hard drive. This tag provides the local path to the UnityObject.js file, which will be generated if the Offline Deployment option is enabled in the Build Settings.
+A browser JavaScript file called UnityObject2.js is generally used to embed the player in the host page and provide part of the interaction between Unity and the host's JavaScript. This is normally supplied to a page by downloading from Unity's website. However, this requires an internet connection and causes problems if the page is to be deployed offline from the user's hard drive. This tag provides the local path to the UnityObject.js file, which will be generated if the Offline Deployment option is enabled in the Build Settings.
 
 ``UNITY_UNITYOBJECT_URL``\\
-In the usual case where the page will download UnityObject.js from the Unity's website (ie, the Offline Deployment option is disabled), this tag will provide the download URL.
+In the usual case where the page will download UnityObject2.js from the Unity's website (ie, the Offline Deployment option is disabled), this tag will provide the download URL.
+
+``UNITY_UNITYOBJECT_DEPENDENCIES``\\
+The UnityObject2.js have dependencies and this tag will be replaced with the needed dependencies for it to work properly.
 
 ``UNITY_BETA_WARNING``\\
 If the webplayer has been built with a beta version of Unity, this tag will be replaced with a short warning message about the fact. Otherwise, it is replaced with nothing.
@@ -67,22 +70,65 @@ The textbox next to the tag's name contains the text that the custom tag will be
 To illustrate the use of the template tags, here is the HTML source that Unity uses for its default webplayer build.
 
 
-[@<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+[@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Unity Web Player | %UNITY_WEB_NAME%</title>
-		<script type="text/javascript" src="%UNITY_UNITYOBJECT_URL%"></script>
+		%UNITY_UNITYOBJECT_DEPENDENCIES%
 		<script type="text/javascript">
 		<!--
-		function GetUnity() {
-			if (typeof unityObject != "undefined") {
-				return unityObject.getObjectById("unityPlayer");
-			}
-			return null;
-		}
-		if (typeof unityObject != "undefined") {
-			unityObject.embedUnity("unityPlayer", "%UNITY_WEB_PATH%", %UNITY_WIDTH%, %UNITY_HEIGHT%);
-		}
+		var unityObjectUrl = "%UNITY_UNITYOBJECT_URL%";
+		if (document.location.protocol == 'https:')
+			unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
+		document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
+		-->
+		</script>
+		<script type="text/javascript">
+		<!--
+			jQuery(function() {
+				var config = {
+					width: %UNITY_WIDTH%, 
+					height: %UNITY_HEIGHT%,
+					params: %UNITY_PLAYER_PARAMS%
+				};
+				var u = new UnityObject2(config);
+
+				var $missingScreen = jQuery("#unityPlayer").find(".missing");
+				var $brokenScreen = jQuery("#unityPlayer").find(".broken");
+				$missingScreen.hide();
+				$brokenScreen.hide();
+				
+				u.observeProgress(function (progress) {
+					switch(progress.pluginStatus) {
+						case "broken":
+							$brokenScreen.find("a").click(function (e) {
+								e.stopPropagation();
+								e.preventDefault();
+								u.installPlugin();
+								return false;
+							});
+							$brokenScreen.show();
+						break;
+						case "missing":
+							$missingScreen.find("a").click(function (e) {
+								e.stopPropagation();
+								e.preventDefault();
+								u.installPlugin();
+								return false;
+							});
+							$missingScreen.show();
+						break;
+						case "installed":
+							$missingScreen.remove();
+						break;
+						case "first":
+						break;
+					}
+				});
+				u.initPlugin(jQuery("#unityPlayer")[0], "%UNITY_WEB_PATH%");
+			});
 		-->
 		</script>
 		<style type="text/css">
@@ -112,19 +158,25 @@ To illustrate the use of the template tags, here is the HTML source that Unity u
 			margin: auto;
 			width: %UNITY_WIDTH%px;
 		}
+		div.broken,
 		div.missing {
 			margin: auto;
 			position: relative;
 			top: 50%;
 			width: 193px;
 		}
+		div.broken a,
 		div.missing a {
 			height: 63px;
 			position: relative;
 			top: -31px;
 		}
+		div.broken img,
 		div.missing img {
 			border-width: 0px;
+		}
+		div.broken {
+			display: none;
 		}
 		div#unityPlayer {
 			cursor: default;
@@ -143,9 +195,14 @@ To illustrate the use of the template tags, here is the HTML source that Unity u
 						<img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
 					</a>
 				</div>
+				<div class="broken">
+					<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now! Restart your browser after install.">
+						<img alt="Unity Web Player. Install now! Restart your browser after install." src="http://webplayer.unity3d.com/installation/getunityrestart.png" width="193" height="63" />
+					</a>
+				</div>
 			</div>
 		</div>
 		<p class="footer">&laquo; created with <a href="http://unity3d.com/unity/" title="Go to unity3d.com">Unity</a> &raquo;</p>
 	</body>
-</html>@]
-
+</html>
+@]

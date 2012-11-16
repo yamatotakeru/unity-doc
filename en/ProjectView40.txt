@@ -31,7 +31,7 @@ To the right of the search bar are three buttons. The first allows you to furthe
 
 Attach:ProjBrowserTypeMenu.png
 
-Continuing to the right, the next button filters assets according to their Label (labels can be set for an asset in the Inspector). Since the number of labels can potentially be very large, the label menu has its own mini-search filter box.
+Continuing to the right, the next button filters assets according to their Label (labels can be set for an asset in the [[Inspector]]). Since the number of labels can potentially be very large, the label menu has its own mini-search filter box.
 
 Attach:ProjBrowserLabelMenu.png
 
