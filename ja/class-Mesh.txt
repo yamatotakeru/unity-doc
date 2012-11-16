@@ -1,12 +1,12 @@
-! Meshes
+! メッシュ
 
-$$Meshes$$ make up a large part of your 3D worlds. Aside from some [[http://unity3d.com/unity/asset-store/|Asset store]] plugins, Unity does not include modelling tools. Unity does however have great interactivity with most 3D modelling packages. Unity supports triangulated or Quadrangulated polygon meshes. Nurbs, Nurms, Subdiv surfaces must be converted to polygons.
+3D ワールドの大半は、$$Mesh$$　で構成されています。[[http://unity3d.com/unity/asset-store/|Asset Store]]プラグインを除けば、Unityにはモデリングツールが含まれていません。しかしUnityはほとんどの3Dモデリングパッケージと強力な相互関係性を持っています。Unityは三角、四角ポリゴンのメッシュをサポートしています。NURBS、NURMS、サブディビジションサーフェイスは、ポリゴンに変換する必要があります。
 
 Attach:Tris.png
 
 (:include 3D-formats:)
 
-Here are some guidelines for directly supported 3D applications, others can most often export file type listed above.
+サポート対象の3Dアプリケーションのためのガイドラインが次のとおりありますが、ほとんどの場合先に示したファイル種類をエクスポートすることができます。
 
 * [[HOWTO-ImportObjectMaya|Maya]]
 * [[HOWTO-ImportObjectCinema4D|Cinema 4D]]
@@ -17,58 +17,58 @@ Here are some guidelines for directly supported 3D applications, others can most
 * [[HOWTO-ImportObjectBlender|Blender]]
 
 
-!! Textures
+!! テクスチャ
 
-Unity will attempt to find the textures used by a mesh automatically on import by following a specific search plan. First, the importer will look for a sub-folder called Textures within the same folder as the mesh or in any parent folder. If this fails, an exhaustive search of all textures in the project will be carried out. Although slightly slower, the main disadvantage of the exhaustive search is that there could be two or more textures in the project with the same name. In this case, it is not guaranteed that the right one will be found.
+Unityでメッシュが使用するテクスチャは次のルールに従って発見されます。最初に、インポータはメッシュと同じフォルダ、あるいはその親フォルダにTexturesという名前のサブフォルダがあるかチェックします。見つけられない場合は、プロジェクト内のすべてのテクスチャを全検索します。若干遅いことのほか、全探索の主な欠点は、同じ名前のテクスチャがプロジェクト内に2つ以上あるかもしれないということです。この場合、正しいものが見つかる保証がありません。
 
 Attach:Mesh-TextureImportHierarchy.png\\
-''Place your textures in a ^^Textures^^ folder at or above the asset's level''
+アセットと同じ階層、あるいは親の階層にあるTexturesフォルダにテクスチャを格納する
 
 
-[[FBXImporter-Model|FBX importer options for the model]]
+[[FBXImporter-Model|モデルのFBXインポーターのオプション]]
 
-!!! Material Generation and Assignment
+!!! マテリアルの生成および割り当て
 
-For each imported material Unity will apply the following rules:-
+Unityでインポートされた各マテリアルは次のルールに従って処理されます。
 
-If material generation is disabled (i.e. ``Import Materials`` is unchecked), then it will assign the Default-Diffuse material. If it is enabled then it will do the following:
-* Unity will pick a name for the Unity material based on the ``Material Naming`` setting
-* Unity will try to find an existing material with that name. The scope of the Material search is defined by the ``Material Search`` setting.
-* If Unity succeeds in finding an existing material then it will use it for the imported scene, otherwise it will generate a new material
+マテリアルの生成が無効になっている場合（つまりImport Materialsがオフ）、デフォルトのDiffuseマテリアルを割り当てます。有効になっている場合、次の処理を行います。
+* UnityがMaterial Search設定にしたがってUnityマテリアルの名前を選択する
+* Unityは、この名前を持つマテリアルを検索します。マテリアルの検索範囲はMaterial Search設定によって定義されます。
+Unityは、マテリアルを見つけると、それをインポートしたシーンで使用しますが、見つけられない場合はマテリアルを作成します。
+
 
 [[#colliders]]
-!!! Colliders
+!!! コライダ
 
-Unity uses two main types of colliders: $$Mesh Colliders$$ and $$Primitive Colliders$$.  Mesh colliders are components that use imported mesh data and can be used for environment collision. When you enable $$Generate Colliders$$ in the Import Settings, a Mesh collider is automatically added when the mesh is added to the Scene.  It will be considered solid as far as the physics system is concerned.
+Unity は、 $$Mesh Colliders$$ と $$Primitive Colliders$$ の 2 つの基本的なコライダを搭載しています。メッシュ コライダは、インポートされたメッシュ データを使用し、環境との衝突に使用できるコンポーネントです。インポート設定で、$$Generate Colliders$$ を有効にすると、メッシュをシーンに追加すると、メッシュ コライダは自動的に追加されます。物理挙動としては、固体として扱われます。
 
-If you are moving the object around (a car for example), you can not use Mesh colliders. Instead, you will have to use Primitive colliders. In this case you should disable the ``Generate Colliders`` setting.
-
-
-!!! Animations
-
-Animations are automatically imported from the scene. For more details about animation import options see the [[Animations | Animation Import]] chapter.
-
-!!! Normal mapping and characters
-
-If you have a character with a normal map that was generated from a high-polygon version of the model, you should import the game-quality version with a ``Smoothing angle`` of 180 degrees.  This will prevent odd-looking seams in lighting due to tangent splitting.  If the seams are still present with these settings, enable ``Split tangents across UV seams``.
-
-If you are converting a greyscale image into a normal map, you don't need to worry about this.
+オブジェクトを動かしている場合 （車など）、メッシュ コライダを使用できません。 代わりに、プリミティブ コライダを使用する必要があります。 この場合、「Generate Colliders」設定を無効にする必要があります。
 
 
+!!! アニメーション
 
-!!Hints
+シーンから自動的にアニメーションがインポートされます。アニメーションのインポート オプションの詳細については、[[Animations | Animation Import]] の章を参照してください。
 
-* Merge your meshes together as much as possible. Make them share materials and textures. This has a huge performance benefit.
-* If you need to set up your objects further in Unity (adding physics, scripts or other coolness), save yourself a world of pain and name your objects properly in your 3D application. Working with lots of ''pCube17'' or ''Box42''-like objects is not fun.
-* Make your meshes be centered on the world origin in your 3D app. This will make them easier to place in Unity.
-* If a mesh does not have vertex colors, Unity will automatically add an array of all-white vertex colors to the mesh the first time it is rendered.
+！法線マッピングとキャラクター
 
-!!!The Unity Editor shows too many vertices or triangles (compared to what my 3D app says)
-This is correct. What you are looking at is the number of vertices/triangles actually being sent to the GPU for rendering. In addition to the case where the material requires them to be sent twice, other things like hard-normals and non-contiguous UVs increase vertex/triangle counts significantly compared to what a modeling app tells you. Triangles need to be contiguous in both 3D and UV space to form a strip, so when you have UV seams, degenerate triangles have to be made to form strips - this bumps up the count.
+モデルの高いポリゴン バージョンから生成された法線マップのあるキャラクターがある場合、「Smoothing angle」が 180°のゲーム品質バージョンをインポートする必要があります。 これは、接線の分割により、ライティングで変な見た目の継ぎ目が生じるのを防ぎます。 これらの設定でまだ継ぎ目が残っている場合は、「Split tangents across UV seams」を有効にします。
+
+グレースケールの画像を法線マップに変換する場合は、これを機にする必要はありません。
 
 
-!!See Also
+
+!! ヒント
+
+* できるだけ多くのメッシュを結合します。メッシュにマテリアルとテクスチャを共有させます。 これには、非常に大きなパフォーマンス上の利点があります。
+* Unity で更にオブジェクトを設定する必要がある場合 （物理特性、スクリプトまたはその他）、あとで苦労しないように3D アプリケーションでオブジェクトに適切な名前をつけます。 「pCube17」または「Box42」のようにネーミングしたオブジェクトをたくさん作成すると苦労するだけです。
+* 3D アプリケーションで、世界の原点の中心にメッシュを配置させます。これにより、Unity により簡単にメッシュを配置できます。
+*メッシュが頂点色を持っていない場合、Unityは最初のレンダリング処理で自動的にメッシュに白い頂点色の配列を追加します。
+
+!!!Unity エディタに表示される頂点や三角形が多すぎる場合（3D アプリと比較して）があります。
+これは実際には正しいです。あなたが見ているのは、レンダリングのために実際に OpenGLES に送信される三角形の数です。マテリアルの要件により三角形を 2 回送信する必要がある場合に加え、ハードエッジな法線や非連続UV は、モデリング アプリケーションと比較した場合に、頂点 / 三角形の数を大幅に増やします。細長い線を形成するには、三角形が 3D および UV 空間で連続している必要があるため、UV の継ぎ目がある場合は、劣化した三角形を作成し、細長い線を形成する必要がありますが、これにより三角形の数は増加します。
+
+
+!!関連項目
 * [[Modeling Optimized Characters]]
-* [[HOWTO-bumpmap | How do I use normal maps?]]
-* [[HOWTO-FixZAxisIsUp | How do I fix the rotation of an imported model?]]
-
+* [[HOWTO-bumpmap | 法線マッピングの使い方]]
+* [[HOWTO-FixZAxisIsUp | インポートされたモデルの回転の修正方法]]
