@@ -1,8 +1,8 @@
-! パーティクルシステム (Unity4.0以降では「旧パーティクルシステム」)
+! Particlesシステム (Unity4.0以降では「旧Particlesシステム」)
 
-$$パーティクル$$ は主に３次元空間に2Dのイメージを描画します。煙、火、水滴、落ち葉などのようなエフェクトに主に利用されます。 ``パーティクルシステム`` は三つのコンポーネントでできています。それは ``パーティクルエミッター``, ``パーティクルアニメーター`` , ``パーティクルレンダラー``です。 もし静的なパーティクルを作りたいなら、パーティクルエミッターとレンダラーを一緒に使いましょう。 パーティクルアニメーターは違った方向に動かしたらり、色を変更したりするときに使います。 また、スクリプトでそれぞれのパーティクルを独立した動きもつけることもできます。ですので、独自の振る舞いをしたい場合はスクリプトで行うと良いでしょう。
+$$Particles$$ は主に３次元空間に2Dのイメージを描画します。煙、火、水滴、落ち葉などのようなエフェクトに主に利用されます。 ``Particlesシステム`` は三つのコンポーネントでできています。それは ``Particles Emitter``, ``Particles Animator`` , ``Particles Renderer``です。 もし静的なParticlesを作りたいなら、Particles EmitterとParticles Rendererを一緒に使いましょう。 Particles Animatorは違った方向に動かしたらり、色を変更したりするときに使います。 また、スクリプトでそれぞれのParticlesを独立した動きもつけることもできます。ですので、独自の振る舞いをしたい場合はスクリプトで行うと良いでしょう。
 
-詳しくは [[Path:../ScriptReference/ParticleEmitter.html|パーティクルスクリプトリファレンス]] を参照して下さい。
+詳しくは [[Path:../ScriptReference/ParticleEmitter.html|Particlesスクリプトリファレンス]] を参照して下さい。
 
 (:include class-EllipsoidParticleEmitter:)
 (:include class-MeshParticleEmitter:)

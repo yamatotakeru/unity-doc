@@ -1,0 +1,16 @@
+!Looping animation clips
+
+A common operation for people working with animations is to make sure they loop properly. It is important, for example, that the animation clip representing the walk cycle, begins and ends in a similar pose (e.g. left foot on the ground), to ensure there is no foot sliding, or strange jerky motions. Mecanim provides convenient tools for this. Animation clips can loop based on pose, rotation, and position. 
+
+If you drag the Start or End points of the animation clip, you will see the Looping fitness curves for all of the paramers based on which it is possible to loop. If you place the Start / End marker in a place where the curve for the property is green, it is more likely that the clip can loop properly. The ``loop match`` indicator will show how good the looping is for the selected ranges. 
+
+Attach:MecanimAnimClipLoopingRed.png
+Clip ranges with bad match for ``Loop Pose``\\
+
+Attach:MecanimAnimClipLoopingGreen.png
+Clip ranges with good match for ``Loop Pose``
+
+Once the ``loop match`` indicator is green, Enabling ``Loop Pose`` (for example) will make sure the looping of the pose is artifact-free. 
+
+For more details on animation clip options, see [[class-AnimationClip|Animation Clip reference]]\\
+(back to [[MecanimAnimationSystem|Mecanim introduction]])

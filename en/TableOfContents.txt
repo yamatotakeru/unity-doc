@@ -357,15 +357,13 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ***[[Version Check]]
 ***[[Installing Multiple Versions of Unity]]
 ***[[TroubleShooting]]
->>desktop<<
-***[[IME Input]]
->><<
 *** [[Shadows]]
 **** [[DirectionalShadowDetails]]
 **** [[Shadow Troubleshooting]]
 **** [[Shadow Size Details]]
 >>desktop<<
-*** [[OptimizeForIntegratedCards]]
+***[[IME Input]]
+***[[OptimizeForIntegratedCards]]
 ***[[Web Player Deployment]]
 ****[[HTML code to load Unity Web Player content]]
 ****[[Working with UnityObject]]
@@ -374,7 +372,6 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[Unity Web Player and browser communication]]
 ****[[Using Web Player templates]]
 ****[[Web Player Streaming]]
-
 ***[[Web Player Deployment - UnityObject2]]
 ****[[HTML code to load Unity Web Player content - UnityObject2]]
 ****[[Working with UnityObject2]]

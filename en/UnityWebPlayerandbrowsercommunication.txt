@@ -17,10 +17,13 @@ In order to call the Unity Web Player's ``SendMessage()`` function you must firs
 [@
 <script type="text/javascript" language="javascript">
 <!--
+//initializing the WebPlayer
+var u = new UnityObject2();
+u.initPlugin(jQuery("#unityPlayer")[0], "Example.unity3d");
+
 function SaySomethingToUnity()
 {
-	var unity = GetUnity();
-	unity.SendMessage("MyObject", "MyFunction", "Hello from a web page!");
+	u.getUnity().SendMessage("MyObject", "MyFunction", "Hello from a web page!");
 }
 -->
 </script>
@@ -37,6 +40,8 @@ function MyFunction(param : String)
 __Note:__ keep in mind that if the function doesn't have any arguments, then an empty string ("") should be passed as an argument.
 
 A single string, integer or float argument must be passed when using ``SendMessage()``, the parameter is required on the calling side. If you don't need it then just pass a zero or other default value and ignore it on the Unity side. Additionally, the game object specified by the name can be given in the form of a path name. For example, ^^/MyObject/SomeChild^^ where ``SomeChild`` must be a child of ``MyObject`` and ``MyObject`` must be at the root level due to the '/' in front of its name.
+
+__Note:__ u.getUnity() might return null if the game isn't fully loaded yet, so it's a good idea to check if it's value is not null before using SendMessage(). Or wait for your game to be fully loaded before trying to communicate with it.
 
 
 !!Calling web page functions from Unity web player content
@@ -73,4 +78,3 @@ Application.ExternalEval(
     "if(document.location.host != 'unity3d.com') { document.location='http://unity3d.com'; }"
 );
 @]
-

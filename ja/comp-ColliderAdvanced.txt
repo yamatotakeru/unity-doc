@@ -54,5 +54,5 @@ __リジッドボディを含まない__が、__コライダを含む__ゲーム
 ||Rigidbody Trigger Collider           || Y || Y || Y || Y || Y || Y ||
 ||Kinematic Rigidbody Trigger Collider || Y || Y || Y || Y || Y || Y ||
 
-!!! [[LayerBasedCollision | レイヤーベースコリジョン]]
-Unity3.Xでは$$レイヤーベースコリジョン$$が機能として追加されましたので、すべてのレイヤーの組み合わせにおいて、どのレイヤーの組み合わせでは衝突が発生するかオブジェクトに設定を行うことができます。詳細情報については[[LayerBasedCollision | ここ]] をクリックし参照のこと。
+!!! [[LayerBasedCollision | Layer-Based Collision Detection]]
+Unity3.Xでは$$Layer-Based Collision Detection$$が機能として追加されましたので、すべてのレイヤーの組み合わせにおいて、どのレイヤーの組み合わせでは衝突が発生するかオブジェクトに設定を行うことができます。詳細情報については[[LayerBasedCollision | ここ]] をクリックし参照のこと。
