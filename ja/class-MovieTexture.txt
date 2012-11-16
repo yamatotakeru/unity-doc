@@ -1,38 +1,38 @@
-! ムービーテクスチャ
+! Movie Textures
 __注意：__　__Unity Pro/ Advancedのみ__
 !デスクトップ!
 >>desktop<<
-$$ムービーテクスチャ$$は、ビデオファイルから作成され、アニメーション化された$$テクスチャ$$です。
+$$Movie Textures$$は、ビデオファイルから作成され、アニメーション化された$$Texture$$です。
 
-プロジェクトの^^Assetsフォルダ^^に動画ファイルを配置することによって、通常使用する[[class-Texture2D | テクスチャ]] とまったく同じように使用できるビデオをインポートすることができます。
+プロジェクトの^^Assetsフォルダ^^に動画ファイルを配置することによって、通常使用する[[class-Texture2D | Texture]] とまったく同じように使用できるビデオをインポートすることができます。
 
 動画ファイルはApple社のQuickTimeを介してインポートされます。サポートされるファイルの種類はインストールされたQuickTimeのがサポートするものと一致します（通常は __.mov__、 __.mpg__、 __.mpeg__、 __.mp4__、 __.avi__、 __.asf__）Windows上でムービーがインポートされるためにはQuickTimeがインストールされていることが必要です（([[http://www.apple.com/quicktime/download/ | ここ]] )　からダウンロード）
 
 
 !! プロパティ
 
-ムービーテクスチャ　$$インスペクタ$$は、通常の[[class-Texture2D | テクスチャ]] インスペクタと非常によく似ています。
+Movie Textures　$$Inspector$$は、通常の[[class-Texture2D | Texture]] Inspectorと非常によく似ています。
 
 Attach:MovieTextureInInspector.png\\
-Unity上でビデオファイルから生成したムービーテクスチャ
+Unity上でビデオファイルから生成したMovie Textures
 
 ||PROPS
-||``Aniso Level`` ||急な角度から眺めたときのテクスチャ品質を向上させます。床や地面のテクスチャに良い。||
-||``Filter Mode`` ||テクスチャが3Dへの変換によりストレッチされたときのフィルタ処理を選択 ||
+||``Aniso Level`` ||急な角度から眺めたときのTexture品質を向上させます。床や地面のTextureに良い。||
+||``Filter Mode`` ||Textureが3Dへの変換によりストレッチされたときのフィルタ処理を選択 ||
 ||``Loop`` ||オンの時、ムービー再生終了後にループ ||
 ||``Quality`` ||Ogg Theoraビデオファイルの圧縮。より高い値により、品質がより高い一方でファイルサイズは大きくなる。||
 
 
 !! 詳細
 
-ビデオファイルがプロジェクトに追加されると、自動的にインポートされ、$$Ogg Theora$$形式に変換されます。一度ムービーテクスチャがインポートすると、通常のテクスチャのように、任意の$$GameObject$$または$$マテリアル$$にアタッチできます。
+ビデオファイルがプロジェクトに追加されると、自動的にインポートされ、$$Ogg Theora$$形式に変換されます。一度Movie Texturesがインポートすると、通常のTextureのように、任意の$$GameObject$$または$$Material$$にアタッチできます。
 
 !!! ムービーを再生
 
-ゲームの実行開始時に、ムービーテクスチャは自動再生されません。再生を指示するスクリプトを準備する必要があります。
+ゲームの実行開始時に、Movie Texturesは自動再生されません。再生を指示するスクリプトを準備する必要があります。
 
 [@
-// このコードによりムービーテクスチャが再生されます
+// このコードによりMovie Texturesが再生されます
 renderer.material.mainTexture.Play();
 @]
 
@@ -51,17 +51,17 @@ function Update () {
 }
 @]
 
-ムービーテクスチャを再生する方法の詳細については、[[ScriptRef:MovieTexture.html | ムービーテクスチャ スクリプトリファレンス]] を参照してください。
+Movie Texturesを再生する方法の詳細については、[[ScriptRef:MovieTexture.html | Movie Textures スクリプトリファレンス]] を参照してください。
 
 
 !!! ムービーオーディオ
 
-ムービーテクスチャをインポートすると、映像とともにオーディオトラックもインポートされます。オーディオは、ムービーテクスチャの$$AudioClip$$を子オブジェクトとして表示されます。
+Movie Texturesをインポートすると、映像とともにオーディオトラックもインポートされます。オーディオは、Movie Texturesの$$AudioClip$$を子オブジェクトとして表示されます。
 
 Attach:MovieTextureAudio.png\\
-ビデオのオーディオトラックは$$プロジェクトビュー$$にてムービーテクスチャの子オブジェクトとして表示されます
+ビデオのオーディオトラックは$$Project View$$にてMovie Texturesの子オブジェクトとして表示されます
 
-このオーディオを再生するには、他のオーディオクリップのように、ゲームオブジェクトにアタッチする必要があります。プロジェクトビューから、シーンビューか階層ビューの任意のゲームオブジェクトへドラッグします。
+このオーディオを再生するには、他のオーディオクリップのように、ゲームオブジェクトにアタッチする必要があります。Project Viewから、シーンビューか階層ビューの任意のゲームオブジェクトへドラッグします。
 
 通常、ムービーを見せているのと同じゲームオブジェクトになります。次に [[ScriptRef: GameObject-audio.html|audio.Play()]] を使用し、映像に合わせてオーディオトラックを再生します。
 
@@ -69,7 +69,7 @@ Attach:MovieTextureAudio.png\\
 >><<
 !iOS!
 >>ios<<
-ムービーテクスチャは、iOS上ではサポートされません。代わりに、[[ScriptRef:Handheld.PlayFullScreenMovie.html|Handheld.PlayFullScreenMovie]] を使用してフルスクリーン　ストリーミング再生が提供される。
+Movie Texturesは、iOS上ではサポートされません。代わりに、[[ScriptRef:Handheld.PlayFullScreenMovie.html|Handheld.PlayFullScreenMovie]] を使用してフルスクリーン　ストリーミング再生が提供される。
 
 !!!プロジェクト　ディレクトリのStreamingAssetsフォルダ内にビデオを格納する必要があります。
 
@@ -93,7 +93,7 @@ iOSデバイス上で正しく再生できるファイルタイプはUnityのiOS
 
 !Android!
 >>android<<
-ムービーテクスチャは、Android上ではサポートされません。代わりに、[[ScriptRef:Handheld.PlayFullScreenMovie.html|Handheld.PlayFullScreenMovie]] を使用してフルスクリーン　ストリーミング再生が提供される。
+Movie Texturesは、Android上ではサポートされません。代わりに、[[ScriptRef:Handheld.PlayFullScreenMovie.html|Handheld.PlayFullScreenMovie]] を使用してフルスクリーン　ストリーミング再生が提供される。
 
 !!!プロジェクト　ディレクトリのStreamingAssetsフォルダ内にビデオを格納する必要があります。
 

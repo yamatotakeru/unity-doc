@@ -1,6 +1,6 @@
-!!アニメーション遷移
+!!Animation Transitions
 
-$$アニメーション遷移$$は、ある$$アニメーションステート$$から別のものに切り替えたときに何が起こるかを定義する。任意の時点でアクティブなアニメーション遷移はひとつのみです。
+$$Animation Transitions$$は、ある$$Animation State$$から別のものに切り替えたときに何が起こるかを定義する。任意の時点でアクティブなAnimation Transitionsはひとつのみです。
 
 ||PROPS
 ||``Atomic``      ||遷移がアトミックか（中断が出来ない）
@@ -14,4 +14,4 @@ Conditionは2つの部分から成ります：
 2つのアニメーションクリップ間の遷移は、開始値と終了値をドラッグすることによって、重なりを調整することができます。
 Attach:MecanimTransitionInspector.png
 
-([[Animation State Machines|アニメーションステートマシン]] にもどる)
+([[Animation State Machines|Animation State Machines]] にもどる)

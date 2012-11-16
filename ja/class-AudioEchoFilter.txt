@@ -21,5 +21,5 @@ Attach:AudioEchoFilter.png\\
 エコーフィルタを所定のオーディオ ソースに追加するには、インスペクタ内でオブジェクトを選択し、[Component->Audio->Audio Echo Filter] を選択します。
 
 !! ヒント
-* 固い平面は音の伝播を反映する。たとえば、大規模な峡谷のこだまは、$$オーディオ エコーフィルター$$により説得力をもたせることができる。
+* 固い平面は音の伝播を反映する。たとえば、大規模な峡谷のこだまは、$$Audio Echo Filter$$により説得力をもたせることができる。
 * 落雷や雷を経験すればわかるように、音は光より遅く伝播します。これをシミュレートするには、オーディオ　エコーフィルターをイベントサウンドに追加し、Wet Mixに0.0をセットし、Delayの値を[[class-AudioSource|AudioSource]] と[[class-AudioListener|AudioListener]] の間の距離に調節する。
