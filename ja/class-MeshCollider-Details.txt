@@ -1,35 +1,35 @@
 ! Mesh Collider
 
-The $$Mesh Collider$$ takes a [[class-Mesh|Mesh Asset]] and builds its Collider based on that mesh.  It is far more accurate for collision detection than using primitives for complicated meshes.  Mesh Colliders that are marked as ``Convex`` can collide with other Mesh Colliders.
+$$Mesh Collider$$は[[class-Mesh|メッシュアセット]] を取り、そのメッシュに基づいてコライダを構築します。複雑なメッシュの場合、プリミティブを使用した衝突検出するよりも遥かに正確です。``Convex``がオンとなっているMesh Colliderは、他のMesh Colliderと衝突することができます。
 
 Attach:Inspector-MeshCollider.png\\
-''A Mesh Collider used on level geometry''
+階段状の物体で使用される'Mesh Collider
 
 
-!!Properties
+!!プロパティ
 
 ||PROPS
 (:include comp-ColliderProps:)
-||``Mesh`` ||Reference to the Mesh to use for collisions. ||
-||``Smooth Sphere Collisions`` ||When this is enabled, collision mesh normals are smoothed. You should enable this on smooth surfaces eg. rolling terrain without hard edges to make sphere rolling smoother. ||
-||``Convex`` ||If enabled, this Mesh Collider will collide with other Mesh Colliders. Convex Mesh Colliders are limited to 255 triangles. ||
+||``Mesh`` ||衝突判定に使用するメッシュ（への参照）。||
+||``Smooth Sphere Collisions`` ||オンのとき、衝突メッシュの法線を滑らかにする。球が滑らかな表面（例　ある地形上を滑らかに移動させるため、地形のエッジを立てずにを転がす。）の上を転がす場合、有効にすべきです。||
+||``Convex`` ||オンにした場合、MeshColliderは他のMeshColliderと衝突します。ConvexオンのMeshColliderは三角形面数の上限255に制限されています。||
 
 
-!!Details
+!!詳細
 
-The Mesh Collider builds its collision representation from the [[class-Mesh|Mesh]] attached to the GameObject, and reads the properties of the attached [[class-Transform|Transform]] to set its position and scale correctly.
+MeshColliderの衝突判定は形状をゲームオブジェクトにアタッチされた[[class-Mesh|Mesh]] から構築されており、アタッチされた[[class-Transform|Transform]] のプロパティを読み込んでPositionとScaleを正しく設定します。
 
-Collision meshes use backface culling. If an object collides with a mesh that will be backface culled graphically it will also not collide with it physically.
+衝突メッシュは、バックフェースカリングを使用しています。オブジェクトが表示上バックフェースカリングされたメッシュと衝突した場合、物理的に衝突することもありません。
 
-There are some limitations when using the Mesh Collider.  Usually, two Mesh Colliders cannot collide with each other.  All Mesh Colliders can collide with any primitive Collider.  If your mesh is marked as ``Convex``, then it can collide with other Mesh Colliders.
+MeshColliderを使用した場合、いくつかの制限があります。通常、2つのMeshColliderは互いに衝突することができません。すべてのMeshColliderはどのようなプリミティブコライダと衝突することができます。メッシュの``Convex``がオンの場合、他のMeshColliderと衝突することができます。
 
 
 (:include comp-ColliderDetails:)
 
-!!Hints
+!! ヒント
 
-* Mesh Colliders __cannot__ collide with each other unless they are marked as ``Convex``.  Therefore, they are most useful for background objects like environment geometry.
-* ``Convex`` Mesh Colliders must be fewer than 255 triangles. 
-* Primitive Colliders are less costly for objects under physics control.
-* When you attach a Mesh Collider to a $$GameObject$$, its Mesh property will default to the mesh being rendered. You can change that by assigning a different Mesh.
+* ``Convex``がオンとなっていない限り、Mesh Colliderは、他のMesh Colliderと互いに衝突することができません。したがって、背景における物体のような背景のオブジェクトにも有用である。
+* ConvexオンのMeshColliderは三角形面数の上限255です。
+* 物理挙動のあるオブジェクトにおいて、プリミティブなコライダのほうがより計算コストがかからない。
+* $$GameObject$$にMesh Colliderをアタッチした場合、ゲームオブジェクトのレンダリングに使用されているメッシュがMeshプロパティにデフォルト設定される。異なるメッシュを割り当てれば、変更することができます。
 (:include comp-ColliderHints:)

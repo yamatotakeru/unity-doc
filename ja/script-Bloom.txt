@@ -1,53 +1,53 @@
 !Bloom
 
-``Blooming`` is the optical effect where light from a bright source (such as a glint) appears to leak into surrounding objects. The $$Bloom$$ image effect adds bloom and also automatically generates lens flares in a highly efficient way. Bloom is a very distinctive effect that can make a big difference to a scene and may suggest a magical or dreamlike environment especially when used in conjunction with [[HDR]] rendering. On the other hand, given proper settings it's also possible to enhance photorealism using this effect. Glow around very bright objects is a common phenomena observed in film and photography, where luminance values differ vastly. Bloom is an enhanced version of the [[script-GlowEffect|Glow]] and [[script-BloomAndLensFlares|Bloom And Flares]] image effects.
+``Blooming``とは明るい光源（例えば、閃光のような）からの光が周囲の物体に漏れるように見える光学効果である。$$Bloom$$エフェクトはブルームを追加したうえで、さらに非常に効率的な方法でレンズフレアを自動生成します。ブルームはシーンに大きな違いを生む効果であり、と[[HDR]] レンダリングと一緒に使用して、魔法や夢の中の世界のような印象を与える非常に特徴的な効果である。一方、適切な設定が与えることで、この効果を利用した写真のようなリアリティを向上させることも可能です。非常に明るいオブジェクトの周りの輝きは、輝度が大幅に異なる場合のよくある現象として、映画や写真のなかで観察されます。Bloomは[[script-GlowEffect|Glow]] エフェクトおよび [[script-BloomAndLensFlares|Bloom And Flares]] エフェクトの拡張した機能です。
 
 Attach:ImageEffects./HDRBloom2.png\\
-''Example showing proper HDR glow as created by the $$Bloom$$ effect. In this scene, bloom uses a threshhold of 1.0 indicating that only HDR reflections, highlights or emissive surfaces glow, but common lighting is generally unaffected. In this particular example, only the car window (sporting the reflection of HDR sun values) glows.''
+HDRで適切な輝度を$$Bloom$$エフェクトで再現した例。このシーンでは、BloomHDRでしきい値1.0を設定していて、反射、ハイライトや発光面は輝度を増しますが、一般的なライティングは、全般に影響を受けません。この特定の例では、車窓だけが輝いています。（HDRの日光反射による）
 
 Attach:ImageEffects./bloomAnamorphicFlares.png\\
-''Example showing ``Anamorphic Lens Flares`` result as created by the $$Bloom$$ effect''
+$$Bloom$$エフェクトによって作成された``Anamorphic Lens Flares``の例
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Quality`` ||High quality preserves high frequencies and reduces aliasing. ||
-||``Mode`` ||Choose complex mode to show advanced options. ||
-||``Blend`` ||The method used to add bloom to the color buffer. The softer ``Screen`` mode is better for preserving bright image details but doesn't work with HDR. ||
-||``HDR`` ||Whether bloom is using HDR buffers. This will result in a different look as pixel intensities may leave the [0,1] range, see details in [[script-Tonemapping|tonemapping]] and [[HDR|HDR]]. ||
-||``Cast lens flares`` ||Enable or disable automatic screen based lens flare generation. ||
+||``Quality`` ||Highで高品質、高周波数を維持し、エイリアシング低減します。||
+||``Mode`` ||高度なオプションを表示するにはComplexモードを選択します。||
+||``Blend mode`` ||カラーバッファにBloomを追加するために使用するメソッド。柔らかいScreenモードは、明るい画像のディテールを保持するのに良いですが、HDRでは動作しません。 ||
+||``HDR`` ||BloomがHDRバッファを使用しているかどうかピクセル強度が、[0,1]の範囲から出るかもしれないので、異なった見た目になる。詳細は[[script-Tonemapping|トーンマッピング]] と[[HDR|HDR]] を参照して下さい。||
+||``Cast lens flares`` ||スクリーンベースの自動レンズフレア生成を有効または無効にします。||
 
-||``Intensity`` ||The global light intensity of the added light (affects bloom and lens flares). ||
-||``Threshhold`` ||Regions of the image brighter than this threshold receive blooming (and potentially lens flares). ||
-||``RGB Threshhold`` ||Chose different threshholds for R, G and B. ||
+||``Intensity`` ||追加されたライトのグローバルライト強度（Bloom、Lens Flaresに影響します）。||
+||``Threshhold`` ||画像領域のなかでこのしきい値より明るい領域はブルーム（また潜在的にLens Flare）の影響を受けます。||
+||``RGB Threshhold`` ||R、G、Bのために選んだ異なるthreshholds ||
 
-||``Blur iterations`` ||The number of times gaussian blur is applied. More iterations improve smoothness but take extra time to process and hide small frequencies.||
-||``Sample distance`` ||The max radius of the blur. Does not affect performance. ||
-||``Use alpha mask`` ||The degree to which the alpha channel acts as a mask for the bloom effect. ||
+||``Blur iterations`` ||ガウス　ブラー（ぼかし）が適用される回数。反復回数が多いほど平滑性を向上させますが、周波数ノイズを隠すなどさらに処理時間がかかります。||
+||``Sample distance`` ||ブラー（ぼかし）の最大半径。パフォーマンスには影響しません。||
+||``Use alpha mask`` ||アルファチャネルがBloomエフェクトのマスクとして機能する程度。||
 
-||``Lens Flares`` ||The type of lens flare. The options are ``Ghosting``, ``Anamorphic`` or a mix of the two. ||
-||``Local intensity`` ||Local intensity used only for lens flares. 0 disables lens flares entirely.||
-||``Local threshold`` ||The accumulative light intensity threshold that defines which image parts are candidates for lens flares. ||
-||``Stretch width`` ||The width for anamorphic lens flares. ||
-||``Rotation`` ||The orientation for anamorphic lens flares. ||
-||``Blur iterations`` ||The number of times blurring is applied to anamorphic lens flares. More iterations improve smoothness but take more processing time. ||
-||``Saturation`` ||(De-)saturates lens flares. If 0, lens flares will fully receive the ``Tint Color``. ||
-||``Tint Color`` ||Color modulation for the anamorphic flare type. ||
-||``1st-4th Color`` ||Color modulation for all lens flares when ``Ghosting`` or ``Combined`` is chosen. ||
-||``Lens flare mask`` ||Mask used to prevent lens flare artifacts at screen edges.||
+||``Lens flare mode`` ||Lens Flareのタイプ。オプションは``Ghosting``、``Anamorphic``、あるいはふたつの組み合わせです。 ||
+||``Local intensity`` ||Lens Flareのためだけに使用するローカル強度。0にするとLens Flareは完全に無効。||
+||``Local threshold`` ||画像の部分がLens Flareを受けるかを定義する累積ライト強度のしきい値。||
+||``Stretch width`` ||Anamorphic Lens Flareの幅。||
+||``Rotation`` ||Anamorphic Lens Flareの回転||
+||``Blur iterations`` ||Anamorphic Lens Flareにブラー（ぼかし）を適用する回数。反復回数が多いほど平滑性を向上させますが、さらに処理時間がかかります。||
+||``Saturation`` ||Lens Flareを飽和/(非飽和)させる。0を指定した場合、Lens Flareは完全に``Tint Color``になります。||
+||``Tint Color`` ||Anamorphic Lens Flareのカラー調整||
+||``1st-4th Color`` ||``Ghosting`` or ``Combined``が選択されたときのすべてのLens Flareのカラー調整||
+||``Lens flare mask`` ||画面の端でのLens Flareにより画像の乱れを防ぐために使用されるマスク。||
 
-!!Blend Modes: Add and Screen
+!!ブレンドモード：AddおよびScreen
 
-Blend modes determine the way that two images will be combined when overlaid. Each pixel from the base image is combined mathematically with the pixel in the corresponding position in the overlay image. Two blend modes are available for this image effect, Add and Screen.
+ブレンドモードはオーバーレイ時に2つの画像を合成する方法を決定します。ベースの画像から各ピクセルは、オーバーレイ画像での対応する位置のピクセルと数学的に組み合わせます。UnityのイメージエフェクトはAdd、Screen二つのブレンドモードが用意されています。
 
-!!!Add Mode
+!!!Addモード
 
-When the images are blended in Add mode, the values of the color channels (red, green and blue) are simply added together and clamped to the maximum value of 1. The overall effect is that areas of each image that aren't especially bright can easily blend to maximum brightness in the result. The final image tends to lose color and detail and so Add mode is useful when a dazzling "white out" effect is required.
+画像がAddモードでブレンドされている場合、カラーチャネル（赤、緑、青）の値は、単純に足し合わされ、最大でも値は1となります。全体的な効果として最終的には、明るくない画像の領域を最も明るい部分に溶け込むことができます。最終的なイメージは色やディテールを失うため、Addモードは、まぶしいホワイトアウト効果が必要な場合に便利です。
 
-!!!Screen Mode
+!!!Screenモード
 
-Screen mode is so named because it simulates the effect of projecting the two source images onto a white screen simultaneously. Each color channel is combined separately but identically to the others. Firstly, the channel values of the two source pixels are inverted (ie, subtracted from 1). Then, the two inverted values are multiplied together and the result is inverted. The result is brighter than either of the two source pixels but it will be at maximum brightness only if one of the source colors was also. The overall effect is that more color variation and detail from the source images is preserved, leading to a gentler effect than Add mode.
+白いスクリーン上に同時2つのソース画像を投影する効果をシミュレートしているので、Screenモードと命名されています。各カラーチャネルは、別々に同じ値を合成します。まず、2つのソースピクセルのカラーチャネルの値が反転されます。（すなわち1から値を引き算します）次に、反転した2つ値が乗算され、その結果が反転されます。結果は、2つのソースピクセルのどちらよりも明るくなる一方で、最大の明るさになるために元の色のどちらか一つも最大の明るさであった場合のみになります。全体的な効果としては、ソース画像より多くのカラーバリエーションとディテールが保持されるため、Addモードよりも緩やかな効果につながります。
 
 (:include imagefx-SM2:)
