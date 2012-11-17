@@ -1,0 +1,35 @@
+! Mesh Collider
+
+The $$Mesh Collider$$ takes a [[class-Mesh|Mesh Asset]] and builds its Collider based on that mesh.  It is far more accurate for collision detection than using primitives for complicated meshes.  Mesh Colliders that are marked as ``Convex`` can collide with other Mesh Colliders.
+
+Attach:Inspector-MeshCollider.png\\
+''A Mesh Collider used on level geometry''
+
+
+!!Properties
+
+||PROPS
+(:include comp-ColliderProps:)
+||``Mesh`` ||Reference to the Mesh to use for collisions. ||
+||``Smooth Sphere Collisions`` ||When this is enabled, collision mesh normals are smoothed. You should enable this on smooth surfaces eg. rolling terrain without hard edges to make sphere rolling smoother. ||
+||``Convex`` ||If enabled, this Mesh Collider will collide with other Mesh Colliders. Convex Mesh Colliders are limited to 255 triangles. ||
+
+
+!!Details
+
+The Mesh Collider builds its collision representation from the [[class-Mesh|Mesh]] attached to the GameObject, and reads the properties of the attached [[class-Transform|Transform]] to set its position and scale correctly.
+
+Collision meshes use backface culling. If an object collides with a mesh that will be backface culled graphically it will also not collide with it physically.
+
+There are some limitations when using the Mesh Collider.  Usually, two Mesh Colliders cannot collide with each other.  All Mesh Colliders can collide with any primitive Collider.  If your mesh is marked as ``Convex``, then it can collide with other Mesh Colliders.
+
+
+(:include comp-ColliderDetails:)
+
+!!Hints
+
+* Mesh Colliders __cannot__ collide with each other unless they are marked as ``Convex``.  Therefore, they are most useful for background objects like environment geometry.
+* ``Convex`` Mesh Colliders must be fewer than 255 triangles. 
+* Primitive Colliders are less costly for objects under physics control.
+* When you attach a Mesh Collider to a $$GameObject$$, its Mesh property will default to the mesh being rendered. You can change that by assigning a different Mesh.
+(:include comp-ColliderHints:)

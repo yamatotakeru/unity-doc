@@ -8,6 +8,8 @@ These are not actual pages; but other places do include them!
 
 * [[PhysicsBase]]
 
+* [[class-MeshCollider-Details]]
+
 * [[comp-ColliderProps]]
 * [[comp-ColliderDetails]]
 * [[comp-ColliderCompound]]
@@ -31,5 +33,4 @@ These are not actual pages; but other places do include them!
 * [[imagefx-SM2Depth]]
 * [[imagefx-SM3]]
 * [[imagefx-SM3Depth]]
-
 
