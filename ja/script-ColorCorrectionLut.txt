@@ -1,43 +1,44 @@
-! Color Correction Lookup Texture
+! Color Correction Lookupテクスチャ
 
-$$Color Correction Lut$$ (``Lut`` stands for ''lookup texture'') is an optimized way of performing color grading in a post effect. Instead of tweaking the individual color channels via curves as in [[script-ColorCorrectionCurves|Color Correction Curves]], only a single texture is used to produce the corrected image. The lookup will be performed by using the original image color as a vector that is used to address the lookup texture.
+$$Color Correction Lut$$（``Lut``はLookupテクスチャの略）はエフェクトによりカラーの調整を行うために最適化された方法です。[[script-ColorCorrectionCurves|Color Correction Curves]] など使用して個々のカラーチャンネルを微調整するかわりに、ひとつのテクスチャのみ用いて画像を補正します。
+ルックアップテクスチャのアドレス解決をするために、元の画像の色をベクトルとして使用してルックアップを行います。
 
-Advantages include better performance and more professional workflow opportunities, where all color transforms can be defined in professional image manipulation software (such as Photoshop or Gimp) and thus a more precise result can be achieved.
+長所は、パフォーマンスの向上されることと、全ての色変換を専門の画像操作ソフト（PhotoshopやGIMPなど）で定義して正確な結果が得られる、より専門的なワークフローとすることができることです。
 
 Attach:NeutralLutExample2.png
-''Simple scene with neutral color correction applied.''
+中間色での色補正を適用したシンプルなシーン
 
 Attach:ContrastEnhancedLutExample2.png
-''Same scene using the included "ContrastEnhanced" lookup texture.''
+ContrastEnhancedルックアップテクスチャを使用した'同じシーン
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Based On`` ||A 2D representation of the 3D lookup texture that will be used to generate the corrected image. ||
+||``Based On`` ||補正画像を生成するために使用される3Dルックアップテクスチャの2D表現。||
 
-!!Lookup Texture Requirements
+!!Lookupテクスチャの要件
 
-The 2D texture representation is required to be laid out in a certain way that it represents an unwrapped volume texture (imagine an image sequence of "depth slices").
+2Dテクスチャ表現は、特定のレイアウトにて展開されたときにボリュームをもったテクスチャである必要があります（デプスをもった連続した画像断面のイメージ）。
 
-The following image shows an example of such an unwrapped texture which effectively enhances image contrast. It should be included in the standard packages.
+次の画像は、画像のコントラストを効果的に高める展開されたテクスチャを例示しています。これはStandard Packagesに含まれています。
 
 Attach:3DUnwrappedContrastEnhance.png
-''The image shows a texture of the dimension 256x16, yielding a 16x16x16 color lookup texture (lut). If the resulting quality is too low, a 1024x32 texture  might yield better results (at the cost of memory).''
+'画像は、16x16x16カラールックアップテクスチャ（LUT）を用いて、256x16の次元のテクスチャが表示されます。結果の品質が低すぎる場合、1024x32テクスチャがより良い結果となります。（メモリ消費が大きくなります）
 
-Texture importer requirements include enabling Read/Write support and disabling texture compression. Otherwise, unwanted image artifcats will likely occur.
+テクスチャのインポートに必要な要件には、読み取り/書き込みサポートを有効にすることと、テクスチャ圧縮を無効にすることが含まれています。そうしない場合は、不要な画像の乱れが発生しやすくなります。
 
-!!Example Workflow
+!!ワークフロー例
 
-Always keep the basic neutral lookup texture (lut) ready as this will be the basis for generating all other corrective lut's.
+常に基本となるLookupテクスチャを準備できるようにし、これをその後の補正に使用するLUTを生成するためのベースとします。
 
-* Take a screenshot of your game
+* ゲームのスクリーンショットを撮ります
 
-* Import into e.g. Photoshop and apply color adjustments (such as contrast, brightness, color levels adjustments) until a satisfying result has been reached
+* Photoshopなどにインポートしたうえ、満足のいく結果になるまで色調整（コントラスト、明るさ、カラーレベル調整など）を適用します
 
-* Perform the same steps to the neutral lut and save as a new lut
+* 中間色のLUTにも同じ手順を実行して、新しいLUTとして保存します
 
-* Assign new lut to the effect and hit ``Convert & Apply``
+* エフェクトに新しいLUTを割り当て``Convert & Apply``を押す
 
 (:include imagefx-SM3:)
