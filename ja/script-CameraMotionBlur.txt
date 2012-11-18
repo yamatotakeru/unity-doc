@@ -1,58 +1,58 @@
 ! Camera Motion Blur
 
-$$Motion Blur$$ is a common postprocessing effect simulating the fact that for most camera systems 'light' gets accumulated over time (instead of just taking discrete snapshots). Fast camera or object motion will hence produce blurred images.
+$$Motion Blur$$はカメラシステムの"光"が時間をかけて集積される（離散的なスナップショットをとるだけではない）事実をシミュレートした一般的なエフェクトです。速いカメラや物体の動きは、ぼやけたイメージを生成します。
 
 Attach:MbReconstructionBlurExample.png\\
-''Example of a standard camera motion blur when the camera is moving sideways. Also, notice how the background areas blur less than the foreground ones which is a typical side effect of motion blur.''
+カメラが横に移動している標準的なカメラのMotion Blurの''例。また、背景領域が前景領域ほどをぼやけないという、Motion Blurの典型的な副作用に注目してください。
 
-The current Motion Blur implementation only supports blur due to camera motion with the option to exclude certain layers (useful for excluding characters and/or dynamic objects, especially when those are following the camera movement). It can however be extended to support dynamic objects if an additional script keeps track of each objects model matrix and updates the velocity buffer.
+現在のMotion Blurの実装では、特定の層を（特に、それらのカメラの動きをフォローしている場合に、キャラクターと動的オブジェクトを除く場合に便利）を除外するオプションを使用してカメラの動きによるブレをサポートしています。しかし追加のスクリプトを用意して、各オブジェクトモデルのマトリクスを保持して速度バッファを更新すれば場合、動的なオブジェクトをサポートするように拡張することができます。
 
 Attach:MotionBlurExamplePassion.png\\
-''Example showing Camera Motion Blur with dynamic objects (canisters, bus) being excluded''
+動的オブジェクト（ドラム缶、バス）を除したCamera Motion Blurの例
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
-!! Properties
+!! プロパティ
 ||PROPS
-||``Technique`` ||Motion Blur algorithm. $$Reconstruction$$ filters will generally give best results at the expense of performance and a limited blur radius of 10 pixels unless a [[DirectX11]] enabled graphics device is used. ||
-||``Velocity Scale`` ||Higher scale makes image more likely to blur. ||
-||``Velocity Max`` ||Maximum pixel distance blur will be clamped to and tile size for reconstruction filters (see below). ||
-||``Velocity Min`` ||Minimum pixel distance at which blur is removed entirely. ||
+||``Technique`` ||Motion Blurのアルゴリズム。通常は$$Reconstruction$$フィルタにより最高の品質が得られパフォーマンスが犠牲となり、[[DirectX11]] 対応のグラフィックスデバイスが使用されない限り、Blur（ぼかし）の半径は10ピクセルに限られます。||
+||``Velocity Scale`` ||より高いScaleにすることで、画像をぼかしやすくなります。||
+||``Velocity Max`` |||Blur（ぼかし）が行われる最大ピクセル距離およびReconstructionフィルタのタイルサイズ（下記参照）。||
+||``Velocity Min`` |||Blur（ぼかし）が完全におこなわれない最小のピクセル距離。||
 
-||``Camera Motion`` specific:||
+||``Camera Motion`` のプロパティ:||
 
-||``Camera Rotation`` ||Scales strength of blurs due to camera rotations. ||
-||``Camera Movement`` ||Scales strength of blurs due to camera translations. ||
+||``Camera Rotation`` ||カメラの回転によるBlur（ぼけ）のScale強度。||
+||``Camera Movement`` ||カメラの移動によるBlur（ぼけ）のScale強度。||
 
-||``Local Blur``, ``Reconstruction`` and ``ReconstructionDX11`` specific:||
+||``Local Blur``、 ``Reconstruction`` および ``ReconstructionDX11`` のプロパティ:||
 
-||``Exclude layers`` ||Objects in this layer will remain unaffected. ||
-||``Velocity downsample`` ||Lower resolution velocity buffers might help performance but will heavily degrade blur quality. Might still be a valid option for simple scenes. ||
-||``Sampler Jitter`` ||Adding noise helps prevent ghosting for the $$Reconstruction$$ filter. ||
-||``Max Sample Count`` ||Number of samples used to determine the blur. Affects performance a lot. ||
+||``Exclude layers`` ||このレイヤー内のオブジェクトは影響を受けません。||
+||``Velocity downsample`` ||速度バッファを低解像度にすることで、パフォーマンスが向上するものの、著しくBlur（ぼかし）ーの品質が低下します。単純なシーンでは有効なオプションかもしれません。||
+||``Sampler Jitter`` ||ノイズを追加すると$$Reconstruction$$フィルタによるゴーストの発生を防止するのに役立ちます。||
+||``Max Sample Count`` ||ぼかしを決定するために使用されるサンプルの数。パフォーマンスに大きく影響を与えます。||
 
-||``Preview (Scale)`` ||Preview how blur might look like given artificial camera motion values. ||
+||``Preview (Scale)`` ||人為的にカメラモーションの値を設定したことでみえるBlur（ぼかし）をプレビューします。||
 
-!! Motion Blur Filters (Technique)
+!! Motion Blurフィルタ（テクニック）
 
-$$Local Blur$$ simply performs a directional blur along the current's pixel velocity. Being essentially a ''gather'' operation, it is suited for scenes with a low geometric complexity (e.g. vast terrains), large blur radii or when 'realism' is not the governing factor. One shortcoming is that it can't produce proper 'overlaps' of blurred objects onto focused background areas. Another one that excluded objects 'smear' onto blurred areas.
+$$Local Blur$$は、現在のピクセル速度に沿って指向性Blur（ぼかし）を実行します。本質的に''gather''(収集)操作であるため、幾何学的に単純（例えば広大なTerrain地形）であるとき、大きなBlur（ぼかし）半径のときなど、リアリティがそれほど重要でないとシーンに適しています。一つの欠点は、フォーカスを絞った背景領域にBlur（ぼかし）されたオブジェクト適切に重ねることができないということです。もう一つの欠点は除外オブジェクトがBlur（ぼかし）された領域を汚すことです。
 
 Attach:LocalBlurExample2.png\\
-''Example using the ``Local Blur`` technique while the camera is translating sideways and either foreground (top) or background is excluded (bottom). Notice that both of the above mentioned artifacts apply, typically degrading image quality. If those are not important in your case, this motion blur technique is a fast and effective option.''
+カメラが横向きに移動していて、前景（上）または背景をが除外対象である場合の``Local Blur``テクニックの例。さきに述べた物体の両方に適用され、一般に画質劣化が起きることに注意してください。実際に使用するケースでこのことが大きな問題でない場合は、このMotion Blurテクニックが迅速かつ効果的なオプションです。
 
-$$Reconstruction$$ filters can produce more realistic blur results. The name Reconstruction is derived from the fact that the filter tries to estimate backgrounds, even if there is no information available in the given color and depth buffers. The results can be of higher quality and shortcomings of the ''Local Blur'''s gather filter can be avoided (it can e.g. produce proper overlaps).
+$$Reconstruction$$フィルタは、より現実的なBlur（ぼかし）を生むことができます。Reconstrution（再構築）という名前の由来は、指定された色と深度バッファで利用可能な情報がない場合でも、フィルタが、背景を推定しようとすることに由来しています。結果としては、収集フィルターがより高い品質を生みLocal Blurの欠点を回避することがあります（例えば適正なオーバーラップを生成する、など）。
 
-It is based on the paper ''A Reconstruction Filter for Plausible Motion Blur'' (http://graphics.cs.williams.edu/papers/MotionBlurI3D12/). The algorithm chops the image into tiles of the size ``Velocity Max`` and uses the maximum velocity in the area to simulate a blurry pixel scattering onto neighbouring areas. Artifacts can arise if the velocity is highly varying while the mentioned tile size is large. 
+機能は''A Reconstruction Filter for Plausible Motion Blur''（妥当なモーションブラーの再構築フィルタ）(http://graphics.cs.williams.edu/papers/MotionBlurI3D12/ )の論文にもとづいてます。 アルゴリズムは、``Velocity Max``の大きさのタイルに画像を分割しその領域の最大速度を用いてぼやけたピクセルを近くの領域に散乱するシミュレーションを行います。前述のタイルのサイズが大きく、速度変化が激しい場合、画像の乱れが発生する可能性があります。
 
-The [[DirectX11]] exclusive filter ``ReconstructionDX11`` allows arbitrary blur distances (aka tile size or ``Velocity Max``) and a flexible number of samples.
+[[DirectX11]] の排他フィルタ`` ReconstructionDX11 ``は任意のBlur（ぼかし）の距離（別名タイルサイズや``Velocity Max``）とサンプルの数を柔軟に設定できます。
 
 Attach:ReconstructionExample2.png\\
-''Example using the ``Reconstruction`` technique while the camera is translating sideways. Notice that this time, the mentioned artifacts are less severe as the Reconstruction filter tries to solve those cases (cubes overlapping when background is excluded (bottom) or excluded cubes not smearing onto blurred background (top)).''
+カメラが横に移動している間にReconstructionテクニックを使用している例。今度は、Reconstrucionフィルタが問題を解消してくれるために前述の画像の乱れが少ない（背景を除外して立方体が重なったとき（下）、あるいれは除外されたキューブがBlur（ぼかし）された背景の領域を汚さない）。
 
-While all of the above filters need a prepass to generate a velocity buffer, the $$Camera Motion$$ filter solely works on the camera motion. It generates a global filter direction based on camera change and blurs the screen along that direction (see http://www.valvesoftware.com/publications/2008/GDC2008_PostProcessingInTheOrangeBox.pdf for more details). 
-It is especially suited for smoothing fast camera rotations, for instance in first person shooter games. 
+上記のすべてのフィルタが速度バッファを生成する際にPre-passが必要である一方で、$$Camera Motion$$フィルターは、単にカメラの動きのみで動作します。カメラの変化に基づいてグローバルフィルタ方向を生成したうえで、その方向に沿って画面をBlur（ぼかし）します。（詳細についてはhttp://www.valvesoftware.com/publications/2008/GDC2008_PostProcessingInTheOrangeBox.pdf を参照してください）??
+これは、特にFPSゲームで、例えば高速カメラの回転を滑らかにするのに適しています。
 
 Attach:CameraMotionBlurExample.png\\
-''Example using the ``Camera Motion`` technique. Notice that the blur is uniform across the entire screen.''
+``Camera Motion``テクニックを使用した例。Blur（ぼかし）が、画面全体に均一であることに注意してください。
 
 (:include imagefx-SM3Depth:)
