@@ -1,42 +1,41 @@
-! Sun Shafts
+! Sun Shaft
 
-The $$Sun Shafts$$ image effect simulates the radial light scattering (also known as the "god ray" effect) that arises when a very bright light source is partly obscured.
+$$Sun Shafts$$ 画像効果は、後光や非常に明るい光源から放たれる光線など、放射状に散乱する光を作成するための強力なツールです。
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:ImageEffects./sunShaftsExample.png\\
-''Example of the Sun Shafts effect''
+Sunshaftエフェクトの例
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Rely on Z Buffer`` ||This option can be used when no depth textures are available or they are too expensive to calculate (eg, in forward rendering with a large number of objects). Note that if this option is disabled then Sun Shafts must be the very first image effect applied to the camera.||
-||``Resolution`` ||The resolution at which the shafts are generated. Lower resolutions are faster to calculate and create softer results. ||
-||``Blend Mode`` ||Chose between the softer ``Screen`` mode and the simpler ``Add`` mode. ||
+||``Rely on Z Buffer`` ||これは、深さテクスチャが使用できない場合または費用がかかりすぎて計算できない場合に使用できるオプションです (大量のオブジェクトでのフォワードレンダリングなど)。このオプションを無効にした場合、Sun Shafts 効果がカメラに適用する一番最初の効果とする必要があります。||
+||``Resolution`` ||Shaftが生成されている解像度。 解像度が低いと、計算速度が上がり、結果がより柔らかくなります。 ||||
+||``Blend Mode`` ||より柔らかい「Screen」またはシンプルな「Add」操作のいずれかを選択します。 ||||
 
-||``Sun Transform`` ||The transform of the light source that casts the Sun Shafts. Only the position is significant. ||
-||``Center on ...``||Within the editor, position the ``Sun Transform`` object at the center of the game view camera.||
+||``Sun Transform`` ||Sun Shaft を投射する光源のTransform。Positionのみが有意です。 ||||
+||``Center on ...``||ゲーム ビュー カメラの中心からの光線に沿って、「Sun Transform」を移動させます。||
 
-||``Shafts color`` ||The tint color of the shafts. ||
-||``Distance falloff`` ||The degree to which the shafts' brightness diminishes with distance from the ``Sun Transform`` object. ||
+||``Shafts color`` ||シャフトの色合い。 ||||
+||``Distance falloff`` ||「Sun Transform」から離れると共に、Sun Shaftの強度を下げる強度フォールオフ速度。||
 
-||``Blur size`` ||The radius over which pixel colours are combined during blurring. ||
-||``Blur iterations`` ||The number of repetitions of the blur operation. More iterations will give smoother blurring but each has a cost in processing time.||
+||``Blur size`` ||ピクセルのカラーがBlur（ぼかし）により合成される半径。||
+||``Blur iterations`` ||Blur（ぼかし）の繰り返し回数。繰り返しが多いと、より円滑で長い光線が生成されますが、計算のコストも高くなります。 ||
 
-||``Intensity`` ||The brightness of the generated shafts. ||
-||``Use alpha mask`` ||Defines how much the alpha channel of the color buffer should be used when generating Sun Shafts. This is useful when your skybox has a proper alpha channel that defines a mask (eg, for clouds blocking the sun shafts). ||
+||``Intensity`` ||追加されたSun Shaftの輝度。 ||
+||``Use alpha mask`` ||Sun Shaft生成時に使用する必要のあるカラーバッファのアルファ チャンネルの量。これは、例えばSkyboxに、マスクを定義する適切なアルファ チャンネルがある場合に便利です (例:Sun Shaftを妨げる雲などに対して)。||
 
-!!Blend Modes: Add and Screen
+!!ブレンドモード：AddおよびScreen
 
-Blend modes determine the way that two images will be combined when overlaid. Each pixel from the base image is combined mathematically with the pixel in the corresponding position in the overlay image. Two blend modes are available for Unity image effects, Add and Screen.
+ブレンドモードはオーバーレイ時に2つの画像を合成する方法を決定します。ベースの画像から各ピクセルは、オーバーレイ画像での対応する位置のピクセルと数学的に組み合わせます。UnityのイメージエフェクトはAdd、Screen二つのブレンドモードが用意されています。
 
-!!!Add Mode
+!!!Addモード
 
-When the images are blended in Add mode, the values of the color channels (red, green and blue) are simply added together and clamped to the maximum value of 1. The overall effect is that areas of each image that aren't especially bright can easily blend to maximum brightness in the result. The final image tends to lose color and detail and so Add mode is useful when a dazzling "white out" effect is required.
+画像がAddモードでブレンドされている場合、カラーチャネル（赤、緑、青）の値は、単純に足し合わされ、最大でも値は1となります。全体的な効果として最終的には、明るくない画像の領域を最も明るい部分に溶け込むことができます。最終的なイメージは色やディテールを失うため、Addモードは、まぶしいホワイトアウト効果が必要な場合に便利です。
 
-!!!Screen Mode
+!!!Screenモード
 
-Screen mode is so named because it simulates the effect of projecting the two source images onto a white screen simultaneously. Each color channel is combined separately but identically to the others. Firstly, the channel values of the two source pixels are inverted (ie, subtracted from 1). Then, the two inverted values are multiplied together and the result is inverted. The result is brighter than either of the two source pixels but it will be at maximum brightness only if one of the source colors was also. The overall effect is that more color variation and detail from the source images is preserved, leading to a gentler effect than Add mode.
+白いスクリーン上に同時2つのソース画像を投影する効果をシミュレートしているので、Screenモードと命名されています。各カラーチャネルは、別々に同じ値を合成します。まず、2つのソースピクセルのカラーチャネルの値が反転されます。（すなわち1から値を引き算します）次に、反転した2つ値が乗算され、その結果が反転されます。結果は、2つのソースピクセルのどちらよりも明るくなる一方で、最大の明るさになるために元の色のどちらか一つも最大の明るさであった場合のみになります。全体的な効果としては、ソース画像より多くのカラーバリエーションとディテールが保持されるため、Addモードよりも緩やかな効果につながります。
 
 (:include imagefx-SM2Depth:)
-

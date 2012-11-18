@@ -1,54 +1,54 @@
 ! Depth of Field 3.4
 
 >>u30<<
-$$Depth of Field 3.4$$ is a common postprocessing effect that simulates the properties of a camera lens. The name refers to the fact that the effect was added in Unity 3.4.
+$$Depth of Field3.4$$は、カメラレンズの特性をシミュレートした、一般的なエフェクトです。名前はUnity 3.4で追加されたエフェクトであることを指します。
 >><<
 >>u40<<
-$$Depth of Field 3.4$$ is a common postprocessing effect that simulates the properties of a camera lens. The name refers to the fact that the effect was added in Unity 3.4, but now is superseded by a more modern [[script-DepthOfFieldScatter | Depth Of Field Scatter]] effect which uses optimized techniques to simulate lens blurs and enables better transitions between focal areas. However, depending on the use case, performance might be a lot better in the old 3.4 version as it was developed for older hardware.
+$$Depth of Field$$は、カメラレンズの特性をシミュレートした、一般的なエフェクトです。名前は効果がUnity 3.4で追加されたという事実を指しますが、この機能は[[script-DepthOfFieldScatter | Depth Of Field Scatter]] により取って代わられており、新機能は近代的かつ洗練されていて、最適化された映像テクニックを用いてレンズBlur（ぼかし）をシミュレートし、焦点領域間の移行がスムーズになっています。しかし、使用する状況もよるが、もともと古いハードウェアのために開発さた機能であるためにパフォーマンスは旧3.4バージョンの方が大分良いかもしれません。
 >><<
 
-In real life, a camera can only focus sharply on an object at a specific distance; objects nearer or farther from the camera will be somewhat out of focus. The blurring not only gives a visual cue about an object's distance but also introduces ``bokeh`` which is the term for pleasing visual artifacts that appear around bright areas of the image as they fall out of focus.
+現実世界では、カメラから一定距離の被写体のみに鋭く焦点を当てることができ、カメラから近いまたは遠いオブジェクトは焦点がずれます。ぼかしはオブジェクトの距離に関する視覚的な手掛かりを与えるだけでなく、``Bokeh``（ボケ）という用語は、画像の明るい部分の周りに焦点からずれて魅力的に表現される視覚的な画像の乱れのことです。
 
-An example of the new Depth of Field effect can be seen in the following images, displaying the results of a defocused foreground and a defocused background. Notice how the foreground blur overlaps with the rest while the background doesn't.
+Depth of Fieldの例を次の画像で見ますが、焦点の当たった前景と焦点を外した背景が表示されています。前景のBlur（ぼかし）が他の領域と重なる一方で、背景は重なっていないことに注目してください。
 
 Attach:ImageEffects./DofExample1.png\\
-''Only the nearby pipes are in the focal area''
+近くパイプだけが焦点の当たる領域にある
 
 Attach:ImageEffects./DofExample2.png\\
-''Foreground vs Background blurring with Depth of Field''
+Depto of Fieldを用いて、前景と背景のBlur（ぼかし）比較
 
-You might also consider using the [[script-TiltShift|Tilt Shift effect]] for a more straightforward but less sophisticated depth-of-field effect.
+[[script-TiltShift|Tilt Shift effect]] を用いることで、もっとストレートでそこまで洗練はされていないDepth of Fieldエフェクトを得ることも、検討の余地があります。
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
-!! Properties
+!! プロパティ
 ||PROPS
 ||``General Settings`` ||||
-||``Resolution`` ||Determines the internal render target sizes. A lower resolution will result in faster rendering and lower memory requirements. ||
-||``Quality`` ||The quality level. Choose between the faster ``OnlyBackground`` or the higher-quality ``BackgroundAndForeground`` which calculates the depth-of-field defocus for both areas separately. ||
-||``Simple tweak`` ||Switches to a simpler focal model. ||
-||``Visualize focus`` ||This shows the focal plane in the game view to assist learning and debugging. ||
-||``Enable bokeh`` ||This will generate more realistic lens blurs where very bright parts are scaled and overlap. ||
+||``Resolution`` ||内部的なレンダリング　ターゲットサイズを決定します。低い解像度では、高速なレンダリングとなり、メモリ要求も少なくなります。||
+||``Quality`` ||品質レベル。より処理が速い``OnlyBackground``か、　より品質が高い``BackgroundAndForeground``でDepth of Fieldをそれぞれの領域で別計算するか、のいずれかを選択してください。||
+||``Simple tweak`` ||シンプルな焦点のモデルに切り替えます。||
+||``Visualize focus`` ||学習やデバッグ支援のため、ゲームビューで指定する焦点を当てる領域を示しています。||
+||``Enable bokeh`` ||現実世界に近いレンズBlur（ぼかし）が生成され、非常に明るい部分がスケールされ重ね合わせされる。||
 
 ||``Focal Settings`` ||||
-||``Focal distance`` ||The distance to the focal plane from the camera position in world space. ||
-||``Object Focus`` ||Determine the focal distance using a target object in the scene.||
-||``Smoothness`` ||The smoothness when transitioning from out-of-focus to in-focus areas. ||
-||``Focal size`` ||The size of the in-focus area. ||
+||``Focal distance`` ||ワールド空間でのカメラ位置から焦点面までの距離。||
+||``Object Focus`` ||シーンでターゲットオブジェクトを使用してFocal distanceを決定します。||||
+||``Smoothness`` ||焦点の当たらない領域から焦点のあたる領域へ移行する滑らかさ。||
+||``Focal Size`` ||焦点のあたる領域のサイズ。||||
 
 ||``Blur`` ||||
-||``Blurriness`` ||How many iterations are used when blurring the various buffers (each iteration requires processing time).||
-||``Blur spread`` ||The blur radius. This is resolution-independent, so you may need to readjust the value for each required resolution. ||
+||``Blurriness`` ||さまざまなバッファをBlur（ぼかし）する際の反復回数（反復ごとに処理時間を消費します）。||
+||``Blur spread`` ||Blur（ぼかし）の半径。これは解像度に依存しないため、必要な解像度ごとに値を調整する必要があるかもしれません。||
 
 ||``Bokeh Settings`` ||||
-||``Destination`` ||Enabling foreground and background blur increases rendering time but gives more realistic results. ||
-||``Intensity`` ||Blend intensity used as bokeh shapes are being accumulated. This is a critical value that always needs to be carefully adjusted.||
-||``Min luminance`` ||The luminance threshold below which pixels will not have bokeh artifacts applied.  ||
-||``Min contrast`` ||The contrast threshold  below which pixels will not have bokeh artifacts applied. The significance of this is that you usually only need bokeh shapes in areas of high frequency (ie, cluttered or "noisy" areas of image) since they are otherwise nearly invisible. Performance will be improved if you use this parameter to avoid generating unnecessary bokeh artifacts.  ||
-||``Downsample`` ||The size of the internal render target used for accumulating bokeh shapes. ||
-||``Size`` ||The maximum bokeh size. Will be modulated by the amount of defocus (Circle of Confusion). ||
-||``Bokeh Texture`` ||The texture defining the bokeh shapes. ||
+||``Destination`` ||前景と背景のBlur（ぼかし）を有効にすると、レンダリング時間が増加しますが、より現実的な結果が得られます。||
+||``Intensity`` ||Bokeh（ボケ）形状が収集するにあたり、使用するブレンド強度。常に慎重に調整する必要がある重要な値です。||
+||``Min luminance`` ||輝度のしきい値で、この値以下のピクセルにはBokeh（ボケ）が適用されません。||
+||``Min contrast`` ||コントラストのしきい値、それ以下のピクセルにはBokeh（ボケ）が適用されません。ここで重要なことは、通常だけ高周波の領域（すなわち、雑然としたり、うるさく感じる画像の領域）でのみBokeh（ボケ）形状が必要であるということです。不要なBokeh（ボケ）トの生成を避けるために、このパラメータを調整するとパフォーマンスが向上します。||
+||``Downsample`` ||Bokeh（ボケ）形状が収集するにあたり、使用する内部的なレンダリング　ターゲットサイズ。||
+||``Size`` ||Bokeh（ボケ）の最大サイズ。焦点の当たらない領域の量（錯乱円）で調整されます。||
+||``Bokeh Texture`` ||Bokeh（ボケ）形状を定義するテクスチャ。||
 
-Note that since the bokeh effect is created by drawing triangles per pixel, it can drastically affect your framerate, especially if it's not adjusted optimally. Adjust the ``Size``, ``Min luminance``, ``Min contrast``, ``Downsample`` and ``Resolution`` to improve performance. Also, since the screen is darkened before the bokeh shapes are applied, you should use an appropriate ``Blurriness`` level to remove possible artefacts.
+Bokeh（ぼけ）エフェクトはピクセルごとに三角形を描画することにより作成されるので、最適に調整されていない場合はフレームレートに大きな影響を与える可能性があることに注意してください。Adjust the ``Size``、``Min luminance``、``Min contrast``、``Downsample``および``Resolution``を調整してパファオーマンスを向上させます。Bokeh（ボケ）形状が適用される前に画面を暗くしているので、画像の乱れを除去するために適切な``Blurriness``を設定する必要があります。
 
 (:include imagefx-SM3Depth:)

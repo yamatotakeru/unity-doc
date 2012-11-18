@@ -1,63 +1,66 @@
 ! Depth of Field
 
-$$Depth of Field$$ is a common postprocessing effect that simulates the properties of a camera lens. This version is a more modern and sophisticated version of the old [[script-DepthOfField34|Depth of Field 3.4 effect]] that works especially well with [[HDR]] rendering and a [[DirectX 11]] compatible graphics device.
+$$Depth of Field$$は、カメラレンズの特性をシミュレートした、一般的なエフェクトです。
+この機能は過去バージョンの[[script-DepthOfField34|Depth of Field 3.4エフェクト]] より近代的かつ洗練されていて、[[HDR]] レンダリングや[[DirectX 11]] 互換のグラフィックスデバイスに特に適しています。
 
-In real life, a camera can only focus sharply on an object at a specific distance; objects nearer or farther from the camera will be somewhat out of focus. The blurring not only gives a visual cue about an object's distance but also introduces ``Bokeh`` which is the term for pleasing visual artifacts that appear around bright areas of the image as they fall out of focus. Common ``Bokeh`` shapes are discs, hexagons and other shapes of higher level dihedral groups.
+現実世界では、カメラから一定距離の被写体のみに鋭く焦点を当てることができ、カメラから近いまたは遠いオブジェクトは焦点がずれます。ぼかしはオブジェクトの距離に関する視覚的な手掛かりを与えるだけでなく、""Bokeh""（ボケ）はという用語は、画像の明るい部分の周りに焦点からずれて魅力的に表現される視覚的な画像の乱れのことです。一般的に``Bokeh``（ボケ）の形状は円形、六角形、その他高次の二面体群である。
 
-While the regular version only supports disc shapes (generated via circular texture sampling), the [[DirectX 11]] version is able to splat any shape as defined by the ``Bokeh Texture``.
+通常のバージョンでは円形の形状（円形のテクスチャサンプリングで生成）のみサポートされる一方で、[[DirectX 11]] バージョンは``Bokeh Texture``（ボケ　テクスチャ）で任意の形状に崩すことができます
 
-An example of Depth of Field effect can be seen in the following image, displaying the results of a focused foreground and a defocused background..
+
+Depth of Fieldの例を次の画像で見ますが、焦点の当たった前景と焦点を外した背景が表示されています。
 
 Attach:ImageEffects./DepthOfFieldScatter.png\\
-''The [[DirectX11]] version of this effect can create nicely defined bokeh shapes at a very reasonable cost.''
+このエフェクトの[[DirectX11]] バージョンは非常に合理的なコストで上手に定義されたBokeh（ボケ）の形状を作成することができます。
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
-!! Properties
+!! プロパティ
 ||PROPS
 ||``Focal Settings`` ||||
-||``Visualize`` ||Overlay color indicating camera focus. ||
-||``Focal distance`` ||The distance to the focal plane from the camera position in world space. ||
-||``Focal Size`` ||Increase the total focal area. ||
-||``Focus on Transform`` ||Determine the focal distance using a target object in the scene.||
-||``Aperture`` || The camera's aperture defining the transition between focused and defocused areas. It is good practice to keep this value as high as possible, as otherwise sampling artifacts might occur, especially when the ``Max Blur Distance`` is big. Bigger Aperture values will automatically downsample the image to produce a better defocus. ||
+||``Visualize`` ||カメラフォーカスを示すオーバーレイのカラー。||
+||``Focal distance`` ||ワールド空間でのカメラ位置から焦点面までの距離。||
+||``Focal Size`` ||焦点のあたる領域を増やします。||
+||``Focus on Transform`` ||シーンでターゲットオブジェクトを使用してFocal distanceを決定します。||
+||``Aperture`` ||焦点のあたる領域と焦点の当たらない領域の境界を定義するカメラのAperture（絞り）。この値をできるだけ高く保持することが推奨であり、そうしない場合は``Max Blur Distance``の値が大きい場合など特にサンプリングで画像の乱れが発生する可能性があります。大きなAperture（絞り）値を設定することで、自動的にダウンサンプリングが行われ、適切なボケが生成されます。||
 
 ||```` ||||
-||``Defocus Type`` ||Algorithm used to produce defocused areas. ``DX11`` is effectively a bokeh splatting technique while ``DiscBlur`` indicates a more traditional (scatter as gather) based blur.||
-||``Sample Count`` ||Amount of filter taps. Greatly affects performance. ||
-||``Max Blur Distance`` ||Max distance for filter taps. Affects texture cache and can cause undersampling artifacts if value is too big. A value smaller than 4.0 should produce decent results. ||
-||``High Resolution`` ||Perform defocus operations in full resolution. Affects performance but might help reduce unwanted artifacts and produce more defined bokeh shapes. ||
+||``Defocus Type`` ||焦点の当たらない領域を生成するために使用されるアルゴリズム。``DX11``は効果的なBokeh（ボケ）に有効なテクニックであり、``DiscBlur``は従来の（収集して散布）手法でのBlur（ぼかし）をベースにしています。||
+||``Sample Count`` ||フィルタタップの量。大幅にパフォーマンスに影響を与えます。||
+||``Max Blur Distance`` ||フィルタのタップの最大距離。テクスチャキャッシュに影響し、この値が大きすぎる場合は、アンダーサンプリングによる画像の乱れを引き起こす可能性があります。4.0より小さい値に設定することで、十分な結果が得られます。||
+||``High Resolution`` ||フル解像度で焦点の当たらない処理を実行します。パフォーマンスに影響を与えますが、不要なノイズを低減し、より明確なボケ形状を作成するのに役立つかもしれません。||
 
 ||```` ||||
-||``Near Blur`` ||Foreground areas will overlap at a performance cost. ||
-||``Overlap Size`` ||Increase foreground overlap dilation if needed. ||
+||``Near Blur`` ||前景領域の重ね合わせが実行されますが、パフォーマンスコストが大きくなります。||
+||``Overlap Size`` ||必要な場合、前景の重ね合わせ範囲を大きくします。||
 
 ||``DX11 Bokeh Settings`` ||||
-||``Bokeh Texture`` ||Texture defining bokeh shape.||
-||``Bokeh Scale`` ||Size of bokeh texture.||
-||``Bokeh Intensity`` ||Blend strength of bokeh shapes.||
-||``Min Luminance`` ||Only pixels brighter than this value will cast bokeh shapes. Affects performance as it limits overdraw to a more reasonable amount.||
-||``Spawn Heuristic`` ||Bokeh shapes will only be cast if pixel in questions passes a frequency check. A threshhold around 0.1 seems like a good tradeoff between performance and quality.||
+||``Bokeh Texture`` ||Bokeh（ボケ）形状を定義するテクスチャ。||
+||``Bokeh Scale`` ||Bokeh（ボケ）テクスチャのサイズ。||
+||``Bokeh Intensity`` ||Bokeh（ボケ）形状のブレンド強度。||
+||``Min Luminance`` ||この値より明るいピクセルだけがBokeh（ボケ）形状が投影されます。オーバードローをより合理的な量に制限するため、パフォーマンスに影響を与えます。||
+||``Spawn Heuristic`` ||影響を受けるピクセルが、周波数チェックを通過した場合のみBokeh（ボケ）形状が投影されます。 0.1前後のしきい値が、パフォーマンスと映像品質の良好なトレードオフのようです。||
 
-!! Comparison between DirectX11 and DiscBlur settings
+！DirectX11とDiscBlurの比較
 
 Attach:HighRezBokeh.png\\
-''Smooth transitions are possible with the high resolution DX11 version (albeit at a high performance cost).''
+DX11ではスムーズな遷移が高解像度で可能です。（パフォーマンスコストは大きいですが）
 
 Attach:BokehDisc.png\\
-''Due to the nature of the standard DiscBlur texture sampling approach, the maximum blur radius is limited before sampling artifacts become appearant. Also, only spherical Bokeh shapes are possible.''
+DiscBlurによるテクスチャサンプリング手法の性質上、サンプリングによる画像の乱れが顕著にならないBlur（ぼかし）半径に制限があります。また、Bokeh（ボケ）形状は球状のみ可能です。
 
-!! About DirectX 11 Bokeh Splatting
+!! DirectX 11のBokeh（ボケ）スプラッティング
 
-This powerful technique enables proper Scattering, however due to high demands on fillrate, it should be used with care. The parameters ``Spawn Heuristic`` and ``Min Luminance`` control when and where Bokeh Sprites will be placed. If pixels don't pass a luminance and frequency check, a simple Box Blur will be used instead. It's however hard to notice as it uses the same kernel width as the Bokeh sprites. 
+この強力な技術は適切な散乱を可能にしますが、フィルレートへの高い要求のため、慎重に使用する必要があります。プロパティ``Spawn Heuristic`` and ``Min Luminance``により、いつ、どこでBokeh（ボケ）スプライトが配置されるか決定される。ピクセルは輝度、周波数チェックに合格しない場合、単純なボックスぼかしが代わりに使用されます。
+Bokeh（ボケ）のスプライトと同じカーネル幅を使用するので、違いに気づくことが難しいほどの差です。
 
-The following pictures show that the road, that is neither bright nor bears great frequency changes can just be blurred with a simple box filter without ruining the overall ``Bokeh`` experience.
+次の写真の道路は、明るいものでもなく、大きな周波数の変化をともなわいが、Bokeh（ボケ）の映像効果を台無しにすることなく、単純なボックスフィルタでぼかすことができることを示している。
 
 Attach:BokehSplatting1.png\\
-''Example with small ``Max Blur Distance``''
+小さな``Max Blur Distance``の例
 
 Attach:BokehSplatting2.png\\
-''Example with big ``Max Blur Distance``''
+大きな``Max Blur Distance``の例
 
 
 
