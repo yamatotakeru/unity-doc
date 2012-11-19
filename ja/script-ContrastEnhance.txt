@@ -1,23 +1,22 @@
 ! Contrast Enhance
 
-The $$Contrast Enhance$$ image effect enhances the impression of contrast for a given camera. It uses the well-known ``unsharp mask`` process available in image processing applications.
+$$Contrast Enhance$$画像効果は特定のカメラによるコントラストを改善します。画像処理アプリケーションでよく知られている``unsharp mask``（アンシャープマスク処理）を用いてます。
 
-When blurring is applied to an image, the colors of adjacent pixels are averaged to some extent, resulting in a reduction of sharp edge detail. However, areas of flat color remain relatively unchanged. The idea behind unsharp masking is that an image is compared with a blurred (or "unsharp") version of itself. The difference in brightness between each pixel in the original and the corresponding pixel in the blurred image is an indication of how much constrast the pixel has against its neighbours. The brightness of that pixel is then changed in proportion to the local contrast. A pixel which is darker after blurring must be brighter than its neighbours, so its brightness is further increased while if the pixel is darker after blurring then it will be darkened even more. The effect of this is to increase contrast selectively in areas of the image where the detail is most noticeable. The parameters of unsharp masking are the pixel radius over which colors are blurred, the degree to which brightness will be altered by the effect and a "threshold" of contrast below which no change of brightness will be made.
+画像にぼかしが適用された場合、隣接するピクセルの色は一定の範囲で均一化され、シャープエッジが緩和されます。しかし、平坦な色の領域は比較的変わりません。アンシャープマスクの背後にある考え方は、画像自体のぼかした（"シャープ"でない）画像と比較する、ということです。ピクセルの間の明るさの違いはオリジナルと対応するぼかした画像のピクセルは、そのピクセルが隣接するピクセルに対してどれだけのコントラストがあるかを示しています。そのピクセルの明るさは、ローカルコントラストに比例して変更されます。ピクセルがぼかしの結果暗くなったピクセルは隣り合わせのピクセルよりも明るいはずであり、明るさはさらに増して、もしピクセルがぼかしの後に暗くなった場合はさらに暗くなります。この効果で、詳細がもっとも顕著である画像の領域でコントラストが大きくなります。アンシャープマスクのパラメータは色がぼかしされるピクセル半径であり、明るさが変更ある度合いは以下のコントラストの"threshold"（しきい値）によって決定され、この値より低い場合は明るさが変更されません。
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:ContrastEnhanceDisabled.png\\
-''No Contrast Enhance''
+Contrast Enhanceなしの場合
 
 Attach:ContrastEnhanceEnabled.png\\
-''Contrast enhance enabled''
+Contrast enhanceありの場合
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Intensity`` ||The intensity of contrast enhancement. ||
-||``Threshhold`` ||The constrast threshold below which no enhancement is applied. ||
-||``Blur Spread`` ||The radius over which contrast comparisons are made. ||
+||``Intensity`` ||Contrast Enhanceの強度。||
+||``Threshhold`` ||Contrast Enhanceのしきい値、この値以下では適用されない。||
+||``Blur Spread`` ||コントラストの比較を行うことになる半径。||
 
 (:include imagefx-SM2:)
-

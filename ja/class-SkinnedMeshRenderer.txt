@@ -1,63 +1,63 @@
 !Skinned Mesh Renderer
 
-The $$Skinned Mesh Renderer$$ is automatically added to imported meshes when the imported mesh is skinned.
+$$Skinned Mesh Renderer$$はメッシュがスキニングされている場合、インポート時に自動追加されます。
 
 Attach:Inspector-SkinnedMeshRenderer.png\\
-''An animated character rendered using the Skinned Mesh Renderer''
+Skinned Mesh Rendererを用いてレンダリングされたアニメキャラクター
 
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Cast Shadows`` (Pro only) ||If enabled, this $$Mesh$$ will create shadows when a shadow-creating [[class-Light | Light]] shines on it ||
-||``Receive Shadows`` (Pro only) ||If enabled, this Mesh will display any shadows being cast upon it ||
-||``Materials`` ||A list of $$Materials$$ to render model with. ||
-||``Quality`` ||The maximum amount of bones affecting every vertex. ||
-||``Update When Offscreen`` ||If enabled, the Skinned Mesh will be updated when offscreen. If disabled, this also disables updating animations. ||
-||``Bounds`` ||These bounds are use for determining when skinned mesh is offscreen. Bounding box is also displayed in the SceneView. Bounds are precalculated on import based on Mesh and animations in the model file. ||
-||``Mesh`` ||Meshed used by this renderer. ||
+||``Cast Shadows`` (Pro only) ||オンにした場合、メッシュは影を生成するライトが照らしてたときに影を生成します。||
+||``Receive Shadows`` (Pro only) ||オンにした場合、メッシュに対して投影された影を描画します。||
+||``Materials`` ||モデルでレンダリングする$$Materials$$の一覧。||
+||``Quality`` ||すべての頂点に影響を与えるボーンの最大数。||
+||``Update When Offscreen`` ||オンにした場合、メッシュは画面の外のとき更新される。オフにした場合、アニメーションの更新が無効になります。||
+||``Bounds`` ||このBounds（境界）はSkinned Meshを画面外に出たかどうかを判断するために用います。境界線となる箱もSceneViewに表示されます。境界は、インポート時にモデルに含まれるメッシュとアニメーションに基づいて事前計算されます。||
+||``Mesh`` ||レンダラーによって使用されるメッシュ。||
 
-!! Details
+!! 詳細
 
-Skinned Meshes are used for rendering characters. Characters are animated using bones, and every bone affects a part of the mesh. Multiple bones can affect the same vertex and are weighted.  The main advantage to using boned characters in Unity is you can enable the bones to be affected by physics, making your characters into ragdolls.  You can enable/disable bones via scripting, so your character instantly goes ragdoll when it is hit by an explosion.
+Skinned Meshは、キャラクターのレンダリングに使用されます。キャラクターはボーンを使用してアニメーション化しており、すべてのボーンは、メッシュの一部に影響を与えます。複数のボーンが同じひとつの頂点に影響を与えることができ、影響の大きさはと重み付けされています。Unityでボーンキャラクターを使用する主なメリットは、ボーンが物理挙動の影響を有効化することができ、キャラクターをRagdollにすることができます。スクリプトの中でボーンを有効/無効にすることができるので、爆発にあたったキャラクターを瞬時にRagdollにすることが出来ます。
 
 Attach:RagdollRobot.png\\
-''A Skinned Mesh enabled as a Ragdoll''
+Ragdollとして有効にしたSkinned mesh
 
-!!! Quality
+!!! 品質
 
-Unity can skin every vertex with either 1, 2, or 4 bones. 4 bone weights look nicest and are most expensive. 2 Bone weights is a good compromise and can be commonly used in games.
+Unityによりすべての頂点を1、2、または4のいずれかの個数のボーンでスキニングするよう設定ができます。 4ボーンウェイトは外観も良い一方で、処理コストが高くなります。2ボーンウェイトは良い妥協点であり、一般的にゲームで使用することができます。
 
-If ``Quality`` is set to ``Automatic``, the [[class-QualitySettings|Quality Settings]] ``Blend Weights`` value will be used. This allows end-users to choose a quality setting that gives them optimum performance.
+``Quality``が``Automatic``にセットされた場合[[class-QualitySettings|Quality Settings]] の``Blend Weights`` が使用されます。これによりエンドユーザが最適なパフォーマンスの品質設定を選択することができます。
 
 
-!!! Update When Offscreen and Bounds
+!!! 画面外の更新とBounds（境界）
 
-By default, skinned meshes that are not visible are not updated. The skinning is not updated until the mesh comes back on screen. This is an important performance optimization - it allows you to have a lot of characters running around not taking up any processing power when they are not visible.
+デフォルトでは、表示されていないスキンメッシュは更新されません。メッシュが画面内に戻ってくるまでのスキニングは更新されません。これはパフォーマンスの最適化の観点で重要なポイントで、たくさんのキャラクターが走り回っても非表示のときは処理負荷を抑えることができます。
 
-However, visibility is determined from the Mesh's Bounds, which is precalculated on import. Unity takes into account all attached animations for precalcualating bounding volume, but there are cases when Unity can't precalculate Bounds to fit all user's needs, for example (each of these become a problem when they push bones or vertices out of precalculated bounding volume):
-* adding animations at run-time;
-* using additive animations;
-* proceduraly affecting positions of bones;
-* using vertex shaders which can push vertices out of precalculated bounds;
-* using ragdolls.
+しかし、VisibilityはメッシュのBounds（境界）により決定され、インポート時に事前計算されます。Unityはすべてのアタッチされたアニメーションを境界の大きさ事前計算において考慮しますが、場いいによってはUnityが強化をユーザのニーズに合うように計算できないことがあります。例えば：（いずれも問題となってくるのはボーンや頂点を事前計算された領域外に押し出されるときです。）
+* ランタイム時にアニメーションを追加した場合
+* Additive（追加）アニメーションを使用した場合
+* ボーンの位置をプロシージャで影響を及ぼした場合
+* 頂点シェーダを使用して、事前計算された境界の外に頂点を押し出した場合
+* Ragdollを使用した場合。
 
-In those cases there are two solutions:
-# modify Bounds to match potential bounding volume of your mesh;
-# enable ``Update When Offscreen`` to skin and render skinned mesh all the time.
+これらの例では、2つの解決方法があります：
+# Bounds（境界）を修正してメッシュの潜在的な境界の大きさにマッチできるように修正します。
+# ``Update When Offscreen``をSkinおよびレンダリングされたSkinned Meshに対して常にオンにします。
 
-You should use fist option most of the time since it has better performance and use second option only if performance is not important in your case or you can't predict the size of your bounding volume (for example when using ragdolls).
+殆どの場合、最初の方法がパフォーマンスに与える影響も少ないため、選択することになりますが、二つめの方法はパフォーマンスを重視する必要がなく、境界の大きさを予測することが難しい場合のみ使用して下さい。（例えばRagdollの場合）
 
-In order to make SkinnedMeshes work better with Ragdolls Unity will automatically remap the SkinnedMeshRenderer to the rootbone on import. However Unity only does this if there is a single SkinnedMeshRenderer in the model file.
-So if you can't attach all SkinnedMeshRenderers to the root bone or a child and you use ragdolls, you should turn off this optimization.
+SkinnedMeshをRagdollで上手に機能させるために、Unityは、ルートボーンに対してSkinnedMeshRendererを再マッピングします。しかしUnityモデルファイルに対してひとつのみSkinnedMeshRendererがある場合にこれを行います。
+したがってすべてのSkinnedMeshRendererをルートボーンや子オブジェクトにアタッチできない場合やRagdollを使用する場合、この最適化をオフにする必要があります。
 
-!!Hints
+!! ヒント
 
-* Skinned Meshes currently can be imported from:
+* Skinned Meshが現在インポートできるのは：
 ** Maya
 ** Cinema4D
 ** 3D Studio Max
 ** Blender
 ** Cheetah 3D
 ** XSI
-** Any other tool that supports the FBX format
+** FBXフォーマットをサポートしている他のあらゆるツール
