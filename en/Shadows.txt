@@ -45,15 +45,9 @@ Built-in shadows require a fragment program (pixel shader 2.0) capable graphics 
 ** NVIDIA GeForce FX, 6xxx, 7xxx, 8xxx, 9xxx, GT, GTX series.
 ** Intel GMA 950 and later.
 *** Soft shadows are disabled because of driver bugs (hard shadows will be used instead).
->>u40<<
 * Mobile (iOS & Android):
 ** OpenGL ES 2.0
 ** GL_OES_depth_texture support. Most notably, Tegra-based Android devices do not have it, so shadows are not supported there.
->><<
->>u30<<
-* Mobile (iOS & Android):
-** Shadows are not supported
->><<
 
 !! Notes
 

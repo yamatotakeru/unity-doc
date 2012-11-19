@@ -28,11 +28,9 @@ Cg program snippets are written between ``CGPROGRAM`` and ``ENDCG``.
 At the start of the snippet compilation directives can be given as ``#pragma`` statements. Directives indicating which shader functions to compile:
 * ``#pragma vertex ''name''`` - compile function ''name'' as the vertex shader.
 * ``#pragma fragment ''name''`` - compile function ''name'' as the fragment shader.
->>u40<<
 * ``#pragma geometry ''name''`` - compile function ''name'' as DX10 geometry shader. Having this option automatically turns on ``#pragma target 4.0``, see [[#target | below]].
 * ``#pragma hull ''name''`` - compile function ''name'' as DX11 hull shader. Having this option automatically turns on ``#pragma target 5.0``, see [[#target | below]].
 * ``#pragma domain ''name''`` - compile function ''name'' as DX11 domain shader. Having this option automatically turns on ``#pragma target 5.0``, see [[#target | below]].
->><<
 
 Other compilation directives:
 * ``#pragma target ''name''`` - which shader target to compile to. See [[#target | shader targets]] for details.
@@ -55,10 +53,8 @@ By default, Unity compiles shaders into roughly shader model 2.0 equivalent. Usi
 ** Shader Model 3.0 on Direct3D 9.
 ** ARB_vertex_program with no instruction limit and ARB_fragment_program with 1024 instruction limit (512 texture + 512 arithmetic), 32 temporary registers and 4 texture indirections. It is possible to override these limits using ``#pragma profileoption`` directive. E.g. @@#pragma profileoption MaxTexIndirections=256@@ raises texture indirections limit to 256. Note that some shader model 3.0 features, like derivative instructions, aren't supported by ARB_vertex_program/ARB_fragment_program. You can use ``#pragma glsl`` to translate to GLSL instead which has fewer restrictions.
   When compiling to 3.0 or larger target, both vertex and fragment programs need to be present.
->>u40<<
 * ``#pragma target 4.0`` - compile to DX10 shader model 4.0. This target is currently only supported by DirectX 11 renderer.
 * ``#pragma target 5.0`` - compile to DX11 shader model 5.0. This target is currently only supported by DirectX 11 renderer.
->><<
 
 
 [[#renderers]]

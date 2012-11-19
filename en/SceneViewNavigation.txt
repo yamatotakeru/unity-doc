@@ -54,12 +54,7 @@ In the upper-right corner of the Scene View is the $$Scene Gizmo$$.  This displa
 
 Attach:Editor-SceneGizmo.png
 
->>u30<<
-You can click on any of the arms to snap the Scene View Camera to that direction and change it to $$Isometric Mode$$.  While in Isometric Mode, you can right-click drag to orbit, and Alt-click drag to pan.  To exit this mode, click the middle of the Scene Gizmo. You can also Shift-click the middle of the Scene Gizmo any time to toggle $$Isometric Mode$$.
->><<
->>u40<<
 You can click on any of the arms to snap the Scene View Camera to that direction.  Click the middle of the Scene Gizmo, or the text below it, to toggle between $$Isometric Mode$$ and $$Perspective Mode$$.  You can also always shift-click the middle of the Scene Gizmo to get a "nice" perspective view with an angle that is looking at the scene from the side and slightly from above.
->><<
 
 Attach:Camera-Non-Ortho.png\\
 ''Perspective mode.''
@@ -68,14 +63,10 @@ Attach:Camera-Ortho.png\\
 ''Isometric mode. Objects do not get smaller with distance here!''
 
 !!! Mac Trackpad Gestures
->>u30<<
-On a Mac with a trackpad, you can drag with two fingers to zoom the view. You can also use three fingers to simulate the effect of the $$Scene Gizmo$$: drag up, left, right or down to activate top, right, left or perspective views, respectively.
->><<
->>u40<<
 On a Mac with a trackpad, you can drag with two fingers to zoom the view.
 
 You can also use three fingers to simulate the effect of clicking the arms of the $$Scene Gizmo$$: drag up, left, right or down to snap the Scene View Camera to the corresponding direction. In OS X 10.7 "Lion" you may have to change your trackpad settings in order to enable this feature:
 * Open System Preferences and then Trackpad (or type trackpad into Spotlight).
 * Click into the "More Gestures" option.
 * Click the first option labelled "Swipe between pages" and then either set it to "Swipe left or right with three fingers" or "Swipe with two or three fingers".
->><<
+

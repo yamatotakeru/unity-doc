@@ -1,11 +1,6 @@
 ! Depth of Field 3.4
 
->>u30<<
-$$Depth of Field 3.4$$ is a common postprocessing effect that simulates the properties of a camera lens. The name refers to the fact that the effect was added in Unity 3.4.
->><<
->>u40<<
 $$Depth of Field 3.4$$ is a common postprocessing effect that simulates the properties of a camera lens. The name refers to the fact that the effect was added in Unity 3.4, but now is superseded by a more modern [[script-DepthOfFieldScatter | Depth Of Field Scatter]] effect which uses optimized techniques to simulate lens blurs and enables better transitions between focal areas. However, depending on the use case, performance might be a lot better in the old 3.4 version as it was developed for older hardware.
->><<
 
 In real life, a camera can only focus sharply on an object at a specific distance; objects nearer or farther from the camera will be somewhat out of focus. The blurring not only gives a visual cue about an object's distance but also introduces ``bokeh`` which is the term for pleasing visual artifacts that appear around bright areas of the image as they fall out of focus.
 

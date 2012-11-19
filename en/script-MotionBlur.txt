@@ -1,9 +1,7 @@
 ! Motion Blur image effect
 
 $$Motion Blur$$ image effect enhances fast-moving scenes by leaving "motion trails" of previously rendered frames.
->>u40<<
 For a modern implementation of Motion Blur, please refer to the new [[script-CameraMotionBlur|Camera Motion Blur Effect]].
->><<
 
 Like all [[comp-ImageEffects|image effects]], Motion Blur is only available in Unity Pro. Make sure to have the [[HOWTO-InstallStandardAssets|Pro Standard Assets installed]].
 

@@ -26,14 +26,11 @@ Direct use of these platform macros is discouraged, since it's not very future p
 * @@UNITY_UV_STARTS_AT_TOP@@ - always defined with value or 1 or 0; value of one is on platforms where texture V coordinate is zero at "top of the texture". Direct3D-like platforms use value of 1; OpenGL-like platforms use value of 0.
 * @@UNITY_MIGHT_NOT_HAVE_DEPTH_TEXTURE@@ - defined if a platform might emulate shadow maps or depth textures by manually rendering depth into a texture.
 * @@UNITY_PROJ_COORD(a)@@ - given a 4-component vector, return a texture coordinate suitable for projected texture reads. On most platforms this returns the given value directly.
->>u40<<
 * @@UNITY_NEAR_CLIP_VALUE@@ - defined to the value of near clipping plane; Direct3D-like platforms use 0.0 while OpenGL-like platforms use -1.0.
 * @@UNITY_COMPILER_CG@@, @@UNITY_COMPILER_HLSL@@ or @@UNITY_COMPILER_HLSL2GLSL@@ determine which underlying shader compiler is used; use in case of subtle syntax differences force you to write different shader code.
 * @@UNITY_CAN_COMPILE_TESSELLATION@@ - defined when the shader compiler "understands" tessellation shader HLSL syntax (currently only D3D11).
 * @@UNITY_INITIALIZE_OUTPUT(type,name)@@ - initialize variable ''name'' of given ''type'' to zero.
->><<
 
->>u40<<
 !! Constant buffer macros
 
 Direct3D 11 groups all shader variables into "constant buffers". Most of Unity's built-in variables are already grouped, but for variables in your own shaders it might be more optimal to put them into separate constant buffers depending on expected frequency of updates.
@@ -43,7 +40,6 @@ Use @@CBUFFER_START(name)@@ and @@CBUFFER_END@@ macros for that:
     float4 _SomeGlobalValue;
     CBUFFER_END
 
->><<
 
 
 !! Surface shader pass indicators

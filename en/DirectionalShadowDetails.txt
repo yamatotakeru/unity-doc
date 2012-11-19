@@ -3,12 +3,7 @@
 This page explains [[Shadows|shadows]] from $$Directional$$ lights in detail.
 
 
->>u30<<
-__Note on Mobile platforms__: realtime shadows are not supported on iOS & Android.
->><<
->>u40<<
 __Note on Mobile platforms__: realtime shadows for directional lights __always__ use 1 shadow cascade, and are always "hard shadows".
->><<
 
 Directional lights are mostly used as a key light - sunlight or moonlight - in an outdoor game. Viewing distances can be huge, especially in first and third person games, and shadows often require some tuning to get the best quality vs. performance balance for your situation.
 

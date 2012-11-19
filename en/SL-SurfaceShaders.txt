@@ -29,12 +29,7 @@ struct SurfaceOutput {
 
 !! Samples
 
->>u30<<
-See [[SL-SurfaceShaderExamples | $$Surface Shader Examples$$]] and [[SL-SurfaceShaderLightingExamples | $$Surface Shader Custom Lighting Examples$$]] pages.
->><<
->>u40<<
 See [[SL-SurfaceShaderExamples | $$Surface Shader Examples$$]], [[SL-SurfaceShaderLightingExamples | $$Surface Shader Custom Lighting Examples$$]] and [[SL-SurfaceShaderTessellation | $$Surface Shader Tessellation$$]] pages.
->><<
 
 
 !! Surface Shader compile directives
@@ -71,9 +66,7 @@ Optional parameters:
 * @@noforwardadd@@ - Disables [[RenderTech-ForwardRendering | Forward]] rendering additive pass. This makes the shader support one full directional light, with all other lights computed per-vertex/SH. Makes shaders smaller as well.
 * @@approxview@@ - Computes normalized view direction per-vertex instead of per-pixel, for shaders that need it. This is faster, but view direction is not entirely correct when camera gets close to surface.
 * @@halfasview@@ - Pass half-direction vector into the lighting function instead of view-direction. Half-direction will be computed and normalized per vertex. This is faster, but not entirely correct.
->>u40<<
 * @@tessellate:TessFunction@@ - use DX11 GPU tessellation; the function computes tessellation factors. See [[SL-SurfaceShaderTessellation | Surface Shader Tessellation]] for details.
->><<
 
 
 Additionally, you can write @@#pragma debug@@ inside CGPROGRAM block, and then surface compiler will spit out a lot of comments of the generated code. You can view that using Open Compiled Shader in shader inspector.

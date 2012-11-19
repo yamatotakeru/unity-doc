@@ -16,4 +16,4 @@ Attach:FxNone.png\\
 Multiple image effects can be "stacked" on the same camera. Just add them and it will work.
 
 Attach:FxBlurNoise.png\\
-''Blur and Noise applied to the same camera. Yay for noisy blur!''
+''Blur and Noise applied to the same camera.''

@@ -9,22 +9,6 @@ Attach:EdgeDetectionExampleSciFiScene.png\\
 
 This effect uses the ``ImageEffectOpaque`` attribute which enables image effects to be executed before the transparent render passes. By default, image effects are executed after both opaque and transparent passes have been fully rendered.
 
->>u30<<
-!! Properties
-
-||PROPS
-||``Mode`` ||Chose the filter type (current options are ``Thin`` or ``Thick``). Thick will take more samples into consideration to construct outlines. ||
-
-||``Edge Sensitivity`` ||||
-||``Depth`` ||The minimum difference between the distances of adjacent pixels that will indicate an edge. ||
-||``Normals`` ||The minimum difference between the normals of adjacent pixels that will indicate an edge. ||
-
-||``Background options`` ||||
-||``Edges only`` ||Blend the background with a fixed color. ||
-||``Background`` ||The color used when ``Edges only`` is > 0. ||
->><<
-
->>u40<<
 !! Properties
 
 ||PROPS
@@ -55,6 +39,5 @@ Note that as only depth is used for edge detection, this filter discards edges i
 ``TriangleDepthNormals`` is likely the cheapest available filter even though it examines both depth and normals to decide if a pixel resides on an edge, i.e. it detects more than just object silhouettes. A high amount of normal map details however might break this filter.
 
 ``RobertsCrossDepthNormals`` shares its properties with the ''Triangle'' filter but looks at slightly more samples to determine edges. As a natural byproduct, the resulting edges tend to be thicker.
->><<
 
 (:include imagefx-SM2Depth:)

@@ -19,9 +19,7 @@ Realtime Shadows currently work on desktop & console platforms. On desktops, the
 
 Flash does support realtime shadows, but due to lack of depth bias and shader limitations, they can have self-shadowing artifacts (increase light's shadow bias) and somewhat more "hard" edges.
 
->>u40<<
 Mobile shadows (iOS/Android) require OpenGL ES 2.0 and GL_OES_depth_texture extension. Most notably, the extension is __not__ present on Tegra-based Android devices, so shadows do not work there.
->><<
 
 
 !! Image Effects

@@ -13,7 +13,7 @@ There are six optional parameters that can be passed to ``UnityObject``, which c
 * ``progressbarimage``: The path to a custom image used as the progress bar during loading. The progress bar image's width is clipped based on the amount of file loading completed, therefore it starts with a zero pixel width and animates to its original width when the loading is complete. The progress bar is drawn beneath the logo image.
 * ``progressframeimage``: The path to a custom image used to frame the progress bar during loading.
 
-All color values provided must be 6-digit hexidecimal colors, (eg. FFFFFF, 020F16, etc.). The image paths provided can be either relative or absolute links. All images must be PNG files in RGB format (without transparency) or RGBA format (with transparency) stored at eight bits per channel. Finally, the ``progressframeimage`` and the ``progressbarimage`` should be the same height.
+All color values provided must be 6-digit hexadecimal colors, (eg. FFFFFF, 020F16, etc.). The image paths provided can be either relative or absolute links. All images must be PNG files in RGB format (without transparency) or RGBA format (with transparency) stored at eight bits per channel. Finally, the ``progressframeimage`` and the ``progressbarimage`` should be the same height.
 
 Here is an example script that customizes the appearance of the Unity Web Player loading screen. The background color is set to light gray (``A0A0A0``), border color to black (``000000``), text color to white (``FFFFFF``) and loader images to ``MyLogo.png``, ``MyProgressBar.png`` and ``MyProgressFrame.png``. All parameters are grouped into single ``params`` object and passed to [[WorkingwithUnityObject|UnityObject2 Constructor]].
 [@
@@ -29,7 +29,7 @@ var u = UnityObject2({ params: params });
 u.initPlugin(jQuery("#unityPlayer")[0], "Example.unity3d");
 @]
 
-See [[WorkingwithUnityObject2#constructor|UnityObject2]] for more details.
+See [[WorkingwithUnityObject#constructor|UnityObject2]] for more details.
 
 Example using the above snippet:
 [@
@@ -42,7 +42,7 @@ Example using the above snippet:
 		<!--
 		var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
 		if (document.location.protocol == 'https:')
-			unityObjectUrl.replace("http://", "https://ssl-");
+			unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
 		document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
 		-->
 	</script>

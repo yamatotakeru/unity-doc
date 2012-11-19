@@ -1,3 +1,5 @@
+! Art Asset Best-Practice Guide
+
 Unity supports textured 3D models from a variety of programs or sources. This short guide has been put together by games artists with developers at Unity, to help you create assets that work better and more efficiently in your Unity project.
 
 !!Scale & Units
@@ -11,7 +13,7 @@ Unity supports textured 3D models from a variety of programs or sources. This sh
 
 !!Files & Objects
 *Name objects in your scene sensibly and uniquely. This can help you locate and troubleshoot specific meshes in your project.
-*Avoid special characters @@*()?”£$@@  etc.
+*Avoid special characters @@*()?"#$@@  etc.
 *Use simple but descriptive names for both objects and files (allow for duplication later).
 *Keep your hierarchies as simple as you can.
 *With big projects in your 3D application, consider having a working file outside your Unity project directory. This can often save time consuming updates and importing unnecessary data.
@@ -33,14 +35,14 @@ Attach:HierarchyWrongRight.png
 Attach:GeomWrongRight.png
 ''Stairway to framerate heaven''
 
-The method you use to construct objects can have a massive affect on the number of polygons, especially when not optimised. In this digram the same shape mesh has 156 triangles on the right and 726 on the left. 726 may not sound like a great deal of polygons, but if this is used 40 times in a level, you will really start to see the savings. A good rule of thumb is often to start simple and add detail where needed. It’s always easier to add polygon than take them away.
+The method you use to construct objects can have a massive affect on the number of polygons, especially when not optimised. In this digram the same shape mesh has 156 triangles on the right and 726 on the left. 726 may not sound like a great deal of polygons, but if this is used 40 times in a level, you will really start to see the savings. A good rule of thumb is often to start simple and add detail where needed. It's always easier to add polygon than take them away.
 
 !Textures
 
-If you author your textures to a power of two (e.g. 512×512 or 256×1024), the textures will be more efficient and won’t need rescaling at build time. You can use up to 4096×4096 pixels, (although 2048×2048 is the highest available on many graphics cards/platforms).  Search online for expert advice on creating good textures, but some of these guidelines can help you get the most efficient results from your project:
+If you author your textures to a power of two (e.g. 512×512 or 256×1024), the textures will be more efficient and won't need rescaling at build time. You can use up to 4096x4096 pixels, (although 2048x2048 is the highest available on many graphics cards/platforms).  Search online for expert advice on creating good textures, but some of these guidelines can help you get the most efficient results from your project:
 
 *Work with a high-resolution source file outside your unity project (such as a PSD or Gimp file).  You can always downsize from source but not the other way round.
-*Use the texture resolution output you require in your scene (save a copy, for example a 256×256 optimised PNG or a TGA file). You can make a judgement based on where the texture will be seen and where it is mapped.
+*Use the texture resolution output you require in your scene (save a copy, for example a 256x256 optimised PNG or a TGA file). You can make a judgement based on where the texture will be seen and where it is mapped.
 *Store your output texture files together in your Unity project (for example: \Assets\textures).
 *Make sure your 3D working file is referring to the same textures for consistency when you save/export.
 *Make use of the available space in your texture, but be aware of different materials requiring different parts of the same texture. You can end up using/loading that texture multiple times.
@@ -55,8 +57,8 @@ Attach:Pack_WrongRight2.png
 Attach:TexWrongRight.png
 ''Tiling textures ftw''
 
-*Unity takes care of compression for the output platform, so unless your source is already a JPG of the correct resolution it’s better to use a lossless format for your textures.
-*When creating a texture page from photographs, reduce the page to individual modular sections that can repeat. For example, you don’t need twelve of the same windows using up texture space. That way you can have more pixel detail for that one window.
+*Unity takes care of compression for the output platform, so unless your source is already a JPG of the correct resolution it's better to use a lossless format for your textures.
+*When creating a texture page from photographs, reduce the page to individual modular sections that can repeat. For example, you don't need twelve of the same windows using up texture space. That way you can have more pixel detail for that one window.
 
 Attach:BuildingWrongRight.png
 ''Do you need ALL those windows?''
@@ -65,7 +67,7 @@ Attach:BuildingWrongRight.png
 *Organise and name the materials in your scene. This way you can find and edit your materials in Unity more easily when they’ve imported
 *You can choose to create materials in Unity from either:
 **<modelname>-< material name> or:
-**<texture name> – make sure you are aware of which you want.
+**<texture name> -  make sure you are aware of which you want.
 *Settings for materials in your native package will not all be imported to Unity:
 **Diffuse Colour, Diffuse texture and Names are usually supported
 **Shader model, specular, normal, other secondary textures and substance material settings will not be recognised/imported (coming in 3.5)

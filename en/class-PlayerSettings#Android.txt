@@ -455,13 +455,8 @@ function toggle(obj) {
 <tr ><td  align='left'><span  style='padding-left: 1.5em;'><span class='doc-prop'>Alias</span></span></td><td >Key alias</td></tr>
 <tr ><td  align='left'><span  style='padding-left: 1.5em;'><span class='doc-prop'>Password</span></span></td><td >Password for key alias</td></tr>
 </table><p>Note that for security reasons, Unity will save neither the keystore password nor the key password.
-</p><div class='specific-u30' style='display: block;' id='specific-u30' > 
-<table width='100%'><tr ><td  colspan='2'><b>Android Market Licensing (LVL)</b></td></tr>
-<tr ><td  align='left'><span  style='padding-left: 1.5em;'><span class='doc-prop'>Public Key</span></span></td><td >The public key provided by the <a class='urllink' href='http://developer.android.com/guide/publishing/licensing.html#account' rel='nofollow'>Android developer site</a>.</td></tr>
-</table></div>
-<div class='specific-u40' style='display: block;' id='specific-u40' > 
-<table width='100%'><tr ><td  align='left'><span  style='padding-left: 1.5em;'><span class='doc-prop'>Split Application Binary</span></span></td><td  align='left'>Split application binary into expansion files, for use with Google Play Store if application is larger than 50 MB. When enabled the player executable and data will be split up, with a generated .apk consisting only of the executable (Java and Native) code (~10MB), and the data for the first scene. The application data will be serialized separately to an APK Expansion File (.obb).</td></tr>
-</table></div>
+</p><table width='100%'><tr ><td  align='left'><span  style='padding-left: 1.5em;'><span class='doc-prop'>Split Application Binary</span></span></td><td  align='left'>Split application binary into expansion files, for use with Google Play Store if application is larger than 50 MB. When enabled the player executable and data will be split up, with a generated .apk consisting only of the executable (Java and Native) code (~10MB), and the data for the first scene. The application data will be serialized separately to an APK Expansion File (.obb).</td></tr>
+</table>
 <div class='vspace'></div><h2>Flash</h2>
 <h4><em>Resolution And Presentation</em></h4>
 <div><img src='http://docwiki.hq.unity3d.com/uploads/Main/PlayerSetFlashResPres.png' alt='' title='' /></div>
@@ -532,7 +527,7 @@ function toggle(obj) {
       <a href='http://docwiki.hq.unity3d.com/index.php?n=Site.AllRecentChanges'>Recent Changes</a> -
       <a href='http://docwiki.hq.unity3d.com/index.php?n=Site.Search'>Search</a> - 
       <a href='http://docwiki.hq.unity3d.com/index.php?n=Main.class-PlayerSettings?action=search&q=link=Main.class-PlayerSettings'>Backlinks</a></div>
-    <div class='lastmod'>Page last modified on 2012-11-13 14:45</div></div>
+    <div class='lastmod'>Page last modified on 2012-11-16 12:10</div></div>
 <!--HTMLFooter-->
 </body>
 </html>

@@ -34,9 +34,7 @@ The quality options you can choose for a quality level are as follows:-
 ||``VSync Count``||Rendering can be synchronised with the refresh rate of the display device to avoid "tearing" artifacts (see below). You can choose to synchronise with every vertical blank (VBlank), every second vertical blank or not to synchronise at all.||
 ||``LOD Bias``||LOD levels are chosen based on the onscreen size of an object. When the size is between two LOD levels, the choice can be biased toward the less detailed or more detailed of the two models available. This is set as a fraction from 0 to 1 - the closer it is to zero, the more the bias is toward the less detailed model.||
 ||``Maximum LOD Level``||The highest LOD that will be used by the game. Models which have a LOD above this level will not be used and omitted from the build (which will save storage and memory space).||
->>u40<<
 ||``Particle Raycast Budget``||The maximum number of raycasts to use for approximate particle system collisions (those with ``Medium`` or ``Low`` quality). See [[ParticleSystemModules40|Particle System Collision Module]].||
->><<
 
 !!Tearing
 
