@@ -1,7 +1,5 @@
 ! Noise And Grain
 
-The $$Noise And Grain$$ image effect simulates noise and film grain which is a typical effect happening in film or photography. 
-
 $$Noise And Grain$$のエフェクトは、フィルムや写真の典型的なエフェクトをシミュレートします。この特殊なノイズは、特別なブレンドモードを使うため、画像のコントラストを向上させるためにも使用することもできます。典型的なノイズの再現にも用いることができ、低レベルの光ノイズやHalo（後光）を柔らかくしたり、HaloやBloomの境界線柔らかくします。
 
 [[DirectX 11]] 実装はあらゆるテクスチャ読込と独立しているため、最新のグラフィックス　ハードウェアに最適です。

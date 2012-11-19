@@ -1,45 +1,49 @@
-!Glow image effect
+!Glow画像効果
 
-$$Glow$$ (sometimes called "Bloom") can dramatically enhance the rendered image by making overbright parts "glow" (e.g. sun, light sources, strong highlights). 
-The [[script-Bloom|Bloom]] image effect gives greater control over the glow but has a bit higher processing overhead.
+$$Glow$$（場合によりBloomと呼ばれる）はレンダリングイメージを飛躍的に向上させ、明るすぎる部分を「輝かせる」（すなわち太陽、光源、強いハイライト）。
+>>u30<<[[script-BloomAndLensFlares|Bloom and Lens Flares]] 画像効果はBloomに対してより大きな範囲でコントロールできるが処理オーバーヘッドが大きい。
+>><<
+>>u40<<
+[[script-Bloom|Bloom]] 画像効果はGlowに対してより大きな範囲でコントロールできるが処理オーバーヘッドが大きい。
+>><<
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FxGlow.png\\
-''Glow effect applied to the scene''
+シーンにGlow効果を適用
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Glow Intensity`` ||Total brightness at the brightest spots of the glowing areas. ||
-||``Blur Iterations`` ||Number of times the glow is blurred when being drawn. Each iteration requires processing time.||
-||``Blur Spread`` ||The pixel distance over which pixels are combined to produce blurring.||
-||``Glow Tint`` ||Color tint applied to the glow. ||
-||``Downsample Shader`` ||The shader used for the glow. You generally should not have to change this. ||
+||``Glow Intensity`` ||Glow領域のなかで最も明るいスポットでの明るさ。||
+||``Blur Iterations`` ||描画したときにBlur（ぼかし）する回数。各反復回数ごとに処理時間がかかる。||
+||``Blur Spread`` ||ピクセルが合成されぼかしを描画するピクセル距離||
+||``Glow Tint`` ||Glowに適用される色合い。||
+||``Downsample Shader`` ||Glowに用いるシェーダ。一般的には、これを変更する必要はありません。||
 
 
-!! Details
+!! 詳細
 
-Glow uses the alpha channel of the final image to represent "color brightness". All colors are treated as RGB, multiplied by the alpha channel. You can view the contents of the alpha channel in $$Scene View$$.
+Glowは、 最終的画像のアルファチャネルを用いて色の明るさを表現します。すべての色はRGBとして扱い、アルファチャネルを乗算します。アルファチャネルのコンテンツについては$$Scene View$$.で表示できます。
 
-All built-in shaders write the following information to alpha:
+内臓のシェーダは次の情報をアルファチャネルに書き込みます。
 
-* Main texture's alpha multiplied by main color's alpha (not affected by lighting).
-* Specular shaders add specular highlight multiplied by specular color's alpha.
-* Transparent shaders do not modify alpha channel at all.
-* Particle shaders do not modify alpha channel, except for Particles/Multiply which darkens anything that is in alpha.
-* Skybox shaders write alpha of the texture multiplied by tint alpha
+* メインテクスチャのアルファをメインカラーのアルファに乗算した結果（ライティングは影響を受けません）
+* Specular（鏡面）シェーダはSpecularハイライトにSpecularカラーのアルファを乗算した結果を追加します。
+* Transparent（透過）シェーダはアルファチャネルを一切変更しません。
+* パーティクルシェーダはアルファチャネルを修正せず、Particle/Multiplyだけはアルファｔなっているすべてを暗くします。
+* Skyboxシェーダはアルファチャネルに色合いのアルファを乗算します。
 
-Most of the time you'll want to do this to get reasonable glow:
+Glowで十分な効果を得るため、殆どの場合に実施すべきことは：
 
-* Set material's main color alpha to zero or use a texture with zero alpha channel. In the latter case, you can put non-zero alpha in the texture to cause these parts to glow.
-* Set the specular color alpha for Specular shaders to be 100%.
-* Keep in mind what alpha the camera clears to (if it clears to a solid color), or what alpha the skybox material uses.
-* Add the Glow image effect to the camera. Tweak ''Glow Intensity'' and ''Blur Iterations'' values, you can also take a look at the comments in the shader script source.
-* The alpha channel on the Skybox can be used to great effect to add more glow when looking at the sun
+* マテリアルのカラーをゼロにセットするか、アルファチャネルがゼロのテクスチャをしようする。後者の場合、ゼロでないアルファをテクスチャに入れることでこの部分をGlowさせることが出来る。
+* Specular（鏡面）シェーダのSpecularカラーアルファを100％に設定します。
+* カメラがアルファチャネルをクリアした後にどう処理するかを考慮し（透明でない色にセットするか）、またSkyboxマチリアルが使用するアルファを考慮する。
+* カメラにGlowの画像効果を追加します。''Glow Intensity''、''Blur Iterations''の値を微調整するうえで、シェーダスクリプトのソースコードに含まれるコメントを参考にします。
+* Skyboxのアルファチャンネルは太陽を見る場面においてGlowを追加するうえで大きな効果を期待できます。
 
 
-!!!Tips:
-* Use the alpha rendering mode in the scene view toolbar to quickly see which objects output different values to the alpha channel.
+!!!ヒント:
+* シーンビューのツールバーのレンダリングモードを使用してどのオブジェクトがアルファチャネルに異なる出力を行うか素早くみることが出来ます。
 
 (:include imagefx-SM2:)
