@@ -1,9 +1,7 @@
 ! Motion Blur 画像効果
 
 $$Motion Blur$$ 画像効果は、前にレンダリングしたフレームの''モーション トレイル''を残すことで、高速で移動するシーンを強化します。
->>u40<<
 より最新のMotion Blurの実装は、新しい [[script-CameraMotionBlur|Camera Motion Blur Effect]] を参照して下さい。
->><<
 
 すべての [[comp-ImageEffects|image effects]] のように、Motion Blur は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 

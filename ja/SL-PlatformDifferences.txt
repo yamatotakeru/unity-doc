@@ -35,7 +35,6 @@ Check out Edge Detection scene in [[http://unity3d.com/support/resources/example
 Some platforms, most notably mobile (OpenGL ES 2.0) and Direct3D 11, do not have fixed function [[SL-AlphaTest | alpha testing]] functionality. When you are using programmable shaders, it's advised to use Cg/HLSL @@clip()@@ function in the pixel shader instead.
 
 
->>u40<<
 !! Direct3D 11 shader compiler is more picky about syntax
 
 Direct3D 9 and OpenGL use NVIDIA's Cg to compile shaders, but Direct3D 11 (and Xbox 360) use Microsoft's HLSL shader compiler. HLSL compiler is more picky about various subtle shader errors. For example, it won't accept function output values that aren't initialized properly.
@@ -48,8 +47,6 @@ Most common places where you'd run into this:
         // ...
       }
 * Partially initialized values, e.g. a function returning float4, but the code only sets .xyz values of it. Make sure to set all values, or change to float3 if you only need those.
-
->><<
 
 
 !! Using OpenGL Shading Language (GLSL) shaders with OpenGL ES 2.0

@@ -29,12 +29,7 @@ struct SurfaceOutput {
 
 !! サンプル
 
->>u30<<
-[[SL-SurfaceShaderExamples | $$Surface Shader Examples$$]] および [[SL-SurfaceShaderLightingExamples | $$Surface Shader Custom Lighting Examples$$]] ページを参照してください。
->><<
->>u40<<
 [[SL-SurfaceShaderExamples | $$Surface Shader Examples$$]] 、 [[SL-SurfaceShaderLightingExamples | $$Surface Shader Custom Lighting Examples$$]] 、 [[SL-SurfaceShaderTessellation | $$Surface Shader Tessellation$$]] ページを参照して下さい.
->><<
 
 
 !! サーフェスシェーダ コンパイル ディレクティブ
@@ -71,9 +66,7 @@ struct SurfaceOutput {
 * @@noforwardadd@@ - [[RenderTech-ForwardRendering | Forward]] レンダリング追加パスを無効にします。 これにより、シェーダは完全なディレクショナル ライトサポートし、その他すべてのライトは、頂点ごと/SH で計算されます。シェーダもより小さくなります。
 * @@approxview@@ - 標準化されたビュー方向をピクセルごとではなく、頂点ごとに計算します。これを必要としているシェーダに行われます。 これは、より速いですが、カメラが表面に近づくと、ビュー方向は全体的に正しくありません。
 * @@halfasview@@ - 半分方向のベクトルを、ビュー方向ではなくｍライティング関数に渡します。 半距離は頂点ごとに計算および標準化されます。 これはより高速ですが、全体的に正しくりません。
->>u40<<
 * @@tessellate:TessFunction@@ - DX11 GPUテッセレーションを使います。詳しくは [[SL-SurfaceShaderTessellation | Surface Shader Tessellation]] をご覧ください。
->><<
 
 また、CGPROGRAM　ブロック内に @@#pragma debug@@ を記述し、表面コンパイラは、生成されたコードの多くのコメントを生成できます。 シェーダ  インスペクタでオープン コンパイルド シェーダでを使用してこれを表示できます。
 

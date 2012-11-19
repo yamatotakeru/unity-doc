@@ -1,4 +1,4 @@
-!! FBX export guide
+! FBX export guide
 
 Unity supports FBX files which can be generated from many popular 3D applications. Use these guidelines to help ensure the most best results.
 

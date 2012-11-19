@@ -1,11 +1,7 @@
 !Glow image effect
 
 $$Glow$$ (sometimes called "Bloom") can dramatically enhance the rendered image by making overbright parts "glow" (e.g. sun, light sources, strong highlights). 
->>u30<<The [[script-BloomAndLensFlares|Bloom and Lens Flares]] image effect gives greater control over the bloom but has a higher processing overhead.
->><<
->>u40<<
 The [[script-Bloom|Bloom]] image effect gives greater control over the glow but has a bit higher processing overhead.
->><<
 
 As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
 

@@ -31,3 +31,19 @@ Use the ^^Layer^^ drop-down to assign a rendering Layer to the GameObject.  Use 
 
 If you have a Prefab selected, some additional buttons will be available in the Inspector.  For more information about Prefabs, please view the [[Prefabs | Prefab manual page]].
 
+!!Labels
+Unity allows assets to be marked with $$Labels$$ to make them easier to locate and categorise. The bottom item on the inspector is the ~~Asset Labels~~ panel.
+
+Attach:InspectorLabelsPanelEmpty.png
+
+At the bottom right of this panel is a button titled with an ellipsis ("...") character. Clicking this button will bring up a menu of available labels
+
+Attach:InspectorLabelsMenu.png
+
+You can select one or more items from the labels menu to mark the asset with those labels (they will also appear in the Labels panel). If you click a second time on one of the active labels, it will be removed from the asset.
+
+Attach:InspectorAssetMenuWithLabels.png
+
+The menu also has a text box that you can use to specify a search filter for the labels in the menu. If you type a label name that does not yet exist and press return/enter, the new label will be added to the list and applied to the selected asset. If you remove a custom label from all assets in the project, it will disappear from the list.
+
+Once you have applied labels to your assets, you can use them to refine searches in the $$Project Browser$$ (see [[ProjectView40|this page]] for further details). You can also access an asset's labels from an editor script using the [[ScriptRef:AssetDatabase.html|AssetDatabase]] class.

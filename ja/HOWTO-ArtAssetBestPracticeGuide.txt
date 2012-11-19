@@ -1,3 +1,5 @@
+! Art Asset Best-Practice Guide
+
 Unity supports textured 3D models from a variety of programs or sources. This short guide has been put together by games artists with developers at Unity, to help you create assets that work better and more efficiently in your Unity project.
 
 !!Scale & Units

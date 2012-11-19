@@ -322,13 +322,6 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[Using Web Player templates]]
 ****[[Web Player Streaming|Web Player Streaming [+__*ja__+]]]
 
-***[[Web Player Deployment - UnityObject2]]
-****[[HTML code to load Unity Web Player content - UnityObject2]]
-****[[Working with UnityObject2]]
-****[[Customizing the Unity Web Player loading screen - UnityObject2]]
-****[[WebPlayerBehaviorTags - UnityObject2]]
-****[[Unity Web Player and browser communication - UnityObject2]]
-
 >><<
 
 

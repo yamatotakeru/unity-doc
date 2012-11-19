@@ -10,5 +10,23 @@ Unity_4.0b7
 ---MonoDevelop
 @]
 
-If you rename each Editor folder inside a single Unity folder you will overwrite the MonoDevelop folder and this will cause serious stability problems and unexpected crashes.  
+!!PC
+
+*Install Unity 4.0 (www.unity3d.com/download)
+*When you install on PC it will select the previously installed directory - do not install here
+*Create a new directory named sensibly e.g. Unity_4
+*Name any shortcuts so you know which version you are launching
+*Hold alt when you launch the beta to force unity to let you choose which project to open (otherwise it will try and upgrade the last opened project)
+*Choose your  projectname_4 directory to open your backed up project
+
+__Do not__ rename each Editor folder inside a single Unity folder! You will overwrite the MonoDevelop folder and this will cause __serious__ stability problems and unexpected crashes.
+
+!!Mac
+
+*Find your existing Unity application folder and rename appropriately e.g Unity35 
+*Install the Unity 4.0 (www.unity3d.com/download)
+*Name any shortcuts so you know which version you are launching
+*Hold alt when you launch the beta to force unity to let you choose which project to open (otherwise it will try and upgrade the last opened project)
+*Choose your projectname_4 directory to open your backed up project
+
 

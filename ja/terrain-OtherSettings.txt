@@ -11,9 +11,7 @@ Attach:terrain-OtherSettings.png\\
 *  ``Base Map Dist.``: The distance that Terrain Textures will be displayed in high-resolution. After this distance, a low-resolution composited texture will be displayed.
 * ``Cast Shadows``: Should terrain cast shadows?
 
->>u40<<
 ``Material`` slot allows assigning a custom material for the terrain. The material should be using a [[Shaders|shader]] that is capable of rendering terrain, for example ``Nature/Terrain/Diffuse`` (this shader is used if no material is assigned) or ``Nature/Terrain/Bumped Specular``.
->><<
 
 !! Tree & Detail Settings
 

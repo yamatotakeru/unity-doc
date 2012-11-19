@@ -6,16 +6,7 @@ Attach:ImageEffects./VignetteExample.png\\
 ''Example of Vignetting and chromatic Aberration. Notice how the screen corners darken and color separation (aberration) creates purple and slightly green color fringing.''
 
 As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
->>u30<<
-!! Properties
 
-||PROPS
-||``Intensity`` ||The degree of darkening applied to the screen edges and corners.||
-||``Chromatic Aberration`` ||The degree of chromatic aberration. A value of 0.0 will disable chromatic aberration entirely. ||
-||``Blur`` ||The amount of blur that is added to the screen corners. ||
-||``Blur Spread`` ||The blur width used when ``Blur`` is added. ||
->><<
->>u40<<
 !! Properties
 
 ||PROPS
@@ -38,7 +29,6 @@ Attach:AberrationExample.png\\
 
 Attach:ColorFringing.png\\
 ''Closeup view of color fringing. Note how around areas of great contrast purple and green shimmers seem to appear. This effect depends depends on the kind of camera or lens system being used. The effect is based on the fact that different wavelengths will be projected on different focal planes.''
->><<
 
 
 (:include imagefx-SM2:)

@@ -4,21 +4,15 @@ $$Color Correction Curves$$ make color adjustments using curves for each color c
 
 Selective adjustments can also be applied, so you can swap a target color in the scene for another color of your own choosing. 
 
->>u40<<
 Lastly, Saturation is an easy way to adjust all color saturation or desaturation (until image turns black & white) which is an effect that is not achievable with curves only.
->><<
 
->>u40<<
 See also the new [[script-ColorCorrectionLut|Color Correction Lut effect]] for lookup texture based color grading.
->><<
 
->>u40<<
 The following images demonstrate how by simply enhancing the saturation slider and the blue channel curve can make a scene drastically different
 
 Attach:noColorCorrection.png
 
 Attach:saturationAndBlueCurve.png
->><<
 
 As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
 
@@ -26,9 +20,7 @@ As with the other [[comp-ImageEffects|image effects]], this effect is only avail
 
 ||PROPS
 ||``Mode`` ||Chose between advanced or simple configuration modes. ||
->>u40<<
 ||``Saturation`` ||Saturation level (0 creates a black & white image). ||
->><<
 ||``Red`` ||The red channel curve. ||
 ||``Green`` ||The green channel curve. ||
 ||``Blue`` ||The blue channel curve. ||

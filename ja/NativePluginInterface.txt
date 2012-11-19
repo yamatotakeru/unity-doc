@@ -53,15 +53,9 @@ In order to do __any__ rendering from the plugin, you should call [[ScriptRef:GL
 
 !! Example
 
->>u30<<
-An example of a low-level rendering plugin __[[Attach:RenderingPluginExample.zip|can be downloaded here]]__. This simply draws a rotating triangle from C++ code after all regular rendering is done. The project works with Windows (Visual Studio 2008) and Mac OS X (Xcode 3.2) and uses Direct3D 9 or OpenGL depending on the platform. Direct3D 9 code part also demonstrates how to handle "lost" devices.
->><<
-
->>u40<<
 An example of a low-level rendering plugin __[[Attach:RenderingPluginExample40.zip|can be downloaded here]]__. It demonstrates two things:
 * Renders a rotating triangle from C++ code after all regular rendering is done.
 * Fills a procedural texture from C++ code, using Texture.GetNativeTexturePtr to access it.
 
 The project works with Windows (Visual Studio 2008) and Mac OS X (Xcode 3.2) and uses Direct3D 9, Direct3D 11 or OpenGL depending on the platform. Direct3D 9 code part also demonstrates how to handle "lost" devices.
->><<
 

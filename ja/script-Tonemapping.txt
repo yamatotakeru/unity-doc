@@ -4,9 +4,7 @@
 
 Note that Tonemapping will only properly work if the used camera is [[HDR]] enabled. It is also recommended to give light sources higher than normal intensity values to make use of the bigger range. Just as in real life there is huger differences in Luminance and our eyes or any capturing medium is only able to sample a certain range of that. 
 
->>u40<<
 Tonemapping works well in conjunction with the HDR-enabled [[script-Bloom|Bloom image effect]]. Make sure that Bloom should be applied before Tonemapping as otherwise all high ranges will be lost. Generally, any effect that can benefit from higher luminances should be scheduled before the Tonemapper (one more example being the [[script-DepthOfFieldScatter|Depth of Field image effect]]).
->><<
 
 There are different ways on how to map intensities to LDR (as selected by ``Mode``). This effect provides several techniques, two of them being adaptive (``AdaptiveReinhard`` and ``AdaptiveReinhardAutoWhite``), which means that color changes are carried out delayed as the change in intensities is fully registered. Cameras and the human eye have this effect. This enables interesting dynamic effects such as a simulation of the natural adaption happening when entering or leaving a dark tunnel into bright sunlight.
 
