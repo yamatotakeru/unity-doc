@@ -1,5 +1,3 @@
-!! Diffuse Properties
+!! Diffuse（拡散） プロパティ
 
-Diffuse computes a simple (Lambertian) lighting model. The lighting on the surface decreases as the angle between it and the light decreases. The lighting depends only on the this angle, and does not change as the camera moves or rotates around.
-
-
+Diffuse（拡散）は簡単な (Lambertian（ランバート）)ライティングモデルを計算します。表面のライティングは光源との角度が小さくなるにつれ弱まります。ライティングはこの角度のみに依存し、カメラの移動・回転による影響を受けません。

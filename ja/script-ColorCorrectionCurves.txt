@@ -1,108 +1,118 @@
 ! Color Correction Curves
 
-$$Color Correction Curves$$ make color adjustments using curves for each color channel. Depth based adjustments allow you to vary the color adjustment according to a pixel's distance from the camera. For example, objects on a landscape typically get more desaturated with distance due to the effect of particles in the atmosphere scattering. 
+$$Color Correction Curves$$は、各カラーチャンネルの曲線を使用して色調整を行います。Depthベースの調整で、カメラからピクセルの??距離に応じて色の調整を変化させることができます。例えば、景観上のオブジェクトは、通常、大気中の粒子の散乱効果により、距離が離れるとSaturation（彩度）が落ちます。
 
-Selective adjustments can also be applied, so you can swap a target color in the scene for another color of your own choosing. 
+選択的な調整を適用することもできるため、シーン上のターゲットの色を別の色に入れ替えることができます。
 
-Lastly, Saturation is an easy way to adjust all color saturation or desaturation (until image turns black & white) which is an effect that is not achievable with curves only.
+>>u40<<
+最後に、Saturation（彩度）はすべての再度の上げ下げを調整する簡単は方法（下げる場合は画像が白黒に変わるまで）であり、カーブだけでは実現することができません。
+>><<
 
-See also the new [[script-ColorCorrectionLut|Color Correction Lut effect]] for lookup texture based color grading.
+>>u40<<
+新機能の[[script-ColorCorrectionLut|Color Correction Lut effect]] にてルックアップテクスチャをもとにカラー調整する方法も参照ください。
+>><<
 
-The following images demonstrate how by simply enhancing the saturation slider and the blue channel curve can make a scene drastically different
+>>u40<<
+以下の画像で、単にSaturationスライドバーを簡単に変更して、ブルーチャンネルのカーブを変更するだけで、シーンが劇的に変換することを示しています。
 
 Attach:noColorCorrection.png
 
 Attach:saturationAndBlueCurve.png
+>><<
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Mode`` ||Chose between advanced or simple configuration modes. ||
-||``Saturation`` ||Saturation level (0 creates a black & white image). ||
-||``Red`` ||The red channel curve. ||
-||``Green`` ||The green channel curve. ||
-||``Blue`` ||The blue channel curve. ||
+||``Mode`` ||AdvancedとSimpleのいずれかから設定モードを選択します。||
+>>u40<<
+||``Saturation`` ||彩度レベル（0にした場合は白黒画像を作成）。||
+>><<
+||``Red`` ||レッドチャンネルカーブ||
+||``Green`` ||グリーンチャンネルカーブ||
+||``Blue`` ||ブルーチャンネルカーブ||
 
-||``Red (Depth)`` ||The red channel curve for depth based correction. ||
-||``Green (Depth)`` ||The green channel curve for depth based correction. ||
-||``Blue (Depth)`` ||The blue channel curve for depth based correction. ||
-||``Blend Curve`` ||Defines how blending between the foreground and background color correction is performed. ||
+||``Red (Depth)`` ||Depthベース補正に基づいたレッドチャンネルカーブ||
+||``Green (Depth)`` ||Depthベース補正に基づいたグリーンチャンネルカーブ||
+||``Blue (Depth)`` ||Depthベース補正に基づいたブルーチャンネルカーブ||
+||``Blend Curve`` ||前景と背景の色補正が行われる間のブレンド方法を定義します。||
 
 ||``Selective Color Correction`` ||
-||``Enable`` ||Enables the optional selective color correction. ||
-||``Key`` ||The key color for selective color correction. ||
-||``Target`` ||The target color for selective color correction. ||
+||``Enable`` ||オプションであるselective color correction（選択的色補正）をオンにします。||
+||``Key`` ||selective color correction（選択的色補正）のキーカラー||
+||``Target`` ||selective color correction（選択的色補正）のターゲットカラー||
 
-!!Understanding Curves
+!!カーブの理解
 
-Curves offer a powerful way to enhance an image and can be used to increase or decrease contrast, add a tint or create psychedelic color effects. Curves work on each of the red, green and blue color channels separately and are based around the idea of mapping each input brightness level (ie, the original brightness value of a pixel) to an output level of your choosing. The relationship between the input and output levels can be shown on a simple graph:-
+画像を補正するにあたりカーブは強力なツールであり、コントラストの増減や色合いの追加、幻覚的なカラーエフェクトを追加するのに用いることができます。カーブは、赤、緑、青の各カラーチャンネルで別々に動作し、入力した輝度（例えば元のピクセルの輝度）を選択した出力レベルにマッピングすることができます。
+入力と出力レベルの関係は単純なグラフに表示することができます：-
 
 Attach:CurvesDefault.png
 
-The horizontal axis represents the input level and the vertical represents the output level. Any point on the line specifies the output value that a given input is mapped to during processing. When the "curve" is the default straight line running from bottom-left to top-right, the input value is mapped to an identical output value, which will leave the pixel unchanged. However, the curve can be redrawn to re-map the brightness levels as required. A simple example is when the line goes diagonally from top-left to bottom-right:-
+横軸は入力レベル、縦は出力レベルを表します。ライン上の任意の点は、与えられた入力に対してマッッピングされた出力レベルを示します。デフォルトではカーブが対角線であるため、入力値と出力値は完全一致し、ピクセルは変更されない。しかし、カーブを再描画して輝度レベルを好きなように再マッピングすることができます。簡単な例は線が左上から右下に斜めに下がる例です。:-
 
 Attach:CurvesInvert.png
 
-In this case, the pixel's brightness will be inverted; 0% will map to 100%, 25% to 75% and vice versa. If this is applied to all color channels then the image will be like a photographic negative of the original.
+この場合、ピクセルの輝度は反転され、0％が100％にマッピングされ、75％は25％にマップされます。すべてのカラーチャネルに適用した場合、その画像は、元の写真のネガのようになります。
 
-!!!Contrast
+!!!コントラスト
 
-Most of the detail in an image is conveyed by the difference in brightness levels between pixels, regardless of their colour. Pixels that differ by less than about 2% brightness are likely to be indistinguishable but above this, the greater the difference, the greater the impression of detail. The spread of brightness values in the image is referred to as its contrast.
+画像のディテールは元の色にかかわらず、それらの色のピクセル間の輝度レベルの差によるところが大きな要素です。約2％以下の輝度の差であるピクセルはほとんど区別がつかなくなるが、この値より差が大きい場合は、値の差が大きいほどディテールの印象に差が出ます。画像内の輝度値のスプレッドは、コントラストと呼ばれます。
 
-If a shallow slope is used for the curve, rather than the corner-to-corner diagonal then the full range of input values will be squeezed into a narrower range of output values:-
+もし浅いスロープがカーブとして使用されている場合、より高い勾配で左下から右上に直線の場合と異なって、値の範囲はせばめられた出力の値となります。
 
 Attach:CurvesLowContrast.png
 
-This has the effect of reducing the contrast, since the differences between pixel values in the output are necessarily smaller than those in the input (indeed, two slightly different input values may actually get mapped to the same output value). Note that since the image no longer spans the full range of output values, it is possible to slide the curve up and down the range, resulting in an image which is brighter or darker overall (the average brightness is sometimes called the "sit" point and is the parameter adjusted by the brightness control on a TV set). Reduced contrast can give the impression of gloom, fog or a dazzling light source in a scene, depending on the overall brightness.
+結果的にコントラストが減少する効果が得られ、それは出力におけるピクセルの値が入力の値より差分が小さくなります。（たしかに、2つのわずかに異なる入力値の場合は同
+じ出力値にマッピングされることはありえますが）画像が出力の値がとりうるすべての値の範囲をとることはないため、カーブの上を上下にスライドして画像が全体的に明るい・暗いことが可能であることに留意してください。（平均的な輝度はsit地点と呼ばれることがあり、テレビなどで輝度を調整するパラメータと同じです）コントラストを減らすとシーン内で、全体的な輝度にもよって、暗がり、霧や眩しい光源の印象を与えることができます。
 
-It is not necessary to reduce the contrast across the whole range of brightness levels. The curve's slope can vary along its length, with the shallower parts corresponding to ranges of reduced contrast. In between the shallow parts, the slope may be steeper than the default, and the contrast will actually increase in these ranges. Changing the curve like this gives a useful way to increase contrast in some parts of the image while reducing it in areas where the detail is less important:-
+輝度のレベルの全範囲にわたってコントラストを低下させる必要はありません。カーブの傾きが減少し、コントラストの範囲に対応する浅い部分と、その位置によって変化させることができる。浅い部分の区間でデフォルトより増加した勾配とすることが可能で、この区間ではコントラストが増加します。このようにカーウを変更することで、画像の一部だけコントラストを増加させてディテールが重要でないところでは減らすということが出来ます。
 
 Attach:CurvesWiggly.png
 
-!!!Colour Effects
+!!!カラーエフェクト
 
-If the curves are set identically for each color channel (red, green and blue) then the changes will mainly affect the brightness of pixels while their colors remain relatively unchanged. However, if the curves are set differently for each channel then the colors can change dramatically. Many complex interactions between the color channels are possible but some basic insight can be gained from the following diagram:-
+カーブは、各カラーチャンネル（赤、緑、青）ごとに全く同じに設定されている場合、変更されるのは主にピクセルの輝度となり、カラーは比較的変わらない。一方でカーブが各カラーチャネルごとに別々に設定している場合は、その色が劇的に変化します。カラーチャンネル間で複雑な相互作用が可能なですが、いくつかの知見を、次の基本図から得ることができます:-
 
 Attach:RGBCircles.png
 
-As explained in the section above, a reduction of contrast can accompany an increase or reduction in the overall brightness. If, say, the red channel is brightened then a red tint will be visible in the image. If it is darkened then the image will be tinted towards cyan (since this color is obtained by combining the other two primaries, green and blue).
+上記のセクションで説明したように、コントラストの低下は、全体の輝度の増加または減少を伴うかもしれません。例えば赤のチャンネルを明るくすると、画像で赤の色合いが見えるようになります。暗くした場合、画像はシアンの色合いになります（なぜなら、この色が他原色の緑と青を組み合わせることによって得られるためです）。
 
 
-!!!Depth-Based Color Correction
+!!!Depthベースの色補正
 
-Colors often appear slightly different when viewed at a distance. For example, in a landscape scene, colors tend to get desaturated by atmospheric light scattering. This kind of effect can be created using depth-based color correction. When this is enabled, two sets of color curves become available, one for the camera's near clipping plane and the other for the far clipping plane. The actual correction applied to an object depends on its distance from the camera; the normalized distance between the two clipping planes is used as an interpolation parameter between the two sets of color curves. The exact type of interpolation is specified by an additional blending curve, which maps the normalised distance to an interpolation value in much the same way that a color curve maps an input to an output. By default, this curve is a straight diagonal which results in linear interpolation between the two color corrections. However, it can be modified to bias the correction according to distance.
-
-
-!!!Selective Color Correction
-
-Using this setting, it is possible to replace a particular color in the original image (referred to as the "key") and replace it with a chosen target color. Using a single exact color for the key would tend to introduce visual artifacts and so a range is used instead. The resulting color is an interpolation between the key and target colors, depending on how close the original image pixel is to the specified key color.
+距離を置いて見たときの色はしばしば若干異なって表示されます。例えば、風景のシーンで、色は大気中の光の散乱により彩度が落ちる傾向があります。この種のエフェクトはDepthベースの色補正で作成できます。これが有効になっていると、2つのセットのカラーカーブが使用可能となり、ひとつがカメラのニアクリッピング面、もうひとつがファークリッピング面です。2つのクリッピング平面の間の正規化された距離は、2つのカラーカーブのセット間の補間パラメータとして使用されます。補間の具体的な種類は追加のブレンドカーブにより指定され、これにより補間値が正規化された距離にカーブで入力値から出力値をマップするのと同じ方法でマッピングされます。デフォルトで、カーブは対角線であるため、2つの色補正の間は線形補間となります。しかし、それは距離に応じてバイアス補正に変更することができます。
 
 
-!!Editing Curves
+!!!選択的な色補正
 
-Clicking on one of the curves in the inspector will open an editing window:-
+この設定を使用して、元の画像（ "キー"とも呼ばれる）内の特定の色を置き換えることが可能で、選択したターゲット色と交換することができます。キーのために単一の色を使用すると、画像の乱れが出る傾向があるので、色の範囲が代わりに使用されます。得られた色は、元の画像のピクセルが指定されたキーの色にどれだけ近いかにより決まり、キー色とターゲット色の間の補間となります。
+
+
+!!カーブの修正
+
+インスペクタでのカーブのいずれかをクリックすると、編集ウィンドウが開きます： -
 
 Attach:CurvesWindow.png
 
-At the bottom of the window are a number of presets for common curves. However, you can also alter the curve by manipulating the key points. Right clicking on the curve line will add a new key point which can be dragged around with the mouse. If you right click on one of the points, you will see a contextual menu that gives several options for editing the curve. As well as allowing you to delete the key, there are four options that determine how it will affect the shape of the curve:-
+ウィンドウの一番下には、カーブのプリセットが複数用意されてます。しかし、キーのポイントを操作することで、カーブを変更することもできます。カーブの線を右クリックすると、新しいキーポイントを追加でき、さらにマウスを使ってドラッグすることができます。ポイントのいずれかを右クリックした場合、コンテキストメニューが表示され、カーブを編集するオプションが用意されています。キーを削除することができるだけでなく、カーブの形状にどのように影響するかを決定する4つのオプションがあります:-
 
-* Auto: the curve will pass through the point and its shape will be adjusted to keep the curvature smooth between neighbouring points.
+* Auto: カーブがポイントの地点を通過したうえで隣接する点がスムージングされます。
 
-* Free Smooth: the tangent of the curve can be edited using handles attached to the key point.
+* Free Smooth: カーブの接線がキーポイントにつけられたハンドルにより編集可能となります。
 
-* Flat: Free Smooth mode is enabled and the tangent is set horizontally.
+* Flat: Free Smoothモードがオンとなり、接線は縦方向にセットすることができます。
 
-* Broken: The key point has tangent handles as with Free Smooth mode but the handles on the left and right of the curve can be moved separately to create a sharp break rather than a smooth curve.
+* Broken: キーポイントは、Free Smoothモードと同様に接線ハンドルがありますが、それに加えてカーブの左右にあり、カーブを別々に動かしてスムージングではなく、急な変化を描くことができます。
 
-Below these options are a few settings that control how a point's tangent handles behave:-
+これらのオプションの下にいくつかの設定でポイントの接線ハンドルの動作を制御することが出来ます:-
 
-* Free: Broken mode is enabled for the curve at the specified tangent.
+* Free: 特定のカーブ上の接線でBrokenモードが有効になっています。
 
-* Linear: The curve between the key point and its neighbour is set to a straight line.
+* Linear: キーポイントの間のカーブおよび隣接するポイントは直線に設定されます。
 
-* Constant: A flat horizontal line is drawn from the curve to its neighbour and the vertical displacement occurs as a sharp step.
+* Constant: 平らな水平線がカーブから隣接する点に対して描画され、垂直は急激な変位がステップとして発生します。
 
 
 (:include imagefx-SM2Depth:)

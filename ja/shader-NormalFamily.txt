@@ -1,82 +1,82 @@
 !Normal Shader Family
 
-These shaders are the basic shaders in Unity.  They are not specialized in any way and should be suitable for most opaque objects.  They are not suitable if you want your object to be transparent, emitting light etc. 
+これらのシェーダはUnityの基本的なシェーダです。これらは特殊な側面は一切なく、ほとんどの不透明オブジェクトでの使用に適しています。オブジェクトがTransparent（透明）、Emitting Light（発光）の場合は適していません。
 
 !! [[shader-NormalVertexLit|Vertex Lit]]
 
 [[shader-NormalVertexLit | Attach:Shaders./Thumb-NormalVertex.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture, no alpha channel required
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、アルファチャネル必要なし
 
 
 !! [[shader-NormalDiffuse|Diffuse]]
 
 [[shader-NormalDiffuse| Attach:Shaders./Thumb-NormalDiffuse.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture, no alpha channel required
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、アルファチャネル必要なし
 
 
 !! [[shader-NormalSpecular|Specular]]
 
 [[shader-NormalSpecular| Attach:Shaders./Thumb-NormalSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for Specular Map
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、Specular Map（鏡面反射マップ）向けのアルファチャネルあり
 
 
 !! [[shader-NormalBumpedDiffuse|Normal mapped]]
 
 [[shader-NormalBumpedDiffuse| Attach:Shaders./Thumb-NormalBump.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture, no alpha channel required
-* One ``Normal map``
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、アルファチャネル必要なし
+* ``Normal map``（法線マップ）一つ
 
 
 !! [[shader-NormalBumpedSpecular|Normal mapped Specular]]
 
 [[shader-NormalBumpedSpecular| Attach:Shaders./Thumb-NormalBumpSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for Specular Map
-* One ``Normal map``
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、Specular Map（鏡面反射マップ）向けのアルファチャネルあり
+* ``Normal map``（法線マップ）一つ
 
 
 !! [[shader-NormalParallaxDiffuse|Parallax]]
 
 [[shader-NormalParallaxDiffuse| Attach:Shaders./Thumb-NormalParallaxBump.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture, no alpha channel required
-* One ``Normal map``
-* One ``Height`` texture with Parallax Depth in the alpha channel
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、アルファチャネル必要なし
+* ``Normal map``（法線マップ）一つ
+* ``Height``テクスチャ一つ、Parallax Depth（パララックスデプス）向けのアルファチャンネルあり
 
 
 !! [[shader-NormalParallaxSpecular|Parallax Specular]]
 
 [[shader-NormalParallaxSpecular| Attach:Shaders./Thumb-NormalParallaxBumpSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for Specular Map
-* One ``Normal map``
-* One ``Height`` texture with Parallax Depth in the alpha channel
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、Specular Map（鏡面反射マップ）向けのアルファチャネルあり
+* ``Normal map``（法線マップ）一つ
+* ``Height``テクスチャ一つ、Parallax Depth（パララックスデプス）向けのアルファチャンネルあり
 
 
 !! [[shader-NormalDecal|Decal]]
 
 [[shader-NormalDecal| Attach:Shaders./Thumb-NormalDecal.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture, no alpha channel required
-* One ``Decal`` texture with alpha channel for Decal transparency
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、アルファチャネル必要なし
+* ``Decal``テクスチャ一つ、Decal（デカール）透過向けのアルファチャネルあり
 
 
 !! [[shader-NormalDiffuseDetail|Diffuse Detail]]
 
 [[shader-NormalDiffuseDetail| Attach:Shaders./Thumb-NormalDiffuseDetail.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture, no alpha channel required
-* One ``Detail`` grayscale texture; with 50% gray being neutral color
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、アルファチャネル必要なし
+* ``Detail``グレースケールテクスチャ一つ、50%グレーの中間色あり

@@ -1,8 +1,8 @@
-!3D Textures
+!3Dテクスチャ
 
-Unity supports 3D Texture use and creation from shader and script. While use cases of 3D Textures might not seem as straightforward at first, they can be an integral part of implementing specific kinds of effects such as [[script-ColorCorrectionLut|3D Color Correction]].
+Unityは3Dテクスチャのシェーダ・スクリプトからの使用・作成をサポートしています。はいｊめのうちは、3Dテクスチャのユーザ使用例が思い当たらないかもしれませんが、[[script-ColorCorrectionLut|3D Color Correction]] （3Dカラー補正）のようなエフェクトを実装する場合などは作成作業の一部になります。
 
-Currently, 3D Textures can only be created from script. The following snippet creates a "neutral" 3D texture where, if used as a lookup texture in [[script-ColorCorrectionLut|3D Color Correction]], the performed correction will be the identity.
+現時点では3Dテクスチャはスクリプトからしか作成できません。次の短いスクリプトで「中立的」な3Dテクスチャを作成し、[[script-ColorCorrectionLut|3D Color Correction]] （3Dカラー補正）のようにLookupテクスチャとして用いた場合、補正結果は同一の内容が得られます。
 
 [@function CreateIdentityLut (dim : int, tex3D : Texture3D) 
 {

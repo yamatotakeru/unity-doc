@@ -6,5 +6,5 @@ Attach:Shaders./Shader-NormalDiffuse.png
 
 !!パフォーマンス
 
-一般に、このシェーダでは少ない費用でレンダリングできます。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。
+一般に、このシェーダでは少ないコストでレンダリングできます。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。
 
