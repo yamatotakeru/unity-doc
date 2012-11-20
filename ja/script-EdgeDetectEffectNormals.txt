@@ -1,43 +1,44 @@
-! Edge Detect Effect Normals
+! Edge Detectエフェクト 法線マップ
 
-This version of the $$Edge Detect$$ image effect creates outlines around edges by taking the scene geometry into account. Edges are not determined by colour differences but by the surface normals and distance from camera of neighbouring pixels (the surface normal is an "arrow" that indicates the direction the surface is facing at a given pixel position). Generally, where two adjacent pixels have significantly different normals and/or distances from the camera, there is an edge in the scene.
+$$Edge Detect$$（エッジ検出）画像効果はシーンの物体を考慮したうえでエッジの周りに輪郭線を作成します。エッジはカラーの差ではなく表面法線や隣接するピクセルのカメラからの距離により判定されます（法線マップは「矢印」であり、特定のピクセルの位置において表面が向いている方向を示します）。一般に、2つの隣接するピクセルが明白に異なるほう線やカメラからの距離である場合、シーンにエッジが描画されます。
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:EdgeDetectionExampleSciFiScene.png\\
-''Example Edge Detection. Note how edge outlines can be smoothed out by adding an Antialiasing effect to follow Edge Detection.''
+Edge Detection（エッジ検出）の例。エッジの輪郭線がAntialias（アンチエイリアス）をEdge Detectionに続けて追加していることによりスムージングできていることに留意して下さい。
 
-This effect uses the ``ImageEffectOpaque`` attribute which enables image effects to be executed before the transparent render passes. By default, image effects are executed after both opaque and transparent passes have been fully rendered.
+このエフェクトは``ImageEffectOpaque``プロパティを使用し、画像効果が透過レンダリングパスより先に実行しています。デフォルトでは、画像効果は不透明および透明パスが完全にレンダリングされた後に実行されます。
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Mode`` ||Chose the filter type (see below). ||
+||``Mode`` ||フィルタの種類を選択（以下を参照） ||
 
-||``Depth Sensitivity`` ||The minimum difference between the distances of adjacent pixels that will indicate an edge. ||
-||``Normals Sensitivity`` ||The minimum difference between the normals of adjacent pixels that will indicate an edge. ||
-||``Sampling Distance`` ||Bigger sampling distances (default is 1.0) create thicker edges but also introduce haloing artifacts. ||
+||``Depth Sensitivity`` ||隣接するピクセル間の距離の差でエッジが描画される最低距離||
+||``Normals Sensitivity`` ||隣接するピクセル間の法線の差でエッジが描画される最低距離||
+||``Sampling Distance`` ||より大きなサンプリング距離（デフォルトは1.0）により厚いエッジが作成されるが、Halo（ハロー）による画像の乱れが発生します。||
 
-||``Edges exponent`` ||Exponent used for Sobel filter. Smaller values detect smaller depth differences as edges. ||
+||``Edges exponent`` ||Sobel（ソーベル）フィルタに使用される指数。小さい値であるほど、Depth差が小さい場合もエッジ検出します。 ||
 
 ||``Background options`` ||||
-||``Edges only`` ||Blend the background with a fixed color. ||
-||``Background`` ||The color used when ``Edges only`` is > 0. ||
+||``Edges only`` ||固定の色で背景をブレンド ||
+||``Background`` ||``Edges only`` > 0の際に使用される色||
 
 
-!! Filter Types
+!! フィルタの種類
 
-The new ``SobelDepthThin`` filter offers a way to make edge detection work with other depth based image effects such as Depth of Field, Fog or Motion Blur as edges don't cross an object's silhouette:
+
+新しい``SobelDepthThin``フィルタによりエッジ検出が他のDepthベースの画像効果（Depth of Field, FogあるいはMotion Blur）とともに機能します。理由はエッジがオブジェクトのシルエットを超えないためです。
 
 Attach:EdgeDetectionWidthDofExample.png\\
-''Edges don't leak into the defocused background and at the same time, the background blur doesn't remove the created edges.''
+エッジがフォーカスされてない背景に漏れておらず、同時に背景のBlur（ぼかし）は作成されたエッジを取り除きません。
 
-Note that as only depth is used for edge detection, this filter discards edges inside silhouettes.
+Depthのみがエッジ検出に用いられていることに留意し、このフィルタはシルエットの中のエッジは無視します。
 
-``SobelDepth`` works similarly but doesn't discard edges outside the silhouette of an object. Hence, the ede detection is more precise but doesn't work well with other depth-based effects.
+``SobelDepth``は同様に機能するが、オブジェクトのシルエットの外のエッジを無視しません。このため、エッジ検出はより精緻であるが他のDepthベースエフェクトとともにうまく機能しません。
 
-``TriangleDepthNormals`` is likely the cheapest available filter even though it examines both depth and normals to decide if a pixel resides on an edge, i.e. it detects more than just object silhouettes. A high amount of normal map details however might break this filter.
+DepthとNormalの両方からピクセルがエッジであるか判断するにも関わらず``TriangleDepthNormals``はほとんどの場合に最も安いフィルタです。すなわち、オブジェクトのシルエット以外にも検出します。しかしながら、大量の法線マップの詳細があると、フィルタが機能しない場合があります。
 
-``RobertsCrossDepthNormals`` shares its properties with the ''Triangle'' filter but looks at slightly more samples to determine edges. As a natural byproduct, the resulting edges tend to be thicker.
+``RobertsCrossDepthNormals``は''Triangle''フィルタと同じプロパティを共有しますが、エッジ検出のためにより多くのサンプリングを行います。自然な副産物として、結果的にエッジが厚くなりがちです。
 
 (:include imagefx-SM2Depth:)

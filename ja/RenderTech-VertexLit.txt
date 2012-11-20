@@ -1,9 +1,9 @@
-! Vertex Lit Rendering Path Details
+! Vertex Litレンダリングパス詳細
 
-This page describes details of $$Vertex Lit$$ [[RenderingPaths | rendering path]].
+このページは$$Vertex Lit$$ [[RenderingPaths | rendering path]] (レンダリングパス)について説明します。
 
-Vertex Lit path generally renders each object in one pass, with lighting from all lights calculated at object vertices.
+Vertex Litパスは通常ひとつのパスで各オブジェクトをレンダリングし、全てのライトからのライティングをオブジェクトの頂点にて計算します。
 
-It's the fastest rendering path and has widest hardware support (however, keep in mind: it does not work on consoles).
+最も早いレンダリングパスであり、最も幅広いハードウェアサポートがあります。（但し据え置き機で動作しないため留意すること）
 
-Since all lighting is calculated at vertex level, this rendering path does not support most of per-pixel effects: shadows, normal mapping, light cookies, highly detailed specular highlights are not supported.
+頂点レベルで全ての計算が行われるため、このレンダリングパスは殆どのピクセルエフェクトをサポートしません。shadows、normal mapping（法線マップ）、light cookies、highly detailed specular highlightsをサポートしません。
