@@ -1,11 +1,7 @@
 !Glow画像効果
 
 $$Glow$$（場合によりBloomと呼ばれる）はレンダリングイメージを飛躍的に向上させ、明るすぎる部分を「輝かせる」（すなわち太陽、光源、強いハイライト）。
->>u30<<[[script-BloomAndLensFlares|Bloom and Lens Flares]] 画像効果はBloomに対してより大きな範囲でコントロールできるが処理オーバーヘッドが大きい。
->><<
->>u40<<
 [[script-Bloom|Bloom]] 画像効果はGlowに対してより大きな範囲でコントロールできるが処理オーバーヘッドが大きい。
->><<
 
 その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
