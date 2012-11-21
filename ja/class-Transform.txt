@@ -1,95 +1,89 @@
-! Transform
+! トランスフォーム
 
-The $$Transform$$ $$Component$$ determines the ``Position``, ``Rotation``, and ``Scale`` of each object in the scene. Every object has a Transform.
+$$Transform$$ $$Component$$は、シーン内のすべてのオブジェクトの実際の「Position」、「Rotation」および「Scale」を決定します。 オブジェクトはそれぞれトランスフォームを持ちます。
 
-Attach:TransformExample1.png\\
-''The Transform Component is editable in the $$Scene View$$ and in the $$Inspector$$''
+Attach:Inspector-Transform.png\\
+「$$Inspector$$ 表示・編集可能なトランスフォーム コンポーネント」
 
 
-!!Properties
+!!プロパティ
 
 ||PROPS
-||``Position`` ||Position of the Transform in X, Y, and Z coordinates. ||
-||``Rotation`` ||Rotation of the Transform around the X, Y, and Z axes, measured in degrees. ||
-||``Scale``    ||Scale of the Transform along X, Y, and Z axes.  Value "1" is the original size (size at which the object was imported). ||
+||``Position`` ||X、Y、Z 座標でのトランスフォームの位置。 ||
+||``Rotation`` ||X、Y、Z 軸周辺でのトランスフォームの回転 (単位:度)。 ||
+||``Scale``    ||X、Y、Z 軸に沿ったトランスフォームのスケール。1の場合は、元の大きさになります (オブジェクトがインポートされた大きさ)。 ||
 
-All properties of a Transform are measured relative to the Transform's parent (see below for further details).  If the Transform has no parent, the properties are measured relative to World Space.
+トランスフォームのプロパティはすべて、トランスフォームの親に対して相対的に設定されます（詳細は以下で参照下さい）。  トランスフォームに親がない場合、プロパティはワールド空間にもとづき設定されます。
 
 
-!! Using Transforms
+!! トランスフォームの使用
 
-Transforms are always manipulated in 3D space in the X, Y, and Z axes.  In Unity, these axes are represented by the colors red, green, and blue respectively.  Remember: XYZ = RGB.
+トランスフォームは、X、Y、Z軸を使用して、3D 空間で操作されます。Unity では、これらの軸は、それぞれ赤色、緑色、青色で表示されます。  XYZ = RGBと覚えてださい。
 
 Attach:TransformExample2.png\\
-''Color-coded relationship between the three axes and Transform properties''
+「3 つの軸間の色記号とトランスフォーム プロパティの関係」
 
-Transforms can be directly manipulated in the $$Scene View$$ or by editing properties in the Inspector. In the scene, you can modify Transforms using the Move, Rotate and Scale tools. These tools are located in the upper left-hand corner of the Unity Editor.
+トランスフォーム コンポーネントは、$$Scene View$$ またはインスペクタタ上のプロパティを編集して、直接操作できます。シーンでは、Move、Rotate およびScale ツールを使用して、トランスフォームを操作できます。  これらのツールは、Unity エディタの左上にあります。
 
 Attach:Transform-Tools.png\\
-''The View, Translate, Rotate, and Scale tools''
+「View、Translat、Rotate および Scale ツール」
 
-The tools can be used on any object in the scene. When you click on an object, you will see the tool gizmo appear within it. The appearance of the gizmo depends on which tool is selected.
+これらのツールは、シーン内のどのオブジェクトにも使用できます。  オブジェクトをクリックすると、そこにツールのギズモが表示されます。  現在どのツールを選択しているかにより、このギズモの表示が若干異なります。
 
 Attach:TransformGizmo35.png\\
 \\
-All three Gizmos can be directly edited in the Scene View.
+3 つのギズモはすべてシーン ビューで直接編集できます。
 
-When you click and drag on one of the three gizmo axes, you will notice that its color changes.  As you drag the mouse, you will see the object translate, rotate, or scale along the selected axis.  When you release the mouse button, the axis remains selected.  You can click the middle mouse button and drag the mouse to manipulate the Transform along the selected axis.
+トランスフォームを操作するには、3 つのギズモの軸のいずれかをクリックして、ドラッグすると、色が変わります。  マウスをドラッグするのに合わせ、オブジェクトが軸に沿って、移動、回転または縮小拡大します。  マウス ボタンを放すと、軸が選択されたままになります。  マウスの中ボタンをクリックし、マウスをドラッグして、選択した軸に沿って、トランスフォームを操作できます。
 
 Attach:TransformExample3.png\\
-''Any individual axis will become selected when you click on it''
-
-Around the centre of the Transform gizmo are three coloured squares. These allow you to drag the Transform in a single plane (ie, the object will move in two axes but be held still in the third axis).
-
-Attach:TransformExample4.png\\
-''Dragging in the XZ plane''
+「個々の軸をクリックすると、選択されます」
 
 [[#Parenting]]
-!! Parenting
+!!! 親子関係
 
-Parenting is one of the most important concepts to understand when using Unity. When a GameObject is a $$Parent$$ of another GameObject, the $$Child$$ GameObject will move, rotate, and scale exactly as its Parent does.  Just like your arms are attached to your body, when you turn your body, your arms move because they're attached. Any object can have multiple children, but only one parent.
+親子関係は、Unity を使用する際に理解する必要のある最も重要なコンセプトのひとつです。 GameObject が別の GameObject の $$Parent$$（親）の場合、$$Child$$（子）GameObject は、親とまったく同じように移動、回転、縮小拡大します。  体に付いている腕のように、体を回転させると、体に付いているため、腕も動きます。 どのオブジェクトにも複数の子がありますが、親は 1 つだけです。
 
-You can create a Parent by dragging any GameObject in the $$Hierarchy View$$ onto another. This will create a Parent-Child relationship between the two GameObjects.
+$$Hierarchy View$$ 内の GameObject を別の GameObject にドラッグすることで、親を作成できます。 これにより、2 つの GameObject 間で親子関係が作成されます。
 
 Attach:ParentingExample.png\\
-''Example of a Parent-Child hierarchy. GameObjects with foldout arrows to the left of their names are parents.''
+「親子階層の例。  左の矢印で示されるすべての  GameObject は親です。」
 
-In the above example, we say that the arms are parented to the body and the hands are parented to the arms. The scenes you make in Unity will contain collections of these $$Transform hierarchies$$. The topmost parent object is called the $$Root object$$. When you move, scale or rotate a parent, all the changes in its Transform are applied to its children as well.
+上記の例では、体が腕の親になっており、腕は手の親になっています。 Unity で作成したシーンには、これらの $$Transform hierarchy$$ の集合が含まれます。 一番上の親オブジェクトは、$$Root object$$ と呼ばれます。 親を移動、縮小拡大または回転させると、そのトランスフォームでの変更はすべてその子にも適用されます。
 
-It is worth pointing out that the Transform values in the Inspector of any Child GameObject are displayed relative to the Parent's Transform values.  These are also called the $$Local Coordinates$$.  Through scripting, you can access the $$Global Coordinates$$ as well as the local coordinates.
+子 GameObject のインスペクタでのトランスフォームの値は、親のトランスフォームの値に対し相対的に表示されるということはポイントです。これらは $$Local Coordinate$$（ローカル座標）と呼ばれます。  スクリプティングを通じて、ローカル座標の他、 $$Global Coordinate$$（グローバル座標）にもアクセスできます。
 
-You can build compound objects by parenting several separate objects together, for example, the skeletal structure of a human ragdoll. You can also achieve useful effects with simple hierarchies.  For example, if you have a horror game that takes place at night, you can create an effective atmosphere with a flashlight.  To create this object, you would parent a spotlight Transform to the flashlight Transform.  Then, any alteration of the flashlight Transform will affect the spotlight, creating a convincing flashlight effect.
-
-
-!! Performance Issues and Limitations with Non-Uniform Scaling
-
-Non-uniform scaling is when the ``Scale`` in a Transform has different values for x, y, and z; for example (2, 4, 2). In contrast, uniform scaling has the same value for x, y, and z; for example (3, 3, 3). Non-uniform scaling can be useful in a few select cases but should be avoided whenever possible.
-
-Non-uniform scaling has a negative impact on rendering performance. In order to transform vertex normals correctly, we transform the mesh on the CPU and create an extra copy of the data. Normally we can keep the mesh shared between instances in graphics memory, but in this case you pay both a CPU and memory cost per instance.
-
-There are also certain limitations in how Unity handles non-uniform scaling:
-
-* Certain components do not fully support non-uniform scaling. For example, for components with a ``radius`` property or similar, such as a $$Sphere Collider$$, $$Capsule Collider$$, $$Light$$, $$Audio Source$$ etc., the shape will never become elliptical but remain circular/spherical regardless of non-uniform scaling.
-
-* A child object that has a non-uniformly scaled parent and is rotated relative to that parent may have a non-orthogonal matrix, meaning that it may appear skewed. Some components that do support simple non-uniform scaling still do not support non-orthogonal matrices. For example, a $$Box Collider$$ cannot be skewed so if its transform is non-orthogonal, the Box Collider will not match the shape of the rendered mesh accurately.
-
-* For performance reasons, a child object that has a non-uniformly scaled parent will not have its scale/matrix automatically updated while rotating. This may result in popping of the scale once the scale is updated, for example if the object is detached from its parent.
+いくつかの別々のオブジェクトに親子関係を持たせることにより、人体模型の骸骨の構造のように、複合的なオブジェクトを作成できます。 また、シンプルな構造でも便利な効果得られます。例えば、舞台設定が夜中であるホラー ゲームで、懐中電灯を活用した場面を作りたいとします。このオブジェクトを作成するには、spotlightトランスフォームを懐中電灯トランスフォームの親にします。  これで、懐中電灯トランスフォームに変更を加えると、spotlightも変更され、リアルな懐中電灯の効果を生み出すことができます。
 
 
-!! Importance of Scale
+!! 不均等なScaleによるパフォーマンス問題や制限
 
-The scale of the Transform determines the difference between the size of your mesh in your modeling application and the size of your mesh in Unity. The mesh's size in Unity (and therefore the Transform's scale) is __very__ important, especially during physics simulation. There are three factors that can affect the scale of your object:
-* The size of your mesh in your 3D modeling application.
-* The ``Mesh Scale Factor`` setting in the object's $$Import Settings$$.
-* The ``Scale`` values of your Transform Component.
+不均等なScaleとは、トランスフォームにおける``Scale``がx、y、z方向で異なる値があるケースです（例：(2, 4, 2)）。対比となるのが均等であるScaleで、x、y、z方向で同じ値があるケースです（例：(3, 3, 3)）。均等でないScaleは限定されたケースでは便利かもしれませんが、通常は出来るかぎり避けるべきです。
 
-Ideally, you should not adjust the ``Scale`` of your object in the Transform Component.  The best option is to create your models at real-life scale so you won't have to change your Transform's scale.  The next best option is to adjust the scale at which your mesh is imported in the $$Import Settings$$ for your individual mesh.  Certain optimizations occur based on the import size, and instantiating an object that has an adjusted scale value can decrease performance.  For more information, see the section about optimizing scale on the [[class-Rigidbody|Rigidbody]] component reference page.
+不均等なScaleはレンダリングのパフォーマンスにマイナスのインパクトがあります。頂点法線を正しく変換するため、CPU上でメッシュを変換しデータの複製をします。通常はインスタンス間で共有されるメッシュはグラフィックスメモリに保持しますが、このケースではCPUとメモリ双方のコストがインスタンスごとに発生します。
+
+Unityが不均等なScaleを扱う場合、特定の制限事項もあります。
+
+* 特定のコンポーネントは不均等なScaleを完全にサポートしていません。例えば、``radius``プロパティがある場合、あるいは似たケースで$$Sphere Collider$$、$$Capsule Collider$$、 $$Light$$、$$Audio Source$$、等で不均等なScaleにしていたとしても形状は楕円にならず、円状/球状となります。
+
+* 子オブジェクトが不均等なScaleの親を持ち、親に対して相対的に回転した場合、それは非直交配列になり、すなわち歪んで表示されることがあります。不均等なScaleをサポートするコンポーネントについても、非直行配列はサポートしていません。例えば、 $$Box Collider$$を歪ませることはできないため、不均等なScaleとした場合Box Colliderはレンダリングされたメッシュと正確にマッチしなくなります。
+
+* パフォーマンスによる理由で、子オブジェクトがが不均等なScaleの親を持った場合、Scale/Matrixが回転時に自動反映されなくなります。Scaleの更新によっては、はじけるような動作となり、たとえばオブジェクトを親から切り離した場合に発生します。
+
+!! スケールの重要性
+
+トランスフォームのスケールは、モデリング アプリケーションのメッシュのサイズと、Unity でのメッシュのサイズ間の差分を決定します。 Unity でのメッシュのサイズ (およびトランスフォームのスケール)は、特に物理挙動のシミュレーション中には__非常に__重要になります。次の3つの要因によって、オブジェクトのスケールが決まります。
+* 3D モデリング アプリケーションでのメッシュのサイズ。
+* オブジェクトの $$Import Settings$$ での「Mesh Scale Factor」設定。
+* トランスフォーム コンポーネントの「Scale」値。
+
+理想的には、トランスフォームコンポーネントでのオブジェクトの「スケール」を調整する必要はありません。  実際のスケールでモデルを作成するため、トランスフォームのスケールを変更する必要がないというのが最高の選択肢です。  個々のメッシュに対して、$$Import Settings$$ にメッシュをインポートしたスケールを調整するのが、次に良い選択肢になります。インポート サイズに基づいて、一定の最適化が行われ、調整されたスケール値を持つオブジェクトをインスタンス化すると、パフォーマンスが下がる場合があります。詳細については、[[class-Rigidbody|Rigidbody]] コンポーネントのスケールの最適化に関する項目を参照してください。
 
 
-!!Hints
+!!ヒント
 
-* When parenting Transforms, set the parent's location to <0,0,0> before adding the child.  This will save you many headaches later.
-* $$Particle Systems$$ are not affected by the Transform's ``Scale``. In order to scale a Particle System, you need to modify the properties in the System's Particle Emitter, Animator and Renderer.
-* If you are using $$Rigidbodies$$ for physics simulation, there is some important information about the Scale property on the [[class-Rigidbody]] component reference page.
-* You can change the colors of the Transform axes (and other UI elements) from the preferences (^^Menu: Unity > Preferences^^ and then select the ^^Colors & keys^^ panel).
-* It is best to avoid scaling within Unity if possible.  Try to have the scales of your object finalized in your 3D modeling application, or in the $$Import Settings$$ of your mesh.
+* トランスフォームのパレンディングを行う際、子を適用する前に、親の位置を <0,0,0> に置きます。  これにより、後で悩むケースを多々、未然防止できます。
+* $$Particle System$$ は、トランスフォームの「Scale」の影響は受けません。 パーティクルシステムの縮小拡大を行うには、システムのパーティクルエミッタ、アニメータ、およびレンダラのプロパティを修正する必要があります。
+* 物理挙動のシミュレーションに $$Rigidbodｙ$$ を使用する場合は、[[class-Rigidbody]] ページに記載されている Scale プロパティに関する重要な情報を参照してください。
+*  ^^Unity Menu->Preferences->Colors & keys^^ から、トランスフォームの軸の色 (およびその他の UI 要素)を変更できます。
+* Unityでのスケーリングを回避出来る場合は、そうしてください。  オブジェクトのスケールを 3D モデリング アプリケーション、またはメッシュの $$Import Settings$$ で完結するようにして下さい。
