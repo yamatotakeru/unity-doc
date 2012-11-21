@@ -1,19 +1,19 @@
-!Particle System (Shuriken)
+!パーティクルシステム（Shuriken）
 
-Particle Systems in Unity are used to make clouds of smoke, steam, fire and other atmospheric effects. 
+Unityの中のパーティクルシステムは、大量の煙、蒸気、炎やその他の大気圏エフェクトを作るために使用されます。
 
 Attach:ShurikenFrontPageFlare.png
 
-You can create a new particle system by creating a ``Particle System`` GameObject (menu ^^GameObject^^ -> ^^Create Other^^ -> ^^Particle System^^) or by creating an empty ``GameObject`` and adding the ``ParticleSystem`` component to it (in ^^Component^^->^^Effects^^)
+新規にParticle Systemを作成するには``Particle System``ゲームオブジェクトを作成（メニューで^^GameObject^^ -> ^^Create Other^^ -> ^^Particle System^^を選択）するか、空の``GameObject``を作成して ``ParticleSystem``コンポーネントを追加します。（メニューで^^Component^^->^^Effects^^を選択）
 
 (:include ParticleSystemInspector:)
 
-!!Scene View Editing
-When creating and editing Particle Systems, you either work with the ^^Inspector^^ or the extended ^^Particle Editor^^, and your changes are reflected in the ^^SceneView^^. The scene view has a ^^Preview Panel^^, where playback of the currently selected ^^Particle Effect^^ can be controlled in Edit Mode, with actions like ^^play^^, ^^pause^^, ^^stop^^ and ^^scrubbing playback time^^
+!!シーンビューの編集
+パーティクルシステムを作成および編集するとき^^Inspector^^または拡張された^^Particle Editor^^を使用し、その変更内容は^^SceneView^^に反映されます。シーンビューには^^Preview Panel^^があり、現在選択した^^Particle Effect^^のプレイバックを編集モードで制御することが出来、アクションとして^^play^^、^^pause^^、^^stop^^および^^scrubbing playback time^^が用意されています。
 
 Attach:ShurikenPreviewPanel.png
 
-Scrubbing play back time can be performed by dragging on the label ''Playback Time''. All Playback controls have shortcut keys which can be customized in the [[Preferences|Preferences window]]
+'Playback Time''ラベルをドラッグすることにより、プレイバック時間をこすって調整することができます。全てのプレイバックコントロールにはショートカットキーがあり、それらは[[Preferences|Preferencesウィンドウ]] にてカスタム設定できます。
 
 (:include ParticleSystemCurveEditor:) 
 (:include ParticleSystemColorEditor:)
