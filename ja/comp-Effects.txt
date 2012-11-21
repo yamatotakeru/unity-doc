@@ -1,5 +1,5 @@
-!Effects
+!エフェクト
 
-The effects group contains components that relate to visual effects. 
+エフェクトは視覚効果に関連するコンポーネントが含まれます。
 
 (:tocportion:)

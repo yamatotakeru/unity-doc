@@ -1,36 +1,36 @@
-! Contrast Stretch image effect
+! Contrast Stretch画像効果
 
-$$Contrast Stretch$$ dynamically adjusts the contrast of the image according to the range of brightness levels it contains. The adjustment takes place gradually over a period of time, so the player can be briefly dazzled by bright outdoor light when emerging from a dark tunnel, say. Equally, when moving from a bright scene to a dark one, the "eye" takes some time to adapt.
+$$Contrast Stretch$$は、動的にそれに含まれる輝度レベルの範囲に応じて画像のコントラストを調整します。調整は一定の期間をかけて徐々に実施されるので、例えば暗いトンネルから出てきたときにプレイヤーが明るい屋外の光に短時間の間、目がくらむような現象が再現できます。同様に、明るいシーンから暗いシーンに移行するときに、 "目"は適応するまでしばらく時間がかかります。
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
-!!Understanding Contrast Stretch
+!!Contrast Stretchを理解する
 
-The clarity of detail in an image is largely determined by the range of different brightness values it contains. It is difficult for the eye to distinguish between two brightness levels that differ by less than about 2% and above that, the greater the difference, the stronger the detail. The overall separation between the lightest and darkest values in an image is referred to as the ``contrast`` of that image.
+画像のディテールの鮮明さは、主にそれに含まれる異なる輝度値の範囲によって決定されます。目は、異なる2つの明るさのが約2％未満差を区別することは困難で、差が大きいほどよりディテールを強く認識します。イメージ内の最も明るい値と最も暗い値の間の全体的な分離は、その画像の``contrast``（コントラスト）と呼ばれています。
 
-It is common for an image to use less than the full range of available brightness values. One way to increase the contrast is to redistribute the pixels' values so as to make better use of the range. The darkest level in the original image is remapped to a even darker level, the brightest to a brighter level and all the levels in between are moved farther apart in proportion. The distribution of levels is then "stretched" out farther across the available range and thus this effect is known as ``contrast stretch``.
+画像が利用可能な輝度の範囲を完全に使用しないのが通常です。コントラストを向上させる一つの方法は、範囲をより有効に活用するようにピクセルの値を再配置することです。元画像の最も暗いレベルは、さらに暗いレベルに再マップされ、最も明るいレベルはさらに明るいレベルに再マップされ、間にあるすべてのレベルは比例するようにしてより遠くに移動されます。レベルの分布は、次に利用可能な範囲に渡って遠い "伸ばして"配置されるため、この効果は、``Contrast Stretch``（コントラスト ストレッチ）として知られています。
 
-Contrast stretching is evocative of the way the eye adapts to different light conditions. When walking from an outdoor area to a dimly lit building, the view will briefly appear indistinct until the contrast is stretched to reveal the detail. When emerging from the building, the contrast stretch will have the effect of making the outdoor scene appear dazzling bright until the "eye" of the player adjusts.
+Contrast Stretchは、目が異なる光の状況に適応する方法を示唆しています。屋外エリアから薄暗い建物に歩いて入室すると、
+コントラストがディテールを明らかにするまでストレッチされ、ビューが短時間の間、不明瞭に表示されます。建物から出てきたときに、プレイヤーが明るい屋外の光に"目"が適応するまで短時間の間、目がくらむような効果がContrast Stretchにより発生します。
 
 Attach:FxNone.png\\
-''No Contrast Stretch applied.''
+ Contrast Stretch適用なし
 
 Attach:FxContrast1.png\\
-''Contrast stretch applied with a dark skybox. Note that buildings get brighter.''
+暗いスカイボックスで適用されたContrast stretch。建物がより明るくなることに留意してください。
 
 Attach:FxContrast2.png\\
-''Contrast stretch applied with a very bright skybox. Note that buildings get darker.''
+非常に明るいスカイボックスで適用されたContrast stretch。建物がより暗くなることに留意してください。
 
-!! Properties
+!! プロパティ
 
 ||PROPS
-||``Adaptation Speed`` ||The speed of the transition.  The lower this number, the slower the transition ||
-||``Limit Minimum`` ||The darkest level in the image after adjustment.||
-||``Limit Maximum`` ||The brightest level in the image after adjustment.||
+||``Adaptation Speed`` ||移行の速度。この数値が低い場合、遷移に時間がかかる||
+||``Limit Minimum`` ||調整後の画像の中の、最も暗いレベル。||
+||``Limit Maximum`` ||調整後の画像の中の、最も明るいレベル。||
 
-!!!Tips:
+!!!ヒント:
 
-* Since Constrast Stretch is applied over a period of time, the full effect is only visible in Play mode.
+* Contrast Stretchは一定の期間にわたって適用されるので、効果全体は再生時のみ表示できます。
 
 (:include imagefx-SM2:)
-
