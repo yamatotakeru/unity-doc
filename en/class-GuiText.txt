@@ -19,7 +19,10 @@ __Please Note__: Unity 2.0 introduced $$UnityGUI$$, a GUI Scripting system.  You
 ||``Tab Size`` ||How much space will be inserted for a tab ('\t') character. As a multiplum of the space character offset. ||
 ||``Font``     ||The [[class-Font|Font]] to use when rendering the text. ||
 ||``Material`` ||Reference to the $$Material$$ containing the characters to be drawn. If set, this property overrides the one in the [[class-Font|Font]] asset. ||
+||``Font Size``     ||The font size to use.  Set to 0 to use the default font size. Only applicable for dynamic fonts. ||
+||``Font Style``     ||The font style to use.  (Normal, Bold, Italic or Bold and Italic). Only applicable for dynamic fonts.  ||
 ||``Pixel Correct`` ||If enabled, all ``Text`` characters will be drawn in the size of the imported font texture. If disabled, the characters will be resized based on the Transform's ``Scale``. ||
+||``Rich Text`` ||If enabled, allows HTML-style tags for text formatting. ||
 
 
 !! Details
