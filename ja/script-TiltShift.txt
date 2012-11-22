@@ -1,28 +1,27 @@
 ! Tilt Shift
 
-$$Tilt Shift$$ is a specialized version of the [[script-DepthOfField34|Depth of Field]] effect that allows for very smooth transitions between focused and defocused areas. It is is easier to use and is generally less prone to unsightly image artifacts. However, since it relies on dependent texture lookups, it can also have a higher processing overhead.
+$$Tilt Shift$$は[[script-DepthOfField34|Depth of Field]] エフェクトの特殊バージョンで、フォーカスのあたっている領域とフォーカスのあたっていない領域のスムーズな移行を可能としています。こちらのバージョンが使用が容易であり、一般に画像の乱れを発生しにくくします。しかしながら参照する画像に依存するため、わずかに処理オーバーヘッドが大きくなります。
 
 Attach:ImageEffects./TiltShift2.png\\
-''Tilt shift example. Observe the overall smoothness the effect achieves.''
+''Tilt Shiftの例。エフェクトの影響で全体的にスムーズになることを確認して下さい。''
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
-!! Properties
+!! プロパティ
 ||PROPS
 ||``Focal Settings`` ||||
-||``Visualize`` ||Visualizes the focal plane in the game view with a green tint (useful for learning or debugging). ||
-||``Distance`` ||The distance to the focal plane from the camera position in world space units. ||
-||``Smoothness`` ||The smoothness when transitioning from out-of-focus to in-focus areas. ||
+||``Visualize`` ||ゲームビューのFocal Plane(焦平面)を緑色の色合いで表示します。（学習やデバッグに便利です） ||
+||``Distance`` ||カメラの位置からFocal Planeまでのワールド空間のユニット単位での距離||
+||``Smoothness`` ||フォーカス外からフォーカス内に遷移するときのスムーズさ ||
 
 ||``Background Blur`` ||||
-||``Downsample`` ||Downsamples most internal buffers (this makes the effect faster but more blurry).||
-||``Iterations`` ||Number of iterations for blurring the background areas (ie, everything behind the focal plane). Each iteration requires processing time.||
-||``Max Blur spread`` ||The maximum blur distance for the defocused areas. Makes out-of-focus areas increasingly blurred. ||
+||``Downsample`` ||ほとんどの内部バッファをダウンサンプリングします。（これによりエフェクトは処理が早くなりますが、ぼやけやすくなります。）||
+||``Iterations`` ||背景（すなわちFocal Planeの奥にある全て）のBlur（ぼかし）を反復する回数||
+||``Max Blur spread`` ||フォーカスが当たらない領域がBlur（ぼかし）されるしきい値となる最大距離。フォーカス外の領域をさらにぼかします。 ||
 
 ||``Foreground Blur`` ||||
-||``Enable`` ||Enables foreground blurring. This typically gives a better result but with a cost in processing time.||
-||``Iterations`` ||Number of iterations for blurring the foreground areas (ie, everything in front of the focal area). Each iteration requires processing time.||
+||``Enable`` ||前景のぼかしを有効にします。通常、より良い結果が得られますが、処理時間に悪影響を与えます。||
+||``Iterations`` ||前景（すなわちFocal Planeの手前にある全て）のBlur（ぼかし）を反復する回数。反復ごとに処理時間が延びます。||
 
 
 (:include imagefx-SM3Depth:)
-

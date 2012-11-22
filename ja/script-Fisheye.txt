@@ -1,17 +1,16 @@
-! Fisheye image effect
+! Fisheye画像効果
 
-The $$Fisheye$$ image effect creates distorts the image as if viewed through a fisheye lens (although any lens will distort the image to some extent).
+$$Fisheye$$画像効果はFisheye（魚眼）レンズのようなねじれを作成します。（もっとも他のレンズでも画像を引き伸ばしますが）
 
-As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FisheyeExample.png\\
-''Fisheye distorts the image at its corners. The use of [[script-AntialiasingAsPostEffect|image antialiasing techniques]] is highly recommended because of sampling artefacts.''
+''Fisheyeは画像の四隅をねじります。画像の[[script-AntialiasingAsPostEffect|アンチエイリアス]] を画像の乱れ防止のため使用することを強く推奨します。''
 
 !! Properties
 
 ||PROPS
-||``Strength X`` ||The horizontal distortion. ||
-||``Strength Y`` ||The vertical distortion. ||
+||``Strength X`` ||水平方向のねじれ ||
+||``Strength Y`` ||垂直方向のねじれ ||
 
 (:include imagefx-SM2:)
-

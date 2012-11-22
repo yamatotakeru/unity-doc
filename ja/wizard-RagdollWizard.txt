@@ -1,28 +1,27 @@
-! Ragdoll Wizard
+! Ragdollウィザード
 
-Unity has a simple wizard that lets you quickly create your own ragdoll. You simply have to drag the different limbs on the respective properties in the wizard. Then select create and Unity will automatically generate all $$Colliders$$, $$Rigidbodies$$ and $$Joints$$ that make up the Ragdoll for you.
-
-
-!! Creating the Character
-
-Ragdolls make use of $$Skinned Meshes$$, that is a character mesh rigged up with bones in the 3D modeling application.  For this reason, you must build ragdoll characters in a 3D package like Maya or Cinema4D.
-
-When you've created you character and rigged it, save the asset normally in your $$Project Folder$$.  When you switch to Unity, you'll see the character asset file.  Select that file and the $$Import Settings$$ dialog will appear inside the inspector. Make sure that ``Mesh Colliders`` is not enabled.
+Unityでは特別なウィザードがあり、Ragdollをクイックに作成することが出来ます。それぞれ異なる手足パーツをウィザード上の対応するプロパティの上にドラッグするのみです。次に、Createボタンを押してUnityはRagdollを構成し、$$Colliders$$、 $$Rigidbodies$$および$$Joints$$を自動作成します。
 
 
-!! Using the Wizard
+!! キャラクターの作成
 
-It's not possible to make the actual source asset into a ragdoll.  This would require modifying the source asset file, and is therefore impossible.  You will make an instance of the character asset into a ragdoll, which can then be saved as a $$Prefab$$ for re-use.
 
-Create an instance of the character by dragging it from the $$Project View$$ to the $$Hierarchy View$$.  Expand its $$Transform Hierarchy$$ by clicking the small arrow to the left of the instance's name in the Hierarchy.  Now you are ready to start assigning your ragdoll parts.
+$$Skinned Meshes$$RagdollはSkinned Meshを活用していて、これは3Dモデリングアプリケーションにてリギングを行ったキャラクターメッシュです。このため、RagdollキャラクターはMayaあるいはCinema4Dのようなパッケージで作成する必要があります。キャラクターを作成してリギングを行い、 $$Project Folder$$にアセットを保存するようにします。そうすればUnityに切り替えるとキャラクターのアセットファイルが表示されています。そのファイルをクリックして選択する $$Import Settings$$ダイアログがInspector内に表示されます。ここで``Mesh Colliders``が無効化されていないことを確認して下さい。
 
-Open the Ragdoll Wizard by choosing ^^GameObject->Create Other->Ragdoll^^ from the menu bar.  You will now see the Wizard itself.
+
+!! ウィザードの使用
+
+実際のソースアセットからRagdollを作成することは出来ません。ソースアセットファイルそのものを編集しないと実現しないため、出来ないためです。キャラクターアセットからインスタンスを作成し、Ragdollにして、その後は$$Prefab$$として保存して再利用できるようにします。
+
+キャラクターのインスタンスを作成するためにはキャラクターを$$Project View$$から$$Hierarchy View$$の上にドラッグします。$$Transform Hierarchy$$を拡大するためにHierarchyの左にあるインスタンス名の左の小さい矢印をクリックします。これでRagdollパーツを割り当てる準備が出来ました。
+
+Ragdollウィザードを開くためにはメニューで^^GameObject->Create Other->Ragdoll^^を選択します。これでウィザードが表示されます。
 
 Attach:RagdollWizard.png\\
-''The Ragdoll Wizard''
+''Ragdollウィザード''
 
-Assigning parts to the wizard should be self-explanatory.  Drag the different Transforms of your character instance to the appropriate property on the wizard.  This should be especially easy if you created the character asset yourself.
+ウィザードへのパーツ追加は自明な作業です。キャラクターインスタンスの各々の異なるTransformをウィザードの適切なプロパティの上にドラッグします。これはキャラクターを自ら作成していれば簡単な作業です。
 
-When you are done, click the ^^Create Button^^.  Now when you enter $$Play Mode$$, you will see your character go limp as a ragdoll.
+^^Create Button^^をクリックします。これで$$Play Mode$$（再生モード）に入ると、Ragdollとしてモタモタ動くようになることを確認できるようになります。
 
-The final step is to save the setup ragdoll as a Prefab.  Choose ^^Assets->Create->Prefab^^ from the menu bar.  You will see a New Prefab appear in the Project View.  Rename it to "Ragdoll Prefab". Drag the ragdoll character instance from the Hierarchy on top of the "Ragdoll Prefab".  You now have a completely set-up, re-usable ragdoll character to use as much as you like in your game.
+最後のステップはセットアップしたRagdollをプレハブとして保存することです。メニューで^^Assets->Create->Prefab^^を選択します。Project Viewで新しいプレハブが表示されます。これを"Ragdoll Prefab"と名前を変更します。HiearchyからRagdollキャラクターのインスタンスを"Ragdoll Prefab"の上にドラッグします。これでセットアップは完了し、再利用できるゲームキャラクターは出来ましたので好きなように使うことが出来ます。
