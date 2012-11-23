@@ -1,68 +1,69 @@
-! Textures
+! テクスチャ
 
-Decorate the landscape of your terrain by tiling $$Terrain Textures$$ across the entire terrain.  You can blend and combine Terrain Textures to make smooth transitions from one map to another, or to keep the surroundings varied.
+$$Terrain Textures$$（地形テクスチャ）をTerrain全体にタイルとして並べることによりマップを塗りつぶすことが出来る。Terrainテクスチャをブレンドし、組み合わせることで、1つのマップから別のマップへ円滑な移行、あるいは周囲を様々保つためことができます。
 
-Terrain Textures are also called splat maps.  What this means is you can define several repeating high resolution textures and blend between them arbitrarily, using alpha maps which you paint directly onto the Terrain.  Because the textures are not large compared to the size of the terrain, the distribution size of the Textures is very small.
+TerrainテクスチャはSplat Mapとも呼ばれています。これが意味することは、繰り返し使用する高解像度テクスチャを定義して任意に相互にブレンドし、直接アルファマップを
+Terrain上にペイントできる、ということです。テクスチャは地形の大きさに比べて大きくないため、テクスチャの配布時におけるファイル容量は非常に小さいです。
 
-__Note:__ Using an amount of textures in a multiple of four provides the greatest benefit for performance and storage of the Terrain alpha maps.
+__注意 __ テクスチャの量を4の倍数とすることで、Terrainアルファマップのパフォーマンスとファイル容量にとって最大の恩恵を受けます。
 
-To being working with textures, click on the $$Paint Textures$$ button \
+テクスチャで作業をするには、Inspector上で$$Paint Textures$$ボタンをクリックします。\
 Attach:TerrainGuide-SplatMapsButton.png \
-in the Inspector.
 
-!! Adding a Terrain Texture
 
-Before you can begin painting Terrain Textures, you will add at least one to the Terrain from your Project folder.  Click the ^^Options Button->Add Texture...^^.
+!! Terrainテクスチャの追加
+
+Terrainテクスチャでペイントをする前に、プロジェクトフォルダに少なくとも1つのTerrainテクスチャをTerrainに追加します。^^Options Button->Add Texture...を選択します。^ ^。
 
 Attach:TerrainGuide-AddTextureMenu.png
 
-This will bring up the Add Terrain Texture dialog.
+これによりAdd Terrain Textureダイアログが表示されます。
 
 Attach:TerrainGuide-AddTextureDialog1.png\\
-''The Add Terrain Texture dialog''
+''Add Terrain Textureダイアログ''
 
-From here, select a tileable texture in the ``Splat`` property.  You can either drag a texture to the property from the Project View, or choose one from the drop-down.
+ここで``Splat``プロパティにてタイルに使用するテクスチャを選択します。プロジェクトビューからプロパティにテクスチャをドラッグするか、ドロップダウンリストから選択するか、いずれかの方法で出来ます。
 
-Now, set the ``Tile Size X`` and ``Tile Size Y`` properties.  The larger the number, the larger each "tile" of the texture will be scaled. Textures with large ``Tile Sizes`` will be repeated fewer times across the entire Terrain.  Smaller numbers will repeat the texture more often with smaller tiles.
+次に、``Tile Size X``および``Tile Size Y``プロパティを設定します。数値を大きくするほど、テクスチャの各々のテクスチャのタイルが大きく拡大されます。大きい``Tile Sizes``である場合、テクスチャが全体のTerrainで繰り返される数は少なくなります。数値を小さくするほどより多くの回数だけ、より小さいタイルで多くの回数繰り返すことになります。
 
 >>u40<<
-In Unity 4, you can also assign a normal map texture. For the normal map to have any effect, the terrain must be using a normal map-capable shader; assign a material with normal mapped terrain shader in [[terrain-OtherSettings | Terrain Settings]] tab.
+Unity 4では、法線マップテクスチャを割り当てることができます。法線マップが効果を発揮するためには、Terrainは法線マップ対応のシェーダを使用している必要があり、法線マップTerrainシェーダつきのマテリアルを[[terrain-OtherSettings | Terrain Settings]] タブで割り当てます。
 >><<
 
-Click the ^^Add^^ Button and you'll see your first Terrain Texture tile across the entire Terrain.
+ ^^Add^^ボタンをクリックすると、最初のTerrainがTerrain全体にタイルとして表示されます。
 
 Attach:TerrainGuide-FirstTextureAdded.png
 
-Repeat this process for as many Terrain Textures as you like.
+Terrainテクスチャ好きな回数だけこのプロセスを繰り返します。
 
-!! Painting Terrain Textures
+!! Terrain Textureをペイントする
 
-Once you've added at least two Terrain Textures, you can blend them together in various ways.  This part gets really fun, so let's jump right to the good stuff.
+少なくとも2つのTerrainテクスチャを追加すれば、様々な方法でそれらをブレンドすることができます。この部分は本当に面白いところなので、最も良いところから早速始めてみましょう。
 
-Select the Terrain Texture you want to use.  The currently selected Terrain Texture will be highlighted in blue.
+使用したいTerrainテクスチャを選択します。現在選択されているTerrainテクスチャが青で強調表示されます。
 
 Attach:TerrainGuide-PaintTexture1.png
 
-Select the Brush you want to use.  The currently selected Brush will be highlighted in blue.
+使用したいブラシを選択します。現在選択しているブラシは、青色で強調表示されます。
 
 Attach:TerrainGuide-PaintTexture2.png
 
-Select the Brush ``Size``, ``Opacity``, and ``Target Strength``.
+ブラシの``Size``、``Opacity``、``Target Strength``を選択します。
 
-__Size__ refers to the width of the brush relative to your terrain grid squares
+__Size__はブラシの大きさで、Terrainのグリッドの四角形の対する相対的な大きさで示します。
 
-__Opacity__ is the transparency or amount of texture applied for a given amount of time you paint
+__Opacity__テクスチャの透明度、あるいは一定の時間だけペイントする間に適用されるテクスチャの量です。
 
-__Target Strength__ is the maximum opacity you can reach by painting continuously. 
+__Target Strength__ ペイントし続けることによって、達することができる最大の不透明度です。
 
 Attach:TerrainGuide-PaintTexture3.png
 
-Click and drag on the terrain to draw the Terrain Texture.
+Terrain上でクリックし、ドラッグすることで、Terrain Texgtureを描画することが出来ます。
 
 Attach:TerrainGuide-PaintTexture3.5.png
 
-Use a variety of Textures, Brushes, Sizes, and Opacities to create a great variety of blended styles.
+ブクスチャ、ブラシ、サイズ、Opacityで多様な設定にすることで、ブレンドしたスタイルも多様に作成することが出来ます。
 
 Attach:TerrainGuide-PaintTexture4.png
 
-__Note:__When you have a brush selected, move your mouse over the Terrain in the Scene View and press ^^F^^.  This will center the Scene View over the mouse pointer position and automatically zoom in to the ``Brush Size`` distance.  This is the quickest & easiest way to navigate around your Terrain while creating it.
+__Note:__ブラシを選択したら、シーンビューのTerrainの上でマウスを移動し^^F^^を押します。これによりシーンビューをマウスポインタ位置にセンタリングし、``Brush Size``距離にズームインします。これは、Terrainを作成しているときにTerrainをナビゲーションする最速かつ最も簡単な方法です。

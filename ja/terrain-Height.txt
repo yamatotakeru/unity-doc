@@ -1,63 +1,63 @@
 ! Height
 
-Using any of the Terrain editing tools is very simple. You will literally paint the Terrain from within the $$Scene View$$.  For the height tools and all others, you just have to select the tool, and click the Terrain in Scene View to manipulate it in real-time.
+Terrain編集ツールのどれも使用するのは非常に簡単です。事実上、$$Scene View$$でTerrainをペイントすることになります。Heightツールおよびその他の場合はツールを選択したうえで、シーンビューのTerrainをクリックししてリアルタイム編集します。
 
-!! Raising & Lowering Height
+!! Raising & Lowering Height（地形高さの上下調整）
 
-The first tool on the left is the $$Raise Height$$ tool \
+一番左側にあるのが$$Raise Heightツールです。\
 Attach:RaiseHeightTool.png \
 .
 
-With this tool, you paint brush strokes that will raise the height of the $$Terrain$$.  Clicking the mouse once will increment the height.  Keeping the mouse button depressed and moving the mouse will continually raise the height until the maximum height is reached.
+このツールを使用して、$$Terrain$$.  のHeightをペイントブラシによる描画で高さの上下を調整します。マウスを1回クリックすると、高さを増加させます。最大の高さに到達するまで、マウスボタンを押しながら、マウスを移動すると、継続的に高さが高くなります。
 
 Attach:RaiseHeight1.png
 
-You can use any of the brushes to achieve different results
+各々異なる結果を得るために様々なブラシを活用します。
 
 Attach:DifferentBrushesRaising.png
 
-If you want to lower the height when you click, hold the ^^Shift^^ key.
+クリックしたときに高さを低くしたい場合は、^^Shift^^キーを押したままにします。
 
 Attach:LowerHeight1.png
 
-__Note:__When you have a brush selected, move your mouse over the Terrain in the Scene View and press ^^F^^.  This will center the Scene View over the mouse pointer position and automatically zoom in to the ``Brush Size`` distance.  This is the quickest & easiest way to navigate around your Terrain while creating it.
+__注意：__ブラシを選択したら、シーンビューTerrainの上にマウスを移動て^^F^^を押します。これによりシーンビューをマウスポインタ位置にセンタリングし、``Brush Size``距離にズームインします。これは、Terrainを作成しているときにTerrainをナビゲーションする最速かつ最も簡単な方法です。
 
-!!! Paint Height
+!!! Heightをペイントする
 
-The second tool from the left is the $$Paint Height$$ tool \
+左から2番目のツールは$$Paint Height$$（地形高さをペイントする）のツールです\
 Attach:PaintHeightTool.png \
 .
 
-This tool allows you to specify a target height, and move any part of the terrain toward that height.  Once the terrain reaches the target height, it will stop moving and rest at that height.
+このツールを使用すると、ターゲットの高さを指定し、その高さに向かってTerrainの任意の部分を移動することができます。地形が目標高さ??に到達すると、その高さで一旦停止します。
 
-To specify the target height, hold ^^Shift^^ and click on the terrain at the height you desire.  You can also manually adjust the ``Height`` slider in the Inspector.
+ 目標高さを指定するには、^^Shift^^キーを押しつつ、Terrain状で希望の高さをクリックします。また、手動でインスペクタで``Height``のスライドバーで調整することができます。
 
 Attach:TerrainGuide-PaintHeightSlider.png
 
-Now you've specified the target height, and any clicks you make on the terrain will move the terrain up or down to reach that height.
+ターゲットの高さは指定したので、Terrainでクリックするとその高さになるまでTerrainが上または下に移動します。
 
 Attach:TerrainGuide-PaintedSteps.png
 
 
-!!! Smoothing Height
+!!! Heightのスムージング
 
-The third tool from the left is the $$Smoothing Height$$ tool \
+左から3番目のツールが$$Smoothing Height$$です。 \
 Attach:SmoothingHeightTool.png \
 .
 
-This tool allows you to soften any height differences within the area you're painting.  Like the other brushes, paint the areas you want to smooth in the Scene View.
+このツールにより、ペイントしている領域内の任意の高低差を緩和します。他のブラシのように、シーンビューでスムージングしたい領域をペイントします。
 
 Attach:TerrainGuide-SmoothedSteps.png
 
 
-!! Working with Heightmaps
+!!  Heightmapsの活用
 
-If you like, you can import a greyscale Heightmap created in Photoshop, or from real-world geography data and apply it to your Terrain.  To do this, choose ^^Terrain->Import Heightmap - Raw...^^, then select the desired RAW file. You'll then see some import settings.  These will be set for you, but you have the option of changing the size of your Terrain from this dialog if you like. When you're ready, click the ^^Import^^ button. Once the Heightmap has been applied to the Terrain, you can edit it normally with all the Tools described above.
-Note that the Unity Heightmap importer can only import grayscale raw files. Thus you can't create a raw heightmap using RGB channels, you must use grayscale.
+Photoshopで作成したグレースケールのHeigthmap、あるいは現実世界の地理データ、からインポート作業を行い、Terrainに適用することができます。これを実現するためにはメニューから^^Terrain->Import Heightmap - Raw...^^を選択し、開きたいRAWファイルを選択します。その後、いくつかのインポート設定が表示されます。これらは自動設定されますが、選択肢として、このダイアログで土地の大きさを変更するオプションがあります。準備ができたら、^^Import^^ボタンをクリックします。Heightmapを地形に適用すれば、上記のすべてのツールで正常に編集することができます。
+Unityのハイトマップ　インポーターがグレースケールのファイルしかインポートできないことに留意してください。したがって、RGBチャンネルを使用して生のハイトマップを作成することはできず、グレースケールを使用する必要があります。
 
-Unity works with RAW files which make use of full 16-bit resolution. Any other heightmap editing application like Bryce, Terragen, or Photoshop can work with a Unity Heightmap at full resolution.
+Unityは16ビット解像度を活用するRAWファイルに対応しています。Bryce、Terragenの、またはPhotoshopのような他のハイトマップの編集アプリケーションによりフル解像度でUnityのハイトマップを操作することができます。
 
-You also have the option of exporting your Heightmap to RAW format.  Choose ^^Terrain->Export Heightmap - Raw...^^ and you'll see a export settings dialog.  Make any changes you like, and click ^^Export^^ to save your new Heightmap.  
+HeightmapをRAWフォーマットでエクスポートするオプションがあります。メニューで^^Terrain->Export Heightmap - Raw...^^を選択すると、Export Settingsダイアログが表示されます。
+好きなように変更を加え、^^Export^^をクリックして新しいHeightmapを保存します。
 
-Unity also provides an easy way to flatten your terrain. Choose ^^Terrain->Flatten...^^.  This lets you flatten your terrain to a height you specify in the wizard.
-
+Unityでは、Terrainを平らにする簡単な方法も提供しています。メニューで^^Terrain->Flatten...^^を選択します。これによりウィザードで指定したHeightに合わせてTerrainを平らにすることができます。
