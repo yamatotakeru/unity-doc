@@ -1,40 +1,39 @@
-! Tree Creator Guide
+! 樹木作成ガイド（Tree Creator Guide）
 
-The $$Tree Creator$$ allows you to create and edit trees procedurally. The resulting trees can be used as normal $$GameObjects$$ or integrated into the Terrain Engine. With this tool, you can create great looking trees quickly and fine tune your trees using a number of design tools to achieve the perfect look in your game. The Tree Creator is very useful when you want to create a forest or a jungle where you need different tree forms.
+樹木作成ツール（$$Tree Creator$$）により樹木の作成、編集を順を追って作成できる。結果として作成される樹木は通常のゲームオブジェクト（$$GameObjects$$）あるいは地形エンジンに統合することが出来ます。このツールを使用することで素晴らしく見栄えの良い樹木を素早く作成し、いくつかのデザインツールを用いて微調整しながらゲームでの見栄えを完璧なものに仕上げることが出来ます。樹木作成ツール（Tree Creator）は森林やジャングルなど異なる種類の木が必要な時に非常に便利です。
 
 
-!! [[tree-FirstTree | Building Your First Tree]]
-In this section we walk you step by step to create your first tree in Unity.
+!! [[tree-FirstTree | 初めて樹木を作成する（Building Your First Tree）]]
+このセクションでは初めての樹木の作成をステップバイステップでウォークスルーします。
 
 [[tree-FirstTree | Attach:treeeditor_trees.png]]
 
 
-!! [[tree-Structure | Tree Creator Structure]]
-This section provides a general overview of the Tree Creator's user interface.
+!! [[tree-Structure | 樹木の作成（Tree Creator Structure）]]
+このセクションで樹木作成ツールのユーザインタフェースの概要を提供します。
 
 [[tree-Structure | Attach:treeeditor_inspector.png]]\\
 
 
-!! [[tree-Branches | Branches]]
-This section focuses on explaining the specific properties of branches.
+!! [[tree-Branches | 枝（Branches）]]
+このセクションでは枝（Branch）に具体的なプロパティに焦点を当てて説明します。
 
 [[tree-Branches | Attach:treeeditorbranches_inspector.png]]
 
 
-!! [[tree-Leaves | Leaves]]
-This section focuses on explaining the specific properties of leaves.
+!! [[tree-Leaves | 葉（Leaves）]]
+このセクションでは葉（Leaves）に具体的なプロパティに焦点を当てて説明します。
 
 [[tree-Leaves | Attach:treeeditorleaves_inspector.png]]
 
 
-!! [[class-WindZone | Wind Zones]]
-This section explains Wind Zones and how to apply them to your trees.
+!! [[class-WindZone | 風（Wind Zones）]]
+このセクションでは風（Wind Zones）と樹木に反映する方法を説明します。
 
 [[class-WindZone | Attach:InspectorWindZones.png]]
 
 
-!! [[terrain-Trees | Trees in the Terrain Engine]]
-This section of the Terrain Engine Guide covers all the basics of integrating your trees into the Terrain Engine.
+!! [[terrain-Trees | 地形エンジンでの樹木（Trees in the Terrain Engine）]]
+このセクションでは地形エンジンガイドの中で樹木を地形エンジンに統合するうえでの基本についてカバーします。
 
 [[terrain-Trees | Attach:terrain-PlacingTrees.png]]
-
