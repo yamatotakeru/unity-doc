@@ -1,42 +1,42 @@
-!Animation View Guide 
+!アニメーションビューの手引き（Animation View Guide）
 
-The $$Animation View$$ in Unity allows you to create and modify $$Animation Clips$$ directly inside Unity. It is designed to act as a powerful and straightforward alternative to external 3D animation programs. In addition to animating movement, the editor also allows you to animate variables of materials and components and augment your Animation Clips with $$Animation Events$$, functions that are called at specified points along the timeline.
+Unityの$$Animation View$$により、Unityの中で直接
+$$Animation Clips$$を作成、編集できます。強力かつ直感的であるうえ、外部の3Dアニメーションソフトの代替として機能するよう設計されています。動きのアニメーションに加えて、エディタで、マテリアルやコンポーネントの変数をアニメーションし、アニメーションクリップに、タイムライン上の指定されたポイントで呼び出される関数である$$Animation Event$$を追加します。
 
-See the pages about [[Animations|Animation import]] and [[Animation Scripting|Animation Scripting]] for further information about these subject.
+[[Animations|Animation import]] および [[Animation Scripting|Animation Scripting]] の詳細について各々のページを参照下さい。
 
-The Animation View Guide is broken up into several pages that each focus on different areas of the View:-
+アニメーションビューの手引きはビュー上の異なった領域にフォーカスを当てたセクションに分かれています。
 
 !! [[animeditor-UsingAnimationEditor| Using the Animation View]]
 
 [[animeditor-UsingAnimationEditor| Attach:AnimationEditorPreviewFrame.png]]
 
-This section covers the basic operations of the $$Animation View$$, such as creating and editing $$Animations Clips$$.
+このセクションでは$$Animation View$$の基本的な操作、たとえば$$Animations Clips$$の作成および編集についてカバーします。
 
 
 !! [[animeditor-AnimationCurves| Using Animation Curves]]
 
 [[animeditor-AnimationCurves| Attach:AnimationEditorSimple.png]]
 
-This section explains how to create $$Animation Curves$$, add and move $$keyframes$$ and set WrapModes. It also offers tips for using $$Animation Curves$$ to their full advantage.
+このセクションでは$$Animation Curves$$を作成する方法およびキーフレーム（$$keyframes$$）の追加、移動と繰り返し再生モード（WrapModes）の設定について説明します。また、$$Animation Curves$$の機能を使いこなすためのヒントを提供しています。
 
 
 !! [[EditingCurves| Editing Curves]]
 
 [[EditingCurves| Attach:AnimationTypeOfConnections2.png]]
 
-This section explains how to navigate efficienlty in the editor, create and move $$keys$$, and edit $$tangents$$ and tangent types.
+このセクションでは、エディタ上でスムーズにナビゲーションする方法と、キー（$$keys$$）の作成、移動および接線（$$tangents$$）と接線タイプの編集について説明します。
 
 
 !! [[animeditor-MultipleParts| Objects with Multiple Moving Parts]]
 
 [[animeditor-MultipleParts| Attach:AnimationEditorTurretB.png]]
 
-This section explains how to animate $$Game Objects$$ with multiple moving parts and how to handle cases where there is more than one $$Animation Component$$ that can control the selected $$Game Object$$.
+このセクションでは$$Game Objects$$を複数の移動パーツでアニメーションする方法と、ひとつ以上の$$Animation Component$$が選択された$$Game Object$$を制御できる場合の対処方法を説明します。
 
 
 !! [[animeditor-AnimationEvents| Using Animation Events]]
 
 [[animeditor-AnimationEvents| Attach:AnimationEditorEventTooltip.png]]
 
-This section explains how to add $$Animation Events$$ to an $$Animation Clip$$. Animation Events allow you call a script function at specified points in the animation's timeline.
-
+このセクションでは$$Animation Events$$を $$Animation Clip$$に追加する方法について説明します。アニメーションイベントは、アニメーションのタイムライン上の設定したタイミングでスクリプト関数を呼び出すことができます。

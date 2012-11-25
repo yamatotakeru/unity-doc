@@ -1,44 +1,43 @@
-! Leaf Group Properties
+! 葉のプロパティ（Leaf Group Properties）
 
-Leaf groups generate leaf geometry. Either from primitives or from user created meshes.
+Leaf Groupは、葉の形状を生成します。プリミティブから、ユーザ定義されたメッシュのいずれかから生成します。
 
-!! Distribution
-Adjusts the count and placement of leaves in the group. Use the curves to fine tune position, rotation and scale. The curves are relative to the parent branch.
+!! 葉の分布（Distribution）
+グループ内の葉の数と配置を調整します。カーブを使用して位置、回転、スケールを微調整して下さい。カーブは、親の枝に対して定義されます。
 
 Attach:TreeNode-LeafNodePropertiesDistribution.png
 
-||``Group Seed``  ||The seed for this group of leaves. Modify to vary procedural generation.||
-||``Frequency``   ||Adjusts the number of leaves created for each parent branch.||
-||``Distribution``||Select the way the leaves are distributed along their parent.||
-||``Twirl``       ||Twirl around the parent branch.||
-||``Whorled Step``||Defines how many nodes are in each whorled step when using Whorled distribution. For real plants this is normally a Fibonacci number.||
-||``Growth Scale``||Defines the scale of nodes along the parent node. Use the curve to adjust and the slider to fade the effect in and out.||
-||``Growth Angle``||Defines the initial angle of growth relative to the parent. Use the curve to adjust and the slider to fade the effect in and out.||
+||``Group Seed``  ||葉（Leaf Group）のシード。プロシージャルな自動生成（乱数）のバリエーションのために変更します。||
+||``Frequency``   ||各々の親の枝に対する葉の数を調整。||
+||``Distribution``||葉が親に沿って分布している方法を選択します。||
+||``Twirl``       ||親の枝の周りに回転させます。||
+||``Whorled Step``||一ステップの輪生ノード数、輪生（Whorled）分布の場合。本物の植物の場合、通常はフィボナッチ数である。||
+||``Growth Scale``||親ノードに沿ってノードのスケールを定義。カーブとスライダを使用してエフェクトをフェードイン、フェードアウトします。||
+||``Growth Angle``||親ノードに対する成長の初期角度を指定。カーブとスライダを使用してエフェクトをフェードイン、フェードアウトします。||
 
-!! Geometry
-Select what type of geometry is generated for this leaf group and which materials are applied. If you use a custom mesh, its materials will be used.
+!! 葉の形状（Geometry）
+葉（Leaf Group）に使用される形状と、どのマテリアルが適用されるかを選択します。カスタムメッシュを使用している場合は、その材料が使用されます。
 
 Attach:TreeNode-LeafNodePropertiesGeometry.png
 
-||``Geometry Mode``||The type of geometry created. You can use a custom mesh, by selecting the Mesh option, ideal for flowers, fruits, etc.||
-||``Material``     ||Material used for the leaves.||
-||``Mesh``         ||Mesh used for the leaves.||
+||``Geometry Mode``||葉（Leaf Group）の形状。Meshオプションを選択してカスタム定義のメッシュを使用でき、花、果実などに最適です。||
+||``Material``     ||葉のために使用されるマテリアル。||
+||``Mesh``         ||葉に使用するメッシュ。||
 
-!! Shape
-Adjusts the shape and growth of the leaves.
+!! 葉の形（Shape）
+葉の形や成長を調節します。
 
 Attach:TreeNode-LeafNodePropertiesShape.png
 
-||``Size``               ||Adjusts the size of the leaves, use the range to adjust the minimum and the maximum size.||
-||``Perpendicular Align``||Adjusts whether the leaves are aligned perpendicular to the parent branch.||
-||``Horizontal Align``   ||Adjusts whether the leaves are aligned horizontally.||
+||``Size``               ||葉の大きさを調整し、つまみ幅で最小と最大の範囲もを調整できます。||
+||``Perpendicular Align``||葉が親の枝に対して垂直に整列するか調整します。||
+||``Horizontal Align``   ||葉が水平に整列するか調整します。||
 
-!! Animation
-Adjusts the parameters used for animating this group of leaves. Wind zones are only active in Play Mode. If you select too high values for Main Wind and Main Turbulence the leaves may float away from the branches.
+!! アニメーション
+葉（Leaf Group）をアニメーションするために使用されるパラメータを調整します。風（Wind Zone）は再生時のみ有効です。Main WindとMain Turbulenceの値が大きすぎると葉が枝から離れて浮くことがあります。
 
 Attach:TreeNode-LeafNodePropertiesAnimation.png
 
-||``Main Wind``      ||Primary wind effect. Usually this should be kept as a low value to avoid leaves floating away from the parent branch.||
-||``Main Turbulence``||Secondary turbulence effect. For leaves this should usually be kept as a low value.||
-||``Edge Turbulence``||Defines how much wind turbulence occurs along the edges of the leaves.||
-
+||``Main Wind``       ||一次的な風のエフェクト。通常、これは親の枝から離れて浮いてしまう葉を避けるため、低い値に保つ必要があります。||
+||``Main Turbulence`` ||二次的乱流（Turbulence）効果。葉の場合、通常は、低い値に保つ必要があります。||
+||``Edge Turbulence``||風の乱流（Turbulence）が、葉のエッジに沿ってどれぐらい発生するか定義します。||

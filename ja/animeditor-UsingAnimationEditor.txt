@@ -1,87 +1,89 @@
-! Using the Animation View (Legacy)
+! アニメーションビューの活用（旧バージョン）
 
-The $$Animation View$$ can be used to preview and edit $$Animation Clips$$ for animated $$Game Objects$$ in Unity. The $$Animation View$$ can be opened from the ^^Window->Animation^^ menu.
+$$Animation View$$を使って、 Unityの$$Game Objects$$のアニメーションするために$$Animation Clips$$のプレビューと編集ができます。$$Animation View$$はメニューから^^Window->Animation^^を選択して開きます。
 
 Attach:AnimationEditorMenu.png
 
 
-!! Viewing Animations on a GameObject
+!! GameObjectのアニメーションを表示する
 
-The $$Animation View$$ is tightly integrated with the $$Hierarchy View$$, the $$Scene View$$, and the $$Inspector$$. Like the Inspector, the Animation View will show whatever $$Game Object$$ is selected. You can select a Game Object to view using the $$Hierarchy View$$ or the $$Scene View$$. (If you select a Prefab in the $$Project View$$ you can inspect its animation curves as well, but you have to drag the Prefab into the Scene View in order to be able to edit the curves.)
+$$Animation View$$は$$Hierarchy View$$、$$Scene View$$および$$Inspector$$と強力に統合されています。インスペクターと同様に、アニメーションビューでは選択されているどんなゲームオブジェクト（$$Game Object$$）も表示されます。$$Hierarchy View$$あるいは$$Scene View$$を使用して 
+ゲームオブジェクトを選択することができます。(Prefabを$$Project View$$で選択すると、同様に、そのアニメーションカーブを参照はできるものの、カーブを編集できるためには、シーンビューにプレハブをドラッグする必要があります。)
 
 Attach:AnimationEditorShowsSelectedPP.png\\
-''The $$Animation View$$ shows the $$Game Object$$ selected in the $$Hierarchy View$$.''
+''$$Animation View$$が$$Hierarchy View$$で選択された$$Game Object$$を表示します。''
 
-At the left side of the $$Animation View$$ is a hierarchical list of the animatable properties of the selected $$Game Object$$. The list is ordered by the $$Components$$ and $$Materials$$ attached to the Game Object, just like in the $$Inspector$$. Components and Materials can be folded and unfolded by clicking the small triangles next to them. If the selected Game Object has any child Game Objects, these will be shown after all of the Components and Materials.
+アニメーションビュー（$$Animation View$$）の左側に表示されているのは、選択されたゲームオブジェクト($$Game Object$$)のアニメーションプロパティの階層的なリストです。リストはインスペクタ($$Inspector$$)のように、ゲームオブジェクトにアタッチされた、コンポーネント（$$Components$$）とマテリアル（$$Materials$$）の順に並んでいます。コンポーネントやマテリアルの折りたたみ、展開にはその横にある小さな三角形をクリックします。選択されたゲームオブジェクトに子ゲームオブジェクトがある場合、すべてのコンポーネントおよびマテリアルの後に表示されます。
 
 Attach:AnimationEditorMatchesInspectorPP.png\\
-''The property list to the left in the $$Animation View$$ shows the Components and Materials of the selected $$Game Object$$, just like the $$Inspector$$.''
+''アニメーションビュー（$$Animation View$$）の左側にプロパティリストがあり、インスペクタ（$$Inspector$$)）のように、選択したゲームオブジェクトのコンポーネントやマテリアルを表示します。''
 
 
-!! Creating a New Animation Clip
+!! 新しいアニメーションクリップの作成
 
-Animated $$Game Objects$$ in Unity need an $$Animation Component$$ that controls the animations. If a Game Object doesn't already have an Animation Component, the $$Animation View$$ can add one for you automatically when creating a new $$Animation Clip$$ or when entering $$Animation Mode$$.
+Unityでアニメーションを行うゲームオブジェクト$$Game Object$$は、アニメーションを制御するアニメーションコンポーネント（$$Animation Component$$）が必要です。ゲームのオブジェクトが既にアニメーションコンポーネントを持っていない場合は、新しい$$Animation Clip$$を作成するときか、$$Animation Mode$$に入るときに、アニメーションビュー（$$Animation View$$）が自動追加を行います。
 
-To create a new $$Animation Clip$$ for the selected $$Game Object$$, click the right of the two selection boxes at the upper right of the $$Animation View$$ and select ^^[Create New Clip]^^. You will then be prompted to save an Animation Clip somewhere in your $$Assets$$ folder. If the Game Object doesn't have an $$Animation Component$$ already, it will be automatically added at this point. The new $$Animation Clip$$ will automatically be added to the list of Animations in the Animation Component.
+選択した$$Game Object$$で新しい$$Animation Clip$$を作成するには、アニメーションビュー（$$Animation View$$）の右上にある2つの選択ボックスのうち右側をクリックして、^^[Create New Clip]^^を選択します。その後、$$Assets$$フォルダ内のどこかにアニメーションクリップを保存するためのプロンプトが表示されます。ゲームのオブジェクトが既にアニメーションコンポーネント（$$Animation Component$$）を持っていない場合は、このときに自動追加されます。新しい$$Animation Clip$$は自動的にアニメーションコンポーネントのアニメーションのリストに追加されます。
 
 Attach:AnimationEditorNewClip.png\\
-''Create a new $$Animation Clip$$.''
+''新しい$$Animation Clip$$の作成''
 
-In the $$Animation View$$ you can always see which $$Game Object$$ you are animating and which $$Animation Clip$$ you are editing. There are two selection boxes in the upper left of the Animation View. The left selection box shows the $$Game Object$$ with the $$Animation Component$$ attached, and the right selection box shows the $$Animation Clip$$ you are editing.
+アニメーションビュー（$$Animation View$$）では常にアニメーションしてるゲームオブジェクト（$$Game Object$$）と編集しているアニメーションクリップ（$$Animation Clip$$）が表示されます。アニメーションビューの左上に2つの選択ボックスがあります。左の選択ボックスは、$$Game Object$$とアタッチされた$$Animation Component$$を表示し、右の選択ボックスは、編集している$$Animation Clip$$を表示します。
 
 Attach:AnimationEditorNewAnimationPP.png\\
-''The left selection box shows the $$Game Object$$ with the $$Animation Component$$ attached, and the right selection box shows the $$Animation Clip$$ you are editing.''
+''左の選択ボックスは、$$Game Object$$とアタッチされた$$Animation Component$$を表示し、右の選択ボックスは、編集している$$Animation Clip$$を表示します。''
 
 
-!! Animating a Game Object
+!! ゲームオブジェクトのアニメーション化
 
-To begin editing an Animation Clip for the selected Game Object, click on the ^^Animation Mode button^^.
+選択されたゲームオブジェクトのアニメーション・クリップの編集を開始するには、^^Animation Mode button^^をクリックしてください。
 
-Attach:AnimationEditorAnimationModeButton.png  Click the ^^Animation Mode button^^ to enter $$Animation Mode$$.
+Attach:AnimationEditorAnimationModeButton.png  ^^Animation Mode button^^をクリックして$$Animation Mode$$に入ります。
 
-This will enter $$Animation Mode$$, where changes to the Game Object are stored into the $$Animation Clip$$. (If the Game Object doesn't have an $$Animation Component$$ already, it will be automatically added at this point. If there is not an existing $$Animation Clip$$, you will be prompted to save one somewhere in your $$Assets$$ folder.)
+これにより、$$Animation Mode$$に入り、ゲームオブジェクトへの変更は$$Animation Clip$$に格納されます。（ゲームオブジェクトが既に$$Animation Component$$を持っていない場合、このときに自動的に追加されます。既存の$$Animation Clip$$が存在しない場合は、$$Assets$$フォルダのどこかに保存するためのプロンプトが表示されます。）
 
-You can stop the $$Animation Mode$$ at any time by clicking the ^^Animation Mode button^^ again. This will revert the $$Game Object$$ to the state it was in prior to entering the Animation Mode.
+$$Animation Mode$$は^^Animation Mode button^^を再度クリックすることでいつでも停止できます。 これによりゲームオブジェクト（$$Game Object$$）は、アニメーションモードに入る前にあった状態に戻ります。
 
-You can animate any of the properties shown in the property list of the $$Animation View$$. To animate a property, click on the ^^Key Indicator^^ for that property and choose ^^Add Curve^^ from the menu. You can also select multiple properties and right click on the selection to add curves for all the selected properties at once. (``Transform`` properties are special in that the ``.x``, ``.y``, and ``.z`` properties are linked, so that curves are added three at a time.)
+アニメーションビュー（$$Animation View$$）のプロパティリストに表示されるプロパティもすべてアニメーションすることができます。プロパティをアニメーション化するには、そのプロパティの ^^Key Indicator^^をクリックしてと、メニューから^^Add Curve^^を選択します。さらに複数のプロパティを範囲選択し、右クリックすることで
+選択したすべてのプロパティにカーブを追加することが出来ます。（``Transform``プロパティは``.x``、``.y``、``.z``プロパティがリンクされている意味で特殊であり、3つとも同時に追加されます。）
 
 Attach:AnimationEditorAddCurves.png  Attach:AnimationEditorAddMultipleCurves.png\\
-''Any property can be animated by clicking on its ^^Key Indicator^^ or by right clicking on its name. For ``Transform`` properties, curves for ^^.x^^, ^^.y^^, and ^^.z^^ are added together.''
+''すべてのプロパティは、^^Key Indicator^^をクリックするか、名前を右クリックすることでアニメーション化することができます。
+``Transform``プロパティについては^^.x^^、^^.y^^、^^.z^^ のカーぶは同時に追加されます。''
 
-When in $$Animation Mode$$, a red vertical line will show which frame of the $$Animation Clip$$ is currently previewed. The $$Inspector$$ and $$Scene View$$ will show the Game Object at that frame of the Animation Clip. The values of the animated properties at that frame are also shown in a column to the right of the property names.
+アニメーションモード（$$Animation Mode$$）では、$$Animation Clip$$のどのフレームがプレビューされているか、赤の縦線で表示します。インスペクタ（$$Inspector$$）とシーンビュー（$$Scene View$$）では、アニメーションクリップのそのフレームでゲームオブジェクトが表示されます。そのフレームでのアニメーション化されたプロパティの値は、プロパティ名の右の列に示されます。
 
 Attach:AnimationEditorPreviewFramePP.png\\
-''In $$Animation Mode$$ a red vertical line shows the currently previewed frame. The animated values at that frame are previewed in the $$Inspector$$ and $$Scene View$$ and to the right of the property names in the $$Animation View$$.''
+''$$Animation Mode$$で'は赤い縦線で現在プレビューしているフレームを表示します。そのフレームでアニメーション化された値は、$$Inspector$$、$$Scene View$$および$$Animatipon View$$のプロパティ名の右で、プレビューされます。
 
-You can click anywhere on the ^^Time Line^^ to preview or modify that frame in the Animation Clip. The numbers in the ^^Time Line^^ are shown as seconds and frames, so 1:30 means 1 second and 30 frames.
+タイムライン（^^Time Line^^）上の任意の場所をクリックしてアニメーションクリップのフレームをプレビューまたは変更することが出来ます。タイムライン（^^Time Line^^）の数字は秒とフレームとして表示されるので、1:30は1秒と30フレームを意味します。
 
-Attach:AnimationEditorTimeLine.png Click in the ^^Time Line^^ to preview a given frame.\\
-Attach:AnimationEditorFrameNavigation.png You can go directly to a specific frame by typing it in, or use the buttons to go to the previous or next $$keyframe$$.
+Attach:AnimationEditorTimeLine.png ^^Time Line^^をクリックして特定のフレームをプレビューします。\\
+Attach:AnimationEditorFrameNavigation.png 特定のフレームに直接移動するにはキーボードから入力するか、またはボタンを使用して前後の$$keyframe$$に移動できます。
 
-You can also use the following keyboard shortcuts to navigate between frames:
+また、フレーム間を移動するには、次のキーボードショートカットを使用することができます。
 
-* Press ^^Comma^^ (^^,^^) to go to the previous frame.
-* Press ^^Period^^ (^^.^^) to go to the next frame.
-* Hold Alt and press ^^Comma^^ (^^,^^) to go to the previous $$keyframe$$.
-* Hold Alt and press ^^Period^^ (^^.^^) to go to the next $$keyframe$$.
+* カンマ（^^Comma^^） (^^,^^)　前のフレームに移動
+* ピリオド（^^Period^^） (^^.^^)　次のフレームに移動
+* Alt+カンマ（^^Comma^^） (^^,^^)　前のキーフレーム（$$keyframe$$）に移動
+* Alt+ピリオド（^^Period^^） (^^.^^)　次のキーフレーム（$$keyframe$$）に移動
 
-In $$Animation Mode$$ you can move, rotate, or scale the $$Game Object$$ in the $$Scene View$$. This will automatically create $$Animation Curves$$ for the position, rotation, and scale properties of the $$Animation Clip$$ if they didn't already exist, and keys on those Animation Curves will automatically be created at the currently previewed frame to store the respective ^^Transform^^ values you changed.
+アニメーションモード（$$Animation Mode$$）では、シーンビュー（$$Scene View$$）でゲームオブジェクト（$$Game Object$$）移動、回転、またはスケールできます。これにより$$Animation Clip$$の位置、回転、スケールプロパティの$$Animation Curves$$がない場合は自動作成され、それらの$$Animation Curves$$のキーが現在のフレームに自動作成され、変更した^^Transform^^の値を対応する場所に格納します。
 
-You can also use the $$Inspector$$ to modify any of the animatable properties of the $$Game Object$$. This too will create $$Animation Curves$$ as needed, and create $$keys$$ on those Animation Curves at the currently previewed frame to store your changed values. Properties that are not animatable are grayed out in the $$Inspector$$ while in Animation Mode.
+$$Inspector$$を使用して$$Game Object$$のアニメーション化できるプロパティを変更することもできます。この場合も同様に$$Animation Curves$$が必要に応じて作成され、現在プレビューしているフレームでアニメーションカーブにキー（$$keys$$）を作成して変更した値を格納します。アニメーション化が出来ないプロパティは、アニメーションモードのとき$$Inspector$$で灰色表示されます。
 
-Attach:AnimationEditorKeyframeButton.png The ^^Keyframe button^^ creates a $$keyframe$$ for the shown curves at the currently previewed frame (shortcut: ^^K^^).
+Attach:AnimationEditorKeyframeButton.png　^^Keyframe button^^により現在プレビューしているフレームのカーブ上で$$keyframe$$を作成します。（ショートカット：「^^K^^」キー）
 
-You can also manually create a $$keyframe$$ using the ^^Keyframe button^^. This will create a key for all the curves that are currently shown in the $$Animation View$$. If you want to only show curves for a subset of the properties in the property list, you can select those properties. This is useful for selectively adding keys to specific properties only.
+手動でキーフレーム（$$keyframe$$）を作成する場合は^^Keyframe button^^を使用します。これにより、現在$$Animation View$$に表示されているすべてのカーブでキーを作成します。プロパティリストの一部のプロパティのみカーブを表示した場合は、それらのプロパティを選択できます。特定プロパティのみに選択的にキーを追加するときに便利です。
 
 Attach:AnimationEditorSelectedPropertyShown.png\\
-''When selecting a property in the property list, only the curve for that property is shown.''
+''プロパティリストでプロパティを選択する場合、そのプロパティのカーブだけが表示されます。''
 
 
-!! Playback
+!! プレイバック（Playback）
 
-The $$Animation Clip$$ can be played back at anytime by clicking the ^^Play button^^ in the $$Animation View$$.
+アニメーション・クリップ（$$Animation Clip$$）は、アニメーションビュー（$$Animation View$$）の^^Play button^^をクリックすることにより、いつでも再生することができます。
 
-Attach:AnimationEditorPlayButton.png  Click the ^^Play button^^ to play back the $$Animation Clip$$.
+Attach:AnimationEditorPlayButton.png　^Play button^^をクリックして$$Animation Clip$$を再生
 
-The playback will loop within the time range that is shown in the ^^Time Line^^. This makes it possible to focus on refining a small part of the $$Animation Clip$$ that is being worked on, without having to play back the entire length of the clip. To play back the whole length of the $$Animation Clip$$, zoom out to view the entire time range, or press ^^F^^ to Frame Select with no $$keys$$ selected. To learn more about navigating the ^^Curve View^^, see the section on [[animeditor-AnimationCurves| Editing Animation Curves]].
-
+再生のプレイバックはタイムライン（^^Time Line^^）で表示されている時間範囲内でループします。これにより$$Animation Clip$$全体の時間を再生しなくても、作業中の　の小さな部分を見直すことに注力できます。. $$Animation Clip$$全体をプレイバックするには、ズームアウトして時間範囲の全体を表示するか、キー（$$keys$$）が選択されてない状態で「^^F^^」キーを押します。^^Curve View^^のナビゲーションの詳細については[[animeditor-AnimationCurves| Editing Animation Curves]] を参照下さい。
