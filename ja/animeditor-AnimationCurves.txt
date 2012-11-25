@@ -1,51 +1,53 @@
-! Using Animation Curves (Legacy)
+! アニメーションカーブの活用（旧バージョン）
 
-!! The Property List
+!! プロパティリスト
 
-In an $$Animation Clip$$, any animatable property can have an $$Animation Curve$$, which means that the Animation Clip controls that property. In the property list of the $$Animation View$$ properties with $$Animation Curves$$ have colored curve indicators. For information on how to add curves to an animation property, see the section on [[animeditor-UsingAnimationEditor|Using the Animation View]].
+$$Animation Clip$$ではあらゆるアニメーション化できるプロパティは$$Animation Curve$$を保持することが出来ます、すなわちAnimation Clipでそのプロパティを制御できます。$$Animation View$$のプロパティリストで、$$Animation Curves$$をもったプロパティは色つきのカーブインジケータがあります。アニメーションプロパティにカーブを追加する方法については、[[animeditor-UsingAnimationEditor|Using the Animation View]] のセクションを参照してください。
 
-A $$Game Object$$ can have quite a few components and the property list in the $$Animation View$$ can get very long. To show only the properties that have $$Animation Curves$$, click the lower left button in the $$Animation View$$ to set its state to ^^Show: Animated^^.
+$$Game Object$$はかなりの数のコンポーネントおよびプロパティリストを持つことが出来るため、$$Animation View$$のプロパティリストもとても長くなることがあります。$$Animation Curves$$をもつプロパティのみ表示するためには$$Animation View$$の左下にあるボタンをクリックし状態を^^Show: Animated^^にします。
 
 Attach:AnimationEditorShowAnimatedPP.png\\
-''Set the toggle button in the lower left corner to ^^Show: Animated^^ to hide all the properties without $$Animation Curves$$ from the property list.''
+''左下にあるトグルボタンを^^Show: Animated^^にセットしてプロパティリストのなかで$$Animation Curves$$を持たないプロパティを隠します。''
 
 
-!! Understanding Curves, Keys and Keyframes
+!! カーブ、キー、キーフレームを理解する
 
-An $$Animation Curve$$ has multiple $$keys$$ which are control points that the curve passes through. These are visualized in the $$Curve Editor$$ as small diamond shapes on the curves. A frame in which one or more of the shown curves have a $$key$$ is called a $$keyframe$$. The $$keyframes$$ are shown as white diamonds in the ^^Keyframe Line^^.
+$$Animation Curve$$には複数のキー（$$keys$$）があり、カーブが通過するポイントを制御できます。 これらは$$Curve Editor$$上の小さな菱形の記号で表現される。ひとつか複数かのキー（$$key$$）を持つフレームは、キーフレーム（$$keyframe$$）と呼ばれています。キーフレーム（$$keyframes$$）は白い菱形の記号として ^^Keyframe Line^^に表示されます。
 
-If a property has a $$key$$ in the currently previewed frame, the curve indicator will have a diamond shape.
+あるプロパティが現在プレビューしているフレームにキー（$$key$$）を持つ場合、カーブのインジケータは菱形になります。
 
 Attach:AnimationEditorDetailPP.png\\
-''The ^^Rotation.y^^ property has a $$key$$ at the currently previewed frame. The ^^Keyframe Line^^ marks the $$keyframes$$ for all shown curves.''
+''^^Rotation.y^^プロパティが現在プレビューしているフレームでキー（$$key$$）を持っています。 ^^Keyframe Line^^は全てのキーフレーム（$$keyframes$$ ）をマーキングします。
 
-The ^^Keyframe Line^^ only shows keyframes for the curves that are shown. If a property is selected in the property list, only that property is shown, and the ^^Keyframe Line^^ will not mark the keys of the curves that are not shown.
+^^Keyframe Line^^は表示されているカーブのみのキーフレームを表示します。プロパティリストでプロパティが選択されている場合はそのプロパティのみが表示され、そして^^Keyframe Line^^は表示されていないカーブのキーをマーキングしません。
+
 
 Attach:AnimationEditorSimpleSingleCurve.png\\
-''When a property is selected, other properties are not shown and the keys of their curves are not shown in the ^^Keyframe Line^^.''
+''プロパティが選択されている場合、他のプロパティは表示されず、そのカーブのキーはキーフレームライン（^^Keyframe Line^^）には表示されません^。''
 
 
-!! Adding and Moving Keyframes
+!! キーフレームの追加と移動
 
 Attach:AnimationEditorKeyframeLine.png\\
-The ^^Keyframe Line^^ shows the $$keyframes$$ of the currently shown curves. You can add a $$keyframe$$ by double-clicking the ^^Keyframe Line^^ or by using the ^^Keyframe button^^.
+^^Keyframe Line^^は現在表示されているカーブの$$keyframes$$を表示します。^^Keyframe Line^^をダブルクリックするか、^^Keyframe button^^を使用して$$keyframe$$を追加できます。
 
-A $$keyframe$$ can be added at the currently previewed frame by clicking the ^^Keyframe button^^ or at any given frame by double-clicking the ^^Keyframe Line^^ at the frame where the $$keyframe$$ should be. This will add a $$key$$ to all the shown curves at once. It is also possible to add a $$keyframe$$ by right-clicking the ^^Keyframe Line^^ and select ^^Add Keyframe^^ from the context menu. Once placed, $$keyframes$$ can be dragged around with the mouse. It is also possible to select multiple $$keyframes$$ to drag at once. $$Keyframes$$ can be deleted by selecting them and pressing ^^Delete^^, or by right-clicking on them and selecting ^^Delete Keyframe^^ from the context menu.
+現在プレビューしてるフレームで^^Keyframe button^^をクリックするか、$$keyframe$$を配置すべき任意のフレームで^^Keyframe Line^^をダブルクリックすることで$$keyframe$$を追加することが出来ます。
+これにより一度に表示されている全てのカーブにキー（$$key$$）を追加します。キーフレーム（$$keyframe$$）を追加するには^^Keyframe Line^^を右クリックしてコンテキストメニューから^^Add Keyframe^^を選択することも出来ます。配置した後は、マウスを使って$$keyframes$$をドラッグして動かすことができます。一度に複数のキーフレーム（$$keyframes）を選択してドラッグすることも出来ます。キーフレーム（$$Keyframes$$）を削除するには、選択して^^Delete^^を押すか、その上で右クリックしてコンテキストメニューから^^Delete Keyframe^^を選択します。
 
 
-!! Wrap Mode
+!! 繰り返し再生モード（Wrap Mode）
 
-An $$Animation Clip$$ in Unity can have various $$Wrap Modes$$ that can for example set the Animation Clip to loop. See [[ScriptRef:WrapMode.html| WrapMode]] in the Scripting Reference to learn more. The Wrap Mode of an Animation Clip can be set in the $$Animation View$$ in the lower right selection box. The ^^Curve View^^ will preview the selected $$Wrap Mode$$ as white lines outside of the time range of the Animation Clip.
+Unityのアニメーションクリップ（$$Animation Clip$$）で様々な繰り返し再生モード（$$Wrap Mode$$）を設定し、たとえばアニメーション・クリップをループさせることができます。詳細についてはスクリプト・リファレンス[[ScriptRef:WrapMode.html| WrapMode]] を参照下さい。アニメーション・クリップの繰り返し再生モード(Wrap Mode)は、$$Animation View$$の右下の選択ボックスで設定できます。＾＾Curve View^^で選択した$$Wrap Mode$$をアニメーションクリップの時間範囲の外の白い枠線としてプレビューします。
 
 Attach:AnimationEditorWrapmode.png\\
-Setting the $$Wrap Mode$$ of an $$Animation Clip$$ will preview that Wrap Mode in the ^^Curve View^^.
+アニメーション・クリップ（$$Animation Clip$$）で$$Wrap Mode$$を設定すると、^^Curve View^^でプレビューします。
 
 
-!! Supported Animatable Properties
+!! アニメーション化できるプロパティ（Supported Animatable Properties）
 
-The $$Animation View$$ can be used to animate much more than just the position, rotation, and scale of a $$Game Object$$. The properties of any $$Component$$ and $$Material$$ can be animated - even the public variables of your own scripts components. Making animations with complex visual effects and behaviors is only a matter of adding $$Animation Curves$$ for the relevant properties.
+アニメーションビュー$$Animation View$$を使って、$$Game Object$$の単なる位置、回転、スケールよりもはるかに多くをアニメーション化することが出来ます。任意の$$Component$$や$$Material$$のプロパティはアニメーションさせることができます、それはユーザで作成したスクリプトコンポーネントのパブリック変数さえも出来ます。複雑な視覚効果や動作をもつアニメーションを作るには、関連するプロパティに$$Animation Curves$$を追加するだけです。
 
-The following types of properties are supported in the animation system:
+次のプロパティの種類で、アニメーションシステムがサポートされています：
 
 * Float
 * Color
@@ -54,37 +56,37 @@ The following types of properties are supported in the animation system:
 * Vector4
 * Quaternion
 
-Arrays are not supported and neither are structs or objects other than the ones listed above. 
+配列はサポートされておらず、構造体や上記以外のオブジェクトも同様です。
 
-Booleans in script components are not supported by the animation system, but booleans in certain built-in components are. For those booleans, a value of ^^0^^ equals ^^False^^ while any other value equals ^^True^^.
+スクリプトコンポーネントでのBooleanは、アニメーションシステムによってサポートされていませんが、特定の内臓コンポーネントではサポートされています。それらのBooleanについては、^^0^^の値は^^False^^と等しく、それ以外の値は^^True^^と等しくなります。
 
-Here are a few examples of the many things the $$Animation View$$ can be used for:
+次は、$$Animation View$$を使用できる多様なことの中のひとつの例です：
 
-* Animate the ``Color`` and ``Intensity`` of a ``Light`` to make it blink, flicker, or pulsate.
-* Animate the ``Pitch`` and ``Volume`` of a looping ``Audio Source`` to bring life to blowing wind, running engines, or flowing water while keeping the sizes of the sound assets to a minimum.
-* Animate the ``Texture Offset`` of a ``Material`` to simulate moving belts or tracks, flowing water, or special effects.
-* Animate the ``Emit`` state and ``Velocities`` of multiple ``Ellipsoid Particle Emitters`` to create spectacular fireworks or fountain displays.
-* Animate variables of your own script components to make things behave differently over time.  
+* ``Light`の``Color``、``Intensity``をアニメーション化し、点滅、ちらつき、脈動させます。
+* ループ再生中の``Audio Source``の``Pitch``、``Volume`` をアニメーション化して、風の吹く音、エンジン音、水の流れる音を再現しつつサウンドアセットの容量を最小限に抑えます。
+* ``Material``の``Texture Offset``をアニメーション化し、ベルトコンベヤー、線路、流れる水、特殊効果をシミュレートします。
+* 複数の楕円パーティクルエミッター（``Ellipsoid Particle Emitters``）の``Emit``状態、``Velocities``をアニメーション化することで壮大な花火や噴水のディスプレイを作成します。
+* ユーザ定義のスクリプトコンポーネントをアニメーション化して、時間の経過とともに動作に変化をもたせます。
 
-When using $$Animation Curves$$ to control game logic, please be aware of the way animations are [[AnimationScripting#Playback | played back and sampled]] in Unity.
+$$Animation Curves$$を用いてゲームロジックを制御する場合、Unityで[[AnimationScripting#Playback | プレイバックおよびサンプリング]] している方法に注意する必要があります。
 
 
-!! Rotation Interpolation Types
+!! 回転の補間方法の種類について（Rotation Interpolation Types）
 
-In Unity rotations are internally represented as ``Quaternions``. Quaternions consist of ``.x``, ``.y``, ``.z``, and ``.w`` values that should generally not be modified manually except by people who know exactly what they're doing. Instead, rotations are typically manipulated using ``Euler Angles`` which have ``.x``, ``.y``, and ``.z`` values representing the rotations around those three respective axes.
+Unityでは回転は内部でクォータニオン（``Quaternions``）として表されます。クォータニオンは``.x``, ``.y``, ``.z``および ``.w``から構成されていて、一般的には、これらの使い方を熟知していないかぎりこれらの値を手動で変更しません。 その代わりに、回転は一般的にオイラー角（''Euler Angles''）で操作し、``.x``、``.y``、``.z``の値がそれぞれの3つの軸の周りの回転を表しています。
 
-When interpolating between two rotations, the interpolation can either be performed on the ``Quaternion`` values or on the ``Euler Angles`` values. The $$Animation View$$ lets you choose which form of interpolation to use when animating ``Transform`` rotations. However, the rotations are always shown in the form of ``Euler Angles`` values no matter which interpolation form is used.
+2つの回転の間を補間方法は、``Quaternion``か``Euler Angles``の値のどちらかで実行することになります。アニメーションビュー（$$Animation View$$）を使用すると、``Transform``回転をアニメーション化するときに使用する補間方法を選択することができます。しかし回転は、どの補間方法を選択しているかにかかわらず、常に``Euler Angles``の形で表示されます。
 
 Attach:AnimationEditorQuaternionInterpolationMenu.png\\
-''Transform rotations can use ``Euler Angles`` interpolation or ``Quaternion`` interpolation.''
+''Transform回転は``Euler Angles``による補間あるいは``Quaternion``による補間を使用できます''
 
-!!! Quaternion Interpolation
+!!! クォータニオン補間（Quaternion Interpolation）
 
-Quaternion interpolation always generates nice interpolations along the shortest path between two rotations. This avoids rotation interpolation artifacts such as Gimbal Lock. However, Quaternion interpolation cannot represent rotations larger than 180 degrees, because it is then shorter to go the other way around. If you use Quaternion interpolation and place two keys further apart than 180 degrees, the curve will look discontinuous, even though the actual rotation is still smooth - it simply goes the other way around, because it is shorter. If rotations larger than 180 degrees are desired, additional keys must be placed in between. When using Quaternion interpolation, changing the keys or tangents of one curve may also change the shapes of the other two curves, since all three curves are created from the internal Quaternion representation. When using Quaternion interpolation, keys are always linked, so that creating a key at a specific time for one of the three curves will also create a key at that time for the other two curves.
+クォータニオン補間は、2つの回転の間の最短経路に沿って常に良い補間を生成します。これがジンバルロックなどの回転補間の乱れを回避することができます。しかしクォータニオン補間は180度以上の回転を表すことはできず、それは逆方向のほうが短いためです。クォータニオン補間を使用して二つのキーを180度以上離すと、実際に回転がスムーズであるにも関わらず、カーブは不連続に見えます、単純に逆方向が短いからそちらに回転しまうためです。180度より大きい回転が必要な場合は、追加のキーを間に配置する必要があります。クォータニオン補間を使用する場合、ひとつのカーブにおけるキーや接線を変更すると、他の2つのカーブも形状が変更されてしまい、それは3つのカーブ全て内部ではクォータニオンで表されているためです。クォータニオン補間を使用するときは、キーは常リンクされているため、3つのうち1つのカーブで特定のタイミングにおいてキーを作成すると、残り2つのカーブもそのタイミングでキーが作成されます。
 
 Attach:AnimationEditorQuaternionInterpolation.png\\
-''Placing two keys 270 degrees apart when using Quaternion interpolation will cause the interpolated value to go the other way around, which is only 90 degrees.''
+クォータニオン補間を使用するとき、270度離れて二つのキーを配置していた場合は逆方向、すなわち90度、に値が補間されます。
 
-!!! Euler Angles Interpolation
+!!! オイラー角補間（Euler Angles Interpolation）
 
-Euler Angles interpolation is what most people are used to working with. Euler Angles can represent arbitrary large rotations and the ``.x``, ``.y``, and ``.z`` curves are independent from each other. Euler Angles interpolation can be subject to artifacts such as Gimbal Lock when rotating around multiple axes at the same time, but are intuitive to work with for simple rotations around one axis at a time. When Euler Angles interpolation is used, Unity internally bakes the curves into the Quaternion representation used internally. This is similar to what happens when importing animation into Unity from external programs. Note that this curve baking may add extra keys in the process and that tangents with the ^^Constant^^ tangent type may not be completely precise at a sub-frame level.
+オイラー角の補間は、ほとんどの人々が作業に慣れているものです。オイラー角は任意の大きな回転を表すことが出来、``.x``、 ``.y``、``.z``のカーブは互いに独立しています。オイラー角の補間は、複数の軸の周りを同時に回転するときに発生する、ジンバルロックなどの回転の乱れが生じるｋとがあるが、作業は直感的で一度に1つの軸の周りを回転させるのでシンプルです。オイラー角補間が使用されている場合、Unityは内部で内部的に使用しているクォータニオン表現にカーブの焼き込みを行っています。これは、外部のプログラムからUnityにアニメーションをインポートするときに起こることに似ています。このカーブの焼き込みは処理過程で余分なキーを追加する可能性があり、接線の種類が^^Constant^^の場合、サブフレームのレベルでは完全には正確でない場合があることに留意下さい。

@@ -1,8 +1,8 @@
-!Using Animation Events
+!アニメーションイベントの使用（Using Animation Events）
 
-The power of animation clips can be increased by using $$Animation Events$$, which allow you to call functions in the object's script at specified points in the timeline.
+$$Animation Events$$を使用することでアニメーションクリップを最大限に活用することが出来、タイムラインの特定のタイミングでオブジェクトのスクリプトに含まれる関数呼び出しを行うことが出来ます。
 
-The function called by an animation event can optionally take one parameter. The parameter can be a float, string, int, object reference or an AnimationEvent object. The AnimationEvent object has member variables that allow a float, string, integer and object reference to be passed into the function all at once, along with other information about the event that triggered the function call.
+関数はアニメーションイベントにより呼び出され、オプションとして引数をひとつ付加することが出来ます。引数はfloat, string, int, オブジェクト参照、あるいはAnimationEventオブジェクトとすることが出来ます。AnimationEventオブジェクトはメンバ変数を持ち、float, string, int, オブジェクト参照を、関数呼び出しをトリガーしたイベントに関する情報とともに、同時に関数に受け渡すことが出来ます。
 
 [@
 // This JavaScript function can be called by an Animation Event
@@ -11,18 +11,17 @@ function PrintFloat (theValue : float) {
 }
 @]
 
-You can add an animation event to a clip at the current playhead position by clicking the ^^Event button^^ or at any point in the animation by double-clicking the ^^Event Line^^ at the point where you want the event to be triggered. Once added, an event can be repositioned by dragging with the mouse. You can delete an event by selecting it and pressing ^^Delete^^, or by right-clicking on it and selecting ^^Delete Event^^ from the contextual menu.
+クリップにアニメーションイベントを追加するには、現在の再生位置に^^Event button^^をクリックするか、アニメーションの任意の位置でイベントをトリガーしたいタイミングで、^^Event Line^^をダブルクリックします。イベントを追加した後、マウスでドラッグすることにより位置を再度変更することも出来ます。イベントを削除するには、選択して^^Delete^^を押すか、右クリックしてコンテキストメニューから^^Delete Event^^を選択します。
 
 Attach:AnimationEditorEventLine.png\\
-''$$Animation Events$$ are shown in the ^^Event Line^^. Add a new $$Animation Event$$ by double-clicking the ^^Event Line^^ or by using the ^^Event button^^.''
+''$$Animation Events$$を^^Event Line^^に表示。新規に$$Animation Events$$を追加するには^^Event Line^^をダブルクリックするか、^^Event button^^を使用します。''
 
-When you add an event, a dialog box will appear to prompt you for the name of the function and the value of the parameter you want to pass to it.
+イベントを追加すると、関数の名前と渡したい引数の値を入力するためにプロンプトがダイアログボックスとして表示されます。
 
 Attach:AnimationEditorEventPopup.png\\
-''The $$Animation Event$$ popup dialog lets you specify which function to call with which parameter value.''
+''$$Animation Event$$でポップアップするダイアログボックスで、どの関数にどの引数の値で呼び出しするか指定出来ます。''
 
-The events added to a clip are shown as markers in the event line. Holding the mouse over a marker will show a tooltip with the function name and parameter value.
+クリップに追加されたイベントはイベントラインでマーカー表示されます。マーカーの上をマウスオーバーすることで関数と引数値がヒント表示されます。
 
 Attach:AnimationEditorEventTooltip.png\\
-''Holding the mouse cursor over an ^^Animation Event marker^^ will show which function it calls as well as the parameter value.''
-
+''アニメーションイベント　マーカー（^^Animation Event marker^^）の上をマウスオーバーすることで、呼出する関数と引数値が表示されます。''
