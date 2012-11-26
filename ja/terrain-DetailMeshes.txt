@@ -1,44 +1,44 @@
-! Detail Mesh(�ڍ׃��b�V��)
+! Detail Mesh(詳細メッシュ)
 
-Tree��Grass�łȂ��A�n�`�̑�����$$Detail Mesh$$(�ڍ׃��b�V��)�Ƃ��č쐬�����ׂ��ł��B���3D�̖΂݁A���̑��̐ÓI�ȕ��ɍœK�ł��B �ǉ�����ɂ�$$Paint Foliage$$�{�^�����g�p���܂��BAttach:TerrainGuide-PaintFoliageButton.png ����^^Edit Details button->Add Detail Mesh^^��I�����܂��B$$Add Detail Mesh$$�i�ڍ׃��b�V���̒ǉ��j�_�C�A���O���\������܂��B
+TreeやGrassでない、地形の装飾は$$Detail Mesh$$(詳細メッシュ)として作成されるべきです。岩や3Dの茂み、その他の静的な物に最適です。 追加するには$$Paint Foliage$$ボタンを使用します。Attach:TerrainGuide-PaintFoliageButton.png 次に^^Edit Details button->Add Detail Mesh^^を選択します。$$Add Detail Mesh$$（詳細メッシュの追加）ダイアログが表示されます。
 
 
 Attach:TerrainGuide-AddDetailMeshDialog.png\\
-''Add Detail Mesh�i�ڍ׃��b�V���̒ǉ��j�_�C�A���O''
+''Add Detail Mesh（詳細メッシュの追加）ダイアログ''
 
 ||PROPS
-||``Detail`` ||�ڍׂɎg�p����郁�b�V�� ||
-||``Noise Spread`` ||``Detail``�Ƀm�C�Y��萶�������N���X�^�̑傫���B�������قǃm�C�Y�����Ȃ��B||
-||``Random Width`` ||�S�Ă̏ڍ׃I�u�W�F�N�g�̊Ԃ̕��̃o���c�L�̐��� ||
-||``Random Height`` ||�S�Ă̏ڍ׃I�u�W�F�N�g�̍����̃o���c�L�̐��� ||
-||``Healthy Color`` ||���N�I�ȏڍ׃I�u�W�F�N�g�̐F�B``Noise Spread``�N���X�^�̒��S�Ŗڗ����܂��B||
-||``Dry Color`` ||���������ڍ׃I�u�W�F�N�g�̐F�B``Noise Spread``�N���X�^�̊O�̉��Ŗڗ����܂��B ||
-||``Grayscale Lighting`` ||�L���ȏꍇ�A�ڍ׃I�u�W�F�N�g�́ATerrain����Ƃ炷���̐F�ɉe������܂���B ||
-||``Lightmap Factor`` ||�ڍ׃I�u�W�F�N�g���A���C�g�}�b�v�ɂ��e�����󂯂邩 ||
-||``Render Mode`` ||Grass���C�e�B���O�ƒʏ�̒��_���C�e�B���O�̂ǂ���ŁA���̎�ނ̏ڍ׃I�u�W�F�N�g���Ƃ炷����ݒ肵�܂��B��̂悤�ȏڍ׃I�u�W�F�N�g�͒��_���C�e�B���O���g�p���ׂ��ł��B||
+||``Detail`` ||詳細に使用されるメッシュ ||
+||``Noise Spread`` ||``Detail``にノイズより生成されるクラスタの大きさ。小さいほどノイズが少ない。||
+||``Random Width`` ||全ての詳細オブジェクトの間の幅のバラツキの制限 ||
+||``Random Height`` ||全ての詳細オブジェクトの高さのバラツキの制限 ||
+||``Healthy Color`` ||健康的な詳細オブジェクトの色。``Noise Spread``クラスタの中心で目立ちます。||
+||``Dry Color`` ||乾燥した詳細オブジェクトの色。``Noise Spread``クラスタの外の縁で目立ちます。 ||
+||``Grayscale Lighting`` ||有効な場合、詳細オブジェクトは、Terrain上を照らす光の色に影響されません。 ||
+||``Lightmap Factor`` ||詳細オブジェクトが、ライトマップにより影響を受けるか ||
+||``Render Mode`` ||Grassライティングと通常の頂点ライティングのどちらで、この種類の詳細オブジェクトを照らすかを設定します。岩のような詳細オブジェクトは頂点ライティングを使用すべきです。||
 
 
-^^Add^^�{�^�����N���b�N����ƁA�ڍ׃��b�V����$$Inspector$$�ɕ\������܂��B�ڍ׃��b�V����Grass�ׂ͗荇���Ă��܂��B
+^^Add^^ボタンをクリックすると、詳細メッシュが$$Inspector$$に表示されます。詳細メッシュとGrassは隣り合っています。
 
 Attach:TerrainGuide-DetailMeshInspector.png\\
-''�ǉ����ꂽ�ڍ׃��b�V�����A�C���X�y�N�^�ŁAGrass�I�u�W�F�N�g�ׂ̗ɕ\�����ꂽ''
+''追加された詳細メッシュが、インスペクタで、Grassオブジェクトの隣に表示された''
 
-!! �ڍ׃��b�V���̃y�C���g(Painting Detail Meshes)
+!! 詳細メッシュのペイント(Painting Detail Meshes)
 
-�ڍ׃��b�V���̃y�C���g�́A�e�N�X�`���ATree�AGrass�Ɠ��l�ł��B�`�悵����Detail�i�ڍׁj��I�����āA�V�[���r���[�̒n�`�ɕ`�悵�܂��B
+詳細メッシュのペイントは、テクスチャ、Tree、Grassと同様です。描画したいDetail（詳細）を選択して、シーンビューの地形に描画します。
 
 Attach:TerrainGuide-PaintingDetailMeshes.png\\
-''�ڍ׃��b�V���̃y�C���g�͂ƂĂ��V���v���ł��B''
+''詳細メッシュのペイントはとてもシンプルです。''
 
-__����:__ �u���V���I�����ꂽ��ԂŁA�}�E�X���V�[���r���[����Terrain��œ������A^^F^^�L�[�������ĉ������B����ɂ��V�[���r���[���}�E�X�|�C���^�̈ʒu�ɃZ���^�����O����u���V�̑傫��(``Brush Size``)�ɍ��킹�āA�����I�ɃY�[�����܂��B����ɂ��A�ҏW���ɍł��f�����ȒP�ɒn�`���i�r�Q�[�V����������@�ł��B
+__注意:__ ブラシが選択された状態で、マウスをシーンビュー内のTerrain上で動かし、^^F^^キーを押して下さい。これによりシーンビューがマウスポインタの位置にセンタリングされブラシの大きさ(``Brush Size``)に合わせて、自動的にズームします。これにより、編集中に最も素早く簡単に地形をナビゲーションする方法です。
 
-!!�ڍ׃I�u�W�F�N�g�̕ҏW(Editing Details)
+!!詳細オブジェクトの編集(Editing Details)
 
-�ڍ׃��b�V���̃C���|�[�g�p�����[�^��ύX����ɂ́A�����I������^^Edit Details button->Edit^^���N���b�N���܂��B�ڍ׃��b�V���̕ҏW($$Edit Detail Mesh$$)�_�C�A���O���\������A��L�̃p�����[�^��ύX�ł��܂��B
+詳細メッシュのインポートパラメータを変更するには、それを選択して^^Edit Details button->Edit^^をクリックします。詳細メッシュの編集($$Edit Detail Mesh$$)ダイアログが表示され、上記のパラメータを変更できます。
 
-!! �\�[�X�A�Z�b�g�̃��t���b�V��(Refreshing Source Assets)
+!! ソースアセットのリフレッシュ(Refreshing Source Assets)
 
-�ڍ׃��b�V���A�Z�b�g�̃\�[�X�t�@�C�����X�V�����ꍇ�ATerrain�Ɏ蓮�ŃC���|�[�g����K�v������܂��B���̂��߂ɂ�^^Terrain->Refresh Tree and Detail Prototypes^^���g�p���܂��B����̓\�[�X�A�Z�b�g��ύX���ĕۑ�������ɍs���A�n�`��̏ڍ׃��b�V�����������ɂɃ��t���b�V�����܂��B
+詳細メッシュアセットのソースファイルを更新した場合、Terrainに手動でインポートする必要があります。このためには^^Terrain->Refresh Tree and Detail Prototypes^^を使用します。これはソースアセットを変更して保存した後に行われ、地形上の詳細メッシュをただちににリフレッシュします。
 
-!! �q���g:
-* �ڍ׃��b�V���I�u�W�F�N�g��UV��0-1�͈̔͂Ƃ���K�v������A�Ȃ��Ȃ�ڍ׃��b�V���Ŏg�p����Ă���S�Ă̊e�X�̃e�N�X�`���͂ЂƂ̃e�N�X�`���A�g���X�Ƀp�b�N����Ă��邽�߂ł��B
+!! ヒント:
+* 詳細メッシュオブジェクトのUVは0-1の範囲とする必要があり、なぜなら詳細メッシュで使用されている全ての各々のテクスチャはひとつのテクスチャアトラスにパックされているためです。
