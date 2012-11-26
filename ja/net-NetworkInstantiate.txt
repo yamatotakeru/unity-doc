@@ -1,21 +1,20 @@
 ! Network Instantiate
 
-The [[ScriptRef:Network.Instantiate.html | Network.Instantiate]] function offers a straightforward way to instantiate a prefab on all clients, similar to the effect of [[ScriptRef:Object.Instantiate.html|Object.Instantiate]] on a single client. The instantiating client is the one that controls the object (ie, the Input class is only accessible from scripts running on the client instance) but changes will be reflected across the network.
+[[ScriptRef:Network.Instantiate.html | Network.Instantiate]] 関数により、[[ScriptRef:Object.Instantiate.html|Object.Instantiate]] でひとつのクライアント上でするのと直感的に同じ方法で、プレハブを全てのクライアントでインスタンス化できます。インスタンス化するクライアントはオブジェクトをコントロールするもの（すなわちInputクラスはクライアントインスタンスのスクリプトからのみアクセス出来ます）ですが、変更はネットワーク上に反映されます。
 
-
-The argument list for ``Network.Instantiate()`` is as follows:
+``Network.Instantiate()``の引数リストは次の通りです：
 
 [@
 static function Instantiate (prefab : Object, position : Vector3, rotation : Quaternion, group : int) : Object
 @]
 
-As with Object.Instantiate, the first three parameters describe the prefab to be instantiated along with its desired position and rotation. The  ''group'' parameter allows you to define subgroups of objects to control the filtering of messages and can be set to zero if filtering is not required (see the ''Communication Groups'' section below).
+Object.Instantiateと同様に、最初の3つの引数は、インスタンス化するプレハブと、希望する配置、回転です。''group''引数により、オブジェクトのサブグループを指定して、メッセージのフィルタリングを制御することが出来、ゼロを指定した場合はフィルタリング不要になります（下記''Communication Groups''セクションを参照下さい）。
 
-!! Technical Details
+!! 技術的な詳細
 
-Behind the scenes, network instantiation is built around an RPC call which contains an identifier for the prefab along with the position and other details. The RPC call is always buffered in the same manner as other RPC calls, so that instantiated objects will appear on new clients when they connect. See the [[net-RPCDetails| RPC]] page for further details about buffering.
+裏では、ネットワークのインスタンス化は、プレハブの識別子、位置やその他詳細情報を持つ、RPCコールから構成されています。このRPCコールは他のRPCコールと同様にバッファされ、インスタンス化されたオブジェクトは新しいクライアントが接続してきたときに表示されます。バッファリングの詳細については[[net-RPCDetails| RPC]] を参照下さい。
 
 
-!! Communication Groups
+!! コミュニケーショングループ（Communication Groups）
 
-Communication groups can be used to select the clients that will receive particular messages. For example, two connected players might be in separate areas of the game world and may never be able to meet. There is thus no reason to transfer game state between the two player clients but you may still want to allow chat communication between them. In this case, instantiation would need to be restricted for gameplay objects but not for the objects that implement the chat feature and so they would be put in separate groups.
+コミュニケーショングループは、特定のメッセージを受け取るクライアントを選択するのに使用します。例えば、2つの接続されたプレーヤーはゲーム世界の別々のエリアに存在するかも知れず遭遇することがないとします。この場合にゲーム状態を2つのプレイヤークライアントで受け渡す理由はありませんが、チャット通信だけ許可したいとします。この場合、ゲームプレイのオブジェクトのインスタンス化は制限する必要がありますが、チャット機能を実現するオブジェクトでは制限されないため、それらは別グループに入れる必要があります。
