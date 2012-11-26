@@ -10,6 +10,6 @@ An alternative way of using Colliders is to mark them as a $$Trigger$$, just che
 Be aware that in order for two Triggers to send out trigger events when they collide, one of them must include a Rigidbody as well. For a Trigger to collide with a normal Collider, one of them must have a Rigidbody attached.  For a detailed chart of different types of collisions, see the collision action matrix in the Advanced section below.
 
 
-!!! Friction and bouncyness
+!!! Friction and bounciness
 
-Friction, bouncyness and softness are defined in the [[class-PhysicMaterial|Physic Material]]. The [[HOWTO-InstallStandardAssets|Standard Assets]] contain the most common physics materials. To use one of them click on the Physic Material drop-down and select one, eg. Ice. You can also [[class-PhysicMaterial|create]] your own physics materials and tweak all friction values.
+Friction, bounciness and softness are defined in the [[class-PhysicMaterial|Physisc Material]]. The [[HOWTO-InstallStandardAssets|Standard Assets]] contain the most common physics materials. To use one of them click on the Physics Material drop-down and select one, eg. Ice. You can also [[class-PhysicMaterial|create]] your own physics materials and tweak all friction values.

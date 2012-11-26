@@ -1,10 +1,6 @@
 ! iOS Scripting
 
-Unity iOS provides a number of new scripting APIs to access unique device functionality. For cross-platform projects, UNITY_IPHONE is defined for conditionally compiling iOS-specific C# code. The following new scripting classes were introduced:
-||[[ScriptRef:iPhoneInput.html | iPhoneInput]] ||Access to multi-touch screen, accelerometer, device orientation and geographical location.
-||[[ScriptRef:iPhoneSettings.html | iPhoneSettings]] ||iOS specific settings, such as screen orientation, dimming and information about device hardware.
-||[[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]] ||Support for native on-screen keyboard.
-||[[ScriptRef:iPhoneUtils.html | iPhoneUtils]] ||Useful functions for movie playback, anti-piracy protection and vibration.
+Most features of the iOS devices are exposed through the [[ScriptRef:Input.html | Input]] and [[ScriptRef:Handheld.html | Handheld]] classes. For cross-platform projects, $$UNITY_IPHONE$$ is defined for conditionally compiling iOS-specific C# code.
 
 !!Further Reading
 (:tocportion:)
