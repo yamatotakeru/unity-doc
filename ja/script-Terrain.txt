@@ -1,48 +1,47 @@
-! Terrain Engine Guide
+! Terrain Engineガイド
 
-This section will explain how to use the $$Terrain Engine$$.  It will cover creation, technical details, and other considerations.  It is broken into the following sections:
+このセクションでは$$Terrain Engine$$（地形エンジン）の使用方法について説明します。作成の方法、技術的な詳細、その他の考慮事項をカバーします。次のセクションに分かれています：
 
 !! [[terrain-UsingTerrains| Using Terrains]]
-This section covers the most basic information about using Terrains.  This includes creating Terrains and how to use the new Terrain tools & brushes.
+このセクションではTerrainの基本的な情報についてカバーします。これはTerrainの作成方法と新しいTerrainツールおよびブラシの使用方法を含みます。
 
 [[terrain-UsingTerrains| Attach:TerrainGuide-usingTerrains.png]]
 
 !! [[terrain-Height | Height]]
-This section explains how to use the different tools and brushes that alter the Height of the Terrain.
+このセクションでは異なるツールおよびブラシを使用してTerrain（地形）のHeight（高さ）を変更する方法を説明します。
 
 [[terrain-Height | Attach:TerrainGuide-HeightStepping.png]]
 
 !! [[terrain-Textures | Terrain Textures]]
-This section explains how to add, paint and blend Terrain Textures using different brushes.
+このセクションでは異なるブラシを使用して、Terrainテクスチャを追加、ペイント、ブレンドする方法を説明します。
 
 [[terrain-Textures | Attach:TerrainGuide-TerrainTextures.png]]
 
 !! [[terrain-Trees | Trees]]
-This section contains important information for creating your own tree assets.  It also covers adding and painting trees on your Terrain.
+このセクションではツリーアセットを作成する際に重要な情報を説明します。さらにTerrain上でツリーを追加、ペイントする方法もカバーします。
 
 [[terrain-Trees | Attach:TerrainGuide-TreesSection.png]]
 
 !! [[terrain-Grass | Grass]]
-This section explains how grass works, and how to use it.
+このセクションではGrass（草）の仕組みと使用方法を説明します。
 
 [[terrain-Grass | Attach:TerrainGuide-GrassSection.png]]
 
 !! [[terrain-DetailMeshes | Detail Meshes]]
-This section explains practical usage for detail meshes like rocks, haystacks, vegetation, etc.
+このセクションでは詳細メッシュ（岩、ワラ、植生）の実践的な使用方法を説明します。
 
 [[terrain-DetailMeshes | Attach:TerrainGuide-DetailMeshesSection.png]]
 
 [[#Lightmapping]]
 !! [[Main.Lightmapping | Lightmaps]]
-You can lightmap terrains just like any other objects using Unity's built-in lightmapper. See [[Main.Lightmapping | Lightmapping Quickstart]] for help.
+Unity内臓のLightmapperにより他のどのようなオブジェクトとも同じようにTerrainにライトマップを適用することが出来ます。ヘルプが必要な場合は[[Main.Lightmapping | Lightmap クイックスタート]] を参照のこと。
 
 [[Main.Lightmapping | Attach:terrainLightmap.jpg]]
 
-!! [[terrain-OtherSettings | Other Settings]]
+!! [[terrain-OtherSettings | 他の設定]]
 
-This section covers all the other settings associated with Terrains.
+このセクションではTerrainに関するその他全ての設定をカバーします。
 
-!! Mobile performance note
+!! モバイル　パフォーマンスに関する留意事項
 
-Rendering terrain is quite expensive, so terrain engine is not very practical on lower-end mobile devices.
-
+Terrainのレンダリングは相当にコストがかかるため、ローエンドのモバイルデバイスでは実用的ではありません。

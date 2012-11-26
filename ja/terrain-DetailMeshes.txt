@@ -1,44 +1,44 @@
-! Detail Meshes
+! Detail Mesh(詳細メッシュ)
 
-Any Terrain decoration that is not trees or grass should be created as a $$Detail Mesh$$.  This is perfect for things like rocks, 3D shrubbery, or other static items.  To add these, use the $$Paint Foliage$$ button Attach:TerrainGuide-PaintFoliageButton.png . Then choose ^^Edit Details button->Add Detail Mesh^^.  You will see the $$Add Detail Mesh$$ dialog appear.
+TreeやGrassでない、地形の装飾は$$Detail Mesh$$(詳細メッシュ)として作成されるべきです。岩や3Dの茂み、その他の静的な物に最適です。 追加するには$$Paint Foliage$$ボタンを使用します。Attach:TerrainGuide-PaintFoliageButton.png 次に^^Edit Details button->Add Detail Mesh^^を選択します。$$Add Detail Mesh$$（詳細メッシュの追加）ダイアログが表示されます。
+
 
 Attach:TerrainGuide-AddDetailMeshDialog.png\\
-''The Add Detail Mesh dialog''
+''Add Detail Mesh（詳細メッシュの追加）ダイアログ''
 
 ||PROPS
-||``Detail`` ||The mesh to be used for the detail. ||
-||``Noise Spread`` ||The size of noise-generated clusters of the ``Detail``. Lower numbers mean less noise. ||
-||``Random Width`` ||Limit for the amount of width variance between all detail objects. ||
-||``Random Height`` ||Limit for the amount of height variance between all detail objects. ||
-||``Healthy Color`` ||Color of healthy detail objects, prominent in the center of ``Noise Spread`` clusters. ||
-||``Dry Color`` ||Color of dry detail objects, prominent on the outer edges of ``Noise Spread`` clusters. ||
-||``Grayscale Lighting`` ||If enabled, detail objects will not be tinted by any colored light shining on the Terrain. ||
-||``Lightmap Factor`` ||How much the detail objects will be influenced by the Lightmap. ||
-||``Render Mode`` ||Select whether this type of detail object will be lit using Grass lighting or normal Vertex lighting. Detail objects like rocks should use Vertex lighting.||
+||``Detail`` ||詳細に使用されるメッシュ ||
+||``Noise Spread`` ||``Detail``にノイズより生成されるクラスタの大きさ。小さいほどノイズが少ない。||
+||``Random Width`` ||全ての詳細オブジェクトの間の幅のバラツキの制限 ||
+||``Random Height`` ||全ての詳細オブジェクトの高さのバラツキの制限 ||
+||``Healthy Color`` ||健康的な詳細オブジェクトの色。``Noise Spread``クラスタの中心で目立ちます。||
+||``Dry Color`` ||乾燥した詳細オブジェクトの色。``Noise Spread``クラスタの外の縁で目立ちます。 ||
+||``Grayscale Lighting`` ||有効な場合、詳細オブジェクトは、Terrain上を照らす光の色に影響されません。 ||
+||``Lightmap Factor`` ||詳細オブジェクトが、ライトマップにより影響を受けるか ||
+||``Render Mode`` ||Grassライティングと通常の頂点ライティングのどちらで、この種類の詳細オブジェクトを照らすかを設定します。岩のような詳細オブジェクトは頂点ライティングを使用すべきです。||
 
 
-After you've clicked the ^^Add^^ button, you'll see the Detail mesh appear in the $$Inspector$$.  Detail meshes and grass will appear next to each other.
+^^Add^^ボタンをクリックすると、詳細メッシュが$$Inspector$$に表示されます。詳細メッシュとGrassは隣り合っています。
 
 Attach:TerrainGuide-DetailMeshInspector.png\\
-''The added Detail mesh appears in the Inspector, beside any Grass objects''
+''追加された詳細メッシュが、インスペクタで、Grassオブジェクトの隣に表示された''
 
-!! Painting Detail Meshes
+!! 詳細メッシュのペイント(Painting Detail Meshes)
 
-Painting a Detail mesh works the same as painting textures, trees, or grass. Select the Detail you want to paint, and paint right onto the Terrain in the Scene View.
+詳細メッシュのペイントは、テクスチャ、Tree、Grassと同様です。描画したいDetail（詳細）を選択して、シーンビューの地形に描画します。
 
 Attach:TerrainGuide-PaintingDetailMeshes.png\\
-''Painting Detail meshes is very simple''
+''詳細メッシュのペイントはとてもシンプルです。''
 
-__Note:__ When you have a brush selected, move your mouse over the Terrain in the Scene View and press ^^F^^.  This will center the Scene View over the mouse pointer position and automatically zoom in to the ``Brush Size`` distance.  This is the quickest & easiest way to navigate around your Terrain while creating it.
+__注意:__ ブラシが選択された状態で、マウスをシーンビュー内のTerrain上で動かし、^^F^^キーを押して下さい。これによりシーンビューがマウスポインタの位置にセンタリングされブラシの大きさ(``Brush Size``)に合わせて、自動的にズームします。これにより、編集中に最も素早く簡単に地形をナビゲーションする方法です。
 
-!! Editing Details
+!!詳細オブジェクトの編集(Editing Details)
 
-To change any import parameters for a Detail Mesh, select it and choose ^^Edit Details button->Edit^^.  You will then see the $$Edit Detail Mesh$$ dialog appear, and be able to adjust the parameters described above.
+詳細メッシュのインポートパラメータを変更するには、それを選択して^^Edit Details button->Edit^^をクリックします。詳細メッシュの編集($$Edit Detail Mesh$$)ダイアログが表示され、上記のパラメータを変更できます。
 
-!! Refreshing Source Assets
+!! ソースアセットのリフレッシュ(Refreshing Source Assets)
 
-If you make any updates to your Detail Mesh asset source file, it must be manually re-imported into the Terrain.  To do this, use ^^Terrain->Refresh Tree and Detail Prototypes^^.  This is done after you've changed your source asset and saved it, and will refresh the Detail Meshes in your Terrain immediately.
+詳細メッシュアセットのソースファイルを更新した場合、Terrainに手動でインポートする必要があります。このためには^^Terrain->Refresh Tree and Detail Prototypes^^を使用します。これはソースアセットを変更して保存した後に行われ、地形上の詳細メッシュをただちににリフレッシュします。
 
-!! Hints:
-* The UVs of the detail mesh objects need to be in the 0-1 range because all the separate textures used for all the detail meshes are packed into a single texture atlas.
-
+!! ヒント:
+* 詳細メッシュオブジェクトのUVは0-1の範囲とする必要があり、なぜなら詳細メッシュで使用されている全ての各々のテクスチャはひとつのテクスチャアトラスにパックされているためです。
