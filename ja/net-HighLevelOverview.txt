@@ -1,89 +1,92 @@
-! High Level Networking Concepts
+! ネットワーキング概念の概要
 
-This section covers general networking concepts that should be understood before developing a game with Unity's networking architecture.
-
-!! What is Networking?
-
-Networking is communication between two or more computers. A fundamental idea is that of the relationship between the $$client$$ (the computer that is requesting information) and the $$server$$ (the computer responding to the information request).  The server can either be a dedicated host machine used by all clients, or simply a player machine running the game (client) but also acting as the server for other players.  Once a server has been established and a client has connected to it, the two computers can exchange data as demanded by gameplay.
-
-Creating a network game requires a lot of attention to some very specific details.  Even though network actions are easy to design and create in Unity, networking remains rather complex. A major design decision in Unity is to make networking as robust and flexible as possible. This means that you, as the game creator, are responsible for things that might be handled in an automatic but less robust way in other engines.  The choices you make potentially have a major effect on the design of your game, so it is best to make them as early in the design stage as possible. Understanding networking concepts will help you plan your game design well and avoid problems during the implementation.
+このセクションではUnityのネットワーキングアーキテクチャでゲーム開発をするうえで理解すべき一般的なネットワーキングの概念についてカバーします。
 
 
-!! Networking Approaches
+!! ネットワーキングとは何か
 
-There are two common and proven approaches to structuring a network game which are known as $$Authoritative Server$$ and $$Non-Authoritative Server$$. Both approaches rely on a server connecting clients and passing information between them. Both also offer privacy for end users since clients never actually connect directly with each other or have their IP addresses revealed to other clients.  
+ネットワーキングは2つ以上のコンピュータ間の通信です。基本的な考え方はクライアント（$$client$$）（情報をリクエストするコンピュータ）とサーバ（$$server$$）（情報のリクエストに応答するコンピュータ）との関係です。サーバは全てのクライアントから使用されるホストマシンか、単にプレイヤーがゲームを実行しているマシン（クライアント）がさらに他のプレイヤーのサーバの役割を果たす場合の両方があります。サーバーとして確立クライアント接続が行われると、二つのコンピュータはゲームプレイに応じてデータのやりとりを行うことが出来ます。
 
+ネットワークゲームを作成するには非常に具体的な詳細事項を気にする必要があります。ネットワークのアクションをUnityで設計し作成することは容易ですが、それでも複雑さはあります。Unityの重要な設計方針としてネットワーキングについて出来るかぎり堅牢かつ柔軟性を持たせる、ということがあります。すなわちゲームクリエイターのあなたが責任をもたないといけないこととして、他のゲームエンジンでは自動化されているものの堅牢性が劣る事項も含まれる、ということです。あなたの判断はゲームデザインに大きな影響があり、設計段階の早い時点で決定することが大事です。ネットワーキングの概念を理解することでゲームデザインの設計が改善され実装で発生する問題を回避できます。
 
-!!! Authoritative Server
+!! ネットワーキングに対するアプローチ
 
-The authoritative server approach requires the server to perform all world simulation, application of game rules and processing of input from the player clients.  Each client sends their input (in the form of keystrokes or requested actions) to the server and continuously receives the current state of the game from the server.  The client never makes any changes to the game state itself.  Instead, it tells the server what it wants to do, and the server then handles the request and replies to the client to explain what happened as a result.
-
-Fundamentally, there is a layer of separation between what the player wants to do and what actually happens.  This allows the server to listen to every client's requests before deciding how to update the game state.
-
-An advantage of this approach is that it makes cheating much harder for clients. For example, clients do not have the possibility of cheating by telling the server (and thereby other clients) that an enemy has been killed, since they don't get to make that decision by themselves. They can only tell the server that a weapon was fired and from there, it is up to the server to determine whether or not a kill was made.
-
-Another example of an authoritative server would be a multiplayer game that relies on physics. If each client is allowed to run its own physics simulation then small variations between clients could cause them to drift out of sync with each other gradually. However, if the simulation of all physics objects is handled on a central server then the updated state can be sent back to the clients, guaranteeing they are all consistent.
-
-A potential disadvantage with authoritative servers is the time it takes for the messages to travel over the network. If the player presses a control to move forward and it takes a tenth of a second for the response to return from the server then the delay will be perceptible to the player. One solution to this is to use so-called $$client-side prediction$$. The essence of this technique is that the client is allowed to update its own local version of the game state but it must be able to receive corrections from the server's authoritative version where necessary. Typically, this should only be used for simple game actions and not significant logical changes to game state. For example, it would be unwise to report to a player that an enemy has been killed only for the server to override this decision.
-
-Since client-side prediction is an advanced subject, we don't attempt to cover it in this guide but books and web resources are available if you want to investigate it further.
-
-An authoritative server has a greater processing overhead than a non-authoritative one. When the server is not required to handle all changes to game state, a lot of this load can be distributed between the clients.
-
-!!! Non-Authoritative Server
-
-A non-authoritative server does not control the outcome of every user input. The clients themselves process user input and game logic locally, then send the result of any determined actions to the server. The server then synchronizes all actions with the world state. This is easier to implement from a design perspective, as the server really just relays messages between the clients and does no extra processing beyond what the clients do.
-
-There is no need for any kind of ''prediction'' methods as the clients handle all physics and events themselves and relay what happened to the server. They are the ''owners'' of their objects and are the only agents permitted to send local modifications of those objects over the network.
-
-!! Methods of Network Communication
-
-Now that we've covered the basic architectures of networked games, we will explore the lower-levels of how clients and servers can talk to each other.
-
-There are two relevant methods: $$Remote Procedure Calls$$ and $$State Synchronization$$.  It is not uncommon to use both methods at different points in any particular game.
+ネットワークゲームの構築にあたり良く知られていて、かつ検証も十分に行われている2つのアプローチがあり、権限サーバ（$$Authoritative Server$$）と非権限サーバ（$$Non-Authoritative Server$$）方式と呼ばれます。両方のアプローチはサーバのクライアント接続の確立と相互のデータ受け渡しを前提としています。両方でエンドユーザのプライバシーが確保され、クライアント同士が直接接続されることはなく、またIPアドレスも他のクライアントに公開されません。
 
 
-!!! Remote Procedure Calls
+!!! 権限サーバ
 
-Remote Procedure Calls (RPCs) are used to invoke functions on other computers across the network, although the "network" can also mean the message channel between the client and server when they are both running on the same computer. Clients can send RPCs to the server, and the server can send RPCs to one or more clients.  Most commonly, they are used for actions that happen infrequently.  For example, if a client flips a switch to open a door, it can send an RPC to the server telling it that the door has been opened.  The server can then send another RPC to all clients, invoking their local functions to open that same door. They are used for managing and executing individual events.
+権限サーバのアプローチはゲームの世界の氏ミューれションがサーバで行われることを前提としていて、ゲームルールの適用やプレイヤークライアントからの入力処理も行います。各クライアントは入力の送信（キー入力やアクションのリクエストといった形で）をサーバに対して行い、継続的にゲームの現在の状態をサーバから取得します。クライアントはゲームの様態に直接変更を反映することは行わず、その代わりにサーバにやりたいことのリクエストを行い、サーバがリクエストをハンドリングして暗いなとに結果として何が起こったかを応答します。
 
+基本的に、プレイヤーが何をしたかと、実際に起きることの間でレイヤーの分離があります。これによりサーバが全てのクライアントのリクエストを聞いてからゲームの状態を更新すればよいか判断することが出来ます。
 
-!!! State Synchronization
+このアプローチのメリットはクライアントがチートすることを相当に難しくすることです。例えば、クライアントがサーバに敵を殺したことを伝えてチートすることは出来ず、その判断を自ら行うことが出来ません。サーバに対して武器から発射をｓちえ、その先はサーバで殺せたかを判断することになります。
 
-State Synchronization is used to share data that is constantly changing.  The best example of this would be a player's position in an action game.  The player is always moving, running around, jumping, etc.  All the other players on the network, even the ones that are not controlling this player locally, need to know where he is and what he is doing.  By constantly relaying data about this player's position, the game can accurately represent that position to the other players.
+権限サーバのもう一つの例は、物理挙動に依存したマルチプレイヤーのゲームです。もし各クライアントがそれぞれの物理シミュレーションにもとづいて実行されると、クライアント同士でわずかな差異が徐々に同期がとれなくなります。もしシミュレーションが中央サーバでハンドリングされれば整合性が保証されます。
 
-This kind of data is regularly and frequently sent across the network.  Since this data is time-sensitive, and it requires time to travel across the network from one machine to another, it is important to reduce the amount of data that is sent as far as possible.  In simpler terms, state synchronization naturally requires a lot of bandwidth, so you should aim to use as little bandwidth as possible.
+権限サーバの潜在的な欠点はネットワーク上でメッセージが伝達されるのに時間がかかることです。もしプレーヤーがあるコントロールを前後に動かす場合に、ネットワーク上のサーバからの応答が0.1秒かかるとしたら、遅延の発生がプレイヤーに認識されてしまいます。一つの解決策はクライアント側予測（$$client-side prediction$$）を行うことです。このテクニックの本質はクライアントがゲームをローカルのバージョンとして実行しつつ、サーバからサーバが認証したバージョンを更新情報として受け取ることです。通常は、シンプルなゲームアクションでのみ使用されるべきであり、ゲームの状態にとって重要な情報の更新では使用してはいけません。例えば、プレイヤーに敵が殺された情報を報告して、その後にサーバーがこの判断を覆すのは賢くありません。
 
+クライアント側予測は高度なトピックなので、このガイドでカバーしませんが、さらに詳細を調べるならば本やウェブ上のリソースがあります。
 
-!!! Connecting servers and clients together
+権限サーバは非権限サーバに比べて処理オーバーヘッドが高くなります。サーバが全ての変更をゲームの状態に対する変更をハンドリングすることが必要な場合、この処理負荷はクライアントで分散させることが出来ます。
 
-Connecting servers and clients together can be a complex process. Machines can have private or public IP addresses and they can have local or external firewalls blocking access. Unity networking aims to handle as many situations as possible but there is no universal solution.
+!!! 非権限サーバ
 
-Private addresses are IP addresses which are not accessible directly from the internet (they are also called Network Address Translation or NAT addresses after the method used to implement them). Simply explained, the private address goes through a local router which translates the address into a public address. By doing this, many machines with private addresses can use a single public IP address to communicate with the internet. This is fine until someone elsewhere on the internet wants to initiate contact with one of the private addresses. The communication must happen via the public address of the router, which must then pass the message on to the private address. A technique called NAT punchthrough uses a shared server known as a ''facilitator'' to mediate communication in such a way that the private address can be reached from the public address. This works by having the private address first contact the facilitator, which "punches" a hole through the local router. The facilitator can now see the public IP address and port which the private address is using. Using this information, any machine on the internet can now connect directly with the otherwise unreachable private address. (Note that the details of NAT punchthrough are somewhat more complicated than this in practice.)
+ 非権限サーバはユーザ入力の結果を制御しません。クライアント自身がユーザ入力およびゲームロジックをローカルで処理して決まったアクションをサーバに送信します。サーバは全てのアクションをゲームの世界の状態と同期します。これにより、設計の観点から実装しやすく、サーバは単にクライアント間のメッセージリレーを行うのみであり、クライアントが行う以上の追加の処理がありません。
 
-Public addresses are more straightforward. Here, the main issue is that connectivity can be blocked by an internal or external firewall (an internal firewall is one that runs locally on the computer it is protecting). For an internal firewall, the user can be asked to remove restrictions from a particular port so as to make the game server accessible. An external firewall, by contrast, is not under the control of the users. Unity can attempt to use NAT punchthrough to get access through an external firewall but this technique is not guaranteed to succeed. Our testing suggests that it generally works in practice but there doesn't appear to be any formal research that confirms this finding.
+予測（''prediction''）手法の類は必要とされず、クライアントは全ての物理挙動やイベントのハンドリングを行い、発生した内容をサーバにリレーします。オブジェクトに対するオーナーとなり、ネットワーク上でそれらのオブジェクトに対する修正はそのエージェントのみが行うものと限定されます。
 
-The connectivity issues just mentioned affect servers and clients differently. Client requests involve only outgoing network traffic which is relatively straightforward. If the client has a public address then this almost always works since outgoing traffic is typically only blocked on corporate networks that impose severe access restrictions. If the client has a private address it can connect to all servers except servers with private addresses which cannot do NAT punchthrough (more will be said about this later). The server end is more complicated because the server needs to be able to accept incoming connections from unknown sources. With a public address, the server needs to have the game port open to the internet (ie, not blocked by a firewall). or else it cannot accept any connections from clients and is thus unusable. If the server has a private address it must be able to do NAT punchthrough to allow connections and clients must also permit NAT punchthrough in order to connect to it.
+!! ネットワーク通信の手法
 
-Unity provides tools to test all these different connectivity situations. When it is established that a connection can be made, there are two methods by which it can happen: direct connections (where a client needs to know the DNS name or IP address of the server) and connections via the Master Server. The Master Server allows servers to advertise their presence to clients which need not know anything about particular game servers beforehand.
+ネットワークゲームの基本アーキテクチャがカバーできたところで、下位概念においてクライアントやサーバが互いに通信する方法を見ていきます。
 
-
-!! Minimizing Network Bandwidth
-
-When working with State Synchronization across multiple clients, you don't necessarily need to synchronize every single detail in order to make objects appear synchronized. For example, when synchronizing a character avatar you only need to send its position and rotation between clients. Even though the character itself is much more complex and might contain a deep $$Transform$$ hierarchy, data about the entire hierarchy does not need to be shared.
-
-A lot of data in your game is effectively static, and clients need neither transfer it initially nor synchronize it. Using infrequent or one-time RPC calls should be sufficient to make a lot of your functionality work. Take advantage of the data you know will exist in every installation of your game and keep the client working by itself as much as possible. For example, you know that assets like textures and meshes exist on all installations and they usually don't change, so they will never have to be synchronized. This is a simple example but it should get you thinking about what data is absolutely critical to share from one client to another. This is the only data that you should ever share.
-
-It can be difficult to work out exactly what needs to be shared and what doesn't, especially if you have never made a network game before.  Bear in mind that you can use a single RPC call with a level name to make all clients load the entire specified level and add their own networked elements automatically.  Structuring your game to make each client as self-sufficient as possible will result in reduced bandwidth.
+二つの関連した手法があり、リモートプロシージャコール（$$Remote Procedure Calls$$と状態同期（$$State Synchronization$$）と呼ばれます。どのようなゲームのどのようなタイミングで使用するのも一般的なことです。
 
 
-!! Multiplayer Game Performance
+!!! リモートプロシージャコール
 
-The physical location and performance of the server itself can greatly affect the playability of a game running on it. Clients which are located a continent away from the server may experience a great deal of lag. This is a physical limitation of the internet and the only real solution is to arrange for the server to be as close as possible to the clients who will use it, or at least on the same continent.
+リモートプロシージャコール（RPC）はネットワーク上で他のコンピュータ上で関数の実行するために使用され、ここで「ネットワーク」はクライアントとサーバが同じコンピュータ上で実行されている場合にはそれらの間のメッセージチャネルを意味します。クライアントはサーバにRPCを送信することが出来、サーバはRPCをひとつ以上のクライアントに送信出来ます。もっとも一般的な使用方法としては、頻繁でないアクションに使用されます。例えばクライアントがドアをあけるためのスイッチを入れた場合、サーバにRPCを送信してドアが開けられたことを知らせます。サーバは別のRPCを全てのクライアントに送信して、それぞれのローカル関数を実行し同じドアを開けるようにします。これらは個別のイベントの管理と実行に使用します。
 
-!! Extra Resources
 
-We've collected the following links to additional resources about networking:-
+!!! 状態同期
+
+状態同期は継続的に変更がかかるデータを共有するために使用します。もっとも良い例としてはアクションゲームにおけるプレイヤー位置です。プレイヤーは継続的に移動、走り回り、ジャンプしている、等の場合です。ネットワーク上の他の全てのプレイヤー、すなわちローカルでプレイヤー自身をコントロールしている場合も含めて、どこに位置しているかおよび何をしているか知る必要があります。このプレイヤー位置のデータを継続的にリレーすることで、ゲームは正確にその位置を他のプレイヤーに提示することが出来ます。
+
+この種のデータはネットワーク上を定期的かつ頻繁に送信されます。このデータは時間依存し、ひとつのマシンから次のマシンに渡るまで時間がかかるため、出来るかぎり送信データの量を削減することは重要です。もっと簡単にいうと、状態同期は自然と多くの帯域幅を必要とするため、できるかぎり最小の帯域幅を使用するようにすべきです。
+
+
+!!! サーバとクライアントを相互接続する
+
+
+サーバとクライアントを接続することは複雑なプロセスとなりえます。マシンはプライベート、パブリックIPアドレスを持ち、ローカルや外部ファイアウォールがアクセスをブロックします。Unityネットワーキングはできるかぎり多くのシチュエーションをハンドリングしますが、絶対的な解決策はありません。
+
+プライベートアドレスはインターネットから直接アクセスすることができないIPアドレス（ネットワークアドレス変換（Network Address Translation）、あるいは使用する手法からNATアドレスと呼ばれます）です。簡単に説明すると、プライベートアドレスはローカルルータを通過し、そこでアドレスがパブリックアドレスに変換されます。これにより、多くのプライベートアドレスを持ったマシンはひとつのパブリックアドレスを使用してインターネットで通信できます。これｈあ誰かインターネット上で他のプライベートアドレスと通信を始めたい場合でなければ何ら問題はありません。この通信はルータのパブリックアドレスを通して行われる必要があり、次にプライベートアドレスにメッセージを渡す必要があります。NATパンチスルー（NAT punchthrough）というテクニックを使って、ファシリテータ（''facilitator''）として知られる共有サーバを仲介としてプライベートアドレスをパブリックアドレスから到達できるようにします。プライベートアドレスがまずファシリテータにコンタクトを行い、そこからローカルルータに穴を空けることで実現されます。（NATパンチスルーの詳細は現実にはより複雑なものであることに留意して下さい）
+
+パブリックアドレスはより直感的なものです。ここでの主要な課題は接続が内部、あるいは外部ファイアウォールによりブロックされることです（内部ファイアフォールは守ろうとしているコンピュータでローカル上実行されています）。内部ファイアウォールにおいては、ユーザは特定のポートを開放し、ゲームサーバをアクセス可能にするよう求められます。外部ファイアウォールは、対照的にユーザの管理下にありません。UnityはNATパンチスルーを使用して外部ファイアウォールを通してアクセスを試みることは出来ますが、成功は保証されません。テスト結果によれば、実際に一般的に機能することは示されているものの、正式な調査でこの発見が正しいと確認できるものはありません。
+
+すでに述べた接続の問題はサーバとクライアントに対して各々違って影響します。クライアントリクエストは発信のトラフィックのみであるため、比較的直感的です。もしクライアントがパブリックアドレスを持つ場合、ほぼ常に成功し、なぜかというと発信のトラフィックまでブロックするのは一般に企業ネットワークなど極めて厳しいアクセス制限をかけているものに限られるためです。もしクライアントがプライベートアドレスを持つ場合、NATパンチスルーができないプライベートアドレスを持つサーバ以外の全てのサーバと接続することが出来ます。（この詳細については後述します）。サーバ側はもっと複雑であり、なぜかというとサーバは未知の発信元から受信を行う必要があるためです。パブリックアドレスでは、サーバはインターネット向けにゲームポートを開放されている必要があり（すなわちファイアウォールでブロックされない）、そうでなければクライアントから通信を受け付けることができず使用することが出来ません。もしサーバがプライベートアドレスをもつ場合、NATパンチスルーを使用して接続を許可し、クライアントもまたNATパンチスルーを許可していないと接続ができない。
+
+Unityはこれらの異なる接続状況をテストするツールを提供しています。接続が確立できることが確認できるとするならば、2つの手法があり、直接接続（クライアントがサーバのDNS名やIPアドレスを知る必要がある）かマスターサーバー（Master Server）を通して通信です。マスターサーバにより、特定のゲームサーバーの情報についてあらかじめ知る必要がないクライアントに対して、サーバが存在を示すことが出来ます。
+
+
+
+!! ネットワーク帯域幅の最小化
+
+複数のクライアント間で状態同期を行う場合、必ずしも全ての詳細情報がないと、オブジェクトが同期させられないわけではりません。例えば、キャラクターのアバターを同期させる場合はクライアント間を送信するのは位置と回転の情報で十分です。キャラクター自身がもっと複雑で、深い$$Transform$$階層を持っていたとしても、階層全体に関する情報を共有する必要性はありません。
+
+ゲームにおけるたくさんの情報は十分に静的であり、クライアントはそれを送信も同期もする必要がありません。機能の多くは、頻繁でない、あるいはワンタイムのRPCコールだけで十分実現できます。どのゲームのインストールでも存在するデータについて有効に活用し、クライアントはできるかぎり自前で処理できるようにします。例えば、テクスチャやメッシュといったアセットは全てのインストールで存在することが分かっていて変更も通常はされないため、同期を取る必要がありません。これは簡単な例ですが、クライアント間で共有されるべき、まさにクリティカルなデータが何であるか考えるには十分です。そういうデータのみを共有すべきです。
+
+ネットワークゲームを初めて作成する場合は特に、具体的に何を共有すべきで、何を共有すべきでないかを判断することは難しいかもしれません。レベル名をつけた一度のRPCコールで、全てのクライアントが指定されたレベル全体をロードすることが出来て、自動的にネットワーク要素を付け加えることが出来ることに留意して下さい。ゲームにおいて、クライアントができる限り自己完結できるように構成することで、帯域幅は最小化できます。
+
+
+!!マルチプレイヤーゲームのパフォーマンス
+
+サーバ自身の物理的な場所とパフォーマンスは、その上で実行されるゲームのプレイ品質に大きく影響します。サーバと別大陸にいるクライアントは大きな遅延を経験するかもしれません。これはインターネットの物理的制約であり、実際の解決方法としてはサーバと使用するクライアントができるかぎり近くに位置することであり、せめて同じ大陸上にあることです。
+
+
+!! 追加のリソース
+
+ネットワーキングについて、学習できる追加のリソースを集めました：
 
 * http://developer.valvesoftware.com/wiki/Source_Multiplayer_Networking
 * http://developer.valvesoftware.com/wiki/Lag_Compensation
