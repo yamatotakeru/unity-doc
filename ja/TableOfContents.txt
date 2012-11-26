@@ -140,7 +140,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 *** [[android-bugreporting]]
 *** [[android-unsupported]]
 *** [[android-OBBsupport]]
-*** [[class-PlayerSettings#Android ]]
+*** [[class-PlayerSettings40#Android ]]
 *** [[android-API]]
 **** [[Input#AndroidInput ]]
 **** [[MobileKeyboard#Android ]]
@@ -615,3 +615,4 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[LayerBasedCollision ]]
 *** [[Tags]]
 *** [[RigidbodySleeping]]
+
