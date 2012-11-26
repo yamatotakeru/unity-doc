@@ -1,20 +1,21 @@
-! Network Views
+! ネットワークビュー（Network Views）
 
-Network Views are the main component involved in sharing data across the network. They allow two kinds of network communication: $$State Synchronization$$ and $$Remote Procedure Calls$$.
+ネットワークビューはネットワーク上でデータを共有するための主要コンポーネントです。二種類のネットワーク通信があり、状態同期（$$State Synchronization$$）とリモートプロシージャコール（$$Remote Procedure Calls$$）と呼ばれます。
 
-Network Views keep watch on particular objects to detect changes. These changes are then shared to the other clients on the network to ensure the change of state is noted by all of them. This concept is known as ''state synchronization'' and you can read about it further on the [[net-StateSynchronization | State Synchronization page]].
+ネットワークビューは特定のオブジェクトの変更を監視します。これらの変更はネットワーク上の他の全てのクライアントに共有され、状態の変更が通知されていることを保証します。この概念が状態同期（''state synchronization''）と呼ばれ、詳細は[[net-StateSynchronization | State Synchronization page]] で確認ができます。
 
-There are some situations where you would not want the overhead of synchronizing state between clients, for example, when sending out the position of a new object or respawned player. Since events like this are infrequent, it does not make sense to synchronize the state of the involved objects.  Instead, you can use a ''remote procedure call'' to tell the clients or server to perform operations like this. More information about Remote Procedure Calls can be found on the [[net-RPCDetails | RPC manual page]].
+状態同期のオーバーヘッドの発生が望ましくない状況はいくつかあり、例えば、新しいオブジェクトの位置や再度生成されたプレイヤーの情報の送信がそれに当たります。このようなイベントは頻繁なものでないため、関連するオブジェクトの状態を同期する意味がありません。その代わり、リモートプロシージャコール（''remote procedure call''）を用いてクライアントやサーバに操作を実行するように指示することが出来ます。リモートプロシージャコールに関する詳細は[[net-RPCDetails | RPC manual page]] を確認下さい。
 
 
-!! Technical Details
+!! 技術的な詳細
 
-A Network View is identified across the network by its ``NetworkViewID`` which is basically just a identifier which is negotiated to be unique among the networked machines. It is represented as a 128 bit number but is automatically compressed down to 16 bits when transferred over the network if possible.
+ネットワークビューは``NetworkViewID``でネットワーク上識別され、これはネットワークマシン上でユニークにした識別子です。128ビットの数字として表現されますが、ネットワークを経由する際、可能である場合は16ビットに自動圧縮されます。
 
-Each packet that arrives on the client side needs to be applied to a specific Network View as specified by the NetworkViewID. Using this, Unity can find the right Network View, unpack the data and apply the incoming packet to the Network View's observed object.
+クライアント側で受信したパケットはNetworkViewIDで指定された特定のネットワークビューに適用する必要があります。Unityはこの識別子を使って正しいネットワークビューを見つけることが出来、データを展開して、受信パケットの内容をネットワークビューの特定のオブジェクトに適用することができます。
 
-More details about using Network Views in the Editor can be found on the  [[class-NetworkView | Network View Component Reference page]].
+Editorでのネットワークビューの詳細については[[class-NetworkView | Network View Component Reference page]] を参照下さい。
 
-If you use [[ScriptRef:Network.Instantiate.html | Network.Instantiate()]] to create your Networked objects, you do not need to worry about allocating Network Views and assigning them yourself appropriately. It will all work automatically behind the scenes.
 
-However, you can manually set the ``NetworkViewID`` values for each Network View by using [[ScriptRef:Network.AllocateViewID.html | Network.AllocateViewID]]. The Scripting Reference documentation shows an example of how an object can be instantiated manually on every client with an RPC function and then the NetworkViewID manually set with ``AllocateViewID``.
+ネットワークオブジェクトを作成するために[[ScriptRef:Network.Instantiate.html | Network.Instantiate()]] を使用する場合は、ネットワークビュー手動で適切に割り当てることを心配する必要がありません。バックグラウンドで自動的に処理されます。
+
+しかし各ネットワークビューの``NetworkViewID``の値は[[ScriptRef:Network.AllocateViewID.html | Network.AllocateViewID]] を使って手動でセットすることが出来ます。スクリプティングリファレンスのドキュメントでRPC関数を持つ全てのクライアントでオブジェクトをインスタンス化し、NetworkViewIDを``AllocateViewID``で手動セットする例が示されています。
