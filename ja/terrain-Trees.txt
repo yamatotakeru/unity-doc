@@ -1,100 +1,101 @@
-! Tree
+! Trees
 
-UnityのTerrain（地形）エンジンはTreeを特別にサポートしています。Terrain上に木の数千本を配置し、実用的なフレームレートでゲーム内でそれらをレンダリングすることができます。カメラの近くのTreeはフル3Dでレンダリングし、遠くのTreeを2Dビルボードに移行してレンダリングすることで実現されます。遠いビルボードは、様々な角度から見らても正しい向きに更新されます。この移行システムは、詳細なTree環境をパフォーマンス上シンプルに処理できるようにします。Meshからビルボードへの移行のパラメータを微調整することについて、完全に制御することが可能であり、最高のパフォーマンスを得ることが出来ます。
+Unity's Terrain Engine has special support for Trees.  You can put thousands of trees onto a Terrain, and render them in-game with a practical frame rate.  This works by rendering trees near the camera in full 3D, and transitioning far-away trees to 2D billboards.  Billboards in the distance will automatically update to orient themselves correctly as they are viewed from different angles.  This transition system makes a detailed tree environment very simple for performance.  You have complete control over tweaking the parameters of the mesh-to-billboard transition so you can get the best performance you need.
 
 Attach:terrain-PlacingTrees.png\\
-''このように、多くのTreeと美しい環境を、簡単に描くことができます。''
+''You can easily paint lots of trees for beautiful environments like this''
 
-!! Treeの追加
+!! Adding Trees
 
-$$Inspector$$から$$Place Trees$$ボタン Attach:terrain-TreesButton.png を選択します。
+Select the $$Place Trees$$ button Attach:terrain-TreesButton.png in the $$Inspector$$.
 
-Treeを地形に追加する前に、使用可能なTreeのライブラリを追加しなければなりません。 ^^Edit Trees button->Add Tree^^をクリックします。 $$Add Tree$$ダイアログが表示されます。
+Before you can place trees on your terrain, you have to add them to the library of available trees.  To do this, click the ^^Edit Trees button->Add Tree^^.  You'll see the $$Add Tree$$ dialog appear.
 
 Attach:terrain-AddTreeDialog.png\\
-''Add Treeダイアログ''
+''The Add Tree dialog''
 
-Treeを$$Project View$$ーから選択し、``Tree``変数にドラッグします。また、``Bend Factor``を編集すると、"風になびく"アニメーション効果を樹木に追加できます。準備ができたら^^Add^^をクリックします。Treeが、インスペクタに選択された状態で現れます。
+Select the tree from your $$Project View$$ and drag it to the ``Tree`` variable.  You can also edit the ``Bend Factor`` if you want to add an additional bit of animated "bending in the wind" effect to the trees.  When you're ready, click ^^Add^^.  The tree will now appear selected in the Inspector.
 
 Attach:terrain-AddedTree.png\\
-新しく追加されたTreeが、インスペクタに選択された状態で現れます。
+''The newly added tree appears selected in the Inspector''
 
-好きなだけTreeを追加できます。それぞれのTreeは、Terrainに追加するために、インスペクタで選択できます。
+You can add as many trees as you like.  Each one will be selectable in the Inspector for you to place on your Terrain.
 
 Attach:terrain-AddedMultipleTrees.png\\
-''選択されたTreeは青色にハイライトされます。''
+''The currently selected tree will always be highlighted in blue''
 
-!! Treeのペイント（木の描画）
+!! Painting Trees
 
-Place Trees（木の配置）ツールを使っているとき、地形をクリックするとTreeを配置できます。木を取り除くには、^^Shift^^ボタンを押しながら、Terrainをクリックします。
+While still using the Place Trees tool, click anywhere on the Terrain to place your trees.  To erase trees, hold the ^^Shift^^ button and click on the Terrain.
 
 Attach:TerrainGuide-PaintingTrees.png\\
-''Treeのペイント（木の描画）は、ペイントブラシを使うのと同様、簡単です。''
+''Painting trees is as easy as using a paintbrush tool''
 
-Treeを置く場合に、オプションが幾つかあります。
+There are a number of options at your disposal when placing trees.
 
 ||PROPS
-||``Brush Size`` ||Tree配置ブラシの半径(メートル)||
-||``Tree Spacing`` ||Treeの間の距離のパーセンテージ||
-||``Color Variation`` ||各Treeの間の色のバリエーション||
-||``Tree Height`` ||アセットと比べたTreeの高さ調整||
-||``Height Variation`` ||各Treeの高さのバリエーション||
-||``Tree Width`` ||アセットと比べたTreeの幅調整||
-||``Width Variation`` ||各Treeの幅のバリエーション||
+||``Brush Size`` ||Radius in meters of the tree placing brush. ||
+||``Tree Spacing`` ||Percentage of tree width between trees. ||
+||``Color Variation`` ||Allowed amount of color difference between each tree. ||
+||``Tree Height`` ||Height adjustment of each tree compared to the asset. ||
+||``Height Variation`` ||Allowed amount of difference in height between each tree. ||
+||``Tree Width`` ||Width adjustment of each tree compared to the asset. ||
+||``Width Variation`` ||Allowed amount of difference in width between each tree. ||
 
 
-!!! Treeのペイント（木の描画）のヒント
+!!! Tree Painting Tips
 
 Attach:TerrainGuide-TreeBrushSize.png\\
-''異なるブラシは、異なるエリアサイズをカバーします''
+''Different Brush sizes cover different area sizes''
 
 Attach:TerrainGuide-TreeSpacing.png\\
-''``Tree Spacing``を調整し、Treeを描画する時の、密度を調整します。''
+''Adjust ``Tree Spacing`` to change the density of the trees you're painting''
 
 
-!! Treeの編集
+!! Editing Trees
 
-追加したTreeのインポートパラメータを変更するには、詳細(Detail)を選択し、^^Edit Trees button->Edit Detail^^をクリックしますまたは、編集したい樹木をダブルクリックします。すると、$$Edit Tree$$ダイアログが表示され、設定を変更することができます。
+To change any import parameters for an added tree, select the detail and choose ^^Edit Trees button->Edit Detail^^.  Or double-click the tree you want to edit.  You will then see the $$Edit Tree$$ dialog, and you can change any of the settings.
 
-!! 大量に配置する場合
+!! Mass Placement
 
-Treeを描画して配置するのではなく、森全体を生成したい場合は、^^Terrain->Mass Place Trees^^を使用します。$$Mass Place Trees$$ダイアログが表示されます。配置したいTreeの数を設定すると、すぐにそれらが配置されます。Terrainに追加されたTree全てが、大量の配置に使用されます。
+If you don't want to paint your trees and you just want a whole forest created, you can use ^^Terrain->Mass Place Trees^^.  Here, you will see the $$Mass Place Trees$$ dialog.  You can set the number of trees you want placed, and they'll be instantly positioned.  All the trees added to your Terrain will be used in this mass placement.
 
 Attach:TerrainGuide-MassPlacedTrees.png\\
-''10,000本のTreeを一度に配置''
+''10,000 Trees placed at once''
 
-!! ソースアセットのリフレッシュ
+!! Refreshing Source Assets
 
-Treeアセットのソースファイルを更新した場合、手動でTerrainにインポートしなければなりません。 ^^Terrain->Refresh Tree and Detail Prototypes^^を使用して、行います。 ソースアセットを変更して、保存した後、これをすることで、Terrain上のTreeを即座にリフレッシュします。
+If you make any updates to your tree asset source file, it must be manually re-imported into the Terrain.  To do this, use ^^Terrain->Refresh Tree and Detail Prototypes^^.  This is done after you've changed your source asset and saved it, and will refresh the trees in your Terrain immediately.
 
-!! Treeの作成
+!! Creating Trees
 
-木はTerrainエンジンにより2つの方法で作成することができます：
+Trees can be created in two ways to the terrain engine:
 
-最初の方法はUnity内臓の[[class-Tree | Tree creator]] を作成する方法で、二つめの方法はUnityが対応しているサードパーティのモデリングソフトを使用する方法で、この場合全てのTreeは全ての樹木は、1つのメッシュと2つの$$Materials$$を含みます。 １つは幹で、もうひとつは葉です。
+The first one is by using the [[class-Tree | Tree creator]] that Unity comes with, and the second one is by using a 3rd party modeling program compatible with Unity, in this case every tree should consist of a single mesh with two $$Materials$$. One for the trunk and one for the leaves. 
 
-パフォーマンスの問題から、平均的なTreeでは、三角形の数は2000以下に抑えるべきです。少ない三角形の数である程よいでしょう。TreeメッシュのピボットポイントはTreeの根元でなければなりません。その位置で、Treeは地面の上に配置されることになります。こうすることで、他のモデリングアプリケーションからUnityへのインポートが容易になります。
+For performance reasons, triangle count should be kept below 2000 for an average tree. The fewer triangles the better.  The pivot point of the tree mesh must be exactly at the root of the tree, that is at the point where the tree should meet the surface it is placed on. This makes it the easiest to import into Unity and other modelling applications.
 
-Treeは``Nature/Soft Occlusion Leaves``および``Nature/Soft Occlusion Bark shader``を使用する必要があります。これらのシェーダを使うために、Treeは"Ambient-Occlusion"の名前を含む、特別なフォルダに配置しなければなりません。モデルをフォルダに配置したり、再インポートしたりすると、UnityはTreeに特化された、Soft Ambient Occlusionを計算します。  "Nature/Soft Occlusion"シェーダには、この情報が必要です。もし、命名ルールに従わなければ、樹木は真っ黒な変なものに見えてしまうでしょう。
+Trees must use the ``Nature/Soft Occlusion Leaves`` and ``Nature/Soft Occlusion Bark shader``.  In order to use those shaders you also have to place the tree in a special folder that contains the name "Ambient-Occlusion". When you place a model in that folder and reimport it, Unity will calculate soft ambient occlusion specialized for trees. The "Nature/Soft Occlusion" shaders need this information. If you don't follow the naming conventions the tree will look weird with completely black parts.
 
-Unityはまた、いくつかの高品質のTreeを"Terrain Demo.unitypackage"に含んでいます。ゲームの中で、これらを使用することができます。
+Unity also ships with several high quality trees in the "Terrain Demo.unitypackage". You can use those trees readily in your game. 
 
 
-!! ローポリのTreeを使用
+!! Using Low Poly Trees
 
 Attach:lowpolytree.png
 
-１つの枝と葉が、たった6枚の三角形で作られ、しっかりと曲がって見えます。もっと曲面を表現するために、三角形を追加できます。しかし、重要な点は、Treeを作るとき、四角形ではなく、三角形を使うことです。もし、四角形を使うと、枝の湾曲を表現するために、三角形を使う場合の2倍の量が必要になります。
+One branch with leaves is done with only six triangles and shows quite a bit of curvature. You can add more triangles for even more curvature. But the main point is: When making trees, work with triangles not with quads. If you use quads you basically need twice as many triangles to get the same curvature on branches.
 
-Treeは、アルファで見えない部分がほとんどの、大きなポリゴンを持っており、塗りつぶし時間を無断にします。パフォーマンスの観点から、避けられるべきで、もちろん、密集したTreeを作ることが目的です。 Oblivionの木が、非常に良く見えるのもこのためです。葉の間から向こうが見えないほど密集しています。
+The tree itself wastes a lot of fillrate by having large polygons but almost everything is invisible due to the alpha. This should be avoided for performance reasons and of course because the goal is to make dense trees. This is one of the things that makes Oblivion's trees look great. They are so dense you cant even see through the leaves.
 
 
-!!Treeとの衝突のセットアップ
+!!Setting up Tree Collisions
 
-TreeでColliderを活用するのはとても簡単です。Treeアセットファイルをインポートしたとき、しなければならないことはシーンビューにインスタンス化し、$$Capsule Collider$$(カプセルコライダ)を追加し、ゲームオブジェクトを新たなプレハブにします。これで、TreeをTerrainに追加するとき、カプセルコライダを持った、Treeのプレハブが追加されます。Treeとの衝突についてはCapsule Colliderのみ使用できます。
+If you'd like your trees to make use of colliders, it's very easy.  When you've imported your Tree asset file, all you need to do is instantiate it in the Scene View, add a $$Capsule Collider$$ and tweak it, and make the GameObject into a new Prefab.  Then when you're adding trees to your Terrain, you add the tree Prefab with the Capsule Collider attached. You can only use Capsule Colliders when adding collisions with trees.
 
-!!Treeと衝突させる
+!!Making your Trees Collide.
 Attach:TerrainCollider.png\\
-''インスペクタ上のTerrain Collider''
+''Terrain Collider Inspector''
 
-TreeをRigidbodyと衝突するようにしたい場合 ''Create Tree Colliders''をオンにするようにして下さい、しない場合はオブジェクトがTreeを通り抜けます。Unityが使用するのPhysXエンジンがひとつのシーンで使用できるColliderは65536が最大値であることに注意してください。あなたが、それ以上の数のTree（すでにシーンで使用されている他のコライダーも引く）を使用する場合は、Tree Colliderがエラーで失敗します。
+If you want to make your trees collide with rigid bodies, make sure you you check the ''Create Tree Colliders'' box. else your objects will go trough the trees you create. Note that the PhysX engine used by Unity only handles a maximum of 65536 colliders in a scene. If you use more trees then that (minus the other colliders already in the scene), then enabling tree colliders will fail with an error.
+
