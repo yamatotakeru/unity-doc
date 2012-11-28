@@ -12,6 +12,7 @@ The platform defines that Unity supports for your scripts are:
 ||``UNITY_STANDALONE_OSX`` ||Platform define for compiling/executing code specifically for Mac OS (This includes Universal, PPC and Intel architectures).||
 ||``UNITY_DASHBOARD_WIDGET`` ||Platform define when creating code for Mac OS dashboard widgets.||
 ||``UNITY_STANDALONE_WIN`` ||Use this when you want to compile/execute code for Windows stand alone applications.||
+||``UNITY_STANDALONE_LINUX`` ||Use this when you want to compile/execute code for Linux stand alone applications.
 ||``UNITY_WEBPLAYER`` ||Platform define for web player content (this includes Windows and Mac Web player executables).||
 ||``UNITY_WII`` ||Platform define for compiling/executing code for the Wii console.||
 ||``UNITY_IPHONE`` ||Platform define for compiling/executing code for the iPhone platform.||
@@ -21,7 +22,6 @@ The platform defines that Unity supports for your scripts are:
 ||``UNITY_NACL`` ||Platform define when compiling code for Google native client (this will be set additionally to ``UNITY_WEBPLAYER``).
 ||``UNITY_FLASH`` ||Platform define when compiling code for Adobe Flash. 
 
-__Note:__ These defines were introduced at version 3.0.
 
 Also you can compile code selectively depending on the version of the engine you are working on. Currently the supported ones are:
 
