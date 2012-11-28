@@ -189,10 +189,16 @@ This error usually happens if you use lots of recursive generics. You can hint t
 
 !! After upgrading Xcode Unity iOS runtime fails with message "You are using Unity iPhone Basic. You are not allowed to remove the Unity splash screen from your game"
 With some latest Xcode releases there were changes introduced in PNG compression and optimization tool. These changes might cause false positives in Unity iOS runtime checks for splash screen modifications. If you encounter such problems try upgrading Unity to the latest publicly available version. If it does not help you might consider following workaround:
+* Replace your Xcode project from scratch when building from Unity (instead of appending it)
+* Delete already installed project from device
+* Clean project in Xcode (''Product''->''Clean'')
+* Clear Xcode's Derived Data folders (''Xcode''->''Preferences''->''Locations'')
+If this still does not help try disabling PNG re-compression in Xcode:
 * Open your Xcode project
 * Select "Unity-iPhone" project there
 * Select "Build Settings" tab there
 * Look for "Compress PNG files" option and set it to NO
+
 
 !! App Store submission fails with "iPhone/iPod Touch: application executable is missing a required architecture. At least one of the following architecture(s) must be present: armv6" message
 You might get such message when updating already existing application, which previously was submitted with armv6 support. Unity 4.x and Xcode 4.5 does not support armv6 platform anymore. To solve submission problem just set ``Target OS Version`` in Unity ``Player Settings`` to ``4.3`` or higher.

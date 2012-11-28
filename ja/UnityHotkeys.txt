@@ -1,21 +1,21 @@
-This page gives an overview of the default Unity Hotkeys. You can also download a PDF of the table for [[Attach:Unity_HotKeys_Win.pdf|Windows]] and [[Attach:Unity_HotKeys_Mac.pdf|MacOSX]]. Where a command has ''CTRL/CMD'' as part of the keystroke, this indicates that the Control key should be used on Windows and the Command key on MacOSX.
+このページでは、Unityのデフォルトショートカットキーの概要を説明します。PDFで一覧を確認したい場合は、[[Attach:Unity_HotKeys_Win.pdf|Windows]] and [[Attach:Unity_HotKeys_Mac.pdf|MacOSX]]からダウンロードできます。。キーの一部に”CTRL/CMD"とある場合は、WindowsではばControlキーをMacOSXならばCommandキーを使用します。
 
 ||width=30%
-||__Tools__||
-||''Keystroke''||''Command''||
-||Q||Pan||
-||W||Move||
-||E||Rotate||
-||R||Scale||
-||Z||Pivot Mode toggle||
-||X||Pivot Rotation Toggle||
-||V||Vertex Snap||
-||CTRL/CMD+LMB||Snap||
+||__Tool__||
+||''入力キー''||''コマンド''||
+||Q||パン||
+||W||移動||
+||E||回転||
+||R||拡大/縮小||
+||Z||ギズモの表示位置を切り替え||
+||X||ギズモの回転設定を切り替え||
+||V||頂点スナッピング||
+||CTRL/CMD+マウス左ボタン||スナッピング||
 || ||
 ||__GameObject__||
-||CTRL/CMD+SHIFT+N||New game object||
-||CTRL/CMD+ALT+F||Move to view||
-||CTRL/CMD+SHIFT+F||Align with view||
+||CTRL/CMD+SHIFT+N||game objectを生成する||
+||CTRL/CMD+ALT+F||ビューに移動(Move to view)||
+||CTRL/CMD+SHIFT+F||ビューに位置合わせ(Aligh with view)||
 || ||
 ||__Window__||
 ||CTRL/CMD+1||Scene||
@@ -30,37 +30,37 @@ This page gives an overview of the default Unity Hotkeys. You can also download 
 ||CTRL/CMD+SHIFT+C||Console||
 || ||
 ||__Edit__||
-||CTRL/CMD+Z||Undo||
-||CTRL+Y (Windows only)||Redo||
-||CMD+SHIFT+Z (Mac only)||Redo||
-||CTRL/CMD+X||Cut||
-||CTRL/CMD+C||Copy||
-||CTRL/CMD+V||Paste||
-||CTRL/CMD+D||Duplicate||
-||SHIFT+Del||Delete||
-||F||Frame (centre) selection||
-||CTRL/CMD+F||Find||
-||CTRL/CMD+A||Select All||
+||CTRL/CMD+Z||取り消す(Undo)||
+||CTRL+Y (Windows only)||やり直す(Redo)||
+||CMD+SHIFT+Z (Mac only)||やり直す(Redo)||
+||CTRL/CMD+X||カット||
+||CTRL/CMD+C||コピー||
+||CTRL/CMD+V||貼り付け||
+||CTRL/CMD+D||複製(Duplicate)||
+||SHIFT+Del||削除||
+||F||選択項目をフレームの中央に(Frame(center)selection)||
+||CTRL/CMD+F||検索||
+||CTRL/CMD+A||全ての項目を選択||
 || ||
 ||__Selection__||
-||CTRL/CMD+SHIFT+1||Load Selection 1||
-||CTRL/CMD+SHIFT+2||Load Selection 2||
-||CTRL/CMD+SHIFT+3||Load Selection 3||
-||CTRL/CMD+SHIFT+4||Load Selection 4||
-||CTRL/CMD+SHIFT+5||Load Selection 5||
-||CTRL/CMD+SHIFT+6||Load Selection 6||
-||CTRL/CMD+SHIFT+7||Load Selection 7||
-||CTRL/CMD+SHIFT+8||Load Selection 8||
-||CTRL/CMD+SHIFT+9||Load Selection 9||
-||CTRL/CMD+ALT+1||Save Selection 1||
-||CTRL/CMD+ALT+2||Save Selection 2||
-||CTRL/CMD+ALT+3||Save Selection 3||
-||CTRL/CMD+ALT+4||Save Selection 4||
-||CTRL/CMD+ALT+5||Save Selection 5||
-||CTRL/CMD+ALT+6||Save Selection 6||
-||CTRL/CMD+ALT+7||Save Selection 7||
-||CTRL/CMD+ALT+8||Save Selection 8||
-||CTRL/CMD+ALT+9||Save Selection 9||
+||CTRL/CMD+SHIFT+1||1から選択状況をロード(Load Selection 1)||
+||CTRL/CMD+SHIFT+2||2から選択状況をロード(Load Selection 2)||
+||CTRL/CMD+SHIFT+3||3から選択状況をロード(Load Selection 3)||
+||CTRL/CMD+SHIFT+4||4から選択状況をロード(Load Selection 4)||
+||CTRL/CMD+SHIFT+5||5から選択状況をロード(Load Selection 5)||
+||CTRL/CMD+SHIFT+6||6から選択状況をロード(Load Selection 6)||
+||CTRL/CMD+SHIFT+7||7から選択状況をロード(Load Selection 7)||
+||CTRL/CMD+SHIFT+8||8から選択状況をロード(Load Selection 8)||
+||CTRL/CMD+SHIFT+9||9から選択状況をロード(Load Selection 9)||
+||CTRL/CMD+ALT+1||1に選択状況をセーブ(Save Selection 1)||
+||CTRL/CMD+ALT+2||2に選択状況をセーブ(Save Selection 2)||
+||CTRL/CMD+ALT+3||3に選択状況をセーブ(Save Selection 3)||
+||CTRL/CMD+ALT+4||4に選択状況をセーブ(Save Selection 4)||
+||CTRL/CMD+ALT+5||5に選択状況をセーブ(Save Selection 5)||
+||CTRL/CMD+ALT+6||6に選択状況をセーブ(Save Selection 6)||
+||CTRL/CMD+ALT+7||7に選択状況をセーブ(Save Selection 7)||
+||CTRL/CMD+ALT+8||8に選択状況をセーブ(Save Selection 8)||
+||CTRL/CMD+ALT+9||9に選択状況をセーブ(Save Selection 9)||
 || ||
 ||__Assets__||
-||CTRL/CMD+R||Refresh||
+||CTRL/CMD+R||リフレッシュ||

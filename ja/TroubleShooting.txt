@@ -50,13 +50,6 @@ Only $$Pixel lights$$ cast shadows. If you want to make sure that a light always
 There are some situations with iOS where your game can work perfectly in the Unity editor but then doesn't work or maybe doesn't even start on the actual device.
 The problems are often related to code or content quality. This section describes the most common scenarios.
 
-!! Xcode 3.2.x fails to build the application with the error "libiPhone-lib.a, missing required architecture i386 in file Undefined symbols: "Register_UnityEngine_Input_GetMouseButtonDown()", referenced from: RegisterAllStrippedInternalCalls()     in RegisterMonoModules.o
-This build error usually happens when a non-simulator SDK is selected in the [[class-PlayerSettings|Player Settings]] but a simulator SDK is selected in Xcode. The SDK settings in Unity and Xcode must be consistent.
-
-
-!! Xcode 4.x fails to build the application with the error "No architectures to compile for (ARCHS=armv6, VALID_ARCHS=i386)."
-Currently Unity has limited support for Xcode 4.x and some manual effort is required to build the final application. The Build & Run command will open the generated Xcode project but it won't select the appropriate build target and target device. If you are building for a test on the device you should select the "Unity-iPhone" build target and an iOS device connected to your Mac. If you are building for testing on the simulator (which requires the right SDK selection as described above) then you should select the "Unity-iPhone-simulator" target and the appropriate simulator device. 
-
 !! The game stops responding after a while. Xcode shows "interrupted" in the status bar.
 There are a number of reasons why this may happen. Typical causes include:
 # Scripting errors such as using uninitialized variables, etc.
@@ -64,7 +57,7 @@ There are a number of reasons why this may happen. Typical causes include:
 # Using generic types with value types as parameters (eg, List<int>, List<SomeStruct>, List<SomeEnum>, etc) for serializable script properties.
 # Using reflection when managed code stripping is enabled.
 # Errors in the native plugin interface (the managed code method signature does not match the native code function signature).
-Information from the XCode Debugger console can often help detect these problems (Xcode menu: ``Run > Console``).
+Information from the XCode Debugger console can often help detect these problems (Xcode menu: ``View > Debug Area > Activate Console``).
 
 !! The Xcode console shows "Program received signal:  &#8220;SIGBUS&#8221; or EXC_BAD_ACCESS error.
 This message typically appears on iOS devices when your application receives a NullReferenceException. There two ways to figure out where the fault happened: 
@@ -85,11 +78,11 @@ This indicates that the fault happened in the handleTimeOfDay method of the DayC
 This might happen if, say, the script accesses an asset bundle without first checking that it was downloaded correctly.
 
 !!!! Native stack traces
-Native stack traces are a much more powerful tool for fault investigation but using them requires some expertise. Also, you generally can't continue after these native (hardware memory access) faults happen. To get a native stack trace, type ``thread apply all bt`` into the Xcode Debugger Console. Carefully inspect the printed stack traces - they may contain hints about where the error occurred. You might see something like:
+Native stack traces are a much more powerful tool for fault investigation but using them requires some expertise. Also, you generally can't continue after these native (hardware memory access) faults happen. To get a native stack trace, type ``bt all`` into the Xcode Debugger Console. Carefully inspect the printed stack traces - they may contain hints about where the error occurred. You might see something like:
 [@
 ...
 Thread 1 (thread 11523): 
-#0 0x006267d0 in OptionsMenu_Start () 
+#0 0x006267d0 in m_OptionsMenu_Start () 
 #1 0x002e4160 in wrapper_runtime_invoke_object_runtime_invoke_void__this___object_intptr_intptr_intptr () 
 #2 0x00a1dd64 in mono_jit_runtime_invoke (method=0x18b63bc, obj=0x5d10cb0, params=0x0, exc=0x2fffdd34) at /Users/mantasp/work/unity/unity-mono/External/Mono/mono/mono/mini/mini.c:4487
 #3 0x0088481c in MonoBehaviour::InvokeMethodOrCoroutineChecked ()
@@ -102,32 +95,33 @@ Thread 1 (thread 11523):
 #0 0x0062564c in start ()
 @]
 This indicates that native symbols were stripped during the Release build of the application. The full stack trace can be obtained with the following procedure:
-* Select Debug configuration in the Xcode project.
+* Remove application from device.
 * Clean all targets.
 * Build and run. 
 * Get stack traces again as described above. 
 
 !! EXC_BAD_ACCESS starts occurring when an external library is linked to the Unity iOS application.
 This usually happens when an external library is compiled with the ARM Thumb instruction set. Currently such libraries are not compatible with Unity. The problem can be solved easily by recompiling the library without Thumb instructions. You can do this for the library's Xcode project with the following steps:
-* in Xcode, select ''"Project"'' > ''"Edit active target"'' from the menu
-* in the ''"Target Info"'' dialog, select ''"Configuration: All Configurations"''
-* in the search field enter : ''"thumb"'' 
-* a ''"Compile for Thumb"'' setting will appear; uncheck it and rebuild the library.
+* in Xcode, select ''"View"'' > ''"Navigators"'' > ''"Show Project Navigator"'' from the menu
+* select the ''"Unity-iPhone"'' project, activate ''"Build Settings"'' tab
+* in the search field enter : ''"Other C Flags"'' 
+* add ''-mno-thumb'' flag there and rebuild the library.
 
 If the library source is not available you should ask the supplier for a non-thumb version of the library.
 
 !! The Xcode console shows "WARNING -> applicationDidReceiveMemoryWarning()" and the application crashes immediately afterwards
 (Sometimes you might see a message like ''Program received signal:  “0”''.)
-This warning message is often not fatal and merely indicates that iOS is low on memory and is asking applications to free up some memory. Typically, background processes like Mail will free some memory and your application can continue to run. However, if your application continues to use memory or ask for more, the OS will eventually start killing applications and yours could be one of them. Apple does not document what memory usage is safe, but empirical observations show that applications using less than 25 MB of RAM (or 80 MB for 3rd generation devices) do not have any memory usage problems. Applications using 40 MB of RAM may have memory problems on 1-2nd generation devices and may require a device restart to run properly.
+This warning message is often not fatal and merely indicates that iOS is low on memory and is asking applications to free up some memory. Typically, background processes like Mail will free some memory and your application can continue to run. However, if your application continues to use memory or ask for more, the OS will eventually start killing applications and yours could be one of them. Apple does not document what memory usage is safe, but empirical observations show that applications using less than 50% MB of all device RAM (like ~200-256 MB for 2nd generation ipad) do not have major memory usage problems.
 The main metric you should rely on is how much RAM your application uses. Your application memory usage consists of three major components:
-* application code (the OS needs to load and keep your application code in RAM)
+* application code (the OS needs to load and keep your application code in RAM, but some of it might be discarded if really needed)
 * native heap (used by the engine to store its state, your assets, etc. in RAM)
 * managed heap (used by your Mono runtime to keep C# or JavaScript objects)
-Your application memory usage can be tracked by two Xcode Instruments tools: ``Activity Monitor`` and ``Object Allocations``. You can start one or the other from the Xcode Run menu: ``Run > Start with Performance Tool > Activity Monitor`` and ``Run > Start with Performance Tool > Object Allocations``. The first tool shows all process statistics including ``Real memory`` which can be regarded as the total amount of RAM used by your application. 
+* GLES driver memory pools: textures, framebuffers, compiled shaders, etc.
+Your application memory usage can be tracked by two Xcode Instruments tools: ``Activity Monitor``, ``Object Allocations`` and ``VM Tracker``. You can start from the Xcode Run menu: ``Product > Profile`` and then select specific tool. ``Activity Monitor`` tool shows all process statistics including ``Real memory`` which can be regarded as the total amount of RAM used by your application. __Note:__ OS and device HW version combination might noticeably affect memory usage numbers, so you should be careful when comparing numbers obtained on different devices.
 
 Attach:ActivityMonitor.png 
 
-__Note:__ The [[iphone-InternalProfiler | internal profiler]] shows only the heap allocated by .NET scripts. Total memory usage can be determined via Xcode Instruments as shown above. This figure includes the application binary (which will be loaded into memory and uses about 7 MB), some standard framework buffers, Unity engine internal state buffers, the .NET runtime heap (number printed by internal profiler), and some other miscellaneous stuff.\\
+__Note:__ The [[iphone-InternalProfiler | internal profiler]] shows only the heap allocated by .NET scripts. Total memory usage can be determined via Xcode Instruments as shown above. This figure includes parts of the application binary, some standard framework buffers, Unity engine internal state buffers, the .NET runtime heap (number printed by internal profiler), GLES driver heap and some other miscellaneous stuff.\\
 
 
 The other tool displays all allocations made by your application and includes both native heap and managed heap statistics (don't forget to check the ``Created and still living`` box to get the current state of the application). The important statistic is the ``Net bytes`` value.
@@ -184,16 +178,36 @@ The stripping process can be customized by adding a custom ``link.xml`` file to 
 
 @]
 
+!!! Application crashes when using System.Security.Cryptography.MD5 with managed code stripping
+You might consider advice listed above or can work around this problem by adding extra reference to specific class to your script code:
+[@
+object obj = new MD5CryptoServiceProvider();
+@]
+
 !! "Ran out of trampolines of type 1/2" runtime error
 This error usually happens if you use lots of recursive generics. You can hint to the AOT compiler to allocate more trampolines of type 1 or type 2. Additional AOT compiler command line options can be specified in the "Other Settings" section of the [[Main.class-PlayerSettings#iOS | Player Settings]]. For type 1 trampolines, specify ``nrgctx-trampolines=ABCD``, where ABCD is the number of new trampolines required (i.e. 4096). For type 2 trampolines specify ``nimt-trampolines=ABCD``.
 
+!! After upgrading Xcode Unity iOS runtime fails with message "You are using Unity iPhone Basic. You are not allowed to remove the Unity splash screen from your game"
+With some latest Xcode releases there were changes introduced in PNG compression and optimization tool. These changes might cause false positives in Unity iOS runtime checks for splash screen modifications. If you encounter such problems try upgrading Unity to the latest publicly available version. If it does not help you might consider following workaround:
+* Replace your Xcode project from scratch when building from Unity (instead of appending it)
+* Delete already installed project from device
+* Clean project in Xcode (''Product''->''Clean'')
+* Clear Xcode's Derived Data folders (''Xcode''->''Preferences''->''Locations'')
+If this still does not help try disabling PNG re-compression in Xcode:
+* Open your Xcode project
+* Select "Unity-iPhone" project there
+* Select "Build Settings" tab there
+* Look for "Compress PNG files" option and set it to NO
+
+
+!! App Store submission fails with "iPhone/iPod Touch: application executable is missing a required architecture. At least one of the following architecture(s) must be present: armv6" message
+You might get such message when updating already existing application, which previously was submitted with armv6 support. Unity 4.x and Xcode 4.5 does not support armv6 platform anymore. To solve submission problem just set ``Target OS Version`` in Unity ``Player Settings`` to ``4.3`` or higher.
+
+!! WWW downloads are working fine in Unity Editor and on Android, but not on iOS
+Most common mistake is to assume that WWW downloads are always happening on separate thread. On some platforms this might be true, but you should not take it for granted. Best way to track WWW status is either to use ''yield'' statement or check status in ''Update'' method. You should __not__ use busy ''while'' loops for that.
+
 !! "PlayerLoop called recursively!" error occurs when using Cocoa via a native function called from a script
 Some operations with the UI will result in iOS redrawing the window immediately (the most common example is adding a UIView with a UIViewController to the main UIWindow). If you call a native function from a script, it will happen inside Unity's PlayerLoop, resulting in PlayerLoop being called recursively. In such cases, you should consider using the [[http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSObject_Class/Reference/Reference.html#//apple_ref/occ/instm/NSObject/performSelectorOnMainThread:withObject:waitUntilDone: | performSelectorOnMainThread]] method with waitUntilDone set to false. It will inform iOS to schedule the operation to run between Unity's PlayerLoop calls.
-
-!! UIScrollView stops scrolling sometimes or scrolls wrong
-It is difficult to get CADisplayLink and UIScrollView to work together. The simplest solution is to set
-[@#define USE_DISPLAY_LINK_IF_AVAILABLE 0@] 
-in AppController.mm
 
 !! Profiler or Debugger unable to see game running on iOS device
 * Check that you have built a Development build, and ticked the "Enable Script Debugging" and "Autoconnect profiler" boxes (as appropriate).
@@ -208,7 +222,6 @@ You should then also check the stripping level of your project to ensure the cla
 Typically such message is received when managed function delegate is passed to the native function, but required wrapper code wasn't generated when building application. You can help AOT compiler by hinting which methods will be passed as delegates to the native code. This can be done by adding "MonoPInvokeCallbackAttribute" custom attribute. Currently only static methods can be passed as delegates to the native code.
 
 Sample code:
->>u40<<
 [@
 using UnityEngine;
 using System.Collections;
@@ -242,47 +255,6 @@ public class NewBehaviourScript : MonoBehaviour {
 	}
 }
 @]
->><<
->>u30<<
-[@
-using UnityEngine;
-using System.Collections;
-using System;
-using System.Runtime.InteropServices;
-
-[System.AttributeUsage(System.AttributeTargets.Method)]
-public sealed class MonoPInvokeCallbackAttribute : Attribute
-{
-	public MonoPInvokeCallbackAttribute (Type t) {}
-}
-
-public class NewBehaviourScript : MonoBehaviour {
-
-	[DllImport ("__Internal")]
-	private static extern void DoSomething (NoParamDelegate del1, StringParamDelegate del2);
-
-	delegate void NoParamDelegate ();
-	delegate void StringParamDelegate (string str);
-	
-	[MonoPInvokeCallback (typeof (NoParamDelegate))]
-	public static void NoParamCallback()
-	{
-		Debug.Log ("Hello from NoParamCallback");
-	}
-	
-	[MonoPInvokeCallback (typeof (StringParamDelegate))]
-	public static void StringParamCallback(string str)
-	{
-		Debug.Log (string.Format ("Hello from StringParamCallback {0}", str));
-	}
-
-	// Use this for initialization
-	void Start () {
-		DoSomething(NoParamCallback, StringParamCallback);
-	}
-}
-@]
->><<
 
 >><<
 [[#AndroidTroubleShooting]]
