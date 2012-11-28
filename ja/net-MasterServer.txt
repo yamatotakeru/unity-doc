@@ -1,55 +1,55 @@
-! Master Server
+! マスターサーバ
 
-The Master Server is a meeting place that puts game instances in touch with the player clients who want to connect to them. It can also hide port numbers and IP addresses and perform other technical tasks that arise when setting up network connections, such as firewall handling and NAT punchthrough.
+マスターサーバ（Master Server）はプレイヤークライアントがゲームインスタンスに接続するための出会いの場所です。ポート番号やIPアドレスは隠蔽され、ネットワーク接続を確立する際は、ファイアウォールのハンドリングやNATパンチスルー（NAT punchthrough）など、技術的なタスクを実行します。
 
-Each individual running game instance provides a $$Game Type$$ to the Master Server. When a player connects and queries the Master Server for their matching $$Game Type$$, the server responds with the list of running games along with the number of players in each and whether or not a password is needed to play. The two functions used to exchange this data are [[ScriptRef:MasterServer.RegisterHost.html | MasterServer.RegisterHost()]] for the Server, and [[ScriptRef:MasterServer.RequestHostList.html | MasterServer.RequestHostList()]] for the player client.
+各々の実行中のゲームインスタンスはマスターサーバに$$Game Type$$を提供します。プレイヤーがマスターサーバに接続すると、$$Game Type$$が一致するかクエリー実行して、サーバは実行中のゲームの一覧とそれぞれのプレイヤー数、またプレイするためにパスワードが必要であるかを応答します。このデータ交換を行うための関数はサーバ向けの[[ScriptRef:MasterServer.RegisterHost.html | MasterServer.RegisterHost()]] とプレイヤークライアント向けの[[ScriptRef:MasterServer.RequestHostList.html | MasterServer.RequestHostList()]] です。
 
-When calling ``RegisterHost``, you need to pass three arguments - ''gameTypeName'' (which is the previously mentioned $$Game Type$$), ''gameName'' and ''comment'' - for the host being registered. ``RequestHostList`` takes as an argument the ''gameTypeName'' of the hosts you are interested in connecting to. All the registered hosts of that type will then be returned to the requesting client. This is an asynchronous operation and the complete list can be retrieved with ``PollHostList()`` after it has arrived in full.
+``RegisterHost``をコールするとき3つの引数が必要で、''gameTypeName''（さきほどの$$Game Type$$）、''gameName''、''comment''をもとにホスト登録を行います。``RequestHostList``は接続したいホスト''gameTypeName''を引数にとります。そのGame Typeで登録されているホストがリクエストクライアントに戻されます。これは非同期処理であり、完全に受信した後に``PollHostList()``により完全なリストを受信することが出来ます。
 
-The NAT punchthrough duty of the Master Server is actually handled by a separate process called the $$Facilitator$$ but Unity's Master Server runs both services in parallel.
+マスターサーバによるNATプルスルーは$$Facilitator$$という別処理によりハンドリングされますが、Unityのマスターサーバは両方のサービスを並列処理します。
 
-The $$Game Type$$ is an identifying name that should be unique for each game (although Unity does not offer any central registration system to guarantee this). It makes sense to choose a distinctive name that is unlikely to be used by anyone else. If there are several different versions of you game then you may need to warn a user that their client is not compatible with the running server version. The version information can be passed in the comment field (this is actually binary data and so the version can be passed in any desired form). The game name is simply the name of the particular game instance as supplied by whoever set it up.
+$$Game Type$$は各々のゲームを一意に識別する名前であるべきです（ただしUnityはこれを保証する中央登録システムはもってません）。他で使用されることのない独自の名前を選択します。もしゲームに異なるバージョンがある場合、ユーザに警告を行いクライアントが実行サーバとバージョンが対応してないことを知らせます。バージョン情報はcommentフィールドで渡します。（バイナリデータであるためバージョンは好みのフォーマットで渡せます）。ゲームの名前は単にセットアップした人が提供した特定のゲームインスタンスの名前です。
 
-The comment field can be used in more advanced ways if the Master Server is suitably modified (see [[#advanced | below]] for further information on how to do this). For example, you could reserve the first ten bytes of the comment field for a password and then extract the password in the Master Server when it receives the host update. It can then reject the host update if a password check fails. 
+commentフィールドはマスターサーバを適切に設定すればより高度な方法で使用することが出来ます。（この詳細については[[#advanced | 以下]] を参照下さい。）例えば、commentの最初の10バイトをパスワードにしてマスターサーバでホスト更新が行われたときにホスト更新を受信したときにマスターサーバ上でパスワードを展開することができます。もしパスワードチェックに失敗した場合、ホスト更新を拒否することが出来ます。
 
 
-!! Registering a game
+!! ゲーム登録
 
-Before registering a game, it is important to enable or disable the NAT functionality depending on whether or not it is supported by the host; you can do this with the ``useNat`` parameter of [[ScriptRef:Network.InitializeServer.html | Network.InitializeServer]].
+ゲーム登録の前にホストでサポートされているかによってNAT機能を有効・無効にすることが大事です。これは[[ScriptRef:Network.InitializeServer.html | Network.InitializeServer]] の``useNat``の引数で行うことが出来ます。
 
-A server might be started with code similar to this:-
+サーバは次のようなコードで始まるかもしれません：
 
 [@
 function OnGUI() {
-	if (GUILayout.Button ("Start Server"))
+	if (GUILayout.Button ("サーバを開始します"))
 	{
-		// Use NAT punchthrough if no public IP present
+		// パブリックIPがない場合はNATパンチスルーを使用します
 		Network.InitializeServer(32, 25002, !Network.HavePublicAddress());
 		MasterServer.RegisterHost("MyUniqueGameType", "JohnDoes game", "l33t game for all");
 	}
 }
 @]
 
-Here we just decide if NAT punchthrough is needed by checking whether or not the machine has a public address. There is a more sophisticated function available called [[ScriptRef:Network.TestConnection.html | Network.TestConnection]] which can tell you if the host machine can do NAT or not. It also does connectivity testing for public IP addresses to see if a firewall is blocking the game port. Machines which have public IP addresses always pass the NAT test but if the test fails then the host will __not__ be able to connect to NAT clients. In such a case, the user should be informed that port forwarding must be enabled for the game to work. Domestic broadband connections will usually have a NAT address but will not be able to set up port forwarding (since they don't have a personal public IP address). In these cases, if the NAT test fails, the user should be informed that running a server is inadvisable given that only clients on the same local network will be able to connect.
+ここではNATパンチスルーが必要であるかを、マシンにパブリックIPアドレスがあるかどうかをチェックして判断します。 [[ScriptRef:Network.TestConnection.html | Network.TestConnection]] というより洗練された関数によりホストマシンがNATを出来るかどうか判断させることも出来ます。さらにパブリックIPアドレスに対して接続テストを行いゲームポートに対してファイアウォールがブロックしているかチェックします。パブリックIPアドレスのあるマシンはつねにNATテストを通過しますが、接続テストに失敗した場合にホストはNATクライアントに__接続できません__。そのようなケースでは、ゲームを動かすにはポートフォワーディングが必要であることがユーザに知らされます。ローカルのブロードバンド接続は通常NATアドレスがありますが、ポートフォワーディングをセットアップすることが出来ません（パブリックIPアドレスを持たないため）。これらのケースでは、NATテストが失敗した場合、ローカルネットワークのクライアントしか接続することが出来ないためサーバを実行することが推奨されないことが、ユーザに知らされます。
 
-If a host enables NAT functionality without needing it then it will still be accessible. However, clients which cannot do NAT punchthrough might incorrectly think they cannot connect on the basis that the server has NAT enabled. 
+もしホストがNAT機能を必要でないのに有効化した場合もアクセス可能となります。しかし、NATパンチスルーできないクライアントはサーバがNATを有効化していないために接続できないと誤解する可能性があります。
 
 
-!! Connecting to a game
+!! ゲームへの接続
 
-A ``HostData`` object is sent during host registrations or queries. It contains the following information about the host:-
-||boolean ||``useNat`` ||Indicates if the host uses NAT punchthrough. 
-||String ||``gameType`` ||The game type of the host. 
-||String ||``gameName`` ||The game name of the host.
-||int ||``connectedPlayers`` ||The number of currently connected players/clients.
-||int ||``playerLimit`` ||The maximum number of concurrent players/clients allowed.
-||String[] ||``IP`` ||The internal IP address of the host. On a server with a public address the external and internal addresses are the same. This field is defined as an array since all the IP addresses associated with all the active interfaces of the machine need to be checked when connecting internally.
-||int ||``port`` ||The port of the host.
-||boolean ||``passwordProtected`` ||Indicates whether you need to supply a password to be able to connect to this host.
-||String ||``comment`` ||Any comment which was set during host registration.
-||String ||``guid`` ||The network GUID of the host. This is needed to connect using NAT punchthrough.
+``HostData``オブジェクトはホスト登録やクエリーの際に送信されます。次のホストに関する情報を保持しています：
+||boolean ||``useNat`` ||ホストがNATパンチスルーを使用するか示します。
+||String ||``gameType`` ||ホストのゲームタイプ
+||String ||``gameName`` ||ホストのゲーム名
+||int ||``connectedPlayers`` ||プレイヤー／クライアントの同時接続数
+||int ||``playerLimit`` ||プレイヤー／クライアントの最大同時接続数
+||String[] ||``IP`` ||ホストの内部IPアドレス。パブリックIPアドレスをもつサーバにおいては内部、外部のIPアドレスは同じです。内部接続する場合に、全てのIPアドレスとマシンの全ての印tフェースを紐付けてチェックする必要があるため、このフィールドは配列として定義されています。
+||int ||``port`` ||ホストのポート
+||boolean ||``passwordProtected`` ||ホスト接続にパスワードが必要であるか
+||String ||``comment`` ||ホスト登録の際にセットされたコメント
+||String ||``guid`` ||ホストのネットワークGUID。NATパンチスルーで接続するために必要
 
-This information can be used by clients to see the connection capabilities of the hosts. When NAT is enabled you need to use the GUID of the host when connecting. This is automatically handled for you when the ``HostData`` is retrieved as you connect. The connection routine might look something like this:
+この情報はクライアントにより、ホストが接続できるかどうかみるために使用されます。NATが有効化された場合、接続する際にホストのGUIDが必要です。これは接続する際に``HostData``が受信されたときに自動的にハンドリングされます。接続のルーチンは次のようなものになります：
 
 [@
 function Awake() {
@@ -58,7 +58,7 @@ function Awake() {
 
 function OnGUI() {
 	var data : HostData[] = MasterServer.PollHostList();
-	// Go through all the hosts in the host list
+	// ホスト一覧のホストを全てチェックする
 	for (var element in data)
 	{
 		GUILayout.BeginHorizontal();	
@@ -77,23 +77,22 @@ function OnGUI() {
 		GUILayout.FlexibleSpace();
 		if (GUILayout.Button("Connect"))
 		{
-			// Connect to HostData struct, internally the correct method is used (GUID when using NAT).
+			// HostData構造体に接続し、内部的に正しい接続方法が使用されます（NATの場合はGUID）。
 			Network.Connect(element);			
 		}
 		GUILayout.EndHorizontal();	
 	}
 }
 @]
+このサンプルではマスターサーバから戻される関連する全てのホスト情報が出力されます。ping情報やホストの地理情報のように便利な情報もこれに加えることが出来ます。
 
-This example prints out all of the relevant host information returned by the Master Server. Other useful data like ping information or geographic location of hosts can be added to this.
+!! NATパンチスルー
 
-!! NAT punchthrough
+NATパンチスルーが可能であるかにより、特定のコンピュータがサーバとして適切であるか示します。いくつかのクライアントは接続できる可能性があるものの、NATサーバへの接続で問題が発生するクライアントが出る可能性があります。
 
-The availability of NAT punchthrough may determine whether or not a particular computer is suitable to use as a server. While some clients might be able to connect, there are others that might have trouble connecting to any NAT server.
+デフォルトでは、NATパンチスルーはマスターサーバの協力により提供されますが、必ずしもこの方法でなくとも問題ありません。NATパンチスルーのサービスに使用されるファシリテータ（Facilitator）プロセスです。もし二つのマインがファシリテータで接続されている場合、外部IPアドレスとポートが使用されるかぎり、両方とも互いに接続できるように見えます。マスターサーバは、他の方法では判断することが難しい、この外部IPとポート情報を提供するために使用されます。マスターサーバとファシリテータが密接に統合されているのはこのためです。マスターサーバはデフォルトで同一のIPアドレスであり、いずれかを変更するには、 [[ScriptRef:MasterServer-ipAddress.html | MasterServer.ipAddress]] 、[[ScriptRef:MasterServer-port.html | MasterServer.port]] 、[[ScriptRef:Network-natFacilitatorIP.html | Network.natFacilitatorIP]] および[[ScriptRef:Network-natFacilitatorPort.html | Network.natFacilitatorPort]] のいずれかを使用します。
 
-By default, NAT punchthrough is provided with the help of the Master Server but it need not be done this way. The Facilitator is the process that is actually used for the NAT punchthrough service. If two machines are connected to the Facilitator then it will appear as if they can both connect to each other as long as it uses the external IP and port. The Master Server is used to provide this external IP and port information which is otherwise hard to determine. That is why the Master Server and Facilitator are so tightly integrated. The Master Server and Facilitator have the same IP address by default, to change either one use [[ScriptRef:MasterServer-ipAddress.html | MasterServer.ipAddress]], [[ScriptRef:MasterServer-port.html | MasterServer.port]], [[ScriptRef:Network-natFacilitatorIP.html | Network.natFacilitatorIP]] and [[ScriptRef:Network-natFacilitatorPort.html | Network.natFacilitatorPort]]
 
 [[#advanced]]
-!! Advanced
-
-Unity Technologies also has a fully deployed Master Server available for testing purposes and this is actually the server that will be used by default. However, the source code is freely available for anyone to use and the server can be deployed on Windows, Linux and Mac OS. In addition to simply building the project from source, there might be cases where you want to modify the way in which the Master Server handles information and how it communicates. For example, you may be able to optimize the handling of host data or limit the number of clients returned on the host list. Such changes will require modifications to the source code; information about how to go about this can be found on the [[net-MasterServerBuild | Master Server Build page]].
+!! 応用
+Unity Technologiesではテスト目的で、完全にデプロイされたマスターバーがあり、このサーバが実際にデフォルトで使用されます。しかしソースコードは無償で提供されておりWindows、LinuxおよびMac OSで使用可能です。プロジェクトをソースから構築する方法に加えて、マスターサーバが情報のハンドリングする方法や、通信方法を修正したいケースがあるかもしれません。例えば、ホストデータのハンドリングを最適化したり、ホスト一覧に戻されるクライアントの数を限定することが出来ます。このような変更はソースコードの変更を伴い、この方法の詳細については[[net-MasterServerBuild | Master Server Build page]] を参照下さい。
