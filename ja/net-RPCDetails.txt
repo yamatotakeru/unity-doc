@@ -1,20 +1,20 @@
-! RPC Details
+! RPC詳細
 
-$$Remote Procedure Calls$$ (RPCs) let you call functions on a remote machine. Invoking an RPC is similar to calling a normal function and almost as easy but there are some important differences to understand.
+$$Remote Procedure Calls$$ (RPC)はリモートマシンの関数呼び出しを可能にします。RPC実行は通常の関数の呼び出しと似て簡単ですが、理解すべき重要な違いがいくつかあります。
 
-#An RPC call can have as many parameters as you like but the network bandwidth involved will increase with the number and size of parameters. You should keep parameters to a minimum in order to get the best performance.
+#RPCの引数の数は任に決められますが、使用するネットワーク帯域幅が引数の数と大きさにより増えます。最大のパフォーマンスを得る単に引数の数は最小に抑えるべきです。
 
-#Unlike a normal function call, an RPC needs an additional parameter to denote the recipients of the RPC request. There are several possible RPC call modes to cover all common use cases. For example, you can easily invoke the RPC function on all connected machines, on the server alone, on all clients but the one sending the RPC call or on a specific client.
+#通常の関数呼び出しと異なってRPCはリクエストの受け手を示す引数を指定します。一通り全てのケースをカバーするためいくつかRPC呼び出しモードが用意されてます。例えばRPCをすべての接続マシンで実行、サーバー単独で実行、コール送信元・あるいは任意のクライアントのみ実行しないなど指定できます。
 
-RPC calls are usually used to execute some event on all clients in the game or pass event information specifically between two parties, but you can be creative and use them however you like. For example, a server for a game which only starts after four clients have connected could send an RPC call to all clients as soon as the fourth one connects, thus starting the game. A client could send RPC calls to everyone to signal that he picked up an item. A server could send an RPC to a particular client to initialize him right after he connects, for example, to give him his player number, spawn location, team color, etc. A client could in turn send an RPC only to the server to specify his starting options, such as the color he prefers or the items he has bought.
+RPC呼び出しは通常あるイベントをクライアント全てに送信するか二つのグループ間でイベント情報を渡しますが、工夫して好きなように活用できます。例えば4クライアント接続されたサーバーは4つめのクライアントが接続して初めてイベントを送信してゲーム開始出来ます。クライアントがアイテムを拾った時にクライアント全てにそのことをRPC呼び出しをして知らせることが出来ます。サーバーは特定RPCを特定クライアントのみに接続直後に送信し、プレイヤー番号、生成位置、チームカラーなどを渡せます。クライアントはそれと引き換えにスタート時のオプションを提示し、希望のカラーや購入したアイテムなどをサーバーだけにRPCを呼び出して送信できます。
 
 
-!! Using RPCs
+!! RPCの使用
 
-A function must be marked as an RPC before it can be invoked remotely. This is done by prefixing the function in the script with an RPC attribute:-
+リモート実行する前に関数はRPCとしてマーキングする必要があります。このため関数の前にRPC属性を示す記号を入れます。
 
 [@
-// All RPC calls need the @RPC attribute!
+// 全てのRPCは@RPC属性が必要です
 @RPC
 function PrintText (text : String)
 {
@@ -22,12 +22,12 @@ function PrintText (text : String)
 }
 @]
 
-All network communication is handled by NetworkView components, so you must attach one to the object whose script declares the RPC functions before they can be called.
+全てのネットワーク通信はNetworkViewコンポーネントで行うためRPC関数を宣言したスクリプトに呼び出し前にアタッチする必要があります。
 
 
-!!Parameters
+!!引数
 
-You can use the following variable types as parameters to RPCs:-
+次の変数タイプをRPCの引数として使用出来ます：
 
 * int
 * float
@@ -37,17 +37,17 @@ You can use the following variable types as parameters to RPCs:-
 * Vector3
 * Quaternion
 
-For example, the following code invokes an RPC function with a single string parameter:-
+例えば、次のコードによりひとのstring引数を持つRPCを実行します：
 
 [@
 networkView.RPC ("PrintText", RPCMode.All, "Hello world");
 @]
 
-The first parameter of ``RPC()`` is the name of the function to be invoked while the second determines the targets on which it will be invoked. In this case we invoke the RPC call on everyone who is connected to the server (but the call will not be buffered to wait for clients who connect later - see below for further details about buffering).
+``RPC()``の最初の引数は実行する関数の名前で、2つめの引数は実行ターゲット対象を指定します。この場合、サーバ接続しているクライアント全てで実行します。（後ほど接続されるクライアント向けを待ってコールがバッファリングされることはありません、このバッファリングの詳細は以下を参照下さい）
 
-All parameters after the first two are the ones that will be passed to the RPC function and be sent across the network. In this case, "Hello World" will be sent as a parameter and be passed as the text parameter in the PrintText function.
+2つ目の引数より後は、RPC関数に送信され、ネットワーク上を経由します。この場合では"Hello World"は引数としてPrintText関数のテキスト引数として渡されます。
 
-You can also access an extra internal parameter, a [[ScriptRef:NetworkMessageInfo.html | NetworkMessageInfo]] struct which holds additional information, such as where the RPC call came from. This information will be passed automatically, so the PrintText function shown above will be can be declared as:-
+さらに追加の内部引数として、RPCの呼び出し元など追加の情報を保持できる[[ScriptRef:NetworkMessageInfo.html | NetworkMessageInfo]] 構造体を参照できるようになります。この情報は自動的に送信されるため、PrintText関数は次のように宣言されます：
 
 [@
 @RPC
@@ -57,13 +57,13 @@ function PrintText (text : String, info : NetworkMessageInfo)
 }
 @]
 
-...while being invoked the same way as before.
+この際、関数実行の記述は変更の必要がありません。
 
-As mentioned above, a Network View must be attached to any GameObject which has a script containing RPC functions. If you are using RPCs exclusively (ie, without state synchronisation) then the Network View's ``State Synchronization`` can be set to ``Off``.
+上で述べたようにNetwork ViewをRPC関数を含むスクリプトを含むゲームオブジェクトにアタッチする必要があります。もしRPCを独立させて使用する場合（すなわち、状態同期なし）、Network Viewの``State Synchronization``を``Off``にします。
 
 
-!! RPC Buffer
+!! RPCバッファ
 
-RPC calls can also be buffered. Buffered RPC calls are stored up and executed in the order they were issued for each new client that connects.  This can be a useful way to ensure that a latecoming player gets all necessary information to start. A common scenario is that every player who joins a game should first load a specific level. You could send the details of this level to all connected players but also buffer it for any who join in the future. By doing this, you ensure that the new player receives the level information just as if he had been present from the start.
+RPC関数の呼び出しはバッファリングできます。バッファリングされたRPC関数の呼び出しは蓄積されたうえ、発行された順序で接続するクライアントごとに並べられます。これにより、遅れてきたプレイヤーがスタート時点から必要な情報が得られることを保証します。良くあるシナリオとしては、接続するプレイヤーが戸kつ英のレベルをロードするというシナリオです。このレベルの詳細を全ての接続されたプレーヤーに送信し、将来的に後から接続するプレイヤーのためにバッファリングします。これにより、新しいプレイヤーがあたかもスタートの最初から存在したかのごとくレベル情報を受信できます。
 
-You can also remove calls from the RPC buffer when necessary. Continuing the example above, the game may have moved on from the starting level by the time a new player joins, so you could remove the original buffered RPC and send a new one to request the new level.
+RPCバッファから必要に応じて呼び出しを除くことが出来ます。上の例で続けると、新しいプレイヤーが加わる前にゲームが次のレベルに進んでいる場合があり、この場合は元のバッファリングされたRPCを除いて、新しいレベルを要求するリクエストを送信することが出来ます。
