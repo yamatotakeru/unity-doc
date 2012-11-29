@@ -1,0 +1,37 @@
+Particle Emitters work in conjunction with [[class-ParticleAnimator | Particle Animators]] and [[class-ParticleRenderer | Particle Renderers]] to create, manipulate, and display Particle Systems. All three Components must be present on an object before the particles will behave correctly.  When particles are being emitted, all different velocities are added together to create the final velocity.
+
+
+!!! Spawning Properties
+
+Spawning properties like ``Size``, ``Energy``, ``Emission``, and ``Velocity`` will give your particle system distinct personality when trying to achieve different effects.  Having a small ``Size`` could simulate fireflies or stars in the sky.  A large ``Size`` could simulate dust clouds in a musky old building.
+
+``Energy`` and ``Emission`` will control how long your particles remain onscreen and how many particles can appear at any one time.  For example, a rocket might have high ``Emission`` to simulate density of smoke, and high ``Energy`` to simulate the slow dispersion of smoke into the air.
+
+``Velocity`` will control how your particles move.  You might want to change your ``Velocity`` in scripting to achieve interesting effects, or if you want to simulate a constant effect like wind, set your X and Z ``Velocity`` to make your particles blow away.
+
+
+!!! Simulate in World Space
+
+If this is disabled, the position of each individual particle will always translate relative to the ``Position`` of the emitter.  When the emitter moves, the particles will move along with it.  If you have ``Simulate in World Space`` enabled, particles will not be affected by the translation of the emitter.  For example, if you have a fireball that is spurting flames that rise, the flames will be spawned and float up in space as the fireball gets further away.  If ``Simulate in World Space`` is disabled, those same flames will move across the screen along with the fireball.
+
+
+!!! Emitter Velocity Scale
+
+This property will only apply if ``Simulate in World Space`` is enabled.
+
+If this property is set to 1, the particles will inherit the exact translation of the emitter at the time they are spawned.  If it is set to 2, the particles will inherit double the emitter's translation when they are spawned.  3 is triple the translation, etc.
+
+
+!!! One Shot
+
+``One Shot`` emitters will create all particles within the ``Emission`` property all at once, and cease to emit particles over time.  Here are some examples of different particle system uses with ``One Shot`` ``Enabled`` or ``Disabled``:
+
+``Enabled``:
+*Explosion
+*Water splash
+*Magic spell
+
+``Disabled``:
+*Gun barrel smoke
+*Wind effect
+*Waterfall

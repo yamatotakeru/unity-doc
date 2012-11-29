@@ -1,0 +1,43 @@
+!Render Texture
+
+$$Render Textures$$ are special types of $$Textures$$ that are created and updated at runtime. To use them, you first create a new Render Texture and designate one of your [[class-Camera|Cameras]] to render into it. Then you can use the Render Texture in a $$Material$$ just like a regular Texture. The [[HOWTO-Water | Water]] prefabs in Unity Standard Assets are an example of real-world use of Render Textures for making real-time reflections and refractions.
+
+Render Textures are a Unity Pro feature.
+
+
+!! Properties
+
+The Render Texture $$Inspector$$ is different from most Inspectors, but very similar to the [[class-Texture2D | Texture Inspector]].
+
+Attach:Inspector-RenderTexture.png\\
+''The Render Texture Inspector is almost identical to the Texture Inspector''
+
+The Render Texture inspector displays the current contents of Render Texture in realtime and can be an invaluable debugging tool for effects that use render textures.
+
+||PROPS
+||``Size`` ||The size of the Render Texture in pixels. Observe that only power-of-two values sizes can be chosen. ||
+||``Aniso Level`` ||Increases Texture quality when viewing the texture at a steep angle. Good for floor and ground textures ||
+||``Filter Mode`` ||Selects how the Texture is filtered when it gets stretched by 3D transformations: ||
+||>>>``No Filtering`` ||The Texture becomes blocky up close ||
+||>>>``Bilinear`` ||The Texture becomes blurry up close ||
+||>>>``Trilinear`` ||Like Bilinear, but the Texture also blurs between the different mip levels ||
+||``Wrap Mode`` ||Selects how the Texture behaves when tiled: ||
+||>>>``Repeat`` ||The Texture repeats (tiles) itself ||
+||>>>``Clamp`` ||The Texture's edges get stretched ||
+
+
+!! Example
+
+A very quick way to make a live arena-camera in your game:
+# Create a new Render Texture asset using ^^Assets->Create->Render Texture^^.
+# Create a new Camera using ^^GameObject->Create Other->Camera^^.
+# Assign the Render Texture to the ``Target Texture`` of the new Camera.
+# Create a wide, tall and thin box
+# Drag the Render Texture onto it to create a Material that uses the render texture.
+# Enter Play Mode, and observe that the box's texture is updated in real-time based on the new Camera's output.
+
+Attach:RenderTextureLiveCam.png\\
+''Render Textures are set up as demonstrated above''
+
+!Hints
+* Unity renders everything in the texture assigned to RenderTexture.active.

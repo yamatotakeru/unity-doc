@@ -1,0 +1,7 @@
+! Learning the Interface
+
+Take your time to look over the Unity Editor interface and familiarize yourself with it.  The $$Main Editor Window$$ is made up of several $$Tabbed Windows$$, called $$Views$$. There are several types of Views in Unity - they all have specific purposes which are described in the subsections below.
+
+Attach:Editor-Breakdown.png
+(:comment image source Editor-Breakdown.psd :)
+(:tocportion:)

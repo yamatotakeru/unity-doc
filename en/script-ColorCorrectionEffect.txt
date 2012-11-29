@@ -1,0 +1,40 @@
+! Color Correction image effect
+
+$$Color Correction$$ allows you apply arbitrary color correction to your scene as a postprocessing effect (just like the Curves tool in Photoshop or Gimp). This page explains how to setup color correction in Photoshop and then apply ''exactly'' the same color correction at runtime in Unity.
+
+Like all [[comp-ImageEffects|image effects]], Color Correction is only available in Pro version of Unity. Make sure to have the [[HOWTO-InstallStandardAssets|Pro Standard Assets installed]].
+
+Attach:FxColorCorr.png\\
+''Color correction applied to the scene. Color ramp used (magnified) is shown at the right.''
+
+Attach:ImageEffects./FxColorRamp.png\\
+''Color ramp used for the image above.''
+
+
+!! Getting color correction from Photoshop into Unity
+
+# Take a screenshot of a typical scene in your game
+# Open it in Photoshop and color correct using the ^^Image->Adjustments->Curves^^
+# Save the __.acv__ file file from the dialog using ^^Save...^^
+# Open ^^Pro Standard Assets->Image Based->color correction ramp.png^^ in Photoshop
+# Now apply color correction to the ramp image: open ^^Image->Adjustments->Curves^^ again and load your saved __.acv__ file
+# Select your camera in Unity and select ^^Component->Image Effects->Color Correction^^ to add color correction effect. Select your modified color ramp.
+# Hit Play to see the effect in action!
+
+
+!!Details
+
+Color correction works by remapping the original image colors through the color ramp image (sized 256x1):
+# result.red = pixel's red value in ramp image at (original.red + ``RampOffsetR``) index
+# result.green = pixel's green value in ramp image at (original.green + ``RampOffsetG``) index
+# result.blue = pixel's blue value in ramp image at (original.blue + ``RampOffsetB``) index
+So for example, to invert the colors in the image you only need to flip the original color ramp horizontally (so that it goes from white to black instead of from black to white).
+
+A simpler version of color remapping that only remaps based on luminance can be achieved with [[script-GrayscaleEffect|Grayscale]] image effect.
+
+
+!!!Tips:
+* The color correction ramp image should not have mip-maps. Turn them off in $$Import Settings$$. It should also be set to $$Clamp$$ mode.
+
+(:include imagefx-SM2:)
+

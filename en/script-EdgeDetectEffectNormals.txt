@@ -1,0 +1,43 @@
+! Edge Detect Effect Normals
+
+This version of the $$Edge Detect$$ image effect creates outlines around edges by taking the scene geometry into account. Edges are not determined by colour differences but by the surface normals and distance from camera of neighbouring pixels (the surface normal is an "arrow" that indicates the direction the surface is facing at a given pixel position). Generally, where two adjacent pixels have significantly different normals and/or distances from the camera, there is an edge in the scene.
+
+As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+
+Attach:EdgeDetectionExampleSciFiScene.png\\
+''Example Edge Detection. Note how edge outlines can be smoothed out by adding an Antialiasing effect to follow Edge Detection.''
+
+This effect uses the ``ImageEffectOpaque`` attribute which enables image effects to be executed before the transparent render passes. By default, image effects are executed after both opaque and transparent passes have been fully rendered.
+
+!! Properties
+
+||PROPS
+||``Mode`` ||Chose the filter type (see below). ||
+
+||``Depth Sensitivity`` ||The minimum difference between the distances of adjacent pixels that will indicate an edge. ||
+||``Normals Sensitivity`` ||The minimum difference between the normals of adjacent pixels that will indicate an edge. ||
+||``Sampling Distance`` ||Bigger sampling distances (default is 1.0) create thicker edges but also introduce haloing artifacts. ||
+
+||``Edges exponent`` ||Exponent used for Sobel filter. Smaller values detect smaller depth differences as edges. ||
+
+||``Background options`` ||||
+||``Edges only`` ||Blend the background with a fixed color. ||
+||``Background`` ||The color used when ``Edges only`` is > 0. ||
+
+
+!! Filter Types
+
+The new ``SobelDepthThin`` filter offers a way to make edge detection work with other depth based image effects such as Depth of Field, Fog or Motion Blur as edges don't cross an object's silhouette:
+
+Attach:EdgeDetectionWidthDofExample.png\\
+''Edges don't leak into the defocused background and at the same time, the background blur doesn't remove the created edges.''
+
+Note that as only depth is used for edge detection, this filter discards edges inside silhouettes.
+
+``SobelDepth`` works similarly but doesn't discard edges outside the silhouette of an object. Hence, the ede detection is more precise but doesn't work well with other depth-based effects.
+
+``TriangleDepthNormals`` is likely the cheapest available filter even though it examines both depth and normals to decide if a pixel resides on an edge, i.e. it detects more than just object silhouettes. A high amount of normal map details however might break this filter.
+
+``RobertsCrossDepthNormals`` shares its properties with the ''Triangle'' filter but looks at slightly more samples to determine edges. As a natural byproduct, the resulting edges tend to be thicker.
+
+(:include imagefx-SM2Depth:)

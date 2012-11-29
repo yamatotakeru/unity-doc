@@ -1,0 +1,19 @@
+! Audio Distortion Filter (PRO only)
+
+The $$Audio Distortion Filter$$ distorts the sound from an [[class-AudioSource|AudioSource]] or sounds reaching the [[class-AudioListener|AudioListener]].
+
+Attach:AudioDistortionFilter.png\\
+''The Audio Distortion Pass filter properties in the inspector.''
+
+
+!! Properties
+
+||PROPS
+||``Distortion`` ||Distortion value. 0.0 to 1.0. Default = 0.5.||
+
+
+!! Adding a Distortion filter
+To add an $$Audio Distortion Filter$$ to a selected [[class-AudioSource|AudioSource]] or [[class-AudioListener|AudioListener]] select the object in the inspector and then select ``Component->Audio->Audio Distortion Filter``.
+
+!!Hints
+* Apply the $$Audio Distortion Filter$$ to simulate the sound of a low quality radio transmission.

@@ -1,0 +1,18 @@
+! Crease
+
+The $$Crease$$ is a common non-photorealistic (NPR) rendering technique that enhances the visibility of objects by adding outlines of variable thickness.
+
+As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+
+Attach:CreaseExample.png\\
+''Crease shading creates depth based outlines.''
+
+!! Properties
+
+||PROPS
+||``Intensity`` ||The intensity of the crease shading. ||
+||``Softness`` ||The smoothness and softness of the applied crease shading. ||
+||``Spread`` ||The blur radius, which also determines the thickness of outlines. ||
+
+(:include imagefx-SM2Depth:)
+

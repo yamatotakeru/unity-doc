@@ -1,0 +1,29 @@
+! Physics Components
+
+(:include PhysicsBase:)
+
+!! Component Details
+
+!!! Physics Control
+* [[class-Rigidbody|Rigidbody]] - Rigidbodies put objects under physics control.
+* [[class-ConstantForce|Constant Force]] - A utility component that adds a constant force to a rigidbody. Great for rockets and other quick functionality.
+
+!!! Colliders
+* [[class-SphereCollider|Sphere Collider]] - use for sphere-shaped objects.
+* [[class-BoxCollider|Box Collider]] - use for box-shaped objects.
+* [[class-CapsuleCollider|Capsule Collider]] - use for capsule-like (a cylinder with hemisphere ends) objects.
+* [[class-MeshCollider|Mesh Collider]] - takes the graphical [[class-Mesh|mesh]] and uses it as a collision shape.
+* [[class-PhysicMaterial|Physic Material]] - contains settings allowing you to fine-tune your object's physical properties (friction, bounce, etc).
+
+!!! Joints
+* [[class-HingeJoint|Hinge Joint]] - Used to make door hinges.
+* [[class-SpringJoint|Spring Joint]] - A spring-like joint.
+* [[class-FixedJoint|Fixed Joint]] - Use to "lock" objects together.
+* [[class-ConfigurableJoint|Configurable Joint]] - Use create complex joint behaviors of virtually any kind
+
+!!! Special Function
+* [[class-CharacterController|Character Controller]] and [[class-CharacterJoint|Character Joint]] - Used to make character controllers.
+* [[class-WheelCollider|Wheel Collider]] - A special collider for grounded vehicles.
+* [[class-SkinnedCloth | Skinned Cloth]] - Used to create Skinned cloth
+* [[class-InteractiveCloth | Interactive Cloth]] - Used to create Interactive cloths, this is just normal cloth being simulated. 
+

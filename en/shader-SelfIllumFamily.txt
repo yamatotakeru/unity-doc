@@ -1,0 +1,87 @@
+!Self-Illuminated Shader Family
+
+The $$Self-Illuminated$$ shaders will emit light only onto themselves based on an attached alpha channel.  They do not require any Lights to shine on them to emit this light.  Any vertex lights or pixel lights will simply add more light on top of the self-illumination.
+
+This is mostly used for light emitting objects. For example, parts of the wall texture could be self-illuminated to simulate lights or displays.  It can also be useful to light power-up objects that should always have consistent lighting throughout the game, regardless of the lights shining on it.
+
+!! [[shader-SelfIllumVertexLit|Self-Illuminated Vertex-Lit]]
+
+[[shader-SelfIllumVertexLit| Attach:Shaders./Thumb-IllumVertex.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture, no alpha channel required
+* One ``Illumination`` texture with alpha channel for Illumination Map
+
+[[shader-SelfIllumVertexLit| &#187; More details]]
+
+
+!! [[shader-SelfIllumDiffuse|Self-Illuminated Diffuse]]
+
+[[shader-SelfIllumDiffuse| Attach:Shaders./Thumb-IllumDiffuse.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture, no alpha channel required
+* One ``Illumination`` texture with alpha channel for Illumination Map
+
+[[shader-SelfIllumDiffuse | &#187; More details]]
+
+
+!! [[shader-SelfIllumSpecular|Self-Illuminated Specular]]
+
+[[shader-SelfIllumSpecular| Attach:Shaders./Thumb-IllumSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for Specular Map
+* One ``Illumination`` texture with alpha channel for Illumination Map
+
+[[shader-SelfIllumSpecular | &#187; More details]]
+
+
+!! [[shader-SelfIllumBumpedDiffuse|Self-Illuminated Bumped]]
+
+[[shader-SelfIllumBumpedDiffuse| Attach:Shaders./Thumb-IllumBump.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture, no alpha channel required
+* One ``Normal map`` normal map with alpha channel for Illumination
+
+[[shader-SelfIllumBumpedDiffuse | &#187; More details]]
+
+
+!! [[shader-SelfIllumBumpedSpecular|Self-Illuminated Bumped Specular]]
+
+[[shader-SelfIllumBumpedSpecular| Attach:Shaders./Thumb-IllumBumpSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for Specular Map
+* One ``Normal map`` normal map with alpha channel for Illumination Map
+
+[[shader-SelfIllumBumpedSpecular | &#187; More details]]
+
+
+!! [[shader-SelfIllumParallaxDiffuse|Self-Illuminated Parallax]]
+
+[[shader-SelfIllumParallaxDiffuse| Attach:Shaders./Thumb-IllumParallaxBump.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture, no alpha channel required
+* One ``Normal map`` normal map with alpha channel for Illumination Map & Parallax Depth combined
+
+'''Note:'''
+One consideration of this shader is that the ``Bumpmap`` texture's alpha channel doubles as a Illumination and the Parallax Depth.
+
+[[shader-SelfIllumParallaxDiffuse | &#187; More details]]
+
+
+!! [[shader-SelfIllumParallaxSpecular|Self-Illuminated Parallax Specular]]
+
+[[shader-SelfIllumParallaxSpecular| Attach:Shaders./Thumb-IllumParallaxBumpSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for Specular Map
+* One ``Normal map`` normal map with alpha channel for Illumination Map & Parallax Depth combined
+
+'''Note:'''
+One consideration of this shader is that the ``Bumpmap`` texture's alpha channel doubles as a Illumination and the Parallax Depth.
+
+[[shader-SelfIllumParallaxSpecular | &#187; More details]]

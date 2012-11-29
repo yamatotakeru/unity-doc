@@ -1,0 +1,45 @@
+!Spring Joint
+The $$Spring Joint$$ groups together two $$Rigidbodies$$, constraining them to move like they are connected by a spring.
+
+Attach:Inspector-SpringJoint.png\\
+''The Spring Joint $$Inspector$$''
+
+!!Properties
+
+||PROPS
+||``Connected Body`` ||Optional reference to the Rigidbody that the joint is dependent upon.||
+||``Anchor``         ||Position in the object's local space (at rest) that defines the center of the joint. This is not the point that the object will be drawn toward.||
+||>>>``X``           ||Position of the joint's local center along the X axis. ||
+||>>>``Y``           ||Position of the joint's local center along the Y axis. ||
+||>>>``Z``           ||Position of the joint's local center along the Z axis. ||
+||``Spring``       ||Strength of the spring.||
+||``Damper``       ||Amount that the spring is reduced when active. ||
+||``Min Distance`` ||Distances greater than this will not cause the Spring to activate. ||
+||``Max Distance`` ||Distances less than this will not cause the Spring to activate. ||
+||``Break Force``  ||The force that needs to be applied for this joint to break. ||
+||``Break Torque`` ||The torque that needs to be applied for this joint to break. ||
+
+!!Details
+
+Spring Joints allows a Rigidbodied $$GameObject$$ to be pulled toward a particular "target" position.  This position will either be another Rigidbodied GameObject or the world.  As the GameObject travels further away from this "target" position, the Spring Joint applies forces that will pull it back to its original "target" position.  This creates an effect very similar to a rubber band or a slingshot.
+
+The "target" position of the Spring is determined by the relative position from the ``Anchor`` to the ``Connected Body`` (or the world) when the Spring Joint is created, or when Play mode is entered.  This makes the Spring Joint very effective at setting up Jointed characters or objects in the Editor, but is harder to create push/pull spring behaviors in runtime through scripting.  If you want to primarily control a GameObject's position using a Spring Joint, it is best to create an empty GameObject with a Rigidbody, and set that to be the ``Connected Rigidbody`` of the Jointed object.  Then in scripting you can change the position of the ``Connected Rigidbody`` and see your Spring move in the ways you expect.
+
+!!!Connected Rigidbody
+You do not need to use a ``Connected Rigidbody`` for your joint to work.  Generally, you should only use one if your object's position and/or rotation is dependent on it.  If there is no ``Connected Rigidbody``, your Spring will connect to the world.
+
+!!!Spring & Damper
+
+``Spring`` is the strength of the force that draws the object back toward its "target" position.  If this is 0, then there is no force that will pull on the object, and it will behave as if no Spring Joint is attached at all.
+
+``Damper`` is the resistance encountered by the ``Spring`` force.  The lower this is, the springier the object will be.  As the ``Damper`` is increased, the amount of bounciness caused by the Joint will be reduced.
+
+!!!Min & Max Distance
+
+If the position of your object falls in-between the ``Min`` & ``Max Distances``, then the Joint will not be applied to your object.  The position must be moved outside of these values for the Joint to activate.
+
+!!Hints
+* You do not need to assign a ``Connected Body`` to your Joint for it to work.
+* Set the ideal positions of your Jointed objects in the Editor prior to entering Play mode.
+* Spring Joints require your object to have a Rigidbody attached.
+

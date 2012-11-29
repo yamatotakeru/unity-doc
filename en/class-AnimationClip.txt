@@ -1,0 +1,39 @@
+! Animation Clip 
+
+$$Animation Clips$$ are the smallest building blocks of animation in Unity. They represent an isolated piece of motion, such as RunLeft, Jump, or Crawl, and can be manipulated and combined in various ways to produce lively end results (see [[AnimationStateMachines|Animation State Machines]], [[class-AnimatorController|Animator Controller]], or [[AnimationBlendTrees|Blend Trees]]). \\
+Animation clips can be selected from imported FBX data (see [[FBXImporter-Animations|FBXImporter settings for Animations]]), and when you click on the set of available animation clips you will see the following set of properties: 
+
+Attach:MecanimAligningAnimationClips.png
+
+||PROPS
+||``Name`` ||The name of the clip.||
+||``Source Take`` ||The take in the source file to use as a source for this animation clip. (This option will not show up if there's only one take). This is what defines a set of animation as separated in Motionbuilder, Maya and other 3D packages. Unity can import these takes as individual clips or you can create them from the whole file or a take. ||
+||``Start`` ||Start frame of the clip.||
+||``End`` ||End frame of the clip.||
+||``Loop Pose``  ||Enable to make the motion loop seamlessly.||
+||``Cycle Offset``  ||Offset to the cycle of a looping animation, if we want to start it at a different time.||
+||``Root Transform Rotation`` || || 
+||>>>``Bake into Pose`` ||Enable to make root rotation be baked into the movement of the bones. Disable to make root rotation be stored as root motion.|| 
+||>>>``Based Upon`` ||What the root rotation is based upon.||
+||>>> - ``Original``||Keeps the rotation as it is authored in the source file.||
+||>>> - ``Body Orientation`` ||Keeps the upper body pointing forward.||
+||>>>``Offset`` ||Offset to the root rotation (in degrees).||
+||``Root Transform Position (Y)`` || || 
+||>>>``Bake into Pose`` ||Enable to make vertical root motion be baked into the movement of the bones. Disable to make vertical root motion be stored as root motion.|| 
+||>>>``Based Upon`` ||What the vertical root position is based upon.||
+||>>> - ``Original`` ||Keeps the vertical position as it is authored in the source file.||
+||>>> - ``Center of Mass`` ||Keeps the center of mass aligned with root transform position.||
+||>>> - ``Feet``||Keeps the feet aligned with the root transform position.||
+||>>>``Offset`` ||Offset to the vertical root position.||
+||``Root Transform Position (XZ)`` || || 
+||>>>``Bake into Pose`` ||Enable to make horizontal root motion be baked into the movement of the bones. Disable to make horizontal root motion be stored as root motion.|| 
+||>>>``Based Upon`` ||What the horizontal root position is based upon.||
+||>>> - ``Original`` ||Keeps the horizontal position as it is authored in the source file.||
+||>>> - ``Center of Mass`` ||Keeps the center of mass aligned with the root transform position.||
+||>>>``Offset`` ||Offset to the horizontal root position.||
+||``Mirror`` ||Mirror left and right in this clip.||
+||``Body Mask`` ||The Body mask applied to this animation clip (see section on [[AvatarBodyMask|body masks]]).||
+||``Curves`` (Unity Pro only)||Parameter-related curves (see [[AnimatorCurves|Curves in Mecanim]]).||
+
+Creating clips is essentially defining the start and end points for segments of animation. In order for these clips to loop, they should be trimmed in such a way to match the first and last frame as best as possible for the desired loop. For more on this, see the section on 
+[[LoopingAnimationClips|Looping animation clips]]

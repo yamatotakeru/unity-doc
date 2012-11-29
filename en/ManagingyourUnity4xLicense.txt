@@ -1,0 +1,27 @@
+!Managing your Unity 4.x license
+
+With Unity 4.0 you are now able to manage your license independently (no more contacting Support for migration to your shiny new machine). Below is a guide to how this new system works and performs.
+
+\\
+You will notice a new option under the 'Unity' drop-down on your toolbar that reads 'Manage License…'.  This is the unified place within the Editor for all your licensing needs.
+
+Attach:manageLicensedropdown.png
+
+Once you have clicked on the 'Manage License…' option you will be faced with the 'License Management' window. You then have four options (see image), explained below:
+
+Attach:licenseManagementwindow.png
+
+__'Check for updates'__ cross-references the server, querying your Serial number for any changes that may have been made since you last activated. This is handy for updating your license to include new add-ons once purchased and added to your existing license via the Unity Store.
+
+\\
+__'Activate a new license'__ does what it says on the tin. This enables you to activate a new Serial number on the machine you’re using.
+
+\\
+The __'Return license'__ feature enables you to return the license on the machine in question, in return for a new activation that can be used on another machine. Once clicked the Editor will close and you will be able to activate your Serial number elsewhere. For more information on how many machines a single license enables use on, please see our EULA: http://unity3d.com/company/legal/eula.
+
+\\
+__'Manual activation'__ enables you to activate your copy of Unity offline. This is covered in more depth here: http://docs.unity3d.com/Documentation/Manual/ManualActivationGuide.html.
+
+\\
+\\
+For any further assistance, please contact __support@unity3d.com__.

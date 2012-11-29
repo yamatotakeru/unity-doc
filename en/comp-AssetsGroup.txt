@@ -1,0 +1,7 @@
+! Asset Components
+
+$$Assets$$ are the models, textures, sounds and all other "content" files from which you make your game.
+
+This section describes $$Components$$ for all asset types. For a general overview of assets, see [[Asset Import and Creation| Assets overview page]].
+
+(:tocportion:)

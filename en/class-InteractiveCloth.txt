@@ -1,0 +1,54 @@
+! Interactive Cloth
+
+The Interactive  Cloth class is a Component that simulates a "cloth-like" behavior on a mesh. Use this Component if you want to use cloth in your scene.
+
+Attach:InteractiveCloth.png\\
+''Interactive cloth in the scene view and its properties in the inspector.''
+
+
+!! Properties
+!!Interactive Cloth
+||PROPS
+||``Bending Stiffness`` ||Bending stiffness of the cloth.||
+||``Stretching Stiffness`` ||Stretching Stiffness of the cloth.||
+||``Damping`` ||Damp cloth motion.||
+||``Use Gravity`` ||Should Gravity affect the cloth simulation?.||
+||``External Acceleration`` ||A constant, external acceleration applied to the cloth||
+||``Random Acceleration`` ||A random, external acceleration applied to the cloth||
+||``Mesh`` ||Mesh that will be used by the interactive cloth for the simulation||
+||``Thickness`` ||The thickness of the cloth surface.||
+||``Friction`` ||The friction of the cloth.||
+||``Density`` ||The density of the cloth.||
+||``Pressure`` ||The pressure inside the cloth/||
+||``Collision Response`` ||How much force will be applied to colliding rigidbodies?.||
+||``Attachment Tear Factor`` ||How far attached rigid bodies need to be stretched, before they will tear off.||
+||``Attachment Response`` ||How much force will be applied to attached rigidbodies?.||
+||``Tear Factor`` ||How far cloth vertices need to be stretched, before the cloth will tear.||
+||``Attached Colliders`` ||Array that contains the attached colliders to this cloth||
+||``Self Collision`` ||Will the cloth collide with itself?.||
+
+The Interactive Cloth Component depends of the Cloth Renderer Component, this means that this component cannot be removed if the Cloth Renderer is present in the Game Object.
+
+!!Cloth Renderer
+||``Cast Shadows`` ||If selected the cloth will cast shadows||
+||``Receive Shadows`` ||The cloth can receive Shadows if enabled||
+||``Lightmap Index`` ||The index of the lightmap applied to this renderer.||
+||``Lightmap Tiling Offset`` ||The tiling & offset used for lightmap.||
+||``Materials`` ||Materials that the cloth will use.||
+||``Pause When Not Visible`` ||If selected, the simulation will not be calculated when the cloth is not being rendered by the camera.||
+
+
+
+
+!! Adding an Interactive Cloth Game Object
+To add an Interactive Cloth in the scene just select ``GameObject->Create Other->Cloth``.
+
+!! Hints.
+* Using lots of clothes in your game will reduce exponentially the performance of your game.
+* If you want to simulate clothing on characters, check out the [[class-SkinnedCloth | Skinned Cloth]] component instead, which interacts with the SkinnedMeshRenderer component and is much faster then InteractiveCloth.
+* To attach the cloth to other objects, use the ''Attached Colliders'' property to assign other objects to attach to. The colliders must overlap some vertices of the cloth mesh for this to work.
+* Attached Colliders' objects must intersect with the cloth you are attaching to.
+
+!! Notes.
+* Cloth simulation will generate normals but not tangents. If the source mesh has tangents, these will be passed to the shader unmodified - so if you are using a shader which depends on tangents (such as bump mapped shaders), the lighting will look wrong for cloth which has been moved from it's initial position.
+

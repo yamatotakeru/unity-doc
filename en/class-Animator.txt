@@ -1,0 +1,19 @@
+!Animator Component
+
+Any GameObject that has an avatar will also have an ``Animator`` component, which is the link between the character and its behavior. 
+
+Attach:MecanimAnimatorComponent.png
+
+The ``Animator`` component references an ``Animator Controller`` which is used for setting up behavior on the character. This includes setup for [[AnimationStateMachines|State Machines]], [[AnimationBlendTrees|Blend Trees]], and events to be controlled from script.
+
+!!Properties
+
+||PROPS
+||``Controller``  ||The animator controller attached to this character||
+||``Avatar`` ||The [[class-Avatar|Avatar]] for this character. 
+||``Apply Root Motion`` ||Should we control the character's position from the animation itself or from script. 
+||``Animate Physics`` ||Should the animation interact with physics? ||
+||``Culling Mode`` ||Culling mode for animations||
+||>>>``Always animate``||Always animate, don't do culling||
+||>>>``Based on Renderers``||When the renderers are invisible, only root motion is animated. All other body parts will remain static while the character is invisible. ||
+

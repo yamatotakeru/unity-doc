@@ -1,0 +1,21 @@
+! Motion Blur image effect
+
+$$Motion Blur$$ image effect enhances fast-moving scenes by leaving "motion trails" of previously rendered frames.
+For a modern implementation of Motion Blur, please refer to the new [[script-CameraMotionBlur|Camera Motion Blur Effect]].
+
+Like all [[comp-ImageEffects|image effects]], Motion Blur is only available in Unity Pro. Make sure to have the [[HOWTO-InstallStandardAssets|Pro Standard Assets installed]].
+
+Attach:FxMotionBlur.png\\
+''Motion Blur effect applied to the rotating scene''
+
+||PROPS
+||``Blur Amount`` ||How much of the previous frames to leave in the image. Higher values make longer motion trails. ||
+||``Extra Blur``  ||If checked, this makes motion trails more blurry, by applying some extra blur to previous frames. ||
+
+
+!!!Tips:
+* Motion Blur only works while in play mode because it's time based.
+
+!!!Hardware support
+
+Motion Blur effect works all graphics cards that support rendering to a texture. E.g. GeForce2, Radeon 7000 and up. All image effects automatically disable themselves when they can not run on an end-users graphics card.

@@ -1,0 +1,25 @@
+!Navmesh Baking
+
+Once the Navmesh geometry and layers are marked up, it's time to bake the Navmesh geometry. 
+
+Inside the Navigation window (^^Window->Navigation^^), go to the ^^Bake^^ tab (the upper-right corner), and click on the ^^Bake^^ button (the lower-right corner).
+Attach:NavigationBakeWindow.png
+''Navigation Bake Window''
+
+Here are the properties that affect Navmesh baking: 
+||PROPS
+||``Radius``||radius of the "typical" agent (preferrably the smallest).||
+||``Height`` ||height of the "typical" agent (the "clearance" needed to get a character through).||
+||``Max Slope`` ||all surfaces with higher slope than this, will be discarded.||
+||``Step height`` ||the height difference below which navmesh regions are considered connected.||
+||``Drop height`` ||If the value of this property is positive, off-mesh links will be placed for adjacent navmesh surfaces where the height difference is below this value.||
+||``Jump distance`` ||If the value of this property is positive, off-mesh links will be placed for adjacent navmesh surfaces where the horizontal distance is below this value.||
+||``Advanced``||
+||>>>``Min region area`` ||Regions with areas below this threshold will be discarded. ||
+||>>>``Width inaccuracy %``||Allowable width inaccuracy||
+||>>>``Height inaccuracy %``||Allowable height inaccuracy||
+||>>>``Height mesh``||If this options is on, original height information is stored. This has performance implications for speed and memory usage. ||
+
+Note that the baked navmesh is part of the scene and agents will be able to traverse it. To remove the navmesh, click on ^^Clear^^ when you're in the ^^Bake^^ tab.
+
+(back to [[NavmeshandPathfinding|Navigation and Pathfinding]])

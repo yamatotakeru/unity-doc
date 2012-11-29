@@ -1,0 +1,48 @@
+! Grass
+
+The $$Paint Foliage$$ button Attach:TerrainGuide-PaintFoliageButton.png allows you to paint grass, rocks, or other decorations around the Terrain.  To paint grass, choose ^^Edit Details button->Add Grass Texture^^.  You don't need to create a mesh for grass, just a texture.
+
+Attach:TerrainGuide-AddGrassTextureDialog.png\\
+''The Add Grass Texture dialog''
+
+At this dialog, you can fine-tune the appearance of the grass with the following options:
+
+||PROPS
+||``Detail Texture`` ||The texture to be used for the grass. ||
+||``Min Width`` ||Minimum width of each grass section in meters. ||
+||``Max Width`` ||Maximum width of each grass section in meters. ||
+||``Min Height`` ||Minimum height of each grass section in meters. ||
+||``Max Height`` ||Maximum height of each grass section in meters. ||
+||``Noise Spread`` ||The size of noise-generated clusters of grass. Lower numbers mean less noise. ||
+||``Healthy Color`` ||Color of healthy grass, prominent in the center of ``Noise Spread`` clusters. ||
+||``Dry Color`` ||Color of dry grass, prominent on the outer edges of ``Noise Spread`` clusters. ||
+||``Grayscale Lighting`` ||If enabled, grass textures will not be tinted by any colored light shining on the Terrain. ||
+||``Lightmap Factor`` ||How much the grass will be influenced by the Lightmap. ||
+||``Billboard`` ||If checked, this grass will always rotate to face the main $$Camera$$. ||
+
+After you've clicked the ^^Add^^ button, you'll see the grass appear selectable in the $$Inspector$$.
+
+Attach:TerrainGuide-AddedGrassInspector.png\\
+''The added grass appears in the Inspector''
+
+!! Painting Grass
+
+Painting grass works the same as painting textures or trees.  Select the grass you want to paint, and paint right onto the Terrain in the $$Scene View$$
+
+Attach:TerrainGuide-PaintingGrass.png\\
+''Painting grass is easy as pie''
+
+__Note:__When you have a brush selected, move your mouse over the Terrain in the Scene View and press ^^F^^.  This will center the Scene View over the mouse pointer position and automatically zoom in to the ``Brush Size`` distance.  This is the quickest & easiest way to navigate around your Terrain while creating it.
+
+!! Editing Grass
+
+To change any import parameters for a particular Grass Texture, select it choose ^^Edit Details button->Edit^^.  You can also double-click it.  You will then see the $$Edit Grass$$ dialog appear, and be able to adjust the parameters described above.
+
+You'll find that changing a few parameters can make a world of difference.  Even changing the ``Max/Min Width`` and ``Height`` parameters can vastly change the way the grass looks, even with the same number of grass objects painted on the Terrain.
+
+Attach:TerrainGuide-GrassParam1.png\\
+''Grass created with the default parameters''
+
+Attach:TerrainGuide-GrassParam2.png\\
+''The same number of painted grass objects, now wider and taller''
+

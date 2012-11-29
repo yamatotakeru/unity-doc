@@ -1,0 +1,10 @@
+!Transparent Cutout Vertex-Lit
+
+Attach:Shaders./Shader-TransCutoutVertex.png
+
+(:include shader-TransCutFamilyImport:)
+
+(:include shader-VertexLitSubsetImport:)
+
+!! Performance
+Generally, this shader is very cheap to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].

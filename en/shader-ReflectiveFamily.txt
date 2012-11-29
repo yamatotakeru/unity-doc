@@ -1,0 +1,116 @@
+!Reflective Shader Family
+
+$$Reflective$$ shaders will allow you to use a Cubemap which will be reflected on your mesh.  You can also define areas of more or less reflectivity on your object through the alpha channel of the ``Base`` texture. High relectivity is a great effect for glosses, oils, chrome, etc.  Low reflectivity can add effect for metals, liquid surfaces, or video monitors.
+
+!! [[shader-ReflectiveVertexLit|Reflective Vertex-Lit]]
+
+[[shader-ReflectiveVertexLit| Attach:Shaders./Thumb-ReflVertex.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for defining reflective areas
+* One ``Reflection`` Cubemap for Reflection Map
+
+[[shader-ReflectiveVertexLit | &#187; More details]]
+
+
+!! [[shader-ReflectiveDiffuse|Reflective Diffuse]]
+
+[[shader-ReflectiveDiffuse| Attach:Shaders./Thumb-ReflDiffuse.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for defining reflective areas
+* One ``Reflection`` Cubemap for Reflection Map
+
+[[shader-ReflectiveDiffuse | &#187; More details]]
+
+
+!! [[shader-ReflectiveSpecular|Reflective Specular]]
+
+[[shader-ReflectiveSpecular| Attach:Shaders./Thumb-ReflSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for defining reflective areas & Specular Map combined
+* One ``Reflection`` Cubemap for Reflection Map
+
+'''Note:'''
+One consideration for this shader is that the ``Base`` texture's alpha channel will double as both the reflective areas and the Specular Map.
+
+[[shader-ReflectiveSpecular | &#187; More details]]
+
+
+!! [[shader-ReflectiveBumpedDiffuse|Reflective Normal mapped]]
+
+[[shader-ReflectiveBumpedDiffuse| Attach:Shaders./Thumb-ReflBump.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for defining reflective areas
+* One ``Reflection`` Cubemap for Reflection Map
+* One ``Normal map`` normal map, no alpha channel required
+
+[[shader-ReflectiveBumpedDiffuse | &#187; More details]]
+
+
+!! [[shader-ReflectiveBumpedSpecular|Reflective Normal Mapped Specular]]
+
+[[shader-ReflectiveBumpedSpecular| Attach:Shaders./Thumb-ReflBumpSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for defining reflective areas & Specular Map combined
+* One ``Reflection`` Cubemap for Reflection Map
+* One ``Normal map`` normal map, no alpha channel required
+
+'''Note:'''
+One consideration for this shader is that the ``Base`` texture's alpha channel will double as both the reflective areas and the Specular Map.
+
+[[shader-ReflectiveBumpedSpecular | &#187; More details]]
+
+
+!! [[shader-ReflectiveParallaxDiffuse|Reflective Parallax]]
+
+[[shader-ReflectiveParallaxDiffuse| Attach:Shaders./Thumb-ReflParallaxBump.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for defining reflective areas
+* One ``Reflection`` Cubemap for Reflection Map
+* One ``Normal map`` normal map, with alpha channel for Parallax Depth
+
+[[shader-ReflectiveParallaxDiffuse | &#187; More details]]
+
+
+!! [[shader-ReflectiveParallaxSpecular|Reflective Parallax Specular]]
+
+[[shader-ReflectiveParallaxSpecular| Attach:Shaders./Thumb-ReflParallaxBumpSpec.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for defining reflective areas & Specular Map
+* One ``Reflection`` Cubemap for Reflection Map
+* One ``Normal map`` normal map, with alpha channel for Parallax Depth
+
+'''Note:'''
+One consideration for this shader is that the ``Base`` texture's alpha channel will double as both the reflective areas and the Specular Map.
+
+[[shader-ReflectiveParallaxSpecular | &#187; More details]]
+
+
+!! [[shader-ReflectiveBumpedUnlit|Reflective Normal mapped Unlit]]
+
+[[shader-ReflectiveBumpedUnlit| Attach:Shaders./Thumb-ReflBumpUnlit.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for defining reflective areas
+* One ``Reflection`` Cubemap for Reflection Map
+* One ``Normal map`` normal map, no alpha channel required
+
+[[shader-ReflectiveBumpedUnlit | &#187; More details]]
+
+
+!! [[shader-ReflectiveBumpedVertexLit|Reflective Normal mapped Vertex-Lit]]
+
+[[shader-ReflectiveBumpedVertexLit| Attach:Shaders./Thumb-ReflBumpVertex.png]]
+
+'''Assets needed:'''
+* One ``Base`` texture with alpha channel for defining reflective areas
+* One ``Reflection`` Cubemap for Reflection Map
+* One ``Normal map`` normal map, no alpha channel required
+
+[[shader-ReflectiveBumpedVertexLit | &#187; More details]]

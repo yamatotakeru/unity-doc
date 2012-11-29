@@ -1,0 +1,4 @@
+* To add multiple Colliders for an object, create child GameObjects and attach a Collider to each one.  This allows each Collider to be manipulated independently.
+* You can look at the gizmos in the $$Scene View$$ to see how the Collider is being calculated on your object.
+* Colliders do their best to match the scale of an object. If you have a non-uniform scale (a scale which is different in each direction), only the Mesh Collider can match completely.
+* If you are moving an object through its Transform component but you want to receive Collision/Trigger messages, you must attach a Rigidbody to the object that is moving.

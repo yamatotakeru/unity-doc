@@ -1,0 +1,13 @@
+!Self-Illuminated Normal mapped Diffuse
+
+Attach:Shaders./Shader-IllumBump.png
+
+(:include shader-SelfIllumFamilyImport:)
+
+(:include shader-BumpSubsetImport:)
+
+(:include shader-DiffuseSubsetImport:)
+
+!! Performance
+
+Generally, this shader is cheap to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].

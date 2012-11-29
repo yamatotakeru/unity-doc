@@ -1,0 +1,3 @@
+* Be careful of using many large particles. This can seriously hinder performance on low-level machines. Always try to use the minimum number of particles to attain an effect.
+* The ``Emit`` property works in conjunction with the ``AutoDestruct`` property of the Particle Animator.  Through scripting, you can cease the emitter from emitting, and then ``AutoDestruct`` will automatically destroy the Particle System and the GameObject it is attached to.
+

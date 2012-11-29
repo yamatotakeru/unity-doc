@@ -1,0 +1,34 @@
+!FBX Importer - Animations Tab
+
+Attach:MecanimImporterAnimationsTab.png
+
+||__''Animations''__ ||
+||``Generation`` ||Controls how animations are imported: ||
+||>>>``Don't Import`` ||No animation or skinning is imported. ||
+||>>>``Store in Original Roots`` ||Animations are stored in the root objects of your animation package (these might be different from the root objects in Unity). ||
+||>>>``Store in Nodes`` ||Animations are stored together with the objects they animate. Use this when you have a complex animation setup and want full scripting control. ||
+||>>>``Store in Root`` ||Animations are stored in the scene's transform root objects. Use this when animating anything that has a hierarchy. ||
+||``Bake Animations`` ||Enable this when using IK or simulation in your animation package. Unity will convert to forward kinematics on import. This option is available only for Maya, 3dsMax and Cinema4D files. ||
+||``Animation Wrap mode`` ||The default $$Wrap Mode$$ for the animation in the mesh being imported ||
+||>>>``Default``||The animation plays as specified in the animation splitting options below.||
+||>>>``Once``||The animation plays through to the end once and then stops.||
+||>>>``Loop``||The animation plays through and then restarts when the end is reached.||
+||>>>``PingPong``||The animation plays through and then plays in reverse from the end to the start, and so on.||
+||>>>``ClampForever``||The animation plays through but the last frame is repeated indefinitely. This is not the same as Once mode because playback does not technically stop at the last frame (which is useful when blending animations).||
+||``Split Animations`` ||If you have multiple animations in a single file, you can split it into multiple clips. ||
+||>>>``Name``||The name of the split animation clip||
+||>>>``Start``||The first frame of this clip in the model file ||
+||>>>``End``||The last frame of this clip in the model file ||
+||>>>``WrapMode``||What the split clip does when the end of the animation is reached (this is identical to the wrap mode option described above).||
+||>>>``Loop``||Depending on how the animation was created, one extra frame of animation may be required for the split clip to loop properly.  If your looping animation doesn't look correct, try enabling this option. ||
+||__''Animation Compression''__ ||
+||``Anim. Compression`` ||The type of compression that will be applied to this mesh's animation(s) ||
+||>>>``Off`` ||Disables animation compression. This means that Unity doesn't reduce keyframe count on import, which leads to the highest precision animations, but slower performance and bigger file and runtime memory size. It is generally not advisable to use this option - if you need higher precision animation, you should enable keyframe reduction and lower allowed ``Animation Compression Error`` values instead. ||
+||>>>``Keyframe Reduction`` ||Reduces keyframes on import. If selected, the ``Animation Compression Errors`` options are displayed. ||
+||>>>``Keyframe Reduction and Compression`` ||Reduces keyframes on import and compresses keyframes when storing animations in files. This affects only file size - the runtime memory size is the same as ``Keyframe Reduction``. If selected, the ``Animation Compression Errors`` options are displayed. ||
+||``Animation Compression Errors`` ||These options are available only when keyframe reduction is enabled. ||
+||>>>``Rotation Error`` ||Defines how much rotation curves should be reduced. The smaller value you use - the higher precision you get. ||
+||>>>``Position Error`` ||Defines how much position curves should be reduced. The smaller value you use - the higher precision you get. ||
+||>>>``Scale Error`` ||Defines how much scale curves should be reduced. The smaller value you use - the higher precision you get. ||
+
+For properties of AnimationClip, go to the [[class-AnimationClip|AnimationClip reference page]]

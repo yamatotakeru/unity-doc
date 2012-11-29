@@ -1,0 +1,9 @@
+! ShaderLab syntax: Name
+
+!! Syntax
+:__Name__ "''PassName''": Gives the ''PassName'' name to the current pass.
+
+!! Details
+A pass can be given a name so that a [[SL-UsePass|UsePass]] command can reference it.
+
+

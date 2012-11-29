@@ -1,0 +1,3 @@
+! Flare Layer
+
+The $$Flare Layer$$ Component can be attached to [[class-Camera | Cameras]] to make [[class-LensFlare | Lens Flares]] appear in the image. By default, Cameras have a Flare Layer already attached.

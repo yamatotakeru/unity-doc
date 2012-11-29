@@ -1,0 +1,30 @@
+! Network Manager
+
+The $$Network Manager$$ contains two very important properties for making Networked multiplayer games.
+
+Attach:NetworkSet.png\\
+''The Network Manager''
+
+You can access the Network Manager by selecting ^^Edit->Project Settings->Network^^ from the menu bar.
+
+
+!! Properties
+
+||PROPS
+||``Debug Level`` ||The level of messages that are printed to the console ||
+||>>>``Off`` ||Only errors will be printed ||
+||>>>``Informational`` ||Significant networking events will be printed ||
+||>>>``Full`` ||All networking events will be printed ||
+||``Sendrate`` ||Number of times per second that data is sent over the network ||
+
+
+!! Details
+
+Adjusting the Debug Level can be enormously helpful in fine-tuning or debugging your game's networking behaviors.  At first, setting it to ``Full`` will allow you to see every single network action that is performed.  This will give you an overall sense of how frequently you are using network communication and how much bandwidth you are using as a result.
+
+When you set it to ``Informational``, you will see major events, but not every individual activity.  Assigning unique ``Network IDs`` and buffering ``RPC`` calls will be logged here.
+
+When it is ``Off``, only errors from networking will be printed to the console.
+
+The data that is sent at the ``Sendrate`` intervals (1 second / ``Sendrate`` = interval) will vary based on the $$Network View$$ properties of each broadcasting object.  If the Network View is using ``Unreliable``, its data will be send at each interval.  If the Network View is using ``Reliable Delta Compressed``, Unity will check to see if the Object being watched has changed since the last interval.  If it has changed, the data will be sent.
+

@@ -1,0 +1,11 @@
+! How to make a simple first person walkthrough
+
+Here's how you can make a simple first person walk-through with your own artwork:
+
+# Import your level. See [[HOWTO-importObject|here]] on how to import geometry from your art package into Unity.
+# Select the imported model file and enable ``Generate Colliders`` in the $$Import Settings$$ in the $$Inspector$$.
+# Locate the ^^Standard Assets->Prefabs->First Person Controller^^ in the $$Project View$$ and drag it into the $$Scene View$$.
+# Make sure that the scale of your level is correct. The First Person Controller is exactly 2 meters high, so if your level doesn't fit the size of the controller, you should adjust the scale of the level size within your modeling application. Getting scale right is critical for physical simulation, and other reasons documented at the bottom of [[class-Rigidbody | this page]]. Using the wrong scale can make objects feel like they are floating or too heavy. If you can't change the scale in your modeling app, you can change the scale in the $$Import Settings...$$ of the model file.
+# Move the First Person Controller to be at the start location using the $$Transform$$ handles. It is critical that the first person controller does not intersect any level geometry, when starting the game (otherwise it will be stuck!).
+# Remove the default camera "Main Camera" in the hierarchy view. The First person controller already has its own camera.
+# Hit $$Play$$ to walk around in your own level.

@@ -1,0 +1,5 @@
+!Bringing Characters to Life
+
+Once the character mesh and animations are imported and the avatar is set up, you are ready to start making use of them in your game. The following sections cover the main features that Mecanim provides for controlling and sequencing your animations.
+
+(:tocportion:)

@@ -1,0 +1,40 @@
+! Text Mesh
+
+The $$Text Mesh$$ generates 3D geometry that displays text strings.
+
+Attach:Inspector-TextMesh.png\\
+''The Text Mesh $$Inspector$$''
+
+You can create a new Text Mesh from ^^GameObject->Create Other->3D Text^^.
+
+
+!! Properties
+
+||PROPS
+||``Text`` ||The text that will be rendered ||
+||``Offset Z`` ||How far should the text be offset from the transform.position.z when drawing ||
+||``Character Size`` ||The size of each character (This scales the whole text) ||
+||``Line Spacing`` ||How much space will be in-between lines of text. ||
+||``Anchor`` ||Which point of the text shares the position of the Transform. ||
+||``Alignment`` ||How lines of text are aligned (Left, Right, Center). ||
+||``Tab Size`` ||How much space will be inserted for a tab '\t' character. This is a multiplum of the 'spacebar' character offset. ||
+||``Font`` ||The [[class-Font | TrueType Font]] to use when rendering the text. ||
+
+
+!! Details
+
+Text Meshes can be used for rendering road signs, graffiti etc.  The Text Mesh places text in the 3D scene. To make generic 2D text for GUIs, use a [[class-GuiText|GUI Text]] component instead.
+
+Follow these steps to create a Text Mesh with a custom Font:
+# Import a font by dragging a TrueType Font - a __.ttf__ file - from the Explorer (Windows) or Finder (OS X) into the $$Project View$$.
+# Select the imported font in the Project View.
+# Choose ^^GameObject->Create Other->3D Text^^.
+You have now created a text mesh with your custom TrueType Font.  You can scale the text and move it around using the $$Scene View's$$ $$Transform$$ controls.
+
+__Note:__ If you want to change the font for a Text Mesh, need to set the component's font property and also set the texture of the font material to the correct font texture. This texture can be located using the font asset's foldout. If you forget to set the texture then the text in the mesh will appear blocky and misaligned. 
+
+!!Hints
+* When entering text into the ``Text`` property, you can create a line break by holding ^^Alt^^ and pressing ^^Return^^.
+* You can download free TrueType Fonts from [[http://www.1001freefonts.com/fonts/afonts.htm | 1001freefonts.com]] (download the Windows fonts since they contain TrueType Fonts).
+* If you are scripting the ``Text`` property, you can add line breaks by inserting the escape character "\n" in your strings.
+

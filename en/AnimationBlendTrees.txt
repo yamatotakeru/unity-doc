@@ -1,0 +1,37 @@
+!Blend Trees
+
+A common task in game animation is to transition between two or more similar sequences. Perhaps the best-known example is the transition between walking and running animations according to the character's speed (ie, running movements are not just faster versions of walking movements, so they require separate animation clips). Another example is a character leaning to the left or right as he turns during a run. The most important detail of the transition is to ensure that it happens smoothly without a noticeable jerk where the animations are switched.
+
+$$Blend Trees$$ are Mecanim's method of allowing one animation to be blended smoothly with another. By tracking the bone movements of the two animations precisely, Mecanim can incorporate parts of both to varying degrees. The amount that each of the two animation clips contributes to the final effect is controlled using a $$blending parameter$$, which is just one of the numeric [[AnimationParameters|animation parameters]] associated with the character. To make for a smooth transition, Mecanim requires that the two clips to be blended are ''aligned'' so that the corresponding movements take place at the same points in normalized time. For example, walking and running animations can be aligned so that the individual footfalls take place at the same points in normalized time, even though the running cycle is faster in real time (the left foot hits at 0.0, the right foot at 0.5, say).
+
+
+To start working with a new blend tree, you need to:
+# Right-click on empty space on the ~~Animator Controller Window~~
+# Select ^^Create State > From New Blend Tree^^ from the context menu that appears.
+# Double-click on the Blend Tree to bring up the ~~Blend Tree Inspector~~. (Note that you will just get the standard state inspector if you single click here.)
+
+Attach:MecanimBlendTreeInitial.png
+
+In the inspector, the first thing you need is to select the [[AnimationParameters|Animation Parameter]] that will control this Blend Tree. In this example, the parameter is ''direction'' which varies between -1.0 (left) and +1.0 (right), with 0.0 denoting a straight run without leaning. 
+
+Then you can add individual animations by clicking ^^+ -> Add Motion Field^^ to add an animation clip to the blend tree. When you're done, it should look something like this:
+
+Attach:MecanimBlendTree.png
+
+The lines in the diagram at the top of the inspector show the proportion of each animation that is incorporated as the parameter varies between its minimum and maximum values. 
+
+Attach:MecanimBlendTreeParam.png
+
+If you click and hold down the left mouse button on a line or the space beneath, the animation that it corresponds to will be highlighted in the list below. You can also drag the line left and right to change the parameter range over which it influences the animation (this also performs a live update of the Threshold values in the inspector).
+
+The ''Automate Thresholds'' checkbox will distribute the clips' thresholds evenly across the numeric range of the parameter. For example, if there are five clips and the parameter ranges from -90 to +90, the thresholds will be set to -90, -45, 0, +45 and +90 in order. The ''Compute Thresholds'' buttons will set the thresholds from speed data obtained from the animation. Say, for example, you had a walk animation that covered 1.5 units per second, a jog at 2.3 units per second, and a run at 4 units per second, clicking the ''Average'' button would set the parameter range and thresholds for the three animations based on these values. So, if you set the speed parameter to 3.0, it would blend the jog and run with a slight bias toward the jog. The ''Angular'' button performs a similar calculation but based on angular speed (degrees per second) rather than linear speed. You can alter the "natural" speed of the animation clips using the time scaling text boxes (the column next to the threshold values), so you could make the walk twice as fast by using a value of 2.0 as its scale. The ''Adjust Time Scale > Homogenized'' button rescales the speeds of the clips so that they correspond with the chosen minimum and maximum values of the parameter but keep the same ''relative'' speeds they initially had.
+
+The red vertical bar indicates the value of the event parameter. If you press ^^Play^^ in the ~~Animation Preview~~ panel and drag the bar left and right, you can see how the value of the parameter is controlling the blending of the different animations.
+
+In the Animation view, a diagram of the blend tree complements the information shown in the inspector.
+
+Attach:MecanimBlendTreeStateDiagram.png
+
+This gives a graphical display of how the animations are combined as the parameter value changes (as you drag the slider, the arrows from the tree root change their shading to show the dominant animation clip).
+
+(back to [[MecanimAnimationSystem|Mecanim introduction]])

@@ -1,0 +1,14 @@
+||``Emit`` ||If enabled, the emitter will emit particles. ||
+||``Min Size`` ||The minimum size each particle can be at the time when it is spawned. ||
+||``Max Size`` ||The maximum size each particle can be at the time when it is spawned. ||
+||``Min Energy`` ||The minimum lifetime of each particle, measured in seconds. ||
+||``Max Energy`` ||The maximum lifetime of each particle, measured in seconds. ||
+||``Min Emission`` ||The minimum number of particles that will be spawned every second. ||
+||``Max Emission`` ||The maximum number of particles that will be spawned every second. ||
+||``World Velocity`` ||The starting speed of particles in world space, along X, Y, and Z. ||
+||``Local Velocity`` ||The starting speed of particles along X, Y, and Z, measured in the object's orientation. ||
+||``Rnd Velocity`` ||A random speed along X, Y, and Z that is added to the velocity. ||
+||``Emitter Velocity Scale`` ||The amount of the emitter's speed that the particles inherit. ||
+||``Tangent Velocity`` ||The starting speed of particles along X, Y, and Z, across the Emitter's surface. ||
+||``Simulate In World Space`` ||If enabled, the particles don't move when the emitter moves. If false, when you move the emitter, the particles follow it around. ||
+||``One Shot`` ||If enabled, the particle numbers specified by min & max emission is spawned all at once. If disabled, the particles are generated in a long stream. ||

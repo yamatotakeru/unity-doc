@@ -1,0 +1,18 @@
+! Mesh Filter
+
+The $$Mesh Filter$$ takes a mesh from your assets and passes it to the [[class-MeshRenderer|Mesh Renderer]] for rendering on the screen.
+
+Attach:Inspector-MeshFilter.png\\
+''A Mesh Filter combined with a Mesh Renderer makes the model appear on screen. ''
+
+
+!! Properties
+
+||PROPS
+||``Mesh`` ||Reference to a [[class-Mesh | mesh]] that will be rendered. The ``Mesh`` is located in your Project Folder. ||
+
+
+!! Details
+When importing mesh assets, Unity automatically creates a [[class-SkinnedMeshRenderer|Skinned Mesh Renderer]] if  the mesh is skinned, or a Mesh Filter along with a Mesh Renderer, if it is not.
+
+To see the Mesh in your scene, add a [[class-MeshRenderer|Mesh Renderer]] to the GameObject.  It should be added automatically, but you will have to manually re-add it if you remove it from your object.  If the Mesh Renderer is not present, the Mesh will still exist in your scene (and computer memory) but it will not be drawn.

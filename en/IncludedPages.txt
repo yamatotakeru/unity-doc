@@ -1,1 +1,35 @@
+! Included Pages
+
+These are not actual pages; but other places do include them!
+
+* [[comp-ParticleEmitterProps]]
+* [[comp-ParticleEmitterDetails]]
+* [[comp-ParticleEmitterHints]]
+
+* [[PhysicsBase]]
+
+* [[comp-ColliderProps]]
+* [[comp-ColliderDetails]]
+* [[comp-ColliderCompound]]
+* [[comp-ColliderHints]]
+* [[comp-ColliderAdvanced]]
+
+* [[shader-NormalFamilyImport]]
+* [[shader-TransFamilyImport]]
+* [[shader-TransCutFamilyImport]]
+* [[shader-SelfIllumFamilyImport]]
+* [[shader-ReflectiveFamilyImport]]
+
+* [[shader-VertexLitSubsetImport]]
+* [[shader-PixelLitSubsetImport]]
+* [[shader-DiffuseSubsetImport]]
+* [[shader-SpecularSubsetImport]]
+* [[shader-BumpSubsetImport]]
+* [[shader-ParallaxSubsetImport]]
+
+* [[imagefx-SM2]]
+* [[imagefx-SM2Depth]]
+* [[imagefx-SM3]]
+* [[imagefx-SM3Depth]]
+
 

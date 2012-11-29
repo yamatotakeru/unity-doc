@@ -1,0 +1,24 @@
+!FBX Importer, Rig options
+
+The Rig TAB allows you to assign or create an avatar definition to your imported skinned model so that you can animate it - see [[Main.AssetPreparationandImport|Asset Preparation and Import]]
+
+If you have a __humanoid character__ e.g. a biped (two legs) that has two arms and a head, then choose Humanoid and 'Create from this model' an Avatar will be created to best match the bone hierarchy - see [[AvatarCreationandSetup|Avatar Creation and Setup]] or you can pick an alternative avatar Definition that has already been set up.
+
+If you have a non humanoid character e.g. a quadruped, or any animateable entity that you wish to use with [[MecanimAnimationSystem|Mecanim]] choose __Generic__ after choosing you will then need to identify a bone in the drop down to choose as the 
+root node.
+
+Choose legacy if you wish to use the legacy animation system and import and use animations as with 3.x
+
+Attach:MecanimImporterRigTab.png
+
+||PROPS
+||``Animation Type``           ||The type of animation.||
+||>>>``None``||No animation present||
+||>>>``Legacy``||Legacy animation system||
+||>>>``Generic``||Generic Mecanim animation||
+||>>>``Humanoid``||Humanoid Mecanim animation system||
+||``Avatar Definition``||Where to get the Avatar definition||
+||>>>``Create from this model``||The Avatar should be based on this model||
+||>>>``Copy from other Avatar``||Point to an Avatar config set up on another model. 
+||``Configure...``||Go to the [[ConfiguringtheAvatar|Avatar configuration]]||
+||``Keep additional bones``|| ||

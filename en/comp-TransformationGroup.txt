@@ -1,0 +1,5 @@
+! Transform Component
+
+This group is for all $$Components$$ that handle object positioning outside of Physics.
+
+(:tocportion:)

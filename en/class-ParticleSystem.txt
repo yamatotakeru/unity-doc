@@ -1,0 +1,19 @@
+!Particle System (Shuriken)
+
+Particle Systems in Unity are used to make clouds of smoke, steam, fire and other atmospheric effects. 
+
+Attach:ShurikenFrontPageFlare.png
+
+You can create a new particle system by creating a ``Particle System`` GameObject (menu ^^GameObject^^ -> ^^Create Other^^ -> ^^Particle System^^) or by creating an empty ``GameObject`` and adding the ``ParticleSystem`` component to it (in ^^Component^^->^^Effects^^)
+
+(:include ParticleSystemInspector:)
+
+!!Scene View Editing
+When creating and editing Particle Systems, you either work with the ^^Inspector^^ or the extended ^^Particle Editor^^, and your changes are reflected in the ^^SceneView^^. The scene view has a ^^Preview Panel^^, where playback of the currently selected ^^Particle Effect^^ can be controlled in Edit Mode, with actions like ^^play^^, ^^pause^^, ^^stop^^ and ^^scrubbing playback time^^
+
+Attach:ShurikenPreviewPanel.png
+
+Scrubbing play back time can be performed by dragging on the label ''Playback Time''. All Playback controls have shortcut keys which can be customized in the [[Preferences|Preferences window]]
+
+(:include ParticleSystemCurveEditor:) 
+(:include ParticleSystemColorEditor:)

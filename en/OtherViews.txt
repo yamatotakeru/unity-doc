@@ -1,0 +1,11 @@
+!Other Views
+
+The Views described on this page covers the basics of the interface in Unity. The other Views in Unity are described elsewhere on separate pages:
+
+* The [[Console | Console]] shows logs of messages, warnings, and errors.
+* The [[Animations40 | Animation View]] can be used to animate objects in the scene.
+* The [[Profiler]] can be used to investigate and find the performance bottle-necks in your game.
+* The [[Asset Server | Asset Server View]] can be used to manage version control of the project using Unity's Asset Server.
+* The [[Lightmapping | Lightmapping View]] can be used to manage lightmaps using Unity's built-in lightmapping.
+* The [[Occlusion Culling | Occlusion Culling View]] can be used to manage Occlusion Culling for improved performance.
+

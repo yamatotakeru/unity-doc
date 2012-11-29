@@ -1,0 +1,42 @@
+! Sun Shafts
+
+The $$Sun Shafts$$ image effect simulates the radial light scattering (also known as the "god ray" effect) that arises when a very bright light source is partly obscured.
+
+As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+
+Attach:ImageEffects./sunShaftsExample.png\\
+''Example of the Sun Shafts effect''
+
+!! Properties
+
+||PROPS
+||``Rely on Z Buffer`` ||This option can be used when no depth textures are available or they are too expensive to calculate (eg, in forward rendering with a large number of objects). Note that if this option is disabled then Sun Shafts must be the very first image effect applied to the camera.||
+||``Resolution`` ||The resolution at which the shafts are generated. Lower resolutions are faster to calculate and create softer results. ||
+||``Blend Mode`` ||Chose between the softer ``Screen`` mode and the simpler ``Add`` mode. ||
+
+||``Sun Transform`` ||The transform of the light source that casts the Sun Shafts. Only the position is significant. ||
+||``Center on ...``||Within the editor, position the ``Sun Transform`` object at the center of the game view camera.||
+
+||``Shafts color`` ||The tint color of the shafts. ||
+||``Distance falloff`` ||The degree to which the shafts' brightness diminishes with distance from the ``Sun Transform`` object. ||
+
+||``Blur size`` ||The radius over which pixel colours are combined during blurring. ||
+||``Blur iterations`` ||The number of repetitions of the blur operation. More iterations will give smoother blurring but each has a cost in processing time.||
+
+||``Intensity`` ||The brightness of the generated shafts. ||
+||``Use alpha mask`` ||Defines how much the alpha channel of the color buffer should be used when generating Sun Shafts. This is useful when your skybox has a proper alpha channel that defines a mask (eg, for clouds blocking the sun shafts). ||
+
+!!Blend Modes: Add and Screen
+
+Blend modes determine the way that two images will be combined when overlaid. Each pixel from the base image is combined mathematically with the pixel in the corresponding position in the overlay image. Two blend modes are available for Unity image effects, Add and Screen.
+
+!!!Add Mode
+
+When the images are blended in Add mode, the values of the color channels (red, green and blue) are simply added together and clamped to the maximum value of 1. The overall effect is that areas of each image that aren't especially bright can easily blend to maximum brightness in the result. The final image tends to lose color and detail and so Add mode is useful when a dazzling "white out" effect is required.
+
+!!!Screen Mode
+
+Screen mode is so named because it simulates the effect of projecting the two source images onto a white screen simultaneously. Each color channel is combined separately but identically to the others. Firstly, the channel values of the two source pixels are inverted (ie, subtracted from 1). Then, the two inverted values are multiplied together and the result is inverted. The result is brighter than either of the two source pixels but it will be at maximum brightness only if one of the source colors was also. The overall effect is that more color variation and detail from the source images is preserved, leading to a gentler effect than Add mode.
+
+(:include imagefx-SM2Depth:)
+

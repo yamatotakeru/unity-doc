@@ -1,0 +1,49 @@
+!Inspector
+
+Attach:Editor-Inspector.png\\
+
+Games in Unity are made up of multiple $$GameObjects$$ that contain meshes, scripts, sounds, or other graphical elements like $$Lights$$. The $$Inspector$$ displays detailed information about your currently selected GameObject, including all attached $$Components$$ and their properties. Here, you modify the functionality of GameObjects in your scene. You can read more about the [[GameObjects | GameObject-Component relationship]], as it is very important to understand.
+
+Any property that is displayed in the Inspector can be directly modified.  Even script variables can be changed without modifying the script itself.  You can use the Inspector to change variables at runtime to experiment and find the magic gameplay for your game.  In a script, if you define a public variable of an object type (like GameObject or Transform), you can drag and drop a GameObject or Prefab into the Inspector to make the assignment.
+
+Attach:Editor-InspectorDragDrop.png
+
+Click the question mark beside any Component name in the Inspector to load its Component Reference page. Please view the  [[Components|Component Reference]] for a complete and detailed guide to all of Unity's Components.
+
+Attach:componentsmenu.png\\
+''Add Components from the ^^Component^^ menu''
+
+You can click the tiny gear icon (or right-click the Component name) to bring up a context menu for the specific Component.
+
+Attach:Inspector-contextmenu.png
+
+The Inspector will also show any Import Settings for a selected asset file.
+
+
+Attach:Inspector-ImportSettings.png\\
+''Click ^^Apply^^ to reimport your asset.''
+
+Attach:Inspector-Layers_Tags.png
+
+Use the ^^Layer^^ drop-down to assign a rendering Layer to the GameObject.  Use the ^^Tag^^ drop-down to assign a Tag to this GameObject.
+
+!!Prefabs
+
+If you have a Prefab selected, some additional buttons will be available in the Inspector.  For more information about Prefabs, please view the [[Prefabs | Prefab manual page]].
+
+!!Labels
+Unity allows assets to be marked with $$Labels$$ to make them easier to locate and categorise. The bottom item on the inspector is the ~~Asset Labels~~ panel.
+
+Attach:InspectorLabelsPanelEmpty.png
+
+At the bottom right of this panel is a button titled with an ellipsis ("...") character. Clicking this button will bring up a menu of available labels
+
+Attach:InspectorLabelsMenu.png
+
+You can select one or more items from the labels menu to mark the asset with those labels (they will also appear in the Labels panel). If you click a second time on one of the active labels, it will be removed from the asset.
+
+Attach:InspectorAssetMenuWithLabels.png
+
+The menu also has a text box that you can use to specify a search filter for the labels in the menu. If you type a label name that does not yet exist and press return/enter, the new label will be added to the list and applied to the selected asset. If you remove a custom label from all assets in the project, it will disappear from the list.
+
+Once you have applied labels to your assets, you can use them to refine searches in the $$Project Browser$$ (see [[ProjectView40|this page]] for further details). You can also access an asset's labels from an editor script using the [[ScriptRef:AssetDatabase.html|AssetDatabase]] class.

@@ -1,0 +1,78 @@
+! Advanced Unity Mobile Scripting
+[[#iOS]]
+!iOS!
+>>ios<<
+!Advanced iOS scripting
+!! Determining Device Generation
+Different device generations support different functionality and have widely varying performance. You should query the device's generation and decide which functionality should be disabled to compensate for slower devices.
+
+You can find the device generation from the [[ScriptRef:iPhone-generation.html | iPhone.generation]] property. The reported generation can be one of the following:
+* ``iPhone``
+* ``iPhone3G``
+* ``iPhone3GS``
+* ``iPhone4``
+* ``iPodTouch1Gen``
+* ``iPodTouch2Gen``
+* ``iPodTouch3Gen``
+* ``iPodTouch4Gen``
+* ``iPad1Gen``
+
+
+You can find more information about different device generations, performance and supported functionality in our [[Main.iphone-Hardware | iPhone Hardware Guide]].
+
+
+!! Device Properties
+There are a number of device-specific properties that you can access:-
+||PROPS
+||``[[ScriptRef:SystemInfo-deviceUniqueIdentifier.html | SystemInfo.deviceUniqueIdentifier]]`` ||Unique device identifier.
+||``[[ScriptRef:SystemInfo-deviceName.html |SystemInfo.deviceName]]`` ||User specified name for device.
+||``[[ScriptRef:SystemInfo-deviceModel.html | SystemInfo.deviceModel]]`` ||Is it iPhone or iPod Touch?
+||``[[ScriptRef:SystemInfo-operatingSystem.html | SystemInfo.operatingSystem]]`` ||Operating system name and version.
+||END
+
+
+!! Anti-Piracy Check
+Pirates will often hack an application from the AppStore (by removing Apple DRM protection) and then redistribute it for free. Unity iOS comes with an anti-piracy check which allows you to determine if your application was altered __after__ it was submitted to the AppStore.
+
+You can check if your application is genuine (not-hacked) with the [[ScriptRef:Application-genuine.html | Application.genuine]] property. If this property returns $$false$$ then you might notify the user that he is using a hacked application or maybe disable access to some functions of your application.
+
+__Note:__ accessing the [[ScriptRef:Application-genuine.html | Application.genuine]] property is a fairly expensive operation and so you shouldn't do it during frame updates or other time-critical code. 
+
+
+!! Vibration Support
+You can trigger a vibration by calling [[ScriptRef:Handheld.Vibrate.html | Handheld.Vibrate]]. Note that iPod Touch devices lack vibration hardware and will just ignore this call.
+
+(:include UpdateOrder:)
+
+>><<
+
+[[#Android]]
+!Android!
+>>android<<
+!Advanced Android scripting
+!! Determining Device Generation
+Different Android devices support different functionality and have widely varying performance. You should target specific devices or device families and decide which functionality should be disabled to compensate for slower devices. There are a number of device specific properties that you can access to which device is being used.
+
+__Note:__ Android Marketplace does some additional compatibility filtering, so you should not be concerned if an ARMv7-only app optimised for OGLES2 is offered to some old slow devices.
+
+!! Device Properties
+||PROPS
+||``[[ScriptRef:SystemInfo-deviceUniqueIdentifier.html | SystemInfo.deviceUniqueIdentifier]]`` ||Unique device identifier.
+||``[[ScriptRef:SystemInfo-deviceName.html |SystemInfo.deviceName]]`` ||User specified name for device.
+||``[[ScriptRef:SystemInfo-deviceModel.html | SystemInfo.deviceModel]]`` ||Is it iPhone or iPod Touch?
+||``[[ScriptRef:SystemInfo-operatingSystem.html | SystemInfo.operatingSystem]]`` ||Operating system name and version.
+||END
+
+
+!! Anti-Piracy Check
+Pirates will often hack an application (by removing Apple DRM protection) and then redistribute it for free. Unity Android comes with an anti-piracy check which allows you to determine if your application was altered __after__ it was submitted to the AppStore.
+
+You can check if your application is genuine (not-hacked) with the [[ScriptRef:Application-genuine.html | Application.genuine]] property. If this property returns $$false$$ then you might notify user that he is using a hacked application or maybe disable access to some functions of your application.
+
+__Note:__ [[ScriptRef:Application-genuineCheckAvailable.html | Application.genuineCheckAvailable]] should be used along with $$Application.genuine$$ to verify that application integrity can actually be confirmed. Accessing the [[ScriptRef:Application-genuine.html | Application.genuine]] property is a fairly expensive operation and so you shouldn't do it during frame updates or other time-critical code. 
+
+
+!! Vibration Support
+You can trigger a vibration by calling [[ScriptRef:Handheld.Vibrate.html | Handheld.Vibrate]]. However, devices lacking vibration hardware will just ignore this call.
+
+>><<

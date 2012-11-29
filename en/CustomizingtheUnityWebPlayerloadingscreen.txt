@@ -1,0 +1,104 @@
+!Customizing the Unity Web Player loading screen
+
+By default the Unity $$Web Player$$ displays a small Unity logo and a progress bar while loading web player content. It is possible to customize the appearance of that loading screen, including both the logo and progress bar display.
+
+Please note that modifying the loader images is only possible with $$Unity Pro$$.
+
+There are six optional parameters that can be passed to ``UnityObject``, which can be used to customize the appearance of the Unity Web Player loading screen. Those optional parameters are:
+
+* ``backgroundcolor``: The background color of the web player content display region during loading, the default is white.
+* ``bordercolor``: The color of the one pixel border drawn around the web player content display region during loading, the default is white.
+* ``textcolor``: The color of error message text (when data file fails to load for example). The default is black or white, depending on the background color.
+* ``logoimage``: The path to a custom logo image, the logo image is drawn centered within the web player content display region during loading.
+* ``progressbarimage``: The path to a custom image used as the progress bar during loading. The progress bar image's width is clipped based on the amount of file loading completed, therefore it starts with a zero pixel width and animates to its original width when the loading is complete. The progress bar is drawn beneath the logo image.
+* ``progressframeimage``: The path to a custom image used to frame the progress bar during loading.
+
+All color values provided must be 6-digit hexadecimal colors, (eg. FFFFFF, 020F16, etc.). The image paths provided can be either relative or absolute links. All images must be PNG files in RGB format (without transparency) or RGBA format (with transparency) stored at eight bits per channel. Finally, the ``progressframeimage`` and the ``progressbarimage`` should be the same height.
+
+Here is an example script that customizes the appearance of the Unity Web Player loading screen. The background color is set to light gray (``A0A0A0``), border color to black (``000000``), text color to white (``FFFFFF``) and loader images to ``MyLogo.png``, ``MyProgressBar.png`` and ``MyProgressFrame.png``. All parameters are grouped into single ``params`` object and passed to [[WorkingwithUnityObject|UnityObject2 Constructor]].
+[@
+var params = {
+	backgroundcolor: "A0A0A0",
+	bordercolor: "000000",
+	textcolor: "FFFFFF",
+	logoimage: "MyLogo.png",
+	progressbarimage: "MyProgressBar.png",
+	progressframeimage: "MyProgressFrame.png"
+};
+var u = UnityObject2({ params: params });
+u.initPlugin(jQuery("#unityPlayer")[0], "Example.unity3d");
+@]
+
+See [[WorkingwithUnityObject#constructor|UnityObject2]] for more details.
+
+Example using the above snippet:
+[@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Unity Web Player | "Sample"</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		<!--
+		var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
+		if (document.location.protocol == 'https:')
+			unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
+		document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
+		-->
+	</script>
+        <script type="text/javascript">
+		var params = {
+			backgroundcolor: "A0A0A0",
+			bordercolor: "000000",
+			textcolor: "FFFFFF",
+			logoimage: "MyLogo.png",
+			progressbarimage: "MyProgressBar.png",
+			progressframeimage: "MyProgressFrame.png"
+		};
+		var u = new UnityObject2({ params: params });
+		u.observeProgress(function (progress) {
+			var $missingScreen = jQuery(progress.targetEl).find(".missing");
+			switch(progress.pluginStatus) {
+				case "unsupported":
+					showUnsupported();
+				break;
+				case "broken":
+					alert("You will need to restart your browser after installation.");
+				break;
+				case "missing":
+					$missingScreen.find("a").click(function (e) {
+						e.stopPropagation();
+						e.preventDefault();
+						u.installPlugin();
+						return false;
+					});
+					$missingScreen.show();
+				break;
+				case "installed":
+					$missingScreen.remove();
+				break;
+				case "first":
+				break;
+			}
+		});
+		jQuery(function(){
+			u.initPlugin(jQuery("#unityPlayer")[0], "Example.unity3d");
+		});
+        </script>
+    </head>
+	<body>
+		<p class="header">
+			<span>Unity Web Player | </span>WebPlayer
+		</p>
+		<div class="content">
+			<div id="unityPlayer">
+				<div class="missing">
+					<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
+						<img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<p class="footer">&laquo; created with <a href="http://unity3d.com/unity/" title="Go to unity3d.com">Unity</a> &raquo;</p>
+	</body>
+@]

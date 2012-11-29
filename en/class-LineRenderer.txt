@@ -1,0 +1,33 @@
+!Line Renderer 
+
+The $$Line Renderer$$ takes an array of two or more points in 3D space and draws a straight line between each one. A single Line Renderer Component can thus be used to draw anything from a simple straight line, to a complex spiral. The line is always continuous; if you need to draw two or more completely separate lines, you should use multiple GameObjects, each with its own Line Renderer.
+
+The Line Renderer does not render one pixel thin lines. It renders billboard lines that have width and can be textured. It uses the same algorithm for line rendering as the [[class-TrailRenderer|Trail Renderer]].
+
+Attach:Inspector-LineRenderer.png\\
+''The Line Renderer $$Inspector$$''
+
+!! Properties
+
+||PROPS
+||``Materials``     ||The first material from this list is used to render the lines. ||
+||``Positions``     ||Array of Vector3 points to connect. ||
+||>>>``Size``       ||The number of segments in this line. ||
+||``Parameters``    ||List of parameters for each line: ||
+||>>>``StartWidth`` ||Width at the first line position. ||
+||>>>``EndWidth``   ||Width at the last line position. ||
+||>>>``Start Color``||Color at the first line position. ||
+||>>>``End Color``  ||Color at the last line position. ||
+||``Use World Space``   ||If enabled, the object's position is ignored, and the lines are rendered around world origin. ||
+
+!! Details
+
+To create a line renderer:
+# Choose ^^GameObject->Create Empty^^
+# Choose ^^Component->Miscellaneous->Line Renderer^^
+# Drag a texture or $$Material$$ on the Line Renderer. It looks best if you use a particle shader in the Material.
+
+!!Hints
+* Line Renderers are good to use for effects when you need to lay out all the vertices in one frame.
+* The lines may seem to rotate as you move the $$Camera$$. This is intentional.
+* The Line Renderer should be the only Renderer on a GameObject.

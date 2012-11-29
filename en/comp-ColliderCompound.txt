@@ -1,0 +1,9 @@
+Compound Colliders are combinations of primitive Colliders, collectively acting as a single Collider.  They come in handy when you have a complex mesh to use in collisions but cannot use a $$Mesh Collider$$.  To create a Compound Collider, create child objects of your colliding object, then add a primitive Collider to each child object.  This allows you to position, rotate, and scale each Collider easily and independently of one another.
+
+Attach:CompoundCollider.png\\
+''A real-world Compound Collider setup''
+
+In the above picture, the ''Gun Model'' GameObject has a Rigidbody attached, and multiple primitive Colliders as child GameObjects. When the Rigidbody parent is moved around by forces, the child Colliders move along with it. The primitive Colliders will collide with the environment's Mesh Collider, and the parent Rigidbody will alter the way it moves based on forces being applied to it and how its child Colliders interact with other Colliders in the Scene.
+
+Mesh Colliders can't normally collide with each other.  If a Mesh Collider is marked as ``Convex``, then it can collide with another Mesh Collider.  The typical solution is to use primitive Colliders for any objects that move, and Mesh Colliders for static background objects.
+

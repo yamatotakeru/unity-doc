@@ -1,0 +1,12 @@
+!Light Probe Group
+
+A $$Light Probe Group$$ adds one or more [[LightProbes|light probes]] to a scene.
+
+Attach:InspectorLightProbeGroup.png
+
+A new probe can be created by clicking the ``Add Probe`` button in the inspector. Once created, the probe can be selected and moved in much the same way as a GameObject and can be deleted by typing Ctrl/Cmd + Backspace.
+
+
+Attach:LightProbesTestScene-sourceselected.png\\
+``Light probes appear as yellow spheres in the Scene View``
+

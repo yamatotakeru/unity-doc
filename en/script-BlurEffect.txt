@@ -1,0 +1,18 @@
+! Blur image effect
+
+The $$Blur$$ image effect blurs the rendered image in real-time.
+
+As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+
+Attach:FxBlur.png\\
+''Blur effect applied to the scene''
+
+
+!! Properties
+
+||PROPS
+||``Iterations`` ||The number of times the basic blur operation will be repeated. More iterations typically give a better result but each has a cost in processing time. ||
+||``Blur Spread`` ||Higher values will spread out the blur more at the same iteration count but at some cost in quality. Usually values from 0.6 to 0.7 are a good compromise between quality and speed. ||
+
+(:include imagefx-SM2:)
+

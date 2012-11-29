@@ -1,0 +1,17 @@
+! Audio Filters (PRO only)
+
+[[class-AudioSource | AudioSources]] and the [[class-AudioListener | AudioListener]] can have filter components applied, by adding the filter components to the same GameObject the AudioSource or AudioListener is on. Filter effects are serialized in the component order as seen here:
+
+Attach:FilterGraph1.png Attach:FilterGraph2.png\\
+
+Enabling/Disabling a filter component will ''bypass'' the filter. Though highly optimized, some filters are still CPU intensive. Audio CPU usage can monitored in the [[Profiler#Audio | profiler]] under the Audio Tab.
+
+
+See these pages for more information on each filter type:
+* [[class-AudioLowPassFilter | Low Pass Filter]]
+* [[class-AudioHighPassFilter | High Pass Filter]]
+* [[class-AudioEchoFilter | Echo Filter]]
+* [[class-AudioDistorionFilter | Distortion Filter]]
+* [[class-AudioReverbFilter | Reverb Filter]]
+* [[class-AudioChorusFilter | Chorus Filter]]
+

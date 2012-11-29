@@ -1,0 +1,10 @@
+!Editor settings
+
+Attach:EditorSettings.png
+
+!! Properties
+
+||PROPS
+||``Version Control``||Which version control system should be used.||
+||``WWW Security Emulation``||For webplayer testing, the editor can "pretend" that the game is a webplayer hosted at this URL.||
+||``Asset Serialization``||To assist with version control merges, Unity can store scene files in a textual format (see the [[TextualSceneFormat|textual scene format]] pages for further details). If merges will not be performed then Unity can store scenes in a more space efficient binary format or allow both text and binary scene files to exist at the same time.||

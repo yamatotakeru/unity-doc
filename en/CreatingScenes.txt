@@ -1,0 +1,25 @@
+!Creating Scenes
+
+$$Scenes$$ contain the objects of your game.  They can be used to create a main menu, individual levels, and anything else.  Think of each unique Scene file as a unique level.  In each Scene, you will place your environments, obstacles, and decorations, essentially designing and building your game in pieces.
+
+!!Instancing Prefabs
+
+Use the method described in the last section to create a $$Prefab$$.  You can also read more details about Prefabs [[Prefabs|here]].  Once you've created a Prefab, you can quickly and easily make copies of the Prefab, called an $$Instance$$.  To create an instance of any Prefab, drag the Prefab from the $$Project View$$ to the $$Hierarchy$$ or $$Scene View$$. Now you have a unique instance of your Prefab to position and tweak as you like.
+
+!!Adding Component & Scripts
+
+When you have a Prefab or any $$GameObject$$ highlighted, you can add additional functionality to it by using $$Components$$.  Please view the [[Components|Component Reference]] for details about all the different Components.  $$Scripts$$ are a type of Component.  To add a Component, just highlight your GameObject and select a Component from the ^^Component^^ menu.  You will then see the Component appear in the $$Inspector$$ of the GameObject.  Scripts are also contained in the ^^Component^^ menu by default.
+
+If adding a Component breaks the GameObject's connection to its Prefab, you can always use ^^GameObject->Apply Changes to Prefab^^ from the menu to re-establish the link.
+
+!!Placing GameObjects
+
+Once your GameObject is in the scene, you can use the $$Transform Tools$$ to position it wherever you like.  Additionally, you can use the ``Transform`` values in the Inspector to fine-tune placement and rotation.  Please view the [[class-Transform|Transform Component page]] for more information about positioning and rotating GameObjects.
+
+!!Working with Cameras
+
+$$Cameras$$ are the eyes of your game.  Everything the player will see when playing is through one or more cameras.  You can position, rotate, and parent cameras just like any other GameObject.  A camera is just a GameObject with a Camera Component attached to it.  Therefore it can do anything a regular GameObject can do, and then some camera-specific functions too.  There are also some helpful Camera scripts that are installed with the standard assets package when you create a new project.  You can find them in ^^Components->Camera-Control^^ from the menu.  There are some additional aspects to cameras which will be good to understand.  To read about cameras, view the [[class-Camera|Camera component page]].
+
+!!Lights
+
+Except for some very few cases, you will always need to add $$Lights$$ to your scene.  There are three different types of lights, and all of them behave a little differently from each other.  The important thing is that they add atmosphere and ambience to your game.  Different lighting can completely change the mood of your game, and using lights effectively will be an important subject to learn.  To read about the different lights, please view the [[class-Light|Light component page]].

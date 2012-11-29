@@ -1,0 +1,15 @@
+Colliders work with Rigidbodies to bring physics in Unity to life.  Whereas Rigidbodies allow objects to be controlled by physics, Colliders allow objects to collide with each other.  Colliders must be added to objects independently of Rigidbodies.  A Collider does not necessarily need a Rigidbody attached, but a Rigidbody __must__ be attached in order for the object to move as a result of collisions.
+
+When a collision between two Colliders occurs and if at least one of them has a Rigidbody attached, [[ScriptRef:Collider.OnCollisionEnter.html|three]] [[ScriptRef:Collider.OnCollisionExit.html|collision]] [[ScriptRef:Collider.OnCollisionStay.html|messages]] are sent out to the objects attached to them. These events can be handled in scripting, and allow you to create unique behaviors with or without making use of the built-in NVIDIA PhysX engine.
+
+
+!!! Triggers
+
+An alternative way of using Colliders is to mark them as a $$Trigger$$, just check the IsTrigger property checkbox in the Inspector.  Triggers are effectively ignored by the physics engine, and have a unique set of [[ScriptRef:Collider.OnTriggerEnter.html|three]] [[ScriptRef:Collider.OnTriggerExit.html|trigger]] [[ScriptRef:Collider.OnTriggerStay.html|messages]] that are sent out when a collision with a Trigger occurs.  Triggers are useful for triggering other events in your game, like cutscenes, automatic door opening, displaying tutorial messages, etc.  Use your imagination!
+
+Be aware that in order for two Triggers to send out trigger events when they collide, one of them must include a Rigidbody as well. For a Trigger to collide with a normal Collider, one of them must have a Rigidbody attached.  For a detailed chart of different types of collisions, see the collision action matrix in the Advanced section below.
+
+
+!!! Friction and bounciness
+
+Friction, bounciness and softness are defined in the [[class-PhysicMaterial|Physisc Material]]. The [[HOWTO-InstallStandardAssets|Standard Assets]] contain the most common physics materials. To use one of them click on the Physics Material drop-down and select one, eg. Ice. You can also [[class-PhysicMaterial|create]] your own physics materials and tweak all friction values.

@@ -1,0 +1,23 @@
+! Audio Low Pass Filter (PRO only)
+
+The $$Audio Low Pass Filter$$ filter passes low frequencies of an [[class-AudioSource|AudioSource]], or all sound reaching an [[class-AudioListener|AudioListener]], and cuts frequencies higher than the ``Cutoff Frequency``.\\
+The ``Lowpass Resonance Q`` (known as Lowpass Resonance Quality Factor) determines how much the filter's self-resonance is dampened. Higher ``Lowpass Resonance Q`` indicates a lower rate of energy loss i.e. the oscillations die out more slowly.\\
+The $$Audio Low Pass Filter$$ has a Rolloff curve associated with it, making it possible to set ``Cutoff Frequency`` over distance between the AudioSource and the AudioListener.
+
+Attach:AudioLowPassFilter.png\\
+''The Audio Low Pass filter properties in the inspector.''
+
+
+!! Properties
+
+||PROPS
+||``Cutoff Frequency`` ||Lowpass cutoff frequency in hz. 10.0 to 22000.0. Default = 5000.0.||
+||``Lowpass Resonance Q`` ||Lowpass resonance Q value. 1.0 to 10.0. Default = 1.0.||
+
+
+!! Adding a low pass filter
+To add a low pass filter to a given audio source just select the object in the inspector and then select ``Component->Audio->Audio Low Pass Filter``.
+
+!! Hints
+* Sounds propagates very differently given the environment. For example, to compliment a visual fog effect add a subtle low-pass to the Audio Listener.
+* The high frequencies of a sound being emitted from behind a door will not reach the listener. To simulate this, simply change the ``Cutoff Frequency`` when opening the door.

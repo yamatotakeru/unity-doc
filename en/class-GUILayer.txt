@@ -1,0 +1,7 @@
+! GUI Layer
+
+A $$GUI Layer$$ Component is attached to a Camera to enable rendering of 2D GUIs.
+
+When a GUI Layer is attached to a Camera it will render all [[class-GuiTexture|GUI Textures]] and [[class-GuiText|GUI Texts]] in the scene.  GUI Layers do not affect [[GUI Scripting Guide | UnityGUI]] in any way.
+
+You can enable and disable rendering GUI in a single camera by clicking on the check box of the GUI Layer in the $$Inspector$$.

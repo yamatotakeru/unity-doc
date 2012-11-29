@@ -1,0 +1,28 @@
+! Tilt Shift
+
+$$Tilt Shift$$ is a specialized version of the [[script-DepthOfField34|Depth of Field]] effect that allows for very smooth transitions between focused and defocused areas. It is is easier to use and is generally less prone to unsightly image artifacts. However, since it relies on dependent texture lookups, it can also have a higher processing overhead.
+
+Attach:ImageEffects./TiltShift2.png\\
+''Tilt shift example. Observe the overall smoothness the effect achieves.''
+
+As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+
+!! Properties
+||PROPS
+||``Focal Settings`` ||||
+||``Visualize`` ||Visualizes the focal plane in the game view with a green tint (useful for learning or debugging). ||
+||``Distance`` ||The distance to the focal plane from the camera position in world space units. ||
+||``Smoothness`` ||The smoothness when transitioning from out-of-focus to in-focus areas. ||
+
+||``Background Blur`` ||||
+||``Downsample`` ||Downsamples most internal buffers (this makes the effect faster but more blurry).||
+||``Iterations`` ||Number of iterations for blurring the background areas (ie, everything behind the focal plane). Each iteration requires processing time.||
+||``Max Blur spread`` ||The maximum blur distance for the defocused areas. Makes out-of-focus areas increasingly blurred. ||
+
+||``Foreground Blur`` ||||
+||``Enable`` ||Enables foreground blurring. This typically gives a better result but with a cost in processing time.||
+||``Iterations`` ||Number of iterations for blurring the foreground areas (ie, everything in front of the focal area). Each iteration requires processing time.||
+
+
+(:include imagefx-SM3Depth:)
+

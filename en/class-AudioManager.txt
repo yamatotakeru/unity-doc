@@ -1,0 +1,27 @@
+! Audio Manager
+
+The $$Audio Manager$$ allows you to tweak the maximum volume of all sounds playing in the scene.
+To see it choose ^^Edit->Project Settings->Audio^^.
+
+Attach:AudioSet.png
+
+
+!! Properties
+
+||PROPS
+||``Volume`` ||The volume of all sounds playing. ||
+||``Rolloff Scale`` ||Sets the global attenuation rolloff factor for Logarithmic rolloff based sources (see [[class-AudioSource| Audio Source]]). The higher the value the faster the volume will attenuate, conversely the lower the value, the slower it attenuate (value of 1 will simulate the "real world").||
+||``Speed of Sound`` ||The speed of sound. 343 is the real world speed of sound, if you are using a meters as your units. You can adjust this value to make your objects have more or less Doppler effect with larger or smaller speed. ||
+||``Doppler Factor`` ||How audible the Doppler effect is. When it is zero it is turned off. 1 means it should be quite audible for fast moving objects. ||
+||``Default Speaker Mode`` ||Defines which speaker mode should be the default for your project. Default is 2 for stereo speaker setups (see [[ScriptRef:AudioSpeakerMode.html |AudioSpeakerMode]] in the scripting API reference for a list of modes).||
+||``DSP Buffer Size``||The size of the DSP buffer can be set to optimise for latency or performance||
+||>>>``Default``||Default buffer size||
+||>>>``Best Latency``||Trades off performance in favour of latency||
+||>>>``Good Latency``||Balance between latency and performance||
+||>>>``Best Performance``||Trades off latency in favour of performance||
+
+!!Details
+
+If you want to use Doppler Effect set ``Doppler Factor`` to 1. Then tweak both ``Speed of Sound`` and ``Doppler Factor`` until you are satisfied.\\
+Speaker mode can be changed runtime from your application through scripting. See [[ScriptRef:AudioSettings.html |Audio Settings]].
+

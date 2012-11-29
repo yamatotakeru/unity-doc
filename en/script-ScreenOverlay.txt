@@ -1,0 +1,17 @@
+! Screen Overlay
+
+The $$Screen Overlay$$ image effect introduces an easy way to blend different kinds of textures over the entire screen to create custom looks or effects.
+
+Attach:OverlayExample2.png\\
+''Example using overlay to create a low quality camera ``light leak`` effect''
+
+As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+
+!! Properties
+
+||PROPS
+||``Blend Mode`` ||Blend mode used when applying texture.||
+||``Intensity`` ||Strength or opacity the overlay texture will be applied with.||
+||``Texture`` ||Overlay texture itself.||
+
+(:include imagefx-SM2:)

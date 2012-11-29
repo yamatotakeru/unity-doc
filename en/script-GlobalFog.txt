@@ -1,0 +1,23 @@
+! Global Fog
+
+The $$Global Fog$$ image effect creates camera-based exponential fog. All calculations are done in world space which makes it possible to have height-based fog modes that can be used for sophisticated effects (see example).
+
+Attach:GlobalFogExample.png\\
+''Example of global fog, demonstrating both distance and height based fog''
+
+Attach:Athmospheric.png\\
+''Example of "cheating" at atmospheric effects using global fog''
+
+As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+
+!! Properties
+||PROPS
+||``Fog Mode`` ||The available types of fog, based on distance, height or both||
+||``Start Distance`` ||The distance at which the fog starts fading in, in world space units.||
+||``Global Density`` ||The degree to which the ``Fog Color`` accumulates with distance.||
+||``Height Scale`` ||The degree to which the fog density reduces with height (when height-based fog is enabled).||
+||``Height`` ||The world space Y coordinate where fog starts to fade in.||
+||``Global Fog Color`` ||The color of the fog.||
+
+(:include imagefx-SM2Depth:)
+

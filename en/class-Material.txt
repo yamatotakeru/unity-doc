@@ -1,0 +1,65 @@
+! Material
+
+Materials are used in conjunction with [[class-MeshRenderer|Mesh]] or [[class-ParticleRenderer|Particle Renderers]] attached to the $$GameObject$$.  They play an essential part in defining how your object is displayed.  Materials include a reference to the $$Shader$$ used to render the $$Mesh$$ or $$Particles$$, so these Components can not be displayed without some kind of Material.
+
+Attach:Inspector-MaterialSimple.png\\
+''A Diffuse Shader Material has only two properties - a color and a texture.''
+
+!!Properties
+The properties of any Material will change depending on the selected __Shader__.  These are the most often used properties:
+||PROPS
+||``Shader`` ||The Shader that will be used by the Material. For more information, read the [[Built-in Shader Guide]]. ||
+||``Main Color`` ||Any kind of color tint can be applied.  Use white for no tint. ||
+||``Base`` ||The $$Texture$$ that will be displayed. ||
+
+
+!! Details
+
+Materials are used to place [[class-Texture2D|Textures]] onto your GameObjects.  You cannot add a Texture directly without a Material, and doing so will implicitly create a new Material.  The proper workflow is to create a Material, select a Shader, and choose the Texture asset(s) to display along with it.  For more information on Materials, take a look at the Manual's page about [[Materials]].
+
+
+!!! Choosing Shaders
+
+After you create your material, the first thing you should decide is which Shader to use.  You choose it from the drop-down ``Shader`` menu.
+
+Attach:Material-ShaderMenu.png
+''The ``Shader`` drop-down menu''
+
+You can choose any Shader that exists in your project's assets folder or one of the built-in Shaders. You can also create your own Shaders.  For more information on using the built-in Shaders, view the [[Built-in Shader Guide]].  For information on writing your own shaders, take a look at the [[Shaders]] section of the Manual and [[SL-Reference | ShaderLab Reference]].
+
+
+!!!Setting shader properties
+
+Depending on the type of shader selected, a number of different properties can appear in the $$Inspector$$.
+
+Attach:Inspector-MaterialSpec.png\\
+''Properties of a Specular shader''
+
+Attach:Inspector-MaterialBump.png\\
+''Properties of a Normal mapped shader''
+
+Attach:Inspector-MaterialBumpSpec.png\\
+''Properties of a Normal mapped Specular shader''
+
+The different types of Shader properties are:
+
+||PROPS
+||$$Color pickers$$ ||Used to choose colors. ||
+||$$Sliders$$ ||Used to tweak a number value across the allowed range. ||
+||$$Textures$$ ||Used to select textures. ||
+
+
+!!!Texture placement
+
+The placement of the textures can be altered by changing the ``Offset`` and ``Tiling`` properties.
+
+Attach:Material-Placement.png\\
+''This texture is tiled 2x2 times by changing the ``Tiling`` properties''
+
+||PROPS
+||``Offset`` ||Slides the Texture around. ||
+||``Tiling`` ||Tiles the Texture along the different axes. ||
+
+!!Hints
+* It is a good practice to share a single Material across as many GameObjects as possible.  This has great performance benefits.
+

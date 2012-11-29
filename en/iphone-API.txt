@@ -1,0 +1,6 @@
+! iOS Scripting
+
+Most features of the iOS devices are exposed through the [[ScriptRef:Input.html | Input]] and [[ScriptRef:Handheld.html | Handheld]] classes. For cross-platform projects, $$UNITY_IPHONE$$ is defined for conditionally compiling iOS-specific C# code.
+
+!!Further Reading
+(:tocportion:)

@@ -1,0 +1,5 @@
+! Audio Components
+These $$Components$$ implement sound in Unity.
+
+* [[class-AudioListener|Audio Listener]] - Add this to a $$Camera$$ to get 3D positional sound.
+* [[class-AudioSource|Audio Source]] - Add this Component to a $$GameObject$$ to make it play a sound.

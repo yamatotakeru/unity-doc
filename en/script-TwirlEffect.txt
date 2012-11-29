@@ -1,0 +1,18 @@
+! Twirl image effect
+
+The $$Twirl$$ image effect distorts the rendered image within a circular region. The pixels at the centre of the circle are rotated by a specified angle; the rotation for other pixels in the circle decreases with distance from the centre, diminishing to zero at the circle's edge.
+
+Twirl is similar to another image effect called [[script-VortexEffect|Vortex]], although vortex distorts the image around a central circle rather than a single point.
+
+As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+
+Attach:FxTwirl.png\\
+''Twirl image effect applied to the scene''
+
+||PROPS
+||``Radius`` ||The radius of the ellipse where image distortion occurs, given in normalized screen coordinates (ie, a radius of 0.5 is half the size of the screen). ||
+||``Angle``  ||The angle of rotation at the centre point.||
+||``Center`` ||The point at the centre of the circle where distortion occurs.||
+
+(:include imagefx-SM2:)
+

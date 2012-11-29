@@ -1,0 +1,45 @@
+! Character Joint
+
+$$Character Joints$$ are mainly used for Ragdoll effects. They are an extended ball-socket joint which allows you to limit the joint on each axis.
+
+If you just want to set up a ragdoll read about [[wizard-RagdollWizard | Ragdoll Wizard]].
+
+Attach:Inspector-CharacterJoint.png\\
+''The Character Joint on a Ragdoll''
+
+
+!! Properties
+
+||PROPS
+||``Connected Body`` ||Optional reference to the $$Rigidbody$$ that the joint is dependent upon. If not set, the joint connects to the world. ||
+||``Anchor`` ||The point in the $$GameObject's$$ local space where the joint rotates around. ||
+||``Axis`` ||The twist axes. Visualized with the orange gizmo cone. ||
+||``Swing Axis`` ||The swing axis. Visualized with the green gizmo cone. ||
+||``Low Twist Limit`` ||The lower limit of the joint. ||
+||``High Twist Limit`` ||The higher limit of the joint. ||
+||``Swing 1 Limit`` ||Lower limit around the defined ``Swing Axis`` ||
+||``Swing 2 Limit`` ||Upper limit around the defined ``Swing Axis`` ||
+||``Break Force`` ||The force that needs to be applied for this joint to break. ||
+||``Break Torque`` ||The torque that needs to be applied for this joint to break. ||
+
+
+!! Details
+
+Character joint's give you a lot of possibilities for constraining motion like with a universal joint.
+
+The twist axis (visualized with the orange gizmo) gives you most control over the limits as you can specify a lower and upper limit in degrees (the limit angle is measured relative to the starting position). A value of -30 in ``Low Twist Limit``->``Limit`` and 60 in ``High Twist Limit``->``Limit`` limits the rotation around the twist axis (orange gizmo) between -30 and 60 degrees.
+
+The ``Swing 1 Limit`` limits the rotation around the swing axis (green axis). The limit angle is symmetric. Thus a value of eg. 30 will limit the rotation between -30 and 30.
+
+The ``Swing 2 Limit`` axis doesn't have a gizmo but the axis is orthogonal to the 2 other axes.
+Just like the previous axis the limit is symmetric, thus a value of eg. 40 will limit the rotation around that axis between -40 and 40 degrees.
+
+
+!!! Breaking joints
+
+You can use the ``Break Force`` and ``Break Torque`` properties to set limits for the joint's strength.  If these are less than infinity, and a force/torque greater than these limits are applied to the object, its Fixed Joint will be destroyed and will no longer be confined by its restraints.
+
+!!Hints
+* You do not need to assign a ``Connected Body`` to your joint for it to work.
+* Character Joints require your object to have a Rigidbody attached.
+

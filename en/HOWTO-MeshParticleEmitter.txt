@@ -1,0 +1,29 @@
+! How do I make a Mesh Particle Emitter? (Legacy Particle System)
+
+$$Mesh Particle Emitters$$ are generally used when you need high control over where to emit particles.
+
+For example, when you want to create a flaming sword:
+
+# Drag a mesh into the scene.
+# Remove the ``Mesh Renderer`` by right-clicking on the ``Mesh Renderer's`` $$Inspector$$ title bar and choose ``Remove Component``.
+# Choose ^^Mesh Particle Emitter^^ from the ^^Component->Effects->Legacy Particles^^ menu.
+# Choose ^^Particle Animator^^ from the ^^Component->Effects->Legacy Particles^^ menu.
+# Choose ^^Particle Renderer^^ from the ^^Component->Effects->Legacy Particles^^ menu.
+
+You should now see particles emitting from the mesh.
+
+Play around with the values in the [[class-MeshParticleEmitter|Mesh Particle Emitter]].
+
+Especially enable ``Interpolate Triangles`` in the Mesh Particle Emitter Inspector and set ``Min Normal Velocity`` and ``Max Normal Velocity`` to 1.
+
+To customize the look of the particles that are emitted:
+
+# Choose ^^Assets->Create->Material^^ from the menu bar.
+# In the Material Inspector, select ^^Particles->Additive^^ from the shader drop-down.
+# Drag & drop a texture from the $$Project view$$ onto the texture slot in the Material Inspector.
+# Drag the Material from the Project View onto the Particle System in the $$Scene View$$.
+
+You should now see textured particles emitting from the mesh.
+
+!!See Also
+* [[class-MeshParticleEmitter|Mesh Particle Emitter Component Reference page]]

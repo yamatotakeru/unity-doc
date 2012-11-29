@@ -1,0 +1,7 @@
+!Transforms
+
+$$Transforms$$ are a key $$Component$$ in every $$GameObject$$.  They dictate where the GameObject is positioned, how it is rotated, and its scale.  It is impossible to have a GameObject without a Transform.  You can adjust the Transform of any GameObject from the $$Scene View$$, the $$Inspector$$, or through Scripting.
+
+The remainder of this page's text is from the [[class-Transform|Transform Component Reference]] page.
+
+(:include class-Transform:)

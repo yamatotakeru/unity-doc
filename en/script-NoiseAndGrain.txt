@@ -1,0 +1,34 @@
+! Noise And Grain
+
+The $$Noise And Grain$$ image effect simulates noise and film grain which is a typical effect happening in film or photography. This special noise implementation can even be used to enhance image contrast as it's using a special blend mode. It also enables typical noise scenarios, such as as low level light noise or softening glowing halo's or bloom borders.
+
+The [[DirectX 11]] implementation is totally independent of any texture reads and thus a good fit for modern graphics hardware. 
+
+The standard version uses a noise texture that should have an average luminance of 0.5 to prevent unwanted brightness changes of the resulting image. The used default texture is an example for this.
+
+Attach:ImageEffects./NoiseAndGrain.png\\
+''Example screenshot of the effect. Notice its smoothness, how it sticks mostly to bright and dark areas and that it has a distinct blue tint.''
+
+As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
+
+!! Properties
+
+||PROPS
+||``[[DirectX11]] Grain`` ||Enable high quality noise and grain (DX11 only).||
+||``Monochrome`` ||Use greyscale noise only.||
+||``Intensity Multiplier`` ||Global intensity adjustment.||
+||``General`` ||Add noise equally for all luminance ranges.||
+||``Black Boost`` ||Add extra low luminance noise.||
+||``White Boost`` ||Add extra high luminance noise.||
+||``Mid Grey`` ||Defines ranges for high-level and low-level noise ranges above.||
+||``Color Weights`` ||Additionally tint noise.||
+
+||``Texture`` ||Texture used for non-DX11 mode.||
+||``Filter`` ||Texture filtering.||
+||``Softness`` ||Defines noise or grain crispness. Higher values might yield better performance but require temporary a render target.||
+
+||``Advanced`` ||
+||``Tiling`` ||Noise pattern tiling (can be tweaked for all color channels individually when in non-DX11 texture mode).||
+
+(:include imagefx-SM2:)
+
