@@ -1,30 +1,31 @@
-! Building the Unity Networking Servers on your own
+! 自らUnityネットワーキングサーバを構築する
 
-The source code for all the individual networking servers can be downloaded from the [[http://www.unity3d.com/master-server/index.html|Unity website]]. This includes the connection tester, facilitator, master server and proxy server.
+個別のネットワーキングサーバのソースコードは[[http://www.unity3d.com/master-server/index.html|Unity website]] にあります。Connection tester、Facilitator、マスターサーバ、プロキシサーバも含まれます。
 
-All source packages include the RakNet 3.732 networking library which handles the basic networking functions and provides plugins used by the networking servers.
+全てのソースぱっけじはRakNet 3.732ネットワーキングパッケージを含み、これが基本的なネットワーキング関数をハンドリングし、ネットワーキングサーバが使用するプラグインを提供します。
 
-The packages include three different types of project files, ready for compilation:
-* An Xcode 3.0 project for Mac OS X
-* A Makefile for Linux and Mac OS X
-* A Visual Studio 2008 solution
+パッケージには3種類の異なるプロジェクトファイルが含まれていて、コンパイルできます。
+* Mac OS X Xcode 3.0向けプロジェクト
+* LinuxおよびMac OS X向けMakefile
+* Visual Studio 2008ソリューション
 
-The Xcode and Visual Studio projects can just be opened, compiled and built. To build with the Makefile just run "make". It should work with a standard compilation setup on Linux and Mac OS X, if you have ''gcc'' then it should work. On Linux you might need to install the ncurses library.
+XcodeおよびVisual Studioプロジェクトは簡単に開いてコンパイルしビルドできます。Makefileをビルドするにはmakeを実行して下さい。LinuxとMac OS Xの標準コンパイルセットアップとして''gcc''がある場合は動作します。あるいはLinuxではncursesライブラリが必要となる場合があります。
 
-!! Structure
+!! 全体構成
 
-!!! The Master Server
+!!! マスターサーバ
 
-The Master Server uses an internal ''database'' structure to keep track of host information. 
+マスターサーバは内部的な''データベース''構造を保持しホスト情報をトラッキングします。）
 
-Hosts send messages with the RUM_UPDATE_OR_ADD_ROW message identifier and all their host information embedded. This is processed in the ''OnReceive()'' function in the LightweightDatabaseServer.cpp file. This is where all message initially appear and therefore a good place to start if you want to trace how a message is processed. A table is created within the database structure for each ''game type'' which is set when you use [[ScriptRef:MasterServer.RegisterHost.html|MasterServer.RegisterHost]] function. All game types are grouped together in a table, if the table does not exist it is dynamically created in the ''CreateDefaultTable()'' function.
+ホストはRUM_UPDATE_OR_ADD_ROWメッセージ識別子および埋め込まれたホスト情報でメッセージ送信を行ます。LightweightDatabaseServer.cppファイルの''OnReceive()''関数でこれは処理されます。ここで全てのメッセージは最初に表示されるため、メッセージがどう処理されたのかトレースしたい場合はこの場所から始めると良いです。[[ScriptRef:MasterServer.RegisterHost.html|MasterServer.RegisterHost]] をセットする各々''game type''ごとデータベース構造のテーブルが作成されます。全てのゲームタイプ（game type）はひとつのテーブルにグループ分けされ、テーブルが存在しない場合''CreateDefaultTable()''関数により動的に生成されます。
 
-The host information data is modified by the master server. The IP and port of the game which is registering, as seen by the master server, is injected into the host data. This way we can for sure detect the correct external IP and port in cases where the host has a private address (NAT address). The IP and port in the host data sent by the game server is the private address and port and this is stored for later use. If the master server detects that a client is requesting the host data for a game server and the server has the ''same'' IP address then he uses the private address of the server instead of the external one. This is to handle cases where  the client and server are on the same local network, using the same router with NAT addresses. Thus they will have the same external address and cannot connect to each other through it, they need to use the private addresses and those will work in this case.
+ホスト情報のデータはマスターサーバで修正されます。マスターサーバからみた、登録されるゲームのIPアドレスおよびポート情報は、ホストデータに投入されます。この方法により外部IPアドレスおよびポート情報がホストにプライベートアドレス（NATアドレス）を保有する場合も正しいか診断できます。ゲームサーバにより送信されるホストデータのIPアドレスおよびポート情報は、プライベートIPアドレスおよびポート情報であり、後ほど使用するために蓄積されます。もしマスターサーバでクライアントがゲームサーバのホストデータを要求し、サーバが''同じ''IPアドレスを保有する場合、次に外部IPアドレスではなくプライベートアドレスを使用します。これによりクライアントとサーバが同じローカルネットワーク上にあり、同じルータをNATアドレスを使用する場合に処理を行うためです。同じIPアドレスを保有し、それを通して接続することは出来ないため、プライベートアドレスを通して接続する必要があり、この場合に正しく動作します。
 
-Clients send messages with the ID_DATABASE_QUERY_REQUEST message identifier and what game type they are looking for. The table or host list is fetched from the database structure and sent to the client. If it isn't found and empty host list is sent.
+クライアントはID_DATABASE_QUERY_REQUESTメッセージ識別子および探しているゲームタイプによりメッセージ送信を行います。テーブルあるいはホスト一覧がデータベースからフェッチされクライアントに送信されます。見つからなかった場合、空のホスト一覧が返されます。
 
-All messages sent to the master server must contain version information which is checked in the ''CheckVersion()'' function. At the moment each version of Unity will set a new master server version internally and this is checked here. So if the master server communication routine will change at any point it will be able to detect older versions here and possibly refer to another version of the master server (if at all needed) or modify the processing of that message to account for differences.
+マスターサーバに送信される全てのメッセージは''CheckVersion()''によりチェックされたバージョン情報を保有する必要があります。現時点ではUnityの各バージョンは内部的に新しいマスターサーバのバージョンをセットされ、このときにチェックされます。もしマスターサーバの通信ルーチンがどこかのタイミングで変更となった場合に、古いバージョンをこのときに検知することが出来て、場合によってマスターサーバの別バージョンを参照（必要があれば）するか、違う場合に対応してメッセージ処理を修正することが出来ます。
 
-!!! The Facilitator
 
-The facilitator uses the NAT punchthrough plugin from RakNet directly with no modifications. This is essentially just a peer listening on a port with the NAT punchthrough plugin loaded. When a server and a client with NAT addresses are both connected to this peer, they will be able to perform NAT punchthrough to connect to each other. When the [[ScriptRef:Network.InitializeServer|Network.InitializeServer]] uses NAT, the connection is set up automatically for you.
+!!! Facilitator
+
+FacilitatorはRakNetのNATパンチスルー　プラグインを修正することなく用いています。This is essentially just a peer listening on a port with the NAT punchthrough plugin loaded. 本質的には、ロードされたNATパンチスルー　プラグインを用いてリスニングを行うピアとして働きます。NATアドレスをもったサーバととクライアントがともにこのピアと接続した場合、NATパンチスルーを実行して互いに接続することが出来ます。[[ScriptRef:Network.InitializeServer|Network.InitializeServer]] がNATを使用するとき、自動的に接続が行われます。
