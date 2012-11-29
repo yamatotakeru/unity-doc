@@ -149,15 +149,6 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 *** [[PluginsForAndroid | Android-Plugins]]
 *** [[MobileCustomizeSplashScreen#Android | Android Splash Screen]]
 >><<
->>metro<<
-**[[metro-gettingstarted]]
-***[[metro-debugging]]
-***[[metro-plugins]]
-***[[metro-projecttypes]]
-***[[metro-faq]]
-****[[metro-wack]]
-***[[metro-examples]]
->><<
 ** [[nacl-gettingstarted]]
 ** [[flash-gettingstarted]]
 *** [[flash-setup]]
