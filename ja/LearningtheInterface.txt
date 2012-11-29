@@ -1,6 +1,6 @@
-! Learning the Interface
+! インターフェースについての学習
 
-Take your time to look over the Unity Editor interface and familiarize yourself with it.  The $$Main Editor Window$$ is made up of several $$Tabbed Windows$$, called $$Views$$. There are several types of Views in Unity - they all have specific purposes which are described in the subsections below.
+Unityエディタのインターフェースについての概要を見て、まずはそれに慣れていただきます。$$メインとなるエディタウィンドウ$$  はいくつかの $$タブウィンドウ$$ （$$ビュー(View)$$ と呼ばれます）から構成されています。Unityには様々なタイプのビューがあり、それらは全て以下の項目にあるような特定の目的を持っています。
 
 Attach:Editor-Breakdown.png
 (:comment image source Editor-Breakdown.psd :)
