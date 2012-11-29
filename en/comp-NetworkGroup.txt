@@ -1,5 +1,0 @@
-! Network Group
-
-This group contains all the $$Components$$ that relate to Networked Multiplayer games.
-
-(:tocportion:)

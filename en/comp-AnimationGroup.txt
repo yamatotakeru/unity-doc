@@ -1,5 +1,0 @@
-! Animation Components
-
-For a detailed explanation of the Mecanim Animation System, see [[MecanimAnimationSystem|Mecanim introduction]]
-
-(:tocportion:)

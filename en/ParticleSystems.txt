@@ -1,5 +1,0 @@
-Note: This is the documentation for the new particle system (Shuriken). For documentation on the legacy particle system go to [[comp-ParticlesLegacy|Legacy Particle System]].
-
-(:include class-ParticleSystem:)
-
-(:tocportion:)
