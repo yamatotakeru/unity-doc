@@ -17,11 +17,11 @@ Resource Folders are collections of assets that are included in the built Unity 
 To put anything into a Resource Folder, you simply create a new folder inside the $$Project View$$, and name the folder "Resources".  You can have multiple Resource Folders organized differently in your Project.  Whenever you want to load an asset from one of these folders, you call [[ScriptRef:Resources.Load.html | Resources.Load()]].
 
 
-If your target deployable is a $$Streaming Web Player$$, you can define which scene will include everything in your Resource Folders.  You do this in the $$Player Settings$$, accessible via ^^Edit->Project Settings->Player^^.  Set the ``First Streamed Level With Resources`` parameter, and all assets in your Resource Folders will be loaded when this level streams in to the end-user.
+If your target deployable is a $$Streaming Web Player$$, you can define which scene will include everything in your Resource Folders.  You do this in the $$Player Settings$$, accessible via ^^Edit->Project Settings->Player^^.  Stream queue is determined by Build Settings' scene order.
 
 !!! Note:
 All assets found in the Resources folders and their dependencies are stored in a file called ''resources.assets''. If an asset is already used by another level it is stored in the ''.sharedAssets'' file for that level.
-The ^^Edit -> PlayerSettings^^ 'First Streamed Level' setting determines the level at which the ''resources.assets'' will be collected and included in the build.
+The ^^Edit -> PlayerSettings^^ ^^First Streamed Level^^ setting determines the level at which the ''resources.assets'' will be collected and included in the build.
 
 If a level prior to ''"First streamed Level"'' is including an asset in a Resource folder, the asset will be stored in assets for that level. if it is included afterwards, the level will reference the asset from the "resources.assets" file.
 
