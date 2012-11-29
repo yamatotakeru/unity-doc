@@ -1,54 +1,54 @@
-! State Synchronization Details
+! 状態同期の詳細
 
-You can enable State Synchronization for a given Network View by choosing either ``Reliable Delta Compressed`` or ``Unreliable`` from the ``State Synchronization`` drop-down.  You must then choose what kind of data will be synchronized using the ''Observed'' property.
+特定のNetwork Viewで状態同期を有効にするには、``State Synchronization``のドロップダウンで``Reliable Delta Compressed``か``Unreliable``を選択します。次に同期するデータの種類を''Observed''プロパティとして設定します。
 
-Unity can synchronize Transform, Animation, Rigidbody and MonoBehaviour components.
+UnityはTransform、Animation、RigidbodyおよびMonoBehaviourコンポーネントを同期できます。
 
-[[class-Transform|Transforms]] are serialized by storing position, rotation and scale. Parenting information is not transferred over the network.
+[[class-Transform|Transforms]] は位置、回転、スケールを格納することによりシリアライズされます。親子情報はネットワークを通して渡されることはありません。
 
-[[class-Animation|Animation]] serializes each running animation state, that is the time, weight, speed and enabled properties.
+[[class-Animation|Animation]] は各アニメーション実行の状態をシリアライズします、すなわちtime、weight、speedおよび有効化されたプロパティです。
 
-[[class-Rigidbody|Rigidbody]] serializes position, rotation, velocity and angular velocity.
+[[class-Rigidbody|Rigidbody]] は位置、回転、速度および回転速度をシリアライズします。
 
-Scripts (MonoBehaviours) call the function [[ScriptRef:Network.OnSerializeNetworkView.html | OnSerializeNetworkView()]].
+スクリプト（MonoBehaviours)は[[ScriptRef:Network.OnSerializeNetworkView.html | OnSerializeNetworkView()]] 関数を呼び出します。
 
 
-!! Reliability and bandwidth
+!! 信頼性と帯域幅
 
-Network Views currently support two reliability levels Reliable Delta Compressed and Unreliable.
+Network Viewには2つの信頼性レベル、すなわちReliable Delta CompressedとUnreliable、があります。
 
-Both have their advantages and disadvantages, and the specific details of the game will determine which is the best to use.
+どちらにも長所、短所があり、このゲームの詳細により何を使用するのがベストか決まります。
 
-For additional information about minimizing bandwidth, please read the [[net-MinimizingBandwidth | Minimizing Bandwidth page]].
+帯域幅を最小化するための追加情報については、[[net-MinimizingBandwidth | Minimizing Bandwidth page]] を参照下さい。
 
 !!! Reliable Delta Compressed
 
-``Reliable Delta Compressed`` mode will automatically compare the data that was last received by the client to the current state. If no data has changed since the last update then no data will be sent. However, the data will be compared on a per property basis. For example, if the Transform's position has changed but its rotation has not then only the position will be sent across the network. Bandwidth is saved by transmitting only the changed data.
+``Reliable Delta Compressed``モードによりデータは最後にクライアントで受信したデータと現在の状態のデータを自動的に比較します。もし最後の更新からデータが変更されてない場合データは送信されません。しかしデータはプロパティごとに比較されます。例えば、もしTransformの位置が変更されているが回転は変更されてない場合、位置のみがネットワーク上送信されます。変更データのみ送信することで帯域幅は節約されます。
 
-Unity will also ensure that every UDP packet arrives reliably by resending it until receipt is determined.  This means that if a packet is dropped, any packets sent later will not be applied until the dropped packet is re-sent and received.  Until then, all later packets will be kept waiting in a buffer.
+Unityは全ての送信されたパケットが受信されていることを、UDPパケットが受信されるまで再送信を繰り返すことにより、信頼性を保って送信します。言い換えると、パケットが受信できなかった場合、その後に送られるパケットは受信できなかったパケットが、再送信されて到着するまで、適用されないとうことです。それまでは、それ以降のパケットはバッファで待機します。
 
 
 !!! Unreliable 
 
-In ``Unreliable`` mode, Unity will send packets without checking that they have been received. This means that it doesn't know which information has been received and so it is not safe to send only the changed data - the whole state will be sent with each update.
+``Unreliable``モードにより、Unityはパケットが受信されたかどうかを確認することなく送信します。これによりどの情報が受信されたか判断できないため、変更データのみを送信することは安全ではなく、毎回の更新ごとに状態の全てが送信されます。
 
-!! Deciding which method to use
+!! 使用すべき手法の決定
 
-The Network layer uses UDP, which is an unreliable, unordered protocol but it can used to send ordered packets reliably, just like TCP does. To do this, Unity internally uses ACKs and NACKs to control packet transmission, ensuring no packets are dropped. The downside to using reliable ordered packets is that if a packet is dropped or delayed, everything stops until that packet has arrived safely. This can cause transmission delays where there is significant network lag.
+ネットワークレイヤーではUDP、すなわち信頼性がなく順序がないプロトコルが使用されますが、TCPのように信頼性があり順序のあるパケットを送信することも出来ます。内部的にACKやNACKを使用してパケットの送信を制御しパケットが受信されることを保証します。信頼性があり順序のあるパケットを使用するデメリットはパケットが受信されないか遅延した場合、そのバケットが安全に到着するまで全てが停止されてしまうことです。これはタイムラグの大きいネットワークでは遅延が認識されることにつながります。
 
-Unreliable transmission is useful when you know that data will change every frame anyway. For example, in a racing game, you can practically rely that the player's car is always moving, so the effects of a missed packet will soon be fixed by the next one.
+信頼性のない送信はデータがどうせ毎フレーム変更されることが分かっている場合に便利です。例えば、レーシングゲームで、プレイヤーの車は必ず動いているといえるので、パケットを逃したとしてもすぐに次のパケットで修正されます。
 
-In general, you should use Unreliable sending where quick, frequent updates are more important than missed packets. Conversely, when data doesn't change so frequently, you can use reliable delta compression to save bandwidth.
+一般的には、「Unreliable」（非信頼）を、素早く頻繁な更新を行うことが重要であって、パケットを逃して問題ない場合に使用します。反対に、データがそれほど頻繁に変更されない場合は、「Reliable Delta Compressed」（信頼差分圧縮）を、帯域幅の節約のために使用します。
 
-!! Prediction
+!! 予測
 
-When the server has [[Main.net-HighLevelOverview | full authority]] over the world state, the clients only change the game state according to updates they receive from the server. One problem with this is that the delay introduced by waiting for the server to respond can affect gameplay. For example, when a player presses a key to move forward, he won't actually move until the updated state is received from the server. This delay depends on the latency of the connection so the worse the connection the less snappy the control system becomes.
+データがゲーム世界の状態に対して[[Main.net-HighLevelOverview | 完全な権限]] がある場合、クライアントはサーバから受信する更新にもとづいてゲーム状態を変更します。これによるひとつの問題はサーバが反応するまで待つ遅延はゲームプレイに悪い影響を与えることです。例えば、プレイヤーがキーを押して前に進む場合、実際には更新された状態がサーバーから受信しないかぎり動きません。この遅延は接続の待ち時間に依存するため、最悪の場合接続が遅いほど、制御系も、きびきびとはしなくなります。
 
-One possible solution to this is $$Client-side Prediction$$ which means the client predicts the expected movement update from the server by using approximately the same internal model. So the player responds immediately to input but the server sees its position from the last update. When the state update finally arrives from the server, the client will compare what he predicted with what actually happened. This might differ because the server might know more about the environment around the player, the client just knows what he needs to know. Errors in prediction are corrected as they happen and if they are corrected continuously then the result will smoother and less noticeable.
+この問題に対する解決策のひとつは$$Client-side Prediction$$（クライアント側予測）であり、この意味はクライアントがサーバから渡される動作を、ほぼ同一モデルをしようすることによって予測することです。プレイヤーは直ちに入力に反応するもののサーバは最後の更新からの情報をみます。状態の更新がサーバから到着したとき、クライアントは必要な情報だけ認識します。予測の誤りは判明の都度修正され、連続的に修正されれば結果はよりスムーズとなりより気づかないものとなる。
 
 
-!! Dead reckoning or interpolation/extrapolation
+!! 推測航法 あるいは、内挿／外挿(Dead reckoning or interpolation/extrapolation)
 
-It is possible to apply the basic principle of client-side prediction to the opponents of the player. $$Extrapolation$$ is the process of storing the last few known values of position, velocity and direction for an opponent and use these to predict where he should be in the immediate future. When the next state update finally arrives with the correct position, the client state will be updated with the exact information, which may make the character jump suddenly if the prediction was bad. In FPS games the behavior of players can be very erratic so this kind of prediction has limited success. If the lag gets high enough the opponent will jump severely as the prediction errors accumulate.
+クライアント側予測の基本原理をプレイヤーの相手に適用することもできます。$$Extrapolation$$（外挿）は相手の位置、速度、角度について最後に知っている複数の情報を格納して、近い将来にいる場所を予測すうｒプロセスです。次の更新がようやく受信されたときに正しい位置が判明し、クライアントの状態は正確な情報で更新され、この場合に予測が悪かった場合はキャラクターの位置が飛んで見えてしまいます。FPSゲームにおいてプレイヤーの動作は一貫性がないことが多く、この種の予測がうまく行くことは難しい。遅延が十分に大きくなってしまうと予測のエラーが蓄積するにつれ相手の位置がひどく飛ぶようになります。
 
-$$Interpolation$$ can be used when packets get dropped on the way to the client. This would normally cause the NPC's movement to pause and then jump to the newest position when the new packet finally arrives. By delaying the world state by some set amount of time (like 100 ms) and then interpolating between the last known position and the new one, the movement between these two points, where packets were dropped, will be smooth.
+$$Interpolation$$（内挿）はパケットがクライアントへの送信後に受信されない場合に使用できます。通常、これはNPCの動作がポーズし、新しいパケットが受信されたときに新しい位置にジャンプすることにつながります。ゲームの世界の状態を一定の量だけ（例えば100ms）遅延させて、それから最後に知られた位置と新しい位置の間に内挿することで、このパケットが受信できなかったタイミングでの、二点間の動作はスムーズになります。
