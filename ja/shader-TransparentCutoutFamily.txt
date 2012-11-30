@@ -1,13 +1,13 @@
 !Transparent Cutout Shader Family
 
-The Transparent Cutout shaders are used for objects that have fully opaque and fully transparent parts (no partial transparency). Things like chain fences, trees, grass, etc.
+Transparent Cutout（透明切抜き）シェーダは完全に不透明と完全に透過なパーツがあるオブジェクトで使用されます。鉄柵、木、草、等のようなものです。
 
 !! [[shader-TransCutVertexLit|Transparent Cutout Vertex-Lit]]
 
 [[shader-TransCutVertexLit| Attach:Shaders./Thumb-TransCutoutVertex.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for Transparency Map
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、透過マップ向けのアルファチャネルあり
 
 [[shader-TransCutVertexLit | &#187; More details]]
 
@@ -16,8 +16,8 @@ The Transparent Cutout shaders are used for objects that have fully opaque and f
 
 [[shader-TransCutDiffuse|Attach:Shaders./Thumb-TransCutoutDiffuse.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for Transparency Map
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、透過マップ向けのアルファチャネルあり
 
 [[shader-TransCutDiffuse | &#187; More details]]
 
@@ -26,11 +26,11 @@ The Transparent Cutout shaders are used for objects that have fully opaque and f
 
 [[shader-TransCutSpecular| Attach:Shaders./Thumb-TransCutoutSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for combined Transparency Map/Specular Map
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、透過マップ/鏡面マップ向けに合成されたアルファチャネルあり
 
-'''Note:'''
-One limitation of this shader is that the ``Base`` texture's alpha channel doubles as a Specular Map for the Specular shaders in this family.
+'''注意：'''
+このシェーダのひとつの制約は``Base``テクスチャのアルファチャネルが、このFamily（群）において鏡面シェーダのための鏡面マップとして2倍になることです。
 
 [[shader-TransCutSpecular | &#187; More details]]
 
@@ -39,9 +39,9 @@ One limitation of this shader is that the ``Base`` texture's alpha channel doubl
 
 [[shader-TransCutBumpedDiffuse| Attach:Shaders./Thumb-TransCutoutBump.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for Transparency Map
-* One ``Normal map`` normal map, no alpha channel required
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、透過マップ向けのアルファチャネルあり
+* ``Normal map``（法線マップ）一つ、アルファチャネル必要なし
 
 [[shader-TransCutBumpedDiffuse | &#187; More details]]
 
@@ -50,13 +50,11 @@ One limitation of this shader is that the ``Base`` texture's alpha channel doubl
 
 [[shader-TransCutBumpedSpecular| Attach:Shaders./Thumb-TransCutoutBumpSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for combined Transparency Map/Specular Map
-* One ``Normal map`` normal map, no alpha channel required
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、透過マップ/鏡面マップ向けに合成されたアルファチャネルあり
+* ``Normal map``（法線マップ）一つ、アルファチャネル必要なし
 
-'''Note:'''
-One limitation of this shader is that the ``Base`` texture's alpha channel doubles as a Specular Map for the Specular shaders in this family.
+'''注意：'''
+このシェーダのひとつの制約は``Base``テクスチャのアルファチャネルが、このFamily（群）において鏡面シェーダのための鏡面マップとして2倍になることです。
 
 [[shader-TransCutBumpedSpecular | &#187; More details]]
-
-

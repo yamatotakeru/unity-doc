@@ -2,10 +2,10 @@
 
 Attach:Shaders./Shader-NormalDiffuseDetail.png
 
-!! Diffuse Detail Properties
-This shader is a version of the regular Diffuse shader with additional data.  It allows you to define a second "Detail" texture that will gradually appear as the camera gets closer to it.  It can be used on terrain, for example.  You can use a base low-resolution texture and stretch it over the entire terrain.  When the camera gets close the low-resolution texture will get blurry, and we don't want that. To avoid this effect, create a generic Detail texture that will be tiled over the terrain. This way, when the camera gets close, the additional details appear and the blurry effect is avoided.
+!! Diffuse Detailプロパティ
+このシェーダは通常のDiffuse（拡散）シェーダの追加データをもつバージョンです。これにより二つ目の"Detail"（詳細）テクスチャを定義し、カメラが近づくにつれて徐々に表示されます。これは例えば、Terrain（地形）に用いることが出来ます。低解像度のベーステクスチャを用いて、Terrain（地形）全体に引き伸ばすことが出来ます。カメラが近づくと、低解像度のテクスチャはブラーがかかるので、これは回避しないといけません。このエフェクトを避けるには、汎用的なDetailテクスチャを作成し、地形上をタイルとして並べます。これにより、カメラが近づくと、追加のDetailが表示され、ブラーがかかることを回避できます。
 
-The Detail texture is put "on top" of the base texture. Darker colors in the detail texture will darken the main texture and lighter colors will brighten it. Detail texture are usually gray-ish. For more information on effectively creating Detail textures, please view [[HOWTO-UseDetailTexture | this page]].
+Detailテクスチャはベーステクスチャ"の上に"置かれます。Detailテクスチャの暗い色はメインテクスチャを暗くし、明るい色は明るくします。Detailテクスチャは通常灰色がかっています。効果的なDetailテクスチャのの作成方法については[[HOWTO-UseDetailTexture | this page]] を参照下さい。
 
-!! Performance
-This shader is pixel-lit, and approximately equivalent to the Diffuse shader.  It is marginally more expensive due to additional texture.
+!! パフォーマンス
+このシェーダはpixel-litであり、Diffuseシェーダとほぼ同等です。わずかながらにこの追加のテクスチャの分だけ高価になります。

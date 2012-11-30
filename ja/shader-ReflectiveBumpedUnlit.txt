@@ -4,14 +4,14 @@ Attach:Shaders./Shader-ReflBumpUnlit.png
 
 (:include shader-ReflectiveFamilyImport:)
 
-!!Normal mapped Properties
+!!Normal mappedプロパティ
 
-This shader does not use normal-mapping in the traditional way.  The normal map does not affect any lights shining on the object, because the shader does not use lights at all.  The normal map will only distort the reflection map.
+このシェーダは法線マッピングを通常の方法で行いません。シェーダがライトを一切使用しないため、法線マップがオブジェクトに投影されている光に影響を与えません。法線マップはreflection map（反射マップ）を歪ませます。
 
-!!Special Properties
+!!特別なプロパティ
 
-This shader is special because it does not respond to lights at all, so you don't have to worry about performance reduction from use of multiple lights. It simply displays the reflection cube map on the model. The reflection is distorted by the normal map, so you get the benefit of detailed reflection.  Because it does not respond to lights, it is quite cheap.  It is somewhat of a specialized use case, but in those cases it does exactly what you want as cheaply as possible.
+このシェーダが特別であるのはライトに一切反応しないことで、複数のライト使用によるパフォーマンスの劣化を気にする必要がありません。シンプルにモデルの反射キューブマップを表示します。この反射は法線マップにより歪むため、詳細の反射から効果が得られます。光に反応しないため、かなり安価です。特別な使用用途になりますが、当てはまるケースでは出来るかぎり安価に実現してくれます。
 
-!!Performance
+!! パフォーマンス
 
-Generally, this shader is quite cheap to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].
+一般的に、このシェーダはレンダリングがかなり安価です。詳細については[[shader-Performance | Shader Peformance page]] を参照下さい。

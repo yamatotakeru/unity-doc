@@ -1,4 +1,4 @@
-! スペキュラ
+! Specular（鏡面）
 
 Attach:Shaders./Shader-NormalSpec.png
 
@@ -6,5 +6,4 @@ Attach:Shaders./Shader-NormalSpec.png
 
 !!パフォーマンス
 
-一般に、このシェーダでは少ない費用でレンダリングできます。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。
-
+一般に、このシェーダでは安価でレンダリングできます。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。

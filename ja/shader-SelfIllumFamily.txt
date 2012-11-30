@@ -1,16 +1,16 @@
 !Self-Illuminated Shader Family
 
-The $$Self-Illuminated$$ shaders will emit light only onto themselves based on an attached alpha channel.  They do not require any Lights to shine on them to emit this light.  Any vertex lights or pixel lights will simply add more light on top of the self-illumination.
+$$Self-Illuminated$$（自己発光）シェーダは、アタッチされたアルファチャネルをもとに、自身のみに光を発光します。ライトを照らされなくとも、このライトを発光します。vertex light（頂点ライティング）あるいはpixel light（ピクセルライティング）はこの自己発光に単に追加で照らします。
 
-This is mostly used for light emitting objects. For example, parts of the wall texture could be self-illuminated to simulate lights or displays.  It can also be useful to light power-up objects that should always have consistent lighting throughout the game, regardless of the lights shining on it.
+ライトを発光するオブジェクトに主に使用されます。例えば、壁テクスチャの一部が自己発光して光やディスプレイをシミュレートします。またパワーアップアイテムのライティングにも便利で、何かがそれを照らすかどうかに関わらずゲームを通して安定した光を続けます。
 
 !! [[shader-SelfIllumVertexLit|Self-Illuminated Vertex-Lit]]
 
 [[shader-SelfIllumVertexLit| Attach:Shaders./Thumb-IllumVertex.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture, no alpha channel required
-* One ``Illumination`` texture with alpha channel for Illumination Map
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、アルファチャネル必要なし
+* ``Illumination``テクスチャ一つ、Illumination Map（照明マップ）向けのアルファチャネルあり
 
 [[shader-SelfIllumVertexLit| &#187; More details]]
 
@@ -19,9 +19,9 @@ This is mostly used for light emitting objects. For example, parts of the wall t
 
 [[shader-SelfIllumDiffuse| Attach:Shaders./Thumb-IllumDiffuse.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture, no alpha channel required
-* One ``Illumination`` texture with alpha channel for Illumination Map
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、アルファチャネル必要なし
+* ``Illumination``テクスチャ一つ、Illumination Map（照明マップ）向けのアルファチャネルあり
 
 [[shader-SelfIllumDiffuse | &#187; More details]]
 
@@ -30,9 +30,9 @@ This is mostly used for light emitting objects. For example, parts of the wall t
 
 [[shader-SelfIllumSpecular| Attach:Shaders./Thumb-IllumSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for Specular Map
-* One ``Illumination`` texture with alpha channel for Illumination Map
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、鏡面マップ向けのアルファチャネルあり
+* ``Illumination``テクスチャ一つ、Illumination Map（照明マップ）向けのアルファチャネルあり
 
 [[shader-SelfIllumSpecular | &#187; More details]]
 
@@ -41,8 +41,8 @@ This is mostly used for light emitting objects. For example, parts of the wall t
 
 [[shader-SelfIllumBumpedDiffuse| Attach:Shaders./Thumb-IllumBump.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture, no alpha channel required
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、アルファチャネル必要なし
 * One ``Normal map`` normal map with alpha channel for Illumination
 
 [[shader-SelfIllumBumpedDiffuse | &#187; More details]]
@@ -52,9 +52,9 @@ This is mostly used for light emitting objects. For example, parts of the wall t
 
 [[shader-SelfIllumBumpedSpecular| Attach:Shaders./Thumb-IllumBumpSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for Specular Map
-* One ``Normal map`` normal map with alpha channel for Illumination Map
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、鏡面マップ向けのアルファチャネルあり
+* ``Normal map``（法線マップ）一つ、Illumination Map（照明マップ）向けのアルファチャネルあり
 
 [[shader-SelfIllumBumpedSpecular | &#187; More details]]
 
@@ -63,12 +63,12 @@ This is mostly used for light emitting objects. For example, parts of the wall t
 
 [[shader-SelfIllumParallaxDiffuse| Attach:Shaders./Thumb-IllumParallaxBump.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture, no alpha channel required
-* One ``Normal map`` normal map with alpha channel for Illumination Map & Parallax Depth combined
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、アルファチャネル必要なし
+* ``Normal map``（法線マップ）一つ、Illumination Map（照明マップ）およびParallax Depth（視差デプス）の合成向けのアルファチャネルあり
 
-'''Note:'''
-One consideration of this shader is that the ``Bumpmap`` texture's alpha channel doubles as a Illumination and the Parallax Depth.
+'''注意：'''
+このシェーダの考慮点は``Bumpmap``テクスチャのアルファチャネルが、Illumination Map（照明マップ）およびParallax Depth（視差デプス）により2倍になることです。
 
 [[shader-SelfIllumParallaxDiffuse | &#187; More details]]
 
@@ -77,11 +77,11 @@ One consideration of this shader is that the ``Bumpmap`` texture's alpha channel
 
 [[shader-SelfIllumParallaxSpecular| Attach:Shaders./Thumb-IllumParallaxBumpSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for Specular Map
-* One ``Normal map`` normal map with alpha channel for Illumination Map & Parallax Depth combined
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、鏡面マップ向けのアルファチャネルあり
+* ``Normal map``（法線マップ）一つ、Illumination Map（照明マップ）およびParallax Depth（視差デプス）の合成向けのアルファチャネルあり
 
-'''Note:'''
-One consideration of this shader is that the ``Bumpmap`` texture's alpha channel doubles as a Illumination and the Parallax Depth.
+'''注意：'''
+このシェーダの考慮点は``Bumpmap``テクスチャのアルファチャネルが、Illumination Map（照明マップ）およびParallax Depth（視差デプス）により2倍になることです。
 
 [[shader-SelfIllumParallaxSpecular | &#187; More details]]

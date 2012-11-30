@@ -1,4 +1,4 @@
-! 視差デフューズ
+! Parallax Diffuse
 
 Attach:Shaders./Shader-NormalParallaxBump.png
 
@@ -8,5 +8,5 @@ Attach:Shaders./Shader-NormalParallaxBump.png
 
 !!パフォーマンス
 
-一般に、このシェーダではレンダリングに費用が多くかかります。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。
+一般に、このシェーダではレンダリングが高価です。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。
 

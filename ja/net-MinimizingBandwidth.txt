@@ -14,15 +14,12 @@
 
 !! どのデータが同期されるか
 
-全てのクライアントで実際に同じでない状態を同じである''かのように''ゲーム設計を創造する機会があります。
-There is plenty of opportunity for creativity in designing the game so that the state ''appears'' to be the same on all clients even though it may not be, strictly. An example of this is where animations are synchronized. If an Animation component is observed by a Network View then its properties will be synchronized exactly, so the frames of animation will appear exactly the same on all clients. Although this may be desirable in some cases, typically it will be enough for the character to be seen as walking, running, jumping, etc. The animations can thus be crudely synchronized simply by sending an integer value to denote which animation sequence to play. This will save a great deal of bandwidth compared to synchronizing the whole Animation component.
+全てのクライアントで実際に同じでない状態を同じである''かのように''ゲーム設計を工夫する余地があります。具体例としてはアニメーションを動機する例です。もしアニメーションコンポーネントがNetwork Viewにより発見されると、プロパティは正確に同期され、すべてのクライアントでフレームが同期するようになります。これが望ましいケースもありますが、通常はキャラクターが歩いたり、走ったり、ジャンプしていたり、のどれかで十分です。アニメーションの同期を削るするためにはどのアニメーション　シーケンスを再生するかintegerの値を送信して指定するのみです。これによりアニメーション全体を送信するよりネットワーク帯域幅が節約できます。
 
+!! いつデータの同期をするか
 
-!! When to synchronize data
+通常、ゲームをすべてのクライアントで完全に同期することは不要で、たとえば、プレイヤーがゲーム世界の別エリアに一時的にいて互いに遭遇することのないケースがあったとします。この場合帯域幅だけでなくサーバの負荷を削減するには、遭遇することが出来るクライアントのみ同期します。このコンセプトは$$Relevant Sets$$（関連セット）と呼ばれます（すなわち、特定のクライアントのある特定の時間で、ゲーム全体のうち実際に関連するサブセットが一部ある状態）。クライアント同期をRelevant Setにもとづいて同期させることはRPCによって、同期の更新対象をより強力にコントロールしたうえで、ハンドリングすることが出来ます。
 
-It is often unnecessary to keep the game perfectly in sync on all clients, for example, in cases where the players are temporarily in different areas of the game world where they won't encounter each other. This can reduce the bandwidth as well as the load on the server since only the clients that can interact need to be kept in sync. This concept is sometimes referred to as $$Relevant Sets$$ (ie, there is a subset of the total game that is relevant to any particular client at any particular time). Synchronizing clients according to their relevant sets can be handled with RPCs, since they can give greater control over the destination of a state update.
+!!! レベルローディング
 
-
-!!! Level loading
-
-When loading levels, it is seldom necessary to worry about the bandwidth being used since each client can simply wait until all the others have initialized the level to be played. Level loading can often involve transmitting even quite large data items (such as images or audio data).
+レベルをロードするときは、通常各クライアントが使用する帯域幅を気にする必要があることは稀で、全てのクライアントがプレイするレベルを初期化できるまで単に待たせれば良いです。レベルローディングはかなり大きなデータアイテムの送信を伴うことがあります（画像や音声データなど）。

@@ -2,7 +2,8 @@
 
 Attach:Shaders./Shader-ReflSpec.png
 
-One consideration for this shader is that the Base texture's alpha channel will double as both the Reflection Map and the Specular Map.
+このシェーダの考慮点はベースのテクスチャのアルファチャネルがReflection Map（反射マップ）および鏡面マップで2倍となることです。
+
 
 (:include shader-ReflectiveFamilyImport:)
 
@@ -10,4 +11,4 @@ One consideration for this shader is that the Base texture's alpha channel will 
 
 !!Performance
 
-Generally, this shader is moderately expensive to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].
+一般的に、このシェーダはレンダリングがやや高価です。詳細については[[shader-Performance | Shader Peformance page]] を参照下さい。

@@ -2,12 +2,12 @@
 
 Attach:Shaders./Shader-TransSpec.png
 
-One consideration for this shader is that the Base texture's alpha channel defines both the Transparent areas as well as the Specular Map.
+このシェーダの考慮点はベーステクスチャのアルファチャネルが透過領域およびSpecular Map（鏡面マップ）ともに定義することです。
 
 (:include shader-TransFamilyImport:)
 
 (:include shader-SpecularSubsetImport:)
 
-!! Performance
+!! パフォーマンス
 
-Generally, this shader is moderately expensive to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].
+一般的にこのシェーダはややレンダリングが高価です。詳細については[[shader-Performance | Shader Peformance page]] を参照下さい。

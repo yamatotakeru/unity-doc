@@ -2,7 +2,7 @@
 
 Attach:Shaders./Shader-TransParallaxBumpSpec.png
 
-One consideration for this shader is that the Base texture's alpha channel defines both the Transparent areas as well as the Specular Map.
+このシェーダの考慮点はベーステクスチャのアルファチャネルが透過領域およびSpecular Map（透過マップ）を定義することです。
 
 (:include shader-TransFamilyImport:)
 
@@ -10,6 +10,6 @@ One consideration for this shader is that the Base texture's alpha channel defin
 
 (:include shader-SpecularSubsetImport:)
 
-!! Performance
+!!パフォーマンス
 
-Generally, this shader is on the more expensive rendering side.  For more details, please view the [[shader-Performance | Shader Peformance page]].
+一般に、このシェーダはレンダリングが高価です。詳細については[[shader-Performance | Shader Peformance page]] を参照下さい。

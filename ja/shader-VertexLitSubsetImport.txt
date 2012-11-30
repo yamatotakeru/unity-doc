@@ -1,5 +1,5 @@
-!! Vertex-Lit Properties
+!! Vertex-Litプロパティ
 
-This shader is $$Vertex-Lit$$, which is one of the simplest shaders.  All lights shining on it are rendered in a single pass and calculated at vertices only.
+このシェーダは$$Vertex-Lit$$（頂点ライト）、でありもっともシンプルなシェーダのひとつです。これに照らされるライトはひとつのパスでレンダリングされ頂点のみで計算されます。
 
-Because it is vertex-lit, it won't display any pixel-based rendering effects, such as light cookies, normal mapping, or shadows.  This shader is also much more sensitive to tesselation of the models.  If you put a point light very close to a cube using this shader, the light will only be calculated at the corners.  Pixel-lit shaders are much more effective at creating a nice round highlight, independent of tesselation. If that's an effect you want, you may consider using a pixel-lit shader or increase tesselation of the objects instead.
+Vertex-Lit（頂点ライト）であるため、light cookie、法線マッピング、シャドウ（影）といった、ピクセルベースのレンダリングエフェクトは描画されません。このシェーダはモデルのテッセレーションに敏感です。もしこのシェーダを使ったキューブのきわめて近くにポイントライトを置いた場合、ライトは頂点のみで計算されます。Pixel-litシェーダは、テッセレーションと独立して、丸いハイライトを作成するのに効果を発揮します。望む効果がそれであれば、むしろPixel-litシェーダを使用するかオブジェクトのテッセレーションを増やすことを考慮すべきです。

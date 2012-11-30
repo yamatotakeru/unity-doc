@@ -1,4 +1,4 @@
-! 視差バンプ型デフューズ
+! Parallax Bumped Specular
 
 Attach:Shaders./Shader-NormalParallaxBumpSpec.png
 
@@ -8,5 +8,4 @@ Attach:Shaders./Shader-NormalParallaxBumpSpec.png
 
 !!パフォーマンス
 
-一般に、このシェーダではレンダリングに費用が多くかかります。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。
-
+一般に、このシェーダではレンダリングが高価です。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。

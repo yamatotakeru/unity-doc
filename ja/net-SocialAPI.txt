@@ -1,59 +1,60 @@
-!Social API
+!ソーシャルAPI
 
-Social API is Unity's point of  access to social features, such as:
-* User profiles
-* Friends lists
-* Achievements
-* Statistics / Leaderboards
+ソーシャルAPIはUnityのソーシャル機能をアクセスするための接点であり：
 
-It provides a unified interface to different social back-ends, such as $$XBox Live$$ or $$GameCenter$$, and is meant to be used primarily by programmers on the game project. 
+* ユーザプロファイル
+* フレンドリスト
+* ゲーム実績（Achievements）
+* 統計/ランキング（Statistics / Leaderboards）
 
-The Social API is mainly an asynchronous API, and the typical way to use it is by making a function call and registering for a callback to when that function completes. The asynchronous function may have side effects, such as populating certain state variables in the API, and the callback could contain data from the server to be processed. 
+これにより$$XBox Live$$あるいは$$GameCenter$$への統一的なインタフェースが提供され、ゲームプロジェクトのプログラマにより主に使用されます。
 
-The Social class resides in the UnityEngine namespace and so is always available but the other Social API classes are kept in their own namespace, UnityEngine.SocialPlatforms. Furthermore, implementations of the Social API are in a sub-namespace, like SocialPlatforms.GameCenter.
+ソーシャルAPIは主に非同期APIであり、標準的な使い方は関数呼び出しを行い関数の完了後にコールバックを登録します。非同期の関数は副作用があり、APIで特定の状態変数に値を生成したり、コールバックはサーバで処理すべきデータを含む可能性があります。
 
-Here is an example (JavaScript) of how one might use the Social API:
+ソーシャルクラスはUnityEngine名前空間にあるため、常に利用可能ですが、ソーシャルAPIクラスは別の名前空間であるUnityEngine.SocialPlatformsにあります。さらにソーシャルAPIの実装はSocialPlatforms.GameCenterなど名前空間の下位の階層にあります。
+
+次がソーシャルAPIの使用例です(JavaScript)：
 
 [@
 import UnityEngine.SocialPlatforms;
 
 function Start () {
-    // Authenticate and register a ProcessAuthentication callback
-    // This call needs to be made before we can proceed to other calls in the Social API
+    // 認証を行い、ProcessAuthenticationコールバックを登録
+    // 他のソーシャルAPIの呼び出しを行う前にこの呼び出しを行う必要があります。
     Social.localUser.Authenticate (ProcessAuthentication);
 }
 
-// This function gets called when Authenticate completes
-// Note that if the operation is successful, Social.localUser will contain data from the server. 
+// この関数は認証が完了した後に呼び出しされます
+// 処理が正常終了した場合、Social.localUserにはサーバから取得したデータを含むことに留意して下さい。
 function ProcessAuthentication (success: boolean) {
     if (success) {
-        Debug.Log ("Authenticated, checking achievements");
+        Debug.Log ("認証完了、Achievementsをチェックしています");
 
-        // Request loaded achievements, and register a callback for processing them
+        // ロードされているAchievementsをリクエストし、それを処理するためのコールバックを登録します。
         Social.LoadAchievements (ProcessLoadedAchievements);
     }
     else
-        Debug.Log ("Failed to authenticate");
+        Debug.Log ("認証失敗");
 }
 
-// This function gets called when the LoadAchievement call completes
+// LoadAchievement呼び出しが完了するとこの関数が呼び出しされます。
 function ProcessLoadedAchievements (achievements: IAchievement[]) {
     if (achievements.Length == 0)
-        Debug.Log ("Error: no achievements found");
+        Debug.Log ("エラー：Achievementsは見つかりませんでした。");
     else
-        Debug.Log ("Got " + achievements.Length + " achievements");
+        Debug.Log ("取得：" + achievements.Length + " achievements");
     
-    // You can also call into the functions like this
+    // また、次のように関数を中で呼び出しすることも出来ます
     Social.ReportProgress ("Achievement01", 100.0, function(result) {
         if (result)
-            Debug.Log ("Successfully reported achievement progress");
+            Debug.Log ("正常にをAchievementの進捗をレポート");
         else
-            Debug.Log ("Failed to report achievement");
+            Debug.Log ("Achievementのレポートに失敗");
     });
 }
 @]
 
-Here is the same example using C#.
+同じサンプルでC#を使用した例です。
 
 [@
 using UnityEngine;
@@ -62,39 +63,39 @@ using UnityEngine.SocialPlatforms;
 public class SocialExample : MonoBehaviour {
 	
     void Start () {
-        // Authenticate and register a ProcessAuthentication callback
-        // This call needs to be made before we can proceed to other calls in the Social API
+    // 認証を行い、ProcessAuthenticationコールバックを登録
+    // 他のソーシャルAPIの呼び出しを行う前にこの呼び出しを行う必要があります。
         Social.localUser.Authenticate (ProcessAuthentication);
     }
 
-    // This function gets called when Authenticate completes
-    // Note that if the operation is successful, Social.localUser will contain data from the server. 
+// この関数は認証が完了した後に呼び出しされます
+// 処理が正常終了した場合、Social.localUserにはサーバから取得したデータを含むことに留意して下さい。
     void ProcessAuthentication (bool success) {
         if (success) {
-            Debug.Log ("Authenticated, checking achievements");
+            Debug.Log ("認証完了、Achievementsをチェックしています");
 
-            // Request loaded achievements, and register a callback for processing them
+        // ロードされているAchievementsをリクエストし、それを処理するためのコールバックを登録します。
             Social.LoadAchievements (ProcessLoadedAchievements);
         }
         else
-            Debug.Log ("Failed to authenticate");
+            Debug.Log ("認証失敗");
     }
 
-    // This function gets called when the LoadAchievement call completes
+    // LoadAchievement呼び出しが完了するとこの関数が呼び出しされます。
     void ProcessLoadedAchievements (IAchievement[] achievements) {
         if (achievements.Length == 0)
-            Debug.Log ("Error: no achievements found");
+            Debug.Log ("エラー：Achievementsは見つかりませんでした。");
         else
-            Debug.Log ("Got " + achievements.Length + " achievements");
+            Debug.Log ("取得：" + achievements.Length + " achievements");
 	    
-        // You can also call into the functions like this
+        // また、次のように関数を中で呼び出しすることも出来ます
         Social.ReportProgress ("Achievement01", 100.0, result => {
             if (result)
-                Debug.Log ("Successfully reported achievement progress");
+                Debug.Log ("正常にをAchievementの進捗をレポート");
             else
-                Debug.Log ("Failed to report achievement");
+                Debug.Log ("認証失敗");
         });
     }
 }
 @]
-For more info on the Social API, check out the [[ScriptRef:Social.html|Social API Scripting Reference]]
+ソーシャルAPIの詳細については[[ScriptRef:Social.html|Social API Scripting Reference]] を参照ください。

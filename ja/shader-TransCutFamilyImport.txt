@@ -1,8 +1,8 @@
-!! Transparent Cutout Properties
+!! Transparent Cutoutプロパティ
 
-Cutout shader is an alternative way of displaying transparent objects. Differences between Cutout and regular [[shader-TransparentFamily|Transparent]] shaders are:
-* This shader cannot have partially transparent areas.  Everything will be either fully opaque or fully transparent.
-* Objects using this shader can cast and receive shadows!
-* The graphical sorting problems normally associated with Transparent shaders do not occur when using this shader.
+Cutout（切り抜き）シェーダは透明オブジェクトを表現する別の手法です。Cutoutと通常の[[shader-TransparentFamily|Transparent]] シェーダの違いは：
+* このシェーダは部分的に透過の領域を持つことが出来ません。完全に不透明であるか、完全に透過であるかしかありません。
+* このシェーダを用いたオブジェクトは影を投影したり受け取ることが出来ます。
+* 透明シェーダで発生するグラフィックスのソート問題はこのシェーダでは発生しません。
 
-This shader uses an alpha channel contained in the ``Base`` Texture to determine the transparent areas.  If the alpha contains a blend between transparent and opaque areas, you can manually determine the cutoff point for the which areas will be shown.  You change this cutoff by adjusting the ``Alpha Cutoff`` slider.
+このシェーダは``Base``テクスチャに含まれるアルファチャネルを使用して透明な領域の判定を行います。もしアルファチャネルが透明と不透明のブレンドを含んでる場合、どのエリアを表示するかのしきい値を指定できます。この値は``Alpha Cutoff``（透過しきい値）のスライドバーを調整することで変更できます。

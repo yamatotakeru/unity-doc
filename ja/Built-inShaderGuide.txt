@@ -1,18 +1,18 @@
-! Built-in Shader Guide
+! 内蔵シェーダガイド
 
-If you're looking for the best information for using Unity's built-in shaders, you've come to the right place.  Unity includes more than 40 built-in shaders, and of course you can write many more on your own!  This guide will explain each family of the built-in shaders, and go into detail for each specific shader.  With this guide, you'll be able to make the most out of Unity's shaders, to achieve the effect you're aiming for.
+Unity内蔵に関する最良の情報を見つけるにはここが最適です。Unityには40以上の内蔵シェーダがあり、当然ながら自ら記述することも出来ます。このガイドは内臓シェーダの群（Family）について説明したうえで個別のシェーダについて詳細に入ります。このガイドにより、Unityシェーダを、実現したいエフェクトが得るため、最大に活用できるようになります。
 
-!! Using Shaders
+!! シェーダの使用
 
-Shaders in Unity are used through $$Materials$$, which essentially combine shader code with parameters like textures.  An in-depth explanation of the Shader/Material relationship can be read [[Materials|here]].
+Unityシェーダは$$Materials$$を通して使用され、本質的にシェーダのコードをテクスチャのようなパラメータと合成します。シェーダとマテリアルの関係性の詳細については[[Materials|ここ]] で詳細を確認できます。
 
-Material properties will appear in the $$Inspector$$ when either the Material itself or a $$GameObject$$ that uses the Material is selected.  The Material Inspector looks like this:
+マテリアルのプロパティは、マテリアルが選択されたときかマテリアルを使用するゲームオブジェクトが選択されたときに、$$Inspector$$で表示されます。マテリアルInspectorは次のように表示されます：
 
 Attach:MatInspector.png
 
-Each Material will look a little different in the Inspector, depending on the specific shader it is using.  The shader iself determines what kind of properties will be available to adjust in the Inspector. Material inspector is described in detail in [[class-Material | Material reference page]]. Remember that a shader is implemented through a Material.  So while the shader defines the properties that will be shown in the Inspector, each Material actually contains the adjusted data from sliders, colors, and textures.  The most important thing to remember about this is that a single shader can be used in multiple Materials, but a single Material cannot use multiple shaders.
+各マテリアルはインスペクタで使用するシェーダによって少し異なって見えます。シェーダ自体によりインスペクタで調整できるパラメータの種類が決まります。マテリアルInspectorは[[class-Material | Material reference page]] で詳細に説明があります。シェーダがマテリアルを通して実装されることを覚える必要があります。シェーダがインスペクタで表示されるプロパティを定義し、各マテリアルはスライダー、カラーやテクスチャの調整されたデータを実際に含みます。覚えておくべき重要なこととして、ひとつのシェーダを複数のマテリアルに使用できますが、ひとつのマテリアルに複数のシェーダを使用することは出来ません。
 
 
-!! Built-in Unity Shaders
+!! Unity内蔵のシェーダ
 
 (:tocportion:)

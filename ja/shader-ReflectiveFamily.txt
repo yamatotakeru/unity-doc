@@ -1,14 +1,14 @@
 !Reflective Shader Family
 
-$$Reflective$$ shaders will allow you to use a Cubemap which will be reflected on your mesh.  You can also define areas of more or less reflectivity on your object through the alpha channel of the ``Base`` texture. High relectivity is a great effect for glosses, oils, chrome, etc.  Low reflectivity can add effect for metals, liquid surfaces, or video monitors.
+$$Reflective$$シェーダはメッシュに反射されるCubemap（キューブマップ）を使用出来ます。さらに、``Base``テクスチャのアルファチャネルの変更を通して、オブジェクトの領域によって反射の量を増減出来ます。強い反射はグロス、オイル、クローム、などに絶好のエフェクトです。弱い反射は金属や液体の表面、ビデオモニターなどにエフェクトを追加します。
 
 !! [[shader-ReflectiveVertexLit|Reflective Vertex-Lit]]
 
 [[shader-ReflectiveVertexLit| Attach:Shaders./Thumb-ReflVertex.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for defining reflective areas
-* One ``Reflection`` Cubemap for Reflection Map
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、反射領域を定義するためのアルファチャネルあり
+* Reflection Map（反射マップ）向けの``Reflection``キューブマップ一つ
 
 [[shader-ReflectiveVertexLit | &#187; More details]]
 
@@ -17,9 +17,9 @@ $$Reflective$$ shaders will allow you to use a Cubemap which will be reflected o
 
 [[shader-ReflectiveDiffuse| Attach:Shaders./Thumb-ReflDiffuse.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for defining reflective areas
-* One ``Reflection`` Cubemap for Reflection Map
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、反射領域を定義するためのアルファチャネルあり
+* Reflection Map（反射マップ）向けの``Reflection``キューブマップ一つ
 
 [[shader-ReflectiveDiffuse | &#187; More details]]
 
@@ -28,12 +28,12 @@ $$Reflective$$ shaders will allow you to use a Cubemap which will be reflected o
 
 [[shader-ReflectiveSpecular| Attach:Shaders./Thumb-ReflSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for defining reflective areas & Specular Map combined
-* One ``Reflection`` Cubemap for Reflection Map
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、反射領域および鏡面マップの合成を定義するためのアルファチャネルあり
+* Reflection Map（反射マップ）向けの``Reflection``キューブマップ一つ
 
-'''Note:'''
-One consideration for this shader is that the ``Base`` texture's alpha channel will double as both the reflective areas and the Specular Map.
+'''注意：'''
+このシェーダのひとつの考慮点は``Base``テクスチャのアルファチャネルが、反射領域と鏡面マップのため2倍になることです。
 
 [[shader-ReflectiveSpecular | &#187; More details]]
 
@@ -42,10 +42,10 @@ One consideration for this shader is that the ``Base`` texture's alpha channel w
 
 [[shader-ReflectiveBumpedDiffuse| Attach:Shaders./Thumb-ReflBump.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for defining reflective areas
-* One ``Reflection`` Cubemap for Reflection Map
-* One ``Normal map`` normal map, no alpha channel required
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、反射領域を定義するためのアルファチャネルあり
+* Reflection Map（反射マップ）向けの``Reflection``キューブマップ一つ
+* ``Normal map``（法線マップ）一つ、アルファチャネル必要なし
 
 [[shader-ReflectiveBumpedDiffuse | &#187; More details]]
 
@@ -54,13 +54,14 @@ One consideration for this shader is that the ``Base`` texture's alpha channel w
 
 [[shader-ReflectiveBumpedSpecular| Attach:Shaders./Thumb-ReflBumpSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for defining reflective areas & Specular Map combined
-* One ``Reflection`` Cubemap for Reflection Map
-* One ``Normal map`` normal map, no alpha channel required
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、反射領域および鏡面マップの合成を定義するためのアルファチャネルあり
+* Reflection Map（反射マップ）向けの``Reflection``キューブマップ一つ
 
-'''Note:'''
-One consideration for this shader is that the ``Base`` texture's alpha channel will double as both the reflective areas and the Specular Map.
+* ``Normal map``（法線マップ）一つ、アルファチャネル必要なし
+
+'''注意：'''
+このシェーダのひとつの考慮点は``Base``テクスチャのアルファチャネルが、反射領域と鏡面マップのため2倍になることです。
 
 [[shader-ReflectiveBumpedSpecular | &#187; More details]]
 
@@ -69,10 +70,10 @@ One consideration for this shader is that the ``Base`` texture's alpha channel w
 
 [[shader-ReflectiveParallaxDiffuse| Attach:Shaders./Thumb-ReflParallaxBump.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for defining reflective areas
-* One ``Reflection`` Cubemap for Reflection Map
-* One ``Normal map`` normal map, with alpha channel for Parallax Depth
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、反射領域を定義するためのアルファチャネルあり
+* Reflection Map（反射マップ）向けの``Reflection``キューブマップ一つ
+* ``Normal map``（法線マップ）一つ、Parallax Depth（視差デプス）向けのアルファチャネルあり
 
 [[shader-ReflectiveParallaxDiffuse | &#187; More details]]
 
@@ -81,13 +82,13 @@ One consideration for this shader is that the ``Base`` texture's alpha channel w
 
 [[shader-ReflectiveParallaxSpecular| Attach:Shaders./Thumb-ReflParallaxBumpSpec.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for defining reflective areas & Specular Map
-* One ``Reflection`` Cubemap for Reflection Map
-* One ``Normal map`` normal map, with alpha channel for Parallax Depth
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、反射領域を定義するためのアルファチャネルあり & Specular Map
+* Reflection Map（反射マップ）向けの``Reflection``キューブマップ一つ
+* ``Normal map``（法線マップ）一つ、Parallax Depth（視差デプス）向けのアルファチャネルあり
 
-'''Note:'''
-One consideration for this shader is that the ``Base`` texture's alpha channel will double as both the reflective areas and the Specular Map.
+'''注意：'''
+このシェーダのひとつの考慮点は``Base``テクスチャのアルファチャネルが、反射領域と鏡面マップのため2倍になることです。
 
 [[shader-ReflectiveParallaxSpecular | &#187; More details]]
 
@@ -96,10 +97,10 @@ One consideration for this shader is that the ``Base`` texture's alpha channel w
 
 [[shader-ReflectiveBumpedUnlit| Attach:Shaders./Thumb-ReflBumpUnlit.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for defining reflective areas
-* One ``Reflection`` Cubemap for Reflection Map
-* One ``Normal map`` normal map, no alpha channel required
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、反射領域を定義するためのアルファチャネルあり
+* Reflection Map（反射マップ）向けの``Reflection``キューブマップ一つ
+* ``Normal map``（法線マップ）一つ、アルファチャネル必要なし
 
 [[shader-ReflectiveBumpedUnlit | &#187; More details]]
 
@@ -108,9 +109,9 @@ One consideration for this shader is that the ``Base`` texture's alpha channel w
 
 [[shader-ReflectiveBumpedVertexLit| Attach:Shaders./Thumb-ReflBumpVertex.png]]
 
-'''Assets needed:'''
-* One ``Base`` texture with alpha channel for defining reflective areas
-* One ``Reflection`` Cubemap for Reflection Map
-* One ``Normal map`` normal map, no alpha channel required
+'''必要アセット：'''
+* ``Base``テクスチャ一つ、反射領域を定義するためのアルファチャネルあり
+* Reflection Map（反射マップ）向けの``Reflection``キューブマップ一つ
+* ``Normal map``（法線マップ）一つ、アルファチャネル必要なし
 
 [[shader-ReflectiveBumpedVertexLit | &#187; More details]]

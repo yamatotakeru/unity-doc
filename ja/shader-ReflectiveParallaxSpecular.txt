@@ -2,7 +2,7 @@
 
 Attach:Shaders./Shader-ReflParallaxBumpSpec.png
 
-One consideration for this shader is that the Base texture's alpha channel will double as both the Reflection Map and the Specular Map.
+このシェーダの考慮点は、ベーステクスチャのアルファチャネルが（Reflection Map）反射マップと（Specular Map）鏡面マップの両方として2倍になることです。
 
 (:include shader-ReflectiveFamilyImport:)
 
@@ -10,6 +10,6 @@ One consideration for this shader is that the Base texture's alpha channel will 
 
 (:include shader-SpecularSubsetImport:)
 
-!!Performance
+!!パフォーマンス
 
-Generally, this shader is on the more expensive rendering side.  For more details, please view the [[shader-Performance | Shader Peformance page]].
+一般に、このシェーダはよりレンダリングが高価です。詳細については[[shader-Performance | Shader Peformance page]] を参照下さい。

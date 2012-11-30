@@ -6,10 +6,10 @@ Attach:Shaders./Shader-ReflBumpVertex.png
 
 (:include shader-VertexLitSubsetImport:)
 
-!!Special Properties
+!!特別なプロパティ
 
-This shader is a good alternative to Reflective Normal mapped.  If you do not need the object itself to be affected by pixel lights, but do want the reflection to be affected by a normal map, this shader is for you. This shader is vertex-lit, so it is rendered more quickly than its Reflective Normal mapped counterpart.
+このシェーダは（Reflective Normal mapped）反射法線マップの良い代替手段となります。もしオブジェクトがピクセルライトの影響を受ける必要がないけれども、反射が法線マップで影響させたい場合、このシェーダが最適です。このシェーダはvertex-litであり、（Reflective Normal mapped）反射法線マップよりも素早くレンダリングされます。
 
-!!Performance
+!! パフォーマンス
 
-Generally, this shader is not expensive to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].
+一般的に、このシェーダはレンダリングが安価です。詳細については[[shader-Performance | Shader Peformance page]] を参照下さい。

@@ -2,7 +2,7 @@
 
 Attach:Shaders./Shader-TransCutoutBumpSpec.png
 
-One consideration for this shader is that the Base texture's alpha channel defines both the Transparent areas as well as the Specular Map.
+このシェーダの考慮点はベースのテクスチャのアルファチャネルが透過の領域および鏡面マップを両方定義することです。
 
 (:include shader-TransCutFamilyImport:)
 
@@ -10,6 +10,6 @@ One consideration for this shader is that the Base texture's alpha channel defin
 
 (:include shader-SpecularSubsetImport:)
 
-!! Performance
+!! パフォーマンス
 
-Generally, this shader is moderately expensive to render.  For more details, please view the [[shader-Performance | Shader Peformance page]].
+一般的に、このシェーダはレンダリングがやや高価です。詳細については[[shader-Performance | Shader Peformance page]] を参照下さい。

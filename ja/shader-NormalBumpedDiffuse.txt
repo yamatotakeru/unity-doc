@@ -1,4 +1,4 @@
-! バンプ型デフューズ
+! Bumped Diffuse
 
 Attach:Shaders./Shader-NormalBump.png
 
@@ -8,5 +8,5 @@ Attach:Shaders./Shader-NormalBump.png
 
 !!パフォーマンス
 
-一般に、このシェーダでは少ない費用でレンダリングできます。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。
+一般に、このシェーダでは安価にレンダリングできます。  詳細については、[[shader-Performance | Shader Peformance page]] を参照してください。
 

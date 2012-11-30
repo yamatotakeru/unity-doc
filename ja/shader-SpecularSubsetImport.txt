@@ -1,5 +1,5 @@
-!! Specular Properties
+!! Specular（鏡面）プロパティ
 
-Specular computes the same simple (Lambertian) lighting as Diffuse, plus a viewer dependent specular highlight. This is called the Blinn-Phong lighting model.  It has a specular highlight that is dependent on surface angle, light angle, and viewing angle. The highlight is actually just a realtime-suitable way to simulate blurred reflection of the light source. The level of blur for the highlight is controlled with the ``Shininess`` slider in the $$Inspector$$.
+Specular（鏡面）はDiffuse（拡散）と同様のシンプル（Lambertian）ライティングを使用するのに加えてビューア依存の鏡面ハイライトを計算します。Blinn-Phongライティングモデルと呼ばれます。鏡面のハイライトは、表面の角度、ライトの角度、およびビューアングル、に依存します。ハイライトは実際にはリアルタイム表現向きの、光源からブラーのかかった反射のシミュレーションです。ハイライトのブラーの度合いは$$Inspector$$の``Shininess``スライダで制御されます。
 
-Additionally, the alpha channel of the main texture acts as a Specular Map (sometimes called "gloss map"), defining which areas of the object are more reflective than others.  Black areas of the alpha will be zero specular reflection, while white areas will be full specular reflection.  This is very useful when you want different areas of your object to reflect different levels of specularity.  For example, something like rusty metal would use low specularity, while polished metal would use high specularity. Lipstick has higher specularity than skin, and skin has higher specularity than cotton clothes. A well-made Specular Map can make a huge difference in impressing the player.
+これに加えて、メインのテクスチャのアルファチャネルは鏡面マップ（時々"Gloss Map"とも呼ばれます）として動作し、オブジェクトのどの領域が他の部分より反射するか定義します。アルファの黒い部分は鏡面反射がゼロとなり、白い領域は完全な鏡面反射となります。これはオブジェクトの異なるエリアで鏡面の反射レベルを変更したい場合に便利です。例えば、錆びた金属などは低い鏡面性を使用し、磨かれた金属は高い鏡面性を使用します。口紅は肌よりも鏡面性を高く、肌は綿の服よりも鏡面性を高くします。良く出来た鏡面マップはプレイヤーを関心させるのに大きな違いを生みます。
