@@ -1,14 +1,14 @@
-||``Emit`` ||If enabled, the emitter will emit particles. ||
-||``Min Size`` ||The minimum size each particle can be at the time when it is spawned. ||
-||``Max Size`` ||The maximum size each particle can be at the time when it is spawned. ||
-||``Min Energy`` ||The minimum lifetime of each particle, measured in seconds. ||
-||``Max Energy`` ||The maximum lifetime of each particle, measured in seconds. ||
-||``Min Emission`` ||The minimum number of particles that will be spawned every second. ||
-||``Max Emission`` ||The maximum number of particles that will be spawned every second. ||
-||``World Velocity`` ||The starting speed of particles in world space, along X, Y, and Z. ||
-||``Local Velocity`` ||The starting speed of particles along X, Y, and Z, measured in the object's orientation. ||
-||``Rnd Velocity`` ||A random speed along X, Y, and Z that is added to the velocity. ||
-||``Emitter Velocity Scale`` ||The amount of the emitter's speed that the particles inherit. ||
-||``Tangent Velocity`` ||The starting speed of particles along X, Y, and Z, across the Emitter's surface. ||
-||``Simulate In World Space`` ||If enabled, the particles don't move when the emitter moves. If false, when you move the emitter, the particles follow it around. ||
-||``One Shot`` ||If enabled, the particle numbers specified by min & max emission is spawned all at once. If disabled, the particles are generated in a long stream. ||
+||``Emit`` ||オンにした場合、エミッターがパーティクルを発生させます。 ||
+||``Min Size`` ||初期に生成されたときの各パーティクルが最小でとりうるサイズ。 ||
+||``Max Size`` ||初期に生成されたときの各パーティクルが最大でとりうるサイズ。 ||
+||``Min Energy`` ||秒単位の、各パーティクルが最小でとりうる生存時間。||
+||``Max Energy`` ||秒単位の、各パーティクルが最大でとりうる生存時間。||
+||``Min Emission`` ||パーティクルが毎秒ごとに生成できるパーティクルの最小個数。 ||
+||``Max Emission`` ||パーティクルが毎秒ごとに生成できるパーティクルの最大個数。||
+||``World Velocity`` ||ワールド座標系のX, Y, Zに沿ったパーティクルの初期速度。 ||
+||``Local Velocity`` ||ローカル座標系にて、オブジェクトに相対的なX, Y, Zに沿ったパーティクルの初期速度。 ||
+||``Rnd Velocity`` ||X, Y, Zに沿ったパーティクルの初期速度に加えられるランダム速度。||
+||``Emitter Velocity Scale`` ||パーティクルがエミッターから継承する速度の大きさ。||
+||``Tangent Velocity`` ||パーティクルがX, Y, Zに沿っって、エミッターの表面の接線に沿った初期速度。||
+||``Simulate In World Space`` ||オンにした場合、エミッターが移動した場合にパーティクルは移動しません。オフにした場合、エミッターを移動すると、パーティクルも追随します。||
+||``One Shot`` ||オンにした場合、min & max emissionで指定された数のパーティクルが一度に生成されます。オフにした場合、パーティクルは長時間、連続的に生成され続けます。 ||

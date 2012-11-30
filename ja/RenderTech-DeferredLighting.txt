@@ -26,13 +26,13 @@ Deferred Lightingが使用されるとき、Unityでのレンダリングプロ�
 # Lighting pass:先に生成されたバッファを使用して別のスクリーン空間のバッファを計算します。
 # Final pass:オブジェクトは再度レンダリングされます。計算されたライティングをフェッチし、カラーテクスチャと合成して、環境／発光ライティングを追加します。
 
-Deferred Lightinをハンドリングできないシェーダのあるオブジェクトは、このプロセスが完了した後に、[[RenderTech-ForwardRendering|forward rendering]] パスでレンダリングされます。
+Deferred Lightingをハンドリングできないシェーダのあるオブジェクトは、このプロセスが完了した後に、[[RenderTech-ForwardRendering|forward rendering]] パスでレンダリングされます。
 
 
 !!! Base Pass
 
 
-Base Passでは各オブジェクトが一回づつレンダリングします。ビュー空間の法線および反射の強さは一つのARGB32[[class-RenderTexture | Render Texture]]にレンダリングされます（法線をRGPチャネル、反射の強さはアルファチャネル）。 もしプラットフォームとハードウェアにより、Zバッファのテクスチャ読み込みに対応している場合、デプスは明示的にレンダリングされません。もしZバッファがテクスチャとしてアクセスできない場合、デプスは[[SL-ShaderReplacement | shader replacement]] を使って別のレンダリングパスでレンダリングされます。
+Base Passでは各オブジェクトが一回づつレンダリングします。ビュー空間の法線および反射の強さは一つのARGB32 [[class-RenderTexture | Render Texture]] にレンダリングされます（法線をRGPチャネル、反射の強さはアルファチャネル）。 もしプラットフォームとハードウェアにより、Zバッファのテクスチャ読み込みに対応している場合、デプスは明示的にレンダリングされません。もしZバッファがテクスチャとしてアクセスできない場合、デプスは[[SL-ShaderReplacement | shader replacement]] を使って別のレンダリングパスでレンダリングされます。
 
 Base Passの結果はシーンのコンテンツが詰まったZバッファと、法線マップ・反射の強さを含むRender Textureとなります。
 
