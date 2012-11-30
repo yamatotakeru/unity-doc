@@ -1,52 +1,52 @@
-! Deferred Lighting Rendering Path
+! Deferred Lightingレンダリングパス
 
-This page details the $$Deferred Lighting$$ [[RenderingPaths | rendering path]]. See [[http://www.realtimerendering.com/blog/deferred-lighting-approaches/ |this article]] for a technical overview of deferred lighting.
+このページでは$$Deferred Lighting$$の[[RenderingPaths | rendering path]] の詳細を説明します。Deferred Lightingの技術的な概要については[[http://www.realtimerendering.com/blog/deferred-lighting-approaches/ |このセクション]] を参照下さい。
 
-The $$Deferred Lighting$$ rendering path is the one with the highest lighting and shadow fidelity. There is no limit on the number of lights that can affect an object and all lights are evaluated per-pixel, which means that they all interact correctly with normal maps, etc. Additionally, all lights can have cookies and shadows.
+$$Deferred Lighting$$レンダリングパスはもっとも光と影を忠実に再現します。オブジェクトに影響を与えるライトの数に制限はなく、全てのライトはピクセルごとに評価され、すなわち法線マップやその他と正しく連動することを意味します。さらに、全てのライトにcookieやシャドウ（影）があります。
 
-Deferred lighting has the advantage that the processing overhead of lighting is proportional to the size of the light onscreen, no matter how many objects it illuminates. Therefore, performance can be improved by keeping lights small. Deferred lighting also has highly consistent and predictable behaviour. The effect of each light is computed per-pixel, so there are no lighting computations that break down on large triangles etc.
+Deferred lightingの長所としてライティングの処理オーバーヘッドは、たとえいくつものオブジェクトを照らそうと、スクリーンに映されたライトの大きさに比例します。したがって、ライトを小さく抑えることによりパフォーマンスを改善することが出来ます。Deferred lightingは高度に安定して予測可能な動作をします。各ライトはピクセルごとに計算されるため、三角形が大きすぎることにより計算が破綻する、などいったこともありません。
 
-On the downside, deferred lighting has no real support for anti-aliasing and can't handle semi-transparent objects (these must be rendered using Forward Rendering). There is also no support for the Mesh Renderer's Receive Shadows flag and culling masks are only supported in a limited way.
+逆に短所としては、deferred lightingはアンチエイリアスをサポートせず、部分的に透過のオブジェクトをハンドリングできません（これらはForward Renderingでレンダリングする必要があります）。メッシュレンダラのReceive Shadowsフラグのサポートもなく、カリングマスクのサポートも限定的です。
 
-!! Requirements
+!! 要件
 
-Deferred lighting is only available in __Unity Pro__. It requires a graphics card with Shader Model 3.0 (or later), support for Depth render textures and two-sided stencil buffers. Most graphics cards made after 2004 support deferred lighting, including GeForce FX and later, Radeon X1300 and later, Intel 965 / GMA X3100 and later. However, it is not currently available on mobile platforms nor Flash.
+Deferred lightingは__Unity Pro__でのみ利用可能です。シェーダモデル3.0（またはそれ以降）に対応し、デプス　レンダーテクスチャおよびステンシルバッファをサポートするたグラフィックスカードが必要です。2004年以降に製造されたグラフィックスカードはdeferred lightingをサポートし、GeForce FXとそれ以降, Radeon X1300とそれ以降、Intel 965 / GMA X3100とそれ以降が含まれます。しかしモバイルプラットフォームやFlashでは現在利用できません。
+ 
+!! パフォーマンス考慮点
 
-!! Performance Considerations
+Deferred lightingのリアルタイムのライトのレンダリングオーバーヘッドはライトにより照らされるピクセルの数に比例し、シーンの複雑さには依存''しません''。このため小さなポイントやスポットライトはレンダリングが安価であり、さらに完全か一部オクルージョンされる場合はさらに安価になります。
 
-The rendering overhead of realtime lights in deferred lighting is proportional to the number of pixels illuminated by the light and ''not'' dependent on scene complexity. So small point or spot lights are very cheap to render and if they are fully or partially occluded by scene objects then they are even cheaper.
+もちろん、よりシャドウ（影）のないライトがシャドウ（影）のあるライトに比べて高価であることは当然です。Deferred lightingでは、影を投影するオブジェクトは、各々の影を投影するライトごとに一回以上レンダリングされる必要があります。さらにはシェーダが影を適用するライティングは、影が無効化されたものより高いレンダリング　オーバーヘッドがあります。
 
-Of course, lights with shadows are much more expensive than lights without shadows. In deferred lighting, shadow-casting objects still need to be rendered once or more for each shadow-casting light. Furthermore, the lighting shader that applies shadows has a higher rendering overhead than the one used when shadows are disabled.
+!! 詳細の実装
 
-!! Implementation Details
+Deferred Lightingが使用されるとき、Unityでのレンダリングプロセスは3つのパスで行われます：
 
-When Deferred Lighting is used, the rendering process in Unity happens in three passes:-
+# Base Pass:オブジェクトはデプス、法線、鏡面の力によりスクリーン空間のバッファを生成します。
+# Lighting pass:先に生成されたバッファを使用して別のスクリーン空間のバッファを計算します。
+# Final pass:オブジェクトは再度レンダリングされます。計算されたライティングをフェッチし、カラーテクスチャと合成して、環境／発光ライティングを追加します。
 
-# Base Pass: objects are rendered to produce screen-space buffers with depth, normals, and specular power.
-# Lighting pass: the previously generated buffers are used to compute lighting into another screen-space buffer.
-# Final pass: objects are rendered again. They fetch the computed lighting, combine it with color textures and add any ambient/emissive lighting.
-
-Objects with shaders that can't handle deferred lighting are rendered after this process is complete, using the [[RenderTech-ForwardRendering|forward rendering]] path.
+Deferred Lightinをハンドリングできないシェーダのあるオブジェクトは、このプロセスが完了した後に、[[RenderTech-ForwardRendering|forward rendering]] パスでレンダリングされます。
 
 
 !!! Base Pass
 
-The base pass renders each object once. View space normals and specular power are rendered into a single ARGB32 [[class-RenderTexture | Render Texture]] (with normals in RGB channels and specular power in A). If the platform and hardware allow the Z buffer to be read as a texture then depth is not explicitly rendered. If the Z buffer can't be accessed as a texture then depth is rendered in an additional rendering pass using [[SL-ShaderReplacement | shader replacement]].
 
-The result of the base pass is a Z buffer filled with the scene contents and a Render Texture with normals and specular power.
+Base Passでは各オブジェクトが一回づつレンダリングします。ビュー空間の法線および反射の強さは一つのARGB32[[class-RenderTexture | Render Texture]]にレンダリングされます（法線をRGPチャネル、反射の強さはアルファチャネル）。 もしプラットフォームとハードウェアにより、Zバッファのテクスチャ読み込みに対応している場合、デプスは明示的にレンダリングされません。もしZバッファがテクスチャとしてアクセスできない場合、デプスは[[SL-ShaderReplacement | shader replacement]] を使って別のレンダリングパスでレンダリングされます。
+
+Base Passの結果はシーンのコンテンツが詰まったZバッファと、法線マップ・反射の強さを含むRender Textureとなります。
 
 
 !!! Lighting Pass
 
-The lighting pass computes lighting based on depth, normals and specular power. Lighting is computed in screen space, so the time it takes to process is independent of scene complexity. The lighting buffer is a single ARGB32 Render Texture, with diffuse lighting in the RGB channels and monochrome specular lighting in the A channel. Lighting values are logarithmically encoded to provide greater dynamic range than is usually possible with an ARGB32 texture. The only lighting model available with deferred rendering is Blinn-Phong.
+lighting passはデプス、法線マップ、反射の強さにもとづいてライティングを計算します。ライティングはスクリーン空間で計算されるため、処理にかかる時間はシーンの複雑さと独立しています。ライティングバッファはひとつのARGB32 Render Textureで、拡散ライティングをRGBチャネル、モノクロの鏡面ライティングをアルファチャネルに含みます。ライティングの値は対数的にエンコードされ、ARGB32テクスチャで通常可能であるよりもより大きなダイナミックレンジを提供します。Defferedレンダリングで唯一利用可能であるライティングモデルはBlinn-Phongです。
 
-Point and spot lights that do not cross the camera's near plane are rendered as 3D shapes, with the Z buffer's test against the scene enabled. This makes partially or fully occluded point and spot lights very cheap to render. Directional lights and point/spot lights that cross the near plane are rendered as fullscreen quads.
+Point and spot lights that do not cross the camera's near plane are rendered as 3D shapes, with the Z buffer's test against the scene enabled. カメラのニアクリッププレーンを交差しないポイントライトやスポットライトは3D図形としてレンダリングされ、シーンに対するZバッファテストが有効化されます。これにより一部あるいは全体がオクルージョンされたポイントライトやスポットライトはレンダリングが非常に安価です。ニアクリッププレーンを交差しないDirectional Light（指向性ライト）およびポイントライト・スポットライトはフルスクリーンの四角形としてレンダリングされます。
 
-If a light has shadows enabled then they are also rendered and applied in this pass. Note that shadows do not come for "free"; shadow casters need to be rendered and a more complex light shader must be applied.
+ライトの影が有効化されている場合、それらもレンダリングされパスに適用されます。影は"タダ"でないことに留意して下さい、shadow caster（影の投影）もレンダリングする必要があり、より複雑なライトシェーダも適用する必要があります。
 
-The only lighting model available is Blinn-Phong. If a different model is wanted you can modify the lighting pass shader, by placing the modified version of the Internal-PrePassLighting.shader file from the [[http://unity3d.com/support/resources/assets/built-in-shaders|Built-in shaders]] into a folder named "Resources" in your "Assets" folder.
+唯一利用可能なライティングモデルはBlinn-Phongです。別のモデルを使用した場合はライティングパス　シェーダを自ら修正することは可能で、[[http://unity3d.com/support/resources/assets/built-in-shaders|Built-in shaders]] からInternal-PrePassLighting.shaderファイルの修正バージョンを"Assets"フォルダ配下の"Resources"フォルダに格納します。
 
 !!! Final Pass
 
-The final pass produces the final rendered image. Here all objects are rendered again with shaders that fetch the lighting, combine it with textures and add any emissive lighting. Lightmaps are also applied in the final pass. Close to the camera, realtime lighting is used, and only baked indirect lighting is added. This crossfades into fully baked lighting further away from the camera.
-
+Final Passは最終レンダリングイメージを生成します。次に再度ライティングをフェッチするシェーダにより全てのオブジェクトはレンダリングされ、テクスチャと合成し、発光ライティングを追加します。ライトマップもFinal Passで適用されます。カメラの近くで、リアルタイムライティングは使用され、焼き込みされたindirect lighting（間接ライティング）のみが加えられます。これはカメラかより離れた場所にある完全に焼き込みされたライティングとクロスフェードします。
