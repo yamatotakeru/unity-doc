@@ -1,7 +1,7 @@
-!User Guide
+! ユーザーガイド
 
-This section of the Manual is focused on the features and functions of Unity.  It discusses the interface, core Unity building blocks, asset workflow, and basic gameplay creation.  By the time you are done reading the user guide, you will have a solid understanding of how to use Unity to put together an interactive scene and publish it.
+このセクションでは、まずUnityの特徴と機能についてフォーカスします。インターフェース、以降Unityを構成しているコアの機能、アセット制作のワークフロー、そして基本的なゲーム制作について言及していきます。このユーザーガイドを読み進んでいくと、Unityを使うための理解が進むと同時にインタラクティブなシーンを一緒に作っていき、最終的にそれらを出力することができるようになります。
 
-We recommend that new users begin by reading the [[Unity Basics]] section.
+初心者の方はまず [[Unity Basics]] セクションから読んでいくことをお薦めします。
 
 (:tocportion:)
