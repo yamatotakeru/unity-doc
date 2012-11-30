@@ -1,19 +1,20 @@
-! Minimizing Network Bandwidth
+! ネットワーク帯域幅の最小化
 
-Since network communication is potentially slow compared to other aspects of a game, it is important to reduce it to a minimum. It is therefore very important to consider how much data you are exchanging and how frequently the exchanges take place.
-
-
-!! How data is synchronized
-
-The amount of network bandwidth used depends heavily on whether you use the ``Unreliable`` or the ``Reliable Delta Compression`` mode to synchronize data (the mode is set from the Network View component).
-
-In ``Unreliable`` mode, the whole of the object being synchronized will be transmitted on each iteration of the network update loop. The frequency of this update is determined by the value of [[ScriptRef:Network-sendRate.html|Network.sendRate]], which is set to 15 updates per second by default. ``Unreliable`` mode ensures frequent updates but any dropped or delayed packets will simply be ignored. This is often the best synchronization mode to use when objects change state very frequently and the effect of a missed update is very short-lived. However, you should bear in mind the amount of data that might be sent during each update. For example, synchronizing a Transform involves transmitting nine float values (three Vector3s with three floats each), which equates to 36 Bytes per update. If the server is running with eight clients and using the default update frequency then it will receive  4,320 KBytes/s (8*36*15) or 34.6Kbits/s and transmit 30.2 KBytes/s (8*7*36*15) or 242Kbits/s. You can reduce the bandwidth consumption considerably by lowering the frequency of updates, but the default value of 15 is about right for a game where the action moves quickly.
-
-In ``Reliable Delta Compressed`` mode, the data is guaranteed to be sent reliably and arrive in the right order. If packets are lost then they get retransmitted and if they arrive out of order, they will be buffered until all packets in the sequence have arrived. Although this ensures that transmitted data is received correctly, the waiting and retransmission tend to increase bandwidth usage. However, the data is also delta compressed which means only the differences between the last state and the current state are transmitted. If the state is exactly the same then nothing is sent. The benefit of delta compression thus depends on how much the state changes and in which properties.
+ゲームの他の部分と比較するとネットワーク通信は遅いため、最小に抑えることが重要です。このため、データ交換を行っている量や発生の頻度を考慮することがとても重要です。
 
 
-!! What data is synchronized
+!! データが同期される方法
 
+使用されるネットワーク帯域幅は``Unreliable``（非信頼）か``Reliable Delta Compression``（信頼差分圧縮）、どちらのモードを使用してデータの同期を行っているかに大きく依存します。（モードはNetwork Viewコンポーネントからセットします）
+
+``Unreliable``（非信頼）モードでは、同期されるオブジェクトの全体がネットワーク更新ループの全ての反復ごとに送信されます。この更新頻度は [[ScriptRef:Network-sendRate.html|Network.sendRate]] の値により決定され、デフォルトでは1秒ごとに15更新にセットされてます。``Unreliable``モードは頻繁な更新を保証する一方でパケットの逸失や遅延は単に無視されます。頻繁に更新が行われ、更新を逃しても影響する時間的長さが短いオブジェクトにとっては最適の同期方法です。しかし更新ごとに発生するデータ量は頭に入れておく必要があります。例えばTransformの同期は9つの浮動小数点データ（3つのVector3に各々3つの浮動小数点）を伴い、更新ごとに36バイトを意味します。もしサーバが8クライアントで実行していてデフォルトの更新頻度を使用している場合4,320KBytes/s（8×36×15）あるいは34.6Kbit/sを受信し、30.2KBytes/s（8×7×36×15）あるいは242Kbits/sを送信します。帯域幅の消費量を大きく減らすために更新頻度を下げることは出来ますが、アクションが素早いゲームにおいて15というデフォルト値は大体適切なものです。
+
+``Reliable Delta Compressed``モードでデータは信頼性をもって正しい順番で受信されることが保証されてます。もしパケットを逸失した場合再送信され、順番が正しくない場合、全てのパケットが一連のパケットが全て到着するまでバッファリングされます。これにより送信されたデータが正しく受信されることを保証するものの、この待機および再送信が帯域幅を消費しがちです。しかしデータは差分圧縮され、前回の状態と現在の状態の差分のみが送信されます。もし状態がまったく同一である場合何も送信されません。差分圧縮はどれだけどのプロパティが変化するかに依存します。
+
+
+!! どのデータが同期されるか
+
+全てのクライアントで実際に同じでない状態を同じである''かのように''ゲーム設計を創造する機会があります。
 There is plenty of opportunity for creativity in designing the game so that the state ''appears'' to be the same on all clients even though it may not be, strictly. An example of this is where animations are synchronized. If an Animation component is observed by a Network View then its properties will be synchronized exactly, so the frames of animation will appear exactly the same on all clients. Although this may be desirable in some cases, typically it will be enough for the character to be seen as walking, running, jumping, etc. The animations can thus be crudely synchronized simply by sending an integer value to denote which animation sequence to play. This will save a great deal of bandwidth compared to synchronizing the whole Animation component.
 
 
