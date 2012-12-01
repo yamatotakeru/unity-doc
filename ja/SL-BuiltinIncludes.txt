@@ -1,6 +1,7 @@
-! Built-in shader include files
+! 内臓シェーダ includeファイル
 
-Unity contains several files that can be used by your [[SL-ShaderPrograms | shader programs]] to bring in predefined variables and helper functions. This is done by the standard @@#include@@ directive, e.g.:
+Unityは自身の[[SL-ShaderPrograms | shader programs]] で、定義済み変数やヘルパー関数を利用できる、いくつかのファイルを持たせることが出来ます。これは標準的な@@#include@@ ディレクティブで実現できます、例えば：
+
 
     CGPROGRAM
     // ...
@@ -8,56 +9,55 @@ Unity contains several files that can be used by your [[SL-ShaderPrograms | shad
     // ...
     ENDCG
 
-Shader include files in Unity are with @@.cginc@@ extension, and the built-in ones are:
-* @@HLSLSupport.cginc@@ - ''(automatically included)'' Helper macros and definitions for cross-platform shader compilation.
-* @@UnityCG.cginc@@ - commonly used global variables and helper functions.
-* @@AutoLight.cginc@@ - lighting & shadowing functionality, e.g. [[SL-SurfaceShaders | surface shaders]] use this file internally.
-* @@Lighting.cginc@@ - standard [[SL-SurfaceShaders | surface shader]] lighting models; automatically included when you're writing surface shaders.
-* @@TerrainEngine.cginc@@ - helper functions for Terrain & Vegetation shaders.
+Unityのシェーダincludeファイルは@@.cginc@@ 拡張子がつけられていて、内臓されているのは：
+* @@HLSLSupport.cginc@@ - ''(自動でインクルード)'' ヘルパーマクロやクロスプラットフォームのシェーダコンパイルの定義
+* @@UnityCG.cginc@@ - 一般に使用されるグローバル変数やヘルパー関数。
+* @@AutoLight.cginc@@ - ライティングやシャドウ機能、すなわち[[SL-SurfaceShaders | surface shaders]] は内部的にこのファイルを使用します。
+* @@Lighting.cginc@@ - 標準的な[[SL-SurfaceShaders | surface shader]] ライティングモデル、サーフェイスシェーダを記述するとき自動的にインクルードされます。
+* @@TerrainEngine.cginc@@ - Terrain（地形）やVegetation（植生）のシェーダのヘルパー関数。
 
-These files are found inside Unity application (^^{unity install path}/Data/CGIncludes/UnityCG.cginc^^ on Windows, ^^/Applications/Unity/Unity.app/Contents/CGIncludes/UnityCG.cginc^^ on Mac), if you want to take a look at what exactly is done in any of the helper code.
+これらのファイルはUnityアプリケーションの（Windowsでは^^{unity install path}/Data/CGIncludes/UnityCG.cginc^^ 、Macでは^^/Applications/Unity/Unity.app/Contents/CGIncludes/UnityCG.cginc^^ ）で見つかりますので、内容をみてヘルパーコードが具体的に何をしているか見たい場合は参照下さい。
 
 
 !! HLSLSupport.cginc
 
-This file is ''automatically included'' when compiling shaders. It mostly declares various [[SL-BuiltinMacros | preprocessor macros]] to aid in multi-platform shader development.
+このファイルはシェーダをコンパイルする差異に''自動でインクルード''されます。マルチプラットフォームのシェーダ開発を手助けするため、様々な[[SL-BuiltinMacros | preprocessor macros]] を定義します。
 
 
 !! UnityCG.cginc
 
-This file is often included in Unity shaders to bring in many helper functions and definitions.
+このファイルは、多くのヘルパー関数と定義を利用するため、Unityシェーダに頻繁に含まれます。
 
-!!! Data structures in UnityCG.cginc
+!!! UnityCG.cgincのデータ構造
 
-* struct @@appdata_base@@: vertex shader input with position, normal, one texture coordinate.
-* struct @@appdata_tan@@: vertex shader input with position, normal, tangent, one texture coordinate.
-* struct @@appdata_full@@: vertex shader input with position, normal, tangent, vertex color and two texture coordinates.
-* struct @@appdata_img@@: vertex shader input with position and one texture coordinate.
+* struct @@appdata_base@@: 位置、法線、テクスチャ座標の、頂点シェーダ入力。
+* struct @@appdata_tan@@: 位置、法線、接線、ひとつのテクスチャ座標の、頂点シェーダ入力。
+* struct @@appdata_full@@: 位置、法線、接線、頂点カラー、ふたつのテクスチャ座標の、頂点シェーダ入力。
+* struct @@appdata_img@@: 位置、ひとつのテクスチャ座標の、頂点シェーダ入力。
 
-!!! Generic helper functions in UnityCG.cginc
+!!! UnityCG.cgincの汎用ヘルパー関数（Generic helper functions）
 
-* @@float3 WorldSpaceViewDir (float4 v)@@ - returns world space direction (not normalized) from given object space vertex position towards the camera.
-* @@float3 ObjSpaceViewDir (float4 v)@@ - returns object space direction (not normalized) from given object space vertex position towards the camera.
-* @@float2 ParallaxOffset (half h, half height, half3 viewDir)@@ - calculates UV offset for parallax normal mapping.
-* @@fixed Luminance (fixed3 c)@@ - converts color to luminance (grayscale).
-* @@fixed3 DecodeLightmap (fixed4 color)@@ - decodes color from Unity lightmap (RGBM or dLDR depending on platform).
-* @@float4 EncodeFloatRGBA (float v)@@ - encodes [0..1) range float into RGBA color, for storage in low precision render target.
-* @@float DecodeFloatRGBA (float4 enc)@@ - decodes RGBA color into a float.
-* Similarly, @@float2 EncodeFloatRG (float v)@@ and @@float DecodeFloatRG (float2 enc)@@ that use two color channels.
-* @@float2 EncodeViewNormalStereo (float3 n)@@ - encodes view space normal into two numbers in 0..1 range.
-* @@float3 DecodeViewNormalStereo (float4 enc4)@@ - decodes view space normal from enc4.xy.
+* @@float3 WorldSpaceViewDir (float4 v)@@ - ワールド空間の、特定のオブジェクト空間の頂点位置からカメラに向かった、（正規化されていない）方向。
+* @@float3 ObjSpaceViewDir (float4 v)@@ - オブジェクト空間の、特定のオブジェクト空間の頂点位置からカメラに向かった、（正規化されていない）方向。
+* @@float2 ParallaxOffset (half h, half height, half3 viewDir)@@ - 視差法線マッピングのUVオフセットを計算。
+* @@fixed Luminance (fixed3 c)@@ - 色を輝度（グレースケール）に変換します
+* @@fixed3 DecodeLightmap (fixed4 color)@@ - Unityライトマップの色をデコードします（プラットフォームにより、RGBMあるいはdLDR）
+* @@float4 EncodeFloatRGBA (float v)@@ - 精度の低いレンダリングターゲットを格納するため、0～1の範囲の浮動小数点をRGBAcolorにエンコードします。
+* @@float DecodeFloatRGBA (float4 enc)@@ - RGBA colorをfloatにデコードします。
+* 同様に、@@float2 EncodeFloatRG (float v)@@ および@@float DecodeFloatRG (float2 enc)@@ は二つのカラーチャネルをしようします。
+* @@float2 EncodeViewNormalStereo (float3 n)@@ - ビュー空間法線を0～1の範囲の二つの数字にエンコードします。
+* @@float3 DecodeViewNormalStereo (float4 enc4)@@ - enc4.xyからビュー空間法線をデコードします。
 
-!!! Forward rendering helper functions in UnityCG.cginc
+!!! UnityCG.cgincのForward Renderingヘルパー関数
 
-These functions are only useful when using forward rendering (ForwardBase or ForwardAdd pass types).
+これらの関数はForward Renderingを使用する場合のみ便利です。（ForwardBaseまたはForwardAddのパスタイプ）
+* @@float3 WorldSpaceLightDir (float4 v)@@ - ワールド空間の、オブジェクト空間の頂点位置からライトへ向けた、（正規化されてない）方向を計算します
+* @@float3 ObjSpaceLightDir (float4 v)@@ - オブジェクト空間の、オブジェクト空間の頂点位置からライトへ向けた、（正規化されてない）方向を計算します
+* @@float3 Shade4PointLights (...)@@ - 四つのポイントライトから、ライトのデータをvectorに格納して、輝度を算出します。Forward Renderingは各頂点ごとのライティングにこの情報を使用します。
 
-* @@float3 WorldSpaceLightDir (float4 v)@@ - computes world space direction (not normalized) to light, given object space vertex position.
-* @@float3 ObjSpaceLightDir (float4 v)@@ - computes object space direction (not normalized) to light, given object space vertex position.
-* @@float3 Shade4PointLights (...)@@ - computes illumination from four point lights, with light data tightly packed into vectors. Forward rendering uses this to compute per-vertex lighting.
 
+!!! UnityCG.cgincのVertex-litヘルパー関数
 
-!!! Vertex-lit helper functions in UnityCG.cginc
+これらの関数は頂点ライティングシェーダを使用する場合のみ便利です。（"Vertex"のパスタイプ）
 
-These functions are only useful when using per-vertex lit shaders ("Vertex" pass type).
-
-* @@float3 ShadeVertexLights (float4 vertex, float3 normal)@@ - computes illumination from four per-vertex lights and ambient, given object space position & normal.
+* @@float3 ShadeVertexLights (float4 vertex, float3 normal)@@ - 4つの各頂点ライトから、オブジェクト空間の位置と法線を指定して、輝度と環境光を算出します。

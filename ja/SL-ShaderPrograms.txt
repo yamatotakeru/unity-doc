@@ -33,46 +33,49 @@ Cg プログラムスニペットは``CGPROGRAM`` と ``ENDCG``間に書かれ�
 * ``#pragma domain ''name''`` - DX11のDomeinシェーダとして定義される ''name'' という名前の関数。このオプションは自動的に ``#pragma target 5.0`` のスイッチオンとなります。詳しくは [[#target | 下 ]] を見て下さい。
 
 その他のコンパイル命令:
-* ``#pragma target ''name''`` - which shader target to compile to. See [[#target | shader targets]] for details.
-* ``#pragma only_renderers ''space separated names''`` - compile shader only for given renderers. By default shaders are compiled for all renderers. See [[#renderers | renderers]] for details.
-* ``#pragma exclude_renderers ''space separated names''`` - do not compile shader for given renderers. By default shaders are compiled for all renderers. See [[#renderers | renderers]] for details.
-* ``#pragma glsl`` - when compiling shaders for desktop OpenGL platforms, convert Cg/HLSL into GLSL (instead of default setting which is ARB vertex/fragment programs). Use this to enable derivative instructions, texture sampling with explicit LOD levels, etc.
-* ``#pragma glsl_no_auto_normalization`` - when compiling shaders for mobile GLSL (iOS/Android), turn off automatic normalization of normal & tangent vectors. By default, normals and tangents are normalized in the vertex shader on iOS/Android platforms.
-* ``#pragma fragmentoption ''option''`` - adds ''option'' to the compiled OpenGL fragment program. See the [[http://www.opengl.org/registry/specs/ARB/fragment_program.txt | ARB fragment program]] specification for a list of allowed options. This directive has no effect on vertex programs or programs that are compiled to non-OpenGL targets.
+* ``#pragma target ''name''`` - コンパイルするシェーダターゲットの指定。詳細は[[#target | shader targets]] を参照下さい。
+* ``#pragma only_renderers ''space separated names''`` - 指定のレンダラのみシェーダをコンパイルします。デフォルトでは全てのレンダラのシェーダがコンパイルされます。詳細は[[#renderers | renderers]] を参照下さい。
+* ``#pragma exclude_renderers ''space separated names''`` - 指定のレンダラのみシェーダをコンパイルしません。デフォルトでは全てのレンダラのシェーダがコンパイルされます。詳細は[[#renderers | renderers]] を参照下さい。
+* ``#pragma glsl`` - デスクトップのOpenGLプロットフォーム向けにシェーダをコンパイルする場合、Cg/HLSLをGLSLに変換します（デフォルト設定ではARB頂点／フラグメントプログラム）。これによりデリバティブ指示、例えば明示的なLODレベルをもつテクスチャのサンプリングの場合、を有効化します。
+* ``#pragma glsl_no_auto_normalization`` - モバイル向けGLSL （iOS/Android）シェーダをコンパイルするとき、法線／接線ベクトルの自動正規化をオフにします。デフォルトではiOS/Androidプラットフォームのシェーダにて法線／接線ベクトルは正規化されます。
+* ``#pragma fragmentoption ''option''`` - コンパイルされたOpenGLフラグメントプログラムに''option''を追加します。使用できるオプションについては[[http://www.opengl.org/registry/specs/ARB/fragment_program.txt | ARB fragment program]] の仕様を参照して下さい。このディレクティブは頂点プログラムまたはOpenGLでないターゲット向けにコンパイルされたプログラムには効果がありません。
 
-Each snippet must contain a vertex program, a fragment program, or both. Thus a ``#pragma vertex`` or ``#pragma fragment`` directive is required, or both.
+各スニペットは頂点プログラム、フラグメントプログラム、あるいは両方を保有する必要があります。したがって``#pragma vertex`` または``#pragma fragment`` 、あるいは両方が必要です。
 
 [[#target]]
-!! Shader targets
+!! シェーダターゲット
 
-By default, Unity compiles shaders into roughly shader model 2.0 equivalent. Using ``#pragma target`` allows shaders to be compiled into other capability levels. Currently these targets are supported:
-* ``#pragma target 2.0`` ''(default)'' - roughly shader model 2.0
-** Shader Model 2.0 on Direct3D 9.
+デフォルトでは、Unityはシェーダをおおよそシェーダモデル2.0相当にコンパイルします。``#pragma target`` を使用することでシェーダは他のレベルにコンパイルすることが出来ます。現在は次のターゲットがサポートされています：
+* ``#pragma target 2.0`` ''(default)'' - おおよそシェーダモデル2.0相当
+** Direct3D 9のシェーダモデル2.0
 ** [[http://www.opengl.org/registry/specs/ARB/vertex_program.txt | ARB_vertex_program]] with 256 instruction limit and [[http://www.opengl.org/registry/specs/ARB/fragment_program.txt | ARB_fragment_program]] with 96 instruction limit (32 texture + 64 arithmetic), 16 temporary registers and 4 texture indirections.
-* ``#pragma target 3.0`` - compile to shader model 3.0:
-** Shader Model 3.0 on Direct3D 9.
-** ARB_vertex_program with no instruction limit and ARB_fragment_program with 1024 instruction limit (512 texture + 512 arithmetic), 32 temporary registers and 4 texture indirections. It is possible to override these limits using ``#pragma profileoption`` directive. E.g. @@#pragma profileoption MaxTexIndirections=256@@ raises texture indirections limit to 256. Note that some shader model 3.0 features, like derivative instructions, aren't supported by ARB_vertex_program/ARB_fragment_program. You can use ``#pragma glsl`` to translate to GLSL instead which has fewer restrictions.
-  When compiling to 3.0 or larger target, both vertex and fragment programs need to be present.
-* ``#pragma target 4.0`` - compile to DX10 shader model 4.0. This target is currently only supported by DirectX 11 renderer.
-* ``#pragma target 5.0`` - compile to DX11 shader model 5.0. This target is currently only supported by DirectX 11 renderer.
+** [[http://www.opengl.org/registry/specs/ARB/vertex_program.txt | ARB_vertex_program]] で256指示の制限、[[http://www.opengl.org/registry/specs/ARB/fragment_program.txt | ARB_fragment_program]] で96指示の制限（32テクスチャ+64演算）、16のテンポラリレジスタおよび4の間接テキスチャ（texture indirection）
+* ``#pragma target 3.0`` - ターゲットをのシェーダモデル3.0にコンパイル：
+** Direct3D 9のシェーダモデル3.0
+** ARB_vertex_program with no instruction limit and ARB_fragment_program with 1024 instruction limit (512 texture + 512 arithmetic), 32 temporary registers and 4 texture indirections.
+** ARB_vertex_program で指示制限なし、およびARB_fragment_programで1024指示の制限(512 テクスチャ + 512 演算), 32 テンポラリレジスタおよび 4間接テクスチャ。これらの制限を ``#pragma profileoption`` ディレクティブを使用してオーバーライドすることは出来ます。すなわち @@#pragma profileoption MaxTexIndirections=256@@ により間接テクスチャの制限を256に増加させます. いくつかのシェーダモデル3.0機能、たとえばデリバティブ指示などは、ARB_vertex_program/ARB_fragment_programでサポートされてないことに留意して下さい。``#pragma glsl`` を使用してGLSLに変換して制限がより少なくなります。
+
+3.0より大きいターゲット向けにコンパイルするとき、頂点／フラグメントプログラムともに必要です。
+* ``#pragma target 4.0`` - DX10シェーダーモデル4.0向けにコンパイルします。このターゲットは現在DirectX11レンダラのみでサポートされます。
+* ``#pragma target 5.0`` - DX11シェーダーモデル5.0向けにコンパイルします。このターゲットは現在DirectX11レンダラのみでサポートされます。
 
 
 [[#renderers]]
-!! Rendering platforms
+!! レンダリング　プラットフォーム
 
-Unity supports several rendering APIs (e.g. Direct3D 9 and OpenGL), and by default all shader programs are compiled into for supported renderers. You can indicate which renderers to compile to using ``#pragma only_renderers`` or ``#pragma exclude_renderers`` directives. This is useful if you know you will only target Mac OS X (where there's no Direct3D), or only Windows (where Unity defaults to D3D), or if some particular shader is only possible in one renderer and not others. Currently supported renderer names are:
-* ``d3d9`` - Direct3D 9.
-* ``d3d11`` - Direct3D 11.
-* ``opengl`` - OpenGL.
-* ``gles`` - OpenGL ES 2.0.
-* ``xbox360`` - Xbox 360.
-* ``ps3`` - PlayStation 3.
-* ``flash`` - Flash.
+UnityはいくつかのレンダリングAPI（すなわちDirect3D 9およびOpenGL）をサポートし、デフォルトで全てのシェーダプログラムはサポートされているレンダラにコンパイルされます。どのレンダラにコンパイルするかは``#pragma only_renderers``あるいは``#pragma exclude_renderers``ディレクティブで指定できます。これはMac OS X（Direct3Dがない）のみ、Windows（UnityがデフォルトでD3Dを使用）のみ、あるいは特定のシェーダがあるレンダラでしか使用できず他では使用できない場合、に便利です。現在サポートされているレンダラの名前は：
+* ``d3d9`` - Direct3D 9
+* ``d3d11`` - Direct3D 11
+* ``opengl`` - OpenGL
+* ``gles`` - OpenGL ES 2.0
+* ``xbox360`` - Xbox 360
+* ``ps3`` - PlayStation 3
+* ``flash`` - Flash
 
-For example, this line would only compile shader into D3D9 mode:
+例えば、次の行は、シェーダをD3D9モードでのみコンパイルします：
   #pragma only_renderers d3d9
 
 
-!! Subsections
+!! サブセクション
 
 (:tocportion:)

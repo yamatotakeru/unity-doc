@@ -1,25 +1,25 @@
-! ShaderLab syntax: Shader
+! ShaderLab文法：シェーダ
 
-``Shader`` is the root command of a shader file. Each file must define one (and only one) Shader. It specifies how any objects whose material uses this shader are rendered.
+``Shader``はシェーダファイルのルートコマンドです。全てのファイルは必ずひとつのシェーダのみ定義しないといけません。このシェーダを使用するマテリアルをもつオブジェクトがレンダリングされる方法を示します。
 
-!! Syntax
-__Shader__ "''name''" __{__ [Properties] Subshaders [Fallback] __}__ Defines a shader. It will appear in the material inspector listed under __name__. Shaders optionally can define a list of __properties__ that show up as material settings. After this comes a list of SubShaders, and optionally a fallback.
+!! 文法
+__Shader__ "''name''" __{__ [Properties] Subshaders [Fallback] __}__ シェーダを定義します。マテリアルインスペクタに表示されるか__name__ 以下でリストに記述されます。シェーダは任意のオプションとして、マテリアル設定として表示される__Properties__ の一覧として定義できます。この後は、サブシェーダの一覧、任意でFallback、を記述します。
 
-!! Details
 
-!!! Properties
+!! 詳細
 
-Shaders can have a list of [[SL-Properties|properties]]. Any properties declared in a shader are shown in the material inspector inside Unity. Typical properties are the object color, textures, or just arbitrary values to be used by the shader.
+!!! プロパティ
 
-!!! SubShaders & Fallback
+シェーダは[[SL-Properties|properties]] のリストをもつことが出来ます。シェーダで定義されたプロパティはUnityのマテリアルインスペクタで表示されます。通常のプロパティは、オブジェクトのカラー、テクスチャ、あるいはシェーダにより使用される任意の値です。
 
-Each shader is comprised of a list of [[SL-SubShader|sub-shaders]]. You must have at least one. When loading a shader, Unity will go through the list of subshaders, and pick the first one that is supported by the end user's machine. If no subshaders are supported, Unity will try to use [[SL-Fallback|fallback shader]].
+!!! サブシェーダとFallback
 
-Different graphic cards have different capabilities. This raises an eternal issue for game developers; you want your game to look great on the latest hardware, but don't want it to be available only to those 3% of the population. This is where subshaders come in. Create one subshader that has all the fancy graphic effects you can dream of, then add more subshaders for older cards. These subshaders may implement the effect you want in a slower way, or they may choose not to implement some details.
+各シェーダは[[SL-SubShader|sub-shaders]] のリストから構成されます。少なくともひとつが必須です。シェーダをロードするとき、Unityはサブシェーダのリストから、エンドユーザのマシンでサポートされる最初のサブシェーダを選択します。もしサポートされるサブシェーダがない場合、Unityは[[SL-Fallback|fallback shader]] の使用を試みます。
 
-!! Examples
+各々のグラフィックスカードは異なるスペックを持ちます。このためゲーム開発者は、ゲームを最新のハードウェアで最高のビジュアルを提供したいけれども、全体の3%しか使用してないハードでのみ利用可能にはしたくない、という永遠の課題に悩まされます。サブシェーダはこのときに活躍します。ひとつのサブシェーダでは夢見るような洒落たグラフィックス効果を持たせ、古いグラフィックスカード向けのサブシェーダを追加します。これらのサブシェーダではエフェクトをより遅く実行するか、詳細を実装しないように選択することが出来ます。
+!! 例
 
-Here is one of the simplest shaders possible:
+考えられるもっともシンプルなシェーダの例です：
 
 [@// colored vertex lighting
 Shader "Simple colored lighting" {
@@ -38,9 +38,9 @@ Shader "Simple colored lighting" {
     }
 } @]
 
-This shader defines a color property ``_Color`` (that shows up in material inspector as ''Main Color'') with a default value of ``(1, 0.5, 0.5, 1)``. Then a single subshader is defined. The subshader consists of one [[SL-Pass|Pass]] that turns on vertex lighting and sets up basic material for it.
+このシェーダではcolorプロパティとして``_Color`` （マテリアルインスペクトで''Main Color'' として表示）を、デフォルト値``(1, 0.5, 0.5, 1)`` として、定義します。次にひとつのサブシェーダを定義します。サブシェーダはひとつの[[SL-Pass|Pass]] から構成され、頂点ライティングを有効にして、自身の基本マテリアルを設定します。
 
-!! Subsections
+!! サブセクション
 
 (:tocportion:)
 

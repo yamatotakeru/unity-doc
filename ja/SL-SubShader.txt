@@ -1,22 +1,22 @@
-! ShaderLab syntax: SubShader
+! ShaderLab文法：サブシェーダ
 
-Each shader in Unity consists of a list of subshaders. When Unity has to display a mesh, it will find the shader to use, and pick the first subshader that runs on the user's graphics card.
+Unityの各シェーダはサブシェーダの一覧から構成されます。Unityがメッシュを描画するとき、使用するシェーダをみつけ、ユーザのグラフィックカードで実行する最初のサブシェーダを選択します。
 
-!!Syntax
+!!文法
 
-:__Subshader__ __{__ [''Tags''] [''CommonState''] ''Passdef'' [''Passdef ...''] __}__: Defines the subshader as optional tags, common state and a list of pass definitions.
+:__Subshader__ __{__ [''Tags''] [''CommonState''] ''Passdef'' [''Passdef ...''] __}__: サブシェーダを任意のオプションのタグ、Common State（通常状態）、パス定義の一覧とともに定義します。
 
-!!Details
+!!詳細
 
-A subshader defines a list of [[SL-Pass | rendering passes]] and optionally setup any state that is common to all passes. Additionally, subshader specific [[SL-SubshaderTags|Tags]] can be set up.
+サブシェーダは[[SL-Pass | rendering passes]] の一覧を定義し、任意のオプションとして全てのパスに共通のState（状態）を設定します。追加で、サブシェーダの特定の[[SL-SubshaderTags|Tags]] を設定できます。
 
-When Unity chooses which subshader to render with, it renders an object once for each Pass defined (and possibly more due to light interactions). As each render of the object is an expensive operation, you want to define the shader in minimum amount of passes possible. Of course, sometimes on some graphics hardware the needed effect can't be done in a single pass; then you have no choice but to use multiple passes.
+Unityがレンダリングするサブシェーダを選択するとき、定義された各パスごとに（光の相互作用によっては更に多く）オブジェクトを1回レンダリングします。オブジェクトのレンダリングは高価な処理であるため、シェーダを出来るかぎり最小の量のパスで定義すべきです。当然、いくつかのグラッフィクスのハードウェアでは必要なエフェクトを1回のパスでは実現できないことがあるので、その場合は複数のパスを使用するしかありません。
 
-Each pass definition can be a [[SL-Pass | regular Pass]], a [[SL-UsePass | Use Pass]] or a  [[SL-GrabPass | Grab Pass]].
+各パスの定義は[[SL-Pass | regular Pass]] 、[[SL-UsePass | Use Pass]] 、または[[SL-GrabPass | Grab Pass]] のいずれかです。
 
-Any statements that are allowed in a Pass definition can also appear in Subshader block. This will make all passes use this "shared" state.
+パス定義で記述できるステートメントはサブシェーダの記述ブロックでも現れることがあります。これにより全てのパスが"共有の" State（状態）を使用することが出来ます。
 
-!!Example
+!!例
 
 [@// ...
 SubShader {
@@ -27,4 +27,4 @@ SubShader {
 }
 // ...@]
 
-This subshader defines a single Pass that turns off any lighting and just displays a mesh with texture named ``_MainTex``.
+このサブシェーダではひとつのパスを定義し、全てのライティングをオフにして、単に``_MainTex``という名前のテクスチャをもつメッシュを表示します。

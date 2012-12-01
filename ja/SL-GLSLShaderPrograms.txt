@@ -1,20 +1,20 @@
-! GLSL Shader Programs
+! GLSLシェーダプログラム
 
-In addition to using [[SL-ShaderPrograms | Cg/HSL shader programs]], OpenGL Shading Language (GLSL) shaders can be written directly.
+[[SL-ShaderPrograms | Cg/HSL shader programs]] の使用に加えて、OpenGLシェーダ言語（GLSL）のシェーダも直接記述することが出来ます。
 
-However, '''use of raw GLSL is only recommended for testing''', or when you know you will only target Mac OS X or OpenGL ES 2.0 compatible mobile devices. In majority of normal cases, Unity will cross-compile Cg/HLSL into optimized GLSL (this is done by default for mobile platforms, and can be optionally turned on for desktop platforms via @@#pragma glsl@@).
+しかし'''直接的なGLSLはテスト目的のみが推奨'''で、この他では確実にMac OS XあるいはOpenGL ES 2.0互換モバイルデバイスを使用する場合のみ使用すべきです。通常のケースの大部分では、UnityはCg/HLSLを最適化されたGLSLにクロスコンパイルします（これｙはモバイルプラットフォームではデフォルトで行われ、デスクトッププラットフォームでは@@#pragma glsl@@ を通して任意で有効に出来ます）。
 
-!! GLSL snippets
+!! GLSLスニペット
 
-GLSL program snippets are written between ``GLSLPROGRAM`` and ``ENDGLSL`` keywords.
+GLSLプログラムスニペットは``GLSLPROGRAM`` と``ENDGLSL`` キーワードの間に記述します。
 
-In GLSL, all shader function entry points have to be called ``main()``. When Unity loads the GLSL shader, it loads the source once for the vertex program, with ``VERTEX`` preprocessor define, and once more for the fragment program, with ``FRAGMENT`` preprocessor define. So the way to separate vertex and fragment program parts in GLSL snippet is to surround them with ``#ifdef VERTEX`` .. ``#endif`` and ``#ifdef FRAGMENT`` .. ``#endif``. Each GLSL snippet must contain both a vertex program and a fragment program.
+GLSLでは、全てのシェーダ関数のエントリポイントは``main()``と呼ぶ必要があります。UnityがGLSLシェーダをロードするとき、頂点プログラムのために1回ソースを``VERTEX``プリプロセッセ定義でロードし、もう一回フラグメントプログラムのために``FRAGMENT``プリプロセッセ定義でロードします。頂点とフラグメントプログラムをGLSLスニペットのなかで分離するためには、``#ifdef VERTEX`` .. ``#endif`` and ``#ifdef FRAGMENT`` .. ``#endif``で囲む必要があります。各GLSLスニペットは頂点プログラムとフラグメントプログラム両方を保有する必要があります。
 
-Standard include files match those provided for Cg shaders; they just have ``.glslinc`` extension: ``UnityCG.glslinc``.
+標準的なインクルードファイルは、Cgシェーダのために提供されたものをマッチングし、それらは``.glslinc`` 拡張子がついています：``UnityCG.glslinc`` 。
 
-Vertex shader inputs come from predefined GLSL variables (gl_Vertex, gl_MultiTexCoord0, ...) or are user defined attributes. Usually only the tangent vector needs a user defined attribute:
+頂点シェーダ入力は定義済みGLSL変数（gl_Vertex、gl_MultiTexCoord0、等）を元にするか、またはユーザ定義された属性です。通常は接線ベクトルのみユーザ定義の属性が必要です：
     attribute vec4 Tangent;
 
-Data from vertex to fragment programs is passed through ''varying'' variables, for example:
-    varying vec3 lightDir; // vertex shader computes this, fragment shader uses this
+頂点プログラムからフラグメントプログラムへデータは''varying''変数を使用して渡されます、例えば：
+    varying vec3 lightDir; // 頂点シェーダが算出し、フラグメントシェーダがこれを使用します。
 
