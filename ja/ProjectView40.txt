@@ -1,75 +1,77 @@
-!Project Browser
+! プロジェクトブラウザ
 
-In this view, you can access and manage the assets that belong to your project.
+このビューでは、プロジェクトに属するアセットにアクセスし、管理することができます。
 
 Attach:ProjectBrowser.png
 
-The left panel of the browser shows the folder structure of the project as a hierarchical list. When a folder is selected from the list by clicking, its contents will be shown in the panel to the right. The individual assets are shown as icons that indicate their type (script, material, sub-folder, etc). The icons can be resized using the slider at the bottom of the panel; they will be replaced by a hierarchical list view if the slider is moved to the extreme left. The space to the left of the slider shows the currently selected item, including a full path to the item if a search is being performed. 
+ブラウザの左側のパネルには、プロジェクトのフォルダ構造を階層的なリストで示しています。フォルダをクリックして一覧から選択すると、その内容が右側のパネルに表示されます。個々のアセットは、その種類（スクリプト、マテリアル、サブフォルダなど）を示すアイコンとして表示されます。アイコンがパネルの下部にあるスライダーを使ってサイズを変更することができます。スライダが左端に移動した場合、それらは階層リストビューに置き換えられます。検索が実行されている場合、スライダの左にスペースには（アイテムへのフルパスを含め）現在選択されている項目を示しています。
 
-Above the project structure list is a __Favorites__ section where you can keep frequently-used items for easy access. You can drag items from the project structure list to the Favourites and also save search queries there (see __Searching__ below).
+_ Favorites__ セクションを使えば、使用頻度の高いアイテムを保存し、プロジェクト構造のリストの上に簡単にアクセスすることができます。プロジェクト構造のリストからお気に入りリスト（Favourites）にドラッグすることでサーチクエリ ( __Searching__ 下記参照)を登録することができます。
 
-Just above the panel is a "breadcrumb trail" that shows the path to the folder currently being viewed. The separate elements of the trail can be clicked for easy navigation around the folder hierarchy. When searching, this bar changes to show the area being searched (the root Assets folder, the selected folder or the Asset Store) along with a count of free and paid assets available in the store, separated by a slash. There is an option in the ''General'' section of Unity's Preferences window to disable the display of Asset Store hit counts if they are not required.
+"パンくずリスト(breadcrumb trail)"は現在表示されているフォルダへのパスを表示します。これは、フォルダパスをクリックで切り替える事のできるフォルダ階層周りの簡単なナビゲーションを提供します。
+
+このバーを切り替えると、スラッシュで区切られたストア内で利用可能な無料もしくは支払い済みのアセットを検索し表示します。
+もし、これらの機能を使用したくない場合は、Unityの環境設定（Preferences)ウィンドウの ''General'' セクションにあるShow Asset Store search hitsオプションのチェックを外してください。
 
 Attach:ProjBrowserBreadcrumbs.png
 
-Along the top edge of the window is the browser's toolbar.
+ウィンドウの上端ににあるものは、ブラウザのツールバーです。
 
 Attach:ProjBrowserToolbar.png
 
-Located at the left side of the toolbar, the ^^Create^^ menu lets you add new assets and sub-folders to the current folder. To its right are a set of tools to allow you to search the assets in your project.
+ツールバーの左側に位置する ^^Create^^ メニューでは、現在のフォルダに新たなアセットとサブ·フォルダを追加することができます。その右側には、プロジェクト内のアセットを検索できるようにするためのツールセットがあります
 
-The Window menu provides the option of switching to a one-column version of the project view, essentially just the hierarchical structure list without the icon view. The lock icon next to the menu enables you to "freeze" the current contents of the view (ie, stop them being changed by events elsewhere) in a similar manner to the inspector lock.
+メニューの横にあるロックアイコンは、inspectorのロックと同様の方法で（それらが他の場所のイベントによって変更されないようにする）ビューの現在の内容を”凍結”することができます。
 
-!!Searching
-The browser has a powerful search facility that is especially useful for locating assets in large or unfamiliar projects. The basic search will filter assets according to the text typed in the search box
+!! 検索機能
+ブラウザは、特に大規模または不慣れなプロジェクトでアセットを見つける際に役立つ強力な検索機能を持っています。基本的な検索では、検索ボックスに入力したテキストに基づいてアセットをフィルタリングします。
 
 Attach:ProjBrowserSearchBasic.png
 
-If you type more than one search term then the search is narrowed, so if you type ''coastal scene'' it will only find assets with both "coastal" and "scene" in the name (ie, terms are ANDed together).
+あなたが''coastal scene''と入力した場合は検索は狭まり、 "coastal"と"scene"の両方でアセットを絞り込みます（つまりANDで絞り込みます）。
 
-To the right of the search bar are three buttons. The first allows you to further filter the assets found by the search according to their type.
+検索バーの右側にある3つのボタンがあります。一つ目は、タイプに応じて検索で見つかったアセットをフィルタリングすることができます。
 
 Attach:ProjBrowserTypeMenu.png
 
-Continuing to the right, the next button filters assets according to their Label (labels can be set for an asset in the [[Inspector]]). Since the number of labels can potentially be very large, the label menu has its own mini-search filter box.
+その右は、ラベルの設定です（ラベルは、アセットの [[inspector]] 毎に設定できます）。ラベルの数は潜在的に大きくなる可能性があるので、ラベル・メニューはミニ検索フィルダボックスを持っています。
 
 Attach:ProjBrowserLabelMenu.png
 
-Note that the filters work by adding an extra term in the search text. A term beginning with "t:" filters by the specified asset type, while "l:" filters by label. You can type these terms directly into the search box rather than use the menu if you know what you are looking for. You can search for more than one type or label at once. Adding several types will expand the search to include all specified types (ie, types will be ORed together). Adding multiple labels will narrow the search to items that have all the specified labels (ie, labels are ANDed).
+なお、フィルタは検索するテキストに項目を追加することで動作します。 "t："で始まっている場合は指定されたアセットの種類別フィルタ、 "L："はラベルでフィルタです。あなたは、あなたが探しているものを知っていればメニューを使用するのではなく、検索ボックスに直接これらの用語を入力することができます。一度に複数のタイプまたはラベルを検索することも可能です。いくつかのタイプを追加すると、指定されたすべてのタイプを含むように検索範囲を拡大します（つまりタイプはORで検索します）。複数のラベルを追加すると、指定されたすべてのラベルがついたアイテムに検索を絞り込むことになります（つまりラベルはANDで絞り込みます）。
 
 Attach:ProjBrowserSearchTypeAndLabel.png
 
-The rightmost button saves the search by adding an item to the Favourites section of the asset list.
+右端のボタンは、アセットリストのお気に入りセクションに項目を追加することにより、検索を保存します。
 
-!!!Searching the Asset Store
+!!!Searching the Asset Store アセットストアの検索
 
-The Project Browser's search can also be applied to assets available from the Unity $$Asset Store$$. If you choose ^^Asset Store^^ from the menu in the breadcrumb bar, all free and paid items from the store that match your query will be displayed. Searching by type and label works the same as for a Unity project. The search query words will be checked against the asset name first and then the package name, package label and package description in that order (so an item whose name contains the search terms will be ranked higher than one with the same terms in its package description).
+プロジェクトブラウザの検索は、 $$Asset Store$$ から入手できるアセットにも適用することも可能です。あなたが ^^Asset Store^^ を階層リンクバーのメニューから選択した場合、、ストアにあるクエリに一致するすべて無料と有料のアイテムが表示されます。種類やラベルで検索すると、Unityプロジェクトの場合と同じように動作します。検索は、最初にアセット名、次にパッケージ名、パッケージのラベルとパッケージの説明と照合します（つまり名前の検索用語がそのパッケージの説明より1よりも高くランク付けされます）。
 
 Attach:ProjBrowserAssetStoreSearch.png
 
-If you select an item from the list, its details will be displayed in the inspector along with the option to purchase and/or download it. Some asset types have previews available in this section so you can, for example, play an audio clip or rotate a 3D model before buying. The inspector also gives the option of viewing the asset in the usual Asset Store window to see additional details.
+リストから項目を選択した場合、その詳細は購入またはダウンロードするためのオプションと一緒にinspectorに表示されます。あなたは、例えば、オーデ​​ィオクリップを再生したり、購入する前に3Dモデルを回転させることができますので、いくつかのアセットの種類は、このセクションで使用可能なプレビューを持っています。inspectorは、追加の詳細を表示するための通常のアセットストアのウィンドウでアセットを表示するオプションも提供します。
 
 
 
-!!Shortcuts
+!! ショートカット
 
-The following keyboard shortcuts are available when the browser view has focus. Note that some of them only work when the view is using the two-column layout (you can switch between the one- and two-column layouts using the panel menu in the very top right corner).
-
-||__F__ ||Frame selection ||
-||__Tab__ ||Shift focus between first column and second column  (Two columns)||
-||__Ctrl/Cmd + F__ ||Focus search field||
-||__Ctrl/Cmd + A__ ||Select all visible items in list||
-||__Ctrl/Cmd + D__ ||Duplicate selected assets||
-||__Delete__ ||Delete with dialog||
-||__Delete + Shift__ ||Delete without dialog||
-||__Backspace + Cmd__ ||Delete without dialogs (OSX)||
-||__Enter__ ||Begin rename selected (OSX)||
-||__Cmd + down arrow__ ||Open selected assets (OSX)||
-||__Cmd + up arrow__ ||Jump to parent folder (OSX, Two columns)||
-||__F2__ ||Begin rename selected (Win)||
-||__Enter__ ||Open selected assets (Win)||
-||__Backspace__ ||Jump to parent folder (Win, Two columns)||
-||__Right arrow__ ||Expand selected item (tree views and search results). If the item is already expanded, this will select its first child item. ||
-||__Left arrow__ ||Collapse selected item (tree views and search results). If the item is already collapsed, this will select its parent item. ||
-||__Alt + right arrow__ ||Expand item when showing assets as previews ||
-||__Alt + left arrow__ ||Collapse item when showing assets as previews ||
+ブラウザビューにフォーカスがあるときに次のキーボードショートカットが用意されています。2列のレイアウトをを使用している場合のみ動作する機能があることに注意して下さい。（あなたが右上隅にあるパネルのメニューを使用して、1と2列のレイアウトを切り替えることができます）
+||__F__ ||フレームを選択 ||
+||__Tab__ ||一つ目のカラムと2つ目のカラムの焦点を切り替える  (Two columns)||
+||__Ctrl/Cmd + F__ ||search fieldにフォーカスを当てる||
+||__Ctrl/Cmd + A__ ||リスト上のすべてのアイテムを選択する||
+||__Ctrl/Cmd + D__ ||選択中のアセットを複製する||
+||__Delete__ ||削除ダイアログを表示する||
+||__Delete + Shift__ ||確認ダイアログ無しで削除する||
+||__Backspace + Cmd__ ||確認ダイアログ無しで削除する (OSX)||
+||__Enter__ ||選択中のアイテムの名前を変更する (OSX)||
+||__Cmd + down arrow__ ||選択中のアセットを開く (OSX)||
+||__Cmd + up arrow__ ||親フォルダに移動する (OSX, Two columns)||
+||__F2__ ||選択中のアイテムの名前を変更する (Win)||
+||__Enter__ ||選択中のアセットを開く (Win)||
+||__Backspace__ ||親フォルダに移動する (Win, Two columns)||
+||__Right arrow__ ||選択したアイテムを展開 (tree views and search results). 既に項目を展開している場合、最初の項目を選択する||
+||__Left arrow__ ||選択した項目を折りたたむ (tree views and search results). 既に項目を折りたたんでいる場合、親を選択します ||
+||__Alt + right arrow__ ||プレビューとしてアセットを表示する際に項目を展開する||
+||__Alt + left arrow__ ||プレビューとしてアセットを表示する際に項目を折りたたむ ||
