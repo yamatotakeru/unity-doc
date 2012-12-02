@@ -1,15 +1,15 @@
-! Low-level Native Plugin Interface
+! 低レベル ネイティブプラグインインターフェース
 
-In addition to the basic script interface, [[Plugins | Native Code Plugins]] in Unity can receive callbacks when certain events happen. This is mostly used to implement low-level rendering in your plugin and enable it to work with Unity's multithreaded rendering.
+基本的なスクリプトのインターフェースに加えて、[[ プラグイン（Plugins）|ネイティブコードプレグイン（Native Code Plugins）]] はUnity上で発生したの特定のイベントをコールバックで受け取ることができます。これは主に、プラグインで低レベルのレンダリングを実装し、Unityのマルチスレッドレンダリングを操作できるようにするために使用されます。
 
-__Note:__ The rendering callbacks to plugins are not currently supported on mobile platforms.
+__Note:__ プラグインへのレンダリングコールバックは、現在のモバイル·プラットフォームではサポートされません。
 
-!! Access to the Graphics Device
+!! グラフィックドライバへのアクセス
 
-A plugin can receive notification about events on the graphics device by exporting a @@UnitySetGraphicsDevice@@ function. This will be called when the graphics device is created, before it is destroyed, and also before and after the device is "reset" (this only happens with Direct3D 9). The function has parameters which will receive the device pointer, device type and the kind of event that is taking place.
+プラグインは @@UnitySetGraphicsDevice@@ 関数をエクスポートすることにより、グラフィックドライバの通知を受け取る事ができます。これはグラフィックデバイスが作成される時、そして破棄される前、またデバイスを"リセット"する前と後（これはDirect3D 9のみ発生）に呼び出されます。この関数のパラメータは、デバイスのポインタや、デバイスのパラメータ、デバイスで行われているイベントの種類を持っています。
 
-    // If exported by a plugin, this function will be called when graphics device is created, destroyed,
-    // and before and after it is reset (ie, resolution changed).
+    // プラグインによってエクスポートされた場合、この関数はグラフィックデバイスが作成または破棄されたタイミングで呼ばれます。
+    // そして、リセットの前後にも。
     extern "C" void EXPORT_API __UnitySetGraphicsDevice__ (void* device, int deviceType, int eventType);
 
 Possible values for deviceType:
@@ -38,24 +38,23 @@ Possible values for eventType:
     };
 
 
-!! Plugin Callbacks on the Rendering Thread
+!! レンダリングスレッド上のプラグインコールバック
 
-Rendering in Unity can be multithreaded if the platform and number of available CPUs will allow for it. When multithreaded rendering is used, the rendering API commands happen on a thread which is completely separate from the one that runs MonoBehaviour scripts. Consequently, it is not always possible for your plugin to start doing some rendering immediately, since might interfere with whatever the render thread is doing at the time.
+Unityは多くのCPUが許可したプラットフォームで、レンダリングをマルチスレッド化することができます。マルチスレッドレンダリングを使う時、レンダリングAPIコマンドはMonoBehaviourとは完全に別の、独立したスレッド上で実行します。そのため、いつでもプラグインからレンダリングを起動することが可能とは限りません。そして、レンダリングスレッドは干渉する可能性があります。
 
-In order to do __any__ rendering from the plugin, you should call [[ScriptRef:GL.IssuePluginEvent.html | GL.IssuePluginEvent]] from your script, which will cause your plugin to be called from the render thread. For example, if you call GL.IssuePluginEvent from the camera's OnPostRender function, you get a plugin callback immediately after the camera has finished rendering.
+プラグインから __any__ のレンダリングを行うには、プラグインはスクリプトから [[ScriptRef:GL.IssuePluginEvent.html | GL.IssuePluginEvent]] を参照しメインスレッドから呼び出されるようにする必要があります。例えば、カメラのOnPostRender関数から GL.IssuePluginEventを呼び出す場合、プラグインはカメラのレンダリング終了後すぐにコールバックを取得します。
 
-    // If exported by a plugin, this function will be called for GL.IssuePluginEvent script calls.
-    // The function will be called on a rendering thread; note that when multithreaded rendering is used,
-    // the render thread WILL BE DIFFERENT from the main thread, on which all scripts & other game logic are executed!
-    // You have responsibility for ensuring any necessary synchronization with other plugin script calls takes place.
+    // プラグインによってエクスポートされた場合、この関数は、GL.IssuePluginEventスクリプト呼び出しのために呼び出されます。
+    // 関数はレンダリングスレッドで呼び出されます。マルチスレッドレンダリングが使用されている場合ことに注意する必要があります。
+    //レンダリングスレッドは、すべてのスクリプトと他のゲームのロジックが実行されている、メインスレッドと異なるものです。
+    // 他のプラグインやスクリプトを呼び出す場合、確実に同期する責任があります。
     extern "C" void EXPORT_API __UnityRenderEvent__ (int eventID);
 
 
-!! Example
+!! サンプル
 
-An example of a low-level rendering plugin __[[Attach:RenderingPluginExample40.zip|can be downloaded here]]__. It demonstrates two things:
-* Renders a rotating triangle from C++ code after all regular rendering is done.
-* Fills a procedural texture from C++ code, using Texture.GetNativeTexturePtr to access it.
+低レベルレンダリングプラグインのサンプルを２つ紹介します。 __[[Attach:RenderingPluginExample40.zip|can be downloaded here]]__ 。
+* すべての正規レンダリングが完了した後に、C++コードから回転する三角形を描画する
+*  Texture.GetNativeTexturePtrを利用してアクセスし、C++のコードから手続き型テクスチャ（Procedural texture）を塗りつぶす
 
-The project works with Windows (Visual Studio 2008) and Mac OS X (Xcode 3.2) and uses Direct3D 9, Direct3D 11 or OpenGL depending on the platform. Direct3D 9 code part also demonstrates how to handle "lost" devices.
-
+プロジェクトはWindows（Visual Studio 2008）及びMacOSX（Xcode 3.2)で動作し、Direct3D 9、Direct3D 11、OpenGLのいずれかで使用しています。Direct3D 9のコードは、"滅びた"デバイスを処理する方法を示しています。
