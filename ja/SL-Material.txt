@@ -1,43 +1,43 @@
-! ShaderLab syntax: Color, Material, Lighting
-The material and lighting parameters are used to control the built-in vertex lighting. Vertex lighting is the standard Direct3D/OpenGL lighting model that is computed for each vertex. ``Lighting on`` turns it on. Lighting is affected by $$Material$$ block, $$ColorMaterial$$ and $$SeparateSpecular$$ commands.
+! ShaderLab文法: Color、Material、Lighting
 
-Per-pixel lights are usually implemented with custom vertex/fragment programs and don't use vertex lighting. For these you don't use any of the commands described here, instead you define your own [[SL-ShaderPrograms | vertex and fragment programs]] where you do all lighting, texturing and anything else yourself.
+materiaとlightingパラメータは内臓の頂点ライティングを制御するのに使用します。頂点ライティングは各頂点で計算する標準的なDirect3D／OpenGLライティングモデルです。``Lighting on``により有効化されます。は$$Material$$ ブロック、$$ColorMaterial$$ および$$SeparateSpecular$$ コマンドによライティングり影響を受けます。
+
+ピクセルライティングは通常カスタムの頂点／フラグメントプログラムで実装され、頂点ライティングを使用しません。これらについてはここで説明するコマンドは使用せず、自分の[[SL-ShaderPrograms | vertexおよびfragment program]] を定義し、そこで全てのライティング、テクスチャ、その他全てを自分で処理します。
 
 Attach:SL./PipelineTL.png
 
-Vertex Coloring & Lighting is the first effect to gets calculated for any rendered geometry. It operates on the vertex level, and calculates the base color that is used before textures are applied.
+頂点カラーリングおよびライティングはどのレンダリング形状のなかで最初に計算されるエフェクトです。頂点レベルで実行され、テクスチャが適用される前の、ベースカラーを算出します。
 
-!! Syntax
-The top level commands control whether to use fixed function lighting or not, and some configuration options. The main setup is in the __Material Block__, detailed further below.
-:__Color__ ''Color'': Sets the object to a solid color. A color is either four RGBA values in parenthesis, or a color property name in square brackets.
-:__Material__ __{__ ''Material Block'' __}__:The Material block is used to define the material properties of the object.
-:__Lighting__ On | Off: For the settings defined in the Material block to have any effect, you must enable Lighting with the ''Lighting On'' command. If lighting is off instead, the color is taken straight from the ''Color'' command.
-:__SeparateSpecular__ On | Off: This command makes specular lighting be added to the end of the shader pass, so specular lighting is unaffected by texturing. Only has effect when ''Lighting On'' is used.
-:__ColorMaterial__ AmbientAndDiffuse | Emission: makes per-vertex color be used instead of the colors set in the material. ``AmbientAndDiffuse`` replaces Ambient and Diffuse values of the material; ``Emission`` replaces Emission value of the material.
+!! 文法
+上位のレベルのコマンドは、fixed function（固定関数）ライティングを使用するかどうか、およびいくつかの設定オプションを、制御します。メインの設定は__Material Block__（マテリアルブロック）に含まれ、以下で詳細を説明します。
+:__Color__ ''Color'': オブジェクトを単色に設定します。カラーは4つのRGBAの値を括弧（ ）で括るか、あるいはカラープロパティ名を括弧[ ]で括ります。
+:__Material__ __{__ ''Material Block'' __}__:マテリアルブロックはオブジェクトのマテリアルプロパティを定義するのに使用します。
+:__Lighting__ On | Off: マテリアルブロックの設定のエフェクトを有効にするためには、''Lighting On'' コマンドでライティングを有効化する必要があります。もしライティングが向こうの場合、色は''Color'' コマンドから直接取得されます。
+:__SeparateSpecular__ On | Off: このコマンドは鏡面ライティングをシェーダパスの終わりに追加するため、鏡面ライティングはテクスチャによる影響を受けません。''Lighting On'' が使用されている場合のみエフェクトが有効です。
+:__ColorMaterial__ AmbientAndDiffuse | Emission: 頂点カラーを、マテリアルで設定したカラーに優先して、使用します。``AmbientAndDiffuse`` はマテリアルのAmbient、Diffuseの値を置き換え、``Emission``はマテリアルのEmissionの値を置き換えます。
 
-!!!Material Block
+!!!Materialブロック
 
-This contains settings for how the material reacts to the light. Any of these properties can be left out, in which case they default to black (i.e. have no effect).
+ここではマテリアルが光に対して反応する方法を設定します。これらのプロパティのどれも必須ではなく、指定しない場合のデフォルト値は黒です（すなわちエフェクトなし）。
 
-:__Diffuse__ ''Color'': The diffuse color component. This is an object's base color.
-:__Ambient__ ''Color'': The ambient color component. This is the color the object has when it's hit by the ambient light set in the [[class-RenderSettings]].
-:__Specular__ ''Color'': The color of the object's specular highlight.
-:__Shininess__ ''Number'': The sharpness of the highlight, between 0 and 1. At 0 you get a huge highlight that looks a lot like diffuse lighting, at 1 you get a tiny speck.
-:__Emission__ ''Color'': The color of the object when it is not hit by any light.
+:__Diffuse__ ''Color'': 拡散カラーコンポーネント。オブジェクトのベースカラーです。
+:__Ambient__ ''Color'': 環境光カラーコンポーネント。この色は、オブジェクトが環境光に当たった時に[[class-RenderSettings]] で設定された、オブジェクトが保有する色です。 :__Specular__ ''Color'': The color of the object's specular highlight.
+:__Shininess__ ''Number'': ハイライトのシャープネスで、0から1まで設定できます。0では拡散ライティングに良く似た巨大なハイライトで、1ではわずかな小粒のハイライトです。
+:__Emission__ ''Color'': オブジェクトが、どのような光にも当てられない場合のオブジェクトのカラー
 
-The full color of lights hitting the object is:
+オブジェクトに当てられたライトのフルカラーは：
 
   __Ambient__ * [[class-RenderSettings | RenderSettings ambient setting]] +
   (Light Color * __Diffuse__ + Light Color * __Specular__) + __Emission__
 
-The light parts of the equation (within parenthesis) is repeated for all lights that hit the object.
+計算式のライト部分（括弧( )内における）は、オブジェクトに当たる全てのライトの分だけ、繰り返されます。
 
-Typically you want to keep the Diffuse and Ambient colors the same (all builtin Unity shaders do this).
+通常はDiffuse（拡散）とAmbient（環境光）カラーは同じにすることが望ましいです（全てのUnity内臓シェーダはそのようにしています）。
 
 
-!!Examples
+!!例
 
-Always render object in pure red:
+常にオブジェクトを純粋な赤でレンダリングします：
 [@Shader "Solid Red" {
     SubShader {
         Pass { Color (1,0,0,0) }
@@ -45,7 +45,7 @@ Always render object in pure red:
 } @]
 
 
-Basic Shader that colors the object white and applies vertex lighting:
+オブジェクトを白に色付けして頂点ライティングを適用する、基本的なシェーダ
 [@Shader "VertexLit White" {
     SubShader {
         Pass {
@@ -58,8 +58,7 @@ Basic Shader that colors the object white and applies vertex lighting:
     }
 } @]
 
-
-An extended version that adds material color as a property visible in Material Inspector:
+マテリアルインスペクタで表示するマテリアルカラーを追加する、拡張バージョン：
 
 [@Shader "VertexLit Simple" {
     Properties {
@@ -77,7 +76,7 @@ An extended version that adds material color as a property visible in Material I
 } @]
 
 
-And finally, a full fledged vertex-lit shader (see also [[SL-SetTexture|SetTexture]] reference page):
+そして最後に、本格バージョンの頂点ライティングシェーダ（[[SL-SetTexture|SetTexture]] もあわせて参照下さい。）：
 [@Shader "VertexLit" {
     Properties {
         _Color ("Main Color", Color) = (1,1,1,0)
@@ -103,4 +102,3 @@ And finally, a full fledged vertex-lit shader (see also [[SL-SetTexture|SetTextu
         }
     }
 } @]
-

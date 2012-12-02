@@ -1,51 +1,51 @@
-! ShaderLab syntax: Properties
+! ShaderLab文法：プロパティ
 
-Shaders can define a list of parameters to be set by artists in Unity's [[Materials|material inspector]]. The Properties block in the shader file defines them.
+シェーダにより、Unityの[[Materials|material inspector]] 上で、アーティストがセットできるパラメータの一覧を定義できます。シェーダでのPropertiesブロックで定義します。
 
-!!Syntax
-:__Properties__ { ''Property'' [''Property ...''] }: Defines the property block. Inside braces multiple properties are defined as follows.
-:''name'' ("''display name''", __Range__ (''min'', ''max'')) = ''number'': Defines a float property, represented as a slider from ''min'' to ''max'' in the inspector.
-:''name'' ("''display name''", __Color__) = (''number'',''number'',''number'',''number''): Defines a color property.
-:''name'' ("''display name''", __2D__) = "''name''" { ''options'' }: Defines a 2D texture property.
-:''name'' ("''display name''", __Rect__) = "''name''" { ''options'' }: Defines a rectangle (non power of 2) texture property.
-:''name'' ("''display name''", __Cube__) = "''name''" { ''options'' }: Defines a cubemap texture property.
-:''name'' ("''display name''", __Float__) = ''number'': Defines a float property.
-:''name'' ("''display name''", __Vector__) = (''number'',''number'',''number'',''number''): Defines a four component vector property.
+!!文法
+:__Properties__ { ''Property'' [''Property ...''] }: プロパティのブロックを定義します。波括弧{}の中で次のように複数のプロパティを定義します。
+:''name'' ("''display name''", __Range__ (''min'', ''max'')) = ''number'': floatプロパティを定義し、インスペクタ上でスライドバーが''min''から''max''として表現。
+:''name'' ("''display name''", __Color__) = (''number'',''number'',''number'',''number''): colorプロパティを定義。
+:''name'' ("''display name''", __2D__) = "''name''" { ''options'' }: 2Dテクスチャプロパティを定義。
+:''name'' ("''display name''", __Rect__) = "''name''" { ''options'' }: 長方形（2のべき乗でない）テクスチャのプロパティを定義。
+:''name'' ("''display name''", __Cube__) = "''name''" { ''options'' }: キューブマップテクスチャのプロパティを定義。
+:''name'' ("''display name''", __Float__) = ''number'': floatプロパティを定義
+:''name'' ("''display name''", __Vector__) = (''number'',''number'',''number'',''number''): 4コンポーネント　ベクトルのプロパティを定義。
 
-!!Details
+!!詳細
 
-Each property inside the shader is referenced by __name__ (in Unity, it's common to start shader property names with underscore). The property will show up in material inspector as __display name__. For each property a default value is given after equals sign:
-* For ''Range'' and ''Float'' properties it's just a single number.
-* For ''Color'' and ''Vector'' properties it's four numbers in parentheses.
-* For texture (''2D'', ''Rect'', ''Cube'') the default value is either an empty string, or one of builtin default textures: "''white''", "''black''", "''gray''" or "''bump''".
+シェーダの各プロパティは__name__により参照されます（Unityで、シェーダのプロパティ名をアンダースコアで始めるのは一般的）。プロパティはマテリアルインスペクタ上で__display name__として表示されます。各プロパティのデフォルト値は等号=のあとに記述します。
+* ''Range'' と''Float'' プロパティでは1つの数字。
+* ''Color'' と''Vector'' プロパティでは括弧()で括る4つの数字。
+* テクスチャ(''2D'', ''Rect'', ''Cube'')ではデフォルト値は空の文字列か内蔵のデフォルトテクスチャ: "''white''" 、"''black''" 、"''gray''" 、"''bump''" 。
 
-Later on in the shader, property values are accessed using property name in square brackets: __[name]__.
+シェーダの後のほうで、プロパティの値は括弧[]でプロパティネームを記述して参照します：__[name]__。
 
-!!Example
+!!例
 
 [@Properties {
-    // properties for water shader
-    _WaveScale ("Wave scale", Range (0.02,0.15)) = 0.07 // sliders
+    // 水シェーダのプロパティ
+    _WaveScale ("Wave scale", Range (0.02,0.15)) = 0.07 // スライドバー
     _ReflDistort ("Reflection distort", Range (0,1.5)) = 0.5
     _RefrDistort ("Refraction distort", Range (0,1.5)) = 0.4
     _RefrColor ("Refraction color", Color)  = (.34, .85, .92, 1) // color
-    _ReflectionTex ("Environment Reflection", 2D) = "" {} // textures
+    _ReflectionTex ("Environment Reflection", 2D) = "" {} // テクスチャ
     _RefractionTex ("Environment Refraction", 2D) = "" {}
     _Fresnel ("Fresnel (A) ", 2D) = "" {}
     _BumpMap ("Bumpmap (RGB) ", 2D) = "" {}
 } @]
 
 
-!!!Texture property options
+!!!テクスチャプロパティのオプション
 
-The ''options'' inside curly braces of the texture property are optional. The available options are:
+テクスチャプロパティの波括弧{}の中の''options''は任意のオプションです。利用可能なオプションは：
 
-* __TexGen__ ''texgenmode'': Automatic texture coordinate generation mode for this texture. Can be one of ''ObjectLinear'', ''EyeLinear'', ''SphereMap'', ''CubeReflect'', ''CubeNormal''; these correspond directly to OpenGL texgen modes. Note that TexGen is ignored if custom vertex programs are used.
-* __LightmapMode__ If given, this texture will be affected by per-renderer lightmap parameters. That is, the texture to use can be not in the material, but taken from the settings of the Renderer instead, see [[ScriptRef:Renderer-lightmapIndex.html | Renderer scripting documentation]].
+* __TexGen__ ''texgenmode'': このテクスチャの自動テクスチャ座標生成モード。''ObjectLinear'' 、''EyeLinear'' 、''SphereMap'' 、''CubeReflect'' 、''CubeNormal'' のいずれかで、これらはOpenGL texgenモードと直接に対応する。カスタムのvertex program（頂点プログラム）が使用されている場合はTexGenは無視されるので留意して下さい。
+* __LightmapMode__ 記述した場合、テクスチャは各レンダラーごとのライトマップパラメータの影響を受けます。つまり使用するテクスチャはマテリアルにないが、レンダラの設定から取得します、詳細は[[ScriptRef:Renderer-lightmapIndex.html | Renderer scripting documentation]] を参照下さい。
 
-!!!Example
+!!!例
 
-[@// EyeLinear texgen mode example
+[@// EyeLinear texgenモードの例
 Shader "Texgen/Eye Linear" {
     Properties {
         _MainTex ("Base", 2D) = "white" { TexGen EyeLinear }

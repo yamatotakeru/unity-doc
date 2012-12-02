@@ -1,19 +1,19 @@
-! ShaderLab syntax: Fallback
+! ShaderLab文法: Fallback
 
-After all Subshaders a Fallback can be defined. It basically says "if none of subshaders can run on this hardware, try using the ones from another shader".
+全てのSubshaderの試行後、Fallbackを定義することが出来ます。基本的な意味としては"このハードウェアで実行できるサブシェーダがない場合、別のシェーダから試す"です。
 
-!! Syntax
-:__Fallback__ "name": Fallback to shader with a given ''name''.
-:__Fallback Off__: Explicitly state that there is no fallback and no warning should be printed, even if no subshaders can run on this hardware.
+!! 文法
+:__Fallback__ "名前": 特定の''名前''のシェーダにFallbackします。
+:__Fallback Off__: 明示的にFallbackがなく、たとえこのハードウェアで実行できるサブシェーダがなかったとしても、警告を出力しないことを記述する。
 
-!! Details
+!! 詳細
 
-A fallback statement has the same effect as if all subshaders from the other shader would be inserted into its place.
+Fallbackステートメントは、別のシェーダの全てのサブシェーダを同じ箇所に記載する、と同等の効果です。
 
-!! Example
+!! 例
 
 [@Shader "example" {
-    // properties and subshaders here...
+    // ここにプロパティおよびサブシェーダを記載します。
     Fallback "otherexample"
 } @]
 

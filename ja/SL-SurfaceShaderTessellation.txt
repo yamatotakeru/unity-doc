@@ -1,19 +1,19 @@
-! Surface Shaders with DX11 Tessellation
+! サーフェイス　シェーダとDX11テッセレーション
 
-[[SL-SurfaceShaders | Surface Shaders]] have some support for DirectX 11 GPU Tessellation. Idea is:
-* Tessellation is indicated by @@tessellate:FunctionName@@ modifier. That function computes triangle edge and inside tessellation factors.
-* When tessellation is used, "vertex modifier" (@@vertex:FunctionName@@) is invoked ''after'' tessellation, for each generated vertex in the domain shader. Here you'd typically to displacement mapping.
-* Surface shaders can optionally compute [[https://www.google.lt/search?q=phong+tessellation | phong tessellation]] to smooth model surface even without any displacement mapping.
-
-
-Current limitations of tessellation support:
-* Only triangle domain - no quads, no isoline tessellation.
-* When tessellation is used, shader is automatically compiled into Shader Model 5.0 target, which means it will only work on DX11.
+[[SL-SurfaceShaders | Surface Shaders]] はDirectX 11 GPUテッセレーションを一部サポートします。要は：
+* テッセレーションは@@tessellate:FunctionName@@ 修飾子により指定されます。この関数は三角形の辺とテッセレーション要素の内部を計算します。
+* テッセレーションが使用されている場合、"vertex modifier" (@@vertex:FunctionName@@) がテッセレーションの''後に'' 、ドメインシェーダの中の各々生成された頂点に対して、実行されます。通常はDisplacementマッピングです。
+* サーフェイスシェーダは任意で[[https://www.google.lt/search?q=phong+tessellation | phong tessellation]] を計算し、モデルの表面を、Displacementマッピングなしに、均等にスムージングします。
 
 
-!! No GPU tessellation, displacement in the vertex modifier
+現時点でのテッセレーションのサポートに関する制約：
+* 三角形ドメインのみサポートしていて、四角形や、等値線テッセレーション
+* テッセレーションが使用されている場合、シェーダは自動的にシェーダモデル5.0ターゲットにコンパイルされ、すなわちDX11でしか動作しません。
 
-Let's start with a surface shader that does some displacement mapping ''without'' using tessellation. It just moves vertices along their normals based on amount coming from a displacement map:
+
+!! GPUテッセレーションなし、頂点モディファイアにDisplacementあり
+
+はじめに、テッセレーション''なし'' でDisplacementマッピングを行う、サーフェイスシェーダを見ていきます。頂点を法線に沿って、Displacementマップから与えられた量に基づき、移動します。
 
     Shader "Tessellation Sample" {
         Properties {
@@ -68,19 +68,19 @@ Let's start with a surface shader that does some displacement mapping ''without'
         FallBack "Diffuse"
     }
 
-The above shader is fairly standard, points of intetest:
-* Vertex modifier @@disp@@ samples the displacement map and moves vertices along their normals.
-* It uses custom "vertex data input" structure (@@appdata@@) instead of default @@appdata_full@@. This is not needed yet, but it's more efficient for tessellation to use as small structure as possible.
-* Since our vertex data does not have 2nd UV coordinate, we add @@nolightmap@@ directive to exclude lightmaps.
+上のシェーダは比較的標準的で、注目すべき点は：
+* @@disp@@ 頂点モディファイアはDisplacmentマップをサンプリングし、頂点を法線に沿って移動します。
+* カスタムの"頂点データ入力" 構造（@@appdata@@ ）を、デフォルトの@@appdata_full@@ の代わりに、使用します。これはまだ必要ありませんが、テッセレーションでできるかぎり小さい構造を使用するのに効果的です。
+* 頂点データは二番目のUV座標がないため、@@nolightmap@@ ディレクティブを追加してライトマップを除外します。
 
-Here's how some simple objects would look like with this shader:
+次はシンプルなオブジェクトがこのシェーダを用いてどのように映るか示します：
 
 Attach:SurfaceShaderTess1-none.png
 
 
-!! Fixed amount of tessellation
+!! 固定量のテッセレーション
 
-Let's add fixed amount of tessellation, i.e. the same tessellation level for the whole mesh. This approach is suitable if your model's faces are roughly the same size on screen. Some script could then change the tessellation level from code, based on distance to the camera.
+固定量のテッセレーション、例えばメッシュ全体で同じテッセレーションレベル、を追加してみます。このアプローチは、モデルの面が画面でもおおよそ同じ大きである場合に適切です。テッセレーションレベルを、カメラからの距離に基づいて、別のスクリプトでコードから変更出来ます。
 
     Shader "Tessellation Sample" {
         Properties {
@@ -143,15 +143,15 @@ Let's add fixed amount of tessellation, i.e. the same tessellation level for the
         FallBack "Diffuse"
     }
 
-The tessellation function, @@tessFixed@@ in our shader, returns four tessellation factors as a single float4 value: tree factors for each edge of the triangle, and one factor for the inside of the triangle. Here, we just return a constant value that is set in material properties.
+シェーダのテッセレーション関数、@@tessFixed@@ は4つのテッセレーション要素をひとつのfloat4の値として戻します：三角形の辺ごとに3つの要素、そして1つの要素で三角形の内部です。次に、マテリアルプロパティにセットする、定数値を単に戻します。
 
 Attach:SurfaceShaderTess2-fixed.png
 
 
 
-!! Distance-based tessellation
+!! 距離にもとづいたテッセレーション
 
-We can also change tessellation level based on distance from the camera. For example, we could define two distance values; distance at which tessellation is at maximum (say, 10 meters), and distance towards which tessellation level gradually decreases (say, 20 meters).
+カメラからの距離にもとづいてテッセレーションのレベルを変更することが出来ます。例えば、二つの距離の値を定義するとします：テッセレーションが最大になる距離（例えば10メートル）、そしてテッセレーションが徐々に減少していくまでの距離（例えば20メートル）。
 
 
     Shader "Tessellation Sample" {
@@ -217,17 +217,17 @@ We can also change tessellation level based on distance from the camera. For exa
         FallBack "Diffuse"
     }
 
-Here the tessellation function takes three parameters; the vertex data of three triangle corners before tessellation. This is needed to compute tessellation levels, which depend on vertex positions now. We include a built-in helper file @@Tessellation.cginc@@ and call @@UnityDistanceBasedTess@@ function from it to do all the work. That function computes distance of each vertex to the camera and derives final tessellation factors.
+ここでテッセレーション関数は3つの引数を持ちます：テッセレーション前の、3つの三角形の角の頂点データです。これは、頂点の位置に依存するとここで仮定した、テッセレーションレベル、を計算するのに必要です。内臓のヘルパーファイル@@Tessellation.cginc@@ をインクルードして@@UnityDistanceBasedTess@@ 関数を呼び出し、そこで必要な処理が行われます。関数は頂点からカメラまでの距離を計算し、最終的なテッセレーション要素を算出します。
 
 
 Attach:SurfaceShaderTess3-distance.png
 
 
-!! Edge length based tessellation
+!! 辺の長さにもとづいたテッセレーション
 
-Purely distance based tessellation is good only when triangle sizes are quite similar. In the image above, you can see that objects that have small triangles are tessellated too much, while objects that have large triangles aren't tessellated enough.
+純粋に距離にもとづいたテッセレーションは三角形のサイズが比較的同じである場合にのみ有効です。上の画像で、小さな三角形をもつオブジェクトのテッセレーションが多すぎであり、大きな三角形をもつオブジェクトはテッセレーションが少なすぎることが判ります。
 
-Instead, tessellation levels could be computed based on triangle edge length on the screen - the longer the edge, the larger tessellation factor should be applied.
+その代わりに、テッセレーションレベルは画面上の三角形の辺の長さにもとづいて計算することが出来ます、辺が長いほど、大きなテッセレショーン要素が適用されます。
 
 
     Shader "Tessellation Sample" {
@@ -292,22 +292,22 @@ Instead, tessellation levels could be computed based on triangle edge length on 
         FallBack "Diffuse"
     }
 
-Here again, we just call @@UnityEdgeLengthBasedTess@@ function from @@Tessellation.cginc@@ to do all the actual work.
+ここではまた、@@UnityEdgeLengthBasedTess@@ 関数を@@Tessellation.cginc@@ ファイルから呼び出すだけで必要な処理を行わせます。
 
 
 Attach:SurfaceShaderTess4-edgelength.png
 
 
-For performance reasons, it's advisable to call @@UnityEdgeLengthBasedTessCull@@ function instead, which will do patch frustum culling. This makes the shader a bit more expensive, but saves a lot of GPU work for parts of meshes that are outside of camera's view.
+パフォーマンス上の理由から、@@UnityEdgeLengthBasedTessCull@@ を呼ぶことが推奨され、Patch Frustum カリングが行われます。これによりシェーダがより高価になりますが、カメラレビュー外にあるメッシュ部分のGPU処理を軽減します。
 
 
 
-!! Phong Tessellation
 
+!! Phongテッセレーション
 
-[[https://www.google.lt/search?q=phong+tessellation | Phong Tessellation]] modifies positions of the subdivided faces so that the resulting surface follows the mesh normals a bit. It's quite an effective way of making low-poly meshes become more smooth.
+[[https://www.google.lt/search?q=phong+tessellation | Phong Tessellation]] は、結果となる表面がメッシュの法線にある程度沿うように、再分割（subdivide）された面の位置を修正します。ローポリのメッシュについてスムージングするのにかなり効果的な方法です。
 
-Unity's surface shaders can compute Phong tessellation automatically using @@tessphong:VariableName@@ compilation directive. Here's an example shader:
+Unityのサーフェイスシェーダは、@@tessphong:VariableName@@ ディレクティブを使用することで、Phongテッセレーションを自動計算します。次にシェーダでの例を示します：
 
     Shader "Phong Tessellation" {
         Properties {
@@ -358,8 +358,7 @@ Unity's surface shaders can compute Phong tessellation automatically using @@tes
         FallBack "Diffuse"
     }
 
-Here's a comparison between regular shader (top row) and one that uses Phong tessellation (bottom row). You can see that even without any displacement mapping,
-the surface becomes more round.
+次に通常のシェーダ（上列）とPhongテッセレーションを使用したシェーダ（下列）の比較です。Displacementマッピングなしでも表面がより丸くなることが判ります。
+
 
 Attach:SurfaceShaderPhongTess.png
-

@@ -1,24 +1,24 @@
-! ShaderLab syntax: Culling & Depth Testing
+! ShaderLab文法：Culling & Depth Testing
 
 Attach:SL./PipelineCullDepth.png
 
-Culling is an optimization that does not render polygons facing away from the viewer. All polygons have a front and a back side. Culling makes use of the fact that most objects are closed; if you have a cube, you will never see the sides facing away from you (there is always a side facing you in front of it) so we don't need to draw the sides facing away. Hence the term: Backface culling.
+カリングは、視点と反対側に向いたポリゴンをレンダリングしない、最適化です。全てのポリゴンは表と裏側があります。カリングは、オブジェクトのほとんどのが閉じている事実を利用します、もしキューブがあった場合、視点と反対側を見ることはない（必ず視点の側を向いている面がある）ので、反対側の面は描画する必要がありません。このためバックフェース　カリング（反対側の面の除去）と名づけられてます。
 
-The other feature that makes rendering looks correct is Depth testing. Depth testing makes sure that only the closest surfaces objects are drawn in a scene.
+レンダリングを正しく見せるもうひとつの機能はデプス　テスト（Depth testing）です。デプス　テストにより、シーンの中で最も近いオブジェクト表面のみ描画されることをチェックします。
 
-!! Syntax
-:__Cull__ Back | Front | Off: Controls which sides of polygons should be culled (not drawn)
--->__Back__ Don't render polygons facing away from the viewer ''(default)''.
--->__Front__ Don't render polygons facing towards the viewer. Used for turning objects inside-out.
--->__Off__ Disables culling - all faces are drawn. Used for special effects.
-:__ZWrite__ On | Off: Controls whether pixels from this object are written to the depth buffer (default is ''On''). If you're drawng solid objects, leave this on. If you're drawing semitransparent effects, switch to ''ZWrite Off''. For more details read below.
-:__ZTest__ Less | Greater | LEqual | GEqual | Equal | NotEqual | Always: How should depth testing be performed. Default is ''LEqual'' (draw objects in from or at the distance as existing objects; hide objects behind them).
-:__Offset__ ''Factor'' __,__ ''Units'': Allows you specify a depth offset with two parameters. ''factor'' and ''units''. ''Factor'' scales the maximum Z slope, with respect to X or Y of the polygon, and ''units'' scale the minimum resolvable depth buffer value. This allows you to force one polygon to be drawn on top of another although they are actually in the same position. For example ''Offset 0, -1'' pulls the polygon closer to the camera ignoring the polygon's slope, whereas ''Offset -1, -1'' will pull the polygon even closer when looking at a grazing angle.
+!! 文法
+:__Cull__ Back | Front | Off: ポリゴンのどちら側をカリングする（描画しない）か制御。
+-->__Back__ 視点と反対側のポリゴンをレンダリングしない ''(デフォルト)''.
+-->__Front__ 視点と同じ側のポリゴンをレンダリングしない。オブジェクトを反転するのに使用します。
+-->__Off__ カリングを無効にして、全ての面を描画します。特殊なエフェクトで使用します。
+:__ZWrite__ On | Off: このオブジェクトのピクセルをデプスバッファに書き込みするか制御（デフォルトは''On'' ）。もし不透明なオブジェクトを描画する場合、オンにします。もし部分的に透過のエフェクトを描く場合、''ZWrite Off''に切り替えます。詳細については以下を参照下さい。
+:__ZTest__ Less | Greater | LEqual | GEqual | Equal | NotEqual | Always: デプステストの実行方法。デフォルトは''LEqual'' （すでに描画されているオブジェクトと距離が等しいか、より近い場合に描画します、それより遠い場合はオブジェクトで隠します）
+:__Offset__ ''Factor'' __,__ ''Units'': デプスオフセットを二つのパラメータ、''factor'' および ''units''、で指定できるようにします。''Factor'' scales the maximum Z slope, with respect to X or Y of the polygon, and ''units'' scale the minimum resolvable depth buffer value. ''Factor''は、ポリゴンのXあるいはYに関連して、最大のZ勾配をスケールし、''units''は最小のデプスバッファ値をスケールします。For example ''Offset 0, -1'' pulls the polygon closer to the camera ignoring the polygon's slope, whereas ''Offset -1, -1'' will pull the polygon even closer when looking at a grazing angle. 例えば、''Offset 0, -1''により、ポリゴンの勾配を無視してポリゴンをカメラに近づけ、一方で''Offset -1, -1''はさらに見上げる角度でポリゴンを近づけます。
 
 
-!! Examples
+!! 例
 
-This object will render only the backfaces of an object:
+オブジェクトの反対側の面のみレンダリングします：
 
 [@Shader "Show Insides" {
     SubShader {
@@ -32,15 +32,15 @@ This object will render only the backfaces of an object:
     }
 } @]
 
-Try to apply it to a cube, and notice how the geometry feels all wrong when you orbit around it. This is because you're only seeing the inside parts of the cube.
+キューブで適用してみて、周回したときに形状に違和感を感じることに気付いて下さい。これはキューブの内部しか見ていないためです。
 
 
-!!! Transparent shader with depth writes
+!!! デプス書き込みありの透過シェーダ
 
-Usually [[shader-TransparentFamily | semitransparent shaders]] do not write into the depth buffer. However, this can create draw order problems, especially with complex non-convex meshes. If you want to fade in & out meshes like that, then using a shader that fills in the depth buffer before rendering transparency might be useful.
+通常[[shader-TransparentFamily | semitransparent shaders]] （部分的に透過なシェーダ）はデプスバッファに書き込みしません。しかしこれにより、特に複雑でConvex（非凸）のメッシュでは、描画順の問題が生まれる可能性があります。もしそのようなメッシュをフェードイン・フェードアウトした場合、透過をレンダリングする前に、デプスバッファを埋めるシェーダを使用するのが役立ちます。
 
 Attach:TransparentDiffuseZWrite.png \\
-''Semitransparent object; left: standard Transparent/Diffuse shader; right: shader that writes to depth buffer.''
+''部分的に透過なオブジェクトで、左：標準的なTransparent/Diffuseシェーダ、右：デプスバッファに書き込みするシェーダ''
 
 [@
 Shader "Transparent/Diffuse ZWrite" {
@@ -52,13 +52,13 @@ SubShader {
     Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
     LOD 200
 
-    // extra pass that renders to depth buffer only
+    // デプスバッファのみにレンダリングする追加のパス
     Pass {
         ZWrite On
         ColorMask 0
     }
 
-    // paste in forward rendering passes from Transparent/Diffuse
+    // forward renderingパスをTransparent/Diffuseから渡します
     UsePass "Transparent/Diffuse/FORWARD"
 }
 Fallback "Transparent/VertexLit"
@@ -66,18 +66,19 @@ Fallback "Transparent/VertexLit"
 @]
 
 
-!!! Debugging Normals
-The next one is more interesting; first we render the object with normal vertex lighting, then we render the backfaces in bright pink. This has the effects of highlighting anywhere your normals need to be flipped. If you see physically-controlled objects getting 'sucked in' by any meshes, try to assign this shader to them. If any pink parts are visible, these parts will pull in anything unfortunate enough to touch it.
+!!! 法線のデバッグ
 
-Here we go:
+次はより興味深い内容で、最初にオブジェクトを法線マップ頂点ライティングでレンダリングした後、次にバックフェースを明るいピンクでレンダリングします。This has the effects of highlighting anywhere your normals need to be flipped. If you see physically-controlled objects getting 'sucked in' by any meshes, try to assign this shader to them. If any pink parts are visible, these parts will pull in anything unfortunate enough to touch it. これにより法線が反転しないといけないところがハイライトされる効果が得られます。物理挙動で制御されたオブジェクトがどれかのメッシュにより'吸い込まれる' 現象がある場合、このシェーダを割り当てて下さい。もしピンクの部分が見える場合、これらの部分がそれに触れる部分を残念ながら引っ張り込んでしまいます。
+
+実際にやってみます：
 
 [@Shader "Reveal Backfaces" {
     Properties {
         _MainTex ("Base (RGB)", 2D) = "white" { }
     }
     SubShader {
-        // Render the front-facing parts of the object.
-        // We use a simple white material, and apply the main texture.
+        // オブジェクトの視点と同じ側をレンダリングします。
+        // シンプルな白いマテリアルを使用して、メインのテクスチャを適用します。
         Pass {
             Material {
                 Diffuse (1,1,1,1)
@@ -88,8 +89,8 @@ Here we go:
             }
         }
 
-        // Now we render the back-facing triangles in the most
-        // irritating color in the world: BRIGHT PINK!
+        // 次に視点と逆側の三角形を、この世でもっとも
+        // わずらわしい、明るいピンク色でレンダリングします。
         Pass {
             Color (1,0,1,1)
             Cull Front
@@ -98,10 +99,11 @@ Here we go:
 } @]
 
 
-!!! Glass Culling
-Controlling Culling is useful for more than debugging backfaces. If you have transparent objects, you quite often want to show the backfacing side of an object. If you render without any culling (__Cull Off__), you'll most likely have some rear faces overlapping some of the front faces.
+!!! グラス　カリング
+カリングの制御はバックフェース以外でも便利です。もし透過オブジェクトがある場合、しばしばオブジェクトのバックフェースを表示した場合があります。もしカリング一切なしでレンダリングした場合(__Cull Off__ )、いくつか裏面が表面と重なってしまうことがよくあります。
 
-Here is a simple shader that will work for convex objects (spheres, cubes, car windscreens).
+次の例は、凸なオブジェクト（球、キューブ、車のフロントガラス）で使用できる、シンプルなシェーダです。
+
 
 [@Shader "Simple Glass" {
     Properties {
@@ -113,8 +115,8 @@ Here is a simple shader that will work for convex objects (spheres, cubes, car w
     }
 
     SubShader {
-        // We use the material in many passes by defining them in the subshader.
-        // Anything defined here becomes default values for all contained passes.
+        // サブシェーダにて定義することにより、マテリアルを複数のパスで使用します。
+        // ここで定義された値は、その他で含むパスでのデフォルト値になります。
         Material {
             Diffuse [_Color]
             Ambient [_Color]
@@ -125,21 +127,21 @@ Here is a simple shader that will work for convex objects (spheres, cubes, car w
         Lighting On
         SeparateSpecular On
 
-        // Set up alpha blending
+        // アルファブレンディングを設定します。
         Blend SrcAlpha OneMinusSrcAlpha
 
-        // Render the back facing parts of the object.
-        // If the object is convex, these will always be further away
-        // than the front-faces.
+        // オブジェクトの視点と反対側をレンダリングします。
+        // もし凸オブジェクトの場合、これらは表面よりも
+        // 常に遠くになります。
         Pass {
             Cull Front
             SetTexture [_MainTex] {
                 Combine Primary * Texture
             }
         }
-        // Render the parts of the object facing us.
-        // If the object is convex, these will be closer than the
-        // back-faces.
+        // オブジェクトの視点と同じ側の部分をレンダリングします。
+        // 凸オブジェクトの場合、これらは
+        // 裏面よりも近くになります。
         Pass {
             Cull Back
             SetTexture [_MainTex] {
