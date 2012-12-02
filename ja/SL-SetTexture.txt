@@ -1,84 +1,83 @@
-! ShaderLab syntax: Texture Combiners
+! ShaderLab文法： Texture Combiners
 
-After the basic vertex lighting has been calculated, textures are applied. In ShaderLab this is done using __SetTexture__ command.
+基本的な頂点ライティングが計算された後、テクスチャが適用されます。ShaderLabでは__SetTexture__ コマンドを使用して実行します。
 
-''SetTexture commands have no effect when [[SL-ShaderPrograms | fragment programs]] are used; as in that case pixel operations are completely described in the shader.''
+''SetTextureコメンドは[[SL-ShaderPrograms | fragment programs]] が使用されているときは効果がありません、なぜならピクセル処理がシェーダで完全に表現されているためです。''
 
 Attach:SL./PipelineFFP.png
 
-Texturing is the place to do old-style combiner effects. You can have multiple SetTexture commands inside a pass - all textures are applied in sequence, like layers in a painting program. SetTexture commands must be placed at the end of a [[SL-Pass|Pass]].
+Texturing（テクスチャ化）は旧来の合成エフェクトを行う場所です。パスの中に複数のSetTextureをもつことができます、全てのテクスチャは、ペイントアプリケーションのレイヤーのように、順番に適用されます。 SetTextureコマンドは[[SL-Pass|Pass]] の終わりに配置する必要があります。
 
-!!Syntax
-:__SetTexture__ ''[TexturePropertyName]'' __{__ ''Texture Block'' __}__: Assigns a texture. ''TextureName'' must be defined as a texture property. How to apply the texture is defined inside the ''TextureBlock''.
+!!文法
+:__SetTexture__ ''[TexturePropertyName]'' __{__ ''Texture Block'' __}__: テクスチャを割り当てます。''TextureName''はテクスチャプロパティとして定義する必要があります。テクスチャの適用方法は''TextureBlock'' に記述されます。
 
-The texture block controls how the texture is applied. Inside the texture block can be up to three commands: @@combine@@, @@matrix@@ and @@constantColor@@.
+テクスチャブロックにはテクスチャを適用する方法が記載されてます。テクスチャブロックには3つのコマンドまで含むことが出来ます：@@combine@@ 、@@matrix@@  、および@@constantColor@@です。
 
-!! Texture block @@combine@@ command
+!! テクスチャブロック @@combine@@ コマンド
 
-:@@combine@@ ''src1'' * ''src2'': Multiplies src1 and src2 together. The result will be darker than either input.
-:@@combine@@ ''src1'' + ''src2'': Adds  src1 and src2 together. The result will be lighter than either input.
-:@@combine@@ ''src1'' - ''src2'':  Subtracts src2 from src1.
-:@@combine@@ ''src1'' +- ''src2'': Adds src1 to src2, then subtracts 0.5 (a signed add).
-:@@combine@@ ''src1'' @@lerp@@ (''src2'') ''src3'': Interpolates between src3 and src1, using the alpha of src2. Note that the interpolation is opposite direction: src1 is used when alpha is one, and src3 is used when alpha is zero.
-:@@combine@@ ''src1'' * ''src2'' + ''src3'': Multiplies src1 with the alpha component of src2, then adds src3.
-:@@combine@@ ''src1'' * ''src2'' +- ''src3'': Multiplies src1 with the alpha component of src2, then does a signed add with src3.
-:@@combine@@ ''src1'' * ''src2'' - ''src3'':  Multiplies src1 with the alpha component of src2, then subtracts src3.
+:@@combine@@ ''src1'' * ''src2'': src1とsrc2を乗算。結果はどちらの入力よりも暗くなります。
+:@@combine@@ ''src1'' + ''src2'': src1とsrc2を加算。結果はどちらの入力よりも明るくなります
+:@@combine@@ ''src1'' - ''src2'': src2をsrc1より減算。
+:@@combine@@ ''src1'' +- ''src2'': src1とsrc2を加算、それから0.5を減算 (符号付き加算)。
+:@@combine@@ ''src1'' @@lerp@@ (''src2'') ''src3'': src3とsrc1の補間をsrc2のアルファを用いて行う。補間の向きが逆であることに留意: アルファが1のときにsrc1、アルファが0のときにsrc3となります。
+:@@combine@@ ''src1'' * ''src2'' + ''src3'': src1をsrc2のアルファで乗算しsrc3を加算します。
+:@@combine@@ ''src1'' * ''src2'' +- ''src3'': src1をsrc2のアルファで乗算しsrc3と符号付加算します。
+:@@combine@@ ''src1'' * ''src2'' - ''src3'':  src1をsrc2のアルファで乗算しsrc3を減算します。
 
-All the __src__ properties can be either one of ''previous'', ''constant'', ''primary'' or ''texture''.  
-* __Previous__ is the the result of the previous SetTexture.
-* __Primary__ is the color from the [[SL-Material|lighting calculation]] or the vertex color if it is [[SL-BindChannels|bound]].
-* __Texture__ is the color of the texture specified by ''[_TextureName]'' in the SetTexture (see above).
-* __Constant__ is the color specified in __ConstantColor__.
+全ての__src__ プロパティは''previous'' 、''constant'' 、''primary'' 、あるいは''texture''のいずれかです。
+* __Previous__ は直前のSetTextureの結果です。
+* __Primary__ は[[SL-Material|lighting calculation]] の色または[[SL-BindChannels|bound]] である場合は頂点カラーです。
+* __Texture__ はSetTextureで指定された''[_TextureName]'' です。（上を参照して下さい。）
+* __Constant__ は__ConstantColor__ で指定した色です。
 
-Modifiers:
-* The formulas specified above can optionally be followed by the keywords __Double__ or __Quad__ to make the resulting color 2x or 4x as bright.
-* All the __src__ properties, except @@lerp@@ argument, can optionally be preceded by __one -__ to make the resulting color negated.
-* All the __src__ properties can be followed by __alpha__ to take only the alpha channel.
-
-
-!! Texture block @@constantColor@@ command
-
-:__ConstantColor__ ''color'': Defines a constant color that can be used in the combine command.
+修飾子：
+* 上で示した計算式は__Double__ または__Quad__ キーワードを次に任意で指定することで結果のカラーを2倍または4倍明るく出来ます。
+* @@lerp@@ 文言を除いた、全ての__src__ プロパティは、次に任意で__one -__ を指定することで、結果の色をネゲートすることが出来ます。
+* 全ての__src__ プロパティは、__alpha__ を次に指定することでアルファのみを取得させることが出来ます。
 
 
-!! Texture block @@matrix@@ command
+!! テクスチャブロック @@constantColor@@ コマンド
 
-:__matrix__ ''[MatrixPropertyName]'': Transforms texture coordinates used in this command with the given matrix.
+:__ConstantColor__ ''color'': 定数カラーを定義し、combineコマンドで使用出来るようにします。
+
+
+!! テクスチャブロック @@matrix@@ コマンド
+:__matrix__ ''[MatrixPropertyName]'': テクスチャ座標を、コマンドで指定された行列で、変換します。
 
 
 
-! Details
+! 詳細
 
-Before [[SL-ShaderPrograms | fragment programs]] existed, older graphics cards used a layered approach to textures. The textures are applied one after each other, modifying the color that will be written to the screen. For each texture, the texture is typically combined with the result of the previous operation.
+[[SL-ShaderPrograms | fragment programs]] が存在する前、古いグラフィックスカードはテクスチャに対してレイヤーアプローチを使用していました。テクスチャはひとつづつ適用され、画面に描画される色を修正しました。通常、各テクスチャごとに、テクスチャは直前の処理の結果と合成されました。
 
 Attach:SL./SetTextureGraph.png
 
-Note that on "true fixed function" devices (OpenGL, OpenGL ES 1.1, Wii) the value of each SetTexture stage is clamped to 0..1 range. Everywhere else (Direct3D, OpenGL ES 2.0) the range may or may not be higher. This might affect SetTexture stages that can produce values higher than 1.0.
+"true fixed function"（真の固定関数）デバイス（OpenGL、OpenGL ES 1.1、Wii）では各SetTextureのステージの値は0から1の範囲に挟まれていることに留意して下さい。それ以外（Direct3D, OpenGL ES 2.0）の場合、範囲はそれよりも大きい場合もそうでない場合もあります。これは1より大きな値を生成できるSetTextureのステージに影響を与えるかもしれません。
 
 
-!! Separate Alpha & Color computation
+!! 別のアルファおよびカラー計算
 
-By default, the combiner formula is used for calculating both the RGB and alpha component of the color. Optionally, you can specify a separate formula for the alpha calculation. This looks like this:
+デフォルトでは、合成の計算式はカラーのRGBおよびアルファを計算するのに使用されます。任意のオプションで、アルファの計算に別の計算式を指定できます。それは次のように指定します：
 
 [@SetTexture [_MainTex] { combine previous * texture, previous + texture } @]
 
-Here, we multiply the RGB colors and add the alpha.
+ここでは、RGBを乗算して、アルファを加算します。
 
 
-!! Specular highlights
+!! 鏡面ハイライト
 
-By default the __primary__ color is the sum of the diffuse, ambient and specular colors (as defined in the [[SL-Material|Lighting calculation]]). If you specify __SeparateSpecular On__ in the pass options, the specular color will be added in ''after'' the combiner calculation, rather than before. This is the default behavior of the built-in VertexLit shader.
-
-
-!! Graphics hardware support
-
-Modern graphics cards with [[SL-ShaderPrograms | fragment shader]] support ("shader model 2.0" on desktop, OpenGL ES 2.0 on mobile) support all ``SetTexture`` modes and at least 4 texture stages (many of them support 8). If you're running on really old hardware (made before 2003 on PC, or before iPhone3GS on mobile), you might have as low as two texture stages. The shader author should write separate [[SL-SubShader|SubShaders]] for the cards he or she wants to support.
+デフォルトでは、__primary__ カラーは、拡散、環境光、鏡面カラーのsum（合計）です（[[SL-Material|Lighting calculation]] で定義したとおり）。もし__SeparateSpecular On__ をパスのオプションで指定した場合、鏡面カラーは、合成計算の前ではなく、''後に''加算されます。これは内臓頂点ライティングシェーダのデフォルト動作です。
 
 
-! Examples
+!! サポートされるグラフィックスハードウェア
 
-!! Alpha Blending Two Textures
-This small examples takes two textures. First it sets the first combiner to just take the ___MainTex__, then is uses the alpha channel of ___BlendTex__ to fade in the RGB colors of ___BlendTex__
+現代の[[SL-ShaderPrograms | fragment shader]] をサポートするグラフィックスカード（デスクトップ向けは"シェーダモデル2.0" 、モバイル向けはOpenGL ES 2.0）は、全て``SetTexture``モードとテクスチャのステージを少なくとも4（大抵は8）、サポートします。本当に古いハードウェアで実行する場合（PCで2003年以前に製造、モバイル向けでは3GSより前）、2テクスチャのステージしかサポートしてない場合があります。シェーダの作者は、サポートしたカード向けに[[SL-SubShader|SubShaders]] を別に記述すべきです。
+
+
+! 例
+
+!! 2つのテクスチャのアルファブレンディング
+次の短い例では2つのテクスチャを使います。最初に、1つめの合成で___MainTex__ のみを取得し、次に___BlendTex__ のアルファチャネルを使用して___BlendTex__ のアルファチャネルを使用します。
 
 [@Shader "Examples/2 Alpha Blended Textures" {
     Properties {
@@ -87,11 +86,11 @@ This small examples takes two textures. First it sets the first combiner to just
     }
     SubShader {
         Pass {
-            // Apply base texture
+            // ベーステクスチャを適用します。
             SetTexture [_MainTex] {
                 combine texture
             }
-            // Blend in the alpha texture using the lerp operator
+            // lerp演算子を使用してアルファテクスチャをブレンドします。
             SetTexture [_BlendTex] {
                 combine texture lerp (texture) previous
             }
@@ -100,8 +99,8 @@ This small examples takes two textures. First it sets the first combiner to just
 } @]
 
 
-!! Alpha Controlled Self-illumination
-This shader uses the alpha component of the ___MainTex__ to decide where to apply lighting. It does this by applying the texture to two stages; In the first stage, the alpha value of the texture is used to blend between the vertex color and solid white. In the second stage, the RGB values of the texture are multiplied in.
+!! アルファ制御した自己照明
+このシェーダは___MainTex__ のアルファを用いてライティングをどこに適用するか判定します。これを実現するために、テクスチャを2ステージで適用します：最初のステージでは、テクスチャのアルファ値が頂点カラーと不透明な白の間でブレンドします。2つめのステージでは、テクスチャのRGB値が乗算されます。
 
 
 [@Shader "Examples/Self-Illumination" {
@@ -110,19 +109,19 @@ This shader uses the alpha component of the ___MainTex__ to decide where to appl
     }
     SubShader {
         Pass {
-            // Set up basic white vertex lighting
+            // 基本的な白い頂点ライティングを設定します。
             Material {
                 Diffuse (1,1,1,1)
                 Ambient (1,1,1,1)
             }
             Lighting On
 
-            // Use texture alpha to blend up to white (= full illumination)
+            // テクスチャのアルファを用いて白（=完全な照明）となるようにブレンドします。
             SetTexture [_MainTex] {
                 constantColor (1,1,1,1)
                 combine constant lerp(texture) previous
             }
-            // Multiply in texture
+            // テクスチャを乗算します。
             SetTexture [_MainTex] {
                 combine previous * texture
             }
@@ -130,8 +129,7 @@ This shader uses the alpha component of the ___MainTex__ to decide where to appl
     }
 } @]
 
-
-We can do something else for free here, though; instead of blending to solid white, we can add a self-illumination color and blend to that. Note the use of __ConstantColor__ to get a _SolidColor from the properties into the texture blending.
+ここでさらにフリーで工夫できることとして、不透明な白にブレンドするのでなく、自己照明の色を追加してそれにブレンド出来ます。ここでは、_SolidColorをプロパティから取得してテクスチャブレンディングに活用する__ConstantColor__ to の使用方法に留意下さい。
 
 
 [@Shader "Examples/Self-Illumination 2" {
@@ -141,22 +139,22 @@ We can do something else for free here, though; instead of blending to solid whi
     }
     SubShader {
         Pass {
-            // Set up basic white vertex lighting
+            // 基本的な白い頂点ライティングを設定します。
             Material {
                 Diffuse (1,1,1,1)
                 Ambient (1,1,1,1)
             }
             Lighting On
 
-            // Use texture alpha to blend up to white (= full illumination)
+            // テクスチャのアルファを用いて白（=完全な照明）となるようにブレンドします。
             SetTexture [_MainTex] {
-                // Pull the color property into this blender
+                // カラープロパティをこのブレンドに活用します。
                 constantColor [_IlluminCol]
-                // And use the texture's alpha to blend between it and
-                // vertex color
+                // テクスチャのアルファを使用して、テクスチャのアルファと
+                // 頂点カラーの間でブレンドします。
                 combine constant lerp(texture) previous
             }
-            // Multiply in texture
+            // テクスチャを乗算します。
             SetTexture [_MainTex] {
                 combine previous * texture
             }
@@ -164,8 +162,7 @@ We can do something else for free here, though; instead of blending to solid whi
     }
 } @]
 
-
-And finally, we take all the lighting properties of the vertexlit shader and pull that in:
+最終的に、頂点シェーダの全てのライティングプロパティを取得して、活用します：
 
 [@Shader "Examples/Self-Illumination 3" {
     Properties {
@@ -179,7 +176,7 @@ And finally, we take all the lighting properties of the vertexlit shader and pul
 
     SubShader {
         Pass {
-            // Set up basic vertex lighting
+            // 基本的な頂点ライティングを設定します。
             Material {
                 Diffuse [_Color]
                 Ambient [_Color]
@@ -189,12 +186,12 @@ And finally, we take all the lighting properties of the vertexlit shader and pul
             }
             Lighting On
 
-            // Use texture alpha to blend up to white (= full illumination)
+            // テクスチャのアルファを用いて白（=完全な照明）となるようにブレンドします。
             SetTexture [_MainTex] {
                 constantColor [_IlluminCol]
                 combine constant lerp(texture) previous
             }
-            // Multiply in texture
+            // テクスチャを乗算します。
             SetTexture [_MainTex] {
                 combine previous * texture
             }
