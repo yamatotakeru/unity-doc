@@ -1,46 +1,46 @@
-!What is a Tag?
+!タグとは何か？
 
-A $$Tag$$ is a word which you link to one or more $$GameObjects$$. For instance, you might define "Player" and "Enemy" Tags for player-controlled characters and non-player characters respectively; a "Collectable" Tag could be defined for items the player can collect in the $$Scene$$; and so on. Clearly, Tags are intended to identify GameObjects for scripting purposes. We can use them to write script code to find a GameObject by looking for any object that contains our desired Tag. This is achieved using the ``GameObject.FindWithTag()`` function. 
+$$Tag$$ （タグ）はひとつ以上の$$GameObjects$$ に関連付ける言葉です。例えば、"Player" と"Enemy" タグをプレイヤー制御可能なキャラクターと非プレイヤー制御可能なキャラクターに各々定義したり、"Collectable" タグをプレイヤーが$$Scene$$ で回収可能なアイテムに定義したり、と続いていきます。タグの目的は明確にGameObjectをスクリプティングにおいて識別することです。スクリプトのコードを書くときに、探したいタグに属するゲームオブジェクトを探すことが出来ます。これは``GameObject.FindWithTag()`` 関数を使用することで実現出来ます。
 
-For example:
+例えば：
 
-[@// Instantiates respawnPrefab at the location 
-// of the game object with tag "Respawn"
+[@// "Respawn" タグのついているゲームオブジェクトの位置で
+// respawnPrefabをインスタンス化します。
 
 var respawnPrefab : GameObject;
 var respawn = GameObject.FindWithTag ("Respawn");
 Instantiate (respawnPrefab, respawn.position, respawn.rotation);@]
 
-This saves us having to manually add our GameObjects to a script's exposed properties using drag and drop -- a useful timesaver if the same script code is being used in a number of GameObjects. Another example is a [[Trigger Collider -> class-SphereCollider]] control script which needs to work out whether the player is interacting with an enemy, as opposed to, say, a random prop or collectable item. Tags make this kind of test easy.
+これにより、GameObjectをスクリプトの表示されているパラメータに、手動でドラッグ&ドロップせずに済み、これは複数のGameObjectで同じスクリプトのコードが使用されている場合に便利で無駄な作業時間を省けます。もうひとつの例は[[Trigger Collider -> class-SphereCollider]] 制御スクリプトで、プレイヤーが敵と接触したのか、あるいはランダムな障害物か拾えるアイテムに接触したのか、判定することが必要な場合もあげられます。タグはこのようなテストも簡単にします。
 
 
-!!Applying a Tag
+!!タグの適用
 
-The $$Inspector$$ will show the Tag and [[Layer -> Layers]] drop-down menus just below any GameObject's name. To apply a Tag to a GameObject, simply open the Tags drop-down and choose the Tag you require:
+$$Inspector$$ はタグおよび[[Layer -> Layers]] ドロップダウンメニューをGameObjectの名前のすぐ下に表示します。GameObjectにタグを適用するには、単にTagsドロップダウンメニューを開き、必要なタグを選択します：
 
 Attach:TagDropdown.png
 
-The GameObject will now be associated with this Tag.
+これによりGameObjectはこのタグと関連付けされます。
 
 
-!!Creating new Tags
+!!新規タグの作成
 
-To create a new Tag, click the "Add new tag..." option at the end of the drop-down menu. This will open up the $$Tag Manager$$ in the Inspector. The Tag Manager is described [[class-TagManager | here]].
+新規タグを作成するには、ドロップダウンメニューの終わりの"Add new tag..." オプションをクリックします。これにより、Inspectorで$$Tag Manager$$ を開きます。Tag Managerは[[class-TagManager | ここ]] で説明されています。
 
-Layers appear similar to Tags, but are used to define how Unity should render GameObjects in the Scene. See the [[Layers | Layers]] page for more information.
+レイヤーはタグと似ているようですが、UnityがSceneのGameObjectをレンダリングする方法を決めるために使用されます。詳細については[[Layers | Layers]] を参照下さい。
 
 
-!!Hints
+!!ヒント
 
-* A GameObject can only have one Tag assigned to it.
+* GameObjectはひとつのタグのみ割り当てることが出来ます。
 
-* Unity includes some built-in Tags which do not appear in the Tag Manager:
+* UnityはTag Managerで表示されない内蔵タグをいくつか保有しています：
 ** "Untagged"
 ** "Respawn"
 ** "Finish"
 ** "EditorOnly"
 ** "MainCamera"
 ** "Player"
-** and "GameController".
+** および "GameController"
 
-* You can use any word you like as a Tag. (You can even use short phrases, but you may need to widen the Inspector to see the tag's full name.)
+* 好きな言葉をタグに使用できます。（短いフレーズにすることもできますが、タグの名前を全てみるためにInspectorの幅を広げる必要があるかもしれません。）
