@@ -9,12 +9,13 @@ Attach:SL./PipelineFFP.png
 !! 文法
 :__Fog__ __{__ ''Fog Commands'' __}__: フォグのコマンドを波括弧{ }で指定します。
 :__Mode__ Off | Global | Linear | Exp | Exp2: フォグ　モードを定義します。デフォルトはGlobalで、フォグがレンダリング設定で有効化されているかによりOffかExp2に変換されます。
+:__Color__ ''ColorValue'': フォグのカラーを設定します。
 :__Density__ ''FloatValue'': Exp（指数）モードのフォグの密度を設定します。
 :__Range__ ''FloatValue'' __,__ ''FloatValue'': Linear（線形）モードのフォグのNearおよびFarの範囲を設定します。
 
 
 !! 詳細
 
-デフォルトのフォグ設定は[[class-RenderSettings | Render Settings]] にもとづきます：フォグモードは``Exp2`` あるいは``Off``、密度および色はSetting（設定）から同様に取得されます。
+デフォルトのフォグ設定は[[class-RenderSettings | Render Settings]] にもとづきます：フォグのModeは``Exp2`` あるいは``Off``、DensityおよびColorはSetting（設定）から同様に取得されます。
 
 [[SL-ShaderPrograms|Fragment Programs]] （フラグメント　プログラム）を使用する場合、シェーダのフォグ設定は引き続き適用されます。Fixed Function（固定関数）のフォグ機能がないプラットフォームでは、Unityは実行時に、リクエストされたフォグモードをサポートするために、シェーダをパッチ当てします。
