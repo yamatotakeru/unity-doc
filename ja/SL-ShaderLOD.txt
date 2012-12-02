@@ -1,19 +1,19 @@
 ! Shader Level of Detail
 
-Shader Level of Detail (LOD) works by only using shaders or subshaders that have their LOD value less than a given number.
+Shader Level of Detail (LOD) は、LOD値が決められたしきい値以下の場合に、シェーダあるいはサブシェーダを使用します。
 
-By default, allowed LOD level is infinite, that is, all shaders that are supported by the user's hardware can be used. However, in some cases you might want to drop shader details, even if the hardware can support them. For example, some cheap graphics cards might support all the features, but are too slow to use them. So you may want to not use parallax normal mapping on them.
+デフォルトでは、許容されるLODレベルは無限であり、すなわちユーザのハードウェアでサポートされる全てのシェーダを使用することが出来ます。しかし、いくつかのケースでは、たとえハードウェアがサポートする場合であっても、シェーダのディテールを落としたい場合があります。例えば、安価なグラフィックスカードでは全ての機能がサポートされるものの処理速度が遅すぎる場合があります。だから、視差法線マッピングを使用したくない、といったことになります。
 
-Shader LOD can be either set per individual shader (using [[ScriptRef:Shader-maximumLOD.html|Shader.maximumLOD]]), or globally for all shaders (using [[ScriptRef:Shader-globalMaximumLOD.html|Shader.globalMaximumLOD]]).
+Shader LODは個別のシェーダごとに設定する（[[ScriptRef:Shader-maximumLOD.html|Shader.maximumLOD]] を使用して）、あるいは全てのシェーダでグローバルに使用する（[[ScriptRef:Shader-globalMaximumLOD.html|Shader.globalMaximumLOD]] を使用して）ことが出来ます。
 
-In your custom shaders, use $$LOD$$ command to set up LOD value for any subshader.
+ユーザ作成のカスタムのシェーダでは、$$LOD$$ コマンドを使用してどのようなサブシェーダでもLOV値を設定することが出来ます。
 
-Built-in shaders in Unity have their LODs set up this way:
-* VertexLit kind of shaders = 100
-* Decal, Reflective VertexLit = 150
+Unityの内臓シェーダはLODを次のように設定されています：
+* VertexLit のようなシェーダ = 100
+* Decal、Reflective VertexLit = 150
 * Diffuse = 200
-* Diffuse Detail, Reflective Bumped Unlit, Reflective Bumped VertexLit = 250
-* Bumped, Specular = 300
+* Diffuse Detail、Reflective Bumped Unlit、Reflective Bumped VertexLit = 250
+* Bumped、Specular = 300
 * Bumped Specular = 400
 * Parallax = 500
 * Parallax Specular = 600
