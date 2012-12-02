@@ -1,37 +1,35 @@
-! Rendering with Replaced Shaders
+! Replaced Shadersでのレンダリング
 
-Some rendering effects require rendering a scene with a different set of shaders. For example, good edge detection would need a texture with scene normals, so it could detect edges where surface orientations differ. Other effects might need a texture with scene depth, and so on. To achieve this, it is possible to render the scene with replaced shaders of all objects.
+いくつかのレンダリングエフェクトは異なるセットのシェーダを用いてシーンをレンダリングする必要があります。例えば、優れたエッジ検出には、表面の凸凹が異なるエッジを検出するために、シーンに法線のあるテクスチャが必要です。他のエフェクトでも、シーンにデプスのあるテクスチャが必要だったり、と続いていきます。これを達成するためには、シーンを、全てのオブジェクトを置き換えたシェーダ（Replaced Shader）でレンダリングすることが出来ます。
 
-Shader replacement is done from scripting using [[ScriptRef:Camera.RenderWithShader.html|Camera.RenderWithShader]] or [[ScriptRef:Camera.SetReplacementShader.html|Camera.SetReplacementShader]] functions. Both functions take a ``shader`` and a ``replacementTag``.
+シェーダの置き換えをスクリプティングで行うためには、[[ScriptRef:Camera.RenderWithShader.html|Camera.RenderWithShader]] または[[ScriptRef:Camera.SetReplacementShader.html|Camera.SetReplacementShader]] 関数を使用します。両方の関数は``shader`` と``replacementTag`` を使用します。
 
-It works like this: the camera renders the scene as it normally would. the objects still use their materials, but the actual shader that ends up being used is changed:
-* If ``replacementTag`` is empty, then all objects in the scene are rendered with the given replacement shader.
-* If ``replacementTag`` is not empty, then for each object that would be rendered:
-** The real object's shader is queried for the [[SL-SubshaderTags|tag value]].
-** If it does not have that tag, object is __not rendered__.
-** A [[SL-SubShader|subshader]] is found in the replacement shader that has a given tag with the found value. If no such subshader is found, object is __not rendered__.
-** Now that subshader is used to render the object.
+次のように動作します：カメラはシーンを通常にレンダリングします。オブジェクトはマテリアルを使用しますが、実際に使用されることになるシェーダが変更されます：
+* ``replacementTag`` が空の場合、シーンの全てのオブジェクトは、指定されたReplaced Shaderでレンダリングされます。
+* ``replacementTag`` が空でない場合、レンダリングされる各オブジェクトについて：
+** オブジェクトの本当のシェーダの[[SL-SubshaderTags|tag value]] でクエリーされます。
+** もしそのタグを持たない場合、オブジェクトは__レンダリングされません__ 。
+** Replaced Shaderで指定されたタグの値での[[SL-SubShader|subshader]] が見つかります。もしそのようなSubShaderがない場合、オブジェクトは__レンダリングされません__ 。
+** 次にそのSubShaderを使用してオブジェクトがレンダリングされます。
+
+もし全てのシェーダが、例えば、"RenderType" タグの値に "Opaque" 、"Transparent" 、"Background" 、"Overlay"があった場合、不透明なオブジェクトのみレンダリングするReplacement Shaderを、RenderType=Solid [[SL-SubshaderTags|tag]] であるひとつのサブシェーダを使用して、記述することが出来ます。他のタグのタイプはReplacement Shaderで見つからないため、オブジェクトはレンダリングされません。あるいは複数のサブシェーダを、異なる"RenderType" のタグの値のために、記述することが出来ます。偶然に、全てのUnity内臓シェーダは"RenderType" タグのセットを持っています。
+
+!! Unity内臓シェーダでのReplacement Shaderタグ
+
+全てのUnity内臓シェーダは"$$RenderType$$" タグのセットを持ち、Replaced Shaderで使用することが出来ます。タグの値は次の通りです：
+* ``Opaque``: ほとんどのシェーダ([[shader-NormalFamily|Normal]] 、[[shader-SelfIllumFamily|Self Illuminated]] 、[[shader-ReflectiveFamily|Reflective]] 、Terrainシェーダ)。
+* ``Transparent``: ほとんどの部分的に透過なシェーダ([[shader-TransparentFamily|Transparent]] 、パーティクル、フォント、Terrain追加パスシェーダ)。
+* ``TransparentCutout``: マスキングされた透過シェーダ([[shader-TransparentCutoutFamily|Transparent Cutout]] 、2パス植生シェーダ)。
+* ``Background``: Skyboxシェーダ。
+* ``Overlay``: GUITexture、ハロー、フレア　シェーダ。
+* ``TreeOpaque``: TerrainエンジンTreeの樹皮。
+* ``TreeTransparentCutout``:TerrainエンジンTree Leaves。
+* ``TreeBillboard``: Terrainエンジン　ビルボードのTree。
+* ``Grass``: TerrainエンジンのGrass。
+* ``GrassBillboard``: Terrainエンジン　ビルボードのGrass。
 
 
-So if all shaders would have, for example, a "RenderType" tag with values like "Opaque", "Transparent", "Background", "Overlay", you could write a replacement shader that only renders solid objects by using one subshader with RenderType=Solid [[SL-SubshaderTags|tag]]. The other tag types would not be found in the replacement shader, so the objects would be not rendered. Or you could write several subshaders for different "RenderType" tag values. Incidentally, all built-in Unity shaders have a "RenderType" tag set.
+!! 内臓のシーン　デプス／法線　テクスチャ
 
-!! Shader replacement tags in built-in Unity shaders
-
-All built-in Unity shaders have a "$$RenderType$$" tag set that can be used when rendering with replaced shaders. Tag values are the following:
-* ``Opaque``: most of the shaders ([[shader-NormalFamily|Normal]], [[shader-SelfIllumFamily|Self Illuminated]], [[shader-ReflectiveFamily|Reflective]], terrain shaders).
-* ``Transparent``: most semitransparent shaders ([[shader-TransparentFamily|Transparent]], Particle, Font, terrain additive pass shaders).
-* ``TransparentCutout``: masked transparency shaders ([[shader-TransparentCutoutFamily|Transparent Cutout]], two pass vegetation shaders).
-* ``Background``: Skybox shaders.
-* ``Overlay``: GUITexture, Halo, Flare shaders.
-* ``TreeOpaque``: terrain engine tree bark.
-* ``TreeTransparentCutout``: terrain engine tree leaves.
-* ``TreeBillboard``: terrain engine billboarded trees.
-* ``Grass``: terrain engine grass.
-* ``GrassBillboard``: terrain engine billboarded grass.
-
-
-!! Built-in scene depth/normals texture
-
-A Camera has a built-in capability to render depth or depth+normals texture, if you need that in some of your effects. See [[SL-CameraDepthTexture | Camera Depth Texture]] page. Note that in some cases (depending on the hardware), the depth and depth+normals textures can internally be rendered using shader replacement. So it is important to have the correct "$$RenderType$$" tag in your shaders.
-
+カメラには内臓で、どれかのエフェクトで必要な場合に、テクスチャのデプスまたはデプス＋法線をレンダリングする機能があります。[[SL-CameraDepthTexture | Camera Depth Texture]] を参照下さい。いくつかのケース（ハードウェアによって）、テクスチャのデプスまたはデプス＋法線は内部的にReplacement Shaderでレンダリングできることに留意して下さい。このためシェーダに正しい"$$RenderType$$" タグがあることが重要です。
 
