@@ -1,56 +1,55 @@
-! ShaderLab syntax: SubShader Tags
+! ShaderLab文法： SubShaderタグ
 
-Subshaders use tags to tell how and when they expect to be rendered to the rendering engine.
+Subshaderはタグを使用して、いつどのようにしてレンダリングエンジンでレンダリングするか示します。
 
-!! Syntax
-:__Tags {__ "''TagName1''" = "''Value1''" "''TagName2''" = "''Value2''" __}__: Specifies __TagName1__ to have __Value1__, __TagName2__ to have __Value2__. You can have as many tags as you like.
+!! 文法
+:__Tags {__ "''TagName1''" = "''Value1''" "''TagName2''" = "''Value2''" __}__: タグの__TagName1__ が値として__Value1__ 、タグの__TagName2__ が値として__Value2__ であることを指定します。タグは好きなだけ指定できます。
 
-!! Details
-Tags are basically key-value pairs. Inside a [[SL-SubShader|SubShader]] tags are used to determine rendering order and other parameters of a subshader. Note that the following tags recognized by Unity '''must''' be inside SubShader section and not inside Pass!
+!! 詳細
+タグは基本的にKey-Valueペアです。[[SL-SubShader|SubShader]] の中でタグは、SubShader順番や他のパラメータを判定するのに使用します。次のタグはUnityにより認識され、Passの中でなく'''必ず''' SubShaderセクションの中とする、ことに留意下さい。
 
-!!! Rendering Order - Queue tag
+!!! 順番のレンダリング - Queueタグ
 
-You can determine in which order your objects are drawn using the ''Queue'' tag. A Shader decides which render queue its objects belong to, this way any Transparent shaders make sure they are drawn after all opaque objects and so on.
+''Queue'' （キュー）によりオブジェクトを描画する順番を判定できます。シェーダは、オブジェクトが属するレンダリング　キューを判定し、これによっていずれかの透過シェーダが不透明のオブジェクトを描画した後に描画する、といったように判定しいきます。
 
-There are four pre-defined render queues, but there can be more queues in between the predefined ones. The predefined queues are:
-* ``Background`` - this render queue is rendered before any others. It is used for skyboxes and the like.
+4つの定義済みのレンダリング　キューがありますが、定義済みのキューの間に追加することは出来ます。定義済みのキューは：
+* ``Background`` - このレンダリングキューは他より前にレンダリングされます。Skyboxなどに使用されます。
 * ``Geometry`` ''(default)'' - this is used for most objects. Opaque geometry uses this queue.
-* ``AlphaTest`` - alpha tested geometry uses this queue. It's a separate queue from ``Geometry`` one since it's more efficient to render alpha-tested objects after all solid ones are drawn.
-* ``Transparent`` - this render queue is rendered after ''Geometry'' and ``AlphaTest``, in back-to-front order. Anything alpha-blended (i.e. shaders that don't write to depth buffer) should go here (glass, particle effects).
-* ``Overlay`` - this render queue is meant for overlay effects. Anything rendered last should go here (e.g. lens flares).
+* ``AlphaTest`` - アルファテストする形状でこのキューを使用します。``Geometry`` とは別のキューであるのはアルファテストのオブジェクトを全ての不透明のオブジェクトの後に描画するほうが効率的であるためです。
+* ``Transparent`` - このレンダリング　キューは``Geometry`` と``AlphaTest`` の後に、後ろにあるものから先に順番で、レンダリングされます。アルファブレンディングするもの（すなわち、デプスバッファに書き込みしないシェーダ）は全て、ここにあるべきです（ガラス、パーティクル　エフェクト）。
+* ``Overlay`` - このレンダリングキューはオーバーレイ　エフェクトのためです。最後にレンダリングするものはここにあるべきです（例えば、レンズフレア等）。
 
 [@Shader "Transparent Queue Example" {
      SubShader {
         Tags {"Queue" = "Transparent" }
         Pass {
-            // rest of the shader body...
+            // シェーダのBodyの残りを記述...
         }
     }
 } @]
-''An example illustrating how to render something in the transparent queue''
+''透過キューでレンダリングする方法の例''
 
-``Geometry`` render queue optimizes the drawing order of the objects for best performance. All other render queues sort objects by distance, starting rendering from the furthest ones and ending with the closest ones.
+``Geometry`` レンダリングキューは、最大のパフォーマンスのためにオブジェクトの描画順を最適化します。他の全てのレンダリングキューは距離によりオブジェクトをソートして、遠いものから最後に最も近いものでレンダリングします。
 
-For special uses in-between queues can be used. Internally each queue is represented by integer index; ``Background`` is 1000, ``Geometry`` is 2000, ``AlphaTest`` is 2450, ``Transparent`` is 3000 and ``Overlay`` is 4000. If a shader uses a queue like this:
+特別な用途において、間にキューを使用することが出来ます。各キューは内部で整数インデックスにより表現され、``Background`` は 1000、 ``Geometry`` は 2000、 ``AlphaTest`` は 2450、 ``Transparent`` は 3000、そして``Overlay`` は 4000です。もしシェーダがつぎのようなキューを使用する場合：
 [@
 Tags { "Queue" = "Geometry+1" }
 @]
-This will make the object be rendered after all opaque objects, but before transparent objects, as render queue index will be 2001 (geometry plus one). This is useful in situations where you want some objects be always drawn between other sets of objects. For example, in most cases transparent water should be drawn after opaque objects but before transparent objects.
+これによりオブジェクトは全ての不透明のオブジェクトの後にレンダリングされますが、レンダリングキューが2001（Geometryに1を加算）のため、透過オブジェクトより先にレンダリングされます。これは、他のオブジェクトのグループの前に描画をさせたい場合に便利です。例えば、多くの場合に透明な水は不透明なオブジェクトの後に、ただし透明なオブジェクトの前に、描画されるべきです。
 
 
 
-!!! RenderType tag
+!!! RenderTypeタグ
 
-``RenderType`` tag categorizes shaders into several predefined groups, e.g. is is an opaque shader, or an alpha-tested shader etc. This is used by [[SL-ShaderReplacement | Shader Replacement]] and in some cases used to produce [[SL-CameraDepthTexture | camera's depth texture]].
-
-
-
-!!! IgnoreProjector tag
-
-If ``IgnoreProjector`` tag is given and has a value of "True", then an object that uses this shader will not be affected by [[class-Projector | Projectors]]. This is mostly useful on semitransparent objects, because there is no good way for Projectors to affect them.
+``RenderType``タグはシェーダを定義済みのいくつかのグループに分類します、すなわちisは不透明なシェーダ、orはアルファテストのシェーダ、等々。これは[[SL-ShaderReplacement | Shader Replacement]] により使用され、多くの場合[[SL-CameraDepthTexture | Camera Depth Texture]] を生成するのに使用します。
 
 
-!! See Also
 
-Passes can be given Tags as well, see [[SL-PassTags | Pass Tags]].
+!!! IgnoreProjectorタグ
 
+もし``IgnoreProjector`` が使用されていて、値が"True" である場合、このシェーダを使用するオブジェクトは[[class-Projector | Projectors]] により影響されません。これは、Projectorsが影響するための良い方法がないため、部分的に透過であるオブジェクトで便利です。
+
+
+!! 関連項目
+
+パスにもタグを割り当てることが出来ます、[[SL-PassTags | Pass Tags]] を参照下さい。
