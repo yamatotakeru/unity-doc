@@ -1,25 +1,25 @@
-! Plugins (Pro/Mobile-Only Feature)
+! プラグイン (Pro/モバイル専用)
 
-Unity has extensive support for $$Plugins$$, which are libraries of native code written in C, C++, Objective-C, etc.  Plugins allow your game code (written in Javascript, C# or Boo) to call functions from these libraries.  This feature allows Unity to integrate with middleware libraries or existing C/C++ game code.
+UnityはC、C++、Objective-C等で記述されたライブラリを $$Plugins$$ でサポートしています。プラグインはゲームのコード（JavaScriptやC#、Booで記述されている）からライブラリの関数を呼び出すことができます。この機能はUnityをミドルウェアライブラリや既存のC/C++コードと統合することができます。
 
-__Note:__ On the desktop platforms, plugins are a pro-only feature. For security reasons, plugins are not usable with webplayers.
+__Note:__ デスクトッププラットフォームでは、プラグインはPro専用の機能です。またセキュリティ的な理由によりプラグインはWebplayerでは利用できません。
 
-In order to use a plugin you need to do two things:-
+プラグインを使うためには、以下の2つの作業を行う必要があります。
 
-* Write functions in a C-based language and compile them into a library.
-* Create a C# script which calls functions in the library.
+* C言語を基準とした言語で記述後コンパイルし、ライブラリに含める
+* ライブラリの関数を呼び出すC#スクリプトを記述する
 
-The plugin should provide a simple C interface which the C# script then exposes to other user scripts. It is also possible for Unity to call functions exported by the plugin when certain low-level rendering events happen (for example, when a graphics device is created), see the [[Native Plugin Interface]] page for details.
-
-
-Here is a very simple example:
+プラグインは単純なC言語で書かれたインターフェースをC#や他のスクリプトに提示します。さらに、Unityでは特定の低レベルのレンダリングイベントが発生した時（例えばグラフィックデバイスを生成した時）にエクスポートした関数を呼び出すことも可能です。詳細は [[Native Plugin Interface]] ページを確認してください。
 
 
-!!! C File of a Minimal Plugin:
+非常にシンプルな例:
+
+
+!!! 単純なCファイルプラグイン:
 
 [@float FooPluginFunction () { return 5.0F; } @]
 
-!!! C# Script that Uses the Plugin:
+!!! C#のスクリプトからプラグインを利用する:
 
 
 [@using UnityEngine;
@@ -29,15 +29,15 @@ class SomeScript : MonoBehaviour {
 
    #if UNITY_IPHONE || UNITY_XBOX360
    
-   // On iOS and Xbox 360 plugins are statically linked into
-   // the executable, so we have to use __Internal as the
-   // library name.
+   // iOSやXbox 360のプラグインは静的に実行可能ファイルに
+   // リンクされます、 そのため、ライブラリ名に__Internalを
+   // 使用する必要があります。
    [DllImport ("__Internal")]
 
    #else
 
-   // Other platforms load plugins dynamically, so pass the name
-   // of the plugin's dynamic library.
+   // 他のプラットフォームは動的なので、プラグインの
+   // 動的ライブラリ(dynamic library)の名前を渡します。
    [DllImport ("PluginName")]
 	
    #endif
@@ -45,22 +45,22 @@ class SomeScript : MonoBehaviour {
    private static extern float FooPluginFunction ();
 
    void Awake () {
-      // Calls the FooPluginFunction inside the plugin
-      // And prints 5 to the console
+      // プラグインのFooPluginFunctionを呼び出し、
+      // コンソールに5と出力します。
       print (FooPluginFunction ());
    }
 } @]
 
-Note that when using Javascript you will need to use the following syntax, where DLLName is the name of the plugin you have written, or "__Internal" if you are writing statically linked native code:
+Javascriptを使用しているときDLLの名前（DLLName）がpluginである場合、あるいは "__Internal" で静的にリンクしたネイティブコードを書いている場合は、次の構文を書く必要がある事に注意してください。
 
 [@@DllImport (DLLName)
 static private function FooPluginFunction () : float {};@]
 
-!! Creating a Plugin
+!! プラグインの作成
 
-In general, plugins are built with native code compilers on the target platform. Since plugin functions use a C-based call interface, you must avoid name mangling issues when using C++ or Objective-C.
+一般的には、プラグインは、ターゲットプラットフォーム上でネイティブコードコンパイラを使って構築されています。プラグインの関数はC言語に基づいたコール·インタフェース（C-based call interface）を使用するので、C++やObjective-Cを使用した場合はネーム・マングル（name mangling）の問題を避けなければなりません。
 
-For further details and examples, see the following pages:-
+詳細と例については、次のページを参照してください:-
 
 >>desktop<<
 * [[PluginsForDesktop | Building Plugins for Desktop Platforms]]
@@ -78,7 +78,7 @@ For further details and examples, see the following pages:-
 * [[ps3-nativeplugins | Building Plugins for PlayStation3]]
 >><<
 
-!! Further Information
-* [[Native Plugin Interface]] - this is needed if you want to do rendering in your plugin.
+!! 追加情報
+* [[Native Plugin Interface]] - プラグインでレンダリングを行いたい場合に必要です。
 * [[http://www.mono-project.com/Interop_with_Native_Libraries|Mono Interop with native libraries]].
 * [[http://msdn2.microsoft.com/en-us/library/fzhhdwae.aspx|P-invoke documentation on MSDN]].
