@@ -25,8 +25,7 @@
 * @@UNITY_HALF_TEXEL_OFFSET@@ - texel（テクセル）をピクセルにマッピングするために、半分のテクセルのオフセットが、必要なプラットフォームで定義（すなわち Direct3D 9）。
 * @@UNITY_UV_STARTS_AT_TOP@@ - 常に1または0で定義。1の値は"テクスチャの一番上で" テクスチャのV座標が0であるプラットフォームで使用します。Direct3Dのようなプラットフォームでは1を使用し、Open-GLのようなプラットフォームでは0を使用します。
 * @@UNITY_MIGHT_NOT_HAVE_DEPTH_TEXTURE@@ - プラットフォームが、テクスチャに手動でデプスをレンダリングすることにより、シャドウマップまたはデプステクスチャをエミュレートする場合定義します。
-* @@UNITY_PROJ_COORD(a)@@ - given a 4-component vector, return a texture coordinate suitable for projected texture reads. On most platforms this returns the given value directly.
-* @@UNITY_PROJ_COORD(a)@@ - 4コンポーネントベクトルを渡すと、投影されたテクスチャ読み込みに適切な、テクスチャ座標を戻します。殆どのプラットフォームでは渡された値そのものを戻します。
+* @@UNITY_PROJ_COORD(a)@@ - 4成分ベクトルを渡すと、投影されたテクスチャ読み込みに適切なテクスチャ座標を戻します。殆どのプラットフォームでは渡された値そのものを戻します。
 * @@UNITY_NEAR_CLIP_VALUE@@ - ニアクリッピングプレーンの値として定義、Direct3Dのようなプラットフォームでは0.0が使用され、OpenGLのようなプラットフォームでは-1.0を使用します。
 * @@UNITY_COMPILER_CG@@ 、@@UNITY_COMPILER_HLSL@@ 、または@@UNITY_COMPILER_HLSL2GLSL@@ は内在するシェーダコンパイラが使用されているかを判定します、わずかな文法の違いで別のシェーダコードを記述せざるを得ない場合にしようします。
 * @@UNITY_CAN_COMPILE_TESSELLATION@@ - シェーダコンパイラが、テッセレーションシェーダのHLSL文法を、"理解できる" 場合に定義されます（現時点ではD3D11のみ）
