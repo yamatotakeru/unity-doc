@@ -1,4 +1,4 @@
-! 自らUnityネットワーキングサーバを構築する
+! 自分でUnityネットワーキングサーバを構築する
 
 個別のネットワーキングサーバのソースコードは[[http://www.unity3d.com/master-server/index.html|Unity website]] にあります。Connection tester、Facilitator、マスターサーバ、プロキシサーバも含まれます。
 
@@ -28,4 +28,4 @@ XcodeおよびVisual Studioプロジェクトは簡単に開いてコンパイ�
 
 !!! Facilitator
 
-FacilitatorはRakNetのNATパンチスルー　プラグインを修正することなく用いています。This is essentially just a peer listening on a port with the NAT punchthrough plugin loaded. 本質的には、ロードされたNATパンチスルー　プラグインを用いてリスニングを行うピアとして働きます。NATアドレスをもったサーバととクライアントがともにこのピアと接続した場合、NATパンチスルーを実行して互いに接続することが出来ます。[[ScriptRef:Network.InitializeServer|Network.InitializeServer]] がNATを使用するとき、自動的に接続が行われます。
+FacilitatorはRakNetのNATパンチスループラグインをそのまま用いています。本質的には、ロードされたNATパンチスループラグインを用いた、一つのポートの一つのピア端子(a peer listening)なだけです。NATアドレスをもったサーバととクライアントがともにこのピアと接続してはじめて、NATパンチスルーを実行して互いに接続することが出来ます。[[ScriptRef:Network.InitializeServer|Network.InitializeServer]] がNATを使用するとき、自動的に接続が行われます。
