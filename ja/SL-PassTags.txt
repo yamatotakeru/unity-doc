@@ -1,39 +1,41 @@
-! ShaderLab syntax: Pass Tags
+! ShaderLab文法：Passタグ
 
-Passes use tags to tell how and when they expect to be rendered to the rendering engine.
+Passはタグを使用していつどのようにしてレンダリングエンジンによりレンダリングすべきかを指定します。
 
-!! Syntax
-:__Tags {__ "''TagName1''" = "''Value1''" "''TagName2''" = "''Value2''" __}__: Specifies __TagName1__ to have __Value1__, __TagName2__ to have __Value2__. You can have as many tags as you like.
+!! 文法
+:__Tags {__ "''TagName1''" = "''Value1''" "''TagName2''" = "''Value2''" __}__: タグの__TagName1__ が値として__Value1__ 、タグの__TagName2__ が値として__Value2__ であることを指定します。タグは好きなだけ指定できます。
 
-!! Details
-Tags are basically key-value pairs. Inside a [[SL-Pass|Pass]] tags are used to control which role this pass has in the lighting pipeline (ambient, vertex lit, pixel lit etc.) and some other options. Note that the following tags recognized by Unity '''must'' be inside Pass section and not inside SubShader!
+!! 詳細
+タグは基本的にKey-Valueペアです。[[SL-Pass|Pass]] の中でタグは、当該パスがライティング　パイプライン（環境光、頂点ライティング、ピクセルライティング）のなかでどの役割であるかを制御したり、他のパラメータを判定するのに使用します。次のタグはUnityにより認識され、SubShaderの中でなく'''必ず''' Passセクションの中とする、ことに留意下さい。
 
-!!! LightMode tag
+!!! LightModeタグ
 
-__LightMode__ tag defines Pass' role in the lighting pipeline. See [[SL-RenderPipeline|render pipeline]] for details. These tags are rarely used manually; most often shaders that need to interact with lighting are written as [[SL-SurfaceShaders | Surface Shaders]] and then all those details are taken care of.
-
-Possible values for LightMode tag are:
-* __Always__: Always rendered; no lighting is applied.
-* __ForwardBase__: Used in [[RenderTech-ForwardRendering|Forward rendering]], ambient, main directional light and vertex/SH lights are applied.
-* __ForwardAdd__: Used in [[RenderTech-ForwardRendering|Forward rendering]]; additive per-pixel lights are applied, one pass per light.
-* __PrepassBase__: Used in [[RenderTech-DeferredLighting|Deferred Lighting]], renders normals & specular exponent.
-* __PrepassFinal__: Used in [[RenderTech-DeferredLighting|Deferred Lighting]], renders final color by combining textures, lighting & emission.
-* __Vertex__: Used in [[RenderTech-VertexLit | Vertex Lit rendering]] when object is not lightmapped; all vertex lights are applied.
-* __VertexLMRGBM__: Used in [[RenderTech-VertexLit | Vertex Lit rendering]] when object is lightmapped; on platforms where lightmap is RGBM encoded.
-* __VertexLM__: Used in [[RenderTech-VertexLit | Vertex Lit rendering]] when object is lightmapped; on platforms where lightmap is double-LDR encoded (generally mobile platforms & old dekstop GPUs).
-* __ShadowCaster__: Renders object as shadow caster.
-* __ShadowCollector__: Gathers object's shadows into screen-space buffer for Forward rendering path.
+__LightMode__タグはライティング　パイプラインでのパスの役割を定義します。詳細については[[SL-RenderPipeline|render pipeline]] を参照下さい。これらのタグは手動で使用されることは稀で、ライティングと相互作用のあるほとんどのシェーダは[[SL-SurfaceShaders | Surface Shaders]] で記述され、そういった詳細はその中で処理されます。
 
 
 
-!!! RequireOptions tag
+LightModeで利用可能なタグは：
+* __Always__: 常にレンダリングされ、ライティングは適用されません。
+* __ForwardBase__: [[RenderTech-ForwardRendering|Forward rendering]] で使用され、環境光、メイン指向性ライト、頂点／SHライトが適用されます。
+* __ForwardAdd__: [[RenderTech-ForwardRendering|Forward rendering]] で使用され、ライトごとに一つのパスで、Additive ピクセルライティングが適用されます。
+* __PrepassBase__: [[RenderTech-DeferredLighting|Deferred Lighting]] で使用され、法線や鏡面指数をレンダリングします。
+* __PrepassFinal__: [[RenderTech-DeferredLighting|Deferred Lighting]] で使用され、最終的なカラーについて、テクスチャ、ライト、および自己発光、を合成することでレンダリングします。
+* __Vertex__: [[RenderTech-VertexLit | Vertex Lit rendering]] でオブジェクトがライトマップされてない場合に使用され、全ての頂点ライトが適用されます。
+* __VertexLMRGBM__: [[RenderTech-VertexLit | Vertex Lit rendering]] でオブジェクトがライトマップされてる場合、ライトマップがRGBMエンコードされるプラットフォームにおいて使用されます。
+* __VertexLM__: [[RenderTech-VertexLit | Vertex Lit rendering]] でオブジェクトがライトマップされてる場合に、ライトマップがdoub-LDRエンコードされるプラットフォームにおいて(一般にモバイル向けプラットフォームや古いデスクトップ向けGPUにて)使用されます。
+* __ShadowCaster__: オブジェクトを、Shadow Casterとしてレンダリングします。
+* __ShadowCollector__: Forward Renderingのために、オブジェクトの影をScreen-Spaceバッファに集めます。
 
-A pass can indicate that it should only be rendered when some external conditions are met. This is done by using __RequireOptions__ tag, whose value is a string of space separated options. Currently the options supported by Unity are:
-* __SoftVegetation__: Render this pass only if Soft Vegetation is on in [[class-QualitySettings | Quality Settings]].
 
 
-!! See Also
+!!! RequireOptionsタグ
 
-SubShaders can be given Tags as well, see [[SL-SubshaderTags | SubShader Tags]].
 
+特定の外部条件が満たされた場合のみレンダリングされることを、パスで指定することが出来ます。これは__RequireOptions__ により実現され、値はスペースで区切られた文字列によるオプションです。現在、Unityでサポートされているオプションは：
+* __SoftVegetation__: もし[[class-QualitySettings | Quality Settings]] でSoft Vegetationが有効である場合のみ、このパスをレンダリングします。
+
+
+!! 関連項目
+
+SubShadersにタグを割り当てることが可能であり、[[SL-SubshaderTags | SubShader Tags]] を参照下さい。
 
