@@ -1,106 +1,104 @@
 !Layers
 
-$$Layers$$ are most commonly used by $$Cameras$$ to render only a part of the scene, and by $$Lights$$ to illuminate only parts of the scene. But they can also used by raycasting to selectively ignore colliders or to create [[LayerBasedCollision | collisions]].
+$$Layers$$ は$$Cameras$$ によりシーンの一部のみレンダリングするため、また$$Lights$$ によりシーンの一部のみ照らすため、などに最も頻繁に使用されます。一方で選択的に、Colliderを無視するあるいは[[LayerBasedCollision | Collisions]] を発生させるためにも使用することが出来ます。
 
+!! レイヤーの作成
 
-!! Creating Layers
+最初のステップは新規レイヤーを作成することで、次にそのレイヤーを$$GameObject$$ に割り当てます。新規レイヤーを作成するにはEditメニューを開いて^^Project Settings->Tags^^ を選択します。
 
-The first step is to create a new layer, which we can then assign to a $$GameObject$$. To create a new layer, open the Edit menu and select ^^Project Settings->Tags^^.
-
-We create a new layer in one of the empty User Layers. We choose layer 8.
+空のUser Layerの中から新規レイヤーを作成します。ここではレイヤー8を選択することにします。
 
 Attach:Layer-CreateNewLayer.png
 
 
-!! Assigning Layers
+!! レイヤーの割り当て
 
-Now that you have created a new layer, you have to assign the layer to one of the game objects.
+新規レイヤーは作成できたので、次にゲームオブジェクトの一つにアサインします。
 
 Attach:Layer-ChooseLayer.png
 
-In the tag manager we assigned the Player layer to be in layer 8.
+Tag ManagerでPlayerレイヤーをレイヤー8に割り当てました。
 
 
-!! Drawing only a part of the scene with the camera's culling mask
+!! シーンの一部のみをカメラのカリングマスクで描画
 
-Using the camera's culling mask, you can selectively render objects which are in one particular layer.
-To do this, select the camera that should selectively render objects.
+カメラのカリングマスクを使用して、特定の1つのレイヤーにあるオブジェクトのみ選択的にレンダリング出来ます。
+そのためには、オブジェクトを選択的にレンダリングするカメラを選択します。
 
-Modify the culling mask by checking or unchecking layers in the culling mask property.
+Culling Maskプロパティでレイヤーのチェックをつけたり外したりすることでカリングマスクの設定を変更することが出来ます。
 
 Attach:Layer-CullingMask.png
 
 
-!! Casting Rays Selectively
+!! 選択的にRaycastする
 
-Using layers you can cast rays and ignore colliders in specific layers.
-For example you might want to cast a ray only against the player layer and ignore all other colliders.
+レイヤーを使用してRaycastするときに特定のレイヤーのコライダを無視することが出来ます。
+例えばPlayerレイヤーのみにRaycastして、他のオブジェクトを無視したい場合があるかもしれません。
 
-The Physics.Raycast function takes a bitmask, where each bit determines if a layer will be ignored or not.
-If all bits in the layerMask are on, we will collide against all colliders.
-If the layerMask = 0, we will never find any collisions with the ray.
+Physics.Raycast関数はビットマスクをしようして、各々のビットで各レイヤーを無視するかどうか判定させることが出来ます。
+layerMask（レイヤーマスク）の全てのビットが有効である場合は、全てのコライダと衝突します。
+もしlayerMask = 0 の場合Rayによりコリジョンすることがありません。
 
 
-[@// JavaScript example.
+[@// JavaScript 例
 
-// bit shift the index of the layer to get a bit mask
+// レイヤーのインデックスをビットシフトすることでビットマスクを取得します。
 var layerMask = 1 << 8;
-// Does the ray intersect any objects which are in the player layer.
+// PlayerレイヤーにあるオブジェクトとRayが相互作用するか判定します。
 if (Physics.Raycast (transform.position, Vector3.forward, Mathf.Infinity, layerMask))
-    print ("The ray hit the player");
+    print ("RayがPlayerに当たりました");
 
 
-// C# example.
+// C# 例
 
 int layerMask = 1 << 8;
 		
-// Does the ray intersect any objects which are in the player layer.
+// PlayerレイヤーにあるオブジェクトとRayが相互作用するか判定します。
 if (Physics.Raycast(transform.position, Vector3.forward, Mathf.Infinity, layerMask))
-    Debug.Log("The ray hit the player");
+    Debug.Log("RayがPlayerに当たりました");
 @]
 
+現実世界では、この逆を行いたい場合があります。Playerレイヤー以外の全てのコライダに対してRaycastします。
 
-In the real world you want to do the inverse of that however. We want to cast a ray against all colliders except those in the Player layer.
-
-[@// JavaScript example.
+[@// JavaScript 例
 function Update () {
-  // Bit shift the index of the layer (8) to get a bit mask
+  // レイヤーのインデックス(8)をビットシフトすることでビットマスクを取得します。
   var layerMask = 1 << 8;
-  // This would cast rays only against colliders in layer 8.
-  // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+  // これによりレイヤー8のコライダのみに対してRaycastします。
+  // しかし、実際にはレイヤー8以外のもの全てに衝突させたい場合があります。このときは「~」記号でこれを実現し、ビットマスクを反転します。
   layerMask = ~layerMask;
 
   var hit : RaycastHit;
-  // Does the ray intersect any objects excluding the player layer
+  // PlayerレイヤーにあるオブジェクトとRayが相互作用するか判定します。
   if (Physics.Raycast (transform.position, transform.TransformDirection (Vector3.forward), hit, Mathf.Infinity, layerMask)) {
     Debug.DrawRay (transform.position, transform.TransformDirection (Vector3.forward) * hit.distance, Color.yellow);
-    print ("Did Hit");
+    print ("当たりました");
   } else {
     Debug.DrawRay (transform.position, transform.TransformDirection (Vector3.forward) *1000, Color.white);
-    print ("Did not Hit");
+    print ("当たりませんでした");
   }
 }
 
 
-// C# example.
+// C# 例
 void Update () {
-    // Bit shift the index of the layer (8) to get a bit mask
+    // レイヤーのインデックス(8)をビットシフトすることでビットマスクを取得します。
     int layerMask = 1 << 8;
 		
-    // This would cast rays only against colliders in layer 8.
-    // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+    // これによりレイヤー8のコライダのみに対してRaycastします。
+  // しかし、実際にはレイヤー8以外のもの全てに衝突させたい場合があります。このときは「~」記号でこれを実現し、ビットマスクを反転します。
     layerMask = ~layerMask;
 	
     RaycastHit hit;
-    // Does the ray intersect any objects excluding the player layer
+    // PlayerレイヤーにあるオブジェクトとRayが相互作用するか判定します。
     if (Physics.Raycast(transform.position, transform.TransformDirection (Vector3.forward), out hit, Mathf.Infinity, layerMask)) {
         Debug.DrawRay(transform.position, transform.TransformDirection (Vector3.forward) * hit.distance, Color.yellow);
-        Debug.Log("Did Hit");
+        Debug.Log("当たりました");
     } else {
         Debug.DrawRay(transform.position, transform.TransformDirection (Vector3.forward) *1000, Color.white);
-        Debug.Log("Did not Hit");
+        Debug.Log("当たりませんでした");
     }
 }@]
 
-When you don't pass a layerMask to the Raycast function, it will only ignore colliders that use the IgnoreRaycast layer.
-This is the easiest way to ignore some colliders when casting a ray.
+Raycast関数にlayerMaskを渡さない場合、IgnoreRaycastレイヤーのコライダのみ無視します。
+Raycastするときにいくつかのコライダを無視するにはこれが最も簡単です。
