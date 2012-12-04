@@ -1,48 +1,48 @@
-! Forward Rendering�p�X�̏ڍ�
+! Forward Renderingパスの詳細
 
-���̃y�[�W�ł�$$Forward$$ [[RenderingPaths | Rendering Path]] �̏ڍׂɂ��Đ������܂��B
+このページでは$$Forward$$ [[RenderingPaths | Rendering Path]] の詳細について説明します。
 
-Forward Rendering�p�X�͊e�I�u�W�F�N�g���A�I�u�W�F�N�g�ɍ�p���郉�C�g�ɂ��ƂÂ��āA�ЂƂ�����ȏ�̃p�X�Ƀ����_�����O���܂��B���C�g���̂��̂́A�ݒ肨��ы��x�ɂ���āAForward Rendering�ɂ��ʁX�Ɉ����܂��B
+Forward Renderingパスは各オブジェクトを、オブジェクトに作用するライトにもとづいて、ひとつかそれ以上のパスにレンダリングします。ライトそのものは、設定および強度によって、Forward Renderingにより別々に扱われます。
 
-!! �����̏ڍ�
+!! 実装の詳細
 
 
-Forward Rendering�ł́A�e�I�u�W�F�N�g�ɍ�p����A�������̂����Ƃ����邢���C�g�́A���S�ȃs�N�Z�����C�e�B���O���[�h�Ń����_�����O����܂��B���ɍő��4�̃|�C���g���C�g�����_���ƂɌv�Z����܂��B���̃��C�g�͋��ʒ��a�iSH�j�Ƃ��Čv�Z����A�ߎ��l�ɂȂ�܂�����葬���Ȃ�܂��B���C�g���s�N�Z�����C�e�B���O�ƂȂ邩�ǂ����͎��̂��ƂɈˑ����܂��F
-* Render Mode��$$Not Important$$ �ɐݒ肵�����C�g�͏�ɒ��_���C�e�B���O��SH�ƂȂ�܂��B
-* �����Ƃ����邢�w�������C�g�͏�Ƀs�N�Z�����C�e�B���O�ł��B
-* Render Mode��$$Important$$ �ɐݒ肵�����C�g�͏�Ƀs�N�Z�����C�e�B���O�ł��B
-* ������̌��ʂɂ��A���݂�$$Pixel Light Count$$ [[class-QualitySettings | Quality Setting]] ��菭�Ȃ����C�g�̐��ƂȂ����ꍇ�A���邳��}���邽�߂ɁA��葽���̃��C�g���s�N�Z�����C�e�B���O�ƂȂ�܂��B
+Forward Renderingでは、各オブジェクトに作用する、いくつかのもっとも明るいライトは、完全なピクセルライティングモードでレンダリングされます。次に最大で4つのポイントライトが頂点ごとに計算されます。他のライトは球面調和（SH）として計算され、近似値になりますがより速くなります。ライトがピクセルライティングとなるかどうかは次のことに依存します：
+* Render Modeを$$Not Important$$ に設定したライトは常に頂点ライティングかSHとなります。
+* もっとも明るい指向性ライトは常にピクセルライティングです。
+* Render Modeを$$Important$$ に設定したライトは常にピクセルライティングです。
+* もし上の結果により、現在の$$Pixel Light Count$$ [[class-QualitySettings | Quality Setting]] より少ないライトの数となった場合、明るさを抑えるために、より多くのライトがピクセルライティングとなります。
 
-�e�I�u�W�F�N�g�̃��C�e�B���O�͎��̂悤�ɍs���܂��F
-* Base Pass�͈�̃s�N�Z�����Ƃ̎w�������C�g����ёS�Ă̒��_���Ɓ^SH���C�g��K�p���܂��B
-* ���̃s�N�Z�����C�g�́AAdditional Pass�i�ǉ��̃p�X�j�Ń����_�����O����A�ЂƂ̃��C�g���ƂɂЂƂ̃p�X���g�p���܂��B
+各オブジェクトのライティングは次のように行われます：
+* Base Passは一つのピクセルごとの指向性ライトおよび全ての頂点ごと／SHライトを適用します。
+* 他のピクセルライトは、Additional Pass（追加のパス）でレンダリングされ、ひとつのライトごとにひとつのパスを使用します。
 
-�Ⴆ�΁A���������̃��C�g�ɂ��e�����󂯂郉�C�g������ꍇ�i���̊G�Ŋۂ��������������C�gA����H�ɍ�p����Ă���j: \\
+例えば、もし複数のライトにより影響を受けるライトがある場合（下の絵で丸をつけた部分がライトAからHに作用されている）: \\
 Attach:ForwardLightsExample.png
 
-���C�gA����H�������J���[�Ƌ��x�ł��邽�Ɖ��肵���ꍇ�A�S�Ď��������_�����O���[�h�ł��邽�߁A���̃I�u�W�F�N�g�ɂ����āA���̏��Ԃ̂Ƃ���Ƀ\�[�g����܂��B�����Ƃ����邢���iA����D�j�̓s�N�Z�����C�e�B���O�Ń����_�����O����A4�̃��C�g�iD����G�j�����_���C�e�B���O�ƂȂ�A�Ō�Ɏc��̃��C�g�iG����H�j�����ʒ��a�iSH�j�ƂȂ�܂��B
+ライトAからHが同じカラーと強度であるたと仮定した場合、全て自動レンダリングモードであるため、このオブジェクトにおいて、この順番のとおりにソートされます。もっとも明るい光（AからD）はピクセルライティングでレンダリングされ、4つのライト（DからG）が頂点ライティングとなり、最後に残りのライト（GからH）が球面調和（SH）となります。
 
 Attach:ForwardLightsClassify.png
 
-���C�g�O���[�v�͏d�����Ă��邱�Ƃɗ��ӂ��ĉ������A�Ⴆ�΍Ō�̃s�N�Z�����C�e�B���O�͒��_���C�e�B���O���[�h�Ƀu�����h���邽�߁A�I�u�W�F�N�g�⃉�C�g���������ۂ�"Light Popping"�i�}�ȃ��C�g�̕ω��j�͏��Ȃ��Ȃ�܂��B
+ライトグループは重複していることに留意して下さい、例えば最後のピクセルライティングは頂点ライティングモードにブレンドするため、オブジェクトやライトが動き回る際に"Light Popping"（急なライトの変化）は少なくなります。
 
 
 !!! Base Pass
 
-�x�[�X�p�X�̓I�u�W�F�N�g���ЂƂ̃s�N�Z���w�������C�g�Ǝc��S��SH���C�g�Ń����_�����O���܂��B���̃p�X�ł͂���ɑ��̃��C�g�}�b�v�A�������C�e�B���O�A����ю��Ȕ������C�e�B���O�A��ǉ����܂��B���̃p�X�Ń����_�����O�����w�������C�g�͉e������܂��B���C�g�}�b�v���ꂽ�I�u�W�F�N�g��SH���C�g����Ƃ炳��Ȃ����Ƃɗ��ӂ��ĉ������B
+ベースパスはオブジェクトをひとつのピクセル指向性ライトと残り全てSHライトでレンダリングします。このパスではさらに他のライトマップ、環境光ライティング、および自己発光ライティング、を追加します。このパスでレンダリングされる指向性ライトは影があります。ライトマップされたオブジェクトはSHライトから照らされないことに留意して下さい。
 
 !!! Additional Passes
 
-Additional Passes�i�ǉ��̃p�X�j�́A���̃I�u�W�F�N�g�ɍ�p����A�e�X�̒ǉ����ꂽ�s�N�Z�����C�g�Ń����_�����O����܂��B�����̃p�X�̃��C�g�͉e�����Ă܂���i���ʂƂ���Forward Rendering���T�|�[�g����̂͂ЂƂ̎w�������C�g�Ɖe�ł��j�B
+Additional Passes（追加のパス）は、このオブジェクトに作用する、各々の追加されたピクセルライトでレンダリングされます。これらのパスのライトは影を持てません（結果としてForward Renderingがサポートするのはひとつの指向性ライトと影です）。
 
 
-!! �p�t�H�[�}���X�̍l���_
+!! パフォーマンスの考慮点
 
-���ʒ��a���C�g��''����'' ���������_�����O����܂��BCPU�̃R�X�g���ɏ��ł���AGPU���K�p����ꍇ��''������R�X�g�Ȃ�'' �ł��i���Ȃ킿�ABase Pass�͏��SH���C�e�B���O���v�Z���܂��A������SH���C�g�̐������炢����SH���C�g�������Ă��R�X�g�͂܂����������ł��j�B
+球面調和ライトは''非常に'' 速くレンダリングされます。CPUのコストが極小であり、GPUが適用する場合も''事実上コストなし'' です（すなわち、Base Passは常にSHライティングを計算します、しかしSHライトの性質からいくつSHライトがあってもコストはまったく同じです）。
 
-SH���C�g�̌��_�́F
-* �I�u�W�F�N�g�̃s�N�Z���łȂ��A���_�Ōv�Z����܂��B����ɂ��A���C�g��Cookie��@���}�b�v�̓T�|�[�g���܂���B
-* SH���C�g�͕p�x�����ɒႭ�Ȃ�܂��B�}�ȃ��C�e�B���O�̑J�ڂ��s�����Ƃ��o���܂���B�܂��A�g�U���C�e�B���O������p���܂���i���ʃn�C���C�g�ɂ͕p�x���Ⴗ���܂��j�B
-* SH���C�g�̓��[�J���ł͂�܂���B�\�ʂɋ߂��A�|�C���g���邢�̓X�|�b�g��SH���C�g�́A"�����Ԉ���Ă���悤�Ɍ����܂�" �B
+SHライトの欠点は：
+* オブジェクトのピクセルでなく、頂点で計算されます。これにより、ライトのCookieや法線マップはサポートしません。
+* SHライトは頻度が非常に低くなります。急なライティングの遷移を行うことが出来ません。また、拡散ライティングしか作用しません（鏡面ハイライトには頻度が低すぎます）。
+* SHライトはローカルではりません。表面に近い、ポイントあるいはスポットのSHライトは、"何か間違っているように見えます" 。
 
-�܂Ƃ߂�ƁASH���C�g�͏��������I�ȂȃI�u�W�F�N�g�ɂ͏\���ł͂���܂���B
+まとめると、SHライトは小さく動的ななオブジェクトには十分ではありません。

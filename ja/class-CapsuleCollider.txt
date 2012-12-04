@@ -10,10 +10,10 @@ Attach:Inspector-CapsuleCollider.png\\
 
 ||PROPS
 (:include comp-ColliderProps:)
+||``Center`` ||オブジェクトのローカル座標系におけるコライダの位置 ||
 ||``Radius`` ||コライダのローカル座標系における半径 ||
 ||``Height`` ||コライダの高さ ||
 ||``Direction`` ||オブジェクトのローカル座標系における長辺方向の軸の向き。 ||
-||``Center`` ||オブジェクトのローカル座標系におけるコライダの位置 ||
 
 
 !!詳細

@@ -2,7 +2,7 @@
 
 Unityは異なる $$Rendering Paths$$ に対応しています。 どれを選択すべきかは、ゲームの内容やターゲット／ハードウェアに依存します。異なるRendering Pathsは異なる特徴やパフォーマンスを持ちます。（おおかたライトや影が影響するのですが）
 
-Rendering Pathsは [[class-PlayerSettings | Player Settings]] で選択します。 さらに [[class-Camera | Camera]] でも上書き設定もできます。
+Rendering Pathsは [[class-PlayerSettings40 | Player Settings]] で選択します。 さらに [[class-Camera | Camera]] でも上書き設定もできます。
 
 もしグラフィックスカードが選択したRendering Pathsを利用出来ないのであれば、Unityは自動的に下位のパスを使います。 ですので例えばDeferred Lightingが出来ないGPUでは、Forward Renderingが選ばれるでしょう。 もしForward Renderingがサポートしていないのであれば、Vertex Litが選択されるでしょう。
 

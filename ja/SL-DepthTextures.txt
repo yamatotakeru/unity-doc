@@ -1,31 +1,31 @@
-! Depth Texture�̎g�p
+! Depth Textureの使用
 
-�e�s�N�Z�����������x��"Depth" �l������[[class-RenderTexture | Render Textures]] ���쐬���邱�Ƃ��o���܂��i[[ScriptRef:RenderTextureFormat.Depth.html|RenderTextureFormat.Depth]] �j�B��Ɏg�p�����̂̓G�t�F�N�g�ŃV�[���̃f�v�X���g�p�\�ł��邱�Ƃ��K�v�ȏꍇ�ł��i�Ⴆ�΁A�\�t�g�@�p�[�e�B�N���A�X�N���[����Ԋ����I�N���[�W�����iScreen Space Ambient Occlusion�j�A���߂͂��ׂăV�[���̃f�v�X���K�v�ł��j�B
+各ピクセルが高い精度の"Depth" 値を持つ[[class-RenderTexture | Render Textures]] を作成することが出来ます（[[ScriptRef:RenderTextureFormat.Depth.html|RenderTextureFormat.Depth]] ）。主に使用されるのはエフェクトでシーンのデプスが使用可能であることが必要な場合です（例えば、ソフト　パーティクル、スクリーン空間環境光オクルージョン（Screen Space Ambient Occlusion）、透過はすべてシーンのデプスが必要です）。
 
-�f�v�X�e�N�X�`���̃s�N�Z���l�́A���`�łȂ����z�������A0����1�܂ł͈̔͂ł��B�g�p����Ă���f�v�X�o�b�t�@�ɂ��ƂÂ��āA��ʂɐ��x��24�r�b�g��16�r�b�g�ł��B�f�v�X�e�N�X�`������ǂݍ��݂���Ƃ��́A0����1�͈̔͂̍����x�̒l���߂���܂��B�����J��������̋������擾����K�v������A���邢�͕ʂ̌`�Ő��`�̒l���擾����K�v������ꍇ�A������蓮�Ōv�Z����K�v������܂��B
+デプステクスチャのピクセル値は、線形でない分布を示し、0から1までの範囲です。使用されているデプスバッファにもとづいて、一般に精度は24ビットか16ビットです。デプステクスチャから読み込みするときは、0から1の範囲の高精度の値が戻されます。もしカメラからの距離を取得する必要がある、あるいは別の形で線形の値を取得する必要がある場合、それを手動で計算する必要があります。
 
-Unity�̃f�v�X�e�N�X�`���͈قȂ�v���b�g�t�H�[���ł͈قȂ��Ď�������Ă��܂��B
-* Direct3D 9 (Windows)�ł́A�f�v�X�e�N�X�`���͕͂��̃f�v�X�o�b�t�@���A�ЂƂ̃`���l����32�r�b�g���������_���e�N�X�`�� ("R32F" Direct3D�`��J)�ł��B
-** �O���t�B�b�N�X�J�[�h�́A�l�C�e�B�u�@�f�v�X�@�o�b�t�@(INTZ�`���j�܂��͕��������_��Render Texture�̂����ꂩ���A�T�|�[�g���Ă��Ȃ��Ɛ��������삵�܂���B
-** �f�v�X�e�N�X�`���ɑ΂��ă����_�����O����Ƃ��A[[SL-ShaderPrograms|Fragment Program]] �͕K�v�Ȓl���o�͂���K�v������܂��B
-** �f�v�X�e�N�X�`������ǂݍ��݂���Ƃ��A�J���[�̐ԃR���|�[�l���g�͍����x�̒l��ۗL���Ă��܂��B
-* OpenGL (Mac OS X)�ł́A�f�v�X�e�N�X�`���̓l�C�e�B�u��OpenGL�f�v�X�o�b�t�@�ł��B[[http://www.opengl.org/registry/specs/ARB/depth_texture.txt|ARB_depth_texture]] ���Q�Ɖ������j�B
-** �O���t�B�b�N�X�J�[�h�́AOpenGL 1.4�܂���[[http://www.opengl.org/registry/specs/ARB/depth_texture.txt|ARB_depth_texture]] �̊g���@�\���T�|�[�g����K�v������܂��B
-** �f�v�X�e�N�X�`���̓����_�����O�����Z�o�b�t�@�ɑΉ����AFragment Program�̌��ʂ�__�g�p���܂���__ �B
-* OpenGL ES 2.0 (iOS/Android) �͏�L��OpenGL�Ɣ��Ɏ��Ă��܂��B
-** GPU ��[[http://www.khronos.org/registry/gles/extensions/OES/OES_depth_texture.txt | GL_OES_depth_texture]] �̊g���@�\���T�|�[�g����K�v������܂��B
-* Direct3D 11 (Windows) ��OpenGL�̂悤�ɁA�l�C�e�B�u�@�f�v�X�e�N�X�`���ɑΉ����Ă��܂��B
-* Flash (Stage3D) �̓J���[�ɃG���R�[�h���ꂽ�f�v�X�e�N�X�`�����g�p���āA�K�v�Ƃ���Ă��鍂���x���G�~�����[�g���܂��B
+Unityのデプステクスチャは異なるプラットフォームでは異なって実装されています。
+* Direct3D 9 (Windows)では、デプステクスチャはは負のデプスバッファか、ひとつのチャネルの32ビット浮動小数点数テクスチャ ("R32F" Direct3D形式J)です。
+** グラフィックスカードは、ネイティブ　デプス　バッファ(INTZ形式）または浮動小数点数Render Textureのいずれかを、サポートしていないと正しく動作しません。
+** デプステクスチャに対してレンダリングするとき、[[SL-ShaderPrograms|Fragment Program]] は必要な値を出力する必要があります。
+** デプステクスチャから読み込みするとき、カラーの赤コンポーネントは高精度の値を保有しています。
+* OpenGL (Mac OS X)では、デプステクスチャはネイティブのOpenGLデプスバッファです。[[http://www.opengl.org/registry/specs/ARB/depth_texture.txt|ARB_depth_texture]] を参照下さい）。
+** グラフィックスカードは、OpenGL 1.4または[[http://www.opengl.org/registry/specs/ARB/depth_texture.txt|ARB_depth_texture]] の拡張機能をサポートする必要があります。
+** デプステクスチャはレンダリングされるZバッファに対応し、Fragment Programの結果を__使用しません__ 。
+* OpenGL ES 2.0 (iOS/Android) は上記のOpenGLと非常に似ています。
+** GPU は[[http://www.khronos.org/registry/gles/extensions/OES/OES_depth_texture.txt | GL_OES_depth_texture]] の拡張機能をサポートする必要があります。
+* Direct3D 11 (Windows) はOpenGLのように、ネイティブ　デプステクスチャに対応しています。
+* Flash (Stage3D) はカラーにエンコードされたデプステクスチャを使用して、必要とされている高精度をエミュレートします。
 
-!! �f�v�X�e�N�X�`���@�w���v�}�N���̎g�p
+!! デプステクスチャ　ヘルプマクロの使用
 
-�قƂ�ǂ̏ꍇ�f�v�X�e�N�X�`���̓J��������̃f�v�X�������_�����O����̂Ɏg�p����܂��B[[SL-BuiltinIncludes | @@UnityCG.cginc@@ include file]] �ɂ͏�L�̃P�[�X�̕��G���ɑΉ����邽�߂̃}�N�����܂�ł��܂��B
-* ``UNITY_TRANSFER_DEPTH(o)``: ����͒��_��Eye Space Depth�i���_��ԃf�v�X�j���v�Z���A``o`` �ifloat2�ł��邱�Ƃ��K�{�j�ɏo�͂��܂��B�f�v�X�e�N�X�`���ɑ΂��ă����_�����O����Ƃ��ɒ��_�v���O�����Ŏg�p���ĉ������B�l�C�e�B�u�@�f�v�X�e�N�X�`���̂���v���b�g�t�H�[���ł́AZ�o�b�t�@�̒l�͈ÖٓI�Ƀ����_�����O����邽�߁A���̃}�N���͉������܂���B
-* ``UNITY_OUTPUT_DEPTH(i)``: ����͒��_��Eye Space Depth��``i`` (float2�ł��邱�Ƃ��K�{)����߂��܂��B�f�v�X�e�N�X�`���ɑ΂��ă����_�����O����Ƃ��ɁA�t���O�����g�v���O�����Ŏg�p���ĉ������B�l�C�e�B�u�@�f�v�X�e�N�X�`���̂���v���b�g�t�H�[���ł͂��̃}�N���́AZ�o�b�t�@�l���ÖٓI�Ƀ����_�����O����邽�߁A��Ƀ[����߂��܂��B
-* ``COMPUTE_EYEDEPTH(o)``: ����͒��_��Eye Space Depth���v�Z���A``o``�ɏo�͂��܂��B���_�v���O�����ŁA�f�v�X�e�N�X�`����__�����_�����O���Ȃ�__ �Ƃ��ɁA�g�p���܂��B
-* ``DECODE_EYEDEPTH(i)``: �f�v�X�e�N�X�`��``i`` ���獂���x�̒l���󂯎��A�Y������Eye Space Depth��߂��܂��B���̃}�N����Direct3D�ł͒P��``i*FarPlane`` ��߂��܂��B�l�C�e�B�u�@�f�v�X�e�N�X�`���̂���v���b�g�t�H�[���ł͂��̃}�N���́A�A�J�����͈̔͂Ɉ�v����悤�ɁA�l����`�����g�����܂��B
+ほとんどの場合デプステクスチャはカメラからのデプスをレンダリングするのに使用されます。[[SL-BuiltinIncludes | @@UnityCG.cginc@@ include file]] には上記のケースの複雑さに対応するためのマクロを含んでいます。
+* ``UNITY_TRANSFER_DEPTH(o)``: これは頂点のEye Space Depth（視点空間デプス）を計算し、``o`` （float2であることが必須）に出力します。デプステクスチャに対してレンダリングするときに頂点プログラムで使用して下さい。ネイティブ　デプステクスチャのあるプラットフォームでは、Zバッファの値は暗黙的にレンダリングされるため、このマクロは何もしません。
+* ``UNITY_OUTPUT_DEPTH(i)``: これは頂点のEye Space Depthを``i`` (float2であることが必須)から戻します。デプステクスチャに対してレンダリングするときに、フラグメントプログラムで使用して下さい。ネイティブ　デプステクスチャのあるプラットフォームではこのマクロは、Zバッファ値が暗黙的にレンダリングされるため、常にゼロを戻します。
+* ``COMPUTE_EYEDEPTH(o)``: これは頂点のEye Space Depthを計算し、``o``に出力します。頂点プログラムで、デプステクスチャに__レンダリングしない__ ときに、使用します。
+* ``DECODE_EYEDEPTH(i)``: デプステクスチャ``i`` から高精度の値を受け取り、該当するEye Space Depthを戻します。このマクロはDirect3Dでは単に``i*FarPlane`` を戻します。ネイティブ　デプステクスチャのあるプラットフォームではこのマクロは、、カメラの範囲に一致するように、値を線形化し拡張します。
 
-�Ⴆ�΁A���̃V�F�[�_�̓I�u�W�F�N�g�̃f�v�X�������_�����O���܂��F
+例えば、このシェーダはオブジェクトのデプスをレンダリングします：
 [@
 Shader "Render Depth" {
 SubShader {
