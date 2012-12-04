@@ -10,10 +10,10 @@ Attach:Inspector-CapsuleCollider.png\\
 
 ||PROPS
 (:include comp-ColliderProps:)
+||``Center`` ||The position of the Collider in the object's local space. ||
 ||``Radius`` ||The radius of the Collider's local width. ||
 ||``Height`` ||The total height of the Collider. ||
 ||``Direction`` ||The axis of the capsule's lengthwise orientation in the object's local space. ||
-||``Center`` ||The position of the Collider in the object's local space. ||
 
 
 !!Details

@@ -10,5 +10,8 @@
 ||``Rnd Velocity`` ||A random speed along X, Y, and Z that is added to the velocity. ||
 ||``Emitter Velocity Scale`` ||The amount of the emitter's speed that the particles inherit. ||
 ||``Tangent Velocity`` ||The starting speed of particles along X, Y, and Z, across the Emitter's surface. ||
+||``Angular Velocity`` ||The angular velocity of new particles in degrees per second.||
+||``Rnd Angular Velocity`` ||A random angular velocity modifier for new particles.||
+||``Rnd Rotation`` ||If enabled, the particles will be spawned with random rotations.||
 ||``Simulate In World Space`` ||If enabled, the particles don't move when the emitter moves. If false, when you move the emitter, the particles follow it around. ||
 ||``One Shot`` ||If enabled, the particle numbers specified by min & max emission is spawned all at once. If disabled, the particles are generated in a long stream. ||

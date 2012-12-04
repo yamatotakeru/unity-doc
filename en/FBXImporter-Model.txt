@@ -10,7 +10,7 @@ Some general adjustments to be made for example might be:
 * Generate colliders - this will generate a collison mesh to allow your model to collide with other objects - see notes below.
 * Material Naming and Search - this will help you automatically setup your materials and locate textures
 
-Attach:MecanimImporterModelTab.png\\
+Attach:MecanimImporterModelTab41.png\\
 ''FBX Importer Inspector: Model tab''
 
 ||PROPS
@@ -19,6 +19,7 @@ Attach:MecanimImporterModelTab.png\\
 ||``Mesh Compression`` ||Increasing this value will reduce the file size of the mesh, but might introduce irregularities.  It's best to turn it up as high as possible without the mesh looking too different from the uncompressed version. This is useful for [[ReducingFilesize | optimizing game size]]. ||
 ||``Read/Write Enabled``||Enables the mesh to be written at runtime so you can modify the data - makes a copy in memory.||
 ||``Optimize Mesh``||This option determines the order in which triangles will be listed in the mesh.||
+||``Import BlendShapes``||Disable this if your file contains BlendShapes and you don't want them to be imported.||
 ||``Generate Colliders`` ||If this is enabled, your meshes will be imported with Mesh Colliders automatically attached. This is useful for quickly generating a collision mesh for environment geometry, but should be avoided for geometry you will be moving. For more info see [[#colliders | Colliders]] below. ||
 ||``Swap UVs`` ||Use this if lightmapped objects pick up the wrong UV channels. This will swap your primary and secondary UV channels.||
 ||``Generate Lightmap`` ||Use this to create the second UV channel to be used for Lightmapping.||
@@ -45,4 +46,3 @@ Attach:MecanimImporterModelTab.png\\
 ||>>>``Local`` ||Unity will try to find existing materials only in the "local" Materials folder, ie, the Materials subfolder which is the same folder as the model file. ||
 ||>>>``Recursive-Up`` ||Unity will try to find existing materials in all Materials subfolders in all parent folders up to the Assets folder. ||
 ||>>>``Everywhere`` ||Unity will try to find existing materials in all Unity project folders. ||
-

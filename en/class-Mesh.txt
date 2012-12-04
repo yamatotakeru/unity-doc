@@ -27,7 +27,7 @@ Attach:Mesh-TextureImportHierarchy.png\\
 
 [[FBXImporter-Model|FBX importer options for the model]]
 
-!!! Material Generation and Assignment
+!! Material Generation and Assignment
 
 For each imported material Unity will apply the following rules:-
 
@@ -37,23 +37,32 @@ If material generation is disabled (i.e. ``Import Materials`` is unchecked), the
 * If Unity succeeds in finding an existing material then it will use it for the imported scene, otherwise it will generate a new material
 
 [[#colliders]]
-!!! Colliders
+!! Colliders
 
 Unity uses two main types of colliders: $$Mesh Colliders$$ and $$Primitive Colliders$$.  Mesh colliders are components that use imported mesh data and can be used for environment collision. When you enable $$Generate Colliders$$ in the Import Settings, a Mesh collider is automatically added when the mesh is added to the Scene.  It will be considered solid as far as the physics system is concerned.
 
 If you are moving the object around (a car for example), you can not use Mesh colliders. Instead, you will have to use Primitive colliders. In this case you should disable the ``Generate Colliders`` setting.
 
 
-!!! Animations
+!! Animations
 
-Animations are automatically imported from the scene. For more details about animation import options see the [[Animations | Animation Import]] chapter.
+Animations are automatically imported from the scene. For more details about animation import options see the section on [[AssetPreparationandImport |  asset preparation and import]] in the Mecanim animation system.
 
-!!! Normal mapping and characters
+!! Normal mapping and characters
 
 If you have a character with a normal map that was generated from a high-polygon version of the model, you should import the game-quality version with a ``Smoothing angle`` of 180 degrees.  This will prevent odd-looking seams in lighting due to tangent splitting.  If the seams are still present with these settings, enable ``Split tangents across UV seams``.
 
 If you are converting a greyscale image into a normal map, you don't need to worry about this.
 
+!! Blendshapes
+
+Unity has support for BlendShapes (also called morph-targets or vertex level animation). Unity can import BlendShapes from __.FBX__ (BlendShapes and controlling aninimation) and __.dae__ (only BlendShapes) exported 3D files. Unity BlendShapes support vertex level animation on vertices, normals and tangents. Mesh can be affected by skin and BlendShapes at the same time. All meshes imported with BlendShapes will use SkinnedMeshRenderer (no mater if it does have skin or not). BlendShape animation is imported as part of regular animation - it simply animates BlendShape weigts on SkinnedMeshRenderer. 
+
+There are two ways to import BlendShapes with normals:
+# Set ``Normals`` import mode to ``Calculate``, this way same logic will be used for calculating normals on a mesh and BlendShapes.
+# Export smoothing groups information to the source file, this ways Unity will calculate normals from smoothing groups for mesh and BlendShapes.
+
+If you want tangents on your BlendShapes then set ``Tangents`` import mode to ``Calculate``.
 
 
 !!Hints
@@ -71,4 +80,3 @@ This is correct. What you are looking at is the number of vertices/triangles act
 * [[Modeling Optimized Characters]]
 * [[HOWTO-bumpmap | How do I use normal maps?]]
 * [[HOWTO-FixZAxisIsUp | How do I fix the rotation of an imported model?]]
-
