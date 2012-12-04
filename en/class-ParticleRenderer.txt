@@ -9,7 +9,11 @@ Attach:Inspector-ParticleRenderer.png\\
 !!Properties
 
 ||PROPS
+||``Cast Shadows`` ||If enabled, allows object to cast shadows.||
+||``Receive Shadows`` ||If enabled, allows object to receive shadows.||
 ||``Materials`` ||Reference to a list of $$Materials$$ that will be displayed in the position of each individual particle. ||
+||``Use Light Probes`` ||If enabled and baked light probes are present in the scene, an interpolated light probe.||
+||``Light Probe Anchor`` ||If set, Renderer will use this Transform's position to find the interpolated light probe.||
 ||``Camera Velocity Scale`` ||The amount of stretching that is applied to the Particles based on [[class-Camera|Camera]] movement. ||
 ||``Stretch Particles`` ||Determines how the particles are rendered. ||
 ||>>>``Billboard`` ||The particles are rendered as if facing the camera. ||

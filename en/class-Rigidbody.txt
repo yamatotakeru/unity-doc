@@ -18,7 +18,6 @@ Attach:Inspector-Rigidbody.png\\
 ||>>>``None`` ||No Interpolation is applied. ||
 ||>>>``Interpolate`` ||Transform is smoothed based on the Transform of the previous frame. ||
 ||>>>``Extrapolate`` ||Transform is smoothed based on the estimated Transform of the next frame. || 
-||``Freeze Rotation`` ||If enabled, this GameObject will never rotate based on collisions or forces added via script -- it will only rotate when using ``transform.Rotate()``. ||
 ||``Collision Detection`` ||Used to prevent fast moving objects from passing through other objects without detecting collisions. ||
 ||>>>``Discrete`` ||Use Discreet collision detection against all other colliders in the scene. Other colliders will use Discreet collision detection when testing for collision against it. Used for normal collisions (This is the default value). ||
 ||>>>``Continuous`` ||Use Discrete collision detection against dynamic colliders (with a rigidbody) and continuous collision detection against static MeshColliders (without a rigidbody). Rigidbodies set to Continuous Dynamic will use continuous collision detection when testing for collision against this rigidbody. Other rigidbodies will use Discreet Collision detection. Used for objects which the Continuous Dynamic detection needs to collide with. (This has a big impact on physics performance, leave it set to Discrete, if you don't have issues with collisions of fast objects) ||

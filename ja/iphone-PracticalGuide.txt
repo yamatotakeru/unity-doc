@@ -1,72 +1,76 @@
-! Practical Guide to Optimization for Mobiles
+! モバイル最適化のための実用ガイド
 
-This guide is for developers new to mobile game development, who are probably feeling overwhelmed, and are either planning and prototyping a new mobile game or porting an existing project to run smoothly on a mobile device. It should also be useful as a reference for anyone making mobile games or browser games which target old PCs and netbooks. 
+これは、ゲーム開発者が新たにモバイルゲームを作成するためのガイドです。企画段階でのプロトタイプのゲームや、既存のプロジェクトを移植する際に、モバイル端末上で快適に実行させる、または、スペックの低いPC、WebPlayer用のゲームを作成する人にとって、とても有用な情報になります。
 
-Optimization is a broad topic, and how you do it depends a lot on your game, so this guide is best read as an introduction or reference rather than a step-by-step guide that guarantees a smooth product.
+最適化についてのトピックは広範囲で、貴方のゲームは多くのものに依存していると思います。なのでこのガイドは製品の品質を保証するために一歩一歩進んでいくガイドよりもイントロダクションやリファレンスとして読んでいただくことがベストです。
 
-!! All mobile devices are not created equal
+!! 全てのモバイル端末は皆同じではない
 
-The information here assumes hardware around the level of the Apple A4 chipset, which is used on the original iPad, the iPhone 3GS, and the 3rd generation iPod Touch. On the Android side, that would mean an Android phone such as the Nexus One, or most phones that run Android 2.3 Gingerbread. On average, these devices were released in early 2010. Out of the app-hungry market, these devices are the older, slower portion. But they should be supported, because they represent a large portion of the market.
+iOS側ではA4チップを基準としています。これはiPad/iPhone3GS/iPodTouchに使用されています。
+Android側ではNexus OneやAndroid2.3を基準にしています。これは2010年にリリースされたもので、今となっては非常に遅くスペックも低いものですが、市場の大部分を占めています。なのでこれらの端末もサポートを行わないといけません。
 
-There are much slower, and much faster phones out there as well. The computational capability of mobile devices is increasing at an alarming rate. It's not unheard of for a new generation of a mobile GPU to be five times faster than its predecessor. That's '''''fast''''', when compared to the PC industry.
+モバイル端末は、はるかに遅いがそれと同様に速い部分を持っています。それは、モバイル端末の計算処理能力は凄まじい速さで向上していることです。モバイルGPUの新世代の登場によって5倍もの速さになりましたがこれは前例がないわけではありません。またPC業界と比較してもこの成長速度は '''''速い''''' です。
 
-For an overview of Apple mobile device tech specs, see [[Main.iphone-Hardware | the Hardware page]].
+iOS端末の仕様についての概要は [[Main.iphone-Hardware | the Hardware page]] を御覧ください。
 
-If you want to develop for mobile devices which will be popular in the future, or exclusively for high end devices right now, you will be able to get away with doing more. See [[Main.iphone-FutureDevices | Future Mobile Devices]].
+あなたが最新/将来のデバイス向けに最新の技術を使って開発をしたい場合、簡単に様々な問題を解決できるかもしれません。詳しくは [[Main.iphone-FutureDevices | Future Mobile Devices]] を御覧ください。
 
-The very low end, such as the iPhone 3G and the first and second generation iPod touches, are extremely limited and even more care must be taken to optimize for them. However, there is some question to whether consumers who have not upgraded their device will be buying apps. So unless you are making a free app, it might not be worthwhile to support the old hardware.
+非常に性能の低いiPhone3GやiPod Touchについては特に注意をはらって最適化を行わないといけません。ですが、それらの端末は発売から2年以上経過しており、所持率はとても少ないのです。これらの人々に向けて多くの時間を割くことが得策でしょうか？古い端末のサポートは行わないことも1つの手だと思います。
 
-!!Make optimization a design consideration, not a final step
+!!デザイン面で最適化を行う。これは最終ステップではない
 
-British computer scientist Michael A. Jackson is often quoted for his Rules of Program Optimization:
+英国のコンピュータ科学者「マイケル A. ジャクソン」という人物がいますが、彼のプログラムの最適化ルールについて多くの人が引用して紹介をしています。
 
-''The First Rule of Program Optimization: Don't do it. The Second Rule of Program Optimization (for experts only!): Don't do it yet.''
+''プログラミング最適化の最初のルール: プログラミングの最適化を最初にするな。プログラミング最適化の2番目のルール(専門家向け。専門としてる人以外は必ずしも守る必要はない。): まだプログラミングの最適化をするな。''
 
-His rationale was that, considering how fast computers are, and how quickly their speed is increasing, there is a good chance that if you program something it will run fast enough. Besides that, if you try to optimize too heavily, you might over-complicate things, limit yourself, or create tons of bugs.
+この彼の理論的根拠は、コンピュータの性能が向上し、処理速度が向上していることを考えれば、プログラマがどうやってコーディングしたかは関係なく、それは十分速く動くという見込みが高いことにありました。
+それに加え、極度に最適化をし過ぎてしまうと、全体的に複雑になってしまったり、あなたができる事に制限を掛けてしまったり、多くのバグを生み出してしまう可能性があります。
 
-However, if you are developing mobile games, there is another consideration: The hardware that is on the market right now is very limited compared to the computers we are used to working with, so the risk of creating something that simply won't run on the device balances out the risk of over-complication that comes with optimizing from the start.
+一般的には、この考えを採用しても良いのですが、モバイルゲームの開発となると他に考慮しなければいけない部分が出てきます。現在、市場に出回っているハードウェアは、普段私達が触っているコンピュータ(PC)に比べて非常に多くの制限が掛けられてしまっています。したがって、最初から最適化を行うということは、単に複雑なリスクを負い、デバイスの稼働バランスが取れなくなり、実行されない危険性を負うだけなのです。
 
-Throughout this guide we will try to point out situations where an optimization would help a lot, versus situations where it would be frivolous. 
+話が長くなりましたが、このガイドはあなたの浅薄な状況に対して、これから指摘する最適化の話が非常に助けになることだと思います。
 
-!!!Optimization: Not just for programmers
+!!!最適化 : プログラマに限らない話
 
-Artists also need to know the limitations of the platform and the methods that are used to get around them, so they can make creative choices that will pay off, and don't have to redo work.
+アーティストはプラットフォームの制限と、その制限を回避する方法を知っておく必要があります。それにより、クリエイティブな選択を行うことが出来、作業のやり直しも必要がなくなるでしょう。
 
-* More responsibility can fall on the artist if the game design calls for atmosphere and lighting to be drawn into textures instead of being baked.
-* Whenever anything can be baked, artists can produce content for baking, instead of real-time rendering. This allows them to ignore technical limitations and work freely.
+* もしゲームデザインが雰囲気や照明をベイクせずにテクスチャに描画するのなら、多くの責任はアーティストにかかることになります。
+* 何かをベイク出来るときはいつでもアーティストはリアルレンダリングの代わりにベイク用のコンテンツを生成することができます。これはアーティストの技術的限界を突破して作業ができることになります。
 
-!!!Design your game to make a smooth runtime fall into your lap
+!!!あなたの思い通り、スムーズに実行するために、ゲームのデザインを作成する
 
-These two pages detail general trends in game performance, and will explain how you can best design your game to be optimized, or how you can intuitively figure out which things need to be optimized if you've already gone into production.
+ゲームの一般的なパフォーマンスの話、あなたのゲームの最適化でベストなデザインの方法を説明します。また、既にプロジェクトが稼働している場合でも、最適化を行う必要があるかどうかについて、把握する方法も説明をします。
 
 * [[Main.iphone-OptimizedGraphicsMethods | Practical Methods for Optimized Rendering]]
 * [[Main.iphone-OptimizedScriptingMethods | Practical Methods for Optimized Scripting and Gameplay]]
 
 ##Profile##
-!!Profile early and often
+!!早い段階から頻繁にProfilerを使用する
 
-Profiling is important because it helps you discern which optimizations will pay off with big performance increases and which ones are a waste of your time. Because of the way that rendering is handled on a separate chip (GPU), the time it takes to render a frame is not the time that the CPU takes plus the time that the time that the GPU takes, instead it is the longer of the two. That means that if the CPU is slowing things down, optimizing your shaders won't increase the frame rate at all, and if the GPU is slowing things down, optimizing physics and scripts won't help at all. 
+どこに最適化の時間をかければいいのか、些細な影響のことにどれだけの時間を浪費するのか。この判断を手助けしてくれるのでプロファイリングはとても重要です。
+レンダリングはGPU上でハンドルされる方法のため、フレームのレンダリングにかかる時間はCPUにプラスされた時間ではありません。GPUに必要な時間はCPUとGPUで比べると、最も処理が長くなります。
+CPUが処理を遅くしているのであれば、シェーダーについての最適化を行なっても意味がありません。また、GPUが処理を遅くしているのであれば物理学とスクリプトを最適化しても意味がありません。
 
-Often different parts of the game and different situations perform differently as well, so one part of the game might cause 100 millisecond frames entirely due to a script, and another part of the game might cause the same slowdown, but because of something that is being rendered. So, at very least, you need to know where all the bottlenecks are if you are going to optimize your game. 
+ゲームの一部が異なる部分はよく違うものとして実行されるので、もしかしたらスクリプトのためだけに100ミリ秒のフレームを引き起こしてしまう可能性があります。また、他の部分で同じような処理の減速を引き起こす可能性もあります。しかしそれは何かのためにレンダリングされているからです。なので、せめて、あなたのゲームを最適化したいのであれば、どこがボトルネックになっているか知っておく必要があります。
 
-!!!Unity Profiler (Pro only)
+!!!Unity Profiler (Proのみ)
 
-The main Profiler in Unity can be used when targeting iOS or Android. See the [[Main.Profiler | Profiler guide]] for basic instructions on how to use it.
+プラットフォームがiOS/Androidの場合でもUnityのプロファイラを使用することができます。使用する方法については [[Main.Profiler | Profiler guide]] を御覧ください。
 
-!!!Internal Profiler
+!!!Profilerの内部
 
-The internal profiler spews out text every 30 frames. It can help you figure out which aspects of your game are slowing things down, be it physics, scripts, or rendering, but it doesn't go into much detail, for example, which script or which renderer is the culprit.
+プロファイラのテキストデータは30フレームごとに吐き出されます。それはあなたのゲームがどれだけ遅いかを把握するのにも役立ちます。物理学、スクリプト、レンダリングの詳細についてあまり詳しく触れることはできませんが、スクリプトかレンダラーが原因ということはわかります。
 
-See the [[Main.iphone-InternalProfiler | Internal Profiler page]] for more details on how it works and how to turn it on.
+更に詳しい動作について知りたいのであれば [[Main.iphone-InternalProfiler | Internal Profiler page]] をご覧下さい。
 
-!!! Profiler indicates most of time spent rendering
+!!! Profilerは大抵の場合レンダリングについて示される
 
 * [[Main.iphone-PracticalRenderingOptimizations | Rendering Optimizations]]
 
-!!! Profiler indicates most of time spent outside of rendering
+!!! Profilerはレンダリングを除いては大抵の場合スクリプトについて示される
 
 * [[Main.iphone-PracticalScriptingOptimizations | Scripting Optimizations]]
 
 
-!!! Table of Contents
+!!! 目次
 (:tocportion:)

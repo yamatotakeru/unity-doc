@@ -1,48 +1,48 @@
-! Forward Renderingパスの詳細
+! Forward Rendering Path Details
 
-このページでは$$Forward$$ [[RenderingPaths | Rendering Path]] の詳細について説明します。
+This page describes details of $$Forward$$ [[RenderingPaths | rendering path]].
 
-Forward Renderingパスは各オブジェクトを、オブジェクトに作用するライトにもとづいて、ひとつかそれ以上のパスにレンダリングします。ライトそのものは、設定および強度によって、Forward Renderingにより別々に扱われます。
+Forward Rendering path renders each object in one or more passes, depending on lights that affect the object. Lights themselves are also treated differently by Forward Rendering, depending on their settings and intensity.
 
-!! 実装の詳細
+!! Implementation Details
 
 
-Forward Renderingでは、各オブジェクトに作用する、いくつかのもっとも明るいライトは、完全なピクセルライティングモードでレンダリングされます。次に最大で4つのポイントライトが頂点ごとに計算されます。他のライトは球面調和（SH）として計算され、近似値になりますがより速くなります。ライトがピクセルライティングとなるかどうかは次のことに依存します：
-* Render Modeを$$Not Important$$ に設定したライトは常に頂点ライティングかSHとなります。
-* もっとも明るい指向性ライトは常にピクセルライティングです。
-* Render Modeを$$Important$$ に設定したライトは常にピクセルライティングです。
-* もし上の結果により、現在の$$Pixel Light Count$$ [[class-QualitySettings | Quality Setting]] より少ないライトの数となった場合、明るさを抑えるために、より多くのライトがピクセルライティングとなります。
+In Forward Rendering, some number of brightest lights that affect each object are rendered in fully per-pixel lit mode. Then, up to 4 point lights are calculated per-vertex. The other lights are computed as Spherical Harmonics (SH), which is much faster but is only an approximation. Whether a light will be per-pixel light or not is dependent on this:
+* Lights that have their Render Mode set to $$Not Important$$ are always per-vertex or SH.
+* Brightest directional light is always per-pixel.
+* Lights that have their Render Mode set to $$Important$$ are always per-pixel.
+* If the above results in less lights than current $$Pixel Light Count$$ [[class-QualitySettings | Quality Setting]], then more lights are rendered per-pixel, in order of decreasing brightness.
 
-各オブジェクトのライティングは次のように行われます：
-* Base Passは一つのピクセルごとの指向性ライトおよび全ての頂点ごと／SHライトを適用します。
-* 他のピクセルライトは、Additional Pass（追加のパス）でレンダリングされ、ひとつのライトごとにひとつのパスを使用します。
+Rendering of each object happens as follows:
+* Base Pass applies one per-pixel directional light and all per-vertex/SH lights.
+* Other per-pixel lights are rendered in additional passes, one pass for each light.
 
-例えば、もし複数のライトにより影響を受けるライトがある場合（下の絵で丸をつけた部分がライトAからHに作用されている）: \\
+For example, if there is some object that's affected by a number of lights (a circle in a picture below, affected by lights A to H): \\
 Attach:ForwardLightsExample.png
 
-ライトAからHが同じカラーと強度であるたと仮定した場合、全て自動レンダリングモードであるため、このオブジェクトにおいて、この順番のとおりにソートされます。もっとも明るい光（AからD）はピクセルライティングでレンダリングされ、4つのライト（DからG）が頂点ライティングとなり、最後に残りのライト（GからH）が球面調和（SH）となります。
+Let's assume lights A to H have the same color & intensity, all all of them have Auto rendering mode, so they would be sorted in exactly this order for this object. The brightest lights will be rendered in per-pixel lit mode (A to D), then up to 4 lights in per-vertex lit mode (D to G), and finally the rest of lights in SH (G to H):
 
 Attach:ForwardLightsClassify.png
 
-ライトグループは重複していることに留意して下さい、例えば最後のピクセルライティングは頂点ライティングモードにブレンドするため、オブジェクトやライトが動き回る際に"Light Popping"（急なライトの変化）は少なくなります。
+Note that light groups overlap; for example last per-pixel light blends into per-vertex lit mode so there are less "light popping" as objects and lights move around.
 
 
 !!! Base Pass
 
-ベースパスはオブジェクトをひとつのピクセル指向性ライトと残り全てSHライトでレンダリングします。このパスではさらに他のライトマップ、環境光ライティング、および自己発光ライティング、を追加します。このパスでレンダリングされる指向性ライトは影があります。ライトマップされたオブジェクトはSHライトから照らされないことに留意して下さい。
+Base pass renders object with one per-pixel directional light and all SH lights. This pass also adds any lightmaps, ambient and emissive lighting from the shader. Directional light rendered in this pass can have Shadows. Note that Lightmapped objects do not get illumination from SH lights.
 
 !!! Additional Passes
 
-Additional Passes（追加のパス）は、このオブジェクトに作用する、各々の追加されたピクセルライトでレンダリングされます。これらのパスのライトは影を持てません（結果としてForward Renderingがサポートするのはひとつの指向性ライトと影です）。
+Additional passes are rendered for each additional per-pixel light that affect this object. Lights in these passes can't have shadows (so in result, Forward Rendering supports one directional light with shadows).
 
 
-!! パフォーマンスの考慮点
+!! Performance Considerations
 
-球面調和ライトは''非常に'' 速くレンダリングされます。CPUのコストが極小であり、GPUが適用する場合も''事実上コストなし'' です（すなわち、Base Passは常にSHライティングを計算します、しかしSHライトの性質からいくつSHライトがあってもコストはまったく同じです）。
+Spherical Harmonics lights are ''very'' fast to render. They have a tiny cost on the CPU, and are ''actually free'' for the GPU to apply (that is, base pass always computes SH lighting; but due to the way SH lights work, the cost is exactly the same no matter how many SH lights are there).
 
-SHライトの欠点は：
-* オブジェクトのピクセルでなく、頂点で計算されます。これにより、ライトのCookieや法線マップはサポートしません。
-* SHライトは頻度が非常に低くなります。急なライティングの遷移を行うことが出来ません。また、拡散ライティングしか作用しません（鏡面ハイライトには頻度が低すぎます）。
-* SHライトはローカルではりません。表面に近い、ポイントあるいはスポットのSHライトは、"何か間違っているように見えます" 。
+The downsides of SH lights are:
+* They are computed at object's vertices, not pixels. This means they do not support light Cookies or normal maps.
+* SH lighting is very low frequency. You can't have sharp lighting transitions with SH lights. They are also only affecting the diffuse lighting (too low frequency for specular highlights).
+* SH lighting is is not local; point or spot SH lights close to some surface will "look wrong".
 
-まとめると、SHライトは小さく動的ななオブジェクトには十分ではありません。
+In summary, SH lights are often good enough for small dynamic objects.

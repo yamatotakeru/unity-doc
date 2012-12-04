@@ -1,63 +1,64 @@
-! Platform Specific Rendering Differences
+! プラットフォーム別レンダリングの違い
 
-Unity runs on various platforms, and in some cases there are differences in how things behave. Most of the time Unity hides the differences from you, but sometimes you can still bump into them.
+Unityは様々なプラットフォームで動作し、いくつかのケースでは動作に違いが出ます。ほとんどの場合、Unityは違いを隠してくれますが、それでも表面化する場合があります。
 
 
-!! Render Texture Coordinates
+!! Render Textureの座標
 
-Vertical texture coordinate conventions differ between Direct3D, OpenGL and OpenGL ES:
-* In Direct3D, the coordinate is zero at the top, and increases downwards.
-* In OpenGL and OpenGL ES, the coordiante is zero at the bottom, and increases upwards.
+垂直方向のテクスチャ座標の表現方法ははDirect3DとOpenGL・OpenGL ESで異なります。
+* Direct3Dでは最上部がゼロの座標位置となり、下方向に行くにしたがって増加します。
+* OpenGLとOpenGL ESでは、最下部がゼロの座標位置となり、上方向に行くにしたがって増加します。
 
-Most of the time this does not really matter, except when rendering into a [[class-RenderTexture | Render Texture]]. In that case, Unity internally flips rendering upside down when rendering into a texture on Direct3D, so that the conventions match between the platforms.
+ほとんどの場合に影響はありませんが、[[class-RenderTexture | Render Texture]] に対してレンダリングする場合は影響があります。この場合、UnityはDirect3Dでレンダリングするときに意図的にレンダリングを上下逆に反転するので、プラットフォーム間のルールは同じままです。
 
-One case where this does not happen, is when [[comp-ImageEffects | Image Effects]] and Anti-Aliasing is used. In this case, Unity renders to screen to get anti-aliasing, and then "resolves" rendering into a RenderTexture for further processing with an Image Effect. The resulting source texture for an image effect is ''not flipped upside down'' on Direct3D (unlike all other Render Textures).
+この反転が行われないケースは、[[comp-ImageEffects | Image Effects]] およびアンチエイリアスが使用される場合です。In this case, Unity renders to screen to get anti-aliasing, and then "resolves" rendering into a RenderTexture for further processing with an Image Effect.この場合、Untyはアンチエイリアスして、後続のイメージエフェクトの処理のためにRender Textureに対してレンダリングを"溶かし込みます"。結果となるイメージエフェクトのソーステクスチャはDirect3Dで''上下逆ではありません'' （他のRender Textureと違って）。
 
-If your Image Effect is a simple one (processes one texture at a time), this does not really matter, because [[ScriptRef:Graphics.Blit.html|Graphics.Blit]] takes care of that.
+もしイメージエフェクトがシンプルである（1回にテクスチャを1つのみ処理する）場合、[[ScriptRef:Graphics.Blit.html|Graphics.Blit]] が処理してくれるため、このことを気にする必要はありません。
 
-However, __if you're processing more than one RenderTexture together__ in your Image Effect, most likely they will come out at different vertical orientations (only in Direct3D-like platforms, and only when anti-aliasing is used). You need to manually "flip" the screen texture upside down in your vertex shader, like this:
+しかし、イメージエフェクトで1回にRender Textureを複数まとめる場合、多くのケースでそれぞれが異なる垂直方向に出力されます（ただしDirect3Dのようなプラットフォームであり、かつアンチエイリアスが使用されている場合のみ）。頂点シェーダで手動で画面テクスチャを上下逆に"反転" する必要があります。
+
 [@
-// On D3D when AA is used, the main texture & scene depth texture
-// will come out in different vertical orientations.
-// So flip sampling of the texture when that is the case (main texture
-// texel size will have negative Y).
+// Direct3Dでアンチエイリアスが使用されている場合、メインのテクスチャ
+// およびシーンのデプステクスチャは垂直方向が逆に出力されます。
+// このため、このケースに該当する場合、テクスチャサンプリングを反転させます。
+// （メインテクスチャのテクセルサイズはYが負の値になります。）
 #if UNITY_UV_STARTS_AT_TOP
 if (_MainTex_TexelSize.y < 0)
         uv.y = 1-uv.y;
 #endif
 @]
 
-Check out Edge Detection scene in [[http://unity3d.com/support/resources/example-projects/shader-replacement | Shader Replacement sample project]] for an example of this. Edge detection there uses both screen texture and Camera's [[SL-CameraDepthTexture | Depth+Normals texture]].
+[[http://unity3d.com/support/resources/example-projects/shader-replacement | Shader Replacementのサンプルプロジェクト]] でエッジ検出を行っているシーンを確認下さい。ここでエッジ検出はシーンのテクスチャとカメラ[[SL-CameraDepthTexture | デプスおよび法線テクスチャ]] の両方で使用されています。
 
 
-!! AlphaTest and programmable shaders
+!! アルファテストおよびプログラマブル　シェーダ
 
-Some platforms, most notably mobile (OpenGL ES 2.0) and Direct3D 11, do not have fixed function [[SL-AlphaTest | alpha testing]] functionality. When you are using programmable shaders, it's advised to use Cg/HLSL @@clip()@@ function in the pixel shader instead.
+いくつかのプラットフォーム、殊更にモバイル（OpenGL ES 2.0）およびDirect3D 11では、Fixed Function（固定関数）[[SL-AlphaTest | alpha testing]] （アルファテスト）機能がありません。プログラマブル　シェーダを使用する場合、Cg/HLSL @@clip()@@ 関数を代わりに使用することを推奨します。
 
 
-!! Direct3D 11 shader compiler is more picky about syntax
+!! Direct3D 11シェーダコンパイラは文法に厳格
 
-Direct3D 9 and OpenGL use NVIDIA's Cg to compile shaders, but Direct3D 11 (and Xbox 360) use Microsoft's HLSL shader compiler. HLSL compiler is more picky about various subtle shader errors. For example, it won't accept function output values that aren't initialized properly.
+Direct3D 9やOpenGLはNVIDIAのCgを使用してシェーダをコンパイルしますが、 Direct3D 11 (およびXbox 360)はMicrosoftのHLSLシェーダコンパイラを使用します。HLSLコンパイラは様々なところでシェーダの僅かなエラーに対して厳格です。例をあげると、正しく初期化されていない関数の出力値があると受付をしてくれません。
 
-Most common places where you'd run into this:
-* [[SL-SurfaceShaders | Surface shader]] vertex modifier that has an "out" parameter. Make sure to initialize the output like this:
+この現象に最も頻繁に遭遇する場面は：
+* [[SL-SurfaceShaders | Surface shader]] 頂点モディファイアの場合。次のように必ず出力を初期化するようにして下さい：
       void vert (inout appdata_full v, out Input o) 
       {
         __UNITY_INITIALIZE_OUTPUT(Input,o);__
         // ...
       }
-* Partially initialized values, e.g. a function returning float4, but the code only sets .xyz values of it. Make sure to set all values, or change to float3 if you only need those.
+* 部分的に初期化された値、例えばfloat4を戻す関数があるけれど、コードが.xyzしか戻さない場合。全ての値を戻すか、float3で良いのならばそのように変更します。
 
 
-!! Using OpenGL Shading Language (GLSL) shaders with OpenGL ES 2.0
+!! OpenGL ES 2.0でOpenGLシェーダ言語(GLSL)のシェーダを使用する
 
-OpenGL ES 2.0 provides only limited native support for OpenGL Shading Language (GLSL), for instance OpenGL ES 2.0 layer provides no built-in parameters to the shader.
+OpenGL ES 2.0は、OpenGLシェーダ言語(GLSL)についてネイティブサポートが限定されていて、例えばOpenGL ES 2.0のレイヤーはシェーダに対して、内蔵パラメータを提供していません。
 
-Unity implements built-in parameters for you exactly in the same way as OpenGL does, however following built-in parameters are missing:
+Unityは内蔵パラメータをOpenGLと全く同じように実装していますが、次のパラメータが欠落しています：
 * ``gl_ClipVertex``
 * ``gl_SecondaryColor``
 * ``gl_DepthRange``
-* ``halfVector`` property of the ``gl_LightSourceParameters`` structure
+* ``gl_LightSourceParameters``構造体の``halfVector``プロパティ
 * ``gl_FrontFacing``
 * ``gl_FrontLightModelProduct``
 * ``gl_BackLightModelProduct``
@@ -71,6 +72,7 @@ Unity implements built-in parameters for you exactly in the same way as OpenGL d
 
 
 
-!! iPad2 and MSAA and alpha-blended geometry
+!! iPad2とMSAAとアルファブレンディングされた形状
 
-There is a bug in apple driver resulting in artifacts when MSAA is enabled and alpha-blended geometry is drawn with non RGBA colorMask. To prevent artifacts we force RGBA colorMask when this configuration is encountered, though it will render built-in Glow FX unusable (as it needs DST_ALPHA for intensity value). Also, please update your shaders if you wrote them yourself (see "Render Setup -> ColorMask" in [[ScriptRef:Main.SL-Pass | Pass Docs]]).
+Appleのドライバーにはバグがあり、MSAAを有効化した場合かつRGBA colorMaskでない形でアルファブレンディングされた形状が描画された場合、画像の乱れが生じます。画像の乱れを防止するために、内蔵Glow FXを無効にしてしまう（DST_ALPHAをintensityの値として必要であるため）にも関わらずRGBA  colorMaskを強制的に有効にします。
+さらにシェーダを自ら書いた場合、それらも修正します。([[ScriptRef:Main.SL-Pass | Pass Docs]] の"Render Setup -> ColorMask"を参照下さい)。
