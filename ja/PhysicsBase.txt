@@ -1,51 +1,52 @@
-Unity has NVIDIA PhysX physics engine built-in. This allows for unique emergent behaviour and has many useful features.
+Unityは NVIDIA PhysXエンジンを内蔵しています。これにより独特で最先端の動作や様々な便利な機能を活用できます。
 
-!!Basics
+!!基本
 
-To put an object under physics control, simply add a $$Rigidbody$$ to it. When you do this, the object will be affected by gravity, and can collide with other objects in the world.
+物理挙動をオブジェクトに与えるためには、$$Rigidbody$$ を追加するだけです。このようにすると、オブジェクトは重力が作用することになり、その世界の中で他のオブジェクトと衝突できます。
 
-!!! Rigidbodies
+!!! Rigidbody
 
-[[class-Rigidbody|Rigidbodies]] are physically simulated objects. You use Rigidbodies for things that the player can push around, for example crates or loose objects, or you can move Rigidbodies around directly by adding forces to it by scripting.
+[[class-Rigidbody|Rigidbody]] は物理シミュレーションを与えられたオブジェクトです。RigidbodyはPlayerが押して動かすことの出来るもの、例えば壷や固定されてないもの、などに使用することが出来るほか、直接スクリプティングによってRigidibodyに力を加えて（Add Forceして）、動かすことが出来ます。
 
-If you move the Transform of a non-Kinematic Rigidbody directly it may not collide correctly with other objects. Instead you should move a Rigidbody by applying forces and torque to it. You can also add [[class-HingeJoint|Joints]] to rigidbodies to make the behavior more complex. For example, you could make a physical door or a crane with a swinging chain.
+もしKinematicでないRigidbodyのTransformを直接移動すると、他のオブジェクトと正しく衝突しないかもしれません。その代わりに、Rigidbodyを動かすには、力を加えるか、トルクを加える必要があります。さらにRigidbodyに[[class-HingeJoint|Joint]] を加えて複雑な動作も実現することが出来ます。例えば、物理的なドアか、振り子の動作をする鎖のついたクレーンを作成することが出来ます。
 
-You also use Rigidbodies to bring vehicles to life, for example you can make cars using a Rigidbody, 4 [[class-WheelCollider| Wheel Colliders]] and a script applying wheel forces based on the user's [[class-InputManager | Input]].
+さらにはRigidbodyを使用して乗り物に活力を与えて、Rigidbody、四輪の[[class-WheelCollider| Wheel Collider]] とユーザの[[class-InputManager | Input]] にもとづいたWheel Forceを加えるスクリプト、などを作成することが出来ます。
 
-You can make airplanes by applying forces to the Rigidbody from a script. Or you can create special vehicles or robots by adding various Joints and applying forces via scripting.
+スクリプトからRigidbodyを加えることで飛行機を作成することが出来ます。あるいは、様々なJointを追加したり、スクリプトから力を加えることで、特殊な乗り物やロボットを作成することが出来ます。
 
-Rigidbodies are most often used in combination with [[class-BoxCollider|primitive colliders]].
+Rigidbodyは[[class-BoxCollider|Primitive Collider]] と組み合わせて使用することが良くあります。
 
-__Tips:__
-*You should never have a parent and child rigidbody together
-*You should never scale the parent of a rigidbody
+__ヒント：__
+*親子のRigidbodyを一緒にするべきではありません。
+*RigidbodyのScaleをするべきではありません。
 
 
-!!! Kinematic Rigidbodies
 
-A $$Kinematic Rigidbody$$ is a Rigidbody that has the isKinematic option enabled. Kinematic Rigidbodies are not affected by forces, gravity or collisions. They are driven explicitly by setting the position and rotation of the Transform or animating them, yet they can interact with other non-Kinematic Rigidbodies.
+!!! Kinematic Rigidbodiy
 
-Kinematic Rigidbodies correctly [[RigidbodySleeping | wake up]] other Rigidbodies when they collide with them, and they apply friction to Rigidbodies placed on top of them.
+$$Kinematic Rigidbody$$ はisKinematicオプションを有効にしたRigidbodyです。Kinematic Rigidbodyは力、重力、コリジョンによる作用を受けません。これらは、明示的にTransformの位置や回転を設定したり、アニメーションできますが、他のKinematic Rigidbodyを相互作用させることが出来ます。
 
-These are a few example uses for Kinematic Rigidbodies:
+Kinematic Rigidbodyは他のRigidbodyと衝突した際に[[RigidbodySleeping | Wake Up]] して、上に乗せられたRigidbodyに摩擦（Friction）を加えます。
 
-# Sometimes you want an object to be under physics control but in another situation to be controlled explicitly from a script or animation. For example you could make an animated character whose bones have Rigidbodies attached that are connected with joints for use as a Ragdoll. Most of the time the character is under animation control, thus you make the Rigidbody Kinematic. But when he gets hit you want him to turn into a Ragdoll and be affected by physics. To accomplish this, you simply disable the isKinematic property.
-# Sometimes you want a moving object that can push other objects yet not be pushed itself. For example if you have an animated platform and you want to place some Rigidbody boxes on top, you should make the platform a Kinematic Rigidbody instead of just a $$Collider$$ without a Rigidbody.
-# You might want to have a Kinematic Rigidbody that is animated and have a real Rigidbody follow it using one of the available Joints.
+次に、Kinematic Rigidbodyの例をいくつか示します：
 
-!!! Static Colliders
+# オブジェクトに物理挙動を持たせるけれど、別の状況ではアニメーションやスクリプトで制御を明示したい場合がたまにあります。例えばアニメーションするキャラクターを作成して、そのボーンにRigidbodyをアタッチして、ジョイントを接続してRagdollとして使用するとします。ほとんどの場合、キャラクターはアニメーションで制御するので、RigidbodyをKinematicに設定します。しかし、キャラクターが何かに当てられたときはRagdollに変更して、物理挙動を与えるようにします。そのためには、isKinematicプロパティを無効にするだけです。
+# 動いているオブジェクトに他のオブジェクトを押すことが出来るようにしたいけど、逆にそれ自身は押されたくない場合がたまにあります。例えば、アニメの土台があり、いくつかのRigidbodyの箱を上に乗せたい場合、土台はRigidbodyのない$$Collider$$ ではなく、Kinematic Rigidbodyとすべきです。
+# Kinematic Rigidbodyにアニメーションを持たせ、本当のRigidbodyに利用可能なジョイントをつけてKinematic Rigidbodyをフォローさせるようにしたい場合があります。
 
-A $$Static Collider$$ is a GameObject that has a Collider but not a Rigidbody. Static Colliders are used for level geometry which always stays at the same place and never moves around. You can add a $$Mesh Collider$$ to your already existing graphical meshes (even better use the ^^Import Settings^^ Generate Colliders check box), or you can use one of the other Collider types.
+!!! Static Collider
 
-You should never move a Static Collider on a frame by frame basis. Moving Static Colliders will cause an internal recomputation in PhysX that is quite expensive and which will result in a big drop in performance. On top of that the behaviour of waking up other Rigidbodies based on a Static Collider is undefined, and moving Static Colliders will not apply friction to Rigidbodies that touch it. Instead, Colliders that move should always be Kinematic Rigidbodies.
+$$Static Collider$$ はコライダはあるけれどRigidbodyはないゲームオブジェクトです。Static Colliderは同じ場所を保ち不動である階段の物体などで使用されます。すでに存在するグラフィックスのメッシュに$$Mesh Collider$$ を追加（あるいはもっと良い方法として^^Import Settings^^ のGenerate Colliders のチェックボックスを有効化）するか、他のコライダのタイプを使用することが出来ます。
 
-!!! Character Controllers
-You use [[class-CharacterController|Character Controllers]] if you want to make a humanoid character. This could be the main character in a third person platformer, FPS shooter or any enemy characters.
+Static Colliderを毎フレームごとに移動するべきではありません。Static Colliderの移動はPhysXでの内部計算のやり直しを発生させ、高価であるために大きなパフォーマンス低下につながります。それに加えてStatic ColliderにもとづいてRigidbodyをWake Upする動作は未定義であるため、動くStatic Colliderに触れるRigidbodyに摩擦が加わりません。その代わり、移動するコライダはRigidbodyとするべきです。
+ 
+!!! Character Controller
+ヒューマノイド型キャラクター作成する場合、[[class-CharacterController|Character Controller]] を使用すべきです。これはアクションゲーム（Third Person Platformer）のメインキャラかもしれないし、FPSの狙撃手や敵キャラかもしれません。
 
-These Controllers don't follow the rules of physics since it will not feel right (in Doom you run 90 miles per hour, come to halt in one frame and turn on a dime). Instead, a Character Controller performs collision detection to make sure your characters can slide along walls, walk up and down stairs, etc.
+このControllerは不自然な動きになってしまうため、物理法則にしたがいません（Doomでは時速140キロで走って、1フレームで停止して、方向転換することが出来ます）。その代わり、移動するコライダは衝突判定を行って、キャラクターが壁に沿ってスライドして、階段を昇ったり降りたり出来るようになります。
 
-Character Controllers are not affected by forces but they can push Rigidbodies by applying forces to them from a script. Usually, all humanoid characters are implemented using Character Controllers.
+Character ControllerはForceにより作用を受けませんが、Rigidboyにスクリプトから力を加えることで押すことは出来ます。一般に、全てのヒューマノイドキャラクターはCharacter Controllerを使用して実装します。
 
-Character Controllers are inherently unphysical, thus if you want to apply real physics - Swing on ropes, get pushed by big rocks - to your character you have to use a Rigidbody, this will let you use joints and forces on your character. Character Controllers are always aligned along the Y axis, so you also need to use a Rigidbody if your character needs to be able to change orientation in space (for example under a changing gravity). However, be aware that tuning a Rigidbody to feel right for a character is hard due to the unphysical way in which game characters are expected to behave. Another difference is that Character Controllers can slide smoothly over steps of a specified height, while Rigidbodies will not.
+Character Controllerは物理挙動が継承されないため、もし本当の物理挙動を当てはめたい場合、例えば揺れるロープにつかまったり、大きな岩に押しのけられたり、といった場合、Rigidbodyを使用する必要があります。これにより、キャラクターにJointやForceを使用することが出来ます。Character Controllerは常にY軸と平行の向きであるため、空中で向きを変える必要がある場合（例えば重力が変化する、など）もRigidbodyを使用する必要があります。しかし、キャラクターを不自然でないようにRigidbodyをチューニングするのは、ゲームキャラクターが物理法則に反して動くことを期待されているため難しい、ということを頭に入れるべきです。もう一つの違いは、Character Controllerが決まった階段のステップをスムーズに動くことは出来ますが、Rigidbodyには難しいことです。
 
-If you parent a Character Controller with a Rigidbody you will get a "Joint" like behavior.
+もし、Character ControllerをRigidbodyの親とする場合、"Joint" のような動作になります。
