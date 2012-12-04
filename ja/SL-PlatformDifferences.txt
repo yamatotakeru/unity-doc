@@ -1,64 +1,64 @@
-! �v���b�g�t�H�[���ʃ����_�����O�̈Ⴂ
+! プラットフォーム別レンダリングの違い
 
-Unity�͗l�X�ȃv���b�g�t�H�[���œ��삵�A�������̃P�[�X�ł͓���ɈႢ���o�܂��B�قƂ�ǂ̏ꍇ�AUnity�͈Ⴂ���B���Ă���܂����A����ł��\�ʉ�����ꍇ������܂��B
+Unityは様々なプラットフォームで動作し、いくつかのケースでは動作に違いが出ます。ほとんどの場合、Unityは違いを隠してくれますが、それでも表面化する場合があります。
 
 
-!! Render Texture�̍��W
+!! Render Textureの座標
 
-���������̃e�N�X�`�����W�̕\�����@�͂�Direct3D��OpenGL�EOpenGL ES�ňقȂ�܂��B
-* Direct3D�ł͍ŏ㕔���[���̍��W�ʒu�ƂȂ�A�������ɍs���ɂ��������đ������܂��B
-* OpenGL��OpenGL ES�ł́A�ŉ������[���̍��W�ʒu�ƂȂ�A������ɍs���ɂ��������đ������܂��B
+垂直方向のテクスチャ座標の表現方法ははDirect3DとOpenGL・OpenGL ESで異なります。
+* Direct3Dでは最上部がゼロの座標位置となり、下方向に行くにしたがって増加します。
+* OpenGLとOpenGL ESでは、最下部がゼロの座標位置となり、上方向に行くにしたがって増加します。
 
-�قƂ�ǂ̏ꍇ�ɉe���͂���܂��񂪁A[[class-RenderTexture | Render Texture]] �ɑ΂��ă����_�����O����ꍇ�͉e��������܂��B���̏ꍇ�AUnity��Direct3D�Ń����_�����O����Ƃ��ɈӐ}�I�Ƀ����_�����O���㉺�t�ɔ��]����̂ŁA�v���b�g�t�H�[���Ԃ̃��[���͓����܂܂ł��B
+ほとんどの場合に影響はありませんが、[[class-RenderTexture | Render Texture]] に対してレンダリングする場合は影響があります。この場合、UnityはDirect3Dでレンダリングするときに意図的にレンダリングを上下逆に反転するので、プラットフォーム間のルールは同じままです。
 
-���̔��]���s���Ȃ��P�[�X�́A[[comp-ImageEffects | Image Effects]] ����уA���`�G�C���A�X���g�p�����ꍇ�ł��BIn this case, Unity renders to screen to get anti-aliasing, and then "resolves" rendering into a RenderTexture for further processing with an Image Effect.���̏ꍇ�AUnty�̓A���`�G�C���A�X���āA�㑱�̃C���[�W�G�t�F�N�g�̏����̂��߂�Render Texture�ɑ΂��ă����_�����O��"�n�������݂܂�"�B���ʂƂȂ�C���[�W�G�t�F�N�g�̃\�[�X�e�N�X�`����Direct3D��''�㉺�t�ł͂���܂���'' �i����Render Texture�ƈ���āj�B
+この反転が行われないケースは、[[comp-ImageEffects | Image Effects]] およびアンチエイリアスが使用される場合です。In this case, Unity renders to screen to get anti-aliasing, and then "resolves" rendering into a RenderTexture for further processing with an Image Effect.この場合、Untyはアンチエイリアスして、後続のイメージエフェクトの処理のためにRender Textureに対してレンダリングを"溶かし込みます"。結果となるイメージエフェクトのソーステクスチャはDirect3Dで''上下逆ではありません'' （他のRender Textureと違って）。
 
-�����C���[�W�G�t�F�N�g���V���v���ł���i1��Ƀe�N�X�`����1�̂ݏ�������j�ꍇ�A[[ScriptRef:Graphics.Blit.html|Graphics.Blit]] ���������Ă���邽�߁A���̂��Ƃ��C�ɂ���K�v�͂���܂���B
+もしイメージエフェクトがシンプルである（1回にテクスチャを1つのみ処理する）場合、[[ScriptRef:Graphics.Blit.html|Graphics.Blit]] が処理してくれるため、このことを気にする必要はありません。
 
-�������A�C���[�W�G�t�F�N�g��1���Render Texture�𕡐��܂Ƃ߂�ꍇ�A�����̃P�[�X�ł��ꂼ�ꂪ�قȂ鐂�������ɏo�͂���܂��i������Direct3D�̂悤�ȃv���b�g�t�H�[���ł���A���A���`�G�C���A�X���g�p����Ă���ꍇ�̂݁j�B���_�V�F�[�_�Ŏ蓮�ŉ�ʃe�N�X�`�����㉺�t��"���]" ����K�v������܂��B
+しかし、イメージエフェクトで1回にRender Textureを複数まとめる場合、多くのケースでそれぞれが異なる垂直方向に出力されます（ただしDirect3Dのようなプラットフォームであり、かつアンチエイリアスが使用されている場合のみ）。頂点シェーダで手動で画面テクスチャを上下逆に"反転" する必要があります。
 
 [@
-// Direct3D�ŃA���`�G�C���A�X���g�p����Ă���ꍇ�A���C���̃e�N�X�`��
-// ����уV�[���̃f�v�X�e�N�X�`���͐����������t�ɏo�͂���܂��B
-// ���̂��߁A���̃P�[�X�ɊY������ꍇ�A�e�N�X�`���T���v�����O�𔽓]�����܂��B
-// �i���C���e�N�X�`���̃e�N�Z���T�C�Y��Y�����̒l�ɂȂ�܂��B�j
+// Direct3Dでアンチエイリアスが使用されている場合、メインのテクスチャ
+// およびシーンのデプステクスチャは垂直方向が逆に出力されます。
+// このため、このケースに該当する場合、テクスチャサンプリングを反転させます。
+// （メインテクスチャのテクセルサイズはYが負の値になります。）
 #if UNITY_UV_STARTS_AT_TOP
 if (_MainTex_TexelSize.y < 0)
         uv.y = 1-uv.y;
 #endif
 @]
 
-[[http://unity3d.com/support/resources/example-projects/shader-replacement | Shader Replacement�̃T���v���v���W�F�N�g]] �ŃG�b�W���o���s���Ă���V�[�����m�F�������B�����ŃG�b�W���o�̓V�[���̃e�N�X�`���ƃJ����[[SL-CameraDepthTexture | �f�v�X����і@���e�N�X�`��]] �̗����Ŏg�p����Ă��܂��B
+[[http://unity3d.com/support/resources/example-projects/shader-replacement | Shader Replacementのサンプルプロジェクト]] でエッジ検出を行っているシーンを確認下さい。ここでエッジ検出はシーンのテクスチャとカメラ[[SL-CameraDepthTexture | デプスおよび法線テクスチャ]] の両方で使用されています。
 
 
-!! �A���t�@�e�X�g����уv���O���}�u���@�V�F�[�_
+!! アルファテストおよびプログラマブル　シェーダ
 
-�������̃v���b�g�t�H�[���A��X�Ƀ��o�C���iOpenGL ES 2.0�j�����Direct3D 11�ł́AFixed Function�i�Œ�֐��j[[SL-AlphaTest | alpha testing]] �i�A���t�@�e�X�g�j�@�\������܂���B�v���O���}�u���@�V�F�[�_���g�p����ꍇ�ACg/HLSL @@clip()@@ �֐������Ɏg�p���邱�Ƃ𐄏����܂��B
+いくつかのプラットフォーム、殊更にモバイル（OpenGL ES 2.0）およびDirect3D 11では、Fixed Function（固定関数）[[SL-AlphaTest | alpha testing]] （アルファテスト）機能がありません。プログラマブル　シェーダを使用する場合、Cg/HLSL @@clip()@@ 関数を代わりに使用することを推奨します。
 
 
-!! Direct3D 11�V�F�[�_�R���p�C���͕��@�Ɍ��i
+!! Direct3D 11シェーダコンパイラは文法に厳格
 
-Direct3D 9��OpenGL��NVIDIA��Cg���g�p���ăV�F�[�_���R���p�C�����܂����A Direct3D 11 (�����Xbox 360)��Microsoft��HLSL�V�F�[�_�R���p�C�����g�p���܂��BHLSL�R���p�C���͗l�X�ȂƂ���ŃV�F�[�_�̋͂��ȃG���[�ɑ΂��Č��i�ł��B���������ƁA����������������Ă��Ȃ��֐��̏o�͒l������Ǝ�t�����Ă���܂���B
+Direct3D 9やOpenGLはNVIDIAのCgを使用してシェーダをコンパイルしますが、 Direct3D 11 (およびXbox 360)はMicrosoftのHLSLシェーダコンパイラを使用します。HLSLコンパイラは様々なところでシェーダの僅かなエラーに対して厳格です。例をあげると、正しく初期化されていない関数の出力値があると受付をしてくれません。
 
-���̌��ۂɍł��p�ɂɑ��������ʂ́F
-* [[SL-SurfaceShaders | Surface shader]] ���_���f�B�t�@�C�A�̏ꍇ�B���̂悤�ɕK���o�͂�����������悤�ɂ��ĉ������F
+この現象に最も頻繁に遭遇する場面は：
+* [[SL-SurfaceShaders | Surface shader]] 頂点モディファイアの場合。次のように必ず出力を初期化するようにして下さい：
       void vert (inout appdata_full v, out Input o) 
       {
         __UNITY_INITIALIZE_OUTPUT(Input,o);__
         // ...
       }
-* �����I�ɏ��������ꂽ�l�A�Ⴆ��float4��߂��֐������邯��ǁA�R�[�h��.xyz�����߂��Ȃ��ꍇ�B�S�Ă̒l��߂����Afloat3�ŗǂ��̂Ȃ�΂��̂悤�ɕύX���܂��B
+* 部分的に初期化された値、例えばfloat4を戻す関数があるけれど、コードが.xyzしか戻さない場合。全ての値を戻すか、float3で良いのならばそのように変更します。
 
 
-!! OpenGL ES 2.0��OpenGL�V�F�[�_����(GLSL)�̃V�F�[�_���g�p����
+!! OpenGL ES 2.0でOpenGLシェーダ言語(GLSL)のシェーダを使用する
 
-OpenGL ES 2.0�́AOpenGL�V�F�[�_����(GLSL)�ɂ��ăl�C�e�B�u�T�|�[�g�����肳��Ă��āA�Ⴆ��OpenGL ES 2.0�̃��C���[�̓V�F�[�_�ɑ΂��āA�����p�����[�^��񋟂��Ă��܂���B
+OpenGL ES 2.0は、OpenGLシェーダ言語(GLSL)についてネイティブサポートが限定されていて、例えばOpenGL ES 2.0のレイヤーはシェーダに対して、内蔵パラメータを提供していません。
 
-Unity�͓����p�����[�^��OpenGL�ƑS�������悤�Ɏ������Ă��܂����A���̃p�����[�^���������Ă��܂��F
+Unityは内蔵パラメータをOpenGLと全く同じように実装していますが、次のパラメータが欠落しています：
 * ``gl_ClipVertex``
 * ``gl_SecondaryColor``
 * ``gl_DepthRange``
-* ``gl_LightSourceParameters``�\���̂�``halfVector``�v���p�e�B
+* ``gl_LightSourceParameters``構造体の``halfVector``プロパティ
 * ``gl_FrontFacing``
 * ``gl_FrontLightModelProduct``
 * ``gl_BackLightModelProduct``
@@ -72,7 +72,7 @@ Unity�͓����p�����[�^��OpenGL�ƑS�������悤�Ɏ������Ă��܂����A���̃p�����[�^���
 
 
 
-!! iPad2��MSAA�ƃA���t�@�u�����f�B���O���ꂽ�`��
+!! iPad2とMSAAとアルファブレンディングされた形状
 
-Apple�̃h���C�o�[�ɂ̓o�O������AMSAA��L���������ꍇ����RGBA colorMask�łȂ��`�ŃA���t�@�u�����f�B���O���ꂽ�`�󂪕`�悳�ꂽ�ꍇ�A�摜�̗��ꂪ�����܂��B�摜�̗����h�~���邽�߂ɁA����Glow FX�𖳌��ɂ��Ă��܂��iDST_ALPHA��intensity�̒l�Ƃ��ĕK�v�ł��邽�߁j�ɂ��ւ�炸RGBA  colorMask�������I�ɗL���ɂ��܂��B
-����ɃV�F�[�_�����珑�����ꍇ�A�������C�����܂��B([[ScriptRef:Main.SL-Pass | Pass Docs]] ��"Render Setup -> ColorMask"���Q�Ɖ�����)�B
+Appleのドライバーにはバグがあり、MSAAを有効化した場合かつRGBA colorMaskでない形でアルファブレンディングされた形状が描画された場合、画像の乱れが生じます。画像の乱れを防止するために、内蔵Glow FXを無効にしてしまう（DST_ALPHAをintensityの値として必要であるため）にも関わらずRGBA  colorMaskを強制的に有効にします。
+さらにシェーダを自ら書いた場合、それらも修正します。([[ScriptRef:Main.SL-Pass | Pass Docs]] の"Render Setup -> ColorMask"を参照下さい)。

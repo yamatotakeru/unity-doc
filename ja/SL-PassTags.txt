@@ -1,41 +1,41 @@
-! ShaderLab���@�FPass�^�O
+! ShaderLab文法：Passタグ
 
-Pass�̓^�O���g�p���Ă��ǂ̂悤�ɂ��ă����_�����O�G���W���ɂ�背���_�����O���ׂ������w�肵�܂��B
+Passはタグを使用していつどのようにしてレンダリングエンジンによりレンダリングすべきかを指定します。
 
-!! ���@
-:__Tags {__ "''TagName1''" = "''Value1''" "''TagName2''" = "''Value2''" __}__: �^�O��__TagName1__ ���l�Ƃ���__Value1__ �A�^�O��__TagName2__ ���l�Ƃ���__Value2__ �ł��邱�Ƃ��w�肵�܂��B�^�O�͍D���Ȃ����w��ł��܂��B
+!! 文法
+:__Tags {__ "''TagName1''" = "''Value1''" "''TagName2''" = "''Value2''" __}__: タグの__TagName1__ が値として__Value1__ 、タグの__TagName2__ が値として__Value2__ であることを指定します。タグは好きなだけ指定できます。
 
-!! �ڍ�
-�^�O�͊�{�I��Key-Value�y�A�ł��B[[SL-Pass|Pass]] �̒��Ń^�O�́A���Y�p�X�����C�e�B���O�@�p�C�v���C���i�����A���_���C�e�B���O�A�s�N�Z�����C�e�B���O�j�̂Ȃ��łǂ̖����ł��邩�𐧌䂵����A���̃p�����[�^�𔻒肷��̂Ɏg�p���܂��B���̃^�O��Unity�ɂ��F������ASubShader�̒��łȂ�'''�K��''' Pass�Z�N�V�����̒��Ƃ���A���Ƃɗ��Ӊ������B
+!! 詳細
+タグは基本的にKey-Valueペアです。[[SL-Pass|Pass]] の中でタグは、当該パスがライティング　パイプライン（環境光、頂点ライティング、ピクセルライティング）のなかでどの役割であるかを制御したり、他のパラメータを判定するのに使用します。次のタグはUnityにより認識され、SubShaderの中でなく'''必ず''' Passセクションの中とする、ことに留意下さい。
 
-!!! LightMode�^�O
+!!! LightModeタグ
 
-__LightMode__�^�O�̓��C�e�B���O�@�p�C�v���C���ł̃p�X�̖������`���܂��B�ڍׂɂ��Ă�[[SL-RenderPipeline|render pipeline]] ���Q�Ɖ������B�����̃^�O�͎蓮�Ŏg�p����邱�Ƃ͋H�ŁA���C�e�B���O�Ƒ��ݍ�p�̂���قƂ�ǂ̃V�F�[�_��[[SL-SurfaceShaders | Surface Shaders]] �ŋL�q����A�����������ڍׂ͂��̒��ŏ�������܂��B
-
-
-
-LightMode�ŗ��p�\�ȃ^�O�́F
-* __Always__: ��Ƀ����_�����O����A���C�e�B���O�͓K�p����܂���B
-* __ForwardBase__: [[RenderTech-ForwardRendering|Forward rendering]] �Ŏg�p����A�����A���C���w�������C�g�A���_�^SH���C�g���K�p����܂��B
-* __ForwardAdd__: [[RenderTech-ForwardRendering|Forward rendering]] �Ŏg�p����A���C�g���ƂɈ�̃p�X�ŁAAdditive �s�N�Z�����C�e�B���O���K�p����܂��B
-* __PrepassBase__: [[RenderTech-DeferredLighting|Deferred Lighting]] �Ŏg�p����A�@���⋾�ʎw���������_�����O���܂��B
-* __PrepassFinal__: [[RenderTech-DeferredLighting|Deferred Lighting]] �Ŏg�p����A�ŏI�I�ȃJ���[�ɂ��āA�e�N�X�`���A���C�g�A����ю��Ȕ����A���������邱�ƂŃ����_�����O���܂��B
-* __Vertex__: [[RenderTech-VertexLit | Vertex Lit rendering]] �ŃI�u�W�F�N�g�����C�g�}�b�v����ĂȂ��ꍇ�Ɏg�p����A�S�Ă̒��_���C�g���K�p����܂��B
-* __VertexLMRGBM__: [[RenderTech-VertexLit | Vertex Lit rendering]] �ŃI�u�W�F�N�g�����C�g�}�b�v����Ă�ꍇ�A���C�g�}�b�v��RGBM�G���R�[�h�����v���b�g�t�H�[���ɂ����Ďg�p����܂��B
-* __VertexLM__: [[RenderTech-VertexLit | Vertex Lit rendering]] �ŃI�u�W�F�N�g�����C�g�}�b�v����Ă�ꍇ�ɁA���C�g�}�b�v��doub-LDR�G���R�[�h�����v���b�g�t�H�[���ɂ�����(��ʂɃ��o�C�������v���b�g�t�H�[����Â��f�X�N�g�b�v����GPU�ɂ�)�g�p����܂��B
-* __ShadowCaster__: �I�u�W�F�N�g���AShadow Caster�Ƃ��ă����_�����O���܂��B
-* __ShadowCollector__: Forward Rendering�̂��߂ɁA�I�u�W�F�N�g�̉e��Screen-Space�o�b�t�@�ɏW�߂܂��B
+__LightMode__タグはライティング　パイプラインでのパスの役割を定義します。詳細については[[SL-RenderPipeline|render pipeline]] を参照下さい。これらのタグは手動で使用されることは稀で、ライティングと相互作用のあるほとんどのシェーダは[[SL-SurfaceShaders | Surface Shaders]] で記述され、そういった詳細はその中で処理されます。
 
 
 
-!!! RequireOptions�^�O
+LightModeで利用可能なタグは：
+* __Always__: 常にレンダリングされ、ライティングは適用されません。
+* __ForwardBase__: [[RenderTech-ForwardRendering|Forward rendering]] で使用され、環境光、メイン指向性ライト、頂点／SHライトが適用されます。
+* __ForwardAdd__: [[RenderTech-ForwardRendering|Forward rendering]] で使用され、ライトごとに一つのパスで、Additive ピクセルライティングが適用されます。
+* __PrepassBase__: [[RenderTech-DeferredLighting|Deferred Lighting]] で使用され、法線や鏡面指数をレンダリングします。
+* __PrepassFinal__: [[RenderTech-DeferredLighting|Deferred Lighting]] で使用され、最終的なカラーについて、テクスチャ、ライト、および自己発光、を合成することでレンダリングします。
+* __Vertex__: [[RenderTech-VertexLit | Vertex Lit rendering]] でオブジェクトがライトマップされてない場合に使用され、全ての頂点ライトが適用されます。
+* __VertexLMRGBM__: [[RenderTech-VertexLit | Vertex Lit rendering]] でオブジェクトがライトマップされてる場合、ライトマップがRGBMエンコードされるプラットフォームにおいて使用されます。
+* __VertexLM__: [[RenderTech-VertexLit | Vertex Lit rendering]] でオブジェクトがライトマップされてる場合に、ライトマップがdoub-LDRエンコードされるプラットフォームにおいて(一般にモバイル向けプラットフォームや古いデスクトップ向けGPUにて)使用されます。
+* __ShadowCaster__: オブジェクトを、Shadow Casterとしてレンダリングします。
+* __ShadowCollector__: Forward Renderingのために、オブジェクトの影をScreen-Spaceバッファに集めます。
 
 
-����̊O���������������ꂽ�ꍇ�̂݃����_�����O����邱�Ƃ��A�p�X�Ŏw�肷�邱�Ƃ��o���܂��B�����__RequireOptions__ �ɂ���������A�l�̓X�y�[�X�ŋ�؂�ꂽ������ɂ��I�v�V�����ł��B���݁AUnity�ŃT�|�[�g����Ă���I�v�V�����́F
-* __SoftVegetation__: ����[[class-QualitySettings | Quality Settings]] ��Soft Vegetation���L���ł���ꍇ�̂݁A���̃p�X�������_�����O���܂��B
+
+!!! RequireOptionsタグ
 
 
-!! �֘A����
+特定の外部条件が満たされた場合のみレンダリングされることを、パスで指定することが出来ます。これは__RequireOptions__ により実現され、値はスペースで区切られた文字列によるオプションです。現在、Unityでサポートされているオプションは：
+* __SoftVegetation__: もし[[class-QualitySettings | Quality Settings]] でSoft Vegetationが有効である場合のみ、このパスをレンダリングします。
 
-SubShaders�Ƀ^�O�����蓖�Ă邱�Ƃ��\�ł���A[[SL-SubshaderTags | SubShader Tags]] ���Q�Ɖ������B
+
+!! 関連項目
+
+SubShadersにタグを割り当てることが可能であり、[[SL-SubshaderTags | SubShader Tags]] を参照下さい。
 

@@ -1,33 +1,33 @@
-! �J������Depth Texture
+! カメラのDepth Texture
 
-Unity�ł̓J�����́A�f�v�X���邢�̓f�v�X�{�@���̃e�N�X�`�����A�������邱�Ƃ��o���܂��B����͍ŏ�����G-buffer�i�O���t�B�b�N�X �o�b�t�@�j�e�N�X�`���ŁA�|�X�g�v���Z�b�V���O�G�t�F�N�g���邢�̓J�X�^���̃��C�e�B���O���f���i�Ⴆ�΃��C�gPre-Pass�j�Ŏg�p���邱�Ƃ��o���܂��B�J�����͎��ۂ�[[SL-ShaderReplacement | Shader Replacement]] �@�\���g�p���ăf�v�X�e�N�X�`�����r���h���邽�߁A�ʂ̃O���t�B�b�N�X �o�b�t�@�ݒ肪�K�v�ł���ꍇ�͎��炱����s�����Ƃ͏o���܂��B
+Unityではカメラは、デプスあるいはデプス＋法線のテクスチャを、生成することが出来ます。これは最小限のG-buffer（グラフィックス バッファ）テクスチャで、ポストプロセッシングエフェクトあるいはカスタムのライティングモデル（例えばライトPre-Pass）で使用することが出来ます。カメラは実際に[[SL-ShaderReplacement | Shader Replacement]] 機能を使用してデプステクスチャをビルドするため、別のグラフィックス バッファ設定が必要である場合は自らこれを行うことは出来ます。
 
-[[ScriptRef:Camera-depthTextureMode.html | Camera.depthTextureMode]] �ϐ����g���āA�J������Depth Texture���X�N���v�g����L���ɂ��邱�Ƃ��o���܂��B
+[[ScriptRef:Camera-depthTextureMode.html | Camera.depthTextureMode]] 変数を使って、カメラのDepth Textureをスクリプトから有効にすることが出来ます。
 
-��̎g�p�\�ȃf�v�X�e�N�X�`�����[�h������܂��F
-* ``DepthTextureMode.Depth``: [[SL-DepthTextures | Depth Texture]] �ł��B
-* ``DepthTextureMode.DepthNormals``: �f�v�X����уr���[��Ԗ@�����ЂƂ̃e�N�X�`���Ƀp�b�N����Ă��܂��B
+二つの使用可能なデプステクスチャモードがあります：
+* ``DepthTextureMode.Depth``: [[SL-DepthTextures | Depth Texture]] です。
+* ``DepthTextureMode.DepthNormals``: デプスおよびビュー空間法線がひとつのテクスチャにパックされています。
 
-!! DepthTextureMode.Depth�e�N�X�`��
+!! DepthTextureMode.Depthテクスチャ
 
-����͉�ʃT�C�Y��[[SL-DepthTextures | Depth Texture]] ���r���h���܂��B
+これは画面サイズの[[SL-DepthTextures | Depth Texture]] をビルドします。
 
-!! DepthTextureMode.DepthNormals�e�N�X�`��
+!! DepthTextureMode.DepthNormalsテクスチャ
 
-����͉�ʃT�C�Y��32�r�b�g�i8�r�b�g�^�`���l���j�e�N�X�`�����A�r���[��Ԗ@����R�����G�`���l���Ƀf�v�X��B�����A�`���l���Ɋe�X�G���R�[�h�����`�ŁA�r���h���܂��B�@���́AStereographic Projection�i�X�e���I���e�j���g�p���ăG���R�[�h����A�f�v�X�͓��8�r�b�g�`���l���Ƀp�b�N���ꂽ16�r�b�g�̒l�ł��B
+これは画面サイズの32ビット（8ビット／チャネル）テクスチャを、ビュー空間法線がRおよびGチャネルにデプスがBおよびAチャネルに各々エンコードされる形で、ビルドします。法線は、Stereographic Projection（ステレオ投影）を使用してエンコードされ、デプスは二つの8ビットチャネルにパックされた16ビットの値です。
 
-[[SL-BuiltinIncludes | @@UnityCG.cginc@@ include file]] �ɂ̓w���p�[�֐�@@DecodeDepthNormal@@ ������A�f�v�X����і@�����G���R�[�h���ꂽ�s�N�Z���̒l���f�R�[�h���܂��B�߂����f�v�X��0����1�͈̔͂ł��B
+[[SL-BuiltinIncludes | @@UnityCG.cginc@@ include file]] にはヘルパー関数@@DecodeDepthNormal@@ があり、デプスおよび法線をエンコードされたピクセルの値よりデコードします。戻されるデプスは0から1の範囲です。
 
-�f�v�X��@���e�N�X�`���̎g�p���@�ɂ��ẮAShader Replacement�̃T���v���v���W�F�N�g�̃G�b�W���o�C���[�W�G�t�F�N�g���邢��[[script-SSAOEffect | SSAO Image Effect]] ���Q�Ƃ��ĉ������B
-
-
-!! �q���g����уe�N�j�b�N
-
-���G�ȃV�F�[�_��C���[�W�G�t�F�N�g����������Ƃ��A[[SL-PlatformDifferences | �v���b�g�t�H�[���̃����_�����O�̈Ⴂ]] �𓪂ɓ���Ă��������B���ɁA�C���[�W�G�t�F�N�g�Ńf�v�X�e�N�X�`�����g�p����ꍇ�́ADirect3D���A���`�G���A�X�œ��ʂȃn���h�����O���K�v�ł��B 
-
-�P�[�X�ɂ���Ă̓f�v�X�e�N�X�`���̓l�C�e�B�u��Z�o�b�t�@���璼�ڗ���ꍇ������܂��B�����f�v�X�e�N�X�`���ŉ摜�̗��ꂪ����ꍇ�A������g�p����V�F�[�_��Z�o�b�t�@��__�������܂Ȃ��悤��__ ���ĉ������B�i[[SL-CullAndDepth|ZWrite Off]] ���g�p���ĉ������j�B
+デプスや法線テクスチャの使用方法については、Shader Replacementのサンプルプロジェクトのエッジ検出イメージエフェクトあるいは[[script-SSAOEffect | SSAO Image Effect]] を参照して下さい。
 
 
-!! �����̏���
+!! ヒントおよびテクニック
 
-�f�v�X�e�N�X�`���́A�g�p����郌���_�����O�p�X����уn�[�h�E�F�A�ɂ���āA���ۂ̃f�v�X�o�b�t�@���痈�邩�A���邢�͕ʂ̃p�X�Ń����_�����O����܂��B�f�v�X�e�N�X�`�����ʂ̃p�X�Ƀ����_�����O�����Ƃ��A�����[[SL-ShaderReplacement | Shader Replacement]] ��ʂ��čs���܂��B���������ăV�F�[�_�Ő�����"$$RenderType$$" �^�O���g�p���邱�Ƃ��d�v�ł��B
+複雑なシェーダやイメージエフェクトを実装するとき、[[SL-PlatformDifferences | プラットフォームのレンダリングの違い]] を頭に入れてください。特に、イメージエフェクトでデプステクスチャを使用する場合は、Direct3Dかつアンチエリアスで特別なハンドリングが必要です。 
+
+ケースによってはデプステクスチャはネイティブのZバッファから直接来る場合があります。もしデプステクスチャで画像の乱れがある場合、それを使用するシェーダがZバッファに__書き込まないように__ して下さい。（[[SL-CullAndDepth|ZWrite Off]] を使用して下さい）。
+
+
+!! 内部の処理
+
+デプステクスチャは、使用されるレンダリングパスおよびハードウェアによって、実際のデプスバッファから来るか、あるいは別のパスでレンダリングされます。デプステクスチャが別のパスにレンダリングされるとき、これは[[SL-ShaderReplacement | Shader Replacement]] を通して行われます。したがってシェーダで正しい"$$RenderType$$" タグを使用することが重要です。
