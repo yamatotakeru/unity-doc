@@ -1,37 +1,37 @@
-Particle Emitters work in conjunction with [[class-ParticleAnimator | Particle Animators]] and [[class-ParticleRenderer | Particle Renderers]] to create, manipulate, and display Particle Systems. All three Components must be present on an object before the particles will behave correctly.  When particles are being emitted, all different velocities are added together to create the final velocity.
+Particle Emitterは[[class-ParticleAnimator | Particle Animator]] および[[class-ParticleRenderer | Particle Renderer]] と連動してParticle Systemを作成、変更、表示が出来ます。Particleが正しく動作するためには、オブジェクトにこの3つのコンポーネントがついている必要があります。パーティクルが生成されているとき、全ての速度が加算されて最終的な速度が作り出されます。
 
 
 !!! Spawning Properties
 
-Spawning properties like ``Size``, ``Energy``, ``Emission``, and ``Velocity`` will give your particle system distinct personality when trying to achieve different effects.  Having a small ``Size`` could simulate fireflies or stars in the sky.  A large ``Size`` could simulate dust clouds in a musky old building.
+``Size`` 、``Energy`` 、``Emission`` 、および``Velocity``といったSpawning Properties（生成パラメータ）により、パーティクルシステムは異なるエフェクトを得るうえで独特の個性を発揮します。小さい``Size`` により蛍や星の空をシミュレートできます。大きい``Size`` によりムスク臭い古いビルでの粉塵の雲をシミュレートできます。
+ 
+`Energy`` と``Emission`` でパーティクルが画面に残る長さや、同時に表示することの出来るパーティクルの数を制御します。例えば、ロケットの場合は、高い``Emission`` で煙の密度をシミュレートし、高い``Energy``で煙のゆっくりとした空中への広がりをシミュレートします。
 
-``Energy`` and ``Emission`` will control how long your particles remain onscreen and how many particles can appear at any one time.  For example, a rocket might have high ``Emission`` to simulate density of smoke, and high ``Energy`` to simulate the slow dispersion of smoke into the air.
-
-``Velocity`` will control how your particles move.  You might want to change your ``Velocity`` in scripting to achieve interesting effects, or if you want to simulate a constant effect like wind, set your X and Z ``Velocity`` to make your particles blow away.
+``Velocity``によりパーティクルの動きを制御します。スクリプティングで``Velocity`` を変更して興味深いエフェクトを得たり、風のような継続的なエフェクトをシミュレートしたい場合は、X と Z ``Velocity`` を設定してパーティクルが飛ばされるようにします。
 
 
 !!! Simulate in World Space
 
-If this is disabled, the position of each individual particle will always translate relative to the ``Position`` of the emitter.  When the emitter moves, the particles will move along with it.  If you have ``Simulate in World Space`` enabled, particles will not be affected by the translation of the emitter.  For example, if you have a fireball that is spurting flames that rise, the flames will be spawned and float up in space as the fireball gets further away.  If ``Simulate in World Space`` is disabled, those same flames will move across the screen along with the fireball.
+これが無効にした場合、各個別のパーティクルの位置は常にEmitterの``Position`` に相対的に平行移動します。Emitterが動くときパーティクルも動きます。もし``Simulate in World Space`` を有効にした場合、パーティクルはEmitterの平行移動によって影響されません。例えば、炎が昇っているファイアボールがあった場合、炎は生成されてファイアボールが遠ざかっても空中を真上に浮いていくのみです。もし``Simulate in World Space`` を無効にした場合、その同じ炎はファイアボールとともに画面を移動していきます。
 
 
 !!! Emitter Velocity Scale
 
-This property will only apply if ``Simulate in World Space`` is enabled.
+このプロパティは``Simulate in World Space`` を有効にした場合のみ適用されます。
 
-If this property is set to 1, the particles will inherit the exact translation of the emitter at the time they are spawned.  If it is set to 2, the particles will inherit double the emitter's translation when they are spawned.  3 is triple the translation, etc.
+このプロパティが1にセットされた場合、パーティクルはEmitterが生成されたときの正確な移動を継承します。もし2にセットした場合、パーティクルはEmitterの移動の2倍を生成されたときに継承します。3にセットした倍は移動の3倍、と続いていきます。
 
 
 !!! One Shot
 
-``One Shot`` emitters will create all particles within the ``Emission`` property all at once, and cease to emit particles over time.  Here are some examples of different particle system uses with ``One Shot`` ``Enabled`` or ``Disabled``:
+``One Shot`` のEmitterは、``Emission`` にある全てのパーティクルを一度に作成し、時間が経過した後にパーティクルの生成をやめます。次に``One Shot`` 、``Enabled`` 、あるいは``Disabled``を使用した、いくつかの異なるパーティクルシステムの例です：
 
 ``Enabled``:
-*Explosion
-*Water splash
-*Magic spell
+*爆発
+*水しぶき
+*魔法
 
 ``Disabled``:
-*Gun barrel smoke
-*Wind effect
-*Waterfall
+*銃身からの煙
+*風のエフェクト
+*滝
