@@ -1,62 +1,60 @@
-! Building Plugins for Desktop Platforms
+! デスクトッププラットフォームのプラグインをビルドする
 
-This page describes [[Plugins | Native Code Plugins]] for desktop platforms (Windows/Mac OS X/Linux). Note that plugins are intentionally disabled in webplayers for security reasons.
+このページはデスクトッププラットフォーム（Windows/MacOS X/Linux）の [[Plugins | Native Code Plugins]] について記述します。これらのプラグインはセキュリティ上の理由によりwebplayerで無効になっていることに注意してください。
 
 
-!! Building a Plugin for Mac OS X
+!! Mac OS X用のプラグインをビルドする
 
-On Mac OSX, [[Plugins | plugins]] are deployed as bundles. You can create the bundle project with XCode by selecting ^^File->NewProject...^^ and then selecting Bundle - Carbon/Cocoa Loadable Bundle.
+MacOSXでは [[Plugins | plugins]] はバンドルとしてデプロイされます。バンドルプロジェクト　(bundle project）はXcodeの ^^File->NewProject...^^ を選択し、Bundle - Carbon/Cocoa Loadable Bundleを選択してください。
 
-If you are using C++ (.cpp) or Objective-C (.mm) to implement the plugin then you must ensure the functions are declared with C linkage to avoid [[http://en.wikipedia.org/wiki/Name_mangling | name mangling issues]].
+もしC++（.cpp）もしくはObjective-C（.mm）でプラグインを実装する場合、関数が [[http://en.wikipedia.org/wiki/Name_mangling | name mangling issues]]を避けるため、Cリンケージ（C linkage） で宣言されていることを確認する必要があります。
 
 [@extern "C" {
   float FooPluginFunction ();
 } @]
 
-!! Building a Plugin for Windows
+!! Windows用のプラグインをビルドする
 
-Plugins on Windows are DLL files with exported functions. Practically any language or development environment that can create DLL files can be used to create plugins.\\
-As with Mac OSX, you should declare any C++ functions with C linkage to avoid name mangling issues.
+Windows用のプラグインはエクスポートされた関数を持つDLLファイルです。これは実質的に、どのような言語・開発環境でも作成できます。\\
+Mac OSXと同様、ネーム・マングル（name mangling）の問題を回避するためには、任意のC++関数はCリンケージを宣言する必要があります。
 
-!! Building a Plugin for Linux
+!! Linux用のプラグインをビルドする
 
-Plugins on Linux are @@.so@@ files with exported functions.  These libraries are typically written in C or C++, but any language can be used.\\
-As with the other platforms, you should declare any C++ functions with C linkage in order to avoid name mangling issues.
+Linuxのプラグインは、エクスポートされた関数を持つ @@.so@@ ファイルです。これらのライブラリも例によってCまたはC++で記述され、任意の言語で使用することができます。\\
+また他のプラットフォームと同様に、任意のC++関数はCリンケージを宣言する必要があります。
 
-!!! 32-bit and 64-bit libraries
-Currently, plugins for 32-bit and 64-bit players need to be managed manually, e.g, before building a 64-bit player, you need to copy the 64-bit library into the @@Assets/Plugins@@ folder, and before building a 32-bit player, you need to copy the 32-bit library into the @@Assets/Plugins@@ folder.
+!!! 32-bitと64-bitのライブラリ
+現在、32-bit用または64-bit用プレイヤーをビルドする前に、ライブラリを手動で管理剃る必要があります。例えば、64-bitプレイヤーは @@Assets/Plugins@@ フォルダに64-bitライブラリをコピーする必要があります。同様に、32-bit用プレイヤーも32-bitライブラリを @@Assets/Plugins@@ フォルダにコピーする必要があります。
 
-!! Using your plugin from C#
+!! C#からプラグインを使用する
 
-Once built, the bundle should be placed in the ^^Assets->Plugins^^ folder in the Unity project. Unity will then find it by name when you define a function like this in the C# script:-
+一度ビルドしたバンドルはUnityプロジェクトの ^^Assets->Plugins^^ フォルダに配置する必要があります。UnityはC#スクリプトに関数を定義したときの名前で探します。:-
 
 [@[DllImport ("PluginName")]
 private static extern float FooPluginFunction (); @]
 
-Please note that ``PluginName`` should not include the library prefix nor file extension. For example, the actual name of the plugin file would be PluginName.dll on Windows and libPluginName.so on Linux.\\
-Be aware that whenever you change code in the Plugin you will need to recompile scripts in your project or else the plugin will not have the latest compiled code.
+なお、 ``PluginName`` がライブラリのプレフィックス（prefix）やファイル拡張子を含める必要は無いことに注意してください。例えば、プラグインファイルの実際の名前は、Windowsの場合はPluginName.dll、Linuxの場合はlibPluginName.soです。\\
+プラグインでコードを変えるときはいつでも、あなたがプロジェクトでスクリプトを再コンパイルする必要があることに注意してください、でなければ、プラグインには最新のコンパイルされたコードがありません。
 
-!! Deployment
+!! 配置（Deployment）
 
-For cross platform plugins you must include the .bundle (for Mac), .dll (for Windows), and .so (for Linux) files in the Plugins folder.\\
-No further work is then required on your side - Unity automatically picks the right plugin for the target platform and includes it with the player.
+クロスプラットフォームなプラグインは、Pluginsフォルダに.bundle（Mac用）、.dll（windows用）、.so（Linux用）のファイルを含めなければなりません。\\
+それ以上の作業はありません。Unityは自動的にターゲットプラットフォームのためのプラグインを抽出し、プレイヤーに含めます。
 
+!! サンプル
 
-!! Examples
+!!! 単純なプラグイン
+このプラグインプロジェクトはいくつかの非常に単純な機能を提供します（数字のプリント、文章のプリント、小数の足し算、整数の足し算）。このプロジェクトは [[Attach:SimplestPluginExample-4.0.zip | here]] で見つけることができます 。また、このプロジェクトにはWindows用、Mac用、Linux用のプロジェクトが含まれています。
 
-!!! Simplest Plugin
-This plugin project implements only some very basic operations (print a number, print a string, add two floats, add two integers). This example may be helpful if this is your first Unity plugin.\\
-The project can be found [[Attach:SimplestPluginExample-4.0.zip | here]] and includes Windows, Mac, and Linux project files.
+!!! C++のコードからレンダリング
+マルチスレッドレンダリングプラグインのマルチプラットフォーム動作例は、 [[Native Plugin Interface]] ページで見つけることができます。
 
-!!! Rendering from C++ code
-An example multiplatform plugin that works with multithreaded rendering in Unity can be found on the [[Native Plugin Interface]] page.
+!!! ミディプラグイン（Midi Plugin）
+完全なプラグインサンプルインターフェースは、 [[http://unity3d.com/tutorials/midiplugin.zip|here]] で見つけることができます。
 
-!!! Midi Plugin
-A complete example of the Plugin interface can be found [[http://unity3d.com/tutorials/midiplugin.zip|here]].
+これは、AppleのCoreMidi APIを使用しているOS Xのための完全なMIDIプラグインです。Unityから単純なC言語のAPIにアクセスするためのC#クラスを提供します。C#クラスは高レベルなAPIが含まれており、NoteOnおよびNoteOffイベントとその速度（velocity）に簡単にアクセスすることができます。
 
-This is a complete Midi plugin for OS X which uses Apple's CoreMidi API. It provides a simple C API and a C# class to access it from Unity. The C# class contains a high level API, with easy access to NoteOn and NoteOff events and their velocity.
-
-!!! Texture Plugin
-An example of how to assign image data to a texture directly in OpenGL (note that this will only work when Unity is using an OpenGL renderer). This example includes both XCode and Visual Studio project files. The plugin, along with an accompanying Unity project, can be found [[http://unity3d.com/support/resources/example-projects/texture-plugins|here]].
+!!! テクスチャプラグイン
+直接OpenGLのテクスチャに画像を割り当てる方法の例です（UnityがOpenGLテクスチャを使用している場合のみ動作します）。この例では、XcodeやVisual Studioプロジェクトファイルの両方が含まれます。プラグインは添付のUnityプロジェクトと一緒に見つけることができます [[http://unity3d.com/support/resources/example-projects/texture-plugins|here]] 。
 
 
