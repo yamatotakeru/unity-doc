@@ -9,8 +9,12 @@ Attach:Inspector-ParticleRenderer.png\\
 !!プロパティ
 
 ||PROPS
+||``Cast Shadows`` ||オンの場合、オブジェクトが影を投影させます。||
+||``Receive Shadows`` ||オンの場合、オブジェクトが影を受けることができます。||
 ||``Materials`` ||個々の粒子の位置に表示される $$Materials$$ のリストへの参照。 ||
-||``Camera Velocity Scale`` ||[[class-Camera|Camera]] ノ動きに基づいて粒子に適用される伸張の量。 ||
+||``Use Light Probes`` ||もしこれがオンでシーン内に焼きこみ用ライトプローブ(light probe)があれば、ライトプローブに補間されます。||
+||``Light Probe Anchor`` ||これがセットされていると、レンダラーは補間されたライトプローブを探索するために、このパーティクルの位置情報を使います。||
+||``Camera Velocity Scale`` ||[[class-Camera|Camera]] の動きに基づいて粒子に適用される伸張の量。 ||
 ||``Stretch Particles`` ||粒子をどのようにレンダリングするかを決定します。 ||
 ||>>>``Billboard`` ||粒子がカメラの方を向くようにレンダリングされます。 ||
 ||>>>``Stretched`` ||粒子が移動している方向を向きます。 ||
