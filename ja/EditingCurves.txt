@@ -6,7 +6,7 @@ $$Curves$$ は様々なものに使用でき、編集できる曲線を使用す
 Attach:AnimationEditorCurve.png\\
 ''アニメーション ビュー''
 
-* スクリプト コンポーネントは、様々なものに使用する [[Editing Value Properties 40 | AnimationCurve]] タイプのメンバー変数を持つことができます。 インスペクタでこれらをクリックすると、$$Curve Editor$$ が開きます。\\
+* スクリプト コンポーネントは、様々なものに使用する [[EditingValueProperties40 | AnimationCurve]] タイプのメンバー変数を持つことができます。 インスペクタでこれらをクリックすると、$$Curve Editor$$ が開きます。\\
 Attach:CurveEditorPopup.png\\
 ''曲線エディタ''
 

@@ -68,7 +68,7 @@ Attach:AnimationEditorWrapmode.png\\
 * 複数の楕円パーティクルエミッター（``Ellipsoid Particle Emitters``）の``Emit``状態、``Velocities``をアニメーション化することで壮大な花火や噴水のディスプレイを作成します。
 * ユーザ定義のスクリプトコンポーネントをアニメーション化して、時間の経過とともに動作に変化をもたせます。
 
-$$Animation Curves$$を用いてゲームロジックを制御する場合、Unityで[[AnimationScripting#Playback | プレイバックおよびサンプリング]] している方法に注意する必要があります。
+$$Animation Curves$$を用いてゲームロジックを制御する場合、Unityで[[AnimationScripting40#Playback | プレイバックおよびサンプリング]] している方法に注意する必要があります。
 
 
 !! 回転の補間方法の種類について（Rotation Interpolation Types）
