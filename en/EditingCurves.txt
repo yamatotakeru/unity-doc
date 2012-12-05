@@ -6,7 +6,7 @@ $$Curves$$ can be used for many different things and there are several different
 Attach:AnimationEditorCurve.png\\
 ''The Animation View.''
 
-* Script components can have member variables of type [[Editing Value Properties | AnimationCurve]] that can be used for all kinds of things. Clicking on those in the Inspector will open up the $$Curve Editor$$.\\
+* Script components can have member variables of type [[EditingValueProperties40| AnimationCurve]] that can be used for all kinds of things. Clicking on those in the Inspector will open up the $$Curve Editor$$.\\
 Attach:CurveEditorPopup.png\\
 ''The Curve Editor.''
 
