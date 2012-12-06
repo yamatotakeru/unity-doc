@@ -34,7 +34,7 @@
 
 [[#Lightmapping]]
 !! [[Main.Lightmapping | Lightmaps]]
-Unity内臓のLightmapperにより他のどのようなオブジェクトとも同じようにTerrainにライトマップを適用することが出来ます。ヘルプが必要な場合は[[Main.Lightmapping | Lightmap クイックスタート]] を参照のこと。
+Unity内蔵のLightmapperにより他のどのようなオブジェクトとも同じようにTerrainにライトマップを適用することが出来ます。ヘルプが必要な場合は[[Main.Lightmapping | Lightmap クイックスタート]] を参照のこと。
 
 [[Main.Lightmapping | Attach:terrainLightmap.jpg]]
 

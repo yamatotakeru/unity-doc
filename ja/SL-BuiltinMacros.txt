@@ -33,7 +33,7 @@
 
 !! 定数バッファマクロ（Constant buffer macros）
 
-Direct3D 11は全てのシェーダ変数を"constant buffer" （定数バッファ）にグループ分けします。Unity内臓の変数のほとんどはすでにグループ分けされてますが、自身で作成するシェーダの変数については、予想される更新頻度に応じて、別のconstant bufferに格納することが最適です。
+Direct3D 11は全てのシェーダ変数を"constant buffer" （定数バッファ）にグループ分けします。Unity内蔵の変数のほとんどはすでにグループ分けされてますが、自身で作成するシェーダの変数については、予想される更新頻度に応じて、別のconstant bufferに格納することが最適です。
 
 @@CBUFFER_START(name)@@ と@@CBUFFER_END@@ マクロをその場合に使用します：
     CBUFFER_START(MyRarelyUpdatedVariables)    float4 _SomeGlobalValue;

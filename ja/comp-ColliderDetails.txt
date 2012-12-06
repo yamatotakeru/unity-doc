@@ -1,6 +1,6 @@
 コライダはRigidbody（剛体）と連動してUnity上での物理挙動を実現します。Rigidbodyというのは「オブジェクトを物理法則にしたがって動かす」一方で、コライダはオブジェクトが互いに衝突することを可能に｣します。コライダはリッジトボディとは別にオブジェクトにアタッチする必要があります。コライダとRigidbodyは両方アタッチされなくとも良いですが、コリジョンの結果オブジェクトを動かすためには__Rigidbodyがアタッチされていることは必須__です。
 
-二つのコライダ間で衝突が発生し、かつ少なくとも一つのオブジェクトにRigidbodyがアタッチされている場合、 [[ScriptRef:Collider.OnCollisionEnter.html|3種類の]] [[ScriptRef:Collider.OnCollisionExit.html|衝突]] [[ScriptRef:Collider.OnCollisionStay.html|メッセージが]] 発行されます。これらのイベントはスクリプト作成時にハンドリングすることが出来ますし、独自の動作を定義することが出来るようになるとともに内臓のNVIDIA PhysXエンジンを使用するかしないか自由に決めることができます。
+二つのコライダ間で衝突が発生し、かつ少なくとも一つのオブジェクトにRigidbodyがアタッチされている場合、 [[ScriptRef:Collider.OnCollisionEnter.html|3種類の]] [[ScriptRef:Collider.OnCollisionExit.html|衝突]] [[ScriptRef:Collider.OnCollisionStay.html|メッセージが]] 発行されます。これらのイベントはスクリプト作成時にハンドリングすることが出来ますし、独自の動作を定義することが出来るようになるとともに内蔵のNVIDIA PhysXエンジンを使用するかしないか自由に決めることができます。
 
 
 !!! トリガー

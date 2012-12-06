@@ -8,7 +8,7 @@ Shader LODは個別のシェーダごとに設定する（[[ScriptRef:Shader-max
 
 ユーザ作成のカスタムのシェーダでは、$$LOD$$ コマンドを使用してどのようなサブシェーダでもLOV値を設定することが出来ます。
 
-Unityの内臓シェーダはLODを次のように設定されています：
+Unityの内蔵シェーダはLODを次のように設定されています：
 * VertexLit のようなシェーダ = 100
 * Decal、Reflective VertexLit = 150
 * Diffuse = 200

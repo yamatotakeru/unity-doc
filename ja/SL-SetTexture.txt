@@ -66,7 +66,7 @@ Attach:SL./SetTextureGraph.png
 
 !! 鏡面ハイライト
 
-デフォルトでは、__primary__ カラーは、拡散、環境光、鏡面カラーのsum（合計）です（[[SL-Material|Lighting calculation]] で定義したとおり）。もし__SeparateSpecular On__ をパスのオプションで指定した場合、鏡面カラーは、合成計算の前ではなく、''後に''加算されます。これは内臓頂点ライティングシェーダのデフォルト動作です。
+デフォルトでは、__primary__ カラーは、拡散、環境光、鏡面カラーのsum（合計）です（[[SL-Material|Lighting calculation]] で定義したとおり）。もし__SeparateSpecular On__ をパスのオプションで指定した場合、鏡面カラーは、合成計算の前ではなく、''後に''加算されます。これは内蔵頂点ライティングシェーダのデフォルト動作です。
 
 
 !! サポートされるグラフィックスハードウェア

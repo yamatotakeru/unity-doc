@@ -29,7 +29,7 @@ Attach:PlayerSetWebResPres.png
 ||``Default Screen Width``     ||生成されるWeb Playerのスクリーン幅||
 ||``Default Screen Height``    ||生成されるWeb Playerのスクリーン高さ||
 ||``Run in background``        ||Web Playerがフォーカスを失った場合もゲームの実行を止めたくない場合にチェック||
-||__''WebPlayer Template''__      ||詳細については[[UsingWebPlayertemplates | "Using WebPlayer templates page"]] をチェックする必要があります、本項では各々の内臓、カスタムのテンプレートについては、アイコンで示しています。||
+||__''WebPlayer Template''__      ||詳細については[[UsingWebPlayertemplates | "Using WebPlayer templates page"]] をチェックする必要があります、本項では各々の内蔵、カスタムのテンプレートについては、アイコンで示しています。||
 
 !!!!''Icon（アイコン）''
 

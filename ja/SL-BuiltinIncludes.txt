@@ -1,4 +1,4 @@
-! 内臓シェーダ includeファイル
+! 内蔵シェーダ includeファイル
 
 Unityは自身の[[SL-ShaderPrograms | shader programs]] で、定義済み変数やヘルパー関数を利用できる、いくつかのファイルを持たせることが出来ます。これは標準的な@@#include@@ ディレクティブで実現できます、例えば：
 
@@ -9,7 +9,7 @@ Unityは自身の[[SL-ShaderPrograms | shader programs]] で、定義済み変�
     // ...
     ENDCG
 
-Unityのシェーダincludeファイルは@@.cginc@@ 拡張子がつけられていて、内臓されているのは：
+Unityのシェーダincludeファイルは@@.cginc@@ 拡張子がつけられていて、内蔵されているのは：
 * @@HLSLSupport.cginc@@ - ''(自動でインクルード)'' ヘルパーマクロやクロスプラットフォームのシェーダコンパイルの定義
 * @@UnityCG.cginc@@ - 一般に使用されるグローバル変数やヘルパー関数。
 * @@AutoLight.cginc@@ - ライティングやシャドウ機能、すなわち[[SL-SurfaceShaders | surface shaders]] は内部的にこのファイルを使用します。

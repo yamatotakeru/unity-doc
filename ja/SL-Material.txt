@@ -1,6 +1,6 @@
 ! ShaderLab文法: Color、Material、Lighting
 
-materiaとlightingパラメータは内臓の頂点ライティングを制御するのに使用します。頂点ライティングは各頂点で計算する標準的なDirect3D／OpenGLライティングモデルです。``Lighting on``により有効化されます。は$$Material$$ ブロック、$$ColorMaterial$$ および$$SeparateSpecular$$ コマンドによライティングり影響を受けます。
+materiaとlightingパラメータは内蔵の頂点ライティングを制御するのに使用します。頂点ライティングは各頂点で計算する標準的なDirect3D／OpenGLライティングモデルです。``Lighting on``により有効化されます。は$$Material$$ ブロック、$$ColorMaterial$$ および$$SeparateSpecular$$ コマンドによライティングり影響を受けます。
 
 ピクセルライティングは通常カスタムの頂点／フラグメントプログラムで実装され、頂点ライティングを使用しません。これらについてはここで説明するコマンドは使用せず、自分の[[SL-ShaderPrograms | vertexおよびfragment program]] を定義し、そこで全てのライティング、テクスチャ、その他全てを自分で処理します。
 
@@ -32,7 +32,7 @@ Attach:SL./PipelineTL.png
 
 計算式のライト部分（括弧( )内における）は、オブジェクトに当たる全てのライトの分だけ、繰り返されます。
 
-通常はDiffuse（拡散）とAmbient（環境光）カラーは同じにすることが望ましいです（全てのUnity内臓シェーダはそのようにしています）。
+通常はDiffuse（拡散）とAmbient（環境光）カラーは同じにすることが望ましいです（全てのUnity内蔵シェーダはそのようにしています）。
 
 
 !!例

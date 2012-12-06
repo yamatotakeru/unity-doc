@@ -12,11 +12,11 @@
 ** Replaced Shaderで指定されたタグの値での[[SL-SubShader|subshader]] が見つかります。もしそのようなSubShaderがない場合、オブジェクトは__レンダリングされません__ 。
 ** 次にそのSubShaderを使用してオブジェクトがレンダリングされます。
 
-もし全てのシェーダが、例えば、"RenderType" タグの値に "Opaque" 、"Transparent" 、"Background" 、"Overlay"があった場合、不透明なオブジェクトのみレンダリングするReplacement Shaderを、RenderType=Solid [[SL-SubshaderTags|tag]] であるひとつのサブシェーダを使用して、記述することが出来ます。他のタグのタイプはReplacement Shaderで見つからないため、オブジェクトはレンダリングされません。あるいは複数のサブシェーダを、異なる"RenderType" のタグの値のために、記述することが出来ます。偶然に、全てのUnity内臓シェーダは"RenderType" タグのセットを持っています。
+もし全てのシェーダが、例えば、"RenderType" タグの値に "Opaque" 、"Transparent" 、"Background" 、"Overlay"があった場合、不透明なオブジェクトのみレンダリングするReplacement Shaderを、RenderType=Solid [[SL-SubshaderTags|tag]] であるひとつのサブシェーダを使用して、記述することが出来ます。他のタグのタイプはReplacement Shaderで見つからないため、オブジェクトはレンダリングされません。あるいは複数のサブシェーダを、異なる"RenderType" のタグの値のために、記述することが出来ます。偶然に、全てのUnity内蔵シェーダは"RenderType" タグのセットを持っています。
 
-!! Unity内臓シェーダでのReplacement Shaderタグ
+!! Unity内蔵シェーダでのReplacement Shaderタグ
 
-全てのUnity内臓シェーダは"$$RenderType$$" タグのセットを持ち、Replaced Shaderで使用することが出来ます。タグの値は次の通りです：
+全てのUnity内蔵シェーダは"$$RenderType$$" タグのセットを持ち、Replaced Shaderで使用することが出来ます。タグの値は次の通りです：
 * ``Opaque``: ほとんどのシェーダ([[shader-NormalFamily|Normal]] 、[[shader-SelfIllumFamily|Self Illuminated]] 、[[shader-ReflectiveFamily|Reflective]] 、Terrainシェーダ)。
 * ``Transparent``: ほとんどの部分的に透過なシェーダ([[shader-TransparentFamily|Transparent]] 、パーティクル、フォント、Terrain追加パスシェーダ)。
 * ``TransparentCutout``: マスキングされた透過シェーダ([[shader-TransparentCutoutFamily|Transparent Cutout]] 、2パス植生シェーダ)。
@@ -29,7 +29,7 @@
 * ``GrassBillboard``: Terrainエンジン　ビルボードのGrass。
 
 
-!! 内臓のシーン　デプス／法線　テクスチャ
+!! 内蔵のシーン　デプス／法線　テクスチャ
 
-カメラには内臓で、どれかのエフェクトで必要な場合に、テクスチャのデプスまたはデプス＋法線をレンダリングする機能があります。[[SL-CameraDepthTexture | Camera Depth Texture]] を参照下さい。いくつかのケース（ハードウェアによって）、テクスチャのデプスまたはデプス＋法線は内部的にReplacement Shaderでレンダリングできることに留意して下さい。このためシェーダに正しい"$$RenderType$$" タグがあることが重要です。
+カメラには内蔵で、どれかのエフェクトで必要な場合に、テクスチャのデプスまたはデプス＋法線をレンダリングする機能があります。[[SL-CameraDepthTexture | Camera Depth Texture]] を参照下さい。いくつかのケース（ハードウェアによって）、テクスチャのデプスまたはデプス＋法線は内部的にReplacement Shaderでレンダリングできることに留意して下さい。このためシェーダに正しい"$$RenderType$$" タグがあることが重要です。
 
