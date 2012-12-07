@@ -1,34 +1,34 @@
-! Unity Manual
+! Unity マニュアル
 
-Welcome to Unity.
+Unityの世界へようこそ！
 
-Unity is made to empower you to create the best interactive entertainment or multimedia experience that you can.  This manual is designed to help you learn how to use Unity, from basic to advanced techniques.  It can be read from start to finish or used as a reference.
+Unityは 最高のインタラクティブなエンターテイメントやマルチメデイア体験を作り出す力を、あなた自身に与えるために作られました。このマニュアルは、どうやってUnityを使ったら良いか、基本から高等テクニックまで学んでいくのに助けるようになっています。
 
 
-The manual is divided into different sections.  The first section, [[User Guide]], is an introduction to Unity's interface, asset workflow, and the basics of building a game.  If you are new to Unity, you should start by reading the [[Unity Basics]] subsection.
+このマニュアルはセクションに分かれています。最初のセクションは [[User Guide]] で、Unityのインターフェース、アセット制作のワークフロー、基本的なゲーム制作を紹介しています。Unityを新たに始める人は、まず[[Unity Basics]] セクションを読み始めると良いでしょう。
 >>ios<<
-The [[iphone-GettingStarted | iOS Guide]] addresses iOS specific topics such as iOS-specific scripting API, optimizations, and general platform development questions.
+[[iphone-GettingStarted | iOS ガイド]] は、iOS用スクリプト、最適化、一般的なプラットフォーム開発の質問等のiOSに特化したトピックが書いています。
 >><<
 >>android<<
-The [[android-GettingStarted | Android Guide]] addresses Android specific topics such as setting up the Android SDK and general development questions.
+[[android-GettingStarted | Android ガイド]] は、Android SDKの設定、一般的な開発の質問等のAndroidに特化したトピックが書かれています。
 >><<
 >>ps3<<
 The [[ps3-gettingstarted | PS3 Guide]] addresses PS3 specific topics such as setting up the development environment, PS3 specific scripting API, optimizations and general platform development questions.
 >><<
-The next section, [[FAQ]], is a collection of frequently asked questions about performing common tasks that require a few steps.
+次の [[FAQ]] セクションは、よくある共通の質問を集めていおり、いくつかのステップに分かれています。
 
-The last section, [[Advanced]], addresses topics such as game optimization, shaders, file sizes, and deployment.
+最後の [[Advanced]] セクションは、ゲームの最適化、シェーダ、ファイルサイズ、デプロイといったようなトピックが書かれています。
 
-When you've finished reading, take a look at the [[Reference | Reference Manual]] and the [[Path:../ScriptReference/index.html|Scripting Reference]] for further details about the different possibilities of constructing your games with Unity.
+これを読み終えると、[[Reference | Reference Manual]] と [[Path:../ScriptReference/index.html|Scripting Reference]] を読み進んでいただけると、Unityでゲームを作る上で、さらなる可能性について知ることができるでしょう。
 
-If you find that any question you have is not answered in this manual please ask on [[http://answers.unity3d.com | Unity Answers]] or [[http://forum.unity3d.com | Unity Forums]].  You will be able to find your answer there.
+もしあなたの質問を探しても、このマニュアルに答えがなかったら [[http://answers.unity3d.com | Unity Answers]] か [[http://forum.unity3d.com | Unity Forums]] に質問してみて下さい。.そこで答えがあるかもしれません。
 
-Happy reading, \\
-''The Unity team''
+それでは、楽しく読んで下さい！ \\
+''Unity開発チームより''
 
-The Unity Manual Guide contains some sections that apply only to certain platforms.  Please select which platforms you want to see. Platform-specific information can always be seen by clicking on the disclosure triangles on each page. \\
+このUnityマニュアルガイドは、いくつかのセクションは特定のプラットフォームだけ適応されます。見たいプラットフォームを以下から選択して下さい。プラットフォーム特記事項はいつでも、それぞれのページで三角（▼）をクリックすることで見ることができます。\\
 \\
-!IMGDesktop! !IMGiOS! !IMGAndroid! !IMGXbox360! !IMGPS3!
+!IMGDesktop! !IMGiOS! !IMGAndroid!
 
 
 !!Table of Contents
