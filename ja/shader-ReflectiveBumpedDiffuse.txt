@@ -1,4 +1,4 @@
-!反射バンプ型デフューズ
+!Reflective Bumped Diffuse
 
 Attach:Shaders./Shader-ReflBump.png
 
