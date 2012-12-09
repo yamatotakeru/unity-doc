@@ -1,4 +1,4 @@
-!自己発光スペキュラ
+!Self-Illuminated Specular
 
 Attach:Shaders./Shader-IllumSpec.png
 

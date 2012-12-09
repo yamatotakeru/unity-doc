@@ -1,4 +1,4 @@
-!透明カットアウト デフューズ
+!Transparent Cutout Bumped Diffuse
 
 Attach:Shaders./Shader-TransCutoutBump.png
 
