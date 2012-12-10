@@ -1,4 +1,4 @@
-!Mecanim Advanced topics:
+!Mecanimの高度なトピック:
 
 (:tocportion:)
 
