@@ -4,7 +4,6 @@ Unityをはじめようと思い立った時、このセクションが役に立
 
 このセクションを読み終わった時、あなたはUnityの機能、その効果的な使い方、そして簡単なゲームを組み立てる手順について理解していることでしょう。
 
-
 (:html:)
 <table>
   <tr>
@@ -12,17 +11,15 @@ Unityをはじめようと思い立った時、このセクションが役に立
 (:htmlend:)
 || border=0 cellpadding=2 cellspacing=2 bordercolor=white bgcolor=white
 || ||[[Main.LearningtheInterface | インタフェースを学ぶ（Learning the interface）]] ||
-||[[Main.LearningtheInterface | Attach:basics_interface.jpg]]||沢山の事柄を学ばなければいけませんので、インタフェースを調べたり、インタフェースを理解することにはそれなりに時間がかかります。それではおのおののインタフェースを構成する要素について、一緒に見ていきましょう。
-\\
+||[[Main.LearningtheInterface | Attach:basics_interface.jpg]]||沢山の事柄を学ばなければいけませんので、インタフェースを調べたり、インタフェースを理解することにはそれなりに時間がかかります。それではおのおののインタフェースを構成する要素について、一緒に見ていきましょう。\\
 \\
 ||
 || ||[[Main.AssetWorkflow | アセットのワークフロー（Asset Workflow）]] ||
-||[[Main.AssetWorkflow | Attach:basics_assets.jpg]]||こちらでは、Unityで単一のアセットを扱う手順を説明します。これらの手順はあくまで大まかなものですので、基本作業をざっくりと知るようにしてください。
+||[[Main.AssetWorkflow | Attach:basics_assets.jpg]]||こちらでは、Unityで単一のアセットを扱う手順を説明します。これらの手順はあくまで大まかなものですので、基本作業をざっくりと知るようにしてください。\\
 \\
 ||
 ||  ||[[Main.CreatingScenes | シーンを作る（Creating Scenes）]] || 
-||[[Main.CreatingScenes | Attach:basics_scenes.jpg]] ||シーンには、あなたのゲームを構成するオブジェクトが含まれます。あなたのゲームをデザインしたり構築するために必要な環境や障害物、飾り付け用の小物などを個別に作成し、各シーン中に配置します。
-\\
+||[[Main.CreatingScenes | Attach:basics_scenes.jpg]] ||シーンには、あなたのゲームを構成するオブジェクトが含まれます。あなたのゲームをデザインしたり構築するために必要な環境や障害物、飾り付け用の小物などを個別に作成し、各シーン中に配置します。\\
 \\
 ||
 
