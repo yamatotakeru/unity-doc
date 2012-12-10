@@ -1,5 +1,5 @@
-Vector Cookbook
+ベクトルのクックブック
 
-Although vector operations are easy to easy to describe, they are surprisingly subtle and powerful and have many uses in games programming. The following pages offer some suggestions about using vectors effectively in your code.
+ベクトル演算は非常に簡単ですが、これらは繊細かつパワフルであり、多くのゲームプログラミングに使用されています。以下のページでは、コード内で効果的にベクトルを使用するためのトピックを提案します。
 
 (:tocportion:)
