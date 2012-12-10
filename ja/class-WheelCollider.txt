@@ -5,6 +5,7 @@ $$Wheel Collider$$ は、陸上車両用の特殊なコライダです。 組み
 Attach:Inspector-WheelCollider.png\\
 ''ホイール コライダ コンポーネント。 ATI Tchnologies 社により無料提供された車両モデル。''
 
+Attach:Inspector-WheelCollider2.png\\
 
 !! プロパティ
 

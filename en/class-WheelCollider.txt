@@ -5,6 +5,7 @@ The $$Wheel Collider$$ is a special collider for grounded vehicles. It has built
 Attach:Inspector-WheelCollider.png\\
 ''The Wheel Collider Component. Car model courtesy of ATI Technologies Inc.''
 
+Attach:Inspector-WheelCollider2.png\\
 
 !! Properties
 

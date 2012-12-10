@@ -51,7 +51,9 @@ The third tab lets you configure various properties of the skinned cloth:
 ||``Bending Stiffness`` ||Bending stiffness of the cloth.||
 ||``Stretching Stiffness`` ||Streching stiffness of the cloth.||
 ||``Damping`` ||Damp cloth motion||
-||``Use Gravity`` ||Should gravity affect the cloth simulation?||
+||``Thickness`` ||Thickness of the cloth surface. (0.001 - 10000)||
+||``Use Gravity`` ||If enabled, gravity will affect the cloth simulation.||
+||``Self Collision`` ||If enabled, the cloth can can collide with itself.||
 ||``External Acceleration`` ||A constant, external acceleration applied to the cloth.||
 ||``Random Acceleration`` ||A random, external acceleration applied to the cloth.||
 ||``World Velocity Scale`` ||How much world-space movement of the character will affect cloth vertices. The higher this value is, the more the cloth will move as a reaction to world space movement of the GameObject. Basically, this defines the air friction of the SkinnedCloth.||

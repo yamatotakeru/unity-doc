@@ -12,11 +12,12 @@ Attach:InteractiveCloth.png\\
 ||``Bending Stiffness`` ||Bending stiffness of the cloth.||
 ||``Stretching Stiffness`` ||Stretching Stiffness of the cloth.||
 ||``Damping`` ||Damp cloth motion.||
+||``Thickness`` ||The thickness of the cloth surface.||
 ||``Use Gravity`` ||Should Gravity affect the cloth simulation?.||
+||``Self Collision`` ||Will the cloth collide with itself?.||
 ||``External Acceleration`` ||A constant, external acceleration applied to the cloth||
 ||``Random Acceleration`` ||A random, external acceleration applied to the cloth||
 ||``Mesh`` ||Mesh that will be used by the interactive cloth for the simulation||
-||``Thickness`` ||The thickness of the cloth surface.||
 ||``Friction`` ||The friction of the cloth.||
 ||``Density`` ||The density of the cloth.||
 ||``Pressure`` ||The pressure inside the cloth/||
@@ -25,16 +26,15 @@ Attach:InteractiveCloth.png\\
 ||``Attachment Response`` ||How much force will be applied to attached rigidbodies?.||
 ||``Tear Factor`` ||How far cloth vertices need to be stretched, before the cloth will tear.||
 ||``Attached Colliders`` ||Array that contains the attached colliders to this cloth||
-||``Self Collision`` ||Will the cloth collide with itself?.||
 
 The Interactive Cloth Component depends of the Cloth Renderer Component, this means that this component cannot be removed if the Cloth Renderer is present in the Game Object.
 
 !!Cloth Renderer
 ||``Cast Shadows`` ||If selected the cloth will cast shadows||
 ||``Receive Shadows`` ||The cloth can receive Shadows if enabled||
-||``Lightmap Index`` ||The index of the lightmap applied to this renderer.||
-||``Lightmap Tiling Offset`` ||The tiling & offset used for lightmap.||
 ||``Materials`` ||Materials that the cloth will use.||
+||``Use Light Probes`` ||If selected, light probes will be enabled.||
+||``Light Probe Anchor`` ||Light Probe lighting is interpolated at the center of the Renderer's bounds or at the position of the anchor, if assigned.||
 ||``Pause When Not Visible`` ||If selected, the simulation will not be calculated when the cloth is not being rendered by the camera.||
 
 
@@ -50,5 +50,5 @@ To add an Interactive Cloth in the scene just select ``GameObject->Create Other-
 * Attached Colliders' objects must intersect with the cloth you are attaching to.
 
 !! Notes.
-* Cloth simulation will generate normals but not tangents. If the source mesh has tangents, these will be passed to the shader unmodified - so if you are using a shader which depends on tangents (such as bump mapped shaders), the lighting will look wrong for cloth which has been moved from it's initial position.
+* Cloth simulation will generate normals but not tangents. If the source mesh has tangents, these will be passed to the shader unmodified - so if you are using a shader which depends on tangents (such as bump mapped shaders), the lighting will look wrong for cloth which has been moved from its initial position.
 
