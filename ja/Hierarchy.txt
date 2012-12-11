@@ -1,18 +1,17 @@
-!Hierarchy
+!ヒエラルキー（Hierarchy）
 
 Attach:Editor-Hierarchy.png\\
 
-The $$Hierarchy$$ contains every $$GameObject$$ in the current Scene. Some of these are direct instances of asset files like 3D models, and others are instances of [[Prefabs]], custom objects that will make up much of your game. You can select objects in the Hierarchy and drag one object onto another to make use of $$Parenting$$ (see below). As objects are added and removed in the scene, they will appear and disappear from the Hierarchy as well.
+$$Hierarchy$$ には、現在開いているシーン中のすべての $$GameObject$$ が含まれています。 これらの内のあるものは３Ｄモデルのようなアセットファイルのダイレクトインスタンスであったり、 [[Prefabs]] と呼ばれる、あなたのゲームの多くの部分を作り上げることになるカスタムオブジェクトのインスタンスだったりします。 ヒエラルキーの中では、オブジェクトを選択したり、あるオブジェクトを別のオブジェクトの上にドラッグすることで $$Parenting$$ （詳しくは下を参照）を付けることができます。 シーンの中にオブジェクトを追加したり取り除いたりすると、同様にヒエラルキー上でも表示されたり消えたりします。
 
-!!Parenting
+!!親子関係（Parenting）
 
-Unity uses a concept called $$Parenting$$. To make any GameObject the child of another, drag the desired child onto the desired parent in the Hierarchy.  A child will inherit the movement and rotation of its parent. You can use a parent object's foldout arrow to show or hide its children as necessary.
+Unityでは、 $$Parenting$$ と呼ばれる概念を使用できます。あるゲームオブジェクトを、他のオブジェクトの子にしたい場合には、ヒエラルキー中で親にしたいオブジェクトの上に子にしたいオブジェクトをドラッグします。子は親の移動や回転を継承します。また必要に応じて、親オブジェクト横の折り込み矢印を使って、その子を表示したり隠したりすることができます。
 
 Attach:Editor-PreParent.png\\
-''Two unparented objects''
+''２つの親子関係のないオブジェクトがある状態''
 
 Attach:Editor-PostParent.png\\
-''One object parented to another''
+''一方のオブジェクトがもう一方の親になっている状態''
 
-To learn more about Parenting, please review the Parenting section of the [[class-Transform#Parenting | Transform Component page]].
-
+親子関係についてもっと学びたい場合には、 [[class-Transform#Parenting | Transform Component page]] の親子関係セクションを参照してください。

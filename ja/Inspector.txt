@@ -1,49 +1,48 @@
-!Inspector
+!インスペクター（Inspector）
 
 Attach:Editor-Inspector.png\\
 
-Games in Unity are made up of multiple $$GameObjects$$ that contain meshes, scripts, sounds, or other graphical elements like $$Lights$$. The $$Inspector$$ displays detailed information about your currently selected GameObject, including all attached $$Components$$ and their properties. Here, you modify the functionality of GameObjects in your scene. You can read more about the [[GameObjects | GameObject-Component relationship]], as it is very important to understand.
+Unity内では、ゲームは沢山の $$GameObjects$$ から構成されます。それらのゲームオブジェクトには、メッシュ、スクリプト、サウンドの他、 $$Lights$$ のようなグラフィック要素も含まれます。 $$Inspector$$  は、現在選択されているゲームオブジェクトの詳細な情報を表示します。表示されている情報には、そのゲームオブジェクトに添付されたすべてのコンポーネントやそのプロパティも含んでいます。 インスペクター上で、シーンに含まれるゲームオブジェクトの機能を変更することが可能です。 [[GameObjects | GameObject-Component relationship]] を参照しましょう。そこには重要なことが書かれていますので理解しましょう。
 
-Any property that is displayed in the Inspector can be directly modified.  Even script variables can be changed without modifying the script itself.  You can use the Inspector to change variables at runtime to experiment and find the magic gameplay for your game.  In a script, if you define a public variable of an object type (like GameObject or Transform), you can drag and drop a GameObject or Prefab into the Inspector to make the assignment.
+インスペクターで表示されているすべてのプロパティは直接、変更することができます。 スクリプト中に含まれる変数ですら、スクリプトそれ自身を変更することなしに変更することが可能です。 インスペクターを使えばランタイム時に各種変数を試しに変えることもできますので、あなたが作っているゲームにふさわしい素晴らしいプレイ感を探ることもできるでしょう。 あるスクリプト中で、オブジェクトタイプ（GameObjectsやTransformのようなものです）に属するパブリック変数を定義しておけば、ゲームオブジェクトやプレハブをインスペクターにドラッグ＆ドロップすることで、割り当てることができます。
 
 Attach:Editor-InspectorDragDrop.png
 
-Click the question mark beside any Component name in the Inspector to load its Component Reference page. Please view the  [[Components|Component Reference]] for a complete and detailed guide to all of Unity's Components.
+インスペクターに表示されているコンポーネント名の横にクエスチョンマークがついていますが、これをクリックすると関係するコンポーネントリファレンスページが開きます。 [[Components|Component Reference]] はUnityに含まれるあらゆるコンポーネントの完全かつ詳細なガイドとなっておりますので、是非参照してください。
 
 Attach:componentsmenu.png\\
-''Add Components from the ^^Component^^ menu''
+'' ^^Component^^ メニューから様々なコンポーネントを追加する ''
 
-You can click the tiny gear icon (or right-click the Component name) to bring up a context menu for the specific Component.
+小型ギアのアイコン（もしくはコンポーネント名を右クリック）で、特定コンポーネントに関するコンテキストメニューをポップアップすることができます。
 
 Attach:Inspector-contextmenu.png
 
-The Inspector will also show any Import Settings for a selected asset file.
-
+インスペクターは、選択中のアセットファイルのインポート設定も表示することができます。
 
 Attach:Inspector-ImportSettings.png\\
-''Click ^^Apply^^ to reimport your asset.''
+'' ^^Apply^^ ボタンをクリックすることでアセットをインポートし直します ''
 
 Attach:Inspector-Layers_Tags.png
 
-Use the ^^Layer^^ drop-down to assign a rendering Layer to the GameObject.  Use the ^^Tag^^ drop-down to assign a Tag to this GameObject.
+^^Layer^^ ドロップダウンボタンを使うことで、ゲームオブジェクトにレンダリングレイヤーを割り当てます。 ^^Tag^^ ドロップダウンボタンで、このゲームオブジェクトにタグを割り当てます。
 
-!!Prefabs
+!!プレハブ（Prefabs）
 
-If you have a Prefab selected, some additional buttons will be available in the Inspector.  For more information about Prefabs, please view the [[Prefabs | Prefab manual page]].
+プレハブを選択すると、いくつかの追加ボタンがインスペクターで使えるようになります。 プレハブについてのさらなる情報は、 [[Prefabs | Prefab manual page]] を参照してください。
 
-!!Labels
-Unity allows assets to be marked with $$Labels$$ to make them easier to locate and categorise. The bottom item on the inspector is the ~~Asset Labels~~ panel.
+!!ラベル（Labels）
+Unityでは、 $$Labels$$ を使ってアセットにマークをつけることができます。 そうすることで検索や分類が簡単になります。 インスペクターの下部にあるアイテムが、 ~~Asset Labels~~ パネルです。
 
 Attach:InspectorLabelsPanelEmpty.png
 
-At the bottom right of this panel is a button titled with an ellipsis ("...") character. Clicking this button will bring up a menu of available labels
+このパネルの右下に省略記号 ("...") でタイトルのついているボタンがあります。 このボタンをクリックすると、利用できるラベルメニューがポップアップします。
 
 Attach:InspectorLabelsMenu.png
 
-You can select one or more items from the labels menu to mark the asset with those labels (they will also appear in the Labels panel). If you click a second time on one of the active labels, it will be removed from the asset.
+ラベルメニューからひとつもしくは複数のアイテムを選び、これらのラベルでアセットをマークすることができます（ラベルは、ラベルパネルの中に同じく表示されます）。 有効になっているラベルからひとつ選んで再びクリックすると、そのラベルはアセットから取り除かれます。
 
 Attach:InspectorAssetMenuWithLabels.png
 
-The menu also has a text box that you can use to specify a search filter for the labels in the menu. If you type a label name that does not yet exist and press return/enter, the new label will be added to the list and applied to the selected asset. If you remove a custom label from all assets in the project, it will disappear from the list.
+ラベルメニューにはテキストボックスがついており、メニューにあるラベルのサーチフィルターとして使用できます。 リストに存在しないラベル名をタイプして、リターンもしくはエンターキーを入力することで、新しいラベルをリストに追加し、選択したアセットに付けることができます。 カスタムラベルは、プロジェクトに含まれるすべてのアセットからそのラベルを取り除けば、リストから削除されます。
 
-Once you have applied labels to your assets, you can use them to refine searches in the $$Project Browser$$ (see [[ProjectView40|this page]] for further details). You can also access an asset's labels from an editor script using the [[ScriptRef:AssetDatabase.html|AssetDatabase]] class.
+一度アセットにラベルを適用してしまえば、 $$Project Browser$$ （詳しくは、 [[ProjectView40|this page]] を参照）中で、それらのラベルを使ってサーチ結果をさらに絞り込むことができます。 また [[ScriptRef:AssetDatabase.html|AssetDatabase]] クラスを使うことで、エディタスクリプトからアセットに添付したラベルにアクセスすることも可能です。
