@@ -1,19 +1,19 @@
-!Analytics
+!エディター情報の解析
 
-The Unity editor is configured to send anonymous usage data back to Unity.  This information is used to help improve the features of the editor.  The analytics are collected using Google Analytics.  Unity makes calls to a URI hosted by Google.  The URN part of the URI contains details that describe what editor features or events have been used.
+UnityエディタはUnityに匿名のデータを送信するように設定されています。この情報はエディター情報はGoogle Analyticsで集められ、エディター機能の改良に使用されます。URIのURNにはUnityエディタが今までに使用したイベントや機能が含まれています。
 
-!!Examples of collected data
-The following are examples of data that Unity might collect.
+!!収集データの例
+Unityが集める情報は以下の通りです。
 
-__Which menu items have been used.__  If some menu items are used rarely or not at all we could in the future simplify the menuing system.
+__使用されたメニューアイテム__ 既に使用している機能、もしくは使用されていない機能を把握することで、メニューシステムを簡略化する助けになります。
 
-__Build times.__  By collecting how long builds take to make we can focus engineering effort on optimizing the correct code.
+__ビルド時間__ ビルド時間にどの程度の時間を取っているかを収集し、最適化の効果を把握する助けになります。
 
-__Lightmap baking.__  Again, timing and reporting how long it takes for light maps to bake can help us decide how much effort to spend on optimizing this area.
+__ライトマップのベイク__ 繰り返しになりますが、ライトマップをベイクするタイミングやレポートを提出してもらう事で、どの程度ライトマップを最適化するかを決める助けになります。
 
-!!Disabling Analytics
+!!AnalyticsをOFFにする
 
-If you do not want to send anonymous data to Unity then the sending of Analytics can be disabled.  To do this untick the box in the Unity Preferences General tab.
+匿名の情報を送信したくない場合、AnalyticsをOFFにすることができます。Unity Preferences GeneralタブのEditor Analyticsのチェックを外してください。
 
 Attach:Editor-Analytics.png\\
 ''Editor analytics in the preferences pane.''
