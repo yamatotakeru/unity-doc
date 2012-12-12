@@ -1,5 +1,5 @@
-!Building Scenes
+!シーンを構築する
 
-This section will explain the core elements you will work with to build scenes for complete games.
+このセクションでは、ゲームのシーンを構築する上で重要な要素を説明します。
 
 (:tocportion:)
