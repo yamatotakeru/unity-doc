@@ -1,9 +1,9 @@
 ! Vertex Litレンダリングパス詳細
 
-このページは$$Vertex Lit$$ [[RenderingPaths | rendering path]] (レンダリングパス)について説明します。
+このページは $$Vertex Lit$$ [[RenderingPaths | Rendering Path]] (レンダリングパス)について説明します。
 
 Vertex Litパスは通常ひとつのパスで各オブジェクトをレンダリングし、全てのライトからのライティングをオブジェクトの頂点にて計算します。
 
 最も早いレンダリングパスであり、最も幅広いハードウェアサポートがあります。（但し据え置き機で動作しないため留意すること）
 
-頂点レベルで全ての計算が行われるため、このレンダリングパスは殆どのピクセルエフェクトをサポートしません。shadows、normal mapping（法線マップ）、light cookies、highly detailed specular highlightsをサポートしません。
+頂点レベルで全ての計算が行われるため、このレンダリングパスは殆どのピクセルエフェクトをサポートしません。影、法線マッピング、Light Cookie、非常に細部の凝った鏡面ハイライトはをサポートしません。

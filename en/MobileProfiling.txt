@@ -87,8 +87,6 @@ The internal profiler gives a good overview per module:
 
 !!Memory
 
-Integrate this: http://docwiki.hq.unity3d.com/internal/index.php?n=Support.MemoryUsage
-
 There is Unity memory and mono memory. 
 
 !!!Mono memory
