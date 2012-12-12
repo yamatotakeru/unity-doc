@@ -1,40 +1,40 @@
-!Cache Server FAQ
+! Cache Server Q&A
 
-!!!Will the size of my Cache Server database grow indefinitely as more and more resources get imported and stored?
-The Cache Server removes assets that have not been used for a period of time automatically (of course if those assets are needed again, they will be re-created during next usage). 
+!!! Cache ServerのDBサイズはインポートしたりリソースを保存したりするたびに無限にどんどん大きくなってしまうのでしょうか？
+Cache Server は自動的に一定周期に使われなくなったアセットを削除します（もちろん再度必要になれば、次に使われる間に再び作られるでしょう）。
 
-!!!Does the cache server work only with the asset server?
+!!! Cache server は Asset Server でしか動かないのですか？
 
-The cache server is designed to be transparent to source/version control systems and so you are not restricted to using Unity's asset server.
+Cache server はソースバージョンコントロールと切り離してデザインされているので、Unityの Asset Serverに制限されることはありません。
 
-!!!What changes will cause the imported file to get regenerated?
+!!! 何を変更すると再生成するためにファイルがインポートされるのでしょうか？
 
-When Unity is about to import an asset, it generates an MD5 hash of all source data.
+Unity は一つのアセットをインポートしようとする際、元となる全てのデータのMD5ハッシュを生成します。
 
-For a texture this consists of:
-* The source asset:  "myTexture.psd" file
-* The meta file: "myTexture.psd.meta" (Stores all importer settings)
-* The internal version number of the texture importer
-* A hash of version numbers of all [[ScriptRef:AssetPostprocessor.html|AssetPostprocessors]]
+例えばテクスチャでは、以下のように成り立っています:
+* 元となるアセット:  "myTexture.psd" ファイル
+* メタファイル: "myTexture.psd.meta" （全てのインポート設定を保存しています）
+* テクスチャインポーターの内部バージョン番号
+* 全ての[[ScriptRef:AssetPostprocessor.html|AssetPostprocessors]] のバージョン番号のハッシュ
 
-If that hash is different from what is stored on the Cache Server, the asset will be reimported, otherwise the cached version will be downloaded. The client Unity editor will only pull assets from the server as they are needed - assets don't get pushed to each project as they change.
+もしCache Serverに保存されているハッシュが違っていたら、アセットは再インポートされるか、キャッシュ化されたバージョンをダウンロードされます。クライアント側の Unity editor は必要な時にサーバーからアセットをプルする（持ってくる）だけです。つまりアセットはそれぞれのプロジェクトにプッシュすることはありません。
 
 
-!!!How do I work with Asset dependencies?
+!!! 依存関係のあるアセットはどう扱ったら良いですか？
 
-The Cache Server does not handle dependencies. Unity's asset pipeline does not deal with the concept of dependencies. It is built in such a way as to avoid dependencies between assets. ``AssetPostprocessors`` are a common technique used to customize the Asset importer to fit your needs. For example, you might want to add MeshColliders to some GameObjects in an fbx file based on their name or tag.
+Cache Server は依存関係を関与しません。Unityのアセットパイプラインは依存関係のコンセプトを扱いません。アセット間の依存は避けるように作って下さい。``AssetPostprocessors`` はアセットインポートを自分用にカスタマイズする共通のテクニックです。 例えば、fbxファイルの決められた名前やタグで、GameObjectにMeshColliderを追加したりできます。
 
-It is also easy to use ``AssetPostprocessors`` to introduce dependencies. For example you might use data from a text file next to the asset to add additional components to the imported game objects. This is not supported in the Cache Server. If you want to use the Cache Server, you will have to remove dependency on other assets in the project folder. Since the Cache Server doesn't know anything about the dependency in your postprocessor, it will not know that anything has changed thus use an old cached version of the asset.
+``AssetPostprocessors`` を使って、依存関係を明示的にすることは簡単にできます。例えば、テキストファイルからインポートされたゲームオブジェクトにコンポーネントを追加するデータを使います。これはCache Serverではサポートされません。もしCache Serverを使いたいなら、プロジェクトフォルダの他のアセットへの依存関係を排除しなければなりません。Since the Cache Server は自分用のPostprocessorでの依存関係について何も知りませんので、古いバージョンのアセットをそのように変更しても知ることができないのです。
 
-In practice there are plenty of ways you can do asset postprocessing to work well with the cache server.
-You can use:
-* The Path of the imported asset
-* Any import settings of the asset
-* The source asset itself or any data generated from it passed to you in the asset postprocessor.
+実践的な話で言えば、Cache serverで動かすためのアセットポストプロセッサを走らせる方法はたくさんあります。
+例えば:
+* インポートされたアセットのパス
+* アセットの全てのインポート設定
+* 元となるアセット自身か、アセットポストプロセッサ内で生成されたデータ
 
-!!!Are there any issues when working with materials?
-Modifying materials that already exist might cause trouble. When using the Cache Server, Unity validates that the references to materials are maintained. But since no postprocessing calls will be invoked, the contents of the material can not be changed when a model is imported through the Cache Server. Thus you might get different results when importing with or without Cache Server. It is best to never modify materials that already exist on disk.
+!!!マテリアルで動かす際に問題がありませんか？
+マテリアルを変更するには既知のトラブルあります。Cache Serverを使っていると、Unityはマテリアル参照を維持します。しかしポストプロセスがpostprocessing で呼ばれないので、Cache Serverを通してインポートされたモデルでは、マテリアルの内容は変更されることはありません。そのため、Cache Serverがある場合とない場合とで違う結果を得ることになるでしょう。これを避けるにはディスクに既に存在するマテリアルは修正しないことです。
 
-!!!Are there any asset types which will not be cached by the server?
+!!! サーバーによってキャッシュされないアセットの種類はありますか？
 
-There are a few kinds of asset data which the server doesn't cache. There isn't really anything to be gained by caching script files and so the server will ignore them. Also, native files used by 3D modelling software (Maya, 3D Max, etc) are converted to FBX using the application itself. Currently, the asset server caches neither the native file nor the intermediate FBX file generated in the import process. However, it is possible to benefit from the server by exporting files as FBX from the modelling software and adding those to the Unity project.
+サーバーにキャッシュされないいくつかのアセットの種類はあります。キャッシングスクリプトによって作られたものは、サーバーでは無視されるので、キャッシュされません。(Maya, 3D Max等の)3Dモデリングソフトで使われているネイティブのファイルはそのアプリケーション自体を使ってFBXにコンバートされます。現在サーバーでは、ネイティブのファイルとインポートプロセスで生成されたFBXファイルのどちらもキャッシュ化しません。しかし、モデリングソフトからFBXにエクスポートされたファイルをUnityプロジェクトに追加することでキャッシュ化が可能になります。
