@@ -104,3 +104,7 @@ However, if you are scaling or instantiating meshes at runtime with a non-unifor
 !! Mesh optimization
 
 The Model Importer in Unity 4.0 has become better at mesh optimization. The "Mesh Optimization" checkbox in the Model Importer in Unity 4.0 is now enabled by default, and will reorder the vertices in your Mesh for optimal performance. You may have some post-processing code or effects in your project which depend on the vertex order of your meshes, and these might be broken by this change. In that case, turn off "Mesh Optimization" in the Mesh importer. Especially, if you are using the SkinnedCloth component, mesh optimization will cause your vertex weight mapping to change. So if you are using SkinnedCloth in a project imported from 3.5, you need to turn off "Mesh Optimization" for the affected meshes, or reconfigure your vertex weights to match the new vertex order.
+
+!! Mobile input
+
+With Unity 4.0 mobile sensor input got better alignment between platforms, which means you can write less code when handling typical input on mobile platforms. Now acceleration and gyro input will follow screen orientation in the same way both on iOS and Android platforms. To take advantage of this change you should refactor your input code and remove platform and screen orientation specific code when handling acceleration and gyro input. You still can get old behavior on iOS by setting ``Input.compensateSensors`` to false.
