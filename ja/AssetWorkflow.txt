@@ -1,62 +1,65 @@
-!Asset Workflow
+!アセットワークフロー（Asset Workflow）
 
-Here we'll explain the steps to use a single asset with Unity.  These steps are general and are meant only as an overview for basic actions.  For the example, we'll talk about using a 3D mesh.
-
-
-!!Create Rough Asset
-
-Use any supported 3D modeling package to create a rough version of your asset.  Our example will use Maya.  Work with the asset until you are ready to save. For a list of applications that are supported by Unity, please see [[HOWTO-importObject|this page]].
+本項で、Unityで単一のアセットを使う工程について説明をします。 ここで説明する工程はおおまかなものですので、基本操作を概観するためのものと理解してください。 例として、３Ｄメッシュの使い方を取り上げましょう。
 
 
-!!Import
+!!ラフアセットを作成する（Create Rough Asset）
 
-When you save your asset initially, you should save it normally to the $$Assets$$ folder in your Project folder.  When you open the Unity project, the asset will be detected and imported into the project.  When you look in the $$Project View$$, you'll see the asset located there, right where you saved it. Please note that Unity uses the FBX exporter provided by your modeling package to convert your models to the FBX file format. You will need to have the FBX exporter of your modeling package available for Unity to use. Alternatively, you can directly export as FBX from your application and save in the Projects folder. For a list of applications that are supported by Unity, please see [[HOWTO-importObject|this page]].
-
-
-!!Import Settings
-
-If you select the asset in the $$Project View$$ the import settings for this asset will appear in the $$Inspector$$. The options that are displayed will change based on the type of asset that is selected.
+あなた自身のアセットのラフバージョンを作成するために、サポートされている適当な３Ｄモデリングアプリケーションを使ってみましょう。 ここでは、例としてMayaを使ってみます。 適当なアセットを作成し、セーブする直前まで進めます。 Unityがサポートするアプリケーションのリストは、 [[HOWTO-importObject|this page]] にあります。
 
 
-!!Adding Asset to the Scene
+!!インポート（Import）
 
-Simply click and drag the mesh from the Project View to the $$Hierarchy$$ or $$Scene View$$ to add it to the Scene.  When you drag a mesh to the scene, you are creating a $$GameObject$$ that has a ``Mesh Renderer`` $$Component$$.  If you are working with a texture or a sound file, you will have to add it to a GameObject that already exists in the Scene or Project.
-
-
-!!Putting Different Assets Together
-
-Here is a brief description of the relationships between the most common assets
-
-* A Texture is applied to a $$Material$$
-* A Material is applied to a GameObject (with a Mesh Renderer Component)
-* An ``Animation`` is applied to a GameObject (with an Animation Component)
-* A sound file is applied to a GameObject (with an ``Audio Source`` Component)
+あなた自身のアセットを最初にセーブする際、あなたが現在作業しているプロジェクトフォルダ内の $$Assets$$ フォルダに通常はセーブすることをお勧めします。 Unityのプロジェクトを開く時に、そのアセットが認識され、プロジェクトにインポートされます。  $$Project View$$ を見てみれば、アセットがその場所（あなたがアセットをセーブしたフォルダです）にあることがわかるでしょう。 ここで注意すべきことは、あなたが使用しているモデリングアプリケーションが提供しているFBXエクスポーターを、Unityが使っているということです。 このFBXエクスポーターが、あなたが作ったモデルをFBXファイルフォーマットに変換しているのです。 従って、あなたが使うモデリングアプリケーションには、Unityが利用できるFBXエクスポーターが付属している必要があります。 もしくは、あなたが使っているアプリケーションからFBXを直接エクスポートして、作業中のプロジェクトフォルダにセーブすることも可能です。 Unityによってサポートされているアプリケーションのリストは、 [[HOWTO-importObject|this page]] にあります。
 
 
-!!Creating a Prefab
+!!インポート設定（Import Settings）
 
-$$Prefabs$$ are a collection of GameObjects & Components that can be re-used in your scenes.  Several identical objects can be created from a single Prefab, called instancing.  Take trees for example.  Creating a tree Prefab will allow you to instance several identical trees and place them in your scene.  Because the trees are all linked to the Prefab, any changes that are made to the Prefab will automatically be applied to all tree instances.  So if you want to change the mesh, material, or anything else, you just make the change once in the Prefab and all the other trees inherit the change.  You can also make changes to an instance, and choose ^^GameObject->Apply Changes to Prefab^^ from the main menu.  This can save you lots of time during setup and updating of assets.
+$$Project View$$ よりアセットを選択すると、 $$Inspector$$ にこのアセットのインポート設定が現れます。 表示されるオプションは、選択したアセットの種類に応じて変化します。
 
-When you have a GameObject that contains multiple Components and a hierarchy of child GameObjects, you can make a Prefab of the top-level GameObject (or $$root$$), and re-use the entire collection of GameObjects.
 
-Think of a Prefab as a blueprint for a structure of GameObjects.  All the Prefab clones are identical to the blueprint.  Therefore, if the blueprint is updated, so are all the clones.  There are different ways you can update the Prefab itself by changing one of its clones and applying those changes to the blueprint.  To read more about using and updating Prefabs, please view the [[Prefabs]] page.
+!!シーンにアセットを追加する（Adding Asset to the Scene）
 
-To actually create a Prefab from a GameObject in your scene, simply drag the GameObject from the scene into the project, and you should see the Game Object's name text turn blue. Name the new Prefab whatever you like. You have now created a re-usable prefab.
+あるメッシュをシーンに追加するためには、プロジェクトビューから $$Hierarchy$$ もしくは $$Scene View$$ へ、メッシュをクリック＆ドラッグするだけです。 あるメッシュをシーンにドラッグすることで、 ``Mesh Renderer`` $$Component$$ を持つ $$GameObject$$ を作成していることになります。 もしテクスチャやサウンドファイルを適用したいならば、シーンもしくはプロジェクト中にすでに存在しているゲームオブジェクトに対してそれらを適用することになります。
 
-!!Updating Assets
 
-You have imported, instantiated, and linked your asset to a Prefab.  Now when you want to edit your source asset, just double-click it from the Project View.  The appropriate application will launch, and you can make any changes you want.  When you're done updating it, just Save it.  Then, when you switch back to Unity, the update will be detected, and the asset will be re-imported.  The asset's link to the Prefab will also be maintained.  So the effect you will see is that your Prefab will update.  That's all you have to know to update assets.  Just open it and save!
+!!異なるアセットをまとめる（Putting Different Assets Together）
+
+以下に、最もよく使われるアセット間の関係を簡単に記述しておきます
+
+* テクスチャは、 $$Material$$ に対して適用されます
+* マテリアルは、メッシュレンダラコンポーネントを持つゲームオブジェクトに対して適用されます
+* ``Animation`` は、アニメーションコンポーネントを持つゲームオブジェクトに対して適用されます
+* サウンドファイルは、 ``Audio Source`` コンポーネントを持つゲームオブジェクトに対して適用されます
+
+
+!!プレハブを作成する（Creating a Prefab）
+
+$$Prefabs$$ とは、あなたが作業しているシーン中で、再利用することのできるゲームオブジェクトやコンポーネントのコレクションのことです。 まったく同じいくつかのオブジェクトをたったひとつのプレハブから作ることが可能です。 これをインスタンス化と呼びます。 例として、樹木を取り上げてみましょう。 樹木のプレハブをひとつ作ることで、まったく同じいくつかの木々をインスタンス化し、それらをあなたが作業しているシーンの中に配置することができるようになります。もちろんそれらの木々は元のプレハブにリンク付けられていますので、プレハブに変更を加えれば、自動的に木々のインスタンスすべてにその変更が適用されます。つまり、もしメッシュやマテリアル、もしくはその他の何かを変更したくなった時にやるべきことは、元となっているプレハブを一度変更するだけです。 他のすべての木々はその変更を継承します。 もちろんひとつのインスタンスに対して変更を加えることも可能ですし、メインメニューから ^^GameObject->Apply Changes to Prefab^^ を選択することも可能です。 プレハブを上手に使うことで、アセットの配置やアップデートにかかる時間を大いに節約することができます。
+
+複数のコンポーネントを持つゲームオブジェクトや、子としてゲームオブジェクトの階層を持っているゲームオブジェクトを扱っている時には、ゲームオブジェクトの最上位階層（もしくは $$root$$ 階層）のプレハブを作成することが可能です。その場合、ゲームオブジェクトのコレクションを丸ごと再利用することができます。
+
+あるプレハブを、様々なゲームオブジェクトから作られているひとつの構造物のブループリントと考えてみましょう。 プレハブによって作られたすべてのクローンはブループリントとまったく同一のものとなります。 従ってブループリントが更新されたら、すべてのクローンも更新されます。 プレハブそれ自身をアップデートするにも様々な方法があり、そのクローンのひとつのみを変更したり、その変更をブループリントまで適用するなどが可能です。 より詳しいプレハブの使い方とアップデートの仕方に関しては、 [[Prefabs]] のページを参照してください。
+
+シーン中のあるゲームオブジェクトから実際にプレハブを作成するには、シーンからプロジェクトへそのゲームオブジェクトをドラッグするだけです。するとゲームオブジェクトの名前が青色に変わるのがわかると思います。新しいプレハブには好きな名前を付けましょう。これで再利用可能なプレハブが出来上がりです。
+
+
+!!アセットのアップデート（Updating Assets）
+
+あなたが作ったアセットをインポートし、インスタンス化し、そしてプレハブにリンクしました。 その時点でソースとなっているアセットをエディットしたくなりました。そんな場合は、プロジェクトビューからアセットをダブルクリックします。 適当なアプリケーションが立ち上がり、好きなように変更を加えることができます。 アップデートが終わったら、セーブしましょう。 次にUnityに切り替えた時に、更新が認識されて、アセットが再度インポートされることでしょう。 アセットとプレハブとのリンクも維持されています。 その結果として、プレハブが更新されている状態を見ることになるでしょう。 これがアセットの更新に関してあなたが知っておくべきことのすべてです。 つまり、アセットを開いてセーブすればよいのです！
+
 [[#AssetLabels]]
-!! Optional - Adding Labels to the Assets.
-Is always a good idea to add labels to your assets if you want to keep organized all your assets, with this you can search for the labels associated to each asset in the search field in the project view or in the object selector.
+!! アセットに任意のラベルを追加する（Optional - Adding Labels to the Assets.）
 
-Steps for adding a label to an asset:
-* Select the asset you want to add the label to (From the project view).
-* In the inspector click on the "Add Label" icon (Attach:AssetLabelAdd.png) if you dont have any Labels associated to that asset.
-** If you have a label associated to an asset then just click where the labels are.
-* Start writing your labels.
+もしあなた自身のアセットを常にきちんと整理しておきたいのならば、アセットにラベルを追加するのは良いアイディアです。そうすることで、プロジェクトビューやオブジェクトセレクターのサーチフィールドで、おのおののアセットに関連付けられたラベルを使って検索することができるようになります。
+
+アセットにラベルを追加する手順は以下の通りです:
+* ラベルを追加したいアセットを選択する（プロジェクトビューから行います）。
+* そのアセットに関連付けたいラベルがまだない場合には、インスペクターの "Add Label" アイコン (Attach:AssetLabelAdd.png) をクリックする。
+** そのアセットに関連付けたいラベルがある場合には、そのラベルをクリックする。
+* ラベルを記入する。
 
 __Notes:__
-* You can have more than one label for any asset.
-* To separate/create labels, just press __space__ or __enter__ when writing asset label names.
+* どんなアセットにも、ひとつ以上のラベルを付けることができます。
+* ラベルを区切ったり、作成したりする時には、 __space__ もしくは __enter__ キーをラベル名の記入中に入力してください。
 
