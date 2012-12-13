@@ -51,7 +51,7 @@
 '''必要アセット：'''
 * ``Base``テクスチャ一つ、アルファチャネル必要なし
 * ``Normal map``（法線マップ）一つ
-* ``Height``テクスチャ一つ、Parallax Depth（パララックスデプス）向けのアルファチャンネルあり
+* ``Height``テクスチャ一つ、Parallax Depth（視差デプス）向けのアルファチャンネルあり
 
 
 !! [[shader-NormalParallaxSpecular|Parallax Specular]]
@@ -61,7 +61,7 @@
 '''必要アセット：'''
 * ``Base``テクスチャ一つ、Specular Map（鏡面反射マップ）向けのアルファチャネルあり
 * ``Normal map``（法線マップ）一つ
-* ``Height``テクスチャ一つ、Parallax Depth（パララックスデプス）向けのアルファチャンネルあり
+* ``Height``テクスチャ一つ、Parallax Depth（視差デプス）向けのアルファチャンネルあり
 
 
 !! [[shader-NormalDecal|Decal]]
