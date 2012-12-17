@@ -1,50 +1,48 @@
-!Preferences
+!プリファレンス （Preferences）
 
-Unity provides a number of preference panels to allow you to customise the behaviour of the editor.
+Unityには、プリファレンスパネルがいくつかありますが、これらを使ってエディタの動作をカスタマイズすることができます。
 
-!!General
+!!一般（General）
 
 Attach:PrefsGeneral40.png
 
-||``Auto Refresh``||Should the editor update assets automatically as they change?||
-||``Always Show Project Wizard``||Should the project wizard be shown at startup? (By default, it is shown only when the alt key is held down during launch)||
-||``Compress Assets On Import``||Should assets be compressed automatically during import?||
-||``OSX Color Picker``||Should the native OSX color picker be used instead of Unity's own?||
-||``Editor Analytics``||Can the editor send information back to Unity automatically?||
-||``Show Asset Store search hits`` ||Should the number of free/paid assets from the store be shown in the Project Browser? ||
-||``Verify Saving Assets``||Should Unity verify which assets to save individually on quitting?||
-||``Skin (Pro Only)``||Which color scheme should Unity use for the editor? Pro users have the option of dark grey in addition to the default light grey.||
-||``Graphics Device``||This is set to Automatic on the Mac but has options for Direct3D 9, Direct3D 11 and OpenGL on Windows.||
+||``Auto Refresh``||アセットが変更された時、自動でエディタがアセットをアップデートする||
+||``Always Show Project Wizard``||スタート時にプロジェクトウィザードを表示する（デフォルトでは、起動時にAltキーを押しっぱなしにしている時のみ表示される） ||
+||``Compress Assets On Import``||インポート時に、アセットを自動的に圧縮する||
+||``OSX Color Picker``||OSXネイティブのカラーピッカーをUnity独自のものに代える||
+||``Editor Analytics``||エディタがUnityに情報を自動的にセンドバックすることを許可する||
+||``Show Asset Store search hits`` ||プロジェクトブラウザ中にストアの無料/有料アセットの数を表示する||
+||``Verify Saving Assets``||終了時にアセットが個々にセーブされたか確認する||
+||``Skin (Pro Only)``||エディタで使用するカラースキームを選択する。Proユーザーはデフォルトのライトグレーの他、ダークグレーのオプションを利用できる||
+||``Graphics Device``||このオプションはMacでは自動で設定されるが、Windowsでは、Direct3D 9、Direct3D 11およびOpenGLのオプションがある||
 
-!!External Tools
+!!外部ツール（External Tools）
 
 Attach:PrefsExtTools.png
 
-||``External Script Editor``||Which application should Unity use to open script files?||
-||``Editor Attaching``||Should Unity allow debugging to be controlled from the external script editor?||
-||``Image Application``||Which application should Unity use to open image files?||
-||``Asset Server Diff Tool``||Which application should Unity use to resolve file differences with the asset server?||
-||``Android SDK Location``||Where in the filesystem is the Android SDK folder located?||
-||``iOS Xcode 4.x support``||Should support for Xcode 4.x be enabled for iOS build targets?||
+||``External Script Editor``||スクリプトファイルを開くのに使うアプリケーションを指定する||
+||``Editor Attaching``||外部スクリプトエディタのコントロール下でUnityのデバッグ機能の実行を許可する||
+||``Image Application``||画像ファイルを開くのに使うアプリケーションを指定する||
+||``Asset Server Diff Tool``||アセットサーバ使用時、ファイル不一致を解決するアプリケーションを指定する||
+||``Android SDK Location``||Android SDKフォルダのある場所を指定する||
+||``iOS Xcode 4.x support``||iOSのビルドターゲットとして、Xcode 4.xのサポートを有効にする||
 
 
-!!Colors
+!!カラー（Colors）
 
 Attach:PrefsColors.png
 
-This panel allows you to choose the colors that Unity uses when displaying various user interface elements.
+本パネルで選択したカラーで、様々なユーザーインタフェース要素が表示されます。
 
-
-!!Keys
+!!キー（Keys）
 
 Attach:PrefsKeys.png
 
-This panel allows you to set the keystrokes that activate the various commands in Unity.
+本パネルで設定したキーストロークで、Unityの様々なコマンドを実行できます。
 
-
-!!Cache Server
+!!キャッシュサーバ（Cache Server）
 
 Attach:PrefsCacheServer35.png
 
-||``Use Cache Server``||Should the cache server be enabled?||
-||``IP Address``||IP address of the cache server, if enabled||
+||``Use Cache Server``||キャッシュサーバを有効にします||
+||``IP Address``||有効の場合、キャッシュサーバのIPアドレス||

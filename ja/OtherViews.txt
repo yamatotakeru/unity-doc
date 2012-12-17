@@ -1,11 +1,11 @@
-!Other Views
+!その他のビュー （Other Views）
 
-The Views described on this page covers the basics of the interface in Unity. The other Views in Unity are described elsewhere on separate pages:
+本ページに記載されているビューは、Unityにおける基本的なインターフェースとなっています。Unityのそのほかのビューに関しては、単独ページ上のその他の場所に記載されています:
 
-* The [[Console | Console]] shows logs of messages, warnings, and errors.
-* The [[Animations40 | Animation View]] can be used to animate objects in the scene.
-* The [[Profiler]] can be used to investigate and find the performance bottle-necks in your game.
-* The [[Asset Server | Asset Server View]] can be used to manage version control of the project using Unity's Asset Server.
-* The [[Lightmapping | Lightmapping View]] can be used to manage lightmaps using Unity's built-in lightmapping.
-* The [[Occlusion Culling | Occlusion Culling View]] can be used to manage Occlusion Culling for improved performance.
+*  [[Console | Console]] は、メッセージ、警告、エラー等のログを表示します。
+*  [[Animations40 | Animation View]] は、シーン中のアニメーションをするオブジェクトに使われます。
+*  [[Profiler]] は、あなたが作成しているゲーム中でパフォーマンス上のボトルネックとなっているものを探ったり、見つけたりするのに使われます。
+*  [[Asset Server | Asset Server View]] は、Unityアセットサーバを使うことで、バージョンコントロールをするのに使われます。
+*  [[Lightmapping | Lightmapping View]] は、Unityに組み込まれているライトマッピング機能を使用してライトマップを調整するのに使われます。
+*  [[Occlusion Culling | Occlusion Culling View]] は、パフォーマンス改善のためにオクルージョンカリングを調整するのに使われます。
 

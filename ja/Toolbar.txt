@@ -1,12 +1,12 @@
-!Toolbar
+!ツールバー （Toolbar）
 
 Attach:Editor-Toolbar.png
 
-The Toolbar consists of five basic controls.  Each relate to different parts of the Editor.
+ツールバーには、５つの基本コントロールが含まれています。おのおののコントロールは、エディタの異なった部分に関連しています。
 
-Attach:UI-ViewTool.png Transform Tools -- used with the Scene View \\
-Attach:Editor-GizmoButtons.png Transform Gizmo Toggles -- affect the Scene View display \\
-Attach:Editor-PlayButtons.png Play/Pause/Step Buttons -- used with the Game View \\
-Attach:Editor-LayersDropdown.png [[Layers|Layers]] Drop-down -- controls which objects are displayed in Scene View \\
-Attach:Editor-LayoutDropdown.png Layout Drop-down -- controls arrangement of all Views
+Attach:UI-ViewTool.png トランスフォームツール -- シーンビューで使用します \\
+Attach:Editor-GizmoButtons.png トランスフォームギズモトグルボタン -- シーンビュー表示に影響します \\
+Attach:Editor-PlayButtons.png プレイ/ポーズ/ステップ ボタン -- ゲームビューで使用します \\
+Attach:Editor-LayersDropdown.png [[Layers|Layers]] ドロップダウンボタン -- シーンビュー中でどのオブジェクトを表示するか管理します \\
+Attach:Editor-LayoutDropdown.png レイアウト ドロップダウンボタン -- すべてのビューの配置を管理します
 
