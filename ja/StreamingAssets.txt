@@ -1,17 +1,17 @@
-!Streaming Assets
+!ストリーミングアセット（Streaming Assets）
 
-Most assets in Unity are combined into the project when it is built. However, it is sometimes useful to place files into the normal filesystem on the target machine to make them accessible via a pathname. An example of this is the deployment of a movie file on iOS devices; the original movie file must be available from a location in the filesystem to be played by the PlayMovie function.
+Unityはビルド時に必要なアセットを結合します。ですが、時には標準的なファイルシステム上に配置し、パス名で参照したい場合もあるでしょう。例えばはiOS上で動画を再生する場合、再生するムービーファイルを参照し利用可能にしなければなりません。
 
-Any files placed in a folder called StreamingAssets in a Unity project will be copied verbatim to a particular folder on the target machine. On a desktop computer (Mac OS or Windows) the location of the files can be obtained with the following code:-
+UnityプロジェクトにおけるStreamingAssetsと呼ばれるフォルダに配置したファイルはビルド時そのまま保持されます。デスクトップコンピューター（OSXもしくはwindows）では、次のコードでファイルのパスを取得する事が出来ます。
 
   [@path = = Application.dataPath + "/StreamingAssets";@]
 
-On iOS, you should use:-
+iOSの場合は、以下のコードを使用します:-
 
   [@path = Application.dataPath + "/Raw";@]
 
-...while on Android, you should use:-
+Androidの場合は、以下のコードを使用します:-
 
   [@path = "jar:file://" + Application.dataPath + "!/assets/";@]
 
-Note that on Android, the files are contained within a compressed .jar file (which is essentially the same format as standard zip-compressed files). This means that if you do not use Unity's WWW class to retrieve the file then you will need to use additional software to see inside the .jar archive and obtain the file.
+注意：Androidの場合、ファイルは圧縮した.jarファイル（実質zipファイル）に含まれます。このため中身を確認/取得するにはjarアーカイブの中身を確認し取得することのできる追加のソフトウェア用意するか、もしくはUnityのWWWクラスを使用します。
