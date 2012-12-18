@@ -1,17 +1,17 @@
-! Using the Inspector
+! インスペクターを使う（Using the Inspector）
 
-The $$Inspector$$ is used to view and edit $$Properties$$ of many different types.
+$$Inspector$$ を使って、多くの様々なタイプの $$Properties$$ を見たり編集したりすることができます。
 
-Games in Unity are made up of multiple $$GameObjects$$ that contain meshes, scripts, sounds, or other graphical elements like Lights. When you select a $$GameObject$$ in the Hierarchy or Scene View, the $$Inspector$$ will show and let you modify the $$Properties$$ of that GameObject and all the $$Components$$ and $$Materials$$ on it. The same will happen if you select a $$Prefab$$ in the Project View. This way you modify the functionality of GameObjects in your game. You can read more about the [[GameObjects#Relationship|GameObject-Component relationship]], as it is very important to understand.
+Unityでは、ゲームは多様な $$GameObjects$$ の組み合わせから構成されます。それらのゲームオブジェクトには、メッシュ、スクリプト、サウンドそしてライトのようなその他グラフィック要素も含まれます。 ヒエラルキーやシーンビューからある $$GameObject$$ を選択すると、そのゲームオブジェクトの $$Properties$$ と、付属する全ての $$Components$$ および $$Materials$$ が $$Inspector$$ に表示されると共に、変更することが可能になります。 同じことは、プロジェクトビュー中の $$Prefab$$ を選択することでも起こります。 このようにして、あなたのゲーム中のゲームオブジェクトが持っている機能を変更することができるのです。  [[GameObjects#Relationship|GameObject-Component relationship]] も参照してください。とても重要なことが書かれていますので、是非理解しましょう。
 
 Attach:GenericInspector.png\\
-''Inspector shows the properties of a GameObject and the Components and Materials on it.''
+''インスペクターにゲームオブジェクトのプロパティと、付属するコンポーネントとマテリアルが表示されている''
 
-When you create a $$script$$ yourself, which works as a custom Component type, the member variables of that script are also exposed as $$Properties$$ that can be edited directly in the Inspector when that script component has been added to a $$GameObject$$. This way script variables can be changed without modifying the script itself.
+あなた自身で $$script$$ を作成した時には、それはカスタムコンポーネントタイプとして機能します。 $$GameObject$$ にそのスクリプトコンポーネントを添付すれば、そのスクリプトに含まれるメンバ変数は $$Properties$$ として公開されますので、インスペクターから直接編集することが可能となります。 このようにして、スクリプトそれ自身を変更することなく、スクリプト変数を変更することができるのです。
 
-Furthermore, the Inspector is used for showing import options of assets such as textures, 3D models, and fonts when selected. Some scene and project-wide settings are also viewed in the $$Inspector$$, such as all the [[comp-ManagerGroup| Settings Managers]].
+さらにインスペクターは、選択されたテクスチャ、３Ｄモデル、フォントなどの各種アセットのインポートオプションを表示するのにも使われます。 さらにシーンおよびプロジェクトを問わず広範に適用される設定のいくつかは $$Inspector$$ で見ることができます。そのような例として、 [[comp-ManagerGroup| Settings Managers]] があります。
 
-Any property that is displayed in the Inspector can be directly modified. There are two main types of Properties: $$Values$$ and $$References$$.
+インスペクターに表示されていれば、どのようなプロパティでも直接変更することができます。 プロパティには主要なタイプが２つあります。すなわち、$$Values$$ と $$References$$ です。
 
 (:tocportion:)
 

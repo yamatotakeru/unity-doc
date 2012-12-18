@@ -1,16 +1,16 @@
-!Deactivating GameObjects
+!ゲームオブジェクトを非アクティブにする（Deactivating GameObjects）
 
-A GameObject can be temporarily removed from the scene by marking it as inactive. This can be done using its [[ScriptRef:GameObject-activeSelf.html|activeSelf]] property from a script or with the activation checkbox in the inspector
+非アクティブにマーキングすることで、あるゲームオブジェクトをシーンから一時的に取り除くことができます。 実行するには、スクリプトから非アクティブ化したいゲームオブジェクトの [[ScriptRef:GameObject-activeSelf.html|activeSelf]] プロパティをチェックするか、インスペクターのアクティベーションチェックボックスをチェックします。
 
 Attach:GOActiveBox.png
 
-''A GameObject's activation checkbox''
+''ゲームオブジェクトのアクティベーションチェックボックス''
 
-!!Effect of deactivating a parent GameObject
+!!親のゲームオブジェクトを非アクティブにした時の影響（Effect of deactivating a parent GameObject）
 
-When a parent object is deactivated, the deactivation also overrides the $$activeSelf$$ setting on all its child objects, so the whole hierarchy from the parent down is made inactive. Note that this does ''not'' change the value of the $$activeSelf$$ property on the child objects, so they will return to their original state once the parent is reactivated. This means that you can't determine whether or not a child object is currently active in the scene by reading its $$activeSelf$$ property. Instead, you should use the [[ScriptRef:GameObject-activeInHierarchy.html|activeInHierarchy]] property, which takes the overriding effect of the parent into account.
+親オブジェクトを非アクティブにした場合、その全ての子オブジェクトの $$activeSelf$$ 設定に対しても、非アクティブが優先（オーバーライド）されます。 従って、親以下の全階層が非アクティブになります。 ここで注意して欲しいのは、これが子オブジェクトの $$activeSelf$$ プロパティの値を変えた訳ではないということです。 従って親が再びアクティブになれば、子は当初の状態に復帰します。 このことは、シーン中のある子オブジェクトが現在アクティブであるかどうかを、その $$activeSelf$$ プロパティを調べることで判定することはできないということを、意味しています。 その代わりとして、親からのオーバーライド効果が考慮に入っている [[ScriptRef:GameObject-activeInHierarchy.html|activeInHierarchy]] プロパティを使いましょう。
 
-This overriding behaviour was introduced in Unity 4.0. In earlier versions, there was a function called $$SetActiveRecursively$$ which could be used to activate or deactivate the children of a given parent object. However, this function worked differently in that the activation setting of each child object was changed - the whole hierarchy could be switched off and on but the child objects had no way to "remember" the state they were originally in. To avoid breaking legacy code, $$SetActiveRecursively$$ has been kept in the API for 4.0 but its use is not recommended and it may be removed in the future. In the unusual case where you actually want the children's $$activeSelf$$ settings to be changed, you can use code like the following:-
+このオーバーライド作用は、Unity 4.0から導入されました。 それ以前のバージョンでは、 $$SetActiveRecursively$$ 関数があり、この関数が特定の親オブジェクトの子をアクティブにしたり非アクティブにしたりするために使うことができました。 しかしこの関数は機能の仕方が違っており、個々の子オブジェクトのアクティブ化設定を変更していました。 従って、ヒエラルキー全体をオンオフ切り替えることはできましたが、子オブジェクトが元々持っていた状態を覚えておくことができませんでした。 旧来のコードとの互換性を保つために、 $$SetActiveRecursively$$ はUnity 4.0のAPIにも残されていますが、その使用は推奨されませんし、将来取り除かれる可能性もあります。 もし子の $$activeSelf$$ 設定を本当に変更しなければならないような特殊なケースの場合には、以下のコードを使ってください。:
 
 [@// JavaScript
 function DeactivateChildren(g: GameObject, a: boolean) {
