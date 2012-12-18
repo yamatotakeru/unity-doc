@@ -1,26 +1,25 @@
-!リジッドボディの睡眠
+Rigidbody のスリープ
 
-リジッドボディが休止すると (フロアに降り立つ箱)、寝始めます。 睡眠は、物理特性エンジンがこれらのリジッドボディの処理を停止できる最適化です。 このように、リジッドボディが通常動かないようにしている限りは、シーン内に大量のリジッドボディを置くことができます。
+Rigidbody が休止すると (箱が床に接触して停止する)、スリープします。 スリープとは最適化のひとつで、これらの Rigidbody の物理エンジン処理が停止します。 これにより Rigidbody が通常動かないようにしている限り、シーン内に大量の Rigidbody を置くことができます。
 
-リジッドボディの睡眠は完全に自動で発生します。 リジッドボディが sleepAngularVelocity および sleepVelocity よりも遅くなると、寝始めます。 休止から数分後、睡眠に設定されます。 ボディが睡眠時、衝突検出やシミュレーションは実行されなくなります。 これにより、CPU サイクルを多く省けます。
+Rigidbody のスリープは完全に自動化されています。 Rigidbody が sleepAngularVelocity および  sleepVelocity よりも遅くなると、休止を始めます。 休止から数分後、スリープに設定されます。 Body がスリープ時、衝突検出やシミュレーションは実行されなくなります。 これにより、多大な CPU サイクルを節約できます。
 
-リジッドボディは、以下の場合に自動的に起きます。
-* 別のリジッドボディが寝ているリジッドボディに衝突した場合。
-* ジョイントを通じて接続された別のリジッドボディが移動し始めた場合。
-* リジッドボディのプロパティ編集時。
-* [[ScriptRef:Rigidbody.AddForce.html|adding forces]] 時。
+Rigidbodyは、以下の場合に自動的にウェイクアップします。
+* 別の Rigidbody がスリープしているRigidbodyに衝突した場合。
+* ジョイントを通じて接続された別のRigidbodyが移動し始めた場合。
+* Rigidbody のプロパティ編集時。
+* [[ScriptRef:Rigidbody.AddForce.html|Forceの追加]] 時。
 
-リジッドボディを休止させたい場合は、そのプロパティを編集したり、睡眠モードに入ろうとしている際に力を追加しないでください。
+Rigidbodyを休止させたい場合は、そのプロパティを編集したり、スリープモードに入ろうとしている際に Force を追加しません。
 
-リジッドボディを自動的に休止に入らせるために、 [[ScriptRef:Rigidbody-sleepVelocity.html|Rigidbody.sleepVelocity]] と [[ScriptRef:Rigidbody-sleepAngularVelocity.html|Rigidbody.sleepAngularVelocity]] の 2 つの変数を調整できます。 これらの変数は、[[class-PhysicsManager|Physics Manager]] (''Edit -> Project Settings -> Physics'') で定義された sleepVelocity および sleepAngularVelocity 変数に初期化されます。
+Rigidbodyを自動的に休止に入らせる際には、 [[ScriptRef:Rigidbody-sleepVelocity.html|Rigidbody.sleepVelocity]] と [[ScriptRef:Rigidbody-sleepAngularVelocity.html|Rigidbody.sleepAngularVelocity]] の 2 つの変数を調整できます。 これらの変数は、[[class-PhysicsManager|Physics Manager]] の(メニューから ''Edit -> Project Settings -> Physics'') で定義された  sleepVelocity および  sleepAngularVelocity  変数に初期化されます。
 
-リジッドボディは、[[ScriptRef:Rigidbody.Sleep.html|rigidbody.Sleep]] を使用しても強制的に睡眠させることができます。 これは、新しいレベルのロード時にリジッドボディを休止状態で開始する際に便利です。
-
-
-キネマティック リジッドボディは、寝ているリジッドボディを起こします。 スタティック コライダは起こしません。
-リジッドボディが寝ており、スタティック コライダ (リジッドボディを追加していないコライダ) をリジッドボディに移動させるか、リジッドボディの下から引っ張っても、寝ているリジッドボディは__起きません__。
-キネマティック リジッドボディの上で休止しているキネマティック リジッドボディを通常のリジッドボディの下から移動させると、寝ているリジッドボディが起き、物理特性アップデートで再度正確に計算されます。  動かしたいスタティック コライダがたくさんあり、異なるオブジェクトをその上に正しく落としたい場合は、キネマティック リジッドボディ コライダを使用します。
+Rigidbodyは、[[ScriptRef:Rigidbody.Sleep.html|Rigidbody.Sleep]] を使用しても強制的にスリープさせることができます。 これは、新しいレベルのロード時にRigidbodyを休止状態で開始する際に便利です。
 
 
-キネマティック リジッドボディ - これらは、どこにも移動しないため、物理特性アップデート中に計算されません。  キネマティック リジッドボディの上で休止しているキネマティック リジッドボディを通常のリジッドボディの下から移動させると、寝ているリジッドボディが起き、物理特性アップデートで再度正確に計算されます。  なので、動かしたいスタティック コライダがたくさんあり、異なるオブジェクトをその上に正しく落としたい場合は、キネマティック リジッドボディ コライダを使用します。
+Kinematic Rigidbodyは、スリープしているRigidbodyをウェイクアップします。 Static コライダはウェイクアップしません。
+Rigidbodyがスリープしており、 Static コライダ ( Rigidbody を追加していないコライダ) を Rigidbody に移動させるか、 Rigidbody の下から引っ張っても、スリープしているRigidbodyは__ウェイクアップしません__。
+Kinematic Rigidbody の上で休止している Kinematic Rigidbody を通常の Rigidbody の下から移動させると、スリープしている Rigidbody がウェイクアップし、物理挙動の Update で再度正確に計算されます。  動かしたい Static コライダがたくさんあり、異なるオブジェクトをその上に正しく落としたい場合は、Kinematic Rigidbody コライダを使用します。
+
+Kinematic Rigidbody - これらは、どこにも移動しないため、物理挙動の Update 中に計算されません。 Kinematic Rigidbody の上で休止している Kinematic Rigidbody を通常の Rigidbody の下から移動させると、スリープしている Rigidbody がウェイクアップし、物理挙動の Update で再度正確に計算されます。  このため、動かしたい Static コライダがたくさんあり、異なるオブジェクトをその上に正しく落としたい場合は、Kinematic Rigidbody コライダを使用します。
 
