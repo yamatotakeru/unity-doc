@@ -1,26 +1,24 @@
 ! キューブマップ テクスチャ
 
-$$Cubemap Texture$$ は、架空の6 つの立方体の各面に貼られる個々の正方形のテクスチャの集合です。 このテクスチャは、[[class-Skybox|Skybox]] が背景の遠くの風景を表示するのと同様、オブジェクトへのかなり遠くの反射を表示するのに使用されます。 Unity の[[shader-ReflectiveFamily | Reflective]] 組み込みシェーダーは、Cubemap を使用して、反射を表示します。
+$$Cubemap Texture$$ は、仮想的な立方体の 6 つの各面に貼られる正方形テクスチャの集合です。 このテクスチャは、[[class-Skybox|Skybox]] が背景の遠くの風景を表示するのと同様、オブジェクトへの無限に遠くの反射を表示するのに使用されます。 Unity の[[shader-ReflectiveFamily | Reflective]] 内蔵シェーダーは、Cubemap を使用して、反射を表示します。
 
 Attach:Inspector-CubeMap.png\\
-''この球体嬢の反射として表示される山のシーンの Cubemap''
+''山の風景を球体に反射させて表示する Cubemap''
 
-Cubemap は、次のいずれかの方法で作成します。
-# ^^Assets->Create->Cubemap^^ を使用し、そのプロパティを設定して、6 つの [[class-Texture2D|Texture]] アセットを対応する Cubemap の''面''にドラッグします。 テクスチャは Cubemap アセットにベーキングされ、そのテクスチャとはリンクしなくなるので、変更した場合は、テクスチャを再度適用する必要があります。
-# [[class-Texture2D|Texture]] インポート設定を使用して、1 つのテクスチャ アセットから Cubemap を作成します。
-# スクリプトから、Cubemap にシーンをレンダリングします。 [[ScriptRef:Camera.RenderToCubemap.html | Camera.RenderToCubemap]] ページのコード例には、エディタから直接 Cubemap をレンダリングするためのスクリプトが含まれています。
+Cubemap は、次のいずれかの方法で作成します：
+# ^^Assets->Create->Cubemap^^ を使用し、そのプロパティを設定して、6 つの [[class-Texture2D|Texture]] アセットを対応する Cubemap の ''面'' にドラッグします。 テクスチャは Cubemap アセットに焼き込みされ、そのテクスチャとはリンクがなくなるため、変更した場合は、テクスチャを再度適用する必要があります。
+# [[class-Texture2D|Texture]] のImport Settingsを使用して、インポートされた1 つのテクスチャ アセットから Cubemap を作成します。
+# スクリプトから、Cubemap にシーンをレンダリングします。 [[ScriptRef:Camera.RenderToCubemap.html | Camera.RenderToCubemap]] のコード例には、エディタから直接 Cubemap をレンダリングするためのスクリプトが含まれています。
 
 !! プロパティ
 
 ||PROPS
-||``Right (+X)`` ||Cubemap の面の右グローバル側のテクスチャ。 ||
-||``Left (-X)`` ||Cubemap の面の左グローバル側のテクスチャ。 ||
-||``Top (+Y)`` ||Cubemap の面の上グローバル側のテクスチャ。 ||
-||``Bottom (-Y)`` ||Cubemap の面の下グローバル側のテクスチャ。 ||
-||``Front (+Z)`` ||Cubemap の面の前方グローバル側のテクスチャ。 ||
-||``Back (-Z)`` ||Cubemap の面の後方グローバル側のテクスチャ。 ||
-||``Face Size`` ||個々の Cubemap の面での幅と高さ （単位: 幅と高さ）。 このサイズにフィットするよう、テクスチャが内部で拡大されます。アセットを手動で拡大する必要はありません。 ||
+||``Right (+X)`` ||グローバル座標でCubemap の面の右側テクスチャ。 ||
+||``Left (-X)`` ||グローバル座標でCubemap の面の左側のテクスチャ。 ||
+||``Top (+Y)`` ||グローバル座標でCubemap の面の上側のテクスチャ。 ||
+||``Bottom (-Y)`` ||グローバル座標でCubemap の面の下側のテクスチャ。 ||
+||``Front (+Z)`` ||グローバル座標でCubemap の面の前方のテクスチャ。 ||
+||``Back (-Z)`` ||グローバル座標でCubemap の面の後方グのテクスチャ。 ||
+||``Face Size`` ||個々の Cubemap の面での幅と高さ （ピクセル単位）。 このサイズにフィットするよう、テクスチャが内部で拡大されます。アセットを手動で拡大する必要はありません。 ||
 ||``Mipmap`` ||ミップマップの作成を可能にします。 ||
 ||``Format`` ||作成された Cubemap の形式。 ||
-
-
