@@ -1,71 +1,68 @@
-! Using Components
+! コンポーネントを使う（Using Components）
 
-$$Components$$ are the nuts & bolts of objects and behaviors in a game.  They are the functional pieces of every $$GameObject$$.  If you don't yet understand the relationship between Components and GameObjects, read the [[GameObjects]] page before going any further.
+$$Components$$ は、ゲームにおけるオブジェクトおよび動作の根本であり、あらゆる $$GameObject$$ で実際に動作している部分です。 もしコンポーネントとゲームオブジェクトの間の関係をまだ理解していない場合には、この先を読み進める前に [[GameObjects]] のページを読んでください。
 
-A GameObject is a container for many different Components.  By default, all GameObjects automatically have a ``Transform`` Component.  This is because the Transform dictates where the GameObject is located, and how it is rotated and scaled.  Without a Transform Component, the GameObject wouldn't have a location in the world.  Try creating an empty GameObject now as an example.  Click the ^^GameObject->Create Empty^^ menu item.  Select the new GameObject, and look at the $$Inspector$$.
+ひとつのゲームオブジェクトは、多くの異なったコンポーネントのコンテナです。 初期状態では、全てのゲームオブジェクトには ``Transform`` コンポーネントがはじめから存在しています。 これは、Transformがそのゲームオブジェクトの位置、回転、スケールを決定しているからです。 トランスフォームコンポーネントなしでは、ゲームオブジェクトはゲーム世界において位置を持つことができないのです。 例として空（から）のゲームオブジェクトを作成してみましょう。 メニューから、 ^^GameObject->Create Empty^^ とクリックします。 その新しく作ったゲームオブジェクトを選択して、 $$Inspector$$ で見てみましょう。
 
 Attach:EmptyGO.png
-''Even empty GameObjects have a Transform Component''
+''空（から）のゲームオブジェクトでさえ、トランスフォームコンポーネントを持っている''
 
-Remember that you can always use the Inspector to see which Components are attached to the selected GameObject.  As Components are added and removed, the Inspector will always show you which ones are currently attached.  You will use the Inspector to change all the properties of any Component (including scripts)
+インスペクターを使うことで、選択したゲームオブジェクトにどんなコンポーネントが付属しているか知ることができることを、しっかりと覚えておいてください。 コンポーネントを追加したり取り外したりしても、インスペクターは常にどのコンポーネントが現在付属しているか示します。 インスペクターを使うことで、スクリプトを含むあらゆるコンポーネントのプロパティの変化を知ることができるのです。
 
+!! コンポーネントを追加する（Adding Components）
 
-!! Adding Components
-
-You can add Components to the selected GameObject through the Components menu.  We'll try this now by adding a $$Rigidbody$$ to the empty GameObject we just created.  Select it and choose ^^Component->Physics->Rigidbody^^ from the menu.  When you do, you will see the Rigidbody's properties appear in the Inspector.  If you press $$Play$$ while the empty GameObject is still selected, you might get a little surprise.  Try it and notice how the Rigidbody has added functionality to the otherwise empty GameObject. (The y-component of the GameObject starts to decrease.  This is because the physics engine in Unity is causing the GameObject to fall under gravity.)
+選択中のゲームオブジェクトにコンポーネントを追加するには、コンポーネントメニューを使います。 例として、さっき作ったばかりの空（から）のゲームオブジェクトに $$Rigidbody$$ を追加してみましょう。 ゲームオブジェクトを選択して、メニューから ^^Component->Physics->Rigidbody^^ と選びます。 すると、リジッドボディのプロパティがインスペクター上に現れるのがわかるでしょう。 その空（から）のゲームオブジェクトを選択したまま $$Play$$ ボタンを押してみると、ちょっと驚くようなことが起こります。 試してみて、リジッドボディ以外には何もついていないゲームオブジェクトに対して、リジッドボディがどんな機能を付け加えたのか理解しましょう。（ゲームオブジェクトのＹ成分が減少しはじめます。 これはUnityの物理エンジンが、重力に従ってゲームオブジェクトを落下させているからです。）
 
 Attach:RigidBodyGO.png
-''An empty GameObject with a Rigidbody Component attached''
+''空（から）のゲームオブジェクトにリジッドボディコンポーネントを付ける''
 
-Another option is to use the $$Component Browser$$, which can be activated with the ^^Add Component^^ button in the object's inspector.
+そのほかに、 $$Component Browser$$ を使うという手もあります。オブジェクトをインスペクターで表示している時に、 ^^Add Component^^ ボタンを押すことでポップアップします。
 
 Attach:ComponentBrowser.png
 
-The browser lets you navigate the components conveniently by category and also has a search box that you can use to locate components by name.
+コンポーネントブラウザを使うことで、カテゴリ別にコンポーネントを便利に探すこともできますし、ブサウザのサーチボックスを使って名前からコンポーネントを探すこともできます。
 
-You can attach any number or combination of Components to a single GameObject.  Some Components work best in combination with others.  For example, the Rigidbody works with any Collider.  The Rigidbody controls the Transform through the $$NVIDIA PhysX$$ physics engine, and the Collider allows the Rigidbody to collide and interact with other Colliders.
+単一のゲームオブジェクトに対して複数のコンポーネントを付けたり、コンポーネントを組み合わせて付けたりすることができます。 コンポーネントの中には、その他のコンポーネントと組み合わせることではじめて機能を発揮するものもあります。 例えば、リジッドボディはコライダと一緒に使われます。 リジッドボディは、 $$NVIDIA PhysX$$ 物理エンジンを通じて、トランスフォームコンポーネントをコントロールしていますが、同時にコライダを使うことで、リジッドボディがその他のコライダと衝突したり接触したりすることが可能になるのです。
 
-If you want to know more about using a particular Component, you can read about any of them in the [[Components|Component Reference]].  You can also access the reference page for a Component from Unity by clicking on the small __?__ on the Component's header in the Inspector.
+特定のコンポーネントの使い方をさらに詳しく知りたい場合には、 [[Components|Component Reference]] を参照してください。 またUnityを使っている最中に、あるコンポーネントのリファレンスページを開きたくなった時には、インスペクターに表示されているコンポーネントのヘッダーにある小さな __?__ ボタンをクリックしてください。
 
 
-!! Editing Components
+!! コンポーネントの編集（Editing Components）
 
-One of the great aspects of Components is flexibility.  When you attach a Component to a GameObject, there are different values or 
-$$Properties$$ in the Component that can be adjusted in the editor while building a game, or by scripts when running the game.  There are two main types of Properties: $$Values$$ and $$References$$.
+コンポーネントの最も重要な特徴は、その柔軟な運用性にあります。 あるゲームオブジェクトにコンポーネントを付けると、そのコンポーネントには様々な値や $$Properties$$ が設定されます。 これらの値やプロパティは、ゲームを作っている最中にエディタで調整できるだけでなく、ゲームを動かしている最中にもスクリプトから調整することもできるのです。 プロパティには主要なタイプが２つあります。すなわち、 $$Values$$ と $$References$$ です。
 
-Look at the image below.  It is an empty GameObject with an ``Audio Source`` Component.  All the values of the ``Audio Source`` in the Inspector are the default values.
+下の図を見てください。 これは、 ``Audio Source`` コンポーネントを持つ空（から）のゲームオブジェクトです。 インスペクターで表示されている ``Audio Source`` の全ての値は、初期値となっています。
 
 Attach:AudioGO.png
 
-This Component contains a single Reference property, and seven Value properties.  ``Audio Clip`` is the Reference property.  When this Audio Source begins playing, it will attempt to play the audio file that is referenced in the ``Audio Clip`` property.  If no reference is made, an error will occur because there is no audio to be played.  You must reference the file within the Inspector.  This is as easy as dragging an audio file from the Project View onto the Reference Property or using the Object Selector.
+このコンポーネントには、ひとつの参照プロパティと、７つの値プロパティがあります。 ``Audio Clip`` は、参照プロパティです。 このオーディオソースが再生をはじめると、 ``Audio Clip`` プロパティによって参照されているオーディオファイルを再生しようとします。 もしなんの参照も設定されていないと、再生すべきファイルがないのでエラーが発生します。 従って、インスペクター中でファイルを参照しなければいけません。 これは実に簡単で、適当なオーディオファイルをプロジェクトビューから参照プロパティにドラッグするか、オブジェクトセレクターを使います。
 
 Attach:AudioReference.png
-''Now a sound effect file is referenced in the ``Audio Clip`` property''
+'' ``Audio Clip`` プロパティにサウンドエフェクトファイルが参照されている''
 
-Components can include references to any other type of Component, GameObjects, or Assets. You can read more about assigning references on the [[Editing Reference Properties | Assigning References]] page.
+コンポーネントは、その他の様々なコンポーネント、ゲームオブジェクトもしくはアセットを参照先として持つことができます。 参照先として割り当てることができるものについて、さらに詳しく知りたい場合には、 [[Editing Reference Properties | Assigning References]] のページを見てください。
 
-The remaining properties on the Audio Clip are all Value properties.  These can be adjusted directly in the Inspector. The Value properties on the Audio Clip are all toggles, numeric values, drop-down fields, but value properties can also be text strings, colors, curves, and other types. You can read more about these and about editing value properties on the [[Editing Value Properties40|Editing Value Properties]] page.
+オーディオクリップの残るプロパティは、全て値プロパティです。 これらはインスペクターから直接調整することができます。 オーディオクリップの値プロパティは全て、トグルか、数値、ドロップダウンフィールドとなっていますが、値プロパティには、文字列、色、カーブなどのその他の種類のものもあり得ます。 本件および値プロパティの編集の仕方についてさらに詳しく知りたい場合には、 [[Editing Value Properties40|Editing Value Properties]] のページを見てください。
 
+!! コンポーネント設定のコピー＆ペースト（Copying and pasting Component settings）
 
-!!Copying and pasting Component settings
-
-The context menu for a Component has items for copying and pasting its settings.
+あるコンポーネントのコンテキストメニューに、設定をコピー＆ペーストする項目があります。
 
 Attach:ComponentContextMenu.png
 
-The copied values can be pasted to an existing component using the ^^Paste Component Values^^ menu item. Alternatively, you can use ^^Paste Component As New^^ to create a new Component with those values.
+コピーした値を既に存在しているコンポーネントにペーストするには、 ^^Paste Component Values^^ メニュー項目を使います。 一方、 ^^Paste Component As New^^ を使うことで、それらの値を持った新規コンポーネントを作成することもできます。
 
-!!Testing out Properties
+!! プロパティを試す（Testing out Properties）
 
-While your game is in $$Play Mode$$, you are free to change properties in any GameObject's Inspector.  For example, you might want to experiment with different heights of jumping.  If you create a ``Jump Height`` property in a script, you can enter Play Mode, change the value, and press the jump button to see what happens.  Then without exiting Play Mode you can change it again and see the results within seconds.  When you exit Play Mode, your properties will revert to their pre-Play Mode values, so you don't lose any work.  This workflow gives you incredible power to experiment, adjust, and refine your gameplay without investing a lot of time in iteration cycles.  Try it out with any property in Play Mode.  We think you'll be impressed.
+あなたのゲームが $$Play Mode$$ にある最中に、任意のゲームオブジェクトのインスペクターからプロパティを自由に変更することができます。 例えば、ジャンプの高さを違った値に変えてみたいと思ったとしましょう。 スクリプト中に ``Jump Height`` を作るだけで、プレイモードに入ってその値を変更し、ジャンプボタンを押したらどうなるか、確認することが可能になります。 続いてプレイモードから出ることなしに、すぐにその値を変更し、結果を確認することが可能です。 プレイモードから出れば、プロパティはプレイモードに入る以前の値に戻りますので、どんな作業も失うことはありません。 このワークフローは、あなたが作るゲームのプレイ感を実験したり、調整したり、磨きあげたりする際に驚くべきパワーを与えてくれます。もはやこれらの繰り返しサイクルに莫大な時間を費やす必要はないのです。 プレイモード中でどれでもプロパティを使って試してみましょう。 きっと感銘を受けることと思います。
 
-!!Changing the order of Components
+!! コンポーネントの順番を変更する（Changing the order of Components）
 
-The order in which components are listed in the Inspector doesn't matter in most cases. However, there are some Components, such as [[comp-ImageEffects|Image Effects]] where the ordering is significant. The context menu has ^^Move Up^^ and ^^Move Down^^ commands to let you reorder Components as necessary.
+インスペクター中でコンポーネントが表示される順番は、たいていの場合問題にはなりません。 しかし [[comp-ImageEffects|Image Effects]] のようにいくつかのコンポーネントに関しては、その順番が重要になることもあります。 コンテキストメニュー中に ^^Move Up^^ および ^^Move Down^^ のコマンドがありますので、必要に応じてコンポーネントを並び替えてください。
 
 Attach:ComponentContextUpDown.png
 
-!!Removing Components
+!! コンポーネントを取り除く（Removing Components）
 
-If you want to remove a Component, option- or right-click on its header in the Inspector, and choose ^^Remove Component^^.  Or you can left-click the options icon next to the __?__ on the Component header.  All the property values will be lost and this cannot be undone, so be completely sure you want to remove the Component before you do.
+もしあるコンポーネントを取り除きたくなった場合には、インスペクターに表示されているコンポーネントのヘッダーの上で、optionを押しながらクリック、もしくは右クリックして、  ^^Remove Component^^ を選んでください。 もしくは、コンポーネントのヘッダーにある __?__ マークの隣のオプションアイコンを左クリックすることでも可能です。 コンポーネントを取り除くと、全てのプロパティは失われてしまい、取り消しすることはできませんので、実行前に本当にそれが必要か十分確認するようにしてください。
 
