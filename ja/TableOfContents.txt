@@ -404,6 +404,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 **** [[script-GlobalFog]]
 **** [[script-SunShafts]]
 **** [[script-TiltShift]]
+**** [[script-TiltShiftHdr]]
 **** [[script-Vignetting]]
 **** [[script-BlurEffect]]
 **** [[script-ColorCorrectionEffect]]
