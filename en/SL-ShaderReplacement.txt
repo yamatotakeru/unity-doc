@@ -15,6 +15,10 @@ It works like this: the camera renders the scene as it normally would. the objec
 
 So if all shaders would have, for example, a "RenderType" tag with values like "Opaque", "Transparent", "Background", "Overlay", you could write a replacement shader that only renders solid objects by using one subshader with RenderType=Solid [[SL-SubshaderTags|tag]]. The other tag types would not be found in the replacement shader, so the objects would be not rendered. Or you could write several subshaders for different "RenderType" tag values. Incidentally, all built-in Unity shaders have a "RenderType" tag set.
 
+!! Lit shader replacement
+
+When using shader replacement the scene is rendered using the render path that is configured on the camera. This means that the shader used for replacement can contain shadow and lighting passes (you can use surface shaders for shader replacement). This can be useful for doing rendering of special effects and scene debugging.
+
 !! Shader replacement tags in built-in Unity shaders
 
 All built-in Unity shaders have a "$$RenderType$$" tag set that can be used when rendering with replaced shaders. Tag values are the following:

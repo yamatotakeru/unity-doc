@@ -45,10 +45,13 @@ This will make the object be rendered after all opaque objects, but before trans
 
 
 
+!!! ForceNoShadowCasting tag
+
+If ``ForceNoShadowCasting`` tag is given and has a value of "True", then an object that is rendered using this subshader will never cast shadows. This is mostly useful when you are using shader replacement on transparent objects and you do not wont to inherit a shadow pass from another subshader.
+
 !!! IgnoreProjector tag
 
 If ``IgnoreProjector`` tag is given and has a value of "True", then an object that uses this shader will not be affected by [[class-Projector | Projectors]]. This is mostly useful on semitransparent objects, because there is no good way for Projectors to affect them.
-
 
 !! See Also
 
