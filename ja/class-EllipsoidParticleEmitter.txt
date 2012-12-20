@@ -1,6 +1,6 @@
 ! 楕円パーティクル エミッタ（旧パーティクルシステム）
 
-$$Ellipsoid Particle Emitter$$ は、球体内に粒子を発生させます。 下の''Ellipsoid''プロパティを使用して、球体を拡大縮小および延長させます。
+$$Ellipsoid Particle Emitter$$ は、球体内にパーティクルを発生させます。 下の''Ellipsoid''プロパティを使用して、球体を拡大縮小および延長させます。
 
 Attach:Inspector-EllipsoidEmitter.png\\
 ''楕円パーティクル エミッタ $$Inspector$$''
@@ -10,20 +10,20 @@ Attach:Inspector-EllipsoidEmitter.png\\
 
 ||PROPS
 (:include comp-ParticleEmitterProps:)
-||``Ellipsoid`` ||粒子が内側に生じる、X,Y、Z にそった球体のスケール。 ||
-||``MinEmitterRange`` ||球体の中心で空白のエリアを決定します - これは、球体の縁に粒子を表示させるのに使用します。 ||
+||``Ellipsoid`` ||パーティクルが内側に生じる、X,Y、Z にそった球体のスケール。 ||
+||``MinEmitterRange`` ||球体の中心で空白のエリアを決定します - これは、球体の縁にパーティクルを表示させるのに使用します。 ||
 
 
 !!詳細
 
-楕円パーティクル エミッタ (EPE) は、基本的なエミッタで、^^Components->Particles->Particle System^^ からシーンに $$Particle System$$ を追加するよう選択すると含まれます。  粒子を生じさせる境界を定義し、粒子に初速を与えます。  ここから、[[class-ParticleAnimator|Particle Animator]] を使用して、希望の効果を達成するのに、時間と共に粒子がどのように変化するかを操作します。
+楕円パーティクル エミッタ (EPE) は、基本的なエミッタで、^^Components->Particles->Particle System^^ からシーンに $$Particle System$$ を追加するよう選択すると含まれます。  パーティクルを生じさせる境界を定義し、パーティクルに初速を与えます。  ここから、[[class-ParticleAnimator|Particle Animator]] を使用して、希望の効果を達成するのに、時間と共にパーティクルがどのように変化するかを操作します。
 
 (:include comp-ParticleEmitterDetails:)
 
 
 !!! Min Emitter Range
 
-「Min Emitter Range」は、粒子を発生させることができる楕円内の深さを決定します。  0 に設定すると、楕円の中心から最外部の範囲の任意の場所に粒子を発生させることができます。  1 に設定すると、楕円の最外部の範囲に粒子の場所を限定できます。
+「Min Emitter Range」は、パーティクルを発生させることができる楕円内の深さを決定します。  0 に設定すると、楕円の中心から最外部の範囲の任意の場所にパーティクルを発生させることができます。  1 に設定すると、楕円の最外部の範囲にパーティクルの場所を限定できます。
 
 Attach:EmitterRange0.png\\
 「Min Emitter Range が 0 の場合」

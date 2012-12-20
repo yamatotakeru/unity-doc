@@ -1,6 +1,6 @@
-! 粒子コライダ（旧パーティクルシステム）
+! パーティクルコライダ（旧パーティクルシステム）
 
-$$World Particle Collider$$ は、シーン内のその他の $$Collider$$ に粒子を衝突させるのに使用されます。
+$$World Particle Collider$$ は、シーン内のその他の $$Collider$$ にパーティクルを衝突させるのに使用されます。
 
 Attach:Inspector-ParticleCollider.png\\
 ''$$Mesh Collider$$ に衝突する $$Particle System$$''
@@ -9,28 +9,28 @@ Attach:Inspector-ParticleCollider.png\\
 !! プロパティ
 
 ||PROPS
-||``Bounce Factor`` ||粒子が他のオブジェクトに衝突する際に、粒子を加速または減速できます。 この係数は、$$Particle Animator$$ の''Damping''プロパティに似ています。 ||
-||``Collision Energy Loss`` ||衝突時に粒子が失うエネルギー量 (単位: 秒)。 エネルギーが 0 になると、粒子は消滅します。 ||
-||``Min Kill Velocity`` ||衝突により、粒子の''Velocity''が、''Min Kill Velocity''以下になると、粒子はしょう。 ||
-||``Collides with`` ||粒子が衝突する [[Layers]] 。 ||
-||``Send Collision Message`` ||有効にすると、全粒子がスクリプティングを通じて受信できる衝突メッセージを送信します。 ||
+||``Bounce Factor`` ||パーティクルが他のオブジェクトに衝突する際に、パーティクルを加速または減速できます。 この係数は、$$Particle Animator$$ の''Damping''プロパティに似ています。 ||
+||``Collision Energy Loss`` ||衝突時にパーティクルが失うエネルギー量 (単位: 秒)。 エネルギーが 0 になると、パーティクルは消滅します。 ||
+||``Min Kill Velocity`` ||衝突により、パーティクルの''Velocity''が、''Min Kill Velocity''以下になると、パーティクルはしょう。 ||
+||``Collides with`` ||パーティクルが衝突する [[Layers]] 。 ||
+||``Send Collision Message`` ||有効にすると、全パーティクルがスクリプティングを通じて受信できる衝突メッセージを送信します。 ||
 
 
 !! 詳細
 
-粒子コライダで、粒子システムを作成するには、次の手順に従います。
-# ^^GameObject->Create Other->Particle System^^ を使用して、粒子システムを作成します。
-# ^^Component->Particles->World Particle Collider^^ を使用して、粒子コライダを追加します。
+パーティクルコライダで、パーティクルシステムを作成するには、次の手順に従います。
+# ^^GameObject->Create Other->Particle System^^ を使用して、パーティクルシステムを作成します。
+# ^^Component->Particles->World Particle Collider^^ を使用して、パーティクルコライダを追加します。
 
 
 !!! メッセージング
 
-''Send Collision Message''を有効にすると、衝突している粒子が、メッセージ''OnParticleCollision()''を粒子の $$GameObject$$ と粒子が衝突する GameObject にメッセージを送信します。
+''Send Collision Message''を有効にすると、衝突しているパーティクルが、メッセージ''OnParticleCollision()''をパーティクルの $$GameObject$$ とパーティクルが衝突する GameObject にメッセージを送信します。
 
 
 !! ヒント
 
 * ''Send Collision Message''を使用して、弾丸をシミュレートし、衝突時にダメージを適用します。
-* 多くの粒子で使用すると、粒子衝突検出が遅くなります。 粒子衝突検出をうまく使用してください。
-* メッセージの送信には、大きいオーバーヘッドが伴うので、通常の粒子システムには使用しないでください。
+* 多くのパーティクルで使用すると、パーティクル衝突検出が遅くなります。 パーティクル衝突検出をうまく使用してください。
+* メッセージの送信には、大きいオーバーヘッドが伴うので、通常のパーティクルシステムには使用しないでください。
 

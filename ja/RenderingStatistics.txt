@@ -16,7 +16,7 @@
 * ``Background`` - このレンダー キューは他のどれよりも前にレンダリングされます。 これは、スカイボックスなどに使用されます。
 * ``Geometry`` ''(default)'' - これは、ほとんどのオブジェクトに使用されます。 不透明のジオメトリはこのキューを使用します。
 * ``AlphaTest`` - alpha tested geometry uses this queue. It's a separate queue from ``Geometry`` one since it's more efficient to render alpha-tested objects after all solid ones are drawn.
-* ``Transparent`` - このレンダー キューは、''Geometry'' と  ``AlphaTest`` 後に、後前の順でレンダリングされます。 アルファ ブレンドされたもの (つまり、深さバッファに書きこまないシェーダ) は、ここに行く必要があります (草、粒子効果)。
+* ``Transparent`` - このレンダー キューは、''Geometry'' と  ``AlphaTest`` 後に、後前の順でレンダリングされます。 アルファ ブレンドされたもの (つまり、深さバッファに書きこまないシェーダ) は、ここに行く必要があります (草、パーティクル効果)。
 * ``Overlay`` - このレンダー キューは、オーバーレイ効果用です。 最後にレンダリングされたものはここに行きます (レンズ フレアなど)。
 
 [@Shader "Transparent Queue Example" {
