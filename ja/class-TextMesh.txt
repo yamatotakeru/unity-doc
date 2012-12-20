@@ -1,6 +1,6 @@
 ! テキスト メッシュ
 
-$$Text Mesh$$ は、テキスト文字列を表示する 3Dジオメトリです。
+$$Text Mesh$$ は、テキスト文字列を表示する 3D物体です。
 
 Attach:Inspector-TextMesh.png\\
 ''テキスト メッシュ $$Inspector$$'''
@@ -18,7 +18,7 @@ Attach:Inspector-TextMesh.png\\
 ||``Anchor``   ||テキストがトランスフォームの位置を共有する点。 ||
 ||``Alignment`` ||テキスト内で複数の線がどのように配列されるか （左、右、中心）。 ||
 ||``Tab Size`` ||タブ ('\t') 文字に挿入されるスペースの大きさ。 これは、''スペース バー''文字オフセットのマルチプラムです。 ||
-||``Font`` ||テキストのレンダリング時に [[class-Font | TrueType Font]]。 ||
+||``Font`` ||テキストのレンダリング時に [[class-Font | TrueType Font]] 。 ||
 
 
 !! 詳細

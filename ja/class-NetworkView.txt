@@ -46,7 +46,7 @@ State Synchronization を使用するには、ネットワーク ビューの''S
 
 [@
 function OnSerializeNetworkView (stream : BitStream, info : NetworkMessageInfo) {
-	var horizontalInput : float = Input.GetAxis ("水平");
+	var horizontalInput : float = Input.GetAxis ("Horizontal");
 	stream.Serialize (horizontalInput);
 }
 @]
@@ -58,7 +58,7 @@ function OnSerializeNetworkView (stream : BitStream, info : NetworkMessageInfo) 
 	var horizontalInput : float = 0.0;
 	if (stream.isWriting) {
 		// 送信
-		horizontalInput = Input.GetAxis ("水平");
+		horizontalInput = Input.GetAxis ("Horizontal");
 		stream.Serialize (horizontalInput);
 	else
 
