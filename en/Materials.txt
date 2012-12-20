@@ -26,7 +26,7 @@ Two placement options are available for each $$Texture$$:
 
 !!Built-in Shaders
 
-There is a library of [[Built-in Shader Guide | built-in Shaders]] that come standard with every installation of Unity.  There are over 30 of these [[Built-in Shader Guide | built-in Shaders]], and six basic families.
+A set of [[Built-in Shader Guide | built-in Shaders]] are installed with the Unity editor. Over eighty shaders are available - the main ones used for texturing game objects fall into the following categories:-
 
 *[[ shader-NormalFamily | Normal ]]: For opaque textured objects.
 *[[ shader-TransparentFamily | Transparent ]]: For partly transparent objects. The texture's alpha channel defines the level of transparency.
@@ -36,10 +36,18 @@ There is a library of [[Built-in Shader Guide | built-in Shaders]] that come sta
 
 In each group, built-in shaders range by complexity, from the simple ``VertexLit`` to the complex ``Parallax Bumped with Specular``.  For more information about performance of Shaders, please read the built-in Shader [[ shader-Performance | performance page]]
 
-This grid displays a thumbnail of all built-in Shaders:
-
 Attach:BuiltinShaders.png\\
-''The builtin Unity shaders matrix''
+
+In addition to the main game object shaders, there are a number of other categories for specialised purposes:-
+
+* __FX__: lighting and water effects.
+* __GUI__: graphic user interface display.
+* __Nature__: trees and terrain.
+* __Particles__: particle system effects.
+* __Render FX__: skybox shaders.
+* __Toon__: cartoon-style rendering.
+
+Also, some of these shaders have special versions for use with mobile devices. 
 
 
 !!Shader technical details
@@ -67,4 +75,4 @@ A Material defines:
 
 Shaders are meant to be written by graphics programmers. They are created using the $$ShaderLab$$ language, which is quite simple. However, getting a shader to work well on a variety graphics cards is an involved job and requires a fairly comprehensive knowledge of how graphics cards work.
 
-A number of shaders are built into Unity directly, and some more come in the [[HOWTO-InstallStandardAssets|Standard Assets]] Library.  If you like, there is plenty more shader information in the [[Built-in Shader Guide]].
+A number of shaders are built into Unity directly, and some more come in the [[HOWTO-InstallStandardAssets|Standard Assets]] Library.  For further information about shaders, see the [[Built-in Shader Guide]].
