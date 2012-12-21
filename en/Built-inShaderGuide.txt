@@ -1,6 +1,6 @@
 ! Built-in Shader Guide
 
-If you're looking for the best information for using Unity's built-in shaders, you've come to the right place.  Unity includes more than 40 built-in shaders, and of course you can write many more on your own!  This guide will explain each family of the built-in shaders, and go into detail for each specific shader.  With this guide, you'll be able to make the most out of Unity's shaders, to achieve the effect you're aiming for.
+Unity is supplied with more than eighty built-in shaders, and of course you can write many more on your own!  This guide will explain each family of the built-in shaders, and go into detail for each specific shader.  With this guide, you'll be able to make the most out of Unity's shaders, to achieve the effect you're aiming for.
 
 !! Using Shaders
 

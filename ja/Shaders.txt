@@ -1,6 +1,6 @@
 !Shaders
 
-All rendering in Unity is done with ''Shaders'' - small scripts that let you configure the how the graphics hardware is set up for rendering. Unity ships with 60+ built-in shaders (documented in the [[Built-in Shader Guide]]). You can extend this by making your own shaders. 
+All rendering in Unity is done with ''Shaders'' - small scripts that let you configure the how the graphics hardware is set up for rendering. Unity ships with over eighty built-in shaders (documented in the [[Built-in Shader Guide]]). You can extend this set by making your own shaders. 
 
 Shaders in Unity can be written in one of three different ways:
 
