@@ -1,21 +1,21 @@
-!Introduction to Particle System Modules (Shuriken)
+!パーティクルシステム モジュール (Shuriken) の紹介
 
-A Particle System consists of a predefined set of modules that can be enabled and disabled. 
-These modules describe the behavior of particles in an individual particle system. 
+パーティクルシステムは、有効化／無効化できる、定義済みのモジュールの組み合わせから構成されます。
+これらのモジュールは個別のパーティクルシステムの動作を表現します。
 
-Initially only a few modules are enabled. Addding or removing modules changes the behavior of the particle system. 
-You can add new modules by pressing the (+) sign in the top-right corner of the Particle System Inspector. This pops up a selection menu, where you can choose the module you want to enable. 
+初期設定では、かぎられたいくつかのモジュールが有効化されます。モジュールの追加、削除によりパーティクルシステムの動作が変化します。
+新規のモジュールを追加するには、Particle System Inspector の右上の (+) 記号を押下します。これにより選択メニューがポップアップし、有効化したモジュールを選択できるようになります。
 
 Attach:ParticleSystemAddNewModule.png 
 
-An alternative way to work with modules is to select "Show All Modules", at which point all of the modules will show up in the inspector. 
+モジュールで作業するもうひとつの方法は "Show All Modules" を選択することで、これにより全てのモジュールがInspectorに表示されます。
 
 Attach:ShowAllModules.png 
 
-Then you can enable / disable modules directly from the inspector by clicking the checkbox to the left.
+次にモジュールを有効化／無効化するには Inspector 上で左側のチェックボックスをクリックします。
 
 Attach:ParticleSystemAllModulesShowing.png
 
-Most of the properties are controllable by curves (see [[ParticleSystemCurveEditor|Curve Editor]]). Color properties are controlled via gradients which define an animation for color (see [[ParticleSystemColorEditor|Color Editor]]). 
+ほとんどのプロパティはカーブにより制御されます（ [[ParticleSystemCurveEditor|カーブエディタ]] を参照下さい）。Color プロパティは、色のアニメーションを定義するグラデーションを通して制御されます（ [[ParticleSystemColorEditor|カラーエディタ]] を参照下さい）。
 
-For details on individual modules and their properties, see [[ParticleSystemModules40|Particle System Modules]]
+個別のモジュールやそれらのプロパティの詳細については、 [[ParticleSystemModules40|パーティクルシステム モジュールParticle System Modules]] を参照下さい。

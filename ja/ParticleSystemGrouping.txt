@@ -1,16 +1,16 @@
-!Particle Effects (Shuriken)
+!パーティクルエフェクト (Shuriken)
 
-An important feature of Unity's Particle System is that individual Particle Systems can be grouped by being parented to the same root. We will use the term $$Paricle Effect$$ for such a group. Particle Systems belonging to the same Particle Effect, are played, stopped and paused together.
+Unityのパーティクルシステムの重要な機能は、個別パーティクルシステムが、同じルートを親として、グルーピングすることができることです。そういったグループも $$Paricle Effect$$ という呼びます。パーティクルシステムは同じパーティクルエフェクトに属し、再生、停止、一時停止が一緒に行われます。
 
-For managing complex particle effects, Unity provides a Particle Editor, which can be accessed from the [[ParticleSystemInspector|Inspector]], by pressing ^^Open Editor^^ 
+複雑なパーティクルエフェクトを管理するためには、Unityはパーティクルエディタを提供していて、 [[ParticleSystemInspector|Inspector]] 上で ^^Open Editor^^ を押下することでアクセスすることが出来ます。
+
 Attach:ShurikenParticleEditor.png
-''Overview of the $$Particle System Editor$$''
+''$$Particle System Editor$$ の概要""
 
-You can toggle between ^^Show: All^^ and ^^Show: Selected^^ in this Editor. ^^Show: All^^ will render the entire particle effect. ^^Show: Selected^^ will only render the selected particle systems. What is selected will be highlighted with a blue frame in the Particle Editor and also shown in blue in the Hierarchy view. You can also change the selection both from the Hierarchy View and the Particle Editor, by clicking the icon in the top-left corner of the Particle System. To do a multiselect, use Ctrl+click on windows and Command+click on the Mac. 
+このエディタにより ^^Show: All^^ と ^^Show: Selected^^ 間でトグルすることが出来ます。^^Show: All^^ の場合パーティクルエフェクトの全体をレンダリングします。^^Show: Selected^^ の場合は選択されたパーティクルシステムのみレンダリングします。選択されたものは、パーティクルエディタで青い枠により、ハイライトされ、 Hierarchy ビューでも青で表示されます。 Hierarchy ビューおよびパーティクルエディタにて、パーティクルシステムの左上角のアイコンをクリックすることで、選択範囲は変更することが出来ます。複数選択をするためには、 Windows では Ctrl + クリックを用いて、MacではCommand + クリックをします。
 
-You can explicitly control rendering order of grouped particles (or otherwise spatially close particle emitters) by tweaking ``Sorting Fudge`` property in the [[ParticleSystemModules#RendererModule|``Renderer`` module]]. 
+グルーピングされたパーティクル（そうでなければ物理空間的に近いパーティクルエミッター）のレンダリング順序を、 [[ParticleSystemModules#RendererModule|``レンダラ`` モジュール]] の``Sorting Fudge`` プロパティを微調整することで、明示的に制御することが出来ます。
 
 
 Attach:ShurikenOverviewHierarchy.png
-''Particle Systems in the same hierarchy are considered as part of the same Particle Effect. This hierarchy shows the setup of the effect shown above. ''
-
+''同一階層のパーティクルシステムは同じパーティクルエフェクトの一部として考えられています。この階層において、 前述のエフェクトを前述のエフェクトのためのセットアップ'' を示しています。 ''

@@ -1,4 +1,4 @@
-! Physics
+! 物理挙動
 
 (:include PhysicsBase:)
 
@@ -13,5 +13,5 @@
 
 !iOS!
 >>ios<<
-iOS physics optimization hints can be found [[Main.iphone-Optimizing-Physics| here]]. 
+iOS 物理挙動の最適化のヒントについては [[Main.iphone-Optimizing-Physics| ここ]] を参照して下さい。
 >><<

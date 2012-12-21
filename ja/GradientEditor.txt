@@ -1,14 +1,15 @@
-!Gradient Editor
+!グラデーション エディタ
 
 Attach:GradientEditor.png
-->Gradient editor 
+->グラデーション エディタ（Gradient Editor）
 
-The $$Gradient Editor$$ is used for describing change of gradient with time. It animates the color (RGB-space, described by the markers at the bottom), and Alpha (described by the markers at the top). 
+$$Gradient Editor$$ は時間の経過により変化のグラデーションを表現するに使用されます。色（RGB空間、下のマーカーにより表現）
+、アルファ値（上のマーカーにより表現）をアニメーションします。
 
-You can add new ''markers'' for Alpha values by clicking near the top of the rectangle, and new ticks for Color by clicking near the bottom. The markers can be intuitively dragged along the timeline. 
+アルファ値のための新規の ''マーカー'' を追加するには、四角形の上側をクリックし、下側をクリックすることで、新規の色の範囲を追加することが出来ます。マーカーは直感的にタイムラインに沿ってドラッグすることが出来ます。
 
-If an Alpha tick is selected, you can edit the value for that tick by dragging the alpha value. 
+アルファ値のスライダーつまみを選択すれば、後はアルファ値をドラッグすることで値を編集することが出来ます。
 
-If a Color tick is selected, the color can be modified by double clicking on the tick or clicking on the color bar. 
+色のスライダーつまみを選択すれば、後は色を変更するには、スライダーつまみをダブルクリックするか色のバーをクリックします。
 
-To remove a ''marker'', just drag it off the screen.
+''マーカー'' を取り除くには、スクリーンの外にドラッグするだけです。
