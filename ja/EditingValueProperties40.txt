@@ -1,58 +1,58 @@
-! Editing Value Properties
+! 値プロパティの編集（Editing Value Properties）
 
-Value properties do not reference anything and they can be edited right on the spot. Typical value properties are numbers, toggles, strings, and selection popups, but they can also be colors, vectors, curves, and other types.
+値プロパティはそれ自体は何も参照しないプロパティですが、すぐその場で修正することが可能なものです。 代表的な値プロパティには、数値、トグル、文字列、そして選択ポップアップがありますが、その他にも、色、ベクトル、カーブ、その他様々なものがあります。
 
 Attach:Editor-Inspector.png\\
-''Value properties on the inspector can be numbers, checkboxes, strings...''
+''インスペクターで表示される値プロパティには、数値、チェックボックス、文字列などがある''
 
-Many value properties have a text field and can be adjusted simply by clicking on them, entering a value using the keyboard, and pressing ^^Enter^^ to save the value.
+多くの値プロパティにはテキストフィールドがあります。 その設定はとても簡単で、プロパティをクリックしたり、キーボードから値を入力したり、その値をセーブするために ^^Enter^^ キーを押すだけです。
 
-* You can also put your mouse next to a numeric property, left-click and drag it to scroll values quickly
-* Some numeric properties also have a slider that can be used to visually tweak the value.
+* 数値プロパティの横にマウスカーソルを置き、左クリックをしながらドラッグをすると値を素早くスクロールすることができます。
+* またいくつかの数値プロパティにはスライダーがありますので、それらを使って視覚的に値を調整することが可能です。
 
-Some Value Properties open up a small popup dialog that can be used to edit the value.
+値プロパティの中には、小型のポップアップダイアログが開くものもあり、それらを使って値を修正することができます。
 
-!! Color Picker
-Properties of the $$Color$$ type will open up the $$Color Picker$$. (On Mac OS X this color picker can be changed to the native OS color picker by enabling ^^Use OS X Color Picker^^ under ^^Unity->Preferences^^.)
+!! カラーピッカー（Color Picker）
+$$Color$$ タイプのプロパティの場合、 $$Color Picker$$ がポップアップします。（Mac OS Xでは、使用するカラーピッカーをOSネイティブのカラーピッカーに変更することができます。その場合、 ^^Unity->Preferences^^ より、 ^^Use OS X Color Picker^^ を有効にします。）
 
-The Color Picker reference in the inspector is represented by:
+カラーピッカーリファレンスは、インスペクターでは下のように表示されています:
 
 Attach:Editor-ColorPickerReference.png\\
-''Color Picker reference in the inspector.''
+''インスペクター中でのカラーピッカーリファレンス''
 
-And opens the Color Picker just by clicking on it:
+そしてカラーピッカーを開きたい場合には、それをクリックします:
 
 Attach:ColorPickerDescr.png\\
-''Color Picker descriptions.''
+''カラーピッカーの説明''
 
-Use the $$Eyedropper Tool$$ when you want to find a value just by putting your mouse over the color you want to grab.\\
-$$RGB / HSV Selector$$ lets you switch your values from ''Red, Green, Blue'' to ''Hue, Saturation and Value (Strength)'' of your color.\\
-Finally, the transparency of the Color selected can be controlled  by the $$Alpha Channel$$ value.
+$$Eyedropper Tool$$ は、欲しい色の上にマウスカーソルを持ってくることで、カラー値を知りたい時に使います。\\
+$$RGB / HSV Selector$$ は、カラー値を ''赤、緑、青（RGB）'' から ''色相、彩度、明度（HSV）'' に切り替えます。\\
+最後に、選択されているカラーの透明度は、 $$Alpha Channel$$ の値によって調整することができます。
 
 
-!! Curve Editor
-Properties of the $$AnimationCurve$$ type will open up the $$Curve Editor$$. The Curve Editor lets you edit a curve or choose from one of the presets. For more information on editing curves, see the guide on [[EditingCurves| Editing Curves]].
+!! カーブエディタ（Curve Editor）
+$$AnimationCurve$$ タイプのプロパティでは、 $$Curve Editor$$ がポップアップします。 カーブエディタを使うことで、カーブを編集したり、プリセットから選んだりすることができます。 カーブの編集に関するさらに詳しい情報は、 [[EditingCurves| Editing Curves]] のガイドを参照してください。
 
-The type is called AnimationCurve for legacy reasons, but it can be used to define any custom curve function. The function can then be evaluated at runtime from a script. 
+伝統的に、このタイプのプロパティは AnimationCurve と呼ばれていますが、実はカスタムカーブ関数として定義できるものなら、何にでも使うことができます。 そして関数の評価は、ランタイム時にスクリプトから実行できます。
 
-An AnimationCurve property is shown in the inspector as a small preview:
+アニメーションカーブプロパティは、インスペクター上では小さいプレビューとして表示されています:
 Attach:Editor-PopupCurve.png\\
-''A preview of an AnimationCurve in the Inspector.''
+''インスペクター上でのアニメーションカーブのプレビュー''
 
-Clicking on it opens the Curve Editor:
+その上をクリックすると、カーブエディタが開きます:
 
 Attach:CurveEditorPopupDescr.png\\
-''The Curve Editor is for editing AnimationCurves.''
+''カーブエディタはアニメーションカーブを編集するのに使います。''
 
-$$Wrapping Mode$$ Lets you select between Ping Pong, Clamp and Loop for the Control Keys in your curve.\\
-The $$Presets$$ lets you modify your curve to default outlines the curves can have.
+$$Wrapping Mode$$ は、ピンポン、クランプ、カーブ中のコントロールキー間でのループ、のいずれかより選ぶことができます。\\
+$$Presets$$ から、いくつかの初期設定アウトラインに沿って、カーブの形状を修正できます。
 
-!!Gradient editor
+!! グラディエントエディタ（Gradient editor）
 
-In graphics and animation, it is often useful to be able to blend one colour gradually into another, over space or time. A $$gradient$$ is a visual representation of a colour progression, which simply shows the main colours (which are called $$stops$$) and all the intermediate shades between them. In Unity, gradients have their own special value editor, shown below.
+グラフィックやアニメーション中で、空間や時間の進行に合わせて、あるカラーから別のカラーへ徐々にブレンドしていくという表現が使えると、とても便利です。 $$gradient$$ は、カラー推移の視覚表現で、複数のメインカラー（これらを $$基準カラー（stops）$$ と呼びます）と、それらの間に挟まれた全ての中間色調をシンプルに配置したものとなっています。 Unityでは、グラディエントは下図のようなグラディエント専用の特別な値エディタを持っています。
 
 Attach:GradientDiagram.png
 
-The upward-pointing arrows along the bottom of the gradient bar denote the stops. You can select a stop by clicking on it; its value will be shown in the Color box which will open the standard colour picker when clicked. A new stop can be created by clicking just underneath the gradient bar. The position of any of the stops can be changed simply by clicking and dragging and a stop can be removed with ^^ctrl/cmd + delete^^.
+グラディエントバーの下部に沿って配置されている上向きの矢印は、基準カラーを意味しています。 基準カラーのひとつの上でクリックすることで、それを選択することができます。するとその値がカラーボックスの中に表示されます。カラーボックスをクリックすれば通常のカラーピッカーが開きます。 新しく基準カラーを作りたい場合には、グラディエントバーの下部をクリックします。 おのおのの基準カラーの位置は、クリックしてドラッグすることで簡単に移動することができます。 そして ^^ctrl/cmd + delete^^ で、選択した基準カラーを削除できます。
 
-The downward-pointing arrows above the gradient bar are also stops but they correspond to the alpha (transparency) of the gradient at that point. By default, there are two stops set to 100% alpha (ie, fully opaque) but any number of stops can be added and edited in much the same way as the colour stops.
+グラディエントバー上部にある下向きの矢印もまた基準値を表していますが、こちらはその地点におけるグラディエントのアルファ値（透明度）に対応しています。 初期状態では、２つの基準値があり、アルファ値100％（すなわち、完全不透明）に設定されています。 こちらも基準カラーと同じように、基準値をいくらでも追加したり、編集したりすることが可能です。
