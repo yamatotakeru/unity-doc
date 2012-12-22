@@ -1,10 +1,11 @@
-!Generic Animations in Mecanim
+!メカニムにおけるジェネリック アニメーション
 
-The full power of Mecanim is most evident when you are working with humanoid animations. However, non-humanoid animations are also supported although without the avatar system and other features. In Mecanim terminology, non-humanoid animations are referred to as $$Generic Animations$$.
+メカニムが本領を発揮するのはヒューマノイドアニメーションで作業をするときです。しかし、非ヒューマノイドアニメーションもまた、アバターシステムやその他機能はないながらも、サポートされています。メカニム用語では、非ヒューマノイドアニメーションは $$Generic Animations$$ （ジェネリック アニメーション）と呼ばれます。
 
-To start working with a generic skeleton, go to the Rig tab in the FBX importer and choose ``Generic`` from the Animation Type menu.
+ジェネリック スケルトンで作業するときは、FBX Importer の Rig タブに移動し、Animation Type メニューから ``Generic`` を選択します。
 
 Attach:MecanimImportRigGeneric.png
 
 !!Root node in generic animations
-While in the case of humanoid animations, we have the knowledge about the center of mass and orientation, in the case of Generic animations, the skeleton can be arbitrary, and we need to specify a reference bone, or the "root node". Selecting the root node allows us to establish correspondence between animation clips for a generic model, and blend properly between animations that are not "in place". The root node is also essential for separating animation of bones relative to reach other and motion of the root in the world (controlled from @@[[ScriptRef:MonoBehavior.OnAnimatorMove|OnAnimatorMove]]@@)
+!!ジェネリック アニメーションのルートノード
+ヒューマノイドアニメーションの場合は、重心や向きに関する情報があるが、ジェネリックアニメーションの場合、スケルトンは任意であるかもしれず、参照のためのボーンである"ルートノード" を指定する必要がある。ルートノードを選択することによって、ジェネリック モデルのためのアニメーションクリップとの関連付けを確定させ、"位置が合わない"アニメーション間で適切にブレンドします。ルートノードは、相対的に互いに接触できるボーンのアニメーションや、ワールド座標でのルートのモーション、を引き離すためにもまた、重要です（ @@[[ScriptRef:MonoBehavior.OnAnimatorMove|OnAnimatorMove]] から制御@@ ）。
