@@ -1,7 +1,7 @@
-!Animator Component and Animator Controller
+!アニメータコンポーネントとアニメータコントローラ
 
 (:include class-Animator:)
 
 (:include class-AnimatorController:)
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)
