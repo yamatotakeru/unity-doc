@@ -1,12 +1,12 @@
-! Off-mesh links（Unity Proのみ）
+!オフメッシュリンク（Unity Proのみ）
 
-本項では主に手動のOff-mesh links（Off-mesh Link）に関する記載であり、''オフメッシュ''（Offmesh）コンポーネントを用いて手動でセットアップしたケースについて説明します。自動的に生成されるOff-mesh links（Off-mesh Link）については[[NavmeshandPathfinding|ナビメッシュ入門]] を併せて参照のこと。
+本項では主に手動のOff-mesh link（オフメッシュリンク）に関する記載であり、''オフメッシュ''（Offmesh）コンポーネントを用いて手動でセットアップしたケースについて説明します。自動的に生成されるOff-mesh links（Off-mesh Link）については[[NavmeshandPathfinding|ナビメッシュ入門]] を併せて参照のこと。
 
 Attach:OffMeshLinkInScene.png
 
-ナビメッシュスタティック（navmesh static）の配置が互いに接続されず、結果的にエージェントがある空間から別の空間へ移動することが出来ないことがありえます。
+ナビメッシュスタティック（Navmesh Static）の配置が互いに接続されず、結果的にエージェントがある空間から別の空間へ移動することが出来ないことがありえます。
 
-この課題を解消するためにUnityには$$Off-mesh links$$（Off-mesh Link）という仕組みを持っています。
+この課題を解消するためにUnityには$$Off-mesh link$$（オフメッシュリンク）という仕組みを持っています。
 
 Attach:OffMeshLink.png
 Off-mesh links　コンポーネント
@@ -23,7 +23,7 @@ Cost Overrideが3.0に設定した場合、Off-mesh links上を経路とした�
 ||``Activated``   ||このリンクを経路探索で使用するかのフラグ。このプロパティがfalseの場合、Off-mesh linksは無視されます。このプロパティはランタイムで修正可能であり、焼きこみ(re-bake)を行う必要はありません。
 
 
-!!Off-mesh linksのプロパティに関する特記事項
+!!オフメッシュリンクのプロパティに関する特記事項
 
 「Activated」と「Cost Override」のプロパティはランタイムで修正可能であり、
 ただちに適用されます。他のプロパティは適用するためにNavMeshの焼きこみ（re-bake）が必要です。

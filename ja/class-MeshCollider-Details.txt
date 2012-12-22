@@ -1,6 +1,6 @@
-! Mesh Collider
+! メッシュ コライダ
 
-$$Mesh Collider$$は[[class-Mesh|メッシュアセット]] を取り、そのメッシュに基づいてコライダを構築します。複雑なメッシュの場合、プリミティブを使用した衝突検出するよりも遥かに正確です。``Convex``がオンとなっているMesh Colliderは、他のMesh Colliderと衝突することができます。
+$$Mesh Collider$$ は[[class-Mesh|メッシュアセット]] を取り、そのメッシュに基づいてコライダを構築します。複雑なメッシュの場合、プリミティブを使用した衝突検出するよりも遥かに正確です。``Convex``がオンとなっているMesh Colliderは、他のMesh Colliderと衝突することができます。
 
 Attach:Inspector-MeshCollider.png\\
 階段状の物体で使用される'Mesh Collider

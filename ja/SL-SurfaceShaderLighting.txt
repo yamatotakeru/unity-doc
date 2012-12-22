@@ -1,8 +1,8 @@
-! サーフェスシェーダでのカスタム ライティング モデル
+! サーフェイスシェーダでのカスタム ライティング モデル
 
 [[SL-SurfaceShaders | Surface Shaders]] を記述する際、表面のプロパティ (アルベド、色、法線など) を記述します。ライティングの相互作用は、$$Lighting Model$$ によって計算されます。 組み込みライティング モデルは、$$Lambert$$ (デフューズ ライティング) と $$BlinnPhong$$ (スペキュラ ライティング) です。
 
-カスタムのライティング モデルを使用したい場合があると思いますが、これは、サーフェスシェーダで行うことができます。 ライティング モデルは、慣例に一致する幾つかの Cg/HLSL 関数にすぎません。 組み込み @@Lambert@@ and @@BlinnPhong@@ モデルは、Unity 内の @@Lighting.cginc@@ ファイルで定義されます (Windows の場合、^^{unity install path}/Data/CGIncludes/Lighting.cginc^^、Mac の場合、^^/Applications/Unity/Unity.app/Contents/CGIncludes/Lighting.cginc^^)。
+カスタムのライティング モデルを使用したい場合があると思いますが、これは、サーフェイスシェーダで行うことができます。 ライティング モデルは、慣例に一致する幾つかの Cg/HLSL 関数にすぎません。 組み込み @@Lambert@@ and @@BlinnPhong@@ モデルは、Unity 内の @@Lighting.cginc@@ ファイルで定義されます (Windows の場合、^^{unity install path}/Data/CGIncludes/Lighting.cginc^^、Mac の場合、^^/Applications/Unity/Unity.app/Contents/CGIncludes/Lighting.cginc^^)。
 
 
 !! ライティング モデルの宣言

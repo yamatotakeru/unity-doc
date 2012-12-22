@@ -26,7 +26,7 @@ Unity のシェーダは、次の 3 つの方法のいずれかで記述でき�
     }
 } @]
 
-最初に下記のセクションで ShaderLab 構文の基本的なコンセプトを読んでから、他のセクションでsurface shaderまたはvertex shders および fragment shadersに移ることをお勧めします。 fixed function shadersは ShaderLab のみを用いて記述されているため、ShaderLab のリファレンスに詳細が記載されています。
+最初に下記のセクションで ShaderLab文法の基本的なコンセプトを読んでから、他のセクションでsurface shaderまたはvertex shders および fragment shadersに移ることをお勧めします。 fixed function shadersは ShaderLab のみを用いて記述されているため、ShaderLab のリファレンスに詳細が記載されています。
 
 下記のリファレンスには、各種シェーダのサンプルが多く含まれています。 特に、surface shaderのサンプルについては、[[http://www.unity3d.com/support/resources/assets/built-in-shaders | Resources section]] から、Unity の組み込みシェーダのソースを利用できます。 Unity の [[comp-ImageEffects | Image Effects]] パッケージには、多くの興味深いvertex shders および fragment shadersが含まれています。
 

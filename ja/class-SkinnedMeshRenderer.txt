@@ -1,6 +1,6 @@
-!Skinned Mesh Renderer
+!スキンメッシュ レンダラ
 
-$$Skinned Mesh Renderer$$はメッシュがスキニングされている場合、インポート時に自動追加されます。
+$$Skinned Mesh Renderer$$ (スキンメッシュ レンダラ)はメッシュがスキニングされている場合、インポート時に自動追加されます。
 
 Attach:Inspector-SkinnedMeshRenderer.png\\
 Skinned Mesh Rendererを用いてレンダリングされたアニメキャラクター

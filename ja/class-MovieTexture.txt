@@ -1,8 +1,8 @@
-! Movie Textures
+!ムービー テクスチャ
 __注意：__　__Unity Pro/ Advancedのみ__
 !デスクトップ!
 >>desktop<<
-$$Movie Textures$$は、ビデオファイルから作成され、アニメーション化された$$Texture$$です。
+$$Movie Textures$$ は、ビデオファイルから作成され、アニメーション化された $$Texture$$ です。
 
 プロジェクトの^^Assetsフォルダ^^に動画ファイルを配置することによって、通常使用する[[class-Texture2D | Texture]] とまったく同じように使用できるビデオをインポートすることができます。
 

@@ -1,4 +1,4 @@
-! オーディオ コーラス（再現）フィルタ (PROのみ)
+! オーディオ コーラスフィルタ（Unity Proのみ）
 
 $$Audio Chorus Filter$$ は、[[class-AudioClip | Audio Clip]] を取り、それを処理して、コーラス効果を作成します。 
 

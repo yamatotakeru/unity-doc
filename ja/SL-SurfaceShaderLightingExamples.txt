@@ -1,6 +1,6 @@
-! サーフェスシェーダ ライティングの例
+! サーフェイスシェーダ ライティングの例
 
-以下は [[SL-Surface Shaders | Surface Shaders]] の  [[SL-SurfaceShaderLighting | $$custom lighting models$$]] のサンプルです。 一般的なサーフェスシェーダの例は、[[SL-SurfaceShaderExamples | this page]] にあります。
+以下は [[SL-Surface Shaders | Surface Shaders]] の  [[SL-SurfaceShaderLighting | $$custom lighting models$$]] のサンプルです。 一般的なサーフェイスシェーダの例は、[[SL-SurfaceShaderExamples | this page]] にあります。
 
 遅延ライティングは、カスタムのマテリアルごとのライティング モデルによってはうまく機能しないため、以下のほとんどの例では、シェーダにはフォワード レンダリングにのみコンパイルさせます。
 
@@ -69,7 +69,7 @@ Attach:SurfaceShaderDiffuseTexture.png Attach:SurfaceShaderDiffuseNoTex.png
 
 !! デフューズ ラップ
 
-以下はラップされたデフューズ、デフューズ ライティングの変形で、照明がオブジェクトの端を''ラップ''します。 サブ表面散乱効果のフェークに便利です。 改めて言いますが、サーフェスシェーダ自体はまったく変わっていません。別のライティング関数を使用しているだけです。
+以下はラップされたデフューズ、デフューズ ライティングの変形で、照明がオブジェクトの端を''ラップ''します。 サブ表面散乱効果のフェークに便利です。 改めて言いますが、サーフェイスシェーダ自体はまったく変わっていません。別のライティング関数を使用しているだけです。
 
   %gray%Shader "Example/Diffuse Wrapped" {
   %gray%  Properties {

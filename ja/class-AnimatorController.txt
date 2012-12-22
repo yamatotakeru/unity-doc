@@ -1,4 +1,4 @@
-!Animator Controller
+!アニメータ コントローラ
 
 ~~Animator Controller~~ビューからキャラクター動作を表示、セットアップすることができます。（メニューから^^Window > Animator Controller^^を選択）
 
