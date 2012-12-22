@@ -1,23 +1,23 @@
-!Blend Trees
+!ブレンドツリー
 
-Blend Trees are used for continuous blending between similar animations based on float [[AnimationParameters|event parameters]]. A typical example of this is blending between ''walk'' and ''run'' animations based on the ''speed'' parameter. Mecanim can ensure that the transition between the walk and the run is smooth (it is important that the animation clips are ''aligned'': e.g. start with the left foot on the floor at 0.0, and have the right foot on the floor at 0.5 for both. Another typical example is a transition between RunLeft, Run and RunRight animations based on the ''direction'' parameter value between 0.0 (left) and 1.0 (right). 
+Blend Tree （ブレンドツリー）は、float の[[AnimationParameters|イベントパラメータ]] にもとづいた似通ったアニメーション、との間の継続的なブレンディングに用いられます。典型的な例は、''speed'' パラメータにもとづいた''歩く'' と''走る'' のアニメーション間のブレンディングです。メカニムは歩くと走るの間の遷移がスムーズであることを保証します（アニメーションクリップが''揃っている'' ことが大事です：例えば、床に0.0のときに左足が着地し、右足が床に0.5のときに到着する、がどちらのアニメーションでも実現される、など）。もうひとつの典型的な例は左に走る、真っ直ぐ走る、右に走るアニメーションが全て ''direction'' パラメータの値、0.0の場合は左、1.0の場合は右としてその中間値、にもとづいているような場合です。
 
-To start working with a new blend tree, you need to:
-# Right-click on empty space on the ~~Animator Controller Window~~
-# Select ^^From New Blend Tree^^. 
-# Double-click on the Blend Tree to bring up the ~~Blend Tree Inspector~~. 
+新規のブレンドツリーで作業するには：
+# ~~Animator Controller Window~ 上の空いているどこかで右クリックします
+# ^^From New Blend Tree^^ を選択します。
+# Blend Tree をダブルクリックして ~~Blend Tree Inspector~~ を表示します
 
 Attach:MecanimBlendTreeInitial.png
 
-In the inspector, the first thing you need is to select the [[AnimationParameters|Animation Parameter]] that will control this Blend Tree. 
+インスペクタで、最初にやるべきことはこのブレンドツリーを制御する [[AnimationParameters|Animation Parameter]] を選択することです。 
 
-Then you can add individual animations by clicking ^^+ -> Add Motion Field^^ to add an animation clip to the blend tree. When you're done, it should look something like this:
+次に個々のアニメーションを追加するには^^+ -> Add Motion Field^^ をクリックして、ブレンドツリーにアニメーション クリップを追加します。終わったときは次のように表示されます：
 
 Attach:MecanimBlendTree.png
 
-The red vertical bar indicates the current value of the event parameter. You can preview what happens to the animations by pressing ^^Play^^ in the ~~Animation Preview Window~~, dragging the bar left and right.
+赤い垂直バーがイベントパラメータの現在値を示します。アニメーションがどうなるかプレビューするには、 ~~Animation Preview Window~~ で^^Play^^ を押して、バーを左右にドラッグします。
 
-FAQ: When should I use $$State Machines$$ and when should I use $$Blend Trees$$?
-Answer: State machines are used for transitioning between unrelated animations based on discrete thresholds or boolean parameters. Blend trees are used for blending continuously between similar animations based on continuous (float) parameters.
+良くある質問：$$State Machines$$ と $$Blend Trees$$ はどのように使い分ければ良いですか？
+答え：ステートマシンは関連のない、不連続なしきい値やbooleanパラメータにもとづいた、アニメーション間の遷移で使用します。ブレンドツリーは、連続的（float）で、共通性のあるアニメーションで使用します。
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)
