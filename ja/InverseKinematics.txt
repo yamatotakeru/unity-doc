@@ -1,12 +1,12 @@
-!Inverse Kinematics (Pro only)
+! インバースキネマティクス (Unity Proのみ)
 
-Most animation is produced by rotating the angles of joints in a skeleton to predetermined values. The position of a child joint changes according to the rotation of its parent and so the end point of a chain of joints can be determined from the angles and relative positions of the individual joints it contains. This method of posing a skeleton is known as __forward kinematics__.
+ほとんどのアニメーションは、スケルトンにおいて事前に決められた値にジョイントを変更して、回転することで実現されます。子ジョイントの位置は、親の回転にもとづいて変化し、このため一連のジョインの終了点は、角度および含まれる個々のジョイントの相対位置によって決定されます。このスケルトンのポージング手法は__Forward Kinematics__ （フォワード キネマティクス）と呼ばれます。
 
-However, it is often useful to look at the task of posing joints from the opposite point of view - given a chosen position in space, work backwards and find a valid way of orienting the joints so that the end point lands at that position. This can be useful when you want a character to touch an object at a point selected by the user or plant its feet convincingly on an uneven surface. This approach is known as $$Inverse Kinematics$$ (IK) and is supported in Mecanim for any humanoid character ''with a correctly configured Avatar''.
+しかし、ジョインのポージングを行うタスクを別の視点からとらえることが重要です。空間で特定の点を決めて、そこから逆算してジョイントの向きを、終了点がその位置に到着するような、有効な方法を見つけることです。オブジェクトをユーザにより選択された点をタッチさせる、または平らでない地面に足をつける、といったことをキャラクターにしてほしいときに、これは便利です。このアプローチは $$Inverse Kinematics$$ (IK)と呼ばれ、メカニムで ''正しく設定されたアバターのある'' ヒューマノイド キャラクターにおいてサポートされます。
 
 Attach:MecanimIKGrabbing.png
 
-To set up IK for a character, you typically have objects around the scene that a character interacts with, and then set up the IK thru script, in particular, Animator functions like
+キャラクターのIKをセットアップするためには、通常はシーンに相互作用をさせたいオブジェクトがあり、キャラクターのIKをスクリプトを通じて、具体的には次のようなAnimator関数を通じて、セットアップします。
 [[ScriptRef:Animator.SetIKPositionWeight.html|SetIKPositionWeight]],
 [[ScriptRef:Animator.SetIKRotationWeight.html|SetIKRotationWeight]],
 [[ScriptRef:Animator.SetIKPosition.html|SetIKPosition]],
@@ -15,9 +15,9 @@ To set up IK for a character, you typically have objects around the scene that a
 [[ScriptRef:Animator-bodyPosition.html|bodyPosition]],
 [[ScriptRef:Animator-bodyRotation.html|bodyRotation]]
 
-In the illustration above, we show a character grabbing a cylindrical object. How do we make this happen?
+上図において、キャラクターは棒の形のオブジェクトを握っています。これをどのようにして実現するのでしょうか。
 
-We start out with a character that has a valid Avatar, and attach to it a script that actually takes care of the IK, let's call it ``IKCtrl``:
+まずは、有効なアバターのあるキャラクターから初めて、それにIKを処理するスクリプト ``IKCtrl`` をつけます：
 
 [@
 using UnityEngine;
@@ -38,19 +38,19 @@ public class IKCtrl : MonoBehaviour {
 		animator = GetComponent<Animator>();
 	}
     
-        //a callback for calculating IK
+        //IKを計算するコールバック
 	void OnAnimatorIK()
 	{
 	      if(animator) {
 
-                        //if the IK is active, set the position and rotation directly to the goal. 
+                        //IKがアクティブならば、位置や回転を直接、目標物に設定します。
 			if(ikActive) {
 
-                                //weight = 1.0 for the right hand means position and rotation will be at the IK goal (the place the character wants to grab)
+                                //右手のweight = 1.0 は位置や回転が目標物に設定します（キャラクターが握りたい場所）
 				animator.SetIKPositionWeight(AvatarIKGoal.RightHand,1.0f);
 				animator.SetIKRotationWeight(AvatarIKGoal.RightHand,1.0f);
 							
-			        //set the position and the rotation of the right hand where the external object is
+			        //右手の位置および回転を外部オブジェクトの位置に設定する
 				if(rightHandObj != null) {
 					animator.SetIKPosition(AvatarIKGoal.RightHand,rightHandObj.position);
 					animator.SetIKRotation(AvatarIKGoal.RightHand,rightHandObj.rotation);
@@ -58,7 +58,8 @@ public class IKCtrl : MonoBehaviour {
 				
 			}
 
-                        //if the IK is not active, set the position and rotation of the hand back to the original position
+                        //IKがアクティブでないならば、位置や回転を元の場所に設定を戻します。
+                        if the IK is not active, set the position and rotation of the hand back to the original position
 			else {			
 				animator.SetIKPositionWeight(AvatarIKGoal.RightHand,0);
 				animator.SetIKRotationWeight(AvatarIKGoal.RightHand,0);				
@@ -67,11 +68,11 @@ public class IKCtrl : MonoBehaviour {
 	}	  
 }@]
 
-As we do not intend for the character to grab the entire object with his hand, we position a sphere where the hand should be on the cylinder, and rotate it accordingly. 
+キャラクターがオブジェクト全体を手でつかむことを意図していないため、棒のつかむ位置に球を配置し、適切に回転させます。
 
-This sphere should then be placed as the "Right Hand Obj" property of the IKCtrl script
+この球は次にIKCtrlスクリプトの"Right Hand Obj" プロパティとして配置するべきです。
 Attach:MecanimIKSetupInspector.png
 
-Observe the character grabbing and ungrabbing the object as you click the ``IKActive`` checkbox
+``IKActive`` チェックボックスをクリックするのにあわせて、キャラクターがオブジェクトを握って離すところを観察してください。
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)
