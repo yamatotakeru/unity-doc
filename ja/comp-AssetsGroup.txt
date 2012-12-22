@@ -1,7 +1,7 @@
-! Assets　Component
+! アセット コンポーネント
 
-$$Assets$$はゲーム作成で使用するモデル、テクスチャ、サウンドやその他のコンテンツファイルです。 
+$$Asset$$ はゲーム作成で使用するモデル、テクスチャ、サウンドやその他のコンテンツファイルです。 
 
-本項ではすべてのAssetsタイプにわたって$$Component$$について説明します。一般的なAssetsの概要については[[Asset Import and Creation| Assets概要ページ]] を参照のこと。
+本項ではすべてのアセットの種類を通して $$Component$$ について説明します。一般的なアセットの概要については[[Asset Import and Creation| アセット概要ページ]] を参照のこと。
 
 (:tocportion:)
