@@ -1,8 +1,8 @@
-!Working with humanoid animations
+!ヒューマノイドアニメーションでの作業
 
-The Mecanim Animation System is particularly well suited for working with animations for humanoid skeletons. Since humanoid skeletons are a very common special case and are used extensively in games, Unity provides a specialized workflow, and an extended tool set for humanoid animations. 
+メカニム アニメーション システムは、ヒューマノイドのスケルトンで作業をする場合に特に適しています。ヒューマノイドのスケルトンは非常に一般的で特別なケースでありゲームで頻繁に用いられるためるため、Unityは専用ワークフローおよびヒューマノイド アニメーション向けの拡張ツールを提供します。
 
-Because of the similarity in bone structure, it is possible to map animations from one humanoid skeleton to another, allowing $$retargeting$$ and $$inverse kinematics$$
-With rare exceptions, humanoid models can be expected to have the same basic structure, representing the major articulate parts of the body, head and limbs. The Mecanim system makes good use of this idea to simplify the rigging and control of animations. A fundamental step in creating a animation is to set up a mapping between the simplified humanoid bone structure understood by Mecanim and the actual bones present in the skeleton; in Mecanim terminology, this mapping is called an $$Avatar$$. The pages in this section explain how to create an Avatar for your model. 
+ボーン構造との共通性のため、アニメーションを一つのヒューマノイドのスケルトンから、$$Retargeting$$ （再ターゲティング）および $$Inverse Kinematics$$ （インバース キネマティクス）を許容しながら、別のものにマッピングすることが出来ます。
+わずかな例外を除いて、ヒューマノイドモデルは、人体の主要なパーツ（胴体、頭、手足）が関節で結合された、同じ基本構造を持つことが期待されます。メカニム システムは、こういった考え方を上手に活用してリギングおよびアニメーションの制御をシンプルにします。アニメーションを作成する基本ステップは、メカニムにより解釈されるシンプル化したヒューマノイド ボーン構造と、スケルトンの中に表現される実際のボーンとの間の、マッピングを構築することです。メカニムの用語では、このマッピングのことを $$Avatar$$ （アバター）と呼びます。このセクションのページではモデルからアバターを作成する方法を説明します。
 
 (:tocportion:)
