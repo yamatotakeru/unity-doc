@@ -1,13 +1,13 @@
-!Importing Animations
+! アニメーションのインポート
 
-Before a character model can be used, it must first be imported into your project.  Unity can import native Maya (.mb or .ma) and Cinema 4D (.c4d) files, and also generic FBX files which can be exported from most animation packages (see [[HOWTO-importObject|this page]] for further details on exporting).
-To import an animation, simply drag the model file to the $$Assets$$ folder of your project. When you select the file in the ~~Project View~~ you can edit the ^^Import Settings^^ in the inspector:-
+キャラクターモデルを使用する前に、プロジェクトにインポートする必要があります。UnityはネイティブのMaya (.mb または .ma)およびCinema 4D (.c4d)ファイル、さらには殆どのアニメーションパッケージによりエクスポートが出来る一般的な形式のFBXファイルをインポートすることが出来ます（エクスポートの詳細については [[HOWTO-importObject|このページ]] を参照下さい）。
+アニメーションをインポートするには、モデルファイルをプロジェクトの $$Assets$$ フォルダにドラッグします。~~Project View~~ でファイルを選択すると、Inspectorの^^Import Settings^^ で編集できるようになります。:-
 
 Attach:MecanimImporterModelTab.png\\
-''The Import Settings Dialog for a mesh''
+''メッシュのImport Settingsダイアログ''
 
-See the [[class-FBXImporter|FBX importer]] page for a full description of the available import options.
+インポートする際に使用可能なオプションの詳細な説明については [[class-FBXImporter|FBX インポータ]] のページを参照下さい。
 
-[[Splittinganimations|Splitting animations]]
+[[Splittinganimations|アニメーションの分割]] 
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)
