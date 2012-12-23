@@ -1,23 +1,25 @@
 !Animation Layers
+!アニメーション レイヤー
 
-Unity uses $$Animation Layers$$ for managing complex state machines for different body parts. An example of this is if you have a lower-body layer for walking-jumping, and an upper-body layer for throwing objects / shooting.
+Unityは $$Animation Layers$$ を異なる体のパーツのために複雑なステートマシンの管理のために使用します。この例は下半身のレイヤーで、歩いたりジャンプしたり、上半身のレイヤーでオブジェクトを投げたり、撃ったりする、といった場合です。
 
-You can manage animation layers from the ~~Layers Widget~~ in the top-left corner of the ~~Animator Controller~~.  
+アニメーションレイヤーの管理には ~~Animator Controller~~ の左上の角の~~Layers Widget~~ から行うことができます。
 
 Attach:MecanimAnimationLayers.png
 
-You can add a new layer by pressing the ^^+^^ on the widget. On each layer, you can specify the body mask (the part of the body on which the animation would be applied), and the Blending type. ``Override`` means information from other layers will be ignored, while ``Additive`` means that the animation will be added on top of previous layers.
+新規レイヤーの追加には ウィジェットの^^+^^ を押します。各レイヤーでは、ボディーマスク（アニメーションが適用される体のパーツ）およびブレンドのタイプのを指定出来ます。``Override`` は、他のレイヤーの情報は無視されることを意味し、``Additive`` は既存のレイヤーに加えてアニメーションが追加されることを意味します。。
 
-The ``Mask`` property is there to specify the body mask used on this layer. For example if you want to use upper body throwing animations, while having your character walk or run, you would use an upper body mask, like this:
-
+``Mask`` プロパティではこのレイヤーで使用するボディマスクを指定します。例えば、歩いたり走ったりしている最中に、上半身の投げるアニメーションを使用した場合、上半身のボディマスクを次にように使用します：
+The ``Mask`` property is there to specify the body mask used on this layer. For example if you want to use upper body throwin
 Attach:MecanimBodyMaskOnLayers.png
 
-For more on Avatar Body Masks, you can read [[Avatar Body Mask|this section]]
+アバター ボディマスクの詳細については[[Avatar Body Mask|このセクション]] を参照下さい。
 
 !!Animation Layer syncing (Pro only)
+!!アニメーション レイヤー同期（Unity Proのみ）
 
-Sometimes it is useful to be able to re-use the same state machine in different layers. For example if you want to simulate "wounded" behavior, and have "wounded" animations for walk / run / jump instead of the "healthy" ones. You can click the ^^Sync^^ checkbox on one of your layers, and then select the layer you want to sync with. The state machine structure will then be the same, but the actual animation clips used by the states will be distinct.  
+ときどき異なるレイヤーで同じステートマシンを再利用することが便利です。例えば "マウント" の動作をシミュレーションしたくて、歩いたり、走ったり、ジャンプするときに "ダメージあり"があって "ダメージなし" がない場合です。レイヤーのどれかで ^^Sync^^ をクリックして、同期したいレイヤーを選択します。ステートマシン構造は同じになりますが、ステートにより使用される実際のアニメーションクリップは別になります。
 
 Attach:MecanimLayerSync.png
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)
