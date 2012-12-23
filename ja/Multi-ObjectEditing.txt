@@ -1,32 +1,30 @@
-! Multi-Object Editing
+! 重複オブジェクトの編集（Multi-Object Editing）
 
-Starting in Unity 3.5 you can select multiple objects of the same type and edit them simultaneously in the $$Inspector$$. Any changed properties will be applied to all of the selected objects. This is a big time saver if you want to make the same change to many objects.
+Unity 3.5より、同じタイプの重複オブジェクトを選択し、 $$Inspector$$ で同時に編集することができるようになっております。 選択されている全てのオブジェクトに対して、プロパティの変更が適用されます。 本機能を使うことで、多くのオブジェクトに対して同じ変更を加えたい場合に、大変な時間の節約となります。
 
-When selecting multiple objects, a component is only shown in the $$Inspector$$ if that component exists on all the selected objects. If it only exists on some of them, a small note will appear at the bottom of the Inspector saying that components that are only on some of the selected objects cannot be multi-edited.
+重複オブジェクトを選択した時に、 $$Inspector$$ に表示されるコンポーネントは、選択された全てのオブジェクトに共通して存在するコンポーネントのみとなっています。 それらの一部のみに存在するコンポーネントがある場合、インスペクターの下部に小さなメモが表示され、選択されたオブジェクトの一部にのみ存在するコンポーネントは、重複編集できないことが警告されます。
 
-!! Property Values
+!! プロパティの値について（Property Values）
 
-
-When multiple objects are selected, each property shown in the Inspector represents that property on each of the selected objects. If the value of the property is the same for all the objects, the value will be shown as normal, just like when editing a single object. If the value of the property is not the same for all the selected objects, no value is shown and a dash or similar is shown instead, indicating that the values are different.
+重複オブジェクトが選択されている時、インスペクターに表示されている各プロパティは、その選択されたオブジェクト各自のプロパティを表しています。 もしすべてのオブジェクトについてプロパティの値が同じ場合、その値は、単一のオブジェクトを編集している時とまったく同じように、通常通りに表示されます。 選択されているオブジェクトのすべてについてプロパティの値が同じではない場合には、値は表示されず、その代わりにダッシュによく似た記号が表示されます。これは値が異なっていることを表しています。
 
 Attach:MultiEditElectricBothWithLines.png
-->              ''Multi-edit of two objects''
+->              ''２つのオブジェクトを重複編集する''
 
-Regardless of whether a value is shown or a dash, the property value can be edited as usual and the changed value is applied to all the selected objects. If the values are different and a dash is thus shown, it's also possible to right-click on the label of the property. This brings up a menu that lets you choose from which of the objects to inherit the value. 
+値が表示されているかダッシュで表示されているかに関わらず、プロパティ値は通常どおり編集することができます。そしてその値の変化が選択中のオブジェクトすべてに適用されます。 値が異なっていてダッシュが表示されている場合、プロパティラベルの上で右クリックして、ポップアップメニューを開きます。そのメニューからどちらのオブジェクトから値を継承するか選ぶことができます。
 
 Attach:MultiEditPullDown.png
-->              ''Selecting which object to get the value from''
+->              ''どちらのオブジェクトから値をとるか選択する''
 
-!! Multi-Editing Prefab or Model Instances
+!! プレハブおよびモデルインスタンスの重複編集（Multi-Editing Prefab or Model Instances）
 
-Prefabs can be multi-edited just like Game Objects in the scene. Instances of prefabs or of models can also be multi-edited; however certain restrictions apply: When editing a single prefab or model instance, any property that is different from the prefab or model will appear in bold, and when right clicking there's an option to revert the property to the value it has in the prefab or model. Furthermore, the Game Object has options to apply or revert all changes. None of these things are available when multi-object editing. Properties cannot be reverted or applied; nor will they appear in bold if different from the prefab or model. To remind you of this, the $$Inspector$$ will show a note with ''Instance Management Disabled'' where the ^^Select^^, ^^Revert^^, and ^^Apply^^ buttons would normally appear.
+プレハブもシーン中のゲームオブジェクトと同様に重複編集をすることができます。 プレハブもしくはモデルのインスタンスも同様に重複編集が可能ですが、以下のような制限がいくつかあります。単一のプレハブもしくはモデルのインスタンスを編集する際、元のプレハブもしくはモデルと異なったプロパティはすべて太字で表示されます。 そこで右クリックをすると、元のプレハブもしくはモデルに設定されている値にプロパティを戻すオプションが表示されます。 さらにゲームオブジェクトにはすべての変更を適用したり、元に戻したりするオプションがありますが、これらのオプションは重複オブジェクトを編集している際には利用することができません。 プロパティを元に戻したり適用したりすることができませんので、プレハブやモデルと違っていても、それらのプロパティが太字で表示されることもありません。 この制限に注意を促すために、 $$Inspector$$ には、 ''インスタンスマネージメントができません（Instance Management Disabled）'' という警告が表示されます。この時も、^^Select（選択する）^^ 、 ^^Revert（元に戻す）^^ 、 ^^Apply（適用する）^^ 各ボタンは通常通り表示されます。
 
 Attach:MultiEditInstanceManagementDisabled.png
-->              ''Instance Managment Disabled for multi-edit of prefabs''
+->              ''プレハブの重複編集時のインスタンスマネージメントができません表示''
 
-!! Non-Supported Objects
+!! サポートされないオブジェクト（Non-Supported Objects）
 
-A few object types do not support multi-object editing. When you select multiple objects simultaneously, these objects will show a small note saying "Multi-object editing not supported".
+重複オブジェクトの編集がサポートされていないオブジェクトのタイプがいくつかあります。 これらの重複オブジェクトを同時に選択すると、 "重複オブジェクトの編集はサポートされていません（Multi-object editing not supported）" という警告が小さく表示されます。
 
-If you have made a custom editor for one of your own scripts, it will also show this message if it doesn't support multi-object editing. See the script reference for the [[ScriptRef:Editor.html|Editor class]] to learn how to implement support for multi-object editing for your own custom editors.
-
+自作スクリプトでカスタムエディタを構築している場合でも、重複オブジェクト編集がサポートされていない場合には同様のメッセージが表示されます。 自分専用のカスタムエディタ向けに重複オブジェクト編集のサポートを実装する方法を知りたい場合は、スクリプトリファレンスの [[ScriptRef:Editor.html|Editor class]] を参照してください。

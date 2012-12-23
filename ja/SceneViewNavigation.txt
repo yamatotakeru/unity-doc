@@ -1,72 +1,71 @@
-! Scene View Navigation
+! シーンビューのナビゲーション（Scene View Navigation）
 
-The Scene View has a set of navigation controls to help you move around quickly and efficiently.
+シーンビューには、ナビゲーション用のコントロールセットがあります。 これらを使って素早く効率的に動き回ることが可能です。
 
+!! 矢印キー移動（Arrow Movement）
 
-!! Arrow Movement
-
-You can use the ^^Arrow Keys^^ to move around the scene as though "walking" through it. The up and down arrows move the camera forward and backward in the direction it is facing. The left and right arrows pan the view sideways. Hold down the ^^Shift^^ key with an arrow to move faster.
-
-
-!! Focusing
-
-If you select a GameObject in the hierarchy, then move the mouse over the scene view and press the ^^F^^ key, the view will move so as to center on the object. This feature is referred to as ``frame selection``.
+^^Arrow Keys^^ を使って、シーンの中を "歩き回る" かのように動き回ることができます。 上および下の矢印キーは、正対する方向に沿ってカメラを前進もしくは後退させます。 左および右の矢印キーは、ビューを左右横向きにパンします。 矢印キーと一緒に ^^Shift^^ キーを押すと、素早く動けます。
 
 
-!! Move, Orbit and Zoom
+!! フォーカスを合わせる（Focusing）
 
-Moving, orbiting and zooming are key operations in Scene View navigation, so Unity provides several alternative ways to perform them for maximum convenience.
+ヒエラルキーから適当なゲームオブジェクトを選択し、マウスをシーンビューに移動して、 ^^F^^ キーを押します。するとそのオブジェクトを中央に捉えるようにビューが移動します。 本機能は、 ``フレーム選択（frame selection）`` と呼ばれます。
 
-!!! Using the Hand Tool
+!! 移動、回転、ズーム（Move, Orbit and Zoom）
 
-When the hand tool is selected (shortcut: ^^Q^^), the following mouse controls are available:
+移動、回転、ズームは、シーンビューのナビゲーションでは極めて重要な操作です。従ってUnityでは、最大の利便性を得るために、これらの操作に複数の代替的な手法を用意しています。
 
-Attach:UI-ViewTool.png $$Move:$$ Click-drag to drag the camera around. \\
-Attach:Editor-EyeTool.png $$Orbit:$$ Hold ^^Alt^^ and click-drag to orbit the camera around the current pivot point. \\
-Attach:Editor-ZoomTool.png $$Zoom:$$ Hold ^^Control^^ (^^Command^^ on Mac) and click-drag to zoom the camera.
+!!! ハンドツールを使う（Using the Hand Tool）
 
-Holding down ^^Shift^^ will increase the rate of movement and zooming.
+ハンドツール（ショートカット： ^^Q^^ ）を選択すると、以下のようなマウス操作が可能となります:
 
-!!! Shortcuts Without Using the Hand Tool
+Attach:UI-ViewTool.png $$Move:$$ クリック＆ドラッグで、カメラをあちこち移動させます。 \\
+Attach:Editor-EyeTool.png $$Orbit:$$ ^^Alt^^ キーを押したままクリック＆ドラッグで、カメラを現在の回転の中心周りに回転させます。 \\
+Attach:Editor-ZoomTool.png $$Zoom:$$ ^^Control^^ キー（Macの場合には ^^Command^^ キー）を押したままクリック＆ドラッグで、カメラをズームします。
 
-For extra efficiency, all of these controls can also be used regardless of which transform tool is selected.
-The most convenient controls depend on which mouse or track-pad you are using:
+さらに ^^Shift^^ キーを追加すると、移動やズームが速くなります。
 
-||!Action   ||!3-button mouse                                        ||!2-button mouse or track-pad         ||!Mac with only one mouse button or track-pad                 ||
-||$$Move$$  ||Hold ^^Alt^^ and middle click-drag.                    ||Hold ^^Alt-Control^^ and click-drag. ||Hold ^^Alt-Command^^ and click-drag.                         ||
-||$$Orbit$$ ||Hold ^^Alt^^ and click-drag.                           ||Hold ^^Alt^^ and click-drag.         ||Hold ^^Alt^^ and click-drag.                                 ||
-||$$Zoom$$  ||Hold ^^Alt^^ and right click-drag or use scroll-wheel. ||Hold ^^Alt^^ and right click-drag.   ||Hold ^^Alt-Control^^ and click-drag or use two-finger swipe. ||
+!!! ハンドツールを使わないショートカット（Shortcuts Without Using the Hand Tool）
+
+さらなる利便性のために、以下のすべてのコントロールは、トランスフォームツールが選択状態に関係なく、使用することが可能となっています。
+あなたが使っているマウスやトラックバッドによって、どのコントロールが最も便利かは違います
 
 
-!! Flythrough Mode 
+||!アクション||!３ボタンマウス                 ||!２ボタンマウスまたはトラックパッド            ||!１ボタンマウスまたはトラックパッドのMac      ||
+||$$Move$$   || ^^Alt^^ ＋中クリック＆ドラッグ || ^^Alt^^ ＋ ^^Control^^ ＋左クリック＆ドラッグ || ^^Alt^^ ＋ ^^Command^^ ＋ クリック＆ドラッグ ||
+||$$Orbit$$  || ^^Alt^^ ＋左クリック＆ドラッグ || ^^Alt^^ ＋ 左クリック＆ドラッグ               || ^^Alt^^ ＋ クリック＆ドラッグ                ||
+||$$Zoom$$   || ^^Alt^^ ＋右クリック＆ドラッグ、またはホイールスクロール || ^^Alt^^ ＋ 右クリック＆ドラッグ ||^^Alt^^ ＋ ^^Control^^ ＋クリック＆ドラッグ、または２本指でスワイプ||
 
-The $$Flythrough$$ mode lets you navigate the Scene View by flying around in first person similar to how you would navigate in many games.
 
-* Click and hold the right mouse button.
-* Now you can move the view around using the mouse and use the ^^WASD^^ keys to move left/right forward/backward and the ^^Q^^ and ^^E^^ keys to move up and down.
-* Holding down ^^Shift^^ will make you move faster.
+!! フライスルーモード（Flythrough Mode）
 
-Flythrough mode is designed for $$Perspective Mode$$. In $$Isometric Mode$$, holding down the right mouse button and moving the mouse will orbit the camera instead.
+一人称視点でシーンビューを飛び回ることができるのが、 $$Flythrough$$ モードです。これに似た操作は多くのゲームで採用されているので、使ったことがある人も多いでしょう。
 
-!! Scene Gizmo
+* 右マウスボタンをクリックし、押したままにする。
+* マウスをその状態で保持しながら、 ^^WASD^^ キーで左/右/前/後にビューを移動、 ^^Q^^ と ^^E^^ キーで上下にビュー移動ができる。
+* ^^Shift^^ キーを押し下げることで、より速く移動できる。
 
-In the upper-right corner of the Scene View is the $$Scene Gizmo$$.  This displays the Scene View Camera's current orientation, and allows you to quickly modify the viewing angle.
+フライスルーモードは、 $$Perspective Mode$$ 専用です。 $$Isometric Mode$$ では、右マウスボタンを押し下げたままマウスを動かすことで、代わりにカメラが回転します。
+
+!! シーンギズモ（Scene Gizmo）
+
+シーンビューの右上の隅に $$Scene Gizmo$$ があります。 これはシーンビューカメラの現在の方向を表示しており、カメラの視角を素早く変更するのに使えます。
 
 Attach:Editor-SceneGizmo.png
 
-You can click on any of the arms to snap the Scene View Camera to that direction.  Click the middle of the Scene Gizmo, or the text below it, to toggle between $$Isometric Mode$$ and $$Perspective Mode$$.  You can also always shift-click the middle of the Scene Gizmo to get a "nice" perspective view with an angle that is looking at the scene from the side and slightly from above.
+ギズモの腕のいずれかをクリックすると、シーンビューのカメラをその方向にスナップすることができます。 シーンギズモの中央をクリックするか、その下のテキストをクリックすると、 $$等角図法（Isometric Mode）$$ と $$透視（遠近）図法（Perspective Mode）$$ との間でトグルします。 そして シーンギズモの中央を、^^Shift^^ キーを押しながらクリックすると、シーンを側面かつ軽く上方から見ている角度になる "ちょうどよい" パースビューに設定できます。
+
 
 Attach:Camera-Non-Ortho.png\\
-''Perspective mode.''
+''透視（遠近）図法（Perspective mode）''
 
 Attach:Camera-Ortho.png\\
-''Isometric mode. Objects do not get smaller with distance here!''
+''等角図法（Isometric mode）。こちらでは距離に応じてオブジェクトが小さくならない''
 
-!!! Mac Trackpad Gestures
-On a Mac with a trackpad, you can drag with two fingers to zoom the view.
+!!! Macでのトラックパッドジェスチャ（Mac Trackpad Gestures）
+トラックパッドを持っているMacでは、２本指を使ってドラッグすることで、ビューをズームすることができます。
 
-You can also use three fingers to simulate the effect of clicking the arms of the $$Scene Gizmo$$: drag up, left, right or down to snap the Scene View Camera to the corresponding direction. In OS X 10.7 "Lion" you may have to change your trackpad settings in order to enable this feature:
-* Open System Preferences and then Trackpad (or type trackpad into Spotlight).
-* Click into the "More Gestures" option.
-* Click the first option labelled "Swipe between pages" and then either set it to "Swipe left or right with three fingers" or "Swipe with two or three fingers".
-
+また３本指を使うことで、 $$Scene Gizmo$$ の腕をクリックする効果をシミュレートすることができます: 上、左、右、下にドラッグすることで、シーンビューカメラを対応する方向にスナップすることができます。 OS X 10.7 "Lion" の場合、この機能を有効にするためにはトラックバッドの設定を変更する必要があります。
+* "システム環境設定" を開き、 "トラックパッド" を開く。（もしくはスポットライト検索より、トラックパッドとタイプする）
+* "その他のジェスチャ" オプションをクリックする。
+* "ページ間をスワイプ" とラベルされている最初のオプションをクリックし、"３本指でスワイプ" もしくは "２本指または３本指でスワイプ" に変更する。
