@@ -1,9 +1,11 @@
 ! Reporting crash bugs on iOS
-Before submitting a bug report, please check the [[TroubleShooting#iPhoneTroubleShooting | iOS Troubleshooting]] page, where you will find solutions to common crashes and other problems.
+!iOSでのクラッシュ時バグレポート方法
 
-If your application crashes in the Xcode debugger then you can add valuable information to your bug report as follows:-
-# Click Continue (``Run->Continue``) twice
-# Open the debugger console (``Run->Console``) and enter (in the console): __thread apply all bt__
-# Copy __all__ console output and send it together with your bugreport.
+バグレポートを送信する前に、[[TroubleShooting#iPhoneTroubleShooting | iOS トラブルシューティング]] のページをチェックして、一般的なクラッシュおよびその他の問題に対する解決方法を確認して下さい。 
 
-If your application crashes on the iOS device then you should retrieve the crash report as described [[http://developer.apple.com/iphone/library/technotes/tn2008/tn2151.html#ACQUIRING_CRASH_REPORTS|here]] on Apple's website. Please attach the crash report, your built application and console log to your bug report before submitting.
+もしXCodeデバッガでクラッシュした場合、次のようにして貴重な情報をバグレポートに追加することが出来ます：
+# Continue (``Run->Continue``) を2回クリックします
+# デバッガコンソールを開いて(``Run->Console``) コンソールで次の通りに入力します：__thread apply all bt__
+# __全ての__ コンソール出力をコピーしてバグレポートとともに送信します。 
+
+もしアプリケーションがiOSデバイスでクラッシュした場合、アップルのウェブサイトで [[http://developer.apple.com/iphone/library/technotes/tn2008/tn2151.html#ACQUIRING_CRASH_REPORTS|ここ]] に説明されている通りのクラッシュレポートを受け取ります。クラッシュレポート、ビルドしたアプリケーションとコンソールログを添付してから送信して下さい。
