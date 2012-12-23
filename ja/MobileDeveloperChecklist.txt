@@ -1,6 +1,6 @@
-!Mobile Developer Checklist
+! モバイル開発者チェックリスト
 
-If you are having problems when developing for a mobile platform, this is a checklist to help you solve various problems.
+モバイル プラットフォームの開発で問題がある場合、様々な問題に対する解決策を次のチェックリストにまとめています。
 
 (:tocportion:)
 
