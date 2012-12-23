@@ -1,16 +1,16 @@
-!Target Matching
+!ターゲット マッチング
 
-Often in games, a situation arises where a character must move in such a way that a hand or foot lands at a certain place at a certain time. For example, the character may need to jump across stepping stones or jump and grab an overhead beam.
+ゲームの中でしばしば、キャラクターの手あるいは足が特定のところに特定のタイミングで着地することが発生します。例えば、キャラクターが飛び石をジャンプして越えていく必要があるかもしれないし、頭の上のビームをつかむ必要があるかもしれません。
 
-You can use the [[ScriptRef:Animator.MatchTarget|Animator.MatchTarget function]] to handle this kind of situation. Say, for example, you want to arrange an situation where the character jumps onto a platform and you already have an animation clip for it called ''Jump Up''. To do this, follow the steps below.
+このような状況に対応するには[[ScriptRef:Animator.MatchTarget|Animator.MatchTarget 関数]] を使用することが出来ます。例えば、キャラクターが地面の上にジャンプして、すでに ''Jump Up'' というアニメーションクリップをすでに用意していたとします。これを実現するには、次のステップを行います：
 
-*Find the place in the animation clip at which the character is beginning to get off the ground, note in this case it is 11.0% or 0.11 into the animation clip in normalized time.
+*アニメーションクリップにおいて、キャラクターが地面から離れる最初のタイミングを見つけ、この場合においては11.0%、またはアニメーションクリップの正規化された時間では0.11であるとします。
 Attach:MecanimMatchTargetStart.png
 
-*Find the place in the animation clip at which the character is about to land on his feet, note in this case the value is 22.3% or 0.223. 
+*アニメーションクリップにおいて、キャラクターが地面に足を着地させるタイミングを見つけ、この場合に22.3%あるいは0.223であるとします。
 Attach:MecanimMatchTargetEnd.png
 
-*Create a script (@@TargetCtrl.cs@@) that makes a call to [[ScriptRef:Animator.MatchTarget|MatchTarget]], like this: 
+*スクリプト (@@TargetCtrl.cs@@) を作成して、[[ScriptRef:Animator.MatchTarget|MatchTarget]] に対するコールを、次のように行います：
 
 [@using UnityEngine;
 using System;
@@ -35,9 +35,10 @@ public class TargetCtrl : MonoBehaviour {
 }
 @]
 
-Attach that script onto the Mecanim model. 
+スクリプトをメカニムモデルにアタッチします。
 Attach:MecanimMatchTargetInspector.png
 
-The script will move the character so that it jumps from its current position and lands with its left foot at the target. Bear in mind that the result of using MatchTarget will generally only make sense if it is called at the right point in gameplay.
+スクリプトはキャラクターを、現在の位置からジャンプして、ターゲットに左足から着地するように、移動します。MatchTargetの結果は一般にゲームプレイにおいて適切なタイミングでコールされないかぎり意味をなさないことに留意下さい。
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)
