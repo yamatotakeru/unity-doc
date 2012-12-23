@@ -2,4 +2,4 @@
 
 (:tocportion:)
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)

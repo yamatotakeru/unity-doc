@@ -1,19 +1,18 @@
-!Nested State Machines
+!+MM0wuTDIMFUwjDBfMLkwxjD8MMgw3jC3MPM
 
-For convenience, it is possible to nest Animation State Machines within other Animation State Machines. You can create a Sub-state machine by rightclicking on an empty space within the ~~Animator Controller~~ window and selecting ^^Create Sub-State Machine^^. 
++fCFPvzBuMF8wgTABMKIwyzDhMPwwtzDnMPM +MLkwxjD8MMgw3jC3MPMwkk7WMG4wojDLMOEw/DC3MOcw8w +MLkwxjD8MMgw3jC3MPMwbk4tMGcwzTC5MMgwWTCLMFMwaDBMUfpnZTB+MFkwAjC1MNY +MLkwxjD8MMgw3jC3MPMwkk9cYhAwWTCLMGswbzAB +AH4Afg-Animator Controller+AH4Afg +MG56ejBEMGYwRDCLMLkw2jD8MLkwZ1PzMK8w6jDDMK8wkjBXMGY^^Create Sub-State Machine^^ +MJKQeGKeMFcwfjBZMAI
 
 Attach:MecanimStateMachinePullDown.png
 
-This forms a sub-state machine, to which you can navigate by double-clicking on the rhombic node:
++MFMwjDBrMIgwijC1MNY +MLkwxjD8MMgw3jC3MPMwTGnLYhAwVTCMMAGD8V9iMG4wzjD8MMkwkjDAMNYw6zCvMOowwzCvMFkwizBTMGgwZzDKMNMwsjD8MLcw5zDzMGcwTTB+MFn/Gg
 
 Attach:MecanimSubStateMachine.png
 
-Note, however, that you can only connect from states to other states. Thus when you create a transition from a state to a state machine, Unity will ask you to select a state from that machine. You can connect both up and down the hierarchy. 
-
++MFcwSzBXMAEwuTDGMPwwyDBLMIlO1jBuMLkwxjD8MMgwVzBLY6V9mjBnME0wajBEMFMwaDBrdVlhDzBXMGZOCzBVMEQwAjBTMG4wXzCBMLkwxjD8MMgwSzCJMLkwxjD8MMgw3jC3MPOQd3n7MJJPXGIQMFkwizBoME0wAQ-Unity+MG8wXTBuMN4wtzDzMEswiTBuMLkwxjD8MMgwkpB4Yp4wWTCLMIgwRjBrbEIwgTB+MFkwApaOXGQwbk4KTgswaDCCMGtjpX2aMFkwizBTMGgwTFH6Z2UwfjBZMAI
 Attach:MecanimSelectSubState.png
 
-The ~~State Inspector~~ and the ~~Transition Inspector~~ will indicate which state machine each state comes from:
++AH4Afg-State Inspector+AH4Afg +MEowiDBzAH4Afg-Transition Inspector+AH4Afg +MG9UBDAFMG4wuTDGMPwwyDBMMGkwbjC5MMYw/DDIMN4wtzDzMEswiTBNMF8wgjBuMEtjB1uaMFcwfjBZ/xo
 Attach:MecanimTransitionToSubStateInspector.png
-(back to [[Animation State Machines|State Machines introduction]])
+([[Animation State Machines|+MLkwxjD8MMgw3jC3MPN9OU7L]] +MGtiOzCL)
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|+MOEwqzDLMOB9OU7L]] +MGtiOzCL)
