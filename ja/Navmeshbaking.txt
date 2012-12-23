@@ -1,25 +1,25 @@
-!Navmesh Baking
+!ナビメッシュ ベーキング
 
-Once the Navmesh geometry and layers are marked up, it's time to bake the Navmesh geometry. 
+ナビメッシュ物体およびレイヤーのマーキングが完了すると、ナビメッシュ物体の焼き込み（Bake）する作業に入ります。
 
-Inside the Navigation window (^^Window->Navigation^^), go to the ^^Bake^^ tab (the upper-right corner), and click on the ^^Bake^^ button (the lower-right corner).
+ナビゲーション ウィンドウ（^^Window->Navigation^^）の中で、^^Bake^^ タブ（右上の角）に移動し、^^Bake^^ ボタン（右下の角）をクリックします。
 Attach:NavigationBakeWindow.png
-''Navigation Bake Window''
+''Navigation Bake ウィンドウ''
 
-Here are the properties that affect Navmesh baking: 
+ナビメッシュ ベーキング（焼き込み）に影響するプロパティは：
 ||PROPS
-||``Radius``||radius of the "typical" agent (preferrably the smallest).||
-||``Height`` ||height of the "typical" agent (the "clearance" needed to get a character through).||
-||``Max Slope`` ||all surfaces with higher slope than this, will be discarded.||
-||``Step height`` ||the height difference below which navmesh regions are considered connected.||
-||``Drop height`` ||If the value of this property is positive, off-mesh links will be placed for adjacent navmesh surfaces where the height difference is below this value.||
-||``Jump distance`` ||If the value of this property is positive, off-mesh links will be placed for adjacent navmesh surfaces where the horizontal distance is below this value.||
+||``Radius``||"典型的な"エージェントの半径（もっとも小さいものとすることを推奨します）||
+||``Height`` ||"典型的な"エージェントの高さ（キャラクターを通す必要がある "隙間"）||
+||``Max Slope`` ||このしきい値のスロープより高い全ての表面は無視されます||
+||``Step height`` ||ナビメッシュ領域が接続されているとみなされる高さの差||
+||``Drop height`` ||このプロパティが正の値である場合、隣接するナビメッシュ表面にオフメッシュリンクは、この値より高さの差が小さい場合に、配置されます||
+||``Jump distance`` ||もしこのプロパティが正の値である場合、隣接するナビメッシュ表面にオフメッシュリンクは、この値より水平距離が小さい場合に、配置されます||
 ||``Advanced``||
-||>>>``Min region area`` ||Regions with areas below this threshold will be discarded. ||
-||>>>``Width inaccuracy %``||Allowable width inaccuracy||
-||>>>``Height inaccuracy %``||Allowable height inaccuracy||
-||>>>``Height mesh``||If this options is on, original height information is stored. This has performance implications for speed and memory usage. ||
+||>>>``Min region area`` ||このしきい値より下の領域は無視されます||
+||>>>``Width inaccuracy %``||許容される幅の誤差||
+||>>>``Height inaccuracy %``||許容される高さの誤差||
+||>>>``Height mesh``||このオプションが有効である場合、元の高さ情報が格納されます。これは処理の早さやメモリ使用などパフォーマンスへの影響があります||
 
-Note that the baked navmesh is part of the scene and agents will be able to traverse it. To remove the navmesh, click on ^^Clear^^ when you're in the ^^Bake^^ tab.
+焼き込みされたナビメッシュはシーンの一部であり、エージェントは横断することが出来ます。ナビメッシュを取り除くには、^^Bake^^ タブにいるときに ^^Clear^^ ボタンをクリックして下さい。
 
-(back to [[NavmeshandPathfinding|Navigation and Pathfinding]])
+([[NavmeshandPathfinding|ナビゲーションおよび経路探索]] に戻る)
