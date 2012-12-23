@@ -1,24 +1,23 @@
-!Generic Functions
+!ジェネリック関数
 
-Some functions in the script reference (for example, the various GetComponent functions) are listed with 
-a variant that has a letter T or a type name in angle brackets after the function name:-
+スクリプトリファレンスのいくつかの関数（例えば、様々なGetComponent関数）はTまたは型名を関数名の後に <> 記号で記されている変種があります:-
+
 [@
 function FuncName.<T>(): T;
 @]
-These are known as generic functions. The significance they have for scripting is that you get
-to specify the types of parameters and/or the return type when you call the function. In JavaScript, this can
-be used to get around the limitations of dynamic typing:-
+
+これらはジェネリック関数として知られています。これらのスクリプティングにおける重要性はパラメータの型かつ（または）関数の戻り値の型をを指定できることです。JavaScriptでは、ダイナミックタイピングの制約を回避するために使用することが出来ます:-
+
 [@
-// The type is correctly inferred since it is defined in the function call.
+// 関数コールで定義されているため、型は正しく推論できる。
 var obj = GetComponent.<Rigidbody>();
 @]
-In C#, it can save a lot of keystrokes and casts:-
+C#では、多くの文字入力やキャストを節約できます:-
 [@
 Rigidbody rb = go.GetComponent<Rigidbody>();
 
-// ...as compared with:-
+// ...次と比べて下さい:-
 
 Rigidbody rb = (Rigidbody) go.GetComponent(typeof(Rigidbody));
 @]
-Any function that has a generic variant listed on its script reference page will allow this
-special calling syntax.
+スクリプト リファレンスに書かれている、ジェネリックの変種をもった関数は、全てこの特別なコールの構文を使用することが出来ます。
