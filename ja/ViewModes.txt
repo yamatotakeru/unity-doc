@@ -37,7 +37,6 @@ Attach:RenderModeDropdown35.png\\
 
 !! シーンのライティング、ゲームのオーバーレイ、オーディオモード（Scene Lighting, Game Overlay, and Audition Mode）
 
-To the right of the dropdown menus are three buttons which control other aspects of the scene representation.
 ドロップダウンメニューの右のほうには、３つのボタンがあって、シーンを描写する際に使われるその他の要素をコントロールします。
 
 Attach:SceneViewButtons35.png
