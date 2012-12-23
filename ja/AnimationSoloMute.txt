@@ -1,21 +1,22 @@
-!!Solo and Mute functionality
+!!ソロおよびミュート機能
 
-In complex state machines, it is useful to preview the operation of some parts of the machine separately. For this, you can use the Mute / Solo functionality. Muting means a transition will be disabled. Soloed transtions are enabled and with respect to other transitions originating from the same state. You can set up mute and solo states either from the ~~Transition Inspector~~, or the ~~State Inspector~~ (recommended), where you'll have an overview of all the transitions from that state. 
+複雑なステートマシンでは、マシンの一部のパーツの処理をプレビューするほうが便利です。このためには、ミュート／ソロ機能を用いることが出来ます。ミュートは遷移が無効化されることを意味します。ソロの遷移は同じステートから派生した他の遷移にもとづいて有効化されます。ソロおよびミュートは ~~Transition Inspector~~ または ~~State Inspector~~ （推奨）からセットアップすることが出来ます。
 
 Attach:MecanimSoloMuteInspector.png
 
-Soloed transitions will be shown in green, while muted transitions in red, like this:
+ソロの遷移は緑で示され、ミュートの遷移は次のように赤で示されます：
 
 Attach:MecanimSoloMuteGraph.png
 
-In the example above, if you are in @@State 0@@, only transitions to @@State A@@ and @@State B@@ will be available.
+上の例では、 @@State 0@@ （ステート0）である場合、@@State A@@ （ステートA）および @@State B@@ （ステートB）への遷移のみが利用可能となります。
 
-*The basic rule of thumb is that if one Solo is ticked, the rest of the transitions from that state will be muted. 
-*If both Solo and Mute are ticked, then Mute takes precedence. 
+* 原則は、ソロが選択されると、その遷移からの残りのステートはミュートされます。
+* もしソロおよびミュートが」ともにsんたくされた場合、ミュートが行われます。
 
-Known issues:
-* The controller graph currently doesn't always reflect the internal mute states of the engine. 
 
-(back to [[AnimationStateMachines|State Machines introduction]])
+既知の不具合:
+コントローラ グラフは必ずしもエンジンの内部のミュートステートを反映しません。
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[AnimationStateMachines|ステートマシン紹介]] に戻る)
+
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)
