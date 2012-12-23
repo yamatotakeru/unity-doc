@@ -1,6 +1,6 @@
-!Unity Web Player and browser communication with UnityObject2
+!Unity Web PlayerおよびUnityObject2とのブラウザコミュニケーション
 
-For the most part, browser communication is done the same way as [[UnityWebPlayerandbrowsercommunication|UnityObject]]. However, calling Unity web player content functions from a webpage, is done in the following way:
+ブラウザコミュニケーションは大部分において、 [[UnityWebPlayerandbrowsercommunication|UnityObject]] と同様に行われます。しかし、Unity Web Playerコンテンツの関数をウェブページからコールするのは次のように行われます：
 
 [@
 <script type="text/javascript" language="javascript">
@@ -11,7 +11,7 @@ u.initPlugin(jQuery("#unityPlayer")[0], "Example.unity3d");
 
 function SaySomethingToUnity()
 {
-	u.getUnity().SendMessage("MyObject", "MyFunction", "Hello from a web page!");
+	u.getUnity().SendMessage("MyObject", "MyFunction", "ウェブページから、こんにちは!");
 }
 -->
 </script>
