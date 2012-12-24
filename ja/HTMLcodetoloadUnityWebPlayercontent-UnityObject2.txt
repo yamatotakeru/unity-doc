@@ -1,21 +1,22 @@
-!HTML code to load Unity content with UnityObject2
+!UnityObject2でUnityコンテンツをロードするHTMLコード
 
-Loading unity content with UnityObject2 is similiar to the way it's done with [[HTMLcodetoloadUnityWebPlayercontent|UnityObject]], except the URL used for the unityObjectURL is: 
+UnityObject2でUnityコンテンツをロードするのは、 [[HTMLcodetoloadUnityWebPlayercontent|UnityObject]] とほぼ同様ですが、unityObjectURLに使用されるURLは：
 "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
 
-You can now instantiante the ``UnityObject2`` class to assist you in various Unity related tasks. The most inportant one is to embed Unity content. This is performed by instantiating ``UnityObject2`` and calling ``initPlugin`` on the new instance. See [[WebPlayerDeployment-UnityObject2#initPlugin|UnityObject2.initPlugin]]
+``UnityObject2`` クラスをインスタンス化してUnity関連のタスクをサポート出来ます。もっとも重要なものはUnityコンテンツを埋め込むことです。これは ``UnityObject2`` クラスをインスタンス化して、新規のインスタンスで ``initPlugin`` をコールします。[[WebPlayerDeployment-UnityObject2#initPlugin|UnityObject2.initPlugin]] を確認下さい。
+
 
 [@
 var u = new UnityObject2();
 u.initPlugin(jQuery("#unityPlayer")[0], "Example.unity3d");
 @]
 
-Finally, the HTML placeholder is placed inside the ``<body>`` section. It could be as simple as ``<div id="unityPlayer" />``. However for maximum compatibility it's best to place some warning message in case the browser doesn't support JavaScript and the placeholder isn't replaced by UnityObject.
+最後に、HTMLプレースホルダーは ``<body>`` セクションの中に置かれています。 ``<div id="unityPlayer" />`` ぐらいにシンプルに記述することが出来ます。しかし、互換性を最大限とするために、ブラウザがJavaScriptをサポートせずプレースホルダーがUnityObjectにより置き換えされない場合に、注意メッセージを出すことがベストです。
 
 [@
 <div id="unityPlayer">
 	<div class="missing">
-		<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
+		<a href="http://unity3d.com/webplayer/" title="Unity Web Playerを今すぐインストール下さい。">
 			<img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
 		</a>
 	</div>
