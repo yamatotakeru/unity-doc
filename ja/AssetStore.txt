@@ -1,38 +1,37 @@
-!Asset Store
+! アセットストア
 
-Unity's $$Asset Store$$ is home to a growing library of free and commercial assets created both by Unity Technologies and also members of the community. A wide variety of assets is available, covering everything from textures, models and animations to whole project examples, tutorials and Editor extensions. The assets are accessed from a simple interface built into the Unity Editor and are downloaded and imported directly into your project.
+Unityの $$Asset Store$$ （アセットストア）は成長する無料および商用アセットのライブラリの入り口であり、それらアセットはUnity Technologies およびコミュニティのメンバーにより作成されています。バラエティに富んだアセットが利用可能であり、テクスチャ、モデル、アニメーション、およびプロジェクト全体のサンプル、チュートリアル、およびエディタ拡張ツールまで全てをカバーしています。アセットは、Unityエディタ内蔵のシンプルなインタフェースからアクセスしてダウンロードし、プロジェクトに直接インポートすることが出来ます。
 
-!! Access and Navigation
+!! アクセスおよびナビゲーション
 
-You can open the Asset Store window by selecting ^^Window->AssetStore^^ from the main menu. On your first visit, you will be prompted to create a free user account which you will use to access the Store subsequently.
+アセットストアを開くにはメインメニューから ^^Window->AssetStore^^ を選択します。初めて訪れるときに無料のユーザアカウントを作成するように求められ、後にストアにアクセスするときにその情報を使うことが出来ます。
 
 Attach:AssetStore-floating.png\\
-''The Asset Store front page.''
+''アセットストアのフロントページ''
 
-The Store provides a browser-like interface which allows you to navigate either by free text search or by browsing packages and categories. To the left of the main tool bar are the familiar browsing buttons for navigating through the history of viewed items:- 
+ストアには、ブラウザ風のインタフェースが提供されていて、フリーテキスト検索やパッケージやカテゴリからブラウジングすることも出来ます。メインのツールバーの左には慣れ親しんだブラウジングボタンがあり、参照したアイテムの履歴を確認することが出来ます:-
 
 Attach:AssetStore-Navigation.png
 
-To the right of these are buttons for viewing the Download Manager and for viewing the current contents of your shopping cart.
+これらの右側にはダウンロードマネージャを参照するためのボタンがあり、さらにショッピングカートに現在入っているコンテンツを確認できます。
 
 Attach:AssetStore-ToolButtons.png
 
-The Download Manager allows you to view the packages you have already bought and also to find and install any updates. Additionally, the standard packages supplied with Unity can be viewed and added to your project with the same interface.
+ダウンロードマネージャにより購入済みコンテンツを確認できるとともに、更新情報をみつけてインストールすることが出来ます。さらに、Unityにより提供される標準パッケージも同じインタフェースで参照およびプロジェクトへの追加を行うことが出来ます。
 
 Attach:AssetStore-download.png\\
-''The Download Manager.''
+''ダウンロードマネージャ''
 
 
-!!Location of Downloaded Asset Files
+!! ダウンロードされたアセットファイルの場所
 
-You will rarely, if ever, need to access the files downloaded from the Asset Store directly. However, if you do need to, you can find them in
+アセットストアからダウンロードされたファイルを直接アクセスすることは極めて稀です。もし万一必要である場合、次の場所で見つけることが出来ます：
 
   ~/Library/Unity/Asset Store
 
-...on the Mac and in
+...Mac上では上記のパスで、
 
   C:\Users\accountName\AppData\Roaming\Unity\Asset Store
 
-...on Windows. These folders contain subfolders that correspond to particular Asset Store vendors - the actual asset files are contained in the appropriate subfolders.
-
+...Windows上では上記のパスです。これらフォルダはサブフォルダが含まれていて、アセットストアの各ベンダに対応していて、実際のアセットファイルはそれぞれ適切なサブフォルダに含まれます。
 
