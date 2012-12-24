@@ -1,15 +1,16 @@
-! Flash: Setup
+! Flash:セットアップ
 
-!!Installing Unity for Flash
-To view the SWF files that Unity creates, your web browser will need Adobe Flash Player 11.2 or newer, which you can obtain from http://get.adobe.com/flashplayer/.  If you have Flash Player already installed, please visit http://kb2.adobe.com/cps/155/tn_15507.html to check that you have at least version 11.2. Adobe Flash Player 11 introduced the Stage 3D Accelerated Graphics Rendering feature that Unity requires for 3d rendering.
+!! Unity for Flashのインストール
+Unityが作成するSWFファイルを参照するには、ウェブブラウザにAdobe Flash Player 11.2より新しい必要があり、http://get.adobe.com/flashplayer/ からダウンロードできます。もしFlash Playerがすでにインストールされている場合、http://kb2.adobe.com/cps/155/tn_15507.html を参照して、最低でも11.2のバージョンであることを確認して下さい。Adobe Flash Player 11 はUnityが3Dレンダリングで必要とするStage 3D ハードウェアアクセラレーションされたグラフィックス レンダリング機能を導入しています。
 
-For system requirements see http://www.adobe.com/products/flashplayer/tech-specs.html
+システム要件については、 http://www.adobe.com/products/flashplayer/tech-specs.html を参照して下さい。
 
-!!Flash Player Switcher
-This will allow you to switch between debug (slow) and regular (fast) versions of the Flash Player. Ensure you have Adobe AIR installed, or download it from http://get.adobe.com/air/. The Flash Player Switcher can be obtained from: https://github.com/jvanoostveen/Flash-Player-Switcher/downloads (select FlashPlayerSwitcher.air). Note: it currently supports only Mac OS X.
+!! Flash Player Switcher
 
-!! Other Adobe Tools/Platforms
+これによりデバッグ（遅）から通常（速）バージョンのFlash Playerを、切り替えることが出来ます。Adobe AIRがインストールされていることを確認するか、http://get.adobe.com/air/ からダウンロードして下さい。Flash Player Switcherはhttps://github.com/jvanoostveen/Flash-Player-Switcher/downloads からダウンロード出来ます（FlashPlayerSwitcher.airを選択して下さい）。注意：現時点ではMac OS Xのみサポートしています。
 
-No other Adobe tools or platforms are required to develop with Unity and create SWF files. To embed the SWF that Unity builds into your own Flash Application you will need one of Adobe FlashBuilder/PowerFlasher FDT/FlashDeveloper/etc and be an experienced Flash developer.  You will need to know:
-*Your embedding application needs to be set to -swf-version=15 / fp11.2
-*Your flash embeds wmode needs to be set to direct
+!! 他のAdobeツール／プラットフォーム
+
+Unityで開発を行いSWFファイルを作成するために、その他で必要となるAdobeツールやプラットフォームはありません。UnityがビルドするSWFファイルをFlashアプリケーションに埋め込むためには、Adobe FlashBuilder／PowerFlasher FDT／FlashDeveloper／その他 のいずれかと、熟練したFlash開発者が必要となります。知るべき点として：
+* 埋め込みアプリケーションは -swf-version=15 / fp11.2 にセットすること
+* flash embeds wmode は direct にセットすること
