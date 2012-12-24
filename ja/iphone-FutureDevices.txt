@@ -1,20 +1,20 @@
-!Practical Guide to Optimization for Mobiles - Future & High End Devices
+! モバイル（最先端、ハイエンドデバイス）の最適化実用ガイド
 
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:310px;":)
 Attach:unwritten.jpg
 (:divend:)
 
-The graphical power of next-generation mobile devices is approaching that of the current generation of consoles (Wii, Xbox 360, and PS3). What will the consumer smartphone market look like in two years? It's hard to say for sure, but considering how things have been going, the average smartphone on the market will have a chipset about as fast as NVIDIA's Tegra 3 (Asus Transformer Prime, Google Nexus 7"), or Apple's A5X (iPad 3), and high-end tablets will pack graphical performance to rival today's consoles and consumer laptops. 
+次世代モバイルデバイスのグラフィックス能力はコンソール（Wii、Xbox360、PS3）の現世代に近づいています。2年後にコンシューマ向けのスマートフォン向けマーケットはどうなっているでしょう。現時点ではハッキリとしたことはいえませんが、最近の状況を考えると、マーケットにおける平均的なスマートフォンはNVIDIAのTegra 3 （ASUSトランスフォーマープライム、Google Nexus 7）、あるいはアップルA5X（iPad 3）、そしてハイエンドのタブレットはグラフィックス パフォーマンスを強化して今日のコンソールおよびラップトップのライバルとなります。
 
-!!What can these new devices do?
+!! 新しいデバイスで何ができるか
 
-* Bumpmaps everywhere
-* Reflective water & simple image effects
-* Realtime shadows (Unity 4.0 feature)
-* HD video playback
-* Faster script execution
+* どこでもバンプマップ
+* 反射する水およびシンプルなイメージエフェクト
+* リアルタイム シャドウ（Unity 4.0機能）
+* HDビデオプレイバック
+* スクリプト実行の高速化
 
-To get a sense of what is already being done for this coming generation of phones & tablets, watch [[http://www.youtube.com/watch?v=2U2r3yKg0Ng | NVIDIA's promotional video for Tegra 3]]. Bladeslinger and Shadowgun are Unity titles.
+現世代の電話、タブレットですでに実現されていることを確認するには [[http://www.youtube.com/watch?v=2U2r3yKg0Ng | NVIDIAのTegra 3 プロモーション ビデオ]] を確認して下さい。Bladeslinger および Shadowgun はUnityタイトルです。
 
 
 (:tocportion:)
