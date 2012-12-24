@@ -1,11 +1,10 @@
-!Behind the Scenes
+! 内部処理
 
-Unity automatically imports assets and manages various kinds of additional data about them for you. Below is a description of how this process works.
+Unityはアセットを自動的にインポートして、様々な種類の追加データを管理します。以下でこの処理がどのように行われるか説明します。
+テクスチャのようなアセットをAssetsフォルダに置くとき、Unityは最初に新しいファイルがあることを検知します（エディタは頻繁にAssetsフォルダのコンテンツが、既知のアセットの一覧と比較してチェックします）。一意のIDの値がアセットに割り当てられ、内部的にアクセスできるようになると、それはインポートされ処理される。Projectパネルで実際にみえるアセットは処理の結果であり、そのデータはのコンテンツは通常、元のアセットと異なります。例えば、テクスチャはAssetsフォルダでPNGファイルとして表示されますが、実際にはインポートして処理された後は内部フォーマットに変換されます。
 
-When you place an Asset such as a texture in the Assets folder, Unity will first detect that a new file has been added (the editor frequently checks the contents of the Assets folder against the list of assets it already knows about). Once a unique ID value has been assigned to the asset to enable it to be accessed internally, it will be imported and processed. The asset that you actually see in the Project panel is the result of that processing and its data contents will typically be different to those of the original asset. For example, a texture may be present in the Assets folder as a PNG file but will be converted to an internal format after import and processing.
+アセットに対して内部フォーマットを使用することでUnityは ''メタデータ'' と呼ばれる追加のデータを保持して、それによりアセットデータがより柔軟にハンドリングできるようになります。例えば、Photoshopファイル形式は作業するには便利ですが、ゲームエンジンのミップマップをサポートすることは期待しません。Unityの内部フォーマットでは、一方で、このような追加機能をどのようなアセットの種類にも足すことが出来ます。全てのアセットのメタデータは $$Library$$ フォルダに格納されます。ユーザとして、Libraryフォルダを手動で変更する必要は一切なく、試みるとプロジェクトを壊す可能性があります。
 
-Using an internal format for assets allows Unity to keep additional data known as ''metadata'' which enables the asset data to be handled in a much more flexible way. For example, the Photoshop file format is convenient to work with, but you wouldn't expect it to support game engine features such as mip maps. Unity's internal format, however, can add extra functionality like this to any asset type. All metadata for assets is stored in the $$Library$$ folder.  As as user, you should never have to alter the Library folder manually and attempting to do so may corrupt the project.
+Unityはプロジェクトビューによって、フォルダを作成して、アセットを整理できて、それらのフォルダは実際のファイルシステムでミラーリングされます。しかし、__必ず__ ファイルはUnityの中のProject Viewでドラッグ＆ドロップする必要があります。ファイルシステムやデスクトップを使ってファイルを移動しようとすると、Unityは変更を誤って解釈します（古いアセットが削除されて、新しいアセットがそこに出来たように表示されます）。これにより、プロジェクトにおけるアセットやスクリプトの間のリンクの情報は失われます。
 
-Unity allows you to create folders in the Project view to help you organize assets, and those folders will be mirrored in the actual filesystem. However, you __must__ move the files within Unity by dragging and dropping in the Project view. If you attempt to use the filesystem/desktop to move the files then Unity will misinterpret the change (it will appear that the old asset has been deleted and a new one created in its place). This will lose information, such as links between assets and scripts in the project.
-
-When backing up a project, you should __always__ back up the main Unity project folder, containing both the $$Assets$$ and $$Library$$ folders. All the information in the subfolders is crucial to the way Unity works.
+プロジェクトをバックアップするとき、__常に__ メインのUnityプロジェクトのフォルダ、すなわち$$Assets$$ および $$Library$$ の両方、をバックアップすべきです。サブフォルダに含まれる全ての情報はUnityの動作にとって重要です。
