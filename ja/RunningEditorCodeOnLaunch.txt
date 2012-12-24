@@ -1,6 +1,6 @@
-!Running Editor Script Code on Launch
+! 起動時エディタスクリプト実行
 
-Sometimes, it is useful to be able to run some editor script code in a project as soon as Unity launches without requiring action from the user. You can do this by applying the $$InitializeOnLoad$$ attribute to a class which has a __static constructor__. A static constructor is a function with the same name as the class, declared static and without a return type or parameters (see [[http://docs.go-mono.com/index.aspx?link=ecmaspec%3a17.11|here]] for more information):-
+Unity起動の直後に、ユーザのアクションなしでプロジェクトのエディタスクリプト コードを実行することが役立つことがしばしばあります。これは $$InitializeOnLoad$$ 属性を __static constructor__ （スタティック コンストラクタ）のあるクラスに適用することで実現できます。スタティック コンストラクタはクラスと同じ名前の関数で静的に宣言された関数であり、戻り値や引数がありません（詳細は [[http://docs.go-mono.com/index.aspx?link=ecmaspec%3a17.11|ここ]] を確認下さい）:-
 
 [@using UnityEngine;
 using UnityEditor;
@@ -9,13 +9,14 @@ using UnityEditor;
 public class Startup {
     static Startup()
     {
-        Debug.Log("Up and running");
+        Debug.Log("起動が完了し、実行中です");
     }
 }@]
 
-A static constructor is always guaranteed to be called before any static function or instance of the class is used, but the InitializeOnLoad attribute ensures that it is called as the editor launches.
+スタティック コンストラクタは、どのようなスタティック関数やクラスのインスタンスが使用されるよりも先に呼び出しされることが保証されていますが、InitializeOnLoad 属性によりエディタ起動時に呼び出しされることを保証します。
 
-An example of how this technique can be used is in setting up a regular callback in the editor (its "frame update", as it were). The EditorApplication class has a delegate called [[ScriptRef:EditorApplication-update.html|update]] which is called many times a second while the editor is running. To have this delegate enabled as the project launches, you could use code like the following:-
+このテクニックが使用される例は、エディタで通常のコールバックをセットアップするとき（いわば"フレーム アップデート"）です。EditorApplicationクラスには[[ScriptRef:EditorApplication-update.html|update]] というデリゲートがあり、これはエディタが実行されている間、1秒間に何度もコールされます。プロジェクト起動時にこのデリゲートを有効化するには、次のようなコードを使用します:-
+
 
 [@using UnityEditor;
 using UnityEngine;
@@ -30,6 +31,6 @@ class MyClass
 
     static void Update ()
     {
-        Debug.Log("Updating");
+        Debug.Log("Update中です");
     }
 }@]
