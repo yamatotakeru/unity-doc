@@ -38,3 +38,11 @@ The @@#pragma kernel@@ line can optionally be followed by a number of preprocess
 In your script, define a variable of @@ComputeShader@@ type, assign a reference to the asset, and then you can invoke them with [[ScriptRef:ComputeShader.Dispatch.html | ComputeShader.Dispatch]] function. See scripting reference of [[ScriptRef:ComputeShader.html | ComputeShader class]] for more details.
 
 Closely related to compute shaders is a [[ScriptRef:ComputeBuffer.html | ComputeBuffer]] class, which defines arbitrary data buffer ("structured buffer" in DX11 lingo). [[ScriptRef:RenderTexture.html | Render Textures]] can also be written into from compute shaders, if they have "random access" flag set ("unordered access view" in DX11), see [[ScriptRef:RenderTexture-enableRandomWrite.html | RenderTexture.enableRandomWrite]].
+
+
+!! Texture samplers in compute shaders
+
+Textures and samplers aren't separate objects in Unity, so in order to use them in compute shader you have to follow some Unity specific rules:
+
+* Either use same as texture name, with "sampler" in front (e.g. @@Texture2D MyTex; SamplerState samplerMyTex@@). In this case, sampler will be initialized to that texture's filter/wrap/aniso settings.
+* Or use one of "predefined" samplers; name has to have "Linear" or "Point" (for filter mode) and "Clamp" or "Repeat" (for wrap mode). For example, @@"SamplerState MyLinearClampSampler"@@ - this will have linear filter and clamp wrap mode.

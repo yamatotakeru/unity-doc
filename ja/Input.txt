@@ -201,7 +201,7 @@ function LowPassFilterAccelerometer() : Vector3 {
 }
 @]
 
-The greater the value of @@LowPassKernelWidthInSeconds@@, the slower the filtered value will converge towards the current input sample (and vice versa). You should be able to use the @@LowPassFilter()@@ function instead of @@avgSamples()@@.
+The greater the value of @@LowPassKernelWidthInSeconds@@, the slower the filtered value will converge towards the current input sample (and vice versa).
 
 !!! I'd like as much precision as possible when reading the accelerometer. What should I do?
 Reading the [[ScriptRef:Input-acceleration.html | Input.acceleration]] variable does not equal sampling the hardware. Put simply, Unity samples the hardware at a frequency of 60Hz and stores the result into the variable. In reality, things are a little bit more complicated -- accelerometer sampling doesn't occur at consistent time intervals, if under significant CPU loads. As a result, the system might report 2 samples during one frame, then 1 sample during the next frame.
