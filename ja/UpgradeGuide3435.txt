@@ -1,14 +1,14 @@
-! Unity 3.5 upgrade guide
+! Unity 3.5アップグレードガイド
 
-If you have an FBX file with a root node marked up as a skeleton, it will be imported with an additional root node in 3.5, compared to 3.4 
+もしルートノードをスケルトンとしてマークされたFBXファイルがある場合、3.4と比較した場合に3.5で追加のルートノードつきでインポートされます。
 
 Attach:upgrade35hierarchy.png
 
-Unity 3.5 does this because when importing animated characters, the most common setup is to have one root node with all bones below and a skeleton next to it in the hierarchy.  
-When creating additional animations, it is common to remove the skinned mesh from the fbx file. In that case the new import method ensures that the additional root node always exists and thus animations and the skinned mesh actually match. 
+Unity3.5はアニメーション付きのキャラクターをインポートするとき、もっとも一般的なセットアップがひとつのルートノードに全てのボーンをその配下にして、階層にスケルトンがあるために、このような挙動をします。
+追加のアニメーションを作成するとき、一般にスキンメッシュをFBXファイルから取り除きます。この場合新しいインポート方法は追加のルートノードが必ず存在し、それゆえにアニメーションおよびスキンメッシュが実際に一致することが保証されます。
 
-If the connection between the instance and the FBX file's prefab has been broken in 3.4 the animation will not match in 3.5, and as a result your animation might not play.
+もしインスタンスおよびFBXファイルのプレハブの接続が3.4で壊れた場合、アニメーションは3.5で一致せず、そしてアニメーションが再生できないことにつながります。
 
-In that case it is recommended that you recreate the prefabs or Game Object hierarchies by dragging your FBX file into your scene and recreating it.
+その場合、プレハブまたはゲームオブジェクトの階層を、FBXファイルをシーンにドラッグすることで、再構築することを推奨します。
 
 
