@@ -1,10 +1,10 @@
-!Using an Oblique Frustum
+! 傾斜円錐の使用
 
-By default, the view frustum is arranged symmetrically around the camera's centre line but it doesn't necessarily need to be. The frustum can be made "oblique", which means that one side is at a smaller angle to the centre line than the opposite side. The effect is rather like taking a printed photograph and cutting one edge off. This makes the perspective on one side of the image seem more condensed giving the impression that the viewer is very close to the object visible at that edge. An example of how this can be used is a car racing game where the frustum might be flattened at its bottom edge. This would make the viewer seem closer to the road, accentuating the feeling of speed.
-
+デフォルトでは、ビュー円錐台はカメラの中心に対して対称的に置かれるが、必ずそうする必要性はありません。円錐代は、"傾斜" させることが可能であり、すなわち片側がその反対側よりも中心線から小さい角度に置くことが出来ます。得られる効果は、プリントした写真の片方の端を切り落とすようなものになります。これによりイメージの片側のパースがより密集し、視点が端に近いオブジェクトに非常に近づいている印象を与えます。活用例をあげると、車のレーシングゲームにおいて、円錐台が下の端において平らにされるようなケースです。これにより視点が道に近い印象を与えて、スピード感を際立たせます。
+By default, the view frustum is arranged symmetrically around the camera's centre line but it doesn't necessarily need to be.
 Attach:ObliqueFrustum.png
 
-While the camera class doesn't have functions to set the obliqueness of the frustum, it can be done quite easily by altering the projection matrix:-
+カメラのクラスが円錐台の傾斜をセットするクラスはありませんが投影マトリクスを変形させることで割と簡単に実現することが出来ます:-
  
 [@function SetObliqueness(horizObl: float, vertObl: float;) {
 	var mat: Matrix4x4 = camera.projectionMatrix;
@@ -13,4 +13,4 @@ While the camera class doesn't have functions to set the obliqueness of the frus
 	camera.projectionMatrix = mat;
 }@]
 
-Mercifully, it is not necessary to understand how the projection matrix works to make use of this. The horizObl and vertObl values set the amount of horizontal and vertical obliqueness, respectively. A value of zero indicates no obliqueness. A positive value shifts the frustum rightwards or upwards, thereby flattening the left or bottom side. A negative value shifts leftwards or downwards and consequently flattens the right or top side of the frustum. The effect can be seen directly if this script is added to a camera and the game is switched to the scene view while the game runs; the wireframe depiction of the camera's frustum will change as you vary the values of horizObl and vertObl in the inspector. A value of 1 or -1 in either variable indicates that one side of the frustum is completely flat against the centreline. It is possible although seldom necessary to use values outside this range.
+有難いことに、投影マトリクスがどのような仕組みで動作するか知らなくとも、活用することが出来ます。horizObl および vertObl の値は水平および垂直方向の傾斜の量を各々セットします。値がゼロということは傾斜なしを示します。正の値は円錐台を右または上方向にシフトさせ、これにより左または下方向を平らにします。負の値により円錐代を左または下方向にシフトさせ、これにより右または上方向を平らにします。得られる効果はこれをカメラに加えて、ゲーム実行中にシーンビューに切り替えて、直接確認出来ます。カメラ円錐台のワイヤーフレーム描画は Inspector 上で horizObl および vertObl の値とともに変化します。いずれかの値を 1 あるいは -1 とすると、円錐台の片側が中心線に関して完全に平行となることを示します。これらの値の範囲を超えて設定することは可能ではありますが、実際に必要であることはあまりありません。
