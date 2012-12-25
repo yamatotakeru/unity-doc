@@ -1,33 +1,32 @@
-!Mecanim Animation System
+!メカニム アニメーションシステム
 
-Unity has a rich and sophisticated animation system called $$Mecanim$$. Mecanim provides:
+Unityには $$Mecanim$$ （メカニム）と呼ばれる、豊富で洗練されたアニメーション システムがあります：
 
-* Easy workflow and setup of animations on humanoid characters. 
-* Animation retargeting - the ability to apply animations from one character model onto another.
-* Simplified workflow for aligning animation clips.
-* Convenient preview of animation clips, transitions and interactions between them. This allows animators to work more independently of programmers, prototype and preview their animations before gameplay code is hooked in. 
-* Management of complex interactions between animations with a visual programming tool. 
-* Animating different body parts with different logic. 
-
+* ヒューマノイド キャラクターでのアニメーションセットアップおよび簡単なワークフロー。 
+* アニメーション リターゲティング - １つのキャラクターモデルのアニメーションを別のキャラクターに適用する。
+* アニメーション クリップをの整合をとるシンプルなワークフロー。
+* アニメーション クリップ、繊維、およびそれらの間の相互作用の便利なプレビュー。これによりアニメーション専門スタッフがプログラマと独立して作業しやすくなり、アニメーションプロトタイプ、プレビューをゲームのコードと連動しなくとも出来るようになります
+* ビジュアルプログラミングツールを用いてアニメーションの複雑な相互作用の管理
+* 異なる体のパーツを異なるロジックでアニメーションできます。
 Attach:MecanimShowcase.png
-->Typical setup in the Visual Programming Tool and the ~~Animation Preview window~~
+->ビジュアルプログラミングツールおよび ~~Animation Preview Window~~ の標準セットアップ
 
-!!Mecanim workflow
+!!メカニムワークフロー
 
-Workflow in Mecanim can be split into three major stages.
+メカニム での作業（ワークフロー）は3つの主要なステージに分けれられます。
 
-1. __Asset preparation and import__. This is done by artists or animators, with 3rd party tools, such as Max or Maya. This step is independent of Mecanim features. \\
-2. Character setup for Mecanim, which can be done in 2 ways:
-   a. __Humanoid character setup__. Mecanim has a special workflow for humanoid models, with extended GUI support and [[Retargeting|retargeting]]. The setup involves creating and setting up an [[$$CreatingtheAvatar|Avatar$$]] and tweaking [[$$MuscleDefinitions|Muscle definitions$$]].\\
-   b. __Generic character setup__. This is for anything like creatures, animated props, four-legged animals, etc. Retargeting is not possible here, but you can still take advantage of the rich feature set of Mecanim, including everything described below. 
-3. __Bringing characters to life__. This involves [[AligningAnimationClips|setting up animation clips]], as well as interactions between them, and involves setup of [[AnimationStateMachines|State Machines]] and [[AnimationBlendTrees|Blend Trees]], exposing [[AnimationParameters|Animation Parameters]], and controlling animations from code. 
+1. __アセットの準備とインポート__ アーティんストやアニメーション専門スタッフによりMax や Mayaといったサードパーティツールで実施され、この作業はメカニム機能とは独立して行われます。 \\
+2. メカニム キャラクター セットアップで2通りの方法があります:
+   a. __ヒューマノイド キャラクター セットアップ__  メカニムにはヒューマノイド モデルには専用ワークフローがあり、拡張GUIサポートと [[Retargeting|リターゲティング]] と機能があります。セットアップには [[$$CreatingtheAvatar|Avatar$$]] （アバター）の作成とセットアップとともに [[$$MuscleDefinitions|Muscle definitions$$]] （マッスル定義）があります。\\
+   b. __ジェネリック（汎用） キャラクター セットアップ__ これは生き物、アニメーションつきの小道具、四足動物、その他で用いられます。リターゲティングは出来ませんが、それでも以下で説明するメカニムのすべての豊富な機能を活用できます。
+3. __キャラクターに生命力を与える__ これは [[AligningAnimationClips|アニメーション クリップのセットアップ]] に加えて、それらの相互作用が絡んでいて、 [[AnimationStateMachines|ステートマシン]] および [[AnimationBlendTrees|ブレンドツリー]] 、 [[AnimationParameters|アニメーション パラメータの開放]] とコードからのアニメーション制御が含まれます。
 
-Mecanim comes with a lot of new concepts and terminology. If at any point, you need to find out what something means, go to our [[AnimationGlossary|Animation Glossary]].
+メカニムにはたくさんの新しいコンセプトと用語があります。どこかの時点で意味を知りたいことが出てきた場合は [[AnimationGlossary|アニメーション 用語集]] を参照ください。
 
 (:tocportion:)
 
-!!Legacy animation system
-While Mecanim is recommended for use in most situations, especially for working humanoid animations, the Legacy animation system is still used in a variety of contexts. One of them is working legacy animations and code (content created before Unity 4.0). Another is controlling animation clips with parameters other than time (for example for controlling the aiming angle). 
-For information on the Legacy animation system, see [[Main.Animations40|this section]]
+!!旧アニメーション システム
+殆どのケースであ、特にヒューマノイド アニメーションアニメーションの場合は、メカニムの使用を推奨しますが、いくつかの状況では旧アニメーションを使用します。1つのケースは旧アニメーション システムと既存のコード(nity 4.0以前に作成されたコンテンツ) で作業を行う場合です。 もう1つのケースは時間以外のパラメータによってアニメーションクリップを制御する場合です。（たとえば狙う角度を制御するとき）。
+旧アニメーション システムの詳細については [[Main.Animations40|このセクション]] を参照下さい。 
 
-Unity intends to phase out the Legacy animation system over time for all cases by merging the workflows into Mecanim.
+Unityとしては今後旧アニメーション システムはすべてのケースでフェーズアウトする以降で、ワークフローをメカニムに移行します。
