@@ -1,34 +1,32 @@
-! Animations (Legacy)
+! 旧アニメーション
 
-Unity's Animation System allows you to create beautifully animated skinned characters. The Animation System supports animation blending, mixing, additive animations, walk cycle time synchronization, animation layers, control over all aspects of the animation playback (time, speed, blend-weights), mesh skinning with 1, 2 or 4 bones per vertex and finally physically based ragdolls.
+Unityのアニメーションシステムによりスキニングされたキャラクターを美しくアニメーション作成できます。アニメーションシステムはアニメーションブレンディング、ミキシング、追加アニメーション、歩行サイクルタイムの同期、アニメーションレイヤー、アニメーションプレイバックのあらゆる要素を制御（時間、速度、重みつきブレンド）1／2／4つの頂点ごとのボーンでのメッシュスキニングおよび物理挙動にもとづくRagdollをもアニメーションがサポートしています。
+Unity上のパフォーマンスも最適化された、リグつきキャラクターを作成するには [[Modeling Optimized Characters]] を参照下さい。
 
-For best practices on creating a rigged character with optimal performance in Unity, we recommended that you check out the section on [[Modeling Optimized Characters]].
+このページでは次のトピックがカバーされています:
 
-The following topics are covered on this page:
+*[[#ImportAnim | キャラクターアニメーションのインポート]] 
+**[[#ImportIK | インバースキネマティクス]] 
+**[[#ImportModelNoAnims | アニメーションを含まないモデルへのアニメーション追加]] 
+*[[#IntoScene | Unityシーンへの追加]] 
 
-*[[#ImportAnim | Importing Character Animations]]
-**[[#ImportIK | Inverse Kinematics]]
-**[[#ImportModelNoAnims | Adding animations to models that do not contain them]]
-*[[#IntoScene | Inserting Into a Unity Scene]]
+[[AnimationsImport|アニメーションのインポート]] 
 
-[[AnimationsImport|Importing Animations]]
-
-[[Splittinganimations|Spliting animations]]
+[[Splittinganimations|アニメーションの分割]] 
 
 [[#ImportIK]]
 
-!!! Importing Inverse Kinematics
+!!! インバースキネマティクスのインポート
 
-When importing animated characters from Maya that are created using IK, you have to check the ``Bake IK & simulation`` box in the Import Settings. Otherwise, your character will not animate correctly.
-
+MayaでIKつきで作成されたアニメーションつきのキャラクターをインポートするとき、Import Settingsで ``Bake IK & simulation`` をチェックする必要があります。そうしないと、キャラクターのアニメーションは正しく動作しません。
 [[#IntoScene]]
 
-!! Bringing the character into the Scene
+!! シーンにキャラクターを追加する
 
-When you have imported your model you drag the object from the ~~Project View~~ into the ~~Scene View~~ or ~~Hierarchy View~~
+モデルをインポートした後は、オブジェクトを ~~Project View~~ から ~~Scene View~~ または ~~Hierarchy View~~ にドラッグします。
 Attach:animation_in_scene.png\\
-''The animated character is added by dragging it into the scene''
+''アニメーションつきキャラクターを追加するには、シーンにドラッグします。''
 
-The character above has three animations in the animation list and no default animation. You can add more animations to the character by dragging animation clips from the ~~Project View~~ on to the character (in either the Hierarchy or Scene View). This will also set the default animation. When you hit Play, the default animation will be played.
+上のキャラクターはアニメーションリストに3つのアニメーションがあり、デフォルトに設定されたアニメーションはありません。キャラクターにより多くのアニメーションを追加するには、~~Project View~~ からキャラクターにドラッグする（Hierarchy または Scene View上で）ことで実現できます。これによりデフォルトアニメーションとしても設定されます。再生をしたとき、デフォルトのアニメーションが再生されます。
 
-TIP: You can use this to quickly test if your animation plays back correctly. Also use the ``Wrap Mode`` to view different behaviors of the animation, especially looping.
+ヒント：これによってアニメーションのプレイバックが正しく動くかクイックに確認できません。 ``Wrap Mode`` を使用してアニメーションの異なる動作、特にループ、を確認して下さい。
