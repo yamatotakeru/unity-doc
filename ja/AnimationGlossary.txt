@@ -1,29 +1,29 @@
-!A Glossary of Animation and Mecanim terms
+!アニメーションおよびメカニム用語
 
 || border=1
-||! Icon||! Term ||! Description ||! Type of Concept||! Usage/Comments ||
-||! Animation Clip related terms ||||||||||
-||Attach:MecanimAnimationClipIcon.png||Animation Clip ||Animation data that can be used for animated characters or simple animations. It is a simple "unit" piece of motion, such as (one specific instance of) "Idle", "Walk" or "Run"||sub-Asset|| ||
-||Attach:MecanimBodyMaskAssetIcon.png||Body Mask ||A specification for which body parts to include or exclude for a skeleton ||Asset (@@.mask@@)||Used in Animation Layers and in the importer||
-|| ||Animation[[<<]]Curves||Curves can be attached to animation clips and controlled by various parameters from the game|| || ||
-||||! Avatar related terms ||||||||||
-||Attach:MecanimAvatarIcon.png||Avatar||An interface for retargeting one skeleton to another||sub-Asset|| ||
-|| ||Retargeting||Applying animations created for one model to another||Process || ||
-|| ||Rigging ||The prcoess of building a skeleton hierarchy of bone joints for your mesh ||Process ||done in an external tool, such as Max or Maya
-|| ||Skinning ||The process of binding bone joints to the character's mesh or 'skin' ||Process ||done in an external tool, such as Max or Maya
-|| ||Muscle Definition||A Mecanim concept, which allows you to have a more intuitive control over the character's skeleton. When an Avatar is in place, Mecanim works in muscle space, which is more intuitive than bone space || ||  ||
-|| ||T-pose||The pose in which the character has his arms straight out to the sides, forming a "T". The required pose for the character to be in, in order to make an Avatar || || ||
-|| ||Bind-pose||The pose at which the character was modelled || || ||
-||Attach:MecanimHumanTemplateIcon.png||Human template||A pre-defined bone-mapping||Asset (@@.ht@@)||Used for matching bones from FBX files to the Avatar.||
-||! Animator and Animator Controller related terms ||||||||||
-|| ||Animator Component ||Component on a model that animates that model using the Mecanim animation system. The component has a reference to an Animator Controller asset that controls the animation.||Component|| ||
-|| ||Root Motion||Motion of character's root, whether it's controlled by the animation itself or externally. || || ||
-||Attach:MecanimAnimatorControllerIcon.png||Animator Controller (Asset) [[<<]]||The Animator Controller controls animation through Animation Layers with Animation State Machines and Animation Blend Trees, controlled by Animation Parameters. The same Animator Controller can be referenced by multiple models with Animator components.||Asset (@@.controller@@)|| ||
-|| ||Animator Controller (Window)||The window where the Animator Controller Asset is visualized and edited. ||Window|| ||
-|| ||Animation Layer ||An Animation Layer contains an Animation State Machine that controls animations of a model or part of it. An example of this is if you have a full-body layer for walking / jumping and a higher layer for upper-body motions such as throwing object / shooting. The higher layers take precedence for the body parts they control. || || ||
-|| ||Animation State Machine||A graph controlling the interaction of Animation States. Each state references an Animation Blend Tree or a single Animation Clip.|| || ||
-|| ||Animation Blend Tree||Used for continuous blending between similar Animation Clips based on float Animation Parameters. || || ||
-|| ||Animation Parameters||Used to communicate between scripting and the Animator Controller. Some parameters can be set in scripting and used by the controller, while other parameters are based on Custom Curves in Animation Clips and can be sampled using the scripting API. || || ||
-|| ||Inverse Kinematics (IK)||The ability to control the character's body parts based on various objects in the world. || || ||
-||||! Non-Mecanim animation terms ||||||||||
-|| ||Animation Component ||The component needed for non-Mecanim animations||Component|| ||
+||! アイコン||! 用語 ||! 説明 ||! 概念の種類||! 使用方法／コメント ||
+||! アニメーションクリップ関連の用語 ||||||||||
+||Attach:MecanimAnimationClipIcon.png||アニメーションクリップ ||アニメーションつきキャラクターまたはシンプルなアニメーションで使用できるアニメーションデータ。ちょっとしたモーションの "単位" で（ひとつのインスタンスの） "アイドル"、"歩く"、"走る||サブアセット|| ||
+||Attach:MecanimBodyMaskAssetIcon.png||ボディマスク ||スケルトンに含める／外す体のパーツに関する使用||アセット (@@.mask@@)||アニメーションレイヤーとインポータで使用||
+|| ||アニメーション[[<<]]カーブ||アニメーション クリップにカーブは亜タッチすることが出来てゲームから様々なパラメータにより制御できます。|| || ||
+||||! アバター関連の用語 ||||||||||
+||Attach:MecanimAvatarIcon.png||アバター||ひとつのスケルトンを別のものにリターゲティングするインタフェース||サブアセット|| ||
+|| ||リターゲティング||ひとつのモデル向けに作成したアニメーションを別のものに適用すること||プロセス || ||
+|| ||リギング ||メッシュに対してボーンジョイントのスケルトン階層を構築すること||プロセス ||Max や Maya など外部ツールで行われます
+|| ||スキニング ||キャラクターのメッシュまたは 'スキン' をボーンジョイントに紐付けるプロセス||プロセス ||Max や Maya など外部ツールで行われます
+|| ||マッスル定義||メカニム特有の概念で、キャラクターのスケルトンを直感的に制御できる、アバターがあるときメカニムはマッスル空間で動作し、これはボーン空間より直感的です|| ||  ||
+|| ||Tポーズ||キャラクターが真横に腕を（Tの形状に）伸ばしたポーズ。アバターを作成するためにキャラクターがとる必要のあるポーズ|| || ||
+|| ||バインドポーズ||キャラクターがモデリングされたときのポーズ|| || ||
+||Attach:MecanimHumanTemplateIcon.png||ヒューマン テンプレート||事前に定義されたボーンマッピング||アセット (@@.ht@@)||ボーンをFBXファイルからアバターに適用するのに使用します||
+||! アニメータ および アニメータ コントローラ関連の用語||||||||||
+|| ||アニメータ コンポーネント ||メカニム アニメーションシステムを使ってモデルをアニメーションさせるコンポーネント。コンポーネントはアニメーションを制御するアニメータ コントローラに対する参照があります||コンポーネント|| ||
+|| ||ルートモーション||キャラクターのルートモーション。アニメーション自身で制御できる場合と外部から制御される場合とがあります。|| || ||
+||Attach:MecanimAnimatorControllerIcon.png||アニメータ コントローラ (アセット) [[<<]]||アニメータ コントローラはアニメーションレイヤーを通じてアニメーションステートマシンおよびアニメーション ブレンドツリーをアニメーションパラメータの編集によってアニメーション を制御します。アニメータ コンポーネントによりアニメータ コントローラを制御します。||アセット (@@.controller@@)|| ||
+|| ||アニメータ コントローラ (ウィンドウ)||アニメータ コントローラ アセットが視覚化されて編集ができるウィンドウ。 ||ウィンドウ|| ||
+|| ||アニメーション レイヤー ||アニメーション レイヤー は、アニメーションステートマシンが含まれていて、モデルの全体あるいは一部のアニメーションを制御します。例としては、歩き、走りをで完全なボディのレイヤーがあり、	上位レイヤーで上半身のモーションでオブジェクトを投げる／撃つ動作がある場合です。上位レイヤーが制御する部分は後者が有効になります。 || || ||
+|| ||アニメーションステートマシン||アニメーションステートの相互作用を制御するグラフ。各ステートはアニメーション ブレンドツリーまたは１つのアニメーション クリップを参照します。|| || ||
+|| ||アニメーション ブレンドツリー||floatを使うアニメーションパラメータにもとづく似通ったアニメーション クリップの継続的ブレンディングのために使用されます。 || || ||
+|| ||アニメーション パラメータ||スクリプティングとアニメータ コントローラ間の連携にしようされます。パラメータのうちスクリプティングにて設定するものとコントローラにて設定するものとがあり、その他のパラメータはアニメーションカーブのカスタムカーブにもとづいていてスクリプティングAPIを通してサンプリングできます || || ||
+|| ||インバースキネマティクス (IK)||ゲーム世界の様々なオブジェクトにもとづいてキャラクターの体のパーツを制御できる能力 || || ||
+||||! 非メカニム アニメーション 用語 ||||||||||
+|| ||アニメーション コンポーネント ||非メカニム アニメーションで必要なコンポーネント||コンポーネント|| ||
