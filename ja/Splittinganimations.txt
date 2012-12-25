@@ -1,80 +1,81 @@
-!Splitting Animations
+! アニメーションの分割
 
-An animated character typically has a number of different movements that are activated in the game in different circumstances. For example, it might need separate animations for walking, running, jumping, throwing, dying, etc. Depending on the way the model was animated, these separate movements might be imported as distinct animation clips or as one single clip where each movement simply follows on from the previous one. In cases where there is only a single clip, the clip must be __split__ into its component animation sequences within Unity, which will involve some extra steps in your workflow.
+アニメーションつきのキャラクターは一般に複数の動作があり、ゲームの中で異なる状況下で使用される。例えば、歩く、走る、ジャンプする、投げる、死ぬ、等々に別のアニメーションが必要かもしれません。モデルがアニメーションされた方法によって、これら別々の動きは独自のアニメーションクリップとしてインポートするか、ひとつのクリップとして、一つの動作の後に次の動作が来るようになります。ひとつのクリップしかない場合、クリップはUnity上でアニメーションシーケンスのコンポーネントとして __分割__ する必要があり、ワークフローとして追加のステップが必要になるかもしれません。
 
-!!Working with models that have pre-split animations
+!!事前に分割されたアニメーションつきモデルでの作業
 
-The simplest types of models to work with are those that contain pre-split animations. If you have an animation like that, the ~~Animations~~ tab in the ~~Animation Importer Inspector~~ will look like this:
+作業するうえで、もっともシンプルなモデルの種類とは、事前に分割されたアニメーションを含むものです。こういうアニメーションがある場合、 ~~Animation Importer Inspector~~ の~~Animations~~ タブは次のようになります：
 Attach:MecanimImportPreSplitAnimation.png
 
-You will see a list available clips which you can preview by pressing Play in the ~~Preview Window~~ (lower down in the inspector). The frame ranges of the clips can be edited, if needed. 
+ ~~Preview Window~~ （Inspectorの下の方）には利用可能なクリップが表示され、でPlayを押すことでプレビューできます。クリップのフレーム範囲は必要であれば編集することが出来ます。
 
-!!Working with models that have unsplit animations
+!!分割されてないアニメーションつきモデルでの作業
 
-For models where the clips are supplied as one continuous animation, the ~~Animation~~ tab in the ~~Animation Importer Inspector~~ will look like this:
+クリップがひとつの連続したアニメーションとして提供されているクリップのモデルについては、 ~~Animation Importer Inspector~~ の~~Animations~~ タブは次のようになります：
 
 Attach:MecanimImportAnimationNoSplit.png
 
-In cases like this, you can define the frame ranges that correspond to each of the separate animation sequences (walking, jumping, etc). You can create a new animation clip by pressing (+) and selecting the range of frames that are included in it. 
+このようなケースでは、各個別のアニメーションシーケンスに対応するフレーム範囲を定義することが出来ます。（歩く、ジャンプする、その他）。新規のアニメーションを作成するには(+)を作成して、そこに含まれるフレームの範囲を選択します。
 
-For example:
-*walk animation during frames 1 - 33
-*run animation during frames 41 - 57
-*kick animation during frames 81 - 97
+例えば：
+* 歩くアニメーションはフレーム 1 - 33
+* 走るアニメーションはフレーム 41 - 57
+* キックするアニメーションはフレーム 81 - 97
 
 
 Attach:MecanimImportAnimationSplitting.png\\
-''The Import Settings Options for Animation''
+''アニメーションのImport Settingsオプション''
 
-In the Import Settings, the ``Split Animations`` table is where you tell Unity which frames in your asset file make up which Animation Clip. The names you specify here are used to activate them in your game.
+Import Settings
+インポート設定（Import Settings）では、 ``Split Animations`` テーブルによりUnityにアセットファイルのどのフレームがどのアニメーションクリップを構成しているかを知らせます。ここで指定した名前はゲームで有効化するのに使用されます。
 
 ||PROPS
-||``name``        ||Defines the Animation Clip's name within Unity. ||
-||``Start`` ||The first frame of the animation. The frame number refers to the same frame as in the 3D program used to create the animation. ||
-||``End``  ||The last frame of the animation. ||
-||``Wrap Mode``   ||Defines how should time beyond the playback range of the clip be treated (Once, Loop, PingPong, ClampForever).||
-||``Add Loop Frame``  ||If enabled, an extra ``loop frame`` is inserted at the end of the animation. This frame matches the first frame in the clip. Use this if you want to make a looping animation and the first & last frames don't match up exactly. ||
+||``name``        ||Unityの中でのアニメーションクリップの名前を定義します。||
+||``Start`` ||アニメーションの最初のフレーム。フレーム番号は、アニメーションを作成した3Dプログラムと同じフレームを指しています。 ||
+||``End``  ||アニメーションの最後のフレーム。 ||
+||``Wrap Mode``   ||このクリップのプレイバック範囲が終わったときの処理方法を定義します(Once, Loop, PingPong, ClampForever)。||
+||``Add Loop Frame``  ||有効化した場合、追加の ``Loop Frame`` （ループフレーム）がアニメーションの最後に挿入されます。このフレームはクリップの最初のフレームをマッチングします。ループアニメーションが必要で、最初および最後のフレームが上手に一致しない場合に使用して下さい。||
 
-!!Working with animation clips for Mecanim animations. 
+!!メカニム アニメーションのアニメーションクリップで作業をする
 Attach:MecanimImportChristmasTree.png
 
 ||PROPS
-||``Lock Pose``        ||Lock Pose ||
-||``Lock Root Rotation`` ||Lock Root Rotation||
-||``Lock Height``  ||Lock Height ||
-||``Lock Root Position``   ||Lock root position||
-||``Rotation Offset``  ||Rotation Offset||
-||``Cycle Offset``  ||Cycle Offset||
-||``Mirror``  ||Mirror ||
-||``Body Mask``||The parts of the body this animation clip affects
-||``Curves``||Parametric curves
+||``Lock Pose``        ||ポーズをロックする。 ||
+||``Lock Root Rotation`` ||ルートの回転をロックする。||
+||``Lock Height``  ||高さをロックする。 ||
+||``Lock Root Position``   ||ルート位置をロックする。||
+||``Rotation Offset``  ||回転のオフセット。||
+||``Cycle Offset``  ||サイクルのオフセット。||
+||``Mirror``  ||ミラー ||
+||``Body Mask``||このアニメーションクリップが影響する体のパーツ
+||``Curves``||パラメータのカーブ
 
 
 [[#ImportModelNoAnims]]
 
-!! Adding animations to models that do not contain them
-You can add animation clips to an ``Animation`` component even for models without muscle definitions (ie, non-Mecanim). You need to specify the default animation clip in the ``Animation`` property, and the available animation clips in the ``Animations`` property. The animation clips you add to such a non-Mecanim model should also be setup in a non-Mecanim way (ie, the ``Muscle Definition`` property should be set to ``None``)
+!! アニメーションを含まないモデルへのアニメーション追加
+マッスル定義のない（例えば、非メカニム）モデルの ``Animation`` コンポーネントにアニメーションクリップを追加することが出来ます。``Animation`` プロパティでデフォルトのアニメーションクリップを、``Animations`` プロパティに利用可能なアニメーションクリップを、それぞれ指定する必要があります。非メカニムのモデルに追加するアニメーションクリップもまた、非メカニムである方法でセットアップすべきです（すなわち ``Muscle Definition`` プロパティは ``None`` にセットすべきです）。
 
-For models that have muscle definitions (Mecanim), the process is different:-
+マッスル定義のあるモデル（メカニム）については、プロセスが異なります:-
 
-* Create a ``New Animator Controller``
-* Open the ~~Animator Controller Window~~ 
-* Drag the desired animation clip into the ~~Animator Controller Window~~
-* Drag the model asset into the Hierarchy. 
-* Add the animator controller to the ``Animator component`` of the asset. 
+* ``新規の Animator Controller`` を作成します。
+* ~~Animator Controller Window~~ を開きます。
+* 希望のアニメーションクリップを ~~Animator Controller Window~~ にドラッグします。
+* Hierarchyビュー上にモデル アセットをドラッグします。
+* アセットの``Animator component`` にアニメータコントローラを追加します。
 
 [[#ImportFile]]
 
-!!!Importing Animations using multiple model files
+!!!複数のモデルファイルを用いたアニメーションのインポート
 
-Another way to import animations is to follow a naming scheme that Unity allows for the animation files. You create separate model files and name them with the convention 'modelName@animationName.fbx'. For example, for a model called "goober", you could import separate idle, walk, jump and walljump animations using files named "goober@idle.fbx", "goober@walk.fbx", "goober@jump.fbx" and "goober@walljump.fbx". Only the animation data from these files will be used, even if the original files are exported with mesh data.
+アニメーションをインポートするもう一つの方法は、Unityがアニメーションファイルに対して許容しちえるネーミング標準に従うことです。別々のモデルファイルを作成し、'モデル名@アニメーション名.fbx' というネーミングをします。例えば、""goober"と呼ばれるモデルについて、別々のアイドル(idle)、歩行(walk)、ジャンプ(jump)、および壁ジャンプ(walljump)のアニメーションを、"goober@idle.fbx"、"goober@walk.fbx" 、 "goober@jump.fbx" 、および "goober@walljump.fbx"インポートすることが出来ます。たとえ元のファイルがメッシュデータつきでエクスポートされていたとしても、これらのファイルのアニメーションデータのみが使用されます。
 
 Attach:animation_at_naming.png
 
-''An example of four animation files for an animated character (note that the .fbx suffix is not shown within Unity)''
+''アニメーションつきキャラクターの4つのアニメーションファイルのサンプル（.fbx 拡張子がUnity上では表示されてないことに留意下さい）''
 
-Unity automatically imports all four files and collects all animations to the file without the @ sign in. In the example above, the goober.mb file will be set up to reference idle, jump, walk and wallJump automatically.
+Unityは自動的に4つのファイル全てをインポートし、@ 記号がない場合に全てのアニメーションを収集します。上のサンプルでは、goober.mbファイルはidle、jump、walk、walkJumpを自動的に参照します。
 
-For FBX files, simply export a model file with no animation ticked (eg, goober.fbx) and the 4 clips as goober@''animname''.fbx by exporting the desired keyframes for each (enable animation in the FBX dialog).
+FBXファイルについて、アニメーションがチェックされてないモデルファイルについて、4つのクリップは、各々希望されるフォーマット各々の希望のキーフレームをgoober@''アニメーション名''.fbxとしてエクスポート（希望のキーフレームをエクスポートすることで）しています。
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)
