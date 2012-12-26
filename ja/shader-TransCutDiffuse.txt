@@ -1,4 +1,4 @@
-!Transparent Cutout Diffuse
+! 透明カットアウト拡散
 
 Attach:Shaders./Shader-TransCutoutDiffuse.png
 

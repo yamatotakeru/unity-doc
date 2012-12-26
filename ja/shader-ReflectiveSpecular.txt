@@ -1,4 +1,4 @@
-!Reflective Specular
+! 反射鏡面
 
 Attach:Shaders./Shader-ReflSpec.png
 

@@ -1,4 +1,4 @@
-!透明バンプ型デフューズ
+! 透明バンプ拡散
 
 Attach:Shaders./Shader-TransBump.png
 

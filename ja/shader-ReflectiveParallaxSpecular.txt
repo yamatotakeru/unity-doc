@@ -1,4 +1,4 @@
-!Reflective Parallax Specular
+! 反射視差拡散
 
 Attach:Shaders./Shader-ReflParallaxBumpSpec.png
 

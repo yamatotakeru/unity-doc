@@ -1,4 +1,4 @@
-!Transparent Parallax Specular
+! 透明視差鏡面
 
 Attach:Shaders./Shader-TransParallaxBumpSpec.png
 

@@ -1,4 +1,4 @@
-! Parallax Diffuse
+! 視差拡散
 
 Attach:Shaders./Shader-NormalParallaxBump.png
 
