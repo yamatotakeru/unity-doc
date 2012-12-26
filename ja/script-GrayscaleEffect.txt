@@ -1,8 +1,8 @@
-!Grayscale 画像効果
+! グレースケール エフェクト
 
 $$Grayscale$$ は、デフォルトで色をグレースケールに変えるシンプルな画像効果です。 また、''Texture Ramp''テクスチャを使用して、照明を任意の色に再マッピングできます。
 
-すべての [[comp-ImageEffects|image effects]] のように、Grayscale は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
+すべての [[comp-ImageEffects|image effects]] のように、グレースケール は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FxGrayscale.png
 ''シーンに適用された Grayscale 効果''
@@ -10,28 +10,28 @@ Attach:FxGrayscale.png
 
 !!色の再マッピング
 
-Grayscale は、簡単に色修正を行えます。つまり、グレースケールの画像を任意の色に再マッピングできます。 ヒート ビジョンなどの効果を生み出すのに使用できます。
+グレースケール は、簡単に色修正を行えます。つまり、グレースケールの画像を任意の色に再マッピングできます。 ヒート ビジョンなどの効果を生み出すのに使用できます。
 
-色を再マッピングする処理は、[[script-ColorCorrectionEffect|ColorCorrection]] 効果に非常に似ています。
+色を再マッピングする処理は、[[script-ColorCorrectionEffect|カラーコレクション]] 効果に非常に似ています。
 # ゲーム内での通常のシーンのスクリーンショットを撮影します。
 # Photoshop 出開いて、グレースケールに変えます。
-# ^^Image->Adjustments->Curves^^ を使用して色補正を行います。
+# ^^Image->Adjustments->Curves^^ を使用してカラーコレクションを行います。
 # ^^Save...^^を使用して、ダイアログから__.acv__ ファイルを保存します。
 # Photoshop で ^^Pro Standard Assets->Image Based->color correction ramp.png^^ を開きます。
-# ランプ画像に色補正を適用します。 ^^Image->Adjustments->Curves^^ をサイド開いて、保存した__.acv__ファイルをロードします。
+# ランプ画像にカラーコレクションを適用します。 ^^Image->Adjustments->Curves^^ をサイド開いて、保存した__.acv__ファイルをロードします。
 # Unity でカメラを選択し、^^Component->Image Effects->Color Correction^^ を選択して、効果を追加します。 修正した色ランプを選択します。
 # 再生を押して、動作中の効果を確認します!
 
 !!! 詳細
 
-色ランプ画像 (サイズ: 256x1) を通じて、元の画像の色を再マッピングすると、色補正が機能します。
+色ランプ画像 (サイズ: 256x1) を通じて、元の画像の色を再マッピングすると、カラーコレクションが機能します。
 # result.color = ランプ画像 (OriginalLuminance + ''RampOffset'') インデックスでのピクセルの色 例えば、画像の色を反転するには、元の色ランプを水平にひっくり返すだけです (黒から白になる代わりに、白から黒になるよう)。
 
 Attach:FxGrayscaleNegative.png
-''白から黒に変わる色ランプのあるシーンに適用される Grayscale。''
+''白から黒に変わる色ランプのあるシーンに適用される グレースケール。''
 
 
-任意の色への修正を行う色再マッピングのより複雑なバージョンは、[[script-ColorCorrectionEffect|ColorCorrection]] 画像効果で達成できます。
+任意の色への修正を行う色再マッピングのより複雑なバージョンは、[[script-ColorCorrectionEffect|カラーコレクション]] エフェクトで達成できます。
 
 (:include imagefx-SM2:)
 

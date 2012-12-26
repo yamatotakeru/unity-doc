@@ -1,4 +1,4 @@
-! Edge Detect効果
+! エッジ検出エフェクト
 
 $$Edge Detect$$ 画像効果は、色の差が閾値を越えるすべての箇所に黒いエッジを画像に追加します。
 
@@ -7,7 +7,7 @@ $$Edge Detect$$ 画像効果は、色の差が閾値を越えるすべての箇�
 その他の [[comp-ImageEffects|image effects]] は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FxEdge.png\\
-''シーンに適用された Edge Detection 効果''
+''シーンに適用された エッジ検出エフェクト 効果''
 
 ||PROPS
 ||``Threshold`` ||隣接するピクセル間の色の差がこの値を超えると表示されるエッジ。 この値を増やすと、エッジがテクスチャやライティングの変更の影響を受けにくくなります。 ||

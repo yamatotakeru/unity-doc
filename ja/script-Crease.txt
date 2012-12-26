@@ -1,18 +1,18 @@
-! Crease
+! クリース
 
 $$Crease$$ は、可変的にサイズ変更される外郭を作成することで、オブジェクトの可視性を強化する一般的な非写実的 (NPR) レンダリング手法です。
 
 その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:CreaseExample.png\\
-''クリース シェーディングは、外郭に基づいた深度を作成します。''
+''クリース シェーディングは、外郭に基づいたデプスを作成します。''
 
 !! プロパティ
 
 ||PROPS
 ||``Intensity`` ||クリース シェーディングの輝度。 ||
 ||``Softness`` ||適用されたクリース シェーディングの円滑さと柔らかさ。 ||
-||``Spread`` ||外側の厚みを決定するためのぼやけ半径。 ||
+||``Spread`` ||外側の厚みを決定するためのブラー半径。 ||
 
 (:include imagefx-SM2Depth:)
 

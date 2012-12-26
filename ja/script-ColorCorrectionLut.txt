@@ -1,15 +1,15 @@
-! Color Correction Lookupテクスチャ
+! カラー コレクション ルックアップ テクスチャ
 
-$$Color Correction Lut$$（``Lut``はLookupテクスチャの略）はエフェクトによりカラーの調整を行うために最適化された方法です。[[script-ColorCorrectionCurves|Color Correction Curves]] など使用して個々のカラーチャンネルを微調整するかわりに、ひとつのテクスチャのみ用いて画像を補正します。
+$$Color Correction Lut$$（``Lut``はLookupテクスチャの略）はエフェクトによりカラーの調整を行うために最適化された方法です。[[script-ColorCorrectionCurves|カラー コレクション カーブ]] など使用して個々のカラーチャンネルを微調整するかわりに、ひとつのテクスチャのみ用いて画像を補正します。
 ルックアップテクスチャのアドレス解決をするために、元の画像の色をベクトルとして使用してルックアップを行います。
 
 長所は、パフォーマンスの向上されることと、全ての色変換を専門の画像操作ソフト（PhotoshopやGIMPなど）で定義して正確な結果が得られる、より専門的なワークフローとすることができることです。
 
 Attach:NeutralLutExample2.png
-中間色での色補正を適用したシンプルなシーン
+''中間色でのカラーコレクションを適用したシンプルなシーン''
 
 Attach:ContrastEnhancedLutExample2.png
-ContrastEnhancedルックアップテクスチャを使用した'同じシーン
+''ContrastEnhancedルックアップテクスチャを使用した同じシーン''
 
 その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
@@ -18,7 +18,7 @@ ContrastEnhancedルックアップテクスチャを使用した'同じシーン
 ||PROPS
 ||``Based On`` ||補正画像を生成するために使用される3Dルックアップテクスチャの2D表現。||
 
-!!Lookupテクスチャの要件
+!! ルックアップ テクスチャの要件
 
 2Dテクスチャ表現は、特定のレイアウトにて展開されたときにボリュームをもったテクスチャである必要があります（デプスをもった連続した画像断面のイメージ）。
 
@@ -31,7 +31,7 @@ Attach:3DUnwrappedContrastEnhance.png
 
 !!ワークフロー例
 
-常に基本となるLookupテクスチャを準備できるようにし、これをその後の補正に使用するLUTを生成するためのベースとします。
+常に基本となるルックアップ テクスチャを準備できるようにし、これをその後の補正に使用するLUTを生成するためのベースとします。
 
 * ゲームのスクリーンショットを撮ります
 

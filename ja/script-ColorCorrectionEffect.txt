@@ -1,8 +1,8 @@
-! Color Correction画像効果
+! カラー コレクション エフェクト
 
-$$Color Correction$$（色補正）を使用すると、シーンに任意の色補正エフェクト（PhotoshopやGimpのカーブツールのような）を適用することができます。このページでは、Photoshopで色補正を設定してから正確にUnity実行時に「完全に同じ」色補正を適用する方法を説明します。
+$$Color Correction$$（カラー コレクション）を使用すると、シーンに任意のカラーコレクションエフェクト（PhotoshopやGimpのカーブツールのような）を適用することができます。このページでは、Photoshopでカラーコレクションを設定してから正確にUnity実行時に「完全に同じ」カラーコレクションを適用する方法を説明します。
 
-その他の [[comp-ImageEffects|image effects]] 同様、Color Correctionは Unity Pro 専用です。必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
+その他の [[comp-ImageEffects|image effects]] 同様、カラー コレクションは Unity Pro 専用です。必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FxColorCorr.png\\
 シーンにカラー補正を適用。使用したカラーランプ（拡大図）が右側に表示されています。
@@ -11,29 +11,29 @@ Attach:ImageEffects./FxColorRamp.png\\
 上記のイメージに使用されるカラーランプ。
 
 
-!! Photoshopの色補正をUnityに取得
+!! PhotoshopのカラーコレクションをUnityに取得
 
 # ゲームの典型的なシーンのスクリーンショットを撮ります
-# Photoshopで開き、色補正を行う。メニューで^^Image->Adjustments->Curves^^を開きます
+# Photoshopで開き、カラーコレクションを行う。メニューで^^Image->Adjustments->Curves^^を開きます
 # __.acv__ファイルをダイアログからメニューで^^Save...^^にて保存する
 # Photoshopメニューで^^Pro Standard Assets->Image Based->color correction ramp.png^^ を開きます
-# ここでランプイメージに色補正を適用します。メニューで^^Image->Adjustments->Curves^^を再び開き__.acv__ファイルをロードします
-# Unityで使用してるカメラを選択肢メニューで^^Component->Image Effects->Color Correction^^を選択して色補正効果を追加します。 変更したカラーランプを選択します。
+# ここでランプイメージにカラーコレクションを適用します。メニューで^^Image->Adjustments->Curves^^を再び開き__.acv__ファイルをロードします
+# Unityで使用してるカメラを選択肢メニューで^^Component->Image Effects->Color Correction^^を選択してカラー コレクション エフェクトを追加します。 変更したカラーランプを選択します。
 # 再生された効果を見るためにPlayを押下します
 
 
 !!詳細
 
-色補正は、カラーランプイメージ（サイズ256x1）を通して元の画像の色を再マッピングすることにより動作します。
+カラーコレクションは、カラーランプイメージ（サイズ256x1）を通して元の画像の色を再マッピングすることにより動作します。
 # (original.red + ``RampOffsetR``) インデックスにて、result.red = ランプイメージのピクセルのred値  
 # (original.green + ``RampOffsetG``) インデックスにて、result.green = ランプイメージのピクセルのgreen値  
 # (original.blue + ``RampOffsetB``) インデックスにて、result.blue = ランプイメージのピクセルのblue値  
 だから例えば画像の色を反転する場合、元のカラーランプを水平に反転するのみです。（黒から白を、白から黒に変更するように）
 
-より簡単な色の再マッピングを輝度に基づいて行いたい場合は[[script-GrayscaleEffect|Grayscale]] で行うことが出来ます。
+より簡単な色の再マッピングを輝度に基づいて行いたい場合は[[script-GrayscaleEffect|グレースケール]] で行うことが出来ます。
 
 
 !!!ヒント:
-* 色補正ランプイメージはミップマップを持つべきではありません。 $$Import Settings$$でそれらをオフにします。また$$Clamp$$モードに設定する必要があります。
+* カラーコレクション ランプイメージはミップマップを持つべきではありません。 $$Import Settings$$ でそれらをオフにします。また $$Clamp$$ モードに設定する必要があります。
 
 (:include imagefx-SM2:)

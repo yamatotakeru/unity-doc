@@ -1,6 +1,6 @@
-! Vortex 画像効果
+! Vortex エフェクト
 
-$$Vortex$$ 画像効果は、レンダリングされた画像を歪めます。 中心付近のピクセルは特別な角度で回転します。つまり 変位量は、円の端でゼロに減少し、中心部からの距離と共に減少します。 Vortexは [[script-TwirlEffect|Twirl]] と似ていますが、Twirl は円というよりもポイントを中心に画像を歪ませます。
+$$Vortex$$ エフェクトは、レンダリングされた画像を歪めます。 中心付近のピクセルは特別な角度で回転します。つまり 変位量は、円の端でゼロに減少し、中心部からの距離と共に減少します。 Vortexは [[script-TwirlEffect|Twirl]] と似ていますが、Twirl は円というよりもポイントを中心に画像を歪ませます。
 
 すべての [[comp-ImageEffects|image effects]] のように、Vortex は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 

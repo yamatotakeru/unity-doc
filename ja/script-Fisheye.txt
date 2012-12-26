@@ -1,6 +1,6 @@
-! Fisheye画像効果
+! 魚眼レンズ エフェクト
 
-$$Fisheye$$画像効果はFisheye（魚眼）レンズのようなねじれを作成します。（もっとも他のレンズでも画像を引き伸ばしますが）
+$$Fisheye$$ 画像効果はFisheye（魚眼）レンズのようなねじれを作成します。（もっとも他のレンズでも画像を引き伸ばしますが）
 
 その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 

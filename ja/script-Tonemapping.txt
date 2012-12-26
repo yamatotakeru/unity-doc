@@ -1,15 +1,14 @@
-!Tonemapping
-
+! トーンマッピング
 ``Tonemapping``（トーンマッピング）は[[HDR]] （ハイダイナミックレンジ）からLDR（ローダイナミックレンジ）へのカラー値のマッピングとして一般的に理解されています。これはUnityにおいて多くのグラフィックで任意の16ビット浮動小数点カラー値は旧来の8ビット値に[0,1]の範囲にマッピングされることを意味します。
 
-Tonemappingはカメラで[[HDR]] が有効となっていないと正しく機能しない。また推奨として、光源を通常のintensityの値より大きくし、幅広い範囲を有効活用すると良い現実世界と同様、Luminance（明るさ）で人の眼あるいはそのつくりで認識できるのは一定の範囲のみです。
+トーンマッピングはカメラで[[HDR]] が有効となっていないと正しく機能しない。また推奨として、光源を通常のintensityの値より大きくし、幅広い範囲を有効活用すると良い現実世界と同様、Luminance（明るさ）で人の眼あるいはそのつくりで認識できるのは一定の範囲のみです。
 
-TonemappingはHDRをオンにした[[script-Bloom|Bloom画像効果]] とセットで機能的に動作します。留意すべき点としてTonemappingの前にBloomを適用する必要があり、そうしないと高い範囲が失われるためです。一般に強いLuminance（明るさ）で効果が得られる処理はTonemappingより先に行う必要があります。（別の例が[[script-DepthOfFieldScatter|Depth of Field画像効果]] です。）
+トーンマッピングはHDRをオンにした[[script-Bloom|Bloom画像効果]] とセットで機能的に動作します。留意すべき点としてトーンマッピングの前にBloomを適用する必要があり、そうしないと高い範囲が失われるためです。一般に強いLuminance（明るさ）で効果が得られる処理はトーンマッピングより先に行う必要があります。（別の例が[[script-DepthOfFieldScatter|デプス オブ フィールド エフェクト]] です。）
 
 intensityをLDRにマッピングする方法はいくつかあります（``Mode``により選択できます。）このエフェクトはいくつかのテクニックがあり、そのうち二つは
 adaptive（``AdaptiveReinhard``および``AdaptiveReinhardAutoWhite``）で、その意味はカラーの変更がintensityの変化が完全に登録されるまで処理が遅延される、ということです。カメラと人の眼でこれと同じ現象があります。この効果により興味深いダイナミックなエフェクトが可能となり、暗いトンネルを抜けて明るい日差しに入るときの自然な目の慣れでも見られます。
 
-次の2つのスクリーンショットはPhotographic Tonemapping（フォトグラフィック トーンマッピング）で異なるexposure（露光）値での例を示しています。バンディングがHDRカメラの使用により回避されていることに留意して下さい。
+次の2つのスクリーンショットはPhotographic トーンマッピング（フォトグラフィック トーンマッピング）で異なるexposure（露光）値での例を示しています。バンディングがHDRカメラの使用により回避されていることに留意して下さい。
 
 Attach:ImageEffects./Photographics.png\\
 
@@ -21,12 +20,12 @@ Attach:ImageEffects./Photographics2.png\\
 !! Properties
 
 ||PROPS
-||``Mode`` ||使用したいTonemapping（トーンマッピング）アルゴリズムを選択||
+||``Mode`` ||使用したいトーンマッピング（トーンマッピング）アルゴリズムを選択||
 
 ||``Exposure`` ||シミュレートされた露光、実際の明るさのレンジを定義||
 ||``Average grey`` ||シーンの平均的なグレー値であり、結果のintensityを定義||
 ||``White`` ||白にマッピングされる最低値||
-||``Adaption speed`` ||全てのadapitiveであるTonemappingの調整速度||
-||``Texture size`` ||全てのadapitiveであるTonemappingの内部テクスチャサイズ。大きな値によりintensityを計算するなかでディテールが得られる一方で、パフォーマンスが低下します。||
+||``Adaption speed`` ||全てのadapitiveであるトーンマッピングの調整速度||
+||``Texture size`` ||全てのadapitiveであるトーンマッピングの内部テクスチャサイズ。大きな値によりintensityを計算するなかでディテールが得られる一方で、パフォーマンスが低下します。||
 
 (:include imagefx-SM2:)

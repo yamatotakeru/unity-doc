@@ -1,8 +1,8 @@
-! Vignetting (および Chromatic Aberration)
+! ビネット (および Chromatic Aberration)
 
-$$Vignetting$$（ビネット）画像効果により暗くしたりぼかしたり、およびChromatic Aberration（色収差の補正）を画像の四隅に対して行います。これはカメラレンズを覗き込んだような効果を再現しますが、抽象的なエフェクトとしても使用できます。
+$$Vignetting$$（ビネット）画像効果により暗くしたりブラーしたり、およびChromatic Aberration（色収差の補正）を画像の四隅に対して行います。これはカメラレンズを覗き込んだような効果を再現しますが、抽象的なエフェクトとしても使用できます。
 Attach:ImageEffects./VignetteExample.png\\
-''Vignetting and chromatic Aberrationの例。画面の四隅が暗くなり、色収差の補正により紫やわずかに緑のフリンジができることに留意下さい。''
+'ビネットおよび Chromatic Aberrationの例。画面の四隅が暗くなり、色収差の補正により紫やわずかに緑のフリンジができることに留意下さい。''
 
 その他の [[comp-ImageEffects|image effects]] 同様、この効果は Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
@@ -10,8 +10,8 @@ Attach:ImageEffects./VignetteExample.png\\
 
 ||PROPS
 ||``Vignetting`` ||画面の四隅を暗くする度合い。0をセットすると機能を無効化してパフォーマンスを高めます。||
-||``Blurred Corners`` ||画面の四隅に与えるBlur（ぼかし）の量。0をセットすると機能を無効化してパフォーマンスを高めます。 ||
-||``Blur Distance`` ||Blur（ぼかし）フィルタを使用して画面の四隅をぼかす際のサンプリング距離 ||
+||``Blurred Corners`` ||画面の四隅に与えるブラーの量。0をセットすると機能を無効化してパフォーマンスを高めます。 ||
+||``Blur Distance`` ||ブラーフィルタを使用して画面の四隅をぼかす際のサンプリング距離 ||
 
 ||``Aberration Mode`` ||``Advanced``にセットするとAberrationエフェクトを強化します。``Simple``にすると接線のAberrationを生成。（処理は四隅に限定されます）||
 ||``Strength`` ||全体的なAberration強度（カラーオフセット距離と混同しないよう注意）デフォルトは1.0。 ||
