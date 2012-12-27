@@ -1,42 +1,43 @@
-!Retargeting of Humanoid animations
+! ヒューマノイド アニメーションのリターゲティング
 
-One of the most powerful features of Mecanim is retargeting of humanoid animations. This means that with relative ease, users can apply the same set of animations to various character models. Retargeting is only possible for humanoid models, where an Avatar has been configured, because this gives us a correspondence between the models' bone structure. 
+メカニムでもっとも強力な機能はヒューマノイド アニメーションのリターゲティングです。これにより比較的簡単にユーザは、アニメーションのひとつのセットを様々なキャラクター モデルに同じように適用できます。リターゲティングは、アバター設定されたヒューマノイド モデルでのみ可能であり、これによりモデルのボーン構造内の関係性が情報として与えられるためです。
 
-!!Recommended Hierarchy structure
+!! 推奨する階層構造
 
-When working with Mecanim animations, you can expect your scene to contain the following elements:-
-* The Imported character model, which has an Avatar on it.
-* The Animator Component, referencing an Animator Controller asset.
-* A set of animation clips, referenced from the Animator Controller. 
-* Scripts for the character.
-* Character-related components, such as the Character Controller.
+メカニム アニメーションで作業するとき、シーンに次の要素があるはずです：
 
-Your project should also contain another character model with a valid Avatar.
+* インポートされて、アバターのあるキャラクター モデル。
+* アニメータ コントローラ アセットを参照しているアニメータ コンポーネント。
+* アニメータ コントローラから参照されているアニメーション クリップ のセット。 
+* キャラクターのスクリプト。
+* キャラクター コントローラなど、キャラクター関連のコンポーネント。
 
-If in doubt about the terminology, please consult the [[Animation Glossary]]
+プロジェクトに有効なアバターのあるキャラクター モデルを別に含む必要があります。
 
-The recommended setup is to:
-*Create a GameObject in the Hierarchy that contains Character-related components
+用語について不明点があれば、[[Animation Glossary]] を参照下さい。
+
+推奨されるセットアップは：
+* キャラクター関連のコンポーネントを含む階層にゲームオブジェクトを作成します。
 ->Attach:MecanimRetargetingTopLevel.png
 
-*Put the model as a child of the GameObject, together with the Animator component
+* モデルをゲームオブジェクトの子オブジェクトとして、アニメータ コンポーネントとともにおく。
 ->Attach:MecanimRetargetingModel.png
 
-*Make sure scripts referencing the Animator are looking for the animator in the children instead of the root (use @@GetComponentInChildren<Animator>()@@ instead of @@GetComponent<Animator>()@@)
+* アニメータを参照しているスクリプトが、ルートではなく子オブジェクトのアニメータをみていることを確認する。（@@GetComponent<Animator>()@@ではなく @@GetComponentInChildren<Animator>()@@ を使用します。）
 
 ->Attach:MecanimRetargetingNinjaBlob.png
 
-Then in order to reuse the same animations on another model, you need to:
-*Disable the original model 
-*Drop in the desired model as another child of GameObject
+別モデルで同じアニメーションを再利用するには：
+* 元のモデルを無効化します。
+* 希望するモデルをゲームオブジェクトの別の子オブジェクトとしてドラッグ＆ドロップします。
 ->Attach:MecanimRetargetingOtherModel.png
 
-*Make sure the Animator Controller property for the new model is referencing the same controller asset
+* 新しいモデルのアニメータ コントローラ プロパティが同じコントローラアセットを参照していることを確認します
 ->Attach:MecanimRetargetingOtherModelCorrectController.png
 
-*Tweak the character controller the transform, and other properties on the top-level GameObject, to make sure that the animations work smoothly with the new model. 
-*You're done!
+* トップのレベルにあるゲームオブジェクトの、キャラクター コントローラ、Tranform、および他のプロパティを微調整して新しいモデルでアニメーションがスムーズに動くことを確認します。
+* 完了です！
 
 ->Attach:MecanimRetargetingManga.png
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+(back to [[MecanimAnimationSystem|メカニム紹介]])
