@@ -1,18 +1,38 @@
-!+MM0wuTDIMFUwjDBfMLkwxjD8MMgw3jC3MPM
+! サブステートマシン
 
-+fCFPvzBuMF8wgTABMKIwyzDhMPwwtzDnMPM +MLkwxjD8MMgw3jC3MPMwkk7WMG4wojDLMOEw/DC3MOcw8w +MLkwxjD8MMgw3jC3MPMwbk4tMGcwzTC5MMgwWTCLMFMwaDBMUfpnZTB+MFkwAjC1MNY +MLkwxjD8MMgw3jC3MPMwkk9cYhAwWTCLMGswbzAB +AH4Afg-Animator Controller+AH4Afg +MG56ejBEMGYwRDCLMLkw2jD8MLkwZ1PzMK8w6jDDMK8wkjBXMGY^^Create Sub-State Machine^^ +MJKQeGKeMFcwfjBZMAI
+キャラクターが複数のステージからなる複雑なアクションをもつことは一般的です。全体のアクションをひとつのステートでハンドリングするかわりに、別々のステージを識別して各々別のステートを使用すべきです。例えば、キャラクターに、しゃがんで狙いを定め、撃って、再び立ち上がらせる、 "Trickshot" というアクションを持たせることが出来ます。
 
-Attach:MecanimStateMachinePullDown.png
+Attach:MecanimStateExcerpt.png\\
+''"Trickshot" アクションにおけるステートの順序''
 
-+MFMwjDBrMIgwijC1MNY +MLkwxjD8MMgw3jC3MPMwTGnLYhAwVTCMMAGD8V9iMG4wzjD8MMkwkjDAMNYw6zCvMOowwzCvMFkwizBTMGgwZzDKMNMwsjD8MLcw5zDzMGcwTTB+MFn/Gg
+これはいくつかの状況で便利ですが、短所としては、ステートマシンが大きくなり、複雑なアクションがさらに追加されると扱いが難しくなります。エディタの空いたスペースで、ステートのグループを視覚的に分けることでシンプルにすることが出来ます。しかし、メカニムはさらに一歩進んで、ステートマシン図でステートのグループをひとつのアイテムに折りたたむことが出来るようにしています。これらの折りたたまれたグループは $$Sub-state machines$$ と呼びます。
 
-Attach:MecanimSubStateMachine.png
+サブステートマシンを作成するには ~~Animator Controller~~ ウィンドウの空いたところで右クリックして、コンテキストメニューから ^^Create Sub-State Machine^^ を選びます。サブステートマシンはエディタ上で引き伸ばされた六角形のマークによって、他の通常のステートとは区別して表示されます。
 
-+MFcwSzBXMAEwuTDGMPwwyDBLMIlO1jBuMLkwxjD8MMgwVzBLY6V9mjBnME0wajBEMFMwaDBrdVlhDzBXMGZOCzBVMEQwAjBTMG4wXzCBMLkwxjD8MMgwSzCJMLkwxjD8MMgw3jC3MPOQd3n7MJJPXGIQMFkwizBoME0wAQ-Unity+MG8wXTBuMN4wtzDzMEswiTBuMLkwxjD8MMgwkpB4Yp4wWTCLMIgwRjBrbEIwgTB+MFkwApaOXGQwbk4KTgswaDCCMGtjpX2aMFkwizBTMGgwTFH6Z2UwfjBZMAI
-Attach:MecanimSelectSubState.png
+Attach:MecanimSubStateMachine.png\\
+''サブステートマシン''
 
-+AH4Afg-State Inspector+AH4Afg +MEowiDBzAH4Afg-Transition Inspector+AH4Afg +MG9UBDAFMG4wuTDGMPwwyDBMMGkwbjC5MMYw/DDIMN4wtzDzMEswiTBNMF8wgjBuMEtjB1uaMFcwfjBZ/xo
-Attach:MecanimTransitionToSubStateInspector.png
-([[Animation State Machines|+MLkwxjD8MMgw3jC3MPN9OU7L]] +MGtiOzCL)
+六角形のマークをダブルクリックすると、エディタがクリアされてサブステートマシンが元から別のステートマシンであるかのような形で編集できるようになります。ウィンドウの上にあるバーは "BreadCrumb Trail" (パンくずの軌跡) で、どのサブステートマシンが現在編集されているか示します（そして、サブステートマシンの中に別のサブステートマシンを作成するなどネストができることに注意して下さい）。Trail上でアイテムをクリックすることでエディタが特定のサブステートマシンにフォーカスします。
 
-([[MecanimAnimationSystem|+MOEwqzDLMOB9OU7L]] +MGtiOzCL)
+Attach:MecanimStateMachineCrumbs.png\\
+''"Breadcrumb Trail"''
+
+!!外部の遷移
+上で記したとおり、サブステートマシンは単にエディタでステートのグループを折りたたむ方法なので、サブステートマシンへ遷移するときは、その中のどのステートに接続したいかを選択する必要があります。
+
+Attach:MecanimSelectSubState.png\\
+''"Trickshot" サブステートマシンの中からターゲットとするステートを選択''
+
+サブステートマシンに"Up"で名前が始まる追加のステートが出来たことに気づきます。
+
+Attach:MecanimSubStateUp.png\\
+''"Up" ステート''
+
+''Up'' ステートは "外部世界" を表し、ビューの中でサブステートマシンを包含するステートマシンです。ステートからの遷移をサブステートマシンから''Up'' のステートに追加すると、包含しているマシンの中から接続させたいステートを選ぶプロンプトが表示されます。
+
+Attach:MecanimSubStateExternal.png\\
+''包含するマシンの中のステートに接続する''
+
+([[Animation State Machines|State Machines introduction]] に戻る)
+
+([[MecanimAnimationSystem|Mecanim introduction]] に戻る)

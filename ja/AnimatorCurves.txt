@@ -1,15 +1,15 @@
-!Working with Animation Curves in Mecanim (Pro only)
+! メカニムのアニメーションカーブでの作業(Unity Proのみ)
 
-Animation curves can be attached to animation clips in the Animations tab of the ^^Animation Import Settings^^.
+^^Animation Import Settings^^ のAnimationsタブでアニメーションカーブはアニメーションクリップにアタッチすることが出来ます。
 
 Attach:MecanimCurves.png
-''The curves on animation clips in Mecanim''
+''メカニムのアニメーション クリップのカーブ''
 
-The curve's X-axis represents ''normalized time'' and always ranges between 0.0 and 1.0 (corresponding to the beginning and the end of the animation clip respectively, regardless of its duration). 
+Ｘ軸のカーブは ''正規化された時間'' を表し、 0.0 から 1.0 の範囲に常にあります（アニメーションクリップの長さに関わらず、それぞれ開始および終了の点に対応）。
 
-Double-clicking an animation curve will bring up the standard Unity curve editor (see [[EditingValueProperties40|this page]] for further details) which you can use to add $$keys$$ to the curve. Keys are points along the curve's timeline where it has a value explicitly set by the animator rather than just using an interpolated value. Keys are very useful for marking important points along the timeline of the animation. For example, with a walking animation, you might use keys to mark the points where the left foot is on the ground, then both feet on the ground, right foot on the ground, etc. Once the keys are set up, you can move conveniently between key frames by pressing the ^^Previous/Next Key Frame^^ buttons. This will move the vertical red line and show the ''normalized time'' at the keyframe; the value you enter in the text box will then set the value of the curve at that time.  
+アニメーション カーブをダブルクリックすることで標準のUnityカーブ エディタ が表示され(詳細は [[EditingValueProperties40|このページ]] を参照下さい)、カーブに $$Key$$ （キー）を追加するのに使用できます。キーとは、カーブのタイムラインにおいて、補間された値でなくアニメータにより明示的に値が指定されている地点です。キーはアニメーションのタイムライン上での重要な地点をマーキングするのにとても役立ちます。例えば、歩行アニメーションの場合では、左足が着地するときにキーを使用したり、両足が地面に着地するとき、右足が着地するとき、などにキーを使用するかもしれません。それらのキーをセットアップした後は、キーフレームの間を移動するのに ^^Previous/Next Key Frame^^ ボタンを使用できます。これにより垂直方向の赤い線が移動し、キーフレームの ''正規化された時間'' を表示します。次にテキストボックスに入力した値はそのときのカーブの値をセットします。
 
-!!Animation Curves and Animator Controller parameters
-If you have a curve with the same name as one of the [[AnimationParameters|parameters]] in the [[Animator|Animator Controller]], then that parameter will take its value from the value of the curve at each point in the timeline. For example, if you make a call to [[ScriptRef:Animator.GetFloat.html|GetFloat]] from a script, the returned value will be equal to the value of the curve at the time the call is made. Note that at any given point in time, there might be multiple animation clips attempting to set the same parameter from the same controller. In that case, the curve values from the multiple animation clips are blended. If an animation has no curve for a particular parameter then the blending will be done with the default value for that parameter.
+!!アニメーション カーブ および アニメータ コントローラ パラメータ
+ [[Animator|アニメータ コントローラ]] の[[AnimationParameters|パラメータ]] のひとつと同じ名前のカーブがある場合、そのパラメータは、タイムラインにおける各地点のカーブの値から値を読み取ります。例えば、スクリプトから [[ScriptRef:Animator.GetFloat.html|GetFloat]] をコールした場合、戻り値はコールが行われた時のカーブの値と同じになります。任意の時間において、複数のアニメーション クリップがブレンドされていることがあることに留意して下さい。この場合、複数のアニメーション クリップのカーブの値はブレンドされます。もしアニメーションが特定のパラメータのカーブがない場合は、そのパラメータのデフォルト値が使用されます。
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)
