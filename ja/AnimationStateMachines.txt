@@ -1,26 +1,27 @@
-!Animation State Machines
+! アニメーション ステートマシン
 
-It is common for a character to have several different animations that correspond to different actions it can perform in the game. For example, it may breathe or sway slightly while idle, walk when commanded to and raise its arms in panic as it falls from a platform. Controlling when these animations are played back is potentially quite a complicated scripting task. Mecanim borrows a computer science concept known as a $$state machine$$ to simplify the control and sequencing of a character's animations.
+キャラクターが行うことのできるいくつかのアニメーションに対応して複数のアニメーションがあるのは一般的です。例えば、アイドルのとき、歩行のときに指定されたタイミング呼吸や揺れたり、プラットフォームから落ちるときにパニックになって、腕を上にあげるといったとがあります。スクリプティング作業として、アニメーションがいつプレイバックされるかを制御するのは潜在的にかなり複雑なことです。メカニムはコンピュータ科学における $$State Machine$$ （ステートマシン）という概念を借用して、 キャラクターのアニメーションの制御と順序づけを単純化します。
 
-!!State machine basics
+!!ステートマシンの基礎
 
-The basic idea is that a character is engaged in some particular kind of action at any given time. The actions available will depend on the type of gameplay but typical actions include things like idling, walking, running, jumping, etc. These actions are referred to as $$states$$, in the sense that the character is in a "state" where it is walking, idling or whatever. In general, the character will have restrictions on the next state it can go to rather than being able to switch immediately from any state to any other. For example, a running jump can only be taken when the character is already running and not when it is at a standstill, so it should never switch straight from the idle state to the running jump state. The options for the next state that a character can enter from its current state are referred to as $$state transitions$$. Taken together, the set of states, the set of transitions and the variable to remember the current state form a $$state machine$$.
+基本的な考え方はキャラクターが特定のタイミングで何らかのアクションに従事している、ということです。利用可能なアクションはゲームの種類に依存しますが、アイドル、歩く、走る、ジャンプ、などが典型的なアクションに含まれます。これらのアクションは、キャラクターが何らかの歩く、アイドル、または何かの状態（ステート）であることに起因して $$State$$ （ステート）と呼ばれます。一般に、キャラクターの次に移れるステートについては制限があり、いきなり自由にどれかのステートからどれかへ自由に移れるわけではありません。キャラクターが現在のステートから次に移れるステートの選択肢を $$State Transition$$ （ステート遷移）と呼ばれます。ステートのセット、遷移のセット、および現在のステートを格納する変数のセットを合わせて、$$State Machine$$ （ステートマシン）が形成されます。
 
-The states and transitions of a state machine can be represented using a graph diagram, where the nodes represent the states and the arcs (arrows between nodes) represent the transitions. You can think of the current state as being a marker or highlight that is placed on one of the nodes and can then only jump to another node along one of the arrows.
+ステートマシンのステートおよび遷移はグラフ図を用いて表現することが出来て、ノードがステートを表し、ノードを結ぶ矢印が遷移を表します。現在のステートをノードの上での、現在地のマーカーまたは、ハイライトされた場所としてとらえるのが良く、矢印に沿ってしか次のノードに移ることが出来ません。
 
 Attach:StateMachineDiagram.png
 
-The importance of state machines for animation is that they can be designed and updated quite easily with relatively little coding. Each state has an animation sequence associated with it that will play whenever the machine is in that state. This enables an animator or designer to define the possible sequences of character actions and animations without being concerned about how the code will work. 
+アニメーションにおいてステートマシンが重要であることがは、コーディングをあまりすることなく、設計および更新をすることがかなり容易であることです。各ステートにはアニメーション シーケンスが付属していて、そのステートにあるときに再生されます。これによりアニメーション専門スタッフまたはデザイナーが、コードがどのように動作するか考えることなく、利用可能なキャラクター アクションおよびアニメーションの順序を定義することが出来ます。
 
-!!Mecanim state machines
-Mecanim's Animation State Machines provide a way to overview all of the animation clips related to a particular character and allow various events in the game (for example user input) to trigger different animations.  
+!!メカニム ステートマシン
+メカニムのアニメーションでのステートマシンにより、ある特定のキャラクターの全てのアニメーションクリップの全体像を捉えることができ、そこからゲームにおける様々なイベント（例えばユーザ入力）によって異なるアニメーションをトリガーすることを可能にします。
 
-Animation State Machines can be set up from the [[Animator|Animator Controller Window]], and they look something like this:
+
+アニメーション ステートマシンは [[Animator|アニメータ コントローラ ウィンドウ]] から設定することができ、次のように表示されます：
 
 Attach:MecanimStateMachine.png
 
-State Machines consist of $$States$$, $$Transitions$$ and $$Events$$ and smaller Sub-State Machines can be used as components in larger machines.
+ ステートマシンは $$States$$ 、 $$Transitions$$ 、 $$Events$$ 、および大きなステートマシンのコンポーネントに使用できる、より小さなサブステートマシンから構成されます。
 
 (:tocportion:)
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)

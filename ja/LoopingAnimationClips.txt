@@ -1,16 +1,16 @@
-!Looping animation clips
+! アニメーションクリップのループ
 
-A common operation for people working with animations is to make sure they loop properly. It is important, for example, that the animation clip representing the walk cycle, begins and ends in a similar pose (e.g. left foot on the ground), to ensure there is no foot sliding, or strange jerky motions. Mecanim provides convenient tools for this. Animation clips can loop based on pose, rotation, and position. 
+アニメーションで作業する人が良く行う作業はループが正しく動作しているか確認することです。例えば、歩行サイクルに対応したアニメーションクリップが、似た位置で始まり、終了することが重要で（例えば、左足が地面に着地）、足がスライドしてしまう、おかしな動きががないように確かめます。メカニムはこのために便利なツールを提供します。アニメーションクリップはポーズ、回転、位置によってループ出来ます。
 
-If you drag the Start or End points of the animation clip, you will see the Looping fitness curves for all of the paramers based on which it is possible to loop. If you place the Start / End marker in a place where the curve for the property is green, it is more likely that the clip can loop properly. The ``loop match`` indicator will show how good the looping is for the selected ranges. 
+アニメーションの開始または終了の点ををドラッグすることで、ループさせることができる全てのパラメータのループ適合性のカーブを見ることが出来ます。もし開始／終了マーカーを緑色のプロパティのカーブに配置すると、クリップは大体において正しくループします。``Loop Match`` （ループ適合）のインジケータによって選択範囲でルーピングがどれだけ適切であるか示します。
 
 Attach:MecanimAnimClipLoopingRed.png
-Clip ranges with bad match for ``Loop Pose``\\
+``Loop Pose`` が適切に適合していないクリップの範囲\\
 
 Attach:MecanimAnimClipLoopingGreen.png
-Clip ranges with good match for ``Loop Pose``
+``Loop Pose``が適切に適合してるクリップの範囲
 
-Once the ``loop match`` indicator is green, Enabling ``Loop Pose`` (for example) will make sure the looping of the pose is artifact-free. 
+``Loop Match`` インジケータが緑であれば、（例えば）``Loop Pose`` ｄもポーズのループは画像の乱れがなくなります。
 
-For more details on animation clip options, see [[class-AnimationClip|Animation Clip reference]]\\
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+クリップのオプションの詳細については [[class-AnimationClip|アニメーションクリップ]] を参照下さい。\\
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)
