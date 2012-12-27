@@ -1,22 +1,22 @@
-!Animation Parameters
+! アニメーション パラメータ
 
-Animation Parameters expose the operation of the state machine to game logic. Events are triggered based on event parameters, activated from game logic. Typically you would work with events in 3 places:
+アニメーション パラメータによりゲームロジックに対して、ステートマシンの操作を開放します。イベントはイベントパラメータにもとづいてトリガーされ、ゲームロジックから有効化します。通常イベントは3つの箇所で作業できます：
 
-#Setting up parameters in the ~~Parameter Widget~~ in the bottom-left corner of the ~~Animator Controller Window~~
-#Setting up conditions for transitions in the ~~Transition Inspector~~, based on those parameters
-#Controlling the parameters from script. 
+# ~~Animator Controller Window~~ の左下にある ~~Parameter Widget~~ でパラメータをセットアップ
+#  ~~Transition Inspector~~ で、それらのパラメータにもとづいて、遷移の条件をセットアップ
+# スクリプトからパラメータを制御
 
 Attach:MecanimEvents.png
 
-Event parameters can be of 4 basic types: ''Vector'', ''Float'', ''Int'', and ''Bool'', and they can be controlled from script via the functions [[ScriptRef:Animator.SetVector.html|SetVector]], [[ScriptRef:Animator.SetFloat.html|SetFloat]], [[ScriptRef:Animator.SetInt.html|SetInt]], and [[ScriptRef:SetBool.html|SetBool]] respectively.
+イベントパラメータは4つの種類からなります：''Vector'' 、''Float'' 、''Int'' 、および''Bool'' であり、各々 [[ScriptRef:Animator.SetVector.html|SetVector]] 、 [[ScriptRef:Animator.SetFloat.html|SetFloat]] 、 [[ScriptRef:Animator.SetInt.html|SetInt]] 、および [[ScriptRef:SetBool.html|SetBool]] の関数からそれぞれスクリプトで制御できます。
 
-Note that the values next to the parameters serve as Check default values for those parameters at startup, unless they're overriden by (or blended with) values from [[AnimatorCurves|animation curves]]
+パラメータの隣にある値は、 [[AnimatorCurves|アニメーション カーブ]] によって上書き（またはブレンド）されないかぎり、スタート時のチェックされたデフォルト値となります。
 
-Thus, a complete animated character in the scene will have both an ``Animator Component`` and a script that controls the parameters in the Animator. 
+したがって、シーンにおける完成したアニメーションつきキャラクターは、``Animator Component`` およびアニメータのパラメータを制御するスクリプトを、両方持つことになります。
 
 Attach:MecanimAnimatorAndScript.png
 
-Here's an example of a script that modifies event parameters based on user input
+次のスクリプト例ではユーザ入力にもとづいてイベントパラメータを修正します。
 
 [@
 public class AvatarCtrl : MonoBehaviour {
@@ -34,10 +34,10 @@ public class AvatarCtrl : MonoBehaviour {
 	{
 		if(animator)
 		{
-                        //get the current state
+                        //現在のステートを取得
 			AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 			
-                        //if we're in "Run" mode, respond to input for jump, and set the Jump parameter accordingly. 
+                        //"Run" モードのときは、ジャンプのユーザ入力を可能にして、ジャンプのパラメータもあわせてセット
         	        if(stateInfo.name == "Base Layer.RunBT")
 			{
 				if(Input.GetButton("Fire1")) 
@@ -51,7 +51,7 @@ public class AvatarCtrl : MonoBehaviour {
          		float h = Input.GetAxis("Horizontal");
                 	float v = Input.GetAxis("Vertical");
 			
-                        //set event parameters based on user input
+                        //ユーザ入力にもとづいてイベントパラメータをセット
 			animator.SetFloat("Speed", h*h+v*v);
                         animator.SetFloat("Direction", h, DirectionDampTime, Time.deltaTime);
 		}		
@@ -59,4 +59,4 @@ public class AvatarCtrl : MonoBehaviour {
 }
 @]
 
-(back to [[Animation State Machines]])
+([[Animation State Machines]] に戻る)
