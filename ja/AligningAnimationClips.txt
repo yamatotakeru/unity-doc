@@ -1,35 +1,35 @@
-!Aligning animation clips
+! アニメーションクリップの整列
 
-Working with animation clips is easy in Mecanim. 
+メカニムでアニメーションクリップの作業を行うことは容易です。
 
 ||PROPS
-||``Name`` ||The name of the clip.||
-||``Source Take`` ||The take in the source file to use as a source for this animation clip.||
-||``Start`` ||Start frame of the clip.||
-||``End`` ||End frame of the clip.||
-||``Loop Pose``  ||Enable to make the motion loop seamlessly.||
-||``Cycle Offset``  ||Offset to the cycle of a looping animation, if a different time in it is desired to be the start.||
+||``Name`` ||クリップの名前||
+||``Source Take`` ||ソースファイルを取り込んで、このアニメーションクリップのソースとして使用する||
+||``Start`` ||クリップの開始フレーム。||
+||``End`` ||クリップの終了フレーム。||
+||``Loop Pose``  ||ループをシームレスにします||
+||``Cycle Offset``  ||もし開始の時間をずらしたい場合に、ループ アニメーションのサイクルをオフセットしてずらします。||
 ||``Root Transform Rotation`` || || 
-||>>>``Bake into Pose`` ||Enable to make root rotation be baked into the movement of the bones. Disable to make root rotation be stored as root motion.|| 
-||>>>``Based Upon`` ||What the root rotation is based upon.||
-||>>> >>>``Original``||Keeps the rotation as it is authored in the source file.||
-||>>> >>>``Body Orientation`` ||Keeps the upper body pointing forward.||
-||>>>``Offset`` ||Offset in degrees to the root rotation.||
+||>>>``Bake into Pose`` ||ルートの回転をボーンの動きに焼きこむようにします。無効にした場合、ルート回転はルート動作として格納します。|| 
+||>>>``Based Upon`` ||ルート回転がもとづいているオブジェクト。||
+||>>> >>>``Original``||ソースファイルでオーサリングしたとおりに回転を維持します。||
+||>>> >>>``Body Orientation`` ||上半身を前に向かせ続けます。||
+||>>>``Offset`` ||ルートの回転に対するオフセットを角度単位で指定します。|| || 
 ||``Root Transform Position (Y)`` || || 
-||>>>``Bake into Pose`` ||Enable to make vertical root motion be baked into the movement of the bones. Disable to make vertical root motion be stored as root motion.|| 
-||>>>``Based Upon`` ||What the vertical root position is based upon.||
-||>>> >>>``Original`` ||Keeps the vertical position as it is authored in the source file.||
-||>>> >>>``Center of Mass`` ||Keeps the center of mass aligned with root transform position.||
-||>>> >>>``Feet``||Keeps the feet aligned with the root transform position.||
-||>>>``Offset`` ||Offset to the vertical root position.||
+||>>>``Bake into Pose`` ||垂直方向のルートモーションをボーンの動作に焼き込みます。無効にした場合、ルート回転はルート動作として格納します。|| 
+||>>>``Based Upon`` ||垂直方向のルート位置がもとづいているオブジェクト。||
+||>>> >>>``Original`` ||ソースファイルに書かれていた垂直方向の位置を保持します。||
+||>>> >>>``Center of Mass`` ||重心をルートのTransform位置と並ぶようにします。
+||>>> >>>``Feet``||足をルート回転位置と整列さているように維持します。||
+||>>>``Offset`` ||垂直方向のルート一致した場合、垂直ルート位置とがあります。||
 ||``Root Transform Position (XZ)`` || || 
-||>>>``Bake into Pose`` ||Enable to make horizontal root motion be baked into the movement of the bones. Disable to make horizontal root motion be stored as root motion.|| 
-||>>>``Based Upon`` ||What the horizontal root position is based upon.||
-||>>> >>>``Original`` ||Keeps the horizontal position as it is authored in the source file.||
-||>>> >>>``Center of Mass`` ||Keeps the center of mass aligned with the root transform position.||
-||>>>``Offset`` ||Offset to the horizontal root position.||
-||``Mirror`` ||Mirror left and right in this clip.||
-||``Body Mask`` ||The Body mask applied to this animation clip (see section on [[AvatarBodyMask|body masks]]).||
-||``Curves`` (Unity Pro only)||Parameter-related curves (see [[AnimatorCurves|Curves in Mecanim]]).||
+||>>>``Bake into Pose`` || 水平方向のルートの動作を、ボーンの動作に焼き込みます。無効にした場合、ルート回転はルート動作として格納します。|| 
+||>>>``Based Upon`` || 水平方向のルート位置がもとづいているオブジェクト。|||
+||>>> >>>``Original`` || ソースファイルに書かれていた水平方向の位置を保持します。||
+||>>> >>>``Center of Mass`` ||ルートのTransform位置が重心と並ぶようにします。||
+||>>>``Offset`` ||水平方向の位置にルートポジションオフセットします。||
+||``Mirror`` ||クリップで左右を逆に反転させる。||
+||``Body Mask`` ||アニメーションクリップに適用されるボディマスク([[AvatarBodyMask|ボディマスクス]] のページを参照下さい)。||
+||``Curves`` (Unity Proのみ)|| パラメータ関連のカーブ([[AnimatorCurves|メカニムのカーブ]] のページを参照下さい)。||
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|Mecanim introduction]] に戻る)
