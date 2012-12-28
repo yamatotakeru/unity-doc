@@ -4,7 +4,7 @@
 >>ios<<
 Under iOS Basic, a default splash screen will be displayed while your game loads, oriented according to the ``Default Screen Orientation`` option in the [[class-PlayerSettings|Player Settings]].
 
-Users with an iOS Pro license can use any texture in the project as a splash screen. The size of the texture depends on the target device (320x480 pixels for 1-3rd gen devices, 1024x768 for iPad, 640x960 for 4th gen devices) and supplied textures will be scaled to fit if necessary. You can set the splash screen textures using the [[Main.class-PlayerSettings|iOS Player Settings]].
+Users with an iOS Pro license can use any texture in the project as a splash screen. The size of the texture depends on the target device (320x480 pixels for 1-3rd gen devices, 1024x768 for iPad mini/iPad 1st/2nd gen, 2048x1536 for iPad 3th/4th gen, 640x960 for 4th gen iPhone / iPod devices and 640x1136 for 5th gen devices) and supplied textures will be scaled to fit if necessary. You can set the splash screen textures using the [[Main.class-PlayerSettings|iOS Player Settings]].
 
 >><<
 
