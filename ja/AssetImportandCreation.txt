@@ -1,23 +1,23 @@
-! Asset Import and Creation
+! アセットのインポートと作成
 
-A large part of making a game is utilizing your asset source files in your $$GameObjects$$. This goes for textures, models, sound effects and behaviour scripts. Using the $$Project View$$ inside Unity, you have quick access to all the files that make up your game:
+ゲーム作成の大部分は $$GameObjects$$ のアセットのソースファイルを活用することです。これはテクスチャ、モデル、音声、動作スクリプトで適用できます。Unityの $$Project View$$ を用いてゲームを構成するファイルをクイックにアクセスできます。
 
 Attach:Editor-Project.png\\
-''The Project View displays all source files and created $$Prefabs$$''
+''プロジェクトビューは全てのソースファイルと $$Prefab$$ を表示します。''
 
-This view shows the organization of files in your project's Assets folder. Whenever you update one of your asset files, the changes are immediately reflected in your game!
+このビューはプロジェクトのAssetsフォルダの整理されたファイルを表示します。アセットファイルのどれかを更新したとき、変更は直ちにゲームに反映されます。
 
-To import an asset file into your project, move the file into ^^(your Project folder)->Assets^^ in the Finder, and it will automatically be imported into Unity. To apply your assets, simply drag the asset file from the Project View window into the $$Hierarchy$$ or $$Scene View$$.  If the asset is meant to be applied to another object, drag the asset over the object.
+プロジェクトにアセットファイルをインポートするには、Finder上でファイルを^^(あなたのプロジェクトフォルダ)->Assets^^ によってドラッグ＆ドロップし、自動的にUnityにインポートされます。アセットを適用するためには、アセットファイルをプロジェクトビュー ウィンドウから $$Hierarchy$$ または $$Scene View$$ にドラッグ&ドロップします。もしアセットが別のオブジェクトに適用すべき場合は、そのオブジェクトの上にドロップします。
 
 
 
-!!Hints
-* It is always a good idea to add labels to your assets when you are working with big projects or when you want to keep organized all your assets, with this you can search for the labels associated to each asset in the ''search field'' in the project view.
-* When backing up a project folder __always__ back up ''Assets'', ''ProjectSettings'' and ''Library'' folders. The Library folder contains all meta data and all the connections between objects, thus if the Library folder gets lost, you will lose references from scenes to assets. Easiest is just to back up the whole project folder containing the Assets, ProjectSettings and Library folders.
-* Rename and move files to your heart's content inside Project View; nothing will break.
-* __Never__ rename or move anything from the Finder or another program; everything will break. In short, Unity stores lots of metadata for each asset (things like import settings, cached versions of compressed textures, etc.) and if you move a file externally, Unity can no longer associate metadata with the moved file.
+!! ヒント
+* 大きなプロジェクトや、全てのアセットを整理したいときに、アセットにラベルをつけるのは良い習慣であり、これによってプロジェクトビューの''検索フィールド'' で各々のアセットについているラベルで検索を行うことが出来ます。
+* プロジェクトフォルダのバックアップをするときは __常に__ ''Assets'' 、''ProjectSettings'' 、および ''Library'' フォルダ をバックアップします。Libraryフォルダはメタデータおよびオブジェクトの関連性を保有するため、もしLibraryフォルダが失われるとアセットのシーンの参照が失われます。もっとも簡単なのはAssets 、ProjectSettings 、および Library フォルダを含んでいるプロジェクトフォルダ全体をバックアップすることです。
+* ファイルをリネームして、プロジェクトビューの心臓部であるコンテンツに移動しれば、何も壊れることはありません。
+* Finderまた別のプログラム上で何かを移動することは__絶対にしてはいけません__ 。全て壊れます。端的にいうと、Unityはたくさんのメタデータを各アセットごとに格納（インポート設定、圧縮テクスチャのキャッシュ、その他）していて、ファイルが移動されるとUnityではメタデータと紐付けることが出来なくなります。
 
-Continue reading for more information:
+さらに詳細については、続きをお読み下さい：
 
 (:tocportion:)
 
