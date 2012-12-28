@@ -1,58 +1,59 @@
 !Root Motion - how it works
+! ルートモーションの仕組み
 
 Attach:MecanimRootMotionPreview.png
 
 !!Body Transform
 
-You must start by computing a body transform that will be the same for all humanoid characters (from a retargeting standpoint). Use the body mass center as the body position. The body orientation is an average of the lower and upper body orientation. Body orientation is at identity for the Avatar T-Pose.
+最初に、全てのヒューマノイドキャラクターBody Transformを算出します(リターゲティングの観点から)。ボディの重心をボディ位置とします。ボディの向きは下半身と上半身のボディの向きの平均を使います。アバターのTポーズにおいて、ボディの向きはIdentityとなります。
 
-The body position and orientation are stored in the $$Animation Clip$$ (using the [[MuscleDefinitions|Muscle definitions]] set up in the Avatar). They are the only world-space curves stored in the $$Animation Clip$$. Everything else: muscle curves and IK goals (Hands and Feet) are stored relative to the body transform. 
+ボディの位置と向きは $$Animation Clip$$ に格納されます（(アバターでセットアップした [[MuscleDefinitions|マッスル定義]] を使用します)）。これらだけは、ワールド座標系として $$Animation Clip$$ に格納されます。それ以外の全ては、すなわちマッスルカーブやIKのゴール（手および足）はボディのTransformに対して相対的に格納されます。
 
-For example, the Hips (or Pelvis, etc.) are usually used to store the world-space position and orientation of the animation. In a straight walk or run animation, the Hips will swing and twist left/right, up/down, but the center of mass will nearly follow a straight line. The average of the lower and upper body orientations will also be more stable, almost constant. The position of the hips will be different from one skeleton to another, depending on how they were modeled (sometimes in the middle of left and right hips, sometimes offset back or up). Its orientation will also be totally arbitrary. it is not a good choice to use it as world space transform for retargeting. Look at how the body transform behaves for a barrel jump where Hips totally fail!
+例えば、一般にヒップ（あるいは骨盤、その他）はワールド座標でのアニメーションの位置や向きを格納します。真っ直ぐ歩く、または走るアニメーションではヒップはスイングして、左右、上下にひねりますが、重心だけはほぼ真っ直ぐな直線で動きます。下半身や上半身のボディの向きの平均もまた安定していて、ほぼ一定の値です。ヒップの位置は、どのようにモデリングされたかによりスケルトンごとに異なります（ときどき左右のヒップの真ん中、時々後ろまたは上にずれた位置に）。向きは同様にほとんど任意の値です。リターゲティングとして使用するのにワールド座標系とすることはすべきではありません。Body Transformがタル越えジャンプでヒップが完全におかしくなるのをみることになります。
 
 
 !!Root Transform
 
-The Root Transform is a projection on the Y plane of the Body Transform and is computed at runtime. At every Animator update, a delta Root Transform is computed for the current delta time. The delta transform is then apply to the Game Object to make it move.
+Root TransformはBody TransformのY平面への投影であり、実行時に算出されます。アニメータのUpdateごとに、差分のRoot Transformが現在のdelta timeにもとづいて算出されます。次に差分のTransformをゲームオブジェクトに適用することで移動させます。
 
-The Animation Clip Editor settings ($$Root Transform Rotation$$, $$Root Transform Position (Y)$$ and $$Root Transform Position (XZ)$$) let you control the Root Transform projection from the Body Transform. Depending on these settings some parts of the Body Transform may be transferred Root Transform. For example you can decide if you want the motion Y position to be part of the Root Motion (trajectory) or part of the pose (body transform), which is known as ~~Baked into Pose~~.
+アニメーション クリップ エディタ設定 ($$Root Transform Rotation$$  、$$Root Transform Position (Y)$$ 、および $$Root Transform Position (XZ)$$) によりBody Transformからの投影であるRoot Transformを制御します。これらの設定によって、Body TransformのいくつかはRoot Transformに転送されます。例えば動作のY位置をRoot Motion（軌道）の一部とするか、ポーズの一部（Body Transform）とするか（~~Baked into Pose~~ と呼びます）、自由に決められます。
 
 Attach:MecanimRootMotion.png
 
 !!Root Transform Rotation
 
-~~Bake into Pose:~~ The orientation will stay on the body transform (or Pose). The Root Orientation will be constant and delta Orientation will be identity. This means the the Game Object will not be rotated at all by that $$AnimationClip$$.
+~~Bake into Pose:（ポーズ焼き込み）~~ 向きはBody Transform（またはポーズ）に従います。Rootの向きは一定値となり、差分の向きはIdentityとなります。つまり、$$Animation Clip$$ によりゲームオブジェクトは一切回転されません。
 
-Only AnimationClips that have similar start and stop Root Orientation should use this option. You will have a Green Light in the UI telling you that an $$AnimationClip$$ is a good candidate. A suitable candidate would be a straight walk or a run.
+似た開始および終了のルート向きをもったアニメーションクリップのみでこのオプションを使用すべきです。UI上の緑のライトによって、$$Animation Clip$$ が良い候補であるか分かります。適する候補は真っ直ぐの歩きや走りなどです。
 
-~~Based Upon~~: This let you set the orientation of the clip. Using ^^Body Orientation^^, the clip will be oriented to follow the forward vector of body. This default setting works well for most Motion Capture (Mocap) data like walks, runs, and jumps, but it will fail with motion like strafing where the motion is perpendicular to the body's forward vector. In those cases you can manually adjust the orientation using the ^^Offset^^ setting. Finally you have ^^Original^^ that will automatically add the authored offset found in the imported clip. It is usually used with Keyframed data to respect orientation that was set by the artist.
+~~Based Upon~~: これによりクリップの向きをセットできます。 ^^Body Orientation^^ を使用して、クリップはボディのForwardベクトルに従います。このデフォルト設定は、ほとんどのモーションキャプチャ（Mocap）データ、すなわち歩く、走る、およびジャンプでは正しく機能しますが、機銃掃射のようにボディのForwadベクトルに対して直角の場合は正しく機能しません。これらの場合では、 ^^Offset^^ 設定により手動で向きを調整できます。最後に ^^Original^^ により、インポートされたクリップに書かれているオフセットの値が自動的に反映されます。これらは通常、アーティストにより設定されたキーフレームつきのデータを尊重して使用されます。
 
-~~Offset~~:  used to enter the offset when that option is chosen for ~~Based Upon~~.
+~~Offset~~: ~~Based Upon~~ によりオプションが有効となっている場合、オフセットを入力します。
 
 !!Root Transform Position (Y)
 
-This uses the same concept describe in Root Transform Rotation.
+これはRoot Transform Rotationの説明と同じ考え方を使用します。
 
-~~Bake Into Pose~~: The Y component of the motion will stay on the Body Transform (Pose). The Y component of the Root Transform will be constant and Delta Root Position Y will be 0. This means that this clip won�t change the Game Object Height. Again you have a Green Light telling you that a clip is a good candidate for baking Y motion into pose.
+~~Bake Into Pose~~（ポーズ焼き込み）: モーションのYコンポーネントはBody Transform（ポーズ）に従います。Root TransformのYコンポーネントは一定値となり差分のRoot Position Yはゼロになります。すなわち、このクリップはゲームオブジェクトの高さを変更しません。再びUI上の緑のライトによって、ポーズにYモーションを焼きこむのに適するか表示されます。
 
-Most of the $$AnimationClips$$ will enable this setting. Only clips that will change the $$GameObject$$ height should have this turned off, like jump up or down.
+ほとんどの $$AnimationClip$$ ではこの設定を有効化します。 $$GameObject$$ の高さを変更するクリップのみ、例えば真上や真下にジャンプする場合などにのみ、これを無効化すべきです。
 
-Note: the @@Animator.gravityWeight@@ is driven by Bake Into Pose position Y. When enabled, @@gravityWeight = 1@@, when @@disable = 0@@. $$gravityWeight$$ is blended for clips when transitioning between states.
+注意: @@Animator.gravityWeight@@ はBake Into PoseのY位置により決定さます。有効化した場合、@@gravityWeight = 1@@ 、また @@disable = 0@@ となります。$$gravityWeight$$ はステート間を移動する場合のみブレンドされます。
 
-~~Based Upon:~~ In a similar way to $$Root Transform Rotation$$ you can choose from ^^Original^^ or ^^Mass Center (Body)^^. There is also a ^^Feet^^ option that is very convenient for $$AnimationClips$$ that change height (~~Bake Into Pose~~ disabled). When using ^^Feet^^ the Root Transform Position Y will match the lowest foot Y for all frames. Thus the blending point always remains around the feet which prevents floating problem when blending or transitioning.
+~~Based Upon:~~ $$Root Transform Rotation$$ と同様に、^^Original^^ または ^^Mass Center (Body)^^ から選択できます。さらに ^^Feet^^ オプションにより、高さを変える $$Animation Clip$$ では便利です（~~Bake Into Pose~~ が無効化されているとき）。 ^^Feet^^ を使用するとき Root Transform Position Y は全てのフレームでもっとも低い足のYと一致します。したがってブレンドされる場所は足の付近にあり、ブレンディングや遷移のときに浮いてしまう問題は回避できます。
 
-~~Offset:~~ In a similar way to $$Root Transform Rotation$$, you can manually adjust the $$AnimationClip$$ height using the $$Offset$$ setting.
+~~Offset:~~  $$Root Transform Rotation$$ と同様に、 $$Offset$$ 設定によって、 $$Animation Clip$$ の高さをマニュアルで調整できます。
 
 !!Root Transform Position (XZ)
 
-Again, this uses same concept describe in $$Root Transform Rotation$$ or $$Root Motion Position (Y).$$
+再び、$$Root Transform Rotation$$ または $$Root Motion Position (Y)$$ と同じ考え方が適用できます。
 
-~~Bake Into Pose~~ will usually be used for �Idles� where you want to force the delta Position (XZ) to be 0. It will stop the accumulation of small deltas drifting after many evaluations. It can also be used for a Keyframed clip with ~~Based Upon~~ ^^Original^^ to force an authored position that was set by the artist.
+~~Bake Into Pose~~ （ポーズ焼き込み）は一般にアイドルのときに、差分のPosition (XZ)を0にしたい場合に使用されます小さな差分が何度も評価された場合に値がドリフトすることを防止します。さらに~~Based Upon~~ ^^Original^^ となっているキーフレームつきのクリップで、アーティストが設定した位置を強制的に設定するのにも使用できます。
 
 !!Loop Pose
 
-Loop Pose (like Pose Blending in Blend Trees or Transitions) happens in the referential of Root Transform. Once the Root Transform is computed, the Pose becomes relative to it. The relative Pose difference between Start and Stop frame is computed and distributed over the range of the clip from 0-100%.
+Loop Poseは (ブレンドツリーまたは遷移の際のポーズのブレンドのように）、Root Transformにもとづいています。Root Transformを算出すると、Poseは相対的に動作します。相対的なPoseの開始や終了フレームの差分は、開始と終了のフレームは算出され、Clip範囲の0-100%に渡って分配されます。
 
-!!Generic Root Motion and Loop Pose.
+!! ジェネリック Root Motion および Loop Pose
 
-This works in essentially the same as Humanoid Root Motion, but instead of using the Body Transform to compute/project a Root Transform, the transfrom set in $$Root Node$$ is used. The Pose (all the bones which transform below the Root Motion bone) is made relative to the Root Transform.
+これは本質的に ヒューマノイド ルート モーションと同様の働きをしますが、Root Transformを算出／投影するためにBody Transformを使用するのではなく、$$Root Node$$ に設定されているTransformが用いられます。ポーズ（ルートモーションより下にTransformがある全てのボーン）はRoot Transformに対して相対的となります。
