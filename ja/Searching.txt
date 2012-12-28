@@ -1,41 +1,43 @@
-! Searching
+! 検索
 
-When working with large complex scenes it can be useful to search for specific objects.  By using the $$Search$$ feature in Unity, you can filter out only the object or group of objects that you want to see. You can search assets by their name, by Component type, and in some cases by asset [[AssetWorkflow#AssetLabels | Labels ]].  You can specify the search mode by choosing from the Search drop-down menu.
+広大で複雑なシーンで作業をするとき、特定のオブジェクトを検索を行うと便利です。Unityの $$Search$$ 機能を用いることで、みたいオブジェクトまたはオブジェクトのグループをフィルタリングすることが出来ます。アセットを名前、コンポーネントの種類、そした場合によってはアセットの [[AssetWorkflow#AssetLabels | ラベル ]] によって検索できます。検索ドロップダウンメニューから選択することで検索モードを指定できます。
 
 
-!! Scene Search
+!! シーンビューでの検索
 
-When a scene is loaded in the Editor, you can see the objects in both the Scene View and the Hierarchy.  The specific assets are shared in both places, so if you type in a search term (eg, "elevator"), you'll see the the filter applied both visually in the Scene View and a more typical manner in the Hierarchy. There is also no difference between typing the search term into the search field in the Scene View or the Hierachy -- the filter takes effect in both views in either case.
+エディタでシーンがロードされると、オブジェクトをシーンビューと階層ビューの両方でみることが出来ます。特定のアセットは両方の場所で共有されるため、検索文字列（例えば "elevator"）と入力すると、フィルタがシーンビューおよび、より典型的な形で階層ビューの両方に適用されることが確認できます。検索文字列を検索フィールドに入力したときに、シーンビューまたは階層ビューのいずれで入力しても違いはなく、フィルターは両方のビューで有効になります。
 
 Attach:SceneSearchNone35.png\\
-''Scene View and Hierarchy with no search applied.''
+''検索を行ってないシーンビューおよび階層ビュー。''
 
 Attach:SceneSearchName35.png\\
-''Scene View and Hierarchy with active filtering of search term.''
+''検索文字列によるフィルタリングを行ったシーンビューおよび階層ビュー。''
 
-When a search term filter is active, the Hierarchy doesn't show hierarchical relationships between GameObjects, but you can select any GameObject, and it's hierarchical path in the scene will be shown at the bottom of the Hierarchy.
+検索文字列フィルタが有効であるとき、階層ビューはゲームオブジェクトで階層関係を表示しませんが、ゲームオブジェクトを選択すれば、シーンでのそのの階層パスは階層の一番下に表示されます。
 
 Attach:SceneSearchPath35.png
 ''Click on a GameObject in the filtered list to see its hierarchical path.''
+''フィルタリングを行ったゲームオブジェクトをクリックして、階層パスを表示。''
 
-When you want to clear the search filter, just click the small cross in the search field.
+検索フィルタをクリアしたい場合、検索フィールドの小さな「×」ボタンをクリックします。
 
-In the Scene search you can search either by Name or by Type. Click on the small magnifying glass in the search field to open the search drop-down menu and choose the search mode.
+シーンの検索では、名前（Name）または種類（Type）により検索できます。検索フィールドの小さな虫眼鏡のマークをクリックして検索ドロップダウンメニューを開き、検索モードを選択します。
 
 Attach:SearchScenePopup35.png
-''Search by Name, Type, or All.''
+''名前（Name）、種類（Type）、または全て（All）で検索する.''
 
 
-!! Project Search
+!! プロジェクトビューでの検索
 
-The same fundamentals apply to searching of assets in the Project View -- just type in your search term and you'll see all the relevant assets appear in the filter.
+プロジェクトビューでのアセットの検索は同じ基本ルールが適用されます、検索文字列を入力して、関連するアセットがフィルタリングして表示されます。
 
-In the Project search you can search by Name or by Type as in the Scene search, and additionally you can search by Label. Click on the small magnifying glass in the search field to open the search drop-down menu and choose the search mode.
+プロジェクトビューでの検索では、シーンビューでの検索と同様に名前や種類で検索できて、さらにラベル（Label）によって検索できます。検索フィールド小さな虫眼鏡のマークをクリックして検索ドロップダウンメニューを開き、検索モードを選択します。
+
 
 Attach:SearchProjectPopup35.png
-''Search by Name, Type, Label, or All.''
+''名前（Name）、種類（Type）、ラベル（Label）、または全て（All）で検索する.''
 
 
-!! Object Picker Search
+!! オブジェクト選択ツールでの検索
 
-When assigning an object via the [[EditingReferenceProperties#ObjectPicker | Object Picker]], you can also enter a search term search to filter the objects you want to see.
+オブジェクトを [[EditingReferenceProperties#ObjectPicker | オブジェクト選択ツール]] を通してオブジェクトを割り当てるとき、検索文字列をにゅうりょくして、みたいオブジェクトをフィルタリングすることが出来ます。
