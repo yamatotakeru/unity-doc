@@ -394,6 +394,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 **** [[script-ScreenOverlay]]
 **** [[script-ColorCorrectionLut]]
 **** [[script-BloomAndLensFlares]]
+**** [[script-FastBloom]]
 **** [[script-ColorCorrectionCurves]]
 **** [[script-ContrastEnhance]]
 **** [[script-Crease]]

@@ -8,7 +8,7 @@ To import a legacy animation, you first need to mark it as such in the Mesh impo
 
 Attach:MecanimLegacyAnimationProps.png
 
-The Animation tab on the importer will then look something like this:-
+The Animation tab on the importer will then look something like this:
 
 ||``Import Animation`` ||Selects whether or not animation should be imported at all. ||
 ||``Wrap Mode`` ||The method of handling what happens when the animation comes to an end:- ||
@@ -17,7 +17,7 @@ The Animation tab on the importer will then look something like this:-
 ||>>>``Loop`` ||Play to the end, then immediately restart from the beginning. ||
 ||>>>``PingPong`` ||Play to the end, then play from the end in reverse, and so on. ||
 ||>>>``Forever`` ||Play to the end, then loop the last frame indefinitely. ||
-||``Anim Compression`` ||Settings to attempt to remove redundant information from clips:- ||
+||``Anim Compression`` ||Settings to attempt to remove redundant information from clips. ||
 ||>>>``Off`` ||No compression. ||
 ||>>>``Keyframe reduction`` ||Attempt to remove keyframes where differences are too small to be seen||
 ||>>>``Keyframe reduction and compression``||As for ''Keyframe reduction'', but clip data is also compressed. ||
