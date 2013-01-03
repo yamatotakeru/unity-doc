@@ -1,21 +1,20 @@
-! Troubleshooting Shadows
+! シャドウ トラブルシューティング
 
-This page lists solutions to common [[Shadows | shadow]] problems.
+このページでは良くある [[Shadows | Shadow]] 問題点に関する解決策を一覧にしています。
 
-!!! I see no shadows at all!
+!!! シャドウが全く見えない
 
-* Shadows are a $$Unity Pro$$ only feature, so without Unity Pro you won't get shadows. Simpler shadow methods, like using a [[class-Projector | Projector]], are still possible of course.
-* Shadows also require certain graphics hardware support. See [[Shadows]] page for details.
-* Check if shadows are not completely disabled in [[class-QualitySettings | Quality Settings]].
+* シャドウは $$Unity Pro$$ のみの機能であるため、Unity Proなくしてシャドウは表示されません。それでもシンプルなシャドウ手法、例えば [[class-Projector | Projector]] を使用したものは当然に使用できます。
+* シャドウは、必要要件を満たすグラフィックス ハードウェアでのみサポートされています。詳細については [[Shadows]] ページを参照下さい。
+* シャドウが完全に無効化されていないか  [[class-QualitySettings | Quality Settings]] でチェックします。
 >>u30<<
-* __Shadows are currently not supported for iOS and Android mobile platforms.__
+* __シャドウはiOSおよびAndroidモバイルプラットフォームではサポートされていません。__
 >><<
 
-!!! Some of my objects do not cast or receive shadows
+!!! 一部のオブジェクトがシャドウを投影しない／されない
 
-First, the [[class-MeshRenderer | Renderer]] has to have ``Receive Shadows`` on to have shadows on itself; and ``Cast Shadows`` on to cast shadows on other objects (both are on by default).
+最初に [[class-MeshRenderer | Renderer]] で ``Receive Shadows`` を有効にしないと自身にシャドウが投影されず、 ``Cast Shadows`` を有効にしないと他のオブジェクトにシャドウを投影しません（ともにデフォルトでは有効）。
 
-Next, only opaque objects cast and receive shadows; that means if you use built-in [[shader-TransparentFamily | Transparent]] or Particle shaders then you'll get no shadows. In most cases it's possible to [[shader-TransparentCutoutFamily | Transparent Cutout]] shaders (for objects like fences, vegetation etc.). If you use custom written [[Shaders]], they have to be pixel-lit and use [[SL-SubshaderTags | Geometry render queue]]. Objects using ``VertexLit`` shaders do not receive shadows either (but can cast shadows just fine).
+次に、不透明のオブジェクトのみがシャドウを投影します／されます。すなわち、内蔵の [[shader-TransparentFamily | Transparent]] またはパーティクル シェーダを用いた場合シャドウは出来ません。ほとんどのケースでは [[shader-TransparentCutoutFamily | Transparent Cutout]] シェーダが利用可能です（フェンスや植生といったオブジェクト）。もしカスタムで書かれた [[Shaders]] を使用する場合、ピクセル ライティングで、かつ、[[SL-SubshaderTags | Geometry render queue]] を使用している必要があります。``頂点ライティング`` シェーダを使用しているオブジェクトは自身に影を投影されませｎ（逆に他に投影することは出来ます）。
 
-Finally, in [[RenderTech-ForwardRendering | Forward rendering path]], only the brightest directional light can cast shadows. If you want to have many shadow casting lights, you need to use [[RenderTech-DeferredLighting | Deferred Lighting]] rendering path.
-
+最後に、 [[RenderTech-ForwardRendering | Forward Rendering パス]] では、もっとも明るい方向性ライトのみがシャドウを投影できます。もし多くのライトによりシャドウを投影したい場合、 [[RenderTech-DeferredLighting | Deferred Lighting]] レンダリング パスを使用する必要があります。
