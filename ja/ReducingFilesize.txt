@@ -30,8 +30,8 @@ Attach:FileSizeOptimizationTexture.png\\
 
 !!! ''テクスチャはどのくらいのメモリを消費しますか?''
 
-!デスクトップ!
->>デスクトップ<<
+!Desktop!
+>>desktop<<
 ||__Compression__      ||__メモリの消費__ ||
 ||``RGB Compressed DXT1``  ||0.5 bpp (バイト/ピクセル)  ||
 ||``RGBA Compressed DXT5`` ||1 bpp ||
