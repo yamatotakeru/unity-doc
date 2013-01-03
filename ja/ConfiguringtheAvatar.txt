@@ -1,40 +1,40 @@
-!Configuring the Avatar
+! アバターの設定
 
-Since the $$Avatar$$ is such an important aspect of the Mecanim system, it is important that it is configured properly for your model. So, whether the [[Creating the Avatar|automatic Avatar creation]] fails or succeeds, you need to go into the ^^Configure Avatar^^ mode to ensure your Avatar is valid and properly set up. It is important that your character's bone structure matches Mecanim's predefined bone structure ''and'' that the model is in T-pose.
+メカニムシステムにとって $$Avatar$$ が重要な側面であるため、モデルにとって適切に設定されることが重要です。このため [[Creating the Avatar|自動アバタ―作成]] が失敗しても成功しても、 ^^Configure Avatar^^ モードに入ってアバタ―が有効で適切にセットアップされていることを確認する必要があります。キャラクターのボーン構造がメカニムの事前定義されたボーン構造と一致して ''かつ'' モデルがTポーズになっている必要があります。
 
-If the automatic Avatar creation fails, you will see a cross next to the ''Configure'' button. 
+もし自動アバタ―作成が失敗した場合、 ''Configure'' ボタンの隣に「×」が表示されるのが確認できます。
 Attach:MecanimAvatarInvalid.png
 
-If it succeeds, you will see a check/tick mark:
-Attach:MecanimAvatarApplied.png
+もし成功した場合、チェックのマークが表示されます。
+Attach:MecanimAvatarApplied.png $$Avatar$$ 
 
-Here, success simply means all of the required bones have been matched but for better results, you might want to match the optional bones as well and get the model into a proper T-pose.
+ここで、成功は単に必要なボーンがすべてマッチングされたことを意味しますが、さらに良い結果のためには、必須ではないボーンもマッチングさせたうえでモデルを適切なTポーズにする必要があります
 
-When you go to the ^^Configure ...^^ menu, the editor will ask you to save your scene. The reason for this is that in ^^Configure^^ mode, the Scene View is used to display bone, muscle and animation information for the selected model alone, without displaying the rest of the scene.
+^^Configure ...^^ メニューに入ったとき、エディタはシーンを保存するように求めます。この理由は、 ^^Configure^^ モードでは、シーンビューは、シーンの他の部分を表示せずに、ボーン、マッスル、選択されたモデルのみのアニメーション情報、を表示します。
 
 Attach:MecanimConfigureAvatarSaveDialog.png
 
-Once you have saved the scene, you will see a new ~~Avatar Configuration~~ inspector, with a bone mapping.
+シーンをセーブした後は、新規の ~~Avatar Configuration~~ インスペクタが、ボーンマッピングとともに表示されます。
 Attach:MecanimAvatarMappingValid.png
 
-The inspector shows which of the bones are required and which are optional - the optional ones can have their movements interpolated automatically. For Mecanim to produce a valid match, your skeleton needs to have at least the required bones in place. In order to improve your chances for finding a match to the Avatar, name your bones in a way that reflects the body parts they represent (names like "LeftArm", "RightForearm" are suitable here). 
+インスペクタは、どのボーンが必須で、どれが必須でないかを表示します‐必須でないボーンは自動的に動作は補間されます。メカニムが適切なマッチングするためには、スケルトンは少なくとも必須のボーンが正しい位置にいる必要があります。アバタ―が探して一致するボーンを見つける可能性を高めるために、ボーンのネーミングは、体のパーツを反映したものにします（ "LeftArm" 、 "RightForearm"  でこの場合は十分です）。
 
-If the model does NOT yield a valid match, you can manually follow a similar process to the one used internally by Mecanim:- 
+もしモデルに適切なマッチングが「ない」場合は、メカニムに内部的に使用されるものと同様のプロセスを手動で行うことが出来ます:-
 
-#^^Sample Bind-pose^^ (try to get the model closer to the pose with which it was modelled, a sensible initial pose)
-#^^Automap^^ (create a bone-mapping from an initial pose)
-#^^Enforce T-pose^^ (force the model closer to T-pose, which is the default pose used by Mecanim animations)
+# ^^Sample Bind-pose^^ （モデルをモデリングしたポーズ、すなわち意味のある初期ポーズ、に近づけます。）
+# ^^Automap^^ （初期ポーズからボーンマッピングを作成します。）
+# ^^Enforce T-pose^^ （モデルを、メカニムアニメーションのデフォルトポーズである、Tポーズに近い形を強制します。）
 
 Attach:MecanimPoseMenus.png
 
-If the auto-mapping (^^Mapping->Automap^^) fails completely or partially, you can assign bones by either draging them from the ~~Scene~~ or from the ~~Hierarchy~~. If Mecanim thinks a bone fits, it will show up as green in the ~~Avatar Inspector~~, otherwise it shows up in red. 
+もし自動マッピング (^^Mapping->Automap^^) が完全または部分的に失敗する場合、 ~~Scene~~ または ~~Hierarchy~~ からドラッグしてボーンを割り当てることが出来ます。もしメカニムがボーンが一致したと判断した場合、 ~~Avatar Inspector~~ で緑色に表示され、そうでない場合は赤色で表示されます。
 
-Finally, if the bone assignment is correct, but the character is not in the correct ''pose'', you will see the message "Character not in T-Pose". You can try to fix that with ^^Enforce T-Pose^^ or rotate the remaining bones into T-pose. 
+最後に、もしボーンの割り当てが正しい場合、しかしキャラクターの ''ポーズ'' が正しくない場合、 "Character not in T-Pose" が表示されます。 ^^Enforce T-Pose^^ 、または残ったボーンを回転してTポーズにすることで、この問題は解決できます。
 
 Attach:MecanimMappingMenus.png
 
 (:include class-HumanTemplate:)
 
-(back to [[Avatar Creation and Setup]])
+([[Avatar Creation and Setup]] に戻る)
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)
