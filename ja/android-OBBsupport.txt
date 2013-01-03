@@ -1,25 +1,21 @@
-This is the deal with .apks and .obbs, in Unity 4.0 and in general.
+ここではUnity4.0 および全般での .apks および .obb を扱います。 
 
-* For any application (.apk) bigger than 50MBs, the .apk has to be split up if you want to publish it on Google Play.
-* The Split App option in 4.0 will create an .apk that includes all the binary code (java, native, plugins etc) AND the first level/scene of your Unity project.
-    Everything else (all additional scenes, resources, streaming assets etc) are placed in the .obb.
-* When starting an .apk built with Split App enabled the application will check to see if it can access the .obb file from it's position on the sdcard (location explained in the Apk Expansion docs from Google).
-  Obviously, if the .obb can't be found only the first level can accessed (since the rest of the data is in the .obb).
-  The first level is then required to make the .obb available on sdcard, before the application can proceed to subsequent levels.
-  If the .obb is found the Application.dataPath will switch from .apk path, to instead point to .obb. Downloading the .obb is then not necessary.
-* The contents of the .obb are never used manually. Always treat the .apk+.obb as a unique bundle, the same way you would treat a single big .apk.
+* アプリケーション（.apk）が50MBより大きい場合、.apkをGoogle Playでパブリッシュする場合は分割する必要があります。
+* Unity4.0からある Split App オプションにより全てのバイナリコード（Java、ネイティブ、プラグイン、その他）および Unityプロジェクトの最初のレベル／シーンを含むを含む.apkを作成します。他の全て（全ての追加シーン、リソース、ストリーミングアセット、その他）は .obb に含まれます。
+* Split Appを有効かしてビルドされた .apk を開始するとき、アプリケーションは .obbファイルを現在のSDカードの場所（Googlのapk拡張機能ドキュメントに記載されている場所）からアクセスできるかチェックします。明らかに、もし .obbが見つからない場合、最初のレベルしかアクセスできません（残りのデータは .obb に含まれるため）。最初のレベルが .obb ファイルをSDカードで利用可能とするため、アプリケーションが後続のレベルに進む前に必要です。もし .obb が見つかった場合、 Application.dataPath は .apkパスから .obbを指定するように切替されます。その後は .obb ファイルのダウンロードは必要ありません。
+* .obb のコンテンツはマニュアルで使用されることは絶対にありません。ひとつの大きい .apk ファイルを扱うように、.apk と .obbを固有のバンドルとして扱って下さい。
 
-This is what's in Unity 4.0. The Split App option is not the only way to split an .apk into .apk/.obb (you can use 3rd party plugins/asset bundles/whatever), but it's the only automatic splitting officially supported.
+Unity 4.0 に含まれるのはこの機能です。Split App オプションは .apk ファイルを .apk／.obb ファイルに分割する唯一の方法ではありません（サードパーティのプラグイン／アセット、バンドル等を使用できます）が、公式にサポートされている唯一の自動的な分割方法です。
 
-Now to the downloading of the .obb.
+次に .obb のダウンロードに移ります。
 
-* The .obb may (but it's not required, in its current form at least) to be hosted on the Google Play servers.
-* If the .obb is published together with the .apk on Google Play, you must also include code to download the .obb. (for those devices that require it, and for scenarios where the .obb is lost)
-* The asset store has a plugin (adapted from the Google Apk Expansion examples) which does this for you. It will download the .obb and put it in the right place on the sdcard.
-* When using the asset store plugin you obviously need to call that plugin from the first scene (as explained above).
-* The asset store plugin can also be used to download .obb's created in some other way (single data file, a zip of asset bundles, etc) - it's agnostic to how the .obb was created.
+* Google Playのサーバに .obb ファイルをホスティングすることは可能です（しかし、少なくとも現在の形では必須ではありません）。
+* もし .obb が Google Playで .apk とともにパブリッシュされた場合、 .obbをダウンロードするコードもまた含める必要があります。（それを必要とするデバイスのため、および .obb が失われたシナリオのため）
+* アセットストアにはこれを行ってくれるプラグイン（Google Apk拡張機能のサンプルから適用されたもの）があります。これにより .obb をダウンロードして、SDカードの正しい場所に配置します。
+* アセットストアのプラグインを使用するとき、そのプラグインを最初のシーンから呼ぶ必要があります（前述で説明したとおり）。
+* アセットストアのプラグインは、作成された .obb を別の方法で（ひとつのデータファイルとして、アセットバンドルのzipとして、など）ダウンロードすることにも使用できます - どのように .obb が作成されたかにはとらわれません。
 
-Finally:
+最後に:
 
-* This is only the first version of the automatic .obb split support.
-* There will be improvements, and we have a long list of things we want to add..
+* これはあくまで自動的な .obb 分割サポートの最初のバージョンです
+* 今後改善は行われ、追加したいと考えている機能は数多くあります
