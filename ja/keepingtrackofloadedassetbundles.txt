@@ -1,16 +1,17 @@
-!! Keeping Track of loaded AssetBundles
+!! ロードされたアセットバンドルのトラッキング方法
 
-Unity will only allow you to have a single instance of a particular AssetBundle loaded at one time in your application. What this means is that you can�t retrieve an AssetBundle from a WWW object if the same one has been loaded previously and has not been unloaded. In practical terms it means that when you try to access a previously loaded AssetBundle like this:
+Unityにより、アプリケーションにおいて、特定のアセットバンドルには一度にひとつのインスタンスのみ持つことができます。つまり、もし同じものが以前にロードされていてアンロードされていなければ、WWWオブジェクトからアセットバンドルを取得できないということです。実際的には以前にロードされたアセットバンドルをアクセスするときは次のようにします:
 
 [@AssetBundle bundle = www.assetBundle;@]
 
-the following error will be thrown
+次のエラーが返されます
 
 [@Cannot load cached AssetBundle. A file of the same name is already loaded from another AssetBundle@]
 
-and the assetBundle property will return null. Since you can�t retrieve the AssetBundle during the second download if the first one is still loaded, what you need to do is to either ''unload'' the AssetBundle when you are no longer using it, or maintain a reference to it and avoid downloading it if it is already in memory. You can decide the right course of action based on your needs, but our recommendation is that you ''unload'' the AssetBundle as soon as you are done loading objects. This will free the memory and you will no longer get an error about loading cached AssetBundles. 
+そして assetBundle は null を返します。もし一回目がまだロードされている場合、二回目のダウンロードではアセットバンドルを取得できないため、やらなければいけないこととしては、アセットバンドルを使用しなくなったときに ''アンロード'' するか、または参照を維持して、すでにメモリにあるときはダウンロードすることを避けることです。ニーズによって、取るべきアクションは判断できますが、推奨はオブジェクトのロード完了したら直ちにアセットバンドルを''アンロード'' することです。これによりメモリが解放され、キャッシュしたアセットバンドルをロードするときのエラーが出なくなります。
 
-If you do want to keep track of which AssetBundles you have downloaded, you could use a wrapper class to help you manage your downloads like the following:
+もしどのアセットバンドルがダウンロードされたかトラッキングする場合は、ラッパークラスを使ってダウンロードを次のように管理します:
+
 
 [@using UnityEngine;
 using System;
@@ -18,12 +19,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 static public class AssetBundleManager {
-   // A dictionary to hold the AssetBundle references
+   // アセットバンドルへの参照を保持するためのディクショナリ
    static private Dictionary<string, AssetBundleRef> dictAssetBundleRefs;
    static AssetBundleManager (){
        dictAssetBundleRefs = new Dictionary<string, AssetBundleRef>();
    }
-   // Class with the AssetBundle reference, url and version
+   // AssetBundleへの参照、url、バージョンのあるクラス
    private class AssetBundleRef {
        public AssetBundle assetBundle = null;
        public int version;
@@ -33,7 +34,7 @@ static public class AssetBundleManager {
            version = intVersionIn;
        }
    };
-   // Get an AssetBundle
+   // アセットバンドルを取得
    public static AssetBundle getAssetBundle (string url, int version){
        string keyName = url + version.ToString();
        AssetBundleRef abRef;
@@ -42,7 +43,7 @@ static public class AssetBundleManager {
        else
            return null;
    }
-   // Download an AssetBundle
+   // アセットバンドルをダウンロード
    public static IEnumerator downloadAssetBundle (string url, int version){
        string keyName = url + version.ToString();
        if (dictAssetBundleRefs.ContainsKey(keyName))
@@ -58,7 +59,7 @@ static public class AssetBundleManager {
            }
        }
    }
-   // Unload an AssetBundle
+   // アセットバンドルをアンロード
    public static void Unload (string url, int version, bool allObjects){
        string keyName = url + version.ToString();
        AssetBundleRef abRef;
@@ -79,7 +80,7 @@ class ManagedAssetBundleExample : MonoBehaviour {
    public int version;
    AssetBundle bundle;
    void OnGUI (){
-       if (GUILayout.Label ("Download bundle"){
+       if (GUILayout.Label ("バンドルをダウンロード"){
            bundle = AssetBundleManager.getAssetBundle (url, version);
            if(!bundle)
                StartCoroutine (DownloadAB());
@@ -94,7 +95,7 @@ class ManagedAssetBundleExample : MonoBehaviour {
    }
 }@]
 
-Please bear in mind, that the AssetBundleManager class in this example is static, and any AssetBundles that you are referencing will not be destroyed when loading a new scene. Use this class as a guide but as recommended initially it is best if you ''unload'' AssetBundles right after they have been used. You can always clone a previously Instantiated object, removing the need to load the AssetBundles again.
+このサンプルでAssetBundleManager クラスがstaticであることに留意する必要があり、新しいシーンをロードするとき参照する全てのアセットバンドルは破棄されません。このクラスをガイドとして使用するのは良いですが、最初に述べたように使用した直後にアセットバンドルを''アンロード''するのがベストです。先にインスタンス化されたオブジェクトをいつでもクローンすることが可能で、再度アセットバンドルをロードする必要がなくなります。
 
 
-[[AssetBundlesIntro|back to AssetBundles Intro]]
+[[AssetBundlesIntro|アセットバンドル イントロに戻る]]
