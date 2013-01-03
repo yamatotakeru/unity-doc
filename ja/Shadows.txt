@@ -1,58 +1,55 @@
-! Shadows in Unity
+! Unityでのシャドウ
+
+Unity Proによりどのようなライトでもリアルタイムの$$shadows$$ をつけることが出来ます。オブジェクトは互いに、また自分自身にも("self shadowing")シャドウを投影することが出来ます。全ての[[class-Light | ライト]] 、すなわち方向性、スポット、ポイント、でシャドウはサポートされます。
+
+シャドウを使用するときは[[class-Light | ライト]] 上で^Hard Shadows^^ または ^^Soft Shadows^^ を選ぶだけです。しかし最適化されたシャドウ品質とパフォーマンスが必要な場合はいくつか追加での考慮点があります。
+
+ [[Shadow Troubleshooting]] のページに良くあるシャドウの問題についての解決策が含まれます。
+
+興味深いことに、最も良いシャドウはリアルタイムでないものです。ゲームのレベルにおける物体とライティングが静的である場合は必ず3Dアプリケーションでライトマップを事前計算します。シャドウをオフラインで算出することで品質やパフォーマンスでより良い結果が得られます。 ''ではリアルタイムが必要な場合に移ります。"
+
+!! シャドウ品質の微調整
+
+Unityはいわゆる [[http://en.wikipedia.org/wiki/Shadow_mapping | シャドウマップ]] を使用してシャドウを表示します。シャドウマッピングはテクスチャベースのアプローチであり、 "シャドウテクスチャ" ライトからシーンに投影されるとして考えることが出来ます。したがって通常のテクスチャのようにシャドウマッピングの品質は二つの要素に強く依存します:
+
+* シャドウマップの$$resolution$$ (サイズ) 。シャドウマップが大きいほどシャドウの品質が上がります。
+
+* シャドウの $$filtering$$ 。$$Hard shadows$$ は最も近いシャドウマップのピクセルを使用します。$$Soft shadows$$ は複数のシャドウマップのピクセルの平均をとり、よりスムーズなシャドウとなります(ソフトシャドウはレンダリング負荷がより高価です)。異なる ``Light`` の種類により異なるアルゴリズムが使用されます。
+* 方向性ライトでのシャドウ品質にとって決定的な設定は ^^Shadow Distance^^ および ^^Shadow Cascades^^ であり、 [[class-QualitySettings | Quality Settings] に含まれてます。^^Shadow Resolution^^ もまた、考慮されますが、方向性ライトで最初に改善すべきはシャドウの距離です。方向性ライトのシャドウに関する詳細は [[DirectionalShadowDetails | Directional Shadow Details]] で見つけることが出来ます。
+* スポットおよびポイントライトについては、^^Shadow Resolution^^  によりシャドウマップのサイズが決まります。それに加えて、スクリーンのごく一部をカバーするライトでは、より小さなシャドウマップ解像度が使用されます。
+
+シャドウマップのサイズ
+マップサイズ算出方法の詳細については[[Shadow Size Details]] を参照下さい。
 
 
-Unity Pro makes it possible to use real-time $$shadows$$ on any light. Objects can cast shadows onto each other and onto parts of themselves ("self shadowing"). All types of [[class-Light | Lights]] - Directional, Spot and Point - support shadows.
+!! シャドウのパフォーマンス
 
-Using shadows can be as simple as choosing ^^Hard Shadows^^ or ^^Soft Shadows^^ on a [[class-Light | Light]]. However, if you want optimal shadow quality and performance, there are some additional things to consider.
+リアルタイムシャドウはかなりパフォーマンス消費があるため節約を意識しながら使用することが大切です。各ライトがシャドウをレンダリングするためには投影するものもシャドウマップにレンダリングして、次にシャドウを投影されるもののシャドウマップでレンダリングが行われます。これによりシャドウを投影するライトは $$Pixel lights$$ よりも高価になりますが、コンピュータの進化はめざましいものがあります。
+$$Soft shadows$$ のレンダリングは$$Hard shadows$$ よりもさらに高価です。負荷は完全にグラフィックスカードにかかる(シェーダーだけ処理が長くなります)ので、ハードシャドウかソフトシャドウかによってメモリやCPUに影響はありません。
 
-The [[Shadow Troubleshooting]] page contains solutions to common shadowing problems.
-
-Curiously enough, the best shadows are non-realtime ones! Whenever your game level geometry and lighting is static, just precompute lightmaps in your 3D application. Computing shadows offline will always result in better quality and performance than displaying them in real time. ''Now onto the realtime ones...''
-
-
-!! Tweaking shadow quality
-
-Unity uses so called [[http://en.wikipedia.org/wiki/Shadow_mapping | shadow maps]] to display shadows. Shadow mapping is a texture based approach, it's easiest to think of it as "shadow textures" projecting out from lights onto the scene. Thus much like regular texturing, quality of shadow mapping mostly depends on two factors:
-* The $$resolution$$ (size) of the shadow maps. The larger the shadow maps, the better the shadow quality.
-* The $$filtering$$ of the shadows. $$Hard shadows$$ take the nearest shadow map pixel. $$Soft shadows$$ average several shadow map pixels, resulting in smoother looking shadows (but soft shadows are more expensive to render).
-
-Different ``Light`` types use different algorithms to calculate shadows.
-* For Directional lights, the crucial settings for shadow quality are ^^Shadow Distance^^ and ^^Shadow Cascades^^, found in [[class-QualitySettings | Quality Settings]]. ^^Shadow Resolution^^ is also taken into account, but the first thing to try to improve directional shadow quality is reducing shadow distance. All the details about directional light shadows can be found here: [[DirectionalShadowDetails | Directional Shadow Details]].
-* For Spot and Point lights, ^^Shadow Resolution^^ determines shadow map size. Additionally, for lights that cover small area on the screen, smaller shadow map resolutions are used.
-
-Details on how shadow map sizes are computed are in [[Shadow Size Details]] page.
-
-
-!! Shadow performance
-
-Realtime shadows are quite performance hungry, so use them sparingly. For each light to render its shadows, first any potential shadow casters must be rendered into the shadow map, then all shadow receivers are rendered with the shadow map. This makes shadow casting lights even more expensive than $$Pixel lights$$, but hey, computers are getting faster as well!
-
-$$Soft shadows$$ are more expensive to render than $$Hard shadows$$. The cost is entirely on the graphics card though (it's only longer shaders), so Hard vs. Soft shadows don't make any impact on the CPU or memory.
-
-[[class-QualitySettings | Quality Settings]] contains a setting called ^^Shadow Distance^^ - this is how far from the camera shadows are drawn. Often it makes no sense to calculate and display shadows that are 500 meters away from the camera, so use as low shadow distance as possible for your game. This will help performance (and will improve quality of directional light shadows, see above).
+[[class-QualitySettings | Quality Settings]] には^^Shadow Distance^^ と呼ばれる設定があります。これはカメラのシャドウがどれだけ遠くまで描画されるかを示します。通常はカメラから500メートル以上離れたシャドウを計算して表示する意味はないので、ゲームでは出来る限り短いシャドウ距離にして下さい。
 
 [[#hardware]]
-!! Hardware support for shadows
+!! シャドウのハードウェア要件
 
-Built-in shadows require a fragment program (pixel shader 2.0) capable graphics card. This is the list of supported cards:
-* On Windows:
-** ATI Radeon 9500 and up, Radeon X series, Radeon HD series.
-** NVIDIA GeForce 6xxx, 7xxx, 8xxx, 9xxx, GeForce GT, GTX series.
-** Intel GMA X3000 (965) and up.
-* On Mac OS X:
-** Mac OS X 10.4.11 or later.
-** ATI Radeon 9500 and up, Radeon X, Radeon HD series.
-** NVIDIA GeForce FX, 6xxx, 7xxx, 8xxx, 9xxx, GT, GTX series.
-** Intel GMA 950 and later.
-*** Soft shadows are disabled because of driver bugs (hard shadows will be used instead).
-* Mobile (iOS & Android):
+ビルトインのシャドウはフラグメント プログラム(ピクセル シェーダー2.0)に対応したグラフィックス カードが必要です。対応しているグラフィックスカードは次のとおりです: program (pixel shader 2.0) capable graphics card. This is the list of supported cards:
+* Windows:
+** ATI Radeon 9500 以上、 Radeon X シリーズ、Radeon HD シリーズ。
+** NVIDIA GeForce 6xxx、7xxx、8xxx、9xxx、GeForce GT、GTXシリーズ。
+** Intel GMA X3000 (965) 以降。
+* Mac OS X:
+** Mac OS X 10.4.11 以降。
+** ATI Radeon 9500 以上、 Radeon X シリーズ、Radeon HD シリーズ。
+** NVIDIA GeForce FX 6xxx、7xxx、8xxx、9xxx、GeForce GT、GTXシリーズ。
+** Intel GMA 950 以降。
+*** ソフトシャドウはドライバーのバグがあり無効化されています。（代わりにハードシャドウが使用されます。）
+* モバイル (iOS & Android):
 ** OpenGL ES 2.0
-** GL_OES_depth_texture support. Most notably, Tegra-based Android devices do not have it, so shadows are not supported there.
+** GL_OES_depth_texture のサポート。特筆すべきこととしてTegraベースのAndroidデバイスにはないので、シャドウは対応していません。
 
-!! Notes
+!! ヒント
 
-* [[RenderTech-ForwardRendering | Forward rendering path]] supports only one directional shadow casting light. [[RenderTech-VertexLit | Vertex Lit]] rendering path does not support realtime shadows.
-* Vertex-lit lights don't have shadows.
-* Vertex-lit materials won't receive shadows (but do cast shadows).
-* Transparent objects don't cast or receive shadows. Transparent Cutout objects do cast and receive shadows.
-
+* [[RenderTech-ForwardRendering | Forward rendering パス]] は、方向性ライトが投影するライトはひとつのみ対応しています。[RenderTech-VertexLit | Vertex Lit]] レンダリングパスはリアルタイムシャドウに対応していません。
+* 頂点ライトはシャドウが出来ません。
+* 頂点ライトのマテリアルはシャドウを投影されません（他への投影はします）。
+* 透明なオブジェクトはシャドウを投影しません／されません。透明カットアウトのオブジェクトはシャドウを投影します／されます。
