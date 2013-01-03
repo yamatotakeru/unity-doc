@@ -1,35 +1,35 @@
-!AssetBundles FAQ
+! アセットバンドル FAQ
 
-#[[#whatare|What are AssetBundles?]]
-#[[#whatfor|What are they used for?]]
-#[[#howtocreate|How do I create an AssetBundle?]]
-#[[#howtouse|How do I use an AssetBundle?]]
-#[[#howtouseeditor|How do I use AssetBundles in the Editor?]]
-#[[#howdoIcache|How do I cache AssetBundles?]]
-#[[#crossplatform|Are AssetBundles cross-platform?]]
-#[[#howidentified|How are assets in AssetBundles identified]]
-#[[#reusebundles|Can I reuse my AssetBundles in another game?]]
-#[[#futureplayer|Will an AssetBundle built now be usable with future versions of Unity?]]
-#[[#futureplayer|How can I list the objects in an AssetBundle?]]
+#[[#whatare|アセットバンドルとは何ですか？]]
+#[[#whatfor|何に使用しますか？]]
+#[[#howtocreate|どうやってアセットバンドルを作成しますか？]]
+#[[#howtouse|どうやってアセットバンドルを使用しますか？]]
+#[[#howtouseeditor|どうやってアセットバンドルをエディタで使用しますか？]]
+#[[#howdoIcache|アセットバンドルをどうやってキャッシュしますか？]]
+#[[#crossplatform|アセットバンドルはクロスプラットフォームですか？]]
+#[[#howidentified|アセットバンドルのアセットはどのように識別しますか？]]
+#[[#reusebundles|アセットバンドルを別のゲームで再利用できますか？]]
+#[[#futureplayer|現在ビルドしたアセットバンドルは将来のUnityバージョンで使用できますか？]]
+#[[#futureplayer|アセットバンドルのオブジェクトはどのようにしてリストにできますか？]]
 
 
 ----
 
-#%item value=1%[[#whatare]]What are AssetBundles?
+#%item value=1%[[#whatare]]アセットバンドルとは何ですか？
 
-AssetBundles are a collection of assets, packaged for loading at runtime. With Asset Bundles, you can dynamically load and unload new content into your application. AssetBundles can be used to implement post-release DLC. 
-
-
-#%item value=2%[[#whatfor]]What are they used for?
-
-They can be used to reduce the amount of space on disk used by your game, when first deployed. It can also be used to add new content to an already published game.
+アセットバンドルはアセットの集合で、実行するときにロードできるようパッケージ化されてます。アセットバンドルによりアプリケーションに新しいコンテンツを動的にロード、アンロードすることが出来ます。アセットバンドルはリリース後の動的コンテンツローディングの実装に使用できます。
 
 
-#%item value=3%[[#howtocreate]]How do I create an AssetBundle?
+#%item value=2%[[#whatfor]]何に使用しますか？
 
-To create an AssetBundle you need to use the BuildPipeline editor class. All scripts using Editor classes must be placed in a folder named Editor, anywhere in the Assets folder. Here is an example of such a script in C#:
+ゲームが最初にデプロイされたとき、ディスク上で使用するスペースを削減するために使用できます。すでにパブリッシュされたゲームに新しいコンテンツを追加することにも使用できます。
 
-(:showhide name="Creating an AssetBundle":)
+
+#%item value=3%[[#howtocreate]]どうやってアセットバンドルを作成しますか？
+
+アセットバンドルを作成するためには、ビルドパイプライン エディタ クラスを使用します。Editor クラスを使用する全てのスクリプトは、Assetsフォルダの任意の場所で、Editorと名前のついたフォルダに配置する必要があります。C#でのそのようなスクリプトのサンプルは次の通りです:
+
+(:showhide name="アセットバンドルの作成":)
 [@using UnityEngine;
 using UnityEditor;
 
@@ -43,28 +43,27 @@ public class ExportAssetBundles {
     }
 }@]
 
-An Editor script does not need to be applied to a GameObject, it is instead used by the Editor. This previous example will create a new item in the �Assets� menu of your editor called �Build AssetBundle�.
+エディタスクリプトはゲームオブジェクトに適用する必要はありません。その代わり、エディタによって使用されます。前述のサンプルではエディタのAssetsメニューにBuild AssetBundleという名前の新規のアイテムを作成します。
 
-To use this example:
-* Create a C# script file named ExportAssetBundles.cs, inside an folder named Editor, in the Project View.
-* Select the Asset or Assets in your project folder that you wish to make into an AssetBundle.
-* Select Build AssetBundle from the Assets menu.  Click �Save� to create the AssetBundle.
-* The first line of the ExportResource function sets the path of your AssetBundle.
-* The next line sets the selection to be made into an AssetBundle as the objects selected in the Project window.
+このサンプルを使用するためには:
+* C#スクリプトを作成しExportAssetBundles.csという名前にして、プロジェクトビューのEditorと名前のついたフォルダに保存します。
+* AssetメニューからBuild AssetBundleを選択します。Saveをクリックしてアセットバンドルを作成します。
+* ExportResource 関数の最初の行によりアセットバンドルのパスをセットします。
+* 次の行で、プロジェクトウィンドウで選択したとおりに選択範囲を、アセットバンドルにします。
 
-The BuildAssetBundle function is the line that creates the AssetBundle and saves it to the specified location.  The first parameter specifies the mainAsset, which is a special Asset that can be obtained directly with the mainAsset property when loading Assets from the AssetBundle. It is not mandatory to set a main Asset, if this is not going to be used you can use null for the parameter. The second parameter is the array of objects that will make up the AssetBundle. The third parameter is the location on disk that the AssetBundle will be saved to.  The final parameter are the build flags or options used when building AssetBundles. The bitwise OR ( �|� ) combines the options passed to build the AssetBundles. In this example BuildAssetBundleOptions.CollectDependencies sets it to include other Assets referenced by the objects and BuildAssetBundleOptions.CompleteAssets make sure that assets are completely included.
+BuildAssetBundle 関数の行でアセットバンドルを作成し、指定した場所に保存します。最初の引数によりメインアセット、すなわちアセットバンドルからアセットをロードするときにmainAssetプロパティによって直接取得することのできる特別なアセット、を指定します。メインアセットの指定は必須ではなく、使用しない場合は引数のnullを指定できます。二つ目の引数はアセットバンドルを構成するオブジェクトの配列です。三つ目の引数はアセットバンドルを保存するディスク上の場所です。最終の引数はアセットバンドルをビルドする際の、ビルド フラグまたはオプションです。ビットまたはOR（|）によりアセットバンドルをビルドするオプションを合成します。この例ではBuildAssetBundleOptions.CollectDependencies により他のオブジェクトにより参照されるアセットを含むようになり、さらにBuildAssetBundleOptions.CompleteAssetsによりアセットが完全に含まれるようになります。
 
-Building AssetBundles should be a pre-publish step which happens only once and with a single function call, for example, with a Menu Item that builds all the AssetBundles. As you develop your application you should write helper scripts that can build all your AssetBundles for a target platform with a single click or in batchmode without user intervention.
+アセットバンドルのビルドはパブリッシュ前のステップであり、一つの関数コールによって一回のみ発生し、例えば、メニューアイテムによって全てのアセットバンドルをビルドします。アプリケーションを開発するとき、ヘルパー関数を記述すべきであり、ターゲットプラットフォームで全てのアセットバンドルを、シングルクリックまたはバッチモードでユーザによるアクションなく、ビルドします。
 
-There are also other function to create AssetBundles. You can read more about this here: http://docwiki.hq.unity3d.com/index.php?n=Main.BuildingAssetBundles
+さらにアセットバンドルを作成する他の関数があります。詳細については http://docwiki.hq.unity3d.com/index.php?n=Main.BuildingAssetBundles を参照下さい。
 (:showhideend:)
 >><<
 
-#%item value=4%[[#howtouse]]How do I use an AssetBundle?
+#%item value=4%[[#howtouse]]どうやってアセットバンドルを使用しますか？
 
-There are two main steps involved when working with AssetBundles. The first step is to download the AssetBundle from a server or disk location. This is done with the WWW class. The second step is to load the Assets from the AssetBundle, to be used in the application. Here is an example C# script:
+アセットバンドルで作業するときに主に2つのステップがあります。最初のステップはアセットバンドルをサーバまたはディスク上のロケーションからダウンロードします。これはWWWクラスにより行います。二つ目のステップはアセットバンドルからアセットをロードし、アプリケーションで使用します。次がC#スクリプトでのサンプルです:
 
-(:showhide name="Using an AssetBundle":)
+(:showhide name="アセットバンドルの使用":)
 [@using UnityEngine;
 using System.Collections;
 
@@ -85,37 +84,37 @@ public class BundleLoader : MonoBehaviour{
     }
 }@]
 
-This script is added to a GameObject as Component. The AssetBundle is loaded in the following way:
+このスクリプトはゲームオブジェクトにコンポーネントとして追加されます。アセットバンドルは次の方法によりロードされます:
 
-* The url and version values need to be set in the Inspector prior to running this script. The url is the location of the AssetBundle file, usually a server on the Internet. The version number allows the developer to associate a number to the AssetBundle when written to the cache in disk. When downloading an AssetBundle Unity will check if the file already exists in the cache. If it does, it compare the version of the stored asset with the version requested. If it is different then the AssetBundle will be redownloaded. If it�s the same, then it will load the AssetBundle from disk and avoid having to redownload the file. Please refer to the WWW.LoadFromCacheOrDownload function in the scripting reference for more information about these parameters.
-* When the Start function of this script is called, it will start loading the AssetBundle by calling the function as a Coroutine.The function will yield on the WWW object as it downloads the AssetBundle. By using this, the function will simply stop in that point until the WWW object is done downloading, but it will not block the execution of the rest of the code, it yields until it is done.
-* Once the WWW object has downloaded AssetBundle file, the .assetBundle property is used to retrieve an AssetBundle object. This object is the interface to load objects from the AssetBundle file.
-* In this example a reference to a prefab in the AssetBundle is retrieved from the AssetBundle using the .mainAsset property. This property is set when building the AssetBundle passing an Object as the first parameter.  The main asset in the AssetBundle can be used to store a TextAsset with a list of objects inside the AssetBundle and any other information about them.  
-
-Please note that for simplicity the previous example is not doing any safety checks. Please look at the code [[DownloadingAssetBundles|here]] for a more complete example.
+* url および versionの値はスクリプト実行前にインスペクタで設定しておく必要があります。urlはアセットバンドルファイルのロケーションで、通常はインターネット上のサーバです。version番号は開発者がアセットバンドルにディスクのキャッシュ上に書き込むときに番号を付与します。アセットバンドルをダウンロードするときUnityはキャッシュにすでにファイルが存在しているかをチェックします。もし存在する場合は、格納されているアセットと必要バージョンの比較を行います。もし異なる場合、アセットバンドルは再度ダウンロードされます。もし同じ場合は次にアセットバンドルをディスクからロードして、再度ダウンロードしません。これらの引数の詳細についてはスクリプティングリファレンスの WWW.LoadFromCacheOrDownload 関数を参照下さい。
+* このスクリプトの Start 関数がコールされたとき、関数をコルーチンとしてコールすることによって、アセットバンドルのロードを開始します。関数はアセットバンドルをダウンロードする際にWWWオブジェクトでyieldを行います。これによって関数は、WWWオブジェクトのダウンロードが完了するまで、その地点で停止しますが、残りのコードの実行をブロックせず、完了するまでyieldするのみです。
+* オブジェクトがアセットバンドルをダウンロードされると、.assetBundleプロパティが使用して AssetBundle オブジェクトを取得します。このオブジェクトはアセットバンドルファイルからオブジェクトをロードするインタフェースです。
+* この例ではアセットバンドルのプレハブへの参照が、.mainAssetプロパティを使用してAssetBundleから取得されます。このプロパティはアセットバンドルをビルドするときにセットされ、オブジェクトを一つ目の引数として渡します。
+  
+簡単のため、前述の例では安全チェックを行っていないことに留意して下さい。完全な例については [[DownloadingAssetBundles|ここ]] のコードを参照下さい。
 (:showhideend:)
 >><<
 
-#%item value=5%[[#howtouseeditor]]How do I use AssetBundles in the Editor?
+#%item value=5%[[#howtouseeditor]]どうやってアセットバンドルをエディタで使用しますか？
 
-As creating applications is an iterative process, you will very likely modify your Assets many times, which would require rebuilding the AssetBundles after every change to be able to test them. Even though it is possible to load AssetBundles in the Editor, that is not the recommended workflow. Instead, while testing in the Editor you should use the helper function Resources.LoadAssetAtPath to avoid having to use and rebuild AssetBundles. The function lets you load the Asset as if it were being loaded from an AssetBundle, but will skip the building process and your Assets are always up to date.
+アプリケーションの作成は反復的なプロセスなので、かなりの頻度でアセットを何度も修正し、これによりテストするためにはアセットバンドルを毎回の変更の度に再ビルドする必要が出てきます。エディタにアセットバンドルをロードすることは可能ですが、これは推奨できるワークフローではありません。その代わりに、エディタをテストする際は、Reources.LoadAssetAtPath ヘルパー関数を使用して、アセットバンドルを使用するときに再ビルドを回避できます。この関数によりアセットバンドルからロードしたかのようにアセットをロードできますが、ビルドプロセスはスキップされアセットは常に最新となります。
 
-The following is an example helper script, that you can use to load your Assets depending on if you are running in the Editor or not. Put this code in C# script named AssetBundleLoader.cs:
+次はヘルパースクリプトの例で、エディタで実行しているかどうかにかかわらずアセットをロード出来ます。このコードを AssetBundleLoader.cs というC#スクリプトにコードを入れてください:
 
-(:showhide name="Using an AssetBundle in the Editor":)
+(:showhide name="エディタでのアセットバンドルの使用:)
 [@
 using UnityEngine;
 using System.Collections;
 
 public class AssetBundleLoader {
-    public Object Obj; // The object retrieved from the AssetBundle
+    public Object Obj; // アセットバンドルから取得されたオブジェクト
    
     public IEnumerator LoadBundle<T> (string url, int version, string assetName, string assetPath) where T : Object {
         Obj = null;
 #if UNITY_EDITOR
         Obj = Resources.LoadAssetAtPath(assetPath, typeof(T));
         if (Obj == null)
-            Debug.LogError ("Asset not found at path: " + assetPath);
+            Debug.LogError ("アセットは次のパスで見つかりませんでした: " + assetPath);
         yield break;
 #else
 
@@ -150,19 +149,19 @@ public class AssetBundleLoader {
     }
 }@]
 
-We can now use the AssetBundleLoader script to load an Asset from an AssetBundle if we are running the built application or load the Asset directly from the Project folder if running in the Editor:
+AssetBundleLoaderスクリプトを使って、ビルドしたアプリケーションを実行したときであっても、またはエディタ実行時にプロジェクトフォルダからアセットを直接ロードのときであっても、アセットをアセットバンドルからロードすることが出来ます:
 
 [@using UnityEngine;
 using System.Collections;
 
 public class ExampleLoadingBundle : MonoBehaviour {
-    public string url = "http://www.mygame.com/myBundle.unity3d"; // URL where the AssetBundle is
-    public int version = 1; // The version of the AssetBundle
+    public string url = "http://www.mygame.com/myBundle.unity3d"; // アセットバンドルの置かれているURL
+    public int version = 1; // アセットバンドルのバージョン
 
-    public string assetName = "MyPrefab"; // Name of the Asset to be loaded from the AssetBundle
-    public string assetPath; // Path to the Asset in the Project folder
+    public string assetName = "MyPrefab"; // アセットバンドルからロードするアセットの名前
+    public string assetPath; // プロジェクトフォルダのアセットへのパス
 
-    private Object ObjInstance; // Instance of the object
+    private Object ObjInstance; // オブジェクトのインスタンス
     void Start(){
         StartCoroutine(Download());
     }
@@ -175,53 +174,52 @@ public class ExampleLoadingBundle : MonoBehaviour {
     }
 
     void OnGUI(){
-        GUILayout.Label (ObjInstance ? ObjInstance.name + " instantiated" : "");
+        GUILayout.Label (ObjInstance ? ObjInstance.name + " をインスタンス化しました" : "");
     }
 }@]
 
-The previous script should be saved to a file named ExampleLoadingBundle.cs inside the Assets folder. After setting the public variables to their correct values and running it, it will use the AssetBundleLoader class to load an Asset. It is then instantiated and this will be shown by using the GUI.
+前述のスクリプトにより、Assetsフォルダの中に ExampleLoadingBundle.cs というファイルを保存します。正しい値にパブリック変数をセットして実行した後、AssetBundleLoaderクラスを使用してアセットをロードします。次にインスタンス化されて、GUIで表示されます。
 (:showhideend:)
 >><<
 
-#%item value=6%[[#howdoIcache]]How do I cache AssetBundles?
+#%item value=6%[[#howdoIcache]]アセットバンドルをどうやってキャッシュしますか？
 
-You can use [[ScriptRef:WWW.LoadFromCacheOrDownload.html|WWW.LoadFromCacheOrDownload]] which automatically takes care of saving your AssetBundles to disk. Be aware that on the Webplayer you are limited to 50MB in total (shared between all webplayers). You can buy a separate caching license for your game if you require more space.
+[[ScriptRef:WWW.LoadFromCacheOrDownload.html|WWW.LoadFromCacheOrDownload]] を使用して、自動的にアセットバンドルをディスクに保存することが出来ます。WebPlayerでは合計で上限50MB（全てのWebPlayerで共通）に制限されていることに留意下さい。より多くのスペースが必要であるば愛は、ゲームで別のキャッシングライセンスを購入できます。
 
 
-#%item value=7%[[#crossplatform]]Are AssetBundles cross-platform?
+#%item value=7%[[#crossplatform]]アセットバンドルはクロスプラットフォームですか？
 
-AssetBundles are compatible between some platforms. Use the following table as a guideline. 
+アセットバンドルはプラットフォーム間で互換性があります。次の表をガイドラインとして使用して下さい。
 
 || class=bordered
-|| __Platform compatibility for AssetBundles__ ||||||||||
-|| ||Standalone ||Webplayer ||  iOS   ||Android ||
-||Editor || Y || Y || Y || Y ||
-||Standalone || Y || Y ||  ||  ||
+|| __アセットバンドルのプラットフォーム間の互換性__ ||||||||||
+|| ||スタンドアローン ||Webplayer ||  iOS   ||Android ||
+||エディタ || Y || Y || Y || Y ||
+||スタンドアローン || Y || Y ||  ||  ||
 ||Webplayer || Y || Y ||  ||  ||||
 ||iOS ||  ||  || Y ||  ||||
 ||Android ||  ||  ||  || Y ||||
 
-For example, a bundle created while the Webplayer build target was active would be compatible with the editor and with standalone builds. However, it would not be compatible with apps built for the iOS or Android platforms.
+例えば、Webplayerのビルドターゲットが有効であったときに作成されたバンドルはエディタと互換性があり、スタンドアローンのビルドとも互換性があります。しかし、iOSまたはAndroidプラットフォーム向けにブル度されたアプリとは互換性がありません。
 
 
-#%item value=8%[[#howidentified]]How are assets in AssetBundles identified?
+#%item value=8%[[#howidentified]]アセットバンドルのアセットはどのように識別しますか？?
 
-When you build AssetBundles the assets are identified internally by their filename without the extension. For example a Texture located in your Project folder at "Assets/Textures/myTexture.jpg" is identified and loaded using "myTexture" if you use the default method. You can have more control over this by supplying your own array of ids (strings)  for each object when Building your AssetBundle with [[ScriptRef:BuildPipeline.BuildAssetBundleExplicitAssetNames.html|BuildPipeline.BuildAssetBundleExplicitAssetNames]].
+アセットバンドルをビルドするときアセットは、拡張子を除いたファイル名で、内部的に識別できます。例えばプロジェクトフォルダの "Assets/Textures/myTexture.jpg" に配置されたテクスチャはデフォルトのモードだと "myTexture" として識別してロードされます。これをより細かく設定するには、アセットバンドルをビルドするときに [[ScriptRef:BuildPipeline.BuildAssetBundleExplicitAssetNames.html|BuildPipeline.BuildAssetBundleExplicitAssetNames]] を用いて各オブジェクトに対してカスタムのID（文字列）の配列を提供します。
 
+#%item value=9%[[#reusebundles]]アセットバンドルを別のゲームで再利用できますか？
 
-#%item value=9%[[#reusebundles]]Can I reuse my AssetBundles in another game?
-
-AssetBundles allow you to share content between different games. The requirement is that any Assets which are referenced by GameObjects in your AssetBundle must either be included in the AssetBundle or exist in the application (loaded in the current scene). To make sure the referenced Assets are included in the AssetBundle when they are built you can pass the [[ScriptRef:BuildAssetBundleOptions.CollectDependencies.html|BuildAssetBundleOptions.CollectDependencies]] option.
-
-
-#%item value=10%[[#futureplayer]]Will an AssetBundle built now be usable with future versions of Unity?
-
-AssetBundles can contain a structure called a $$type tree$$ which allows information about asset types to be understood correctly between different versions of Unity. On desktop platforms, the type tree is included by default but can be disabled by passing the [[ScriptRef:BuildAssetBundleOptions.DisableWriteTypeTree.html|BuildAssetBundleOptions.DisableWriteTypeTree]] to the BuildAssetBundle function. Webplayers intrinsically rely on the type tree and so it is always included (ie, the DisableWriteTypeTree option has no effect). Type trees are never included for mobile and console asset bundles and so you will need to rebuild these bundles whenever the serialization format changes. This can happen in new versions of Unity. (Except for bugfix releases) It also happens if you add or remove serialized fields in monobehaviour's that are included in the asset bundle. When loading an AssetBundle Unity will give you an error message if the AssetBundle must be rebuilt.
-
-#%item value=11%[[#futureplayer]]How can I list the objects in an AssetBundle?
-
-You can use [[ScriptRef:AssetBundle.LoadAll.html|AssetBundle.LoadAll]] to retrieve an array containing all objects from the AssetBundle. It is not possible to get a list of the identifiers directly. A common workaround is to keep a separate TextAsset to hold the names of the assets in the AssetBundle.
+アセットバンドルにより異なるゲーム間でコンテンツを共有することが出来ます。必要な要件として、アセットバンドルに含まれるゲームオブジェクトにより参照される全てのアセットはアセットバンドルに含まれているか、アプリケーションの中に存在する必要があります（現在のシーンでロードされている）。参照されたアセットがビルドされたときにアセットバンドルに含まれることを保証するためには [[ScriptRef:BuildAssetBundleOptions.CollectDependencies.html|BuildAssetBundleOptions.CollectDependencies]] を渡します。
 
 
-[[AssetBundlesIntro|back to AssetBundles Intro]]
+#%item value=10%[[#futureplayer]]現在ビルドしたアセットバンドルは将来のUnityバージョンで使用できますか？
+
+アセットバンドルは $$Type Tree$$ と呼ばれる構造を含むことが出来て、これによりアセットの種類に関する情報がUnityの異なるバージョンでも正しく理解できるようにしています。デスクトッププラットフォームでは、タイプツリーはデフォルトで含まれていて、 [[ScriptRef:BuildAssetBundleOptions.DisableWriteTypeTree.html|BuildAssetBundleOptions.DisableWriteTypeTree]] をBuildAssetBundle関数に渡すことによって無効化することが出来ます。Webplayerは本質的にタイプツリーに依存していて常に含まれます（すなわち、DisableWriteTypeTreeは効果がありません）。タイプツリーはモバイルやコンソールのアセットバンドルには含まれることがなく、このためこれらの場合にシリアイズのフォーマットが変わった場合ははバンドルを再ビルドする必要があります。これはUnityの新バージョンで発生するかもしれません（バグフィックスを除いて）。さらにMonoBehaviourでアセットバンドルに含まれるシリアイズされたフィールドを追加、削除した場合も同様に発生します。アセットバンドルをロードするときにアセットバンドルの再ビルドが必要なときは、Unityでエラーメッセージが表示されます。
+
+#%item value=11%[[#futureplayer]]アセットバンドルのオブジェクトはどのようにしてリストにできますか？
+
+[[ScriptRef:AssetBundle.LoadAll.html|AssetBundle.LoadAll]] を使用してアセットバンドルに含まれるすべてのオブジェクトを含む配列を取得することが出来ます。識別子の一覧を直接に取得することは出来ません。良くある回避策は、別のTextAssetを保持して、アセットバンドルのアセットの名前を保持することです。
+
+
+[[AssetBundlesIntro|アセットバンドル イントロに戻る]]
 
