@@ -1,24 +1,23 @@
-! Android SDK Setup
-There are some steps you must follow before you can build and run any code on your Android device.  This is true regardless of whether you use Unity or write Android applications from scratch.
+! Android SDK セットアップ
+Androidデバイスでコードをビルドして実行する前にいくつか従うべきステップがあります。このことはUnityを使用するのか、いちからAndroidアプリケーションを書くのかに関わらず当てはまります。
 
-!! 1. Download the Android SDK
-Go to the [[http://developer.android.com/sdk | Android Developer SDK webpage]]. Download and unpack the latest Android SDK. 
+!! 1. Android SDKをダウンロードする
+[[http://developer.android.com/sdk | Android デベロッパー SDK ウェブページ]] にアクセスします。最新のAndroid SDKをダウンロードして解凍します。
 
-!! 2. Installing the Android SDK
-Follow the instructions under [[http://developer.android.com/sdk/installing.html | Installing the SDK]] (although you can freely skip the optional parts relating to Eclipse).
-In step 4 of ''Installing the SDK'' be sure to add at least one '''Android platform''' with API level equal to or higher than 9 (Platform 2.3 or greater), the '''Platform Tools''', and the '''USB drivers''' if you're using Windows.
+!! 2. Android SDKをインストールする
+[[http://developer.android.com/sdk/installing.html | Installing the SDK]] にある指示に従います。（ただしEclipseに関連するオプション部分は自由にスキップできます）。
+''Installing the SDK'' のステップ 4 で少なくとも、9 以上の高さのAPI（Android 2.3以上）で、ひとつの '''Android プラットフォーム''' 、 '''Platform Tools'''、およびWindowsを使用するので
 
-!! 3. Get the device recognized by your system
-This can be tricky, especially under Windows based systems where drivers tend to be a problem. Also, your device may come with additional information or specific drivers from the manufacturer.
-* For '''Windows''': If the Android device is automatically recognized by the system you still might need to update the drivers with the ones that came with the Android SDK. This is done through the Windows Device Manager.
---->If the device is not recognized automatically use the drivers from the Android SDK, or any specific drivers provided by the manufacturer.
---->Additional info can be found here: [[http://developer.android.com/sdk/win-usb.html|USB Drivers for Windows]]
-* For '''Mac''': If you're developing on Mac OSX then no additional drivers are usually required.
+!! 3. デバイスをシステムにより認識させる
+これは特にWindowsベースのシステムではドライバが問題となることがあり、トリッキーです。さらに、あなたのデバイスは製造元から追加の情報や固有ドライバが提供されているかもしれません。
+* '''Windows''' 向け: もしAndroidデバイスがシステムにより自動的に認識される場合も、 Android SDKのドライバをアップデートする必要があるかもしれません。これはWindowsデバイスマネージャを通して行われます。
+--->もしデバイスが自動的に認識されなかった場合はAndroid SDKからのドライバ、または製造元からの固有のドライバを使用して下さい。
+--->追加の情報はここで見つけることが出来ます: [[http://developer.android.com/sdk/win-usb.html|Windows向けのUSBドライバ]]
+* '''Mac''' 向け: Mac OSX向けに開発している場合、通常は追加のドライバは通常必要ありません。
 
-__Note:__ Don't forget to turn on "USB Debugging" on your device. You can do this from the home screen: press MENU, select Applications > Development, then enable USB debugging.
+__注意:__ デバイスで "USBデバッグ" をオンにすることを忘れてはいけません。これはホームスクリーンで行うことが出来ます。メニューを押して、アプリケーション -> 開発 を選択してUSBデバッグを有効化して下さい。
 
-If you are unsure whether your device is properly installed on your system, please read the [[TroubleShooting#AndroidTroubleShooting | trouble-shooting page]] for details.
+もしデバイスが正しくシステム上でインストールされているか自信がない場合、 [[TroubleShooting#AndroidTroubleShooting | トラブルシューティングのページ]] を参照下さい。
 
-!! 4. Add the Android SDK path to Unity
-The first time you build a project for Android (or if Unity later fails to locate the SDK) you will be asked to locate the folder where you installed the Android SDK (you should select the root folder of the SDK installation). The location of the Android SDK can also be changed in the editor by selecting Unity > Preferences from the menu and then clicking on External Tools in the preferences window.
-
+!! 4. UnityにAndroid SDKパスを追加する
+最初にAndroid向けにプロジェクトをビルドしたとき（またはもし後にUnityがSDKを見つけることが出来なかった場合）、Android SDKをインストールしたフォルダを指定するように求められます（SDKインストールのルートフォルダを選択すべきです）。Android SDKのロケーションはエディタで、メニューから Unity > Preferences を選択して、 Preferences ウィンドウで External Toolsをクリックすることで、変更することもできます。
