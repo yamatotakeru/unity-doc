@@ -1,56 +1,56 @@
-!Rich Text
+! リッチテキスト
 
-The text for GUI elements and text meshes can incorporate multiple font styles and sizes. The GUIStyle, GUIText and TextMesh classes have a $$Rich Text$$ setting which instructs Unity to look for markup tags within the text. These tags are not displayed but indicate style changes to be applied to the text.
+GUI要素のテキストおよびテキストメッシュは複数のフォントスタイルおよびサイズを含めることが出来ます。GUIStyle、GUIText、およびTextMeshクラスは $$Rich Text$$ 設定があり、Unityにテキスト中のマークアップタグを探すように指示します。これらのタグは表示されませんが、スタイル変更を意味して、テキストに反映されます。
 
 
-!!Markup format
+!! マークアップの書式
 
-The markup system is inspired by HTML but isn't intended to be strictly compatible with standard HTML. The basic idea is that a section of text can be enclosed inside a pair of matching tags:-
+マークアップ システムはHTMLにヒントを得ていますが、厳密に標準HTMLにしたがうことは意図していません。基本的な考え方はテキストの一部はマッチングするタグのペアにより閉じられるということです:-
 
 	We are <b>not</b> amused
 
-As the example shows, the tags are just pieces of text inside the "angle bracket" characters, < and >. The text inside the tag denotes its name (which in this case is just __b__). Note that the tag at the end of the section has the same name as the one at the start but with the slash / character added. The tags are not displayed to the user directly but are interpreted as instructions for styling the text they enclose. The b tag used in the example above applies boldface to the word "not", so the text will appear onscreen as:-
+例が示すように、タグは "山括弧" 記号、< および >、に含まれるテキストです。タグの中のテキストは名前を示します（この場合は単に __b__ です）。セクションの終わりのタグは最初と同じ名前を持っているけれども、スラッシュ記号、/ 、を加えて使用されることに留意下さい。タグはユーザに直接表示されませんが、囲われるテキストのスタイル指示として解釈されます。上記の例で示される b タグは太文字を "not" という言葉に適用するため、テキストはスクリーン上では次のように表示されます:-
 
 	We are __not__ amused
 
-A marked up section of text (including the tags that enclose it) is referred to as an __element__.
+テキストのマークアップ セクション（囲うタグを含めて）、__要素__ と呼びます。
 
 
-!!!Nested elements
+!!! ネスト要素
 
-It is possible to apply more than one style to a section of text by "nesting" one element inside another
+ひとつの要素を他の要素の中に "ネスト" することで、ひとつより多くの要素をテキストに適用することが可能です。
 
 	We are <b><i>definitely not</i></b> amused
 
-The i tag applies italic style, so this would be presented onscreen as
+イタリック スタイルはi タグにより適用されるため、スクリーン上では次のように表示されます
 
 	We are __''definitely not''__ amused
 
-Note the ordering of the ending tags, which is in reverse to that of the starting tags. The reason for this is perhaps clearer when you consider that the inner tags need not span the whole text of the outermost element
+終了タグの順番が開始タグと順番が逆になっていることに留意下さい。この理由は、内部タグの範囲が外の要素を全て含めないことを考えると明らかになります。
 
 	We are <b>absolutely <i>definitely</i> not</b> amused
 
-which gives
+により次のようになります
 
 	We are __absolutely ''definitely'' not__ amused
 
 
-!!!Tag parameters
+!!! タグ パラメータ
 
-Some tags have a simple all-or-nothing effect on the text but others might allow for variations. For example, the __color__ tag needs to know which colour to apply. Information like this is added to tags by the use of __parameters__:-
+いくつかのタグはテキストに対して、シンプルな ある／なし の効果ですが、他ではバリエーションがあるかもしれません。例えば、 __color__ タグはどのカラーを適用するか知る必要があります。このような情報は __パラメータ__ の使用によりタグに情報が追加されます。
 
 	We are <color=green>green</color> with envy
 
-Note that the ending tag doesn't include the parameter value. Optionally, the value can be surrounded by quotation marks but this isn't required.
+終了タグはパラメータ値を含まないことに留意して下さい。オプションとして、値は ? 記号により囲うこともできますが、必須ではありません。
 
 
-!!Supported tags
+!! サポートされるタグ
 
-The following list describes all the styling tags supported by Unity.
+次のリストはUnityによるサポートされる全てのタグを表示します。
 
 __b__
 
-Renders the text in boldface.
+テキストを太字にレンダリング。
 
 	We are <b>not</b> amused
 
@@ -58,7 +58,7 @@ Renders the text in boldface.
 
 __i__
 
-Renders the text in italics.
+テキストをイタリックにレンダリング。
 
 	We are <i>usually</i> not amused
 
@@ -66,7 +66,7 @@ Renders the text in italics.
 
 __size__
 
-Sets the size of the text according to the parameter value, given in pixels.
+テキストサイズをパラメータ値にもとづいてピクセル単位でセット。
 
 	We are <size=50>largely</size> unaffected
 
@@ -74,33 +74,33 @@ Sets the size of the text according to the parameter value, given in pixels.
 
 __color__
 
-Sets the colour of the text according to the parameter value. The colour can be specified in the traditional HTML format
+テキストの色をパラメータ値にもとづいてセット。カラーは伝統的なHTML形式で指定可能。
 
 	#rrggbbaa
 
-...where the letters correspond to pairs of hexadecimal digits denoting the red, green, blue and alpha (transparency) values for the colour. For example, cyan at full opacity would be specified by
+...ここで文字列は十二進法の桁に対応して、カラーの赤、緑、青、およびアルファ（透明）値を示します。例えば、完全に不透明なシアンは次のように指定します
 
 	<color=#00ffffff>...
 
-Another option is to use the name of the colour. This is easier to understand but naturally, the range of colours is limited and full opacity is always assumed.
+別のオプションはカラーの名前を使用することです。理解するにはこちらが簡単ですが、色の範囲が限定されていて、常に完全に不透明となります。
 
 	<color=cyan>...
 
-The available colour names are given in the table below.
+利用可能なカラーは次のテーブルにより示されます。
 ||width=50%
-||!Colour name||!Hex value||!Swatch
-||aqua (same as cyan)||@@#00ffffff@@||Attach:CyanSwatch.png
+||!カラー名||!十二進数||!色見本
+||aqua (cyanと同じ)||@@#00ffffff@@||Attach:CyanSwatch.png
 ||black||@@#000000ff@@||Attach:BlackSwatch.png
 ||blue||@@#0000ffff@@||Attach:BlueSwatch.png
 ||brown||@@#a52a2aff@@||Attach:BrownSwatch.png
-||cyan (same as aqua)||@@#00ffffff@@||Attach:CyanSwatch.png
+||cyan (aquaと同じ)||@@#00ffffff@@||Attach:CyanSwatch.png
 ||darkblue||@@#0000a0ff@@||Attach:DarkblueSwatch.png
-||fuchsia (same as magenta)||@@#ff00ffff@@||Attach:MagentaSwatch.png
+||fuchsia (magentaと同じ)||@@#ff00ffff@@||Attach:MagentaSwatch.png
 ||green||@@#008000ff@@||Attach:GreenSwatch.png
 ||grey||@@#808080ff@@||Attach:GreySwatch.png
 ||lightblue||@@#add8e6ff@@||Attach:LightblueSwatch.png
 ||lime||@@#00ff00ff@@||Attach:LimeSwatch.png
-||magenta (same as fuchsia)||@@#ff00ffff@@||Attach:MagentaSwatch.png
+||magenta (fuchsiaと同じ)||@@#ff00ffff@@||Attach:MagentaSwatch.png
 ||maroon||@@#800000ff@@||Attach:MaroonSwatch.png
 ||navy||@@#000080ff@@||Attach:NavySwatch.png
 ||olive||@@#808000ff@@||Attach:OliveSwatch.png
@@ -115,6 +115,7 @@ The available colour names are given in the table below.
 
 __material__
 
+これはパラメータにより指定されたマテリアルによって、テキストメッシュおよびテキストの一部のみレンダリングします。値はテキストメッシュのマテリアルの配列のインデックス
 This is only useful for text meshes and renders a section of text with a material specified by the parameter. The value is an index into the text mesh's array of materials as shown by the inspector.
 
 	We are <material=2>texturally</material> amused
