@@ -1,24 +1,23 @@
-!Anatomy of a Mesh
+! メッシュの構造
 
-A mesh consists of triangles arranged in 3D space to create the impression of a solid object. A triangle is defined by its three corner points or vertices. In the Mesh class, the vertices are all stored in a single array and each triangle is specified using three integers that correspond to indices of the vertex array. The triangles are also collected together into a single array of integers; the integers are taken in groups of three from the start of this array, so elements 0, 1 and 2 define the first triangle, 3, 4 and 5 define the second, and so on. Any given vertex can be reused in as many triangles as desired but there are reasons why you may not want to do this, as explained below.
+メッシュは、固形のオブジェクトのようにに見せるために、3D空間に並べられた三角形から構成されています。三角形は3つの角の点、すなわち頂点により定義されます。Mesh クラスでは、すべての頂点はひとつの配列に格納されていて、各々の三角形は頂点配列のインデックスにあたる3つの整数により指定されます。三角形はさらに一つの整数の配列として集められます。この整数はこの配列の最初から3つごとにグルーピングされるため、要素0、1、および 2 は最初の三角形を定義し、二つ目の三角形は3、4、および 5、と続いていきます。任意の頂点は好きなだけ三角形を定義するのに再利用できますが、口述するように、考慮してそれは避けるべき理由がいくつかあります。
 
 
-!!Lighting and Normals
+!! ライティングと法線
 
-The triangles are enough to define the basic shape of the object but extra information is needed to display the mesh in most cases. To allow the object to be shaded correctly for lighting, a normal vector must be supplied for each vertex. A normal is a vector that points outward, perpendicular to the mesh surface at the position of the vertex it is associated with. During the shading calculation, each vertex normal is compared with the direction of the incoming light, which is also a vector. If the two vectors are perfectly aligned, then the surface is receiving light head-on at that point and the full brightness of the light will be used for shading. A light coming exactly side-on to the normal vector will give no illumination to the surface at that position. Typically, the light will arrive at an angle to the normal and so the shading will be somewhere in between full brightness and complete darkness, depending on the angle.
+三角形はオブジェクトの基本図形を定義するのに十分ですが、大部分のケースではメッシュを表示するのには追加の情報が必要です。オブジェクトがライティングにより正しくシェーディングされるためには、法線ベクトルは各頂点のために提供する必要があります。法線は外向きに向かうベクトルであり、メッシュ表面に対して垂直に各頂点の位置から出ています。シェーディング計算において、各頂点の法線は入射するライト、これもまたベクトル、の方向と比較されます。もし二つのベクトルが完全に平行である場合、平面はその点において真正面からライトを受け取り、ライトの明るさのすべてはシェーディングに使用されます。法線ベクトルに対して真横から入射する光の場合、平面はその点においてまったく照らされることがありません。一般的にライトは法線とある角度で入射するため、その入射角によって完全な明るさと完全な暗さとの間の値となります。
 
 Attach:MeshLighting.png
 
-Since the mesh is made up of triangles, it may seem that the normals at corners will simply be perpendicular to the plane of their triangle. However, normals are actually interpolated across the triangle to give the surface direction of the intermediate positions between the corners. If all three normals are pointing in the same direction then the triangle will be uniformly lit all over. The effect of having separate triangles uniformly shaded is that the edges will be very crisp and distinct. This is exactly what is required for a model of a cube or other sharp-edged solid but the interpolation of the normals can be used to create smooth shading to approximate a curved surface.
+メッシュは三角形から構成されているため、角の法線は三角形の平面に対して垂直であるように感じるかもしれません。しかし、法線は実際には三角形に渡って補間されて、角の間の平面の中間位置に方向が割り当てられます。もし3つの法線がすべて同じ方向を指す場合、三角形は均等に全面がライティングされます。別の三角形を均等にシェーディングされる効果は、そのエッジがはっきり際立つことになります。これはキューブ、または尖ったエッジの固体のようなモデルにとっては必要なことですが、カーブのある表面をを近似するようなスムーズなシェーディングを作成する場合には法線の補間が必要です。
 
-To get crisp edges, it is necessary to double up vertices at each edge since both of the two adjacent triangles will need their own separate normals.
-For curved surfaces, vertices will usually be shared along edges but a bit of intuition is often required to determine the best direction for the shared normals. A normal might simply be the average of the normals of the planes of the surrounding triangles. However, for an object like a sphere, the normals should just be pointing directly outward from the sphere's centre. 
+綺麗なエッジを表示するには、頂点を各エッジ付近で二重化することが必要で、隣接する二つの三角形はそれぞれ別の法線が必要であるためです。
+カーブのある表面では、頂点はエッジに沿って共有すればよいのですが、シェーディングされた法線の最適な向きを決定するにはかなりの勘が必要であることが多いです。法線は単に三角形を囲む表面の法線の平均であるかもしれません。しかし、球のようなオブジェクトでは、法線は球の中心から外向きに向かっているべきです。
 
-By calling Mesh.RecalculateNormals, you can get Unity to work out the normals' directions for you by making some assumptions about the "meaning" of the mesh geometry; it assumes that vertices shared between triangles indicate a smooth surface while doubled-up vertices indicate a crisp edge. While this is not a bad approximation in most cases, RecalculateNormals will be tripped up by some texturing situations where vertices must be doubled even though the surface is smooth.
+Mesh.RecalculateNormalsをコールして、メッシュ物体の "意味" について仮定を置くことで、Unityが自動的に法線の方向を算出させるようにできます。三角形により共有される頂点がスムーズな表面を表し、二重の頂点ははっきりしたエッジを示すと仮定します。これは多くのケースで悪い推定ではありませんが、 表面がスムーズであるにも関わらず二重化する必要があるいくつかのテクスチャの状況ではRecalculateNormals  は失敗します。
 
-!!Texturing
+!! テクスチャリング
 
-In addition to the lighting, a model will also typically make use of texturing to create fine detail on its surface. A texture is a bit like an image printed on a stretchable sheet of rubber. For each mesh triangle, a triangular area of the texture image is defined and that texture triangle is stretched and "pinned" to fit the mesh triangle. To make this work, each vertex needs to store the coordinates of the image position that will be pinned to it. These coordinates are two dimensional and scaled to the 0..1 range (0 means the bottom/left of the image and 1 means the right/top). To avoid confusing these coordinates with the Cartesian coordinates of the 3D world, they are referred to as U and V rather than the more familiar X and Y, and so they are commonly called UV coordinates.
+ライティングに加えて、モデルは一般的にテクスチャを活用して、平面上にディテールを作成することが出来ます。テクスチャは伸縮可能なゴムのシートにプリントしたイメージのようです。各三角形メッシュで、テクスチャイメージの三角形領域が定義されて、そのテクスチャ三角形は伸縮されて メッシュ三角形に合うように "ピン付け" されます。これを機能させるためには、各頂点はピン付けするイメージ位置の座標を格納する必要があります。これらの座標は二方向であり、0 - 1 の範囲でスケールされます（0 はイメージの左／下を表し1は右／上を示します）。この座標を3D空間のデカルト座標と混同しないために、これらはよく使用されるX, YをさけてU、Vで指定され、UV座標と呼ばれます。
 
-Like normals, texture coordinates are unique to each vertex and so there are situations where you need to double up vertices purely to get different UV values across an edge. An obvious example is where two adjacent triangles use discontinuous parts of the texture image (eyes on a face texture, say). Also, most objects that are fully enclosed volumes will need a "seam" where an area of texture wraps around and joins together. The UV values at one side of the seam will be different from those at the other side.
-
+法線のように、テクスチャ座標は各頂点に固有のものであり、このため純粋にエッジにわたって異なるUV座標を得るために、頂点を二重化したい状況があります。明らかな例としては、二つの隣接する三角形が連続しないテクスチャ イメージを使用する（例えば顔テクスチャにある目など）場合などです。さらに完全に閉じた体積であるオブジェクトは "シーム" が必要で、そこではテクスチャの領域が一周して互いに繋がっています。シームの片側のUV座標の値は反対側と異なる値になります。
