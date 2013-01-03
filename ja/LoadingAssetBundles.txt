@@ -12,7 +12,7 @@
 
 !! アセットバンドルからオブジェクトを非同期ロード
 
-[[ScriptRef:AssetBundle.LoadAsync.html|AssetBundle.LoadAsync]] メソッドを使用してオブジェクトを非同期ロードできて、アプリケーションが飛び飛びになってしまう可能性を減らします。
+[[ScriptRef:AssetBundle.LoadAsync.html|AssetBundle.LoadAsync]] メソッドを使用してオブジェクトを非同期ロードできて、アプリケーションが飛び飛びにおかしくなる可能性を減らします。
 
 [@using UnityEngine;
 
