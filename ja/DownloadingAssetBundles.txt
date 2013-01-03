@@ -78,7 +78,7 @@ public class CachingLoadExample : MonoBehaviour {
 最初に ^^GameObject->CreateEmpty^^ を選択して空のゲームオブジェクトを作成します。 CachingLoadExample スクリプトをドラッグして作成したばかりの空のゲームオブジェクトにスクリプトをドラッグ＆ドロップします。次にアセットバンドルのURLをBundleURLフィールドに入力します。プロジェクトのディレクトリにこれを配置するため、ファイルディレクトリのパスをコピーして、前に @@file://@@ を、例えば @@file://C:/UnityProjects/AssetBundlesGuide/Assets/AssetBundles/Cube.unity3d@@ といったように、付加します。
 
 
-You can now hit play in the Editor and you should see the Cube prefab being loaded from the AssetBundle. 
+これでエディタ上で再生すれば、キューブのプレハブががアセットバンドルからロードされるのが確認できます。
 
 
 !!! アセットバンドルをエディタでロード
