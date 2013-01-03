@@ -1,12 +1,12 @@
-!! Downloading AssetBundles
+!! アセットバンドルのダウンロード
 
-This section assumes you already learned how to build asset bundles. If you have not, please see [[BuildingAssetBundles|Building AssetBundles]]
+このセクションではすでにアセットバンドルのビルド方法をすでに学んだことが前提となっています。まだであれば [[BuildingAssetBundles|アセットバンドルのビルド]] を参照下さい。
 
-There are two ways to download an AssetBundle
-# __Non-caching:__ This is done using a creating a new [[ScriptRef:WWW.WWW.html|WWW object]]. The AssetBundles are not cached to Unity�s Cache folder in the local storage device. 
-# __Caching:__ This is done using the [[ScriptRef:WWW.LoadFromCacheOrDownload.html|WWW.LoadFromCacheOrDownload]] call. The AssetBundles are cached to Unity�s Cache folder in the local storage device. The WebPlayer shared cache allows up to 50 MB of cached AssetBundles. PC/Mac Standalone applications and iOS/Android applications have a limit of 4 GB. WebPlayer applications that make use of a dedicated cache are limited to the number of bytes specified in the caching license agreement. Please refer to the scripting documentation for other platforms.
+アセットバンドルをダウンロードする方法は二つあります。
+# __キャッシュなし:__ これは新しい [[ScriptRef:WWW.WWW.html|WWW object]] を作成することで出来ます。アセットバンドルは、ローカルストレージデバイスのUnityのCacheフォルダにキャッシュされません。
+# __キャッシュあり:__ これは [[ScriptRef:WWW.LoadFromCacheOrDownload.html|WWW.LoadFromCacheOrDownload]] をコールします。アセットバンドルはローカルストレージデバイスのUnityのCacheフォルダにキャッシュされます。WebPlayerの共有キャッシュは最大50MBまでのキャッシュされたアセットバンドルを共有できます。PC/MacスタンドアローンのアプリケーションおよびiOS/Androidアプリケーションは上限が4GBです。専用キャッシュを使用するWebPlayerアプリケーションは、キャッシングのライセンス条項に指定されたバイト数が上限となります。他のプラットフォームについてはスクリプティング ドキュメントを参照下さい。
 
-Here's an example of a non-caching download:
+キャッシュなしのダウンロードのサンプルは次の通りです:
 
 [@using System;
 using UnityEngine;
@@ -14,23 +14,23 @@ using System.Collections; class NonCachingLoadExample : MonoBehaviour {
    public string BundleURL;
    public string AssetName;
    IEnumerator Start() {
-	   // Download the file from the URL. It will not be saved in the Cache
+	   // URLからファイルをダウンロード。キャッシュにセーブされません。
 	   using (WWW www = new WWW(BundleURL)) {
 		   yield return www;
 		   if (www.error != null)
-			   throw new Exception("WWW download had an error:" + www.error);
+			   throw new Exception("WWWダウンロードにエラーがありました:" + www.error);
 		   AssetBundle bundle = www.assetBundle;
 		   if (AssetName == "")
 			   Instantiate(bundle.mainAsset);
 		   else
 			   Instantiate(bundle.Load(AssetName));
-                   // Unload the AssetBundles compressed contents to conserve memory
+                   // メモリ節約のため圧縮されたアセットバンドルのコンテンツをアンロード
                    bundle.Unload(false);
 	   }
    }
 }@]
 
-The recommended way to download AssetBundles is to use [[ScriptRef:WWW.LoadFromCacheOrDownload.html|WWW.LoadFromCacheOrDownload]]. For example:
+アセットバンドルをダウンロードする推奨の方法は[[ScriptRef:WWW.LoadFromCacheOrDownload.html|WWW.LoadFromCacheOrDownload]] を使用することです。例えば:
 
 [@using System;
 using UnityEngine;
@@ -46,50 +46,49 @@ public class CachingLoadExample : MonoBehaviour {
 	}
 
 	IEnumerator DownloadAndCache (){
-		// Wait for the Caching system to be ready
+		// キャッシュシステムの準備が完了するのを待ちます
 		while (!Caching.ready)
 			yield return null;
 
-		// Load the AssetBundle file from Cache if it exists with the same version or download and store it in the cache
+		// 同じバージョンが存在する場合はアセットバンドルをキャッシュからロードするか、またはダウンロードしてキャッシュに格納します。
 		using(WWW www = WWW.LoadFromCacheOrDownload (BundleURL, version)){
 			yield return www;
 			if (www.error != null)
-				throw new Exception("WWW download had an error:" + www.error);
+				throw new Exception("WWWダウンロードにエラーがありました:" + www.error);
 			AssetBundle bundle = www.assetBundle;
 			if (AssetName == "")
 				Instantiate(bundle.mainAsset);
 			else
 				Instantiate(bundle.Load(AssetName));
-                	// Unload the AssetBundles compressed contents to conserve memory
+                	// メモリ節約のため圧縮されたアセットバンドルのコンテンツをアンロード
                 	bundle.Unload(false);
 		}
 	}
 }@]
 
-When you access the @@.assetBundle@@ property, the downloaded data is extracted and the AssetBundle object is created. At this point, you are ready to load the objects contained in the bundle. The second parameter passed to LoadFromCacheOrDownload specifies which version of the AssetBundle to download. If the AssetBundle doesn't exist in the cache or has a version lower than requested, LoadFromCacheOrDownload will download the AssetBundle. Otherwise the AssetBundle will be loaded from cache.
+@@.assetBundle@@ プロパティをアクセスするとき、ダウンロードされたデータは抽出されてAssetBundleオブジェクトが作成されます。この時点で、バンドルに含まれるオブジェクトをロードする準備が出来ています。 LoadFromCacheOrDownload に渡す、二つ目の引数はどのアセットバンドルのバージョンをダウンロードするか指定します。もしアセットバンドルがキャッシュに存在しないか、リクエストよりも低いバージョンである場合、 LoadFromCacheOrDownload によりアセットバンドルがダウンロードされます。そうでない場合アセットバンドルはキャッシュからロードされます。
 
+!!!全て統合する
 
-!!!Putting it all together
-
-Now that the components are in place you can build a scene that will allow you to load your AssetBundle and display the contents on screen. 
+コンポーネントの準備が完了したので、アセットバンドルをロードして、シーンにコンテンツを表示するためにシーンをビルド出来ます。
 
 ->Attach:AssetBundlesExampleFinalProject.png
-Final project structure
+最終的なプロジェクト構造
 
-First create an empty game object by going to  ^^GameObject->CreateEmpty^^. Drag the CachingLoadExample script onto the empty game object you just created. Then type the the URL of your AssetBundle in the BundleURL field. As we have placed this in the project directory you can copy the file directory location and add the prefix @@file://@@, for example @@file://C:/UnityProjects/AssetBundlesGuide/Assets/AssetBundles/Cube.unity3d@@
+最初に ^^GameObject->CreateEmpty^^ を選択して空のゲームオブジェクトを作成します。 CachingLoadExample スクリプトをドラッグして作成したばかりの空のゲームオブジェクトにスクリプトをドラッグ＆ドロップします。次にアセットバンドルのURLをBundleURLフィールドに入力します。プロジェクトのディレクトリにこれを配置するため、ファイルディレクトリのパスをコピーして、前に @@file://@@ を、例えば @@file://C:/UnityProjects/AssetBundlesGuide/Assets/AssetBundles/Cube.unity3d@@ といったように、付加します。
+
 
 You can now hit play in the Editor and you should see the Cube prefab being loaded from the AssetBundle. 
 
 
+!!! アセットバンドルをエディタでロード
 
-!!! Loading AssetBundles in the Editor
-
-When working in the Editor requiring AssetBundles to be built and loaded can slow down the development process. For instance, if an Asset from an AssetBundle is modified this will then require the AssetBundle to be rebuilt and in a production environment it is most likely that all AssetBundles are built together and therefore making the process of updating a single AssetBundle a lengthy operation. A better approach is to have a separate code path in the Editor that will load the Asset directly instead of loading it from an AssetBundle. To do this it is possible to use Resources.LoadAssetAtPath (Editor only). 
+エディタで作業をするときはアセットバンドルがビルドおよびロードされていることが必要で、開発プロセスを遅らせるかもしれません。例えば、アセットバンドルのアセットが修正されると、アセットバンドルが再ビルドされて本番環境では多くの場合に全てのアセットバンドルが同時にビルドされて、結果としてひとつのアセットバンドルの更新を長い作業にします。より良いアプローチでは、エディタに別のコードパスにより、アセットバンドルからロードする代わりにアセットを直接ロードします。これを実現するにはResources.LoadAssetAtPath を使用します（エディタのみ）。
 
 
 [@// C# Example
-// Loading an Asset from disk instead of loading from an AssetBundle
-// when running in the Editor
+// エディタで実行するときにアセットバンドルからではなく、
+// アセットをディスクからロードします
 using System.Collections;
 using UnityEngine;
 
@@ -103,18 +102,18 @@ class LoadAssetFromAssetBundle : MonoBehaviour
 		Obj = Resources.LoadAssetAtPath("Assets/" + asset, typeof(T));
 		yield return null;
 #else
-		// Wait for the Caching system to be ready
+		// キャッシングシステムが準備完了するまで待機
 		while (!Caching.ready)
 			yield return null;
 
-		// Start the download
+		// ダウンロードを開始
 		using(WWW www = WWW.LoadFromCacheOrDownload (url, version)){
 			yield return www;
 			if (www.error != null)
                 		throw new Exception("WWW download:" + www.error);
 			AssetBundle assetBundle = www.assetBundle;
 			Obj = assetBundle.Load(asset, typeof(T));
-			// Unload the AssetBundles compressed contents to conserve memory
+			// メモリ節約のため圧縮されたアセットバンドルのコンテンツをアンロード
 			bundle.Unload(false);
 		}
 #endif
@@ -122,4 +121,4 @@ class LoadAssetFromAssetBundle : MonoBehaviour
 }@]
 
 
-[[AssetBundlesIntro|back to AssetBundles Intro]]
+[[AssetBundlesIntro|アセットバンドル イントロに戻る]]
