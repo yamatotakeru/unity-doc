@@ -1,28 +1,28 @@
-! Account Setup
+! アカウントセットアップ
 
-There are some steps you must follow before you can build and run any code (including Unity-built games) on your iOs device.  These steps are prerequisite to publishing your own iOS games.
+iOSデバイスで何らかのコードを実行する場合（Unityでビルドしたゲームを含めて）に、従うべきステップがいくつかあります。これはiOSゲームをパブリッシュするための事前準備事項です。
 
-!! 1. Apply to Apple to Become a Registered iPhone/iPad Developer
-You do this through Apple's website: http://developer.apple.com/iphone/program/
+!! 1. Appleに iPhone/iPad の登録デベロッパーとなるための申請を行います。
+Appleウェブサイトを通じて行います: http://developer.apple.com/iphone/program/
 
 
-!! 2. Upgrade your Operating System and iTunes Installation
-Please note that these are Apple's requirements as part of using the iPhone SDK, but the requirements can change from time to time.
+!! 2. オペレーティングシステムのアップグレードとiTunesのインストール
+iPhone SDKを使用するためのAppleとして必要な要件があることに留意する必要があり、要件は随時に変更される可能性があります。
 
-!! 3. Download the iPhone SDK
-Download the latest iOS SDK from the [[http://developer.apple.com/iphone  | iOS dev center]] and install it.  Do __not__ download the beta version of the SDK - you should use only the latest shipping version. Note that downloading and installing the iPhone SDK will also install XCode.
+!! 3. iPhone SDKをダウンロード
+ [[http://developer.apple.com/iphone  | iOS Dev Center]] から最新のiOS SDKをダウンロードしてインストールします。SDKのベータ バージョンをダウンロード __しないで下さい__ 。最新の出荷バージョンのみを使用すべきです。最新のiPhone SDKのダウンロードおよびインストールはXCodeもインストールすることに留意下さい。
 
-!! 4. Get Your Device Identifier
-Connect your iOS device to the Mac with the USB cable and launch XCode. XCode will detect your phone as a new device and you should register it with the "Use For Development" button. This will usually open the Organizer window but if it doesn't then go to Window->Organizer. You should see your iOS device) in the devices list on the left; select it and note your device's identifier code (which is about 40 characters long).
+!! 4. デバイス識別子を取得
+iOSデバイスをUSBケーブルでMacにつなげてXCodeをローンチします。XCodeは新しいデバイスとして電話を認識するので、 "Use For Development" ボタンで登録すべきです。これにより Organizer ウィンドウが自動的に開かれますが、開かない場合は Window->Organizer から開いて下さい。iOSデバイスを左のデバイスリストで表示するので、選択して、デバイス識別子（40文字あります）をメモします。
 
-!! 5. Add Your Device
-Log in to the [[http://developer.apple.com/iphone | iPhone developer center]] and enter the program portal (button on the right). Go to the Devices page via the link on left side and then click the Add Device button on the right. Enter a name for your device (alphanumeric characters only) and your device's identifier code (noted in step 5 above).  Click the Submit button when done.
+!! 5. デバイスの追加
+[[http://developer.apple.com/iphone | iPhone developer center]] にログインして、プログラムのポータル（右側のボタン）に入室します。左側のリンクからDevicesページに行って、右側のAdd Deviceボタンをクリックします。デバイスの名前（英数字のみ）およびデバイス識別子（上記のステップ 5）を入力します。完了した後は、Submitボタンをクリックします。
 
-!! 6. Create a Certificate
-From the iPhone Developer Program Portal, click the Certificates link on the left side and follow the instructions listed under How-To...
+!! 6. 証明書の作成
+iPhone Developer Program Portalから、左側のCertificates（証明書）リンクをクリックして、How-To... の下に書かれている手順に従います。
 
-!! 7. Download and Install the WWDR Intermediate Certificate
-The download link is in the same "Certificates" section (just above the "Important Notice" rubric) as WWDR Intermediate Certificate.  Once downloaded, double-click the certificate file to install it.
+!! 7. WWDR Intermediate Certificateのダウンロードとインストール
+WWDR Intermediate Certificateのダウンロードのリンクは同じ "Certificates" セクションにあります（"Important Notice" 添え書きのすぐ上）。一回ダウンローした後は、証明書ファイルをダブルクリックしてインストールします。
 
-!! 8. Create a Provisioning File
-Provisioning profiles are a bit complex, and need to be set up according to the way you have organized your team.  It is difficult to give general instructions for provisioning, so we recommend that you look at the [[http://developer.apple.com/iphone/manage/provisioningprofiles/howto.action  | Provisioning How-to section]] on the Apple Developer website.
+!! 8. プロビジョニング ファイルの作成
+プロビジョニング プロファイルは少し複雑で、チームをどのように構成するかにあわせてセットアップする必要があります。プロビジョニング について標準的な手順を説明することは難しいので、Apple Developer ウェブサイトで[[http://developer.apple.com/iphone/manage/provisioningprofiles/howto.action  | Provisioning How-to セクション]] を参照することを推奨します。
