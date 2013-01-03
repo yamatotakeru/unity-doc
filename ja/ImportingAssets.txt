@@ -1,111 +1,115 @@
-! Importing Assets
+! アセットのインポート
 
-Unity will automatically detect files as they are added to your Project folder's $$Assets$$ folder.  When you put any asset into your Assets folder, you will see the asset appear in your $$Project View$$.
+Unityにより、プロジェクトの $$Assets$$ フォルダに追加するたびに、自動的にファイルを検知できます。アセットをAssets フォルダに入れるとき、 $$Project View$$ にアセットが表示されます。
 
 Attach:ProjectBrowser.png\\
-''The Project View is your window into the Assets folder, normally accessible from the file manager''
+''プロジェクトビューはAssetsフォルダの中身で、ファイルマネージャから通常にアクセスできます''
 
-When you are organizing your Project View, there is one very important thing to remember:
+プロジェクトビューを整理しているとき、覚えていくべき重要なことがひとつあります:
 
-!!!%red% Never move any assets or organize this folder from the Explorer (Windows) or Finder (OS X).  Always use the Project View!%%
+!!!%red% Explorer (Windows) または Finder (OS X) 上では絶対に、アセットを移動したり整理しないで下さい。常にプロジェクトビューを使用して下さい%%
 
-There is a lot of meta data stored about relationships between asset files within Unity.  This data is all dependent on where Unity expects to find these assets.  If you move an asset from within the Project View, these relationships are maintained.  If you move them outside of Unity, these relationships are broken.  You'll then have to manually re-link lots of dependencies, which is something you probably don't want to do.
+このデータはUnityがアセットを探す場所に依存しています。もしアセットをプロジェクトビュー上で移動するかぎり、この関係性は維持されます。もしUnityの外に移動した場合、関係性は壊れます。関係性を再度マニュアルで再リンク、する必要があり、出来るかぎりさけるべきです。
 
-So just remember to only save assets to the Assets folder from other applications, and never rename or move files outside of Unity.  Always use Project View.  You can safely open files for editing from anywhere, of course.
-
-
-!! Creating and Updating Assets
-
-When you are building a game and you want to add a new asset of any type, all you have to do is create the asset and save it somewhere in the Assets folder.  When you return to Unity or launch it, the added file(s) will be detected and imported.
-
-Additionally, as you update and save your assets, the changes will be detected and the asset will be re-imported in Unity.  This allows you to focus on refining your assets without struggling to make them compatible with Unity.  Updating and saving your assets normally from its native application provides optimum, hassle-free workflow that feels natural.
+結局、外部アプリケーションからはAssetsフォルダに保存することは出来ますが、名前変更を行ったり、Unityの外にファイルを移動するべきではありません。常にプロジェクトビューを使用して下さい。当然ながらファイルをどこからでも開いたり編集したりすることも、出来ます。
 
 
-!! Asset Types
+!! アセットの作成および更新
 
-There are a handful of basic asset types that will go into your game.  The types are:
+ゲームを作成していて、新しいアセットを何か追加したいときは、アセットを作成して Assets フォルダのどこかに保存します。Unityに戻るか、起動をさせると、追加したファイルは検知されて、自動的にインポートされています。
 
-* Mesh Files & Animations
-* Texture Files
-* Sound Files
-
-We'll discuss the details of importing each of these file types and how they are used.
+さらにあ、アセットを更新してセーブすると、変更は反映されて Unity に再インポートされます。これによりUnityと互換性を持たせることに労をかけずにアセットを調整することが出来ます。アセットをネイティブのアプリケーションから更新して保存することによって、最適で、手間のかからない自然なワークフローとなります。
 
 
-!!! Meshes & Animations
+!! アセットの種類
 
-Whichever 3D package you are using, Unity will import the meshes and animations from each file.  For a list of applications that are supported by Unity, please see [[HOWTO-importObject|this page]].
+ゲームに使用できる基本的なアセットの種類はたくさんあります。それらのタイプは:
 
-Your mesh file does not need to have an animation to be imported.  If you do use animations, you have your choice of importing all animations from a single file, or importing separate files, each with one animation.  For more information about importing animations, please see page about [[Animations | Animation Import]].
+* メッシュ ファイル および アニメーション
+* テクスチャ ファイル
+* 音声ファイル
 
-Once your mesh is imported into Unity, you can drag it to the $$Scene$$ or $$Hierarchy$$ to create an instance of it.  You can also add $$Components$$ to the instance, which will not be attached to mesh file itself.
-
-Meshes will be imported with UVs and a number of default $$Materials$$ (one material per UV).  You can then assign the appropriate texture files to the materials and complete the look of your mesh in Unity's game engine.
-
-
-!!! Textures
-
-Unity supports all image formats.  Even when working with layered Photoshop files, they are imported without disturbing the Photoshop format.  This allows you to work with a single texture file for a very care-free and streamlined experience.
-
-You should make your textures in dimensions that are to the power of two (e.g. 32x32, 64x64, 128x128, 256x256, etc.)  Simply placing them in your project's Assets folder is sufficient, and they will appear in the Project View.
-
-Once your texture has been imported, you should assign it to a [[class-Material|Material]].  The material can then be applied to a mesh, $$Particle System$$, or $$GUI Texture$$.  Using the $$Import Settings$$, it can also be converted to a $$Cubemap$$ or $$Normalmap$$ for different types of applications in the game.  For more information about importing textures, please read the [[class-Texture2D|Texture Component page]].
+これらのファイルをインポートする再の詳細や、どのように使用されているかを説明していきます。
 
 
-!!! Sounds
+!!! メッシュ および アニメーション
+
+どのような3Dパッケージを使用していたとしても、Unityはメッシュおよびアニメーションを各ファイルからインポートします。Unityによりサポートされているアプリケーションの一覧については [[HOWTO-importObject|ここ]] を参照下さい。
+
+メッシュファイルはインポートするためにアニメーションは必要ありません。アニメーションを実際に使用する場合は、全てのアニメーションをひとつのファイルからインポートするか、別々のファイルからひとつづつアニメーションをインポートするか、選ぶことが出来ます。アニメーションをインポートする方法の詳細については、 [[Animations | アニメーション インポート]] を参照下さい。
+
+一回メッシュをUnityにインポートした後、$$Scene$$ または $$Hierarchy$$ にドラッグ＆ドロップすることでインスタンスを作成することが出来ます。さらにインスタンスに $$Components$$ を追加することも出来ますが、その場合メッシュファイル自身にコンポーネントはアタッチされません。
+
+メッシュはUVおよびいくつかのデフォルトの $$Materials$$ （UVごとに一つのマテリアル）とともにインポートされます。次に適切なテクスチャファイルをマテリアルに割り当てて、Unityゲームエンジンにおけるメッシュの外見を完成させることが出来ます。
+
+
+!!! テクスチャ
+
+Unityは全ての画像形式をサポートします。Photshopのレイヤーファイルで作業をしているときも、Photoshop形式に煩わされることなくインポートできます。これによりひとつのテクスチャファイルで、安心して一貫した体験の中で、作業できます。
+
+テクスチャを作成するときは、2の倍数にあたる長さとすべきです（例えば 32x32、 64x64、 128x128、 256x256、 等）。プロジェクトのAssetsフォルダに配置するだけで十分で、それによりプロジェクトビューに表示されます。
+
+テクスチャを一回インポートしたら、 [[class-Material|マテリアル]] にアサイン出来ます。マテリアルは次にメッシュ、 $$Particle System$$、または$$GUI Texture$$ に適用することが出来ます。 $$Import Settings$$ を使用して、さらにゲームでの適用方法に応じて $$Cubemap$$ または $$Normalmap$$ に変換できます。テクスチャインポートの詳細については、 [[class-Texture2D|テクスチャコンポーネントのページ]] を参照下さい。
+
+
+!!! 音声
 
 !Desktop!
 >>desktop<<
-Unity features support for two types of audio: $$Uncompressed Audio$$ or $$Ogg Vorbis$$.  Any type of audio file you import into your project will be converted to one of these formats.
+Unity は2種類の音声をサポートしています:  $$非圧縮音声$$ （非圧縮音声）または $$Ogg Vorbis$$ です。どのような音声ファイルをプロジェクトにインポートしても、いずれかの形式に変換されます。
 
 
-!!! File Type Conversion
+!!! ファイル形式変換
 
-||``.AIFF`` ||Converted to uncompressed audio on import, best for short sound effects. ||
-||``.WAV`` ||Converted to uncompressed audio on import, best for short sound effects. ||
-||``.MP3`` ||Converted to Ogg Vorbis on import, best for longer music tracks. ||
-||``.OGG`` ||Compressed audio format, best for longer music tracks. ||
+||``.AIFF`` ||インポート時に 非圧縮音声に変換短い効果音に最適。 ||
+||``.WAV`` ||インポート時に 非圧縮音声に変換短い効果音に最適。 ||
+||``.MP3`` ||インポート時に Ogg Vorbisに変換長い音声トラックに最適。 ||
+||``.OGG`` ||圧縮音声形式, best for 長い音声トラックに最適。 ||
 
 
-!!! Import Settings
+!!! インポート設定
 
-If you are importing a file that is not already compressed as Ogg Vorbis, you have a number of options in the $$Import Settings$$ of the Audio Clip.  Select the Audio Clip in the $$Project View$$ and edit the options in the $$Audio Importer$$ section of the $$Inspector$$. Here, you can compress the Clip into Ogg Vorbis format, force it into Mono or Stereo playback, and tweak other options.  There are positives and negatives for both Ogg Vorbis and uncompressed audio.  Each has its own ideal usage scenarios, and you generally should not use either one exclusively.
+もし、まだ Ogg Vorbis として圧縮されてないファイルをインポートする場合、オーディオクリップの $$Import Settings$$ で数多くのオプションがあります。 $$Project View$$ でオーディオクリップを選択して、 $$Inspector$$ の $$Audio Importer$$ のオプションを編集してください。ここでクリップをOgg Vorbis形式に変換したり、モノまたはステレオ 再生を強制したり、他のオプションを微調整できます。 Ogg Vorbis と 非圧縮音声の両方とも長所および短所があります。各々、使用する理想的なシナリオがあり、どちらか片方だけを絶対的に使用すべきではありません。
 
-Read more about using Ogg Vorbis or Uncompressed audio on the [[class-AudioClip | Audio Clip Component Reference page]].
+
+Ogg Vorbis または 非圧縮音声を使用する方法については [[class-AudioClip | オーディオクリップ コンポーネント リファレンス ページ]] を参照下さい。
 >><<
 !iOS!
 >>ios<<
-Unity features support for two types of audio: $$Uncompressed Audio$$ or $$MP3 Compressed audio$$.  Any type of audio file you import into your project will be converted to one of these formats.
+Unity により2種類
+Unity は2種類の音声をサポートしています:  $$非圧縮音声$$ （非圧縮音声）または $$MP3 Compressed audio$$ です。 プロジェクトにインポートした全ての音声ファイルはこれらのフォーマットのひとつに変換されます。
 
-!!!! File Type Conversion
+!!!! ファイル形式変換
 
-||``.AIFF`` ||Imports as uncompressed audio for short sound effects. Can be compressed in Editor on demand. ||
-||``.WAV`` ||Imports as uncompressed audio for short sound effects. Can be compressed in Editor on demand. ||
-||``.MP3`` ||Imports as Apple Native compressed format for longer music tracks. Can be played on device hardware.||
-||``.OGG`` ||OGG compressed audio format, __incompatible__ with the iPhone device. Please use MP3 compressed sounds on the iPhone.||
+||``.AIFF`` ||短い効果音において非圧縮音声としてインポートされます。エディタ上でオンデマンドで圧縮できます。 ||
+||``.WAV`` ||短い効果音において非圧縮音声としてインポートされます。エディタ上でオンデマンドで圧縮できます。 ||
+||``.MP3`` ||長い音声トラックにおいてApple ネイティブ圧縮形式としてインポートされます。デバイスハードウェアで再生できます。||
+||``.OGG`` ||OGG 圧縮音声形式、iPhoneデバイスと __互換性がありません__ 。iPhoneではMP3圧縮音声を使用下さい。||
 
-!!!! Import Settings
+!!!! インポート設定
 
-When you are importing an audio file, you can select its final format and choose to force it to stereo or mono channels.  To access the $$Import Settings$$, select the Audio Clip in the $$Project View$$ and find the $$Audio Importer$$ in the Inspector. Here, you can compress the Clip into Ogg Vorbis format, force it into Mono or Stereo playback, and tweak other options, such as the very important Decompress On Load setting.
+音声ファイルをインポートするとき、最終形式を選択して、ステレオまたはモノ チャネルを強制することが出来ます。 $$Import Settings$$ に入るためには、 $$Project View$$ のオーディオクリップを選択して、インスペクタ上で $$Audio Importer$$ を探します。ここでクリップをOgg Vorbis形式に変換したり、モノまたはステレオ 再生を強制したり、Decompress On Load（ロード時に解凍）など非常に重要な他のオプションを微調整できます。
 
-Read more about using MP3 Compressed or Uncompressed audio on the [[class-AudioClip | Audio Clip Component Reference page]].
+MP3圧縮または非圧縮音声の詳細については [[class-AudioClip | オーディオクリップ コンポーネント リファレンス ページ]] を参照下さい。
 >><<
 !Android!
 >>android<<
-Unity features support for two types of audio: $$Uncompressed Audio$$ or $$MP3 Compressed audio$$.  Any type of audio file you import into your project will be converted to one of these formats.
+Unity は2種類の音声をサポートしています:  $$非圧縮音声$$ （非圧縮音声）または $$MP3 Compressed audio$$ です。プロジェクトにインポートした全ての音声ファイルはこれらのフォーマットのひとつに変換されます。
 
-!!!! File Type Conversion
+!!!! ファイル形式変換
 
-||``.AIFF`` ||Imports as uncompressed audio for short sound effects. Can be compressed in Editor on demand. ||
-||``.WAV`` ||Imports as uncompressed audio for short sound effects. Can be compressed in Editor on demand. ||
-||``.MP3`` ||Imports as MP3 compressed format for longer music tracks.||
-||``.OGG`` ||Note: the OGG compressed audio format is __incompatible__ with some Android devices, so Unity does not support it for the Android platform. Please use MP3 compressed sounds instead.||
+||``.AIFF`` ||短い効果音において非圧縮音声としてインポートされます。エディタ上でオンデマンドで圧縮できます。 ||
+||``.WAV`` ||短い効果音において非圧縮音声としてインポートされます。エディタ上でオンデマンドで圧縮できます。 ||
+||``.MP3`` ||長い音声トラックにおいてMP3 圧縮形式としてインポートされます。||
+||``.OGG`` ||注意: OGG 圧縮音声形式はAndroidデバイスと __互換性がありません__ のでUnityはAndroidプラットフォームでサポートしません。代わりに MP3 圧縮音声を使用下さい。||
 
-!!!! Import Settings
+!!!! インポート設定
 
-When you are importing an audio file, you can select its final format and choose to force it to stereo or mono channels.  To access the $$Import Settings$$, select the Audio Clip in the $$Project View$$ and find the $$Audio Importer$$ in the Inspector. Here, you can compress the Clip into Ogg Vorbis format, force it into Mono or Stereo playback, and tweak other options, such as the very important Decompress On Load setting.
 
-Read more about using MP3 Compressed or Uncompressed audio on the [[class-AudioClip | Audio Clip Component Reference page]].
+音声ファイルをインポートするとき、最終形式を選択して、ステレオまたはモノ チャネルを強制することが出来ます。 $$Import Settings$$ に入るためには、 $$Project View$$ のオーディオクリップを選択して、インスペクタ上で $$Audio Importer$$ を探します。。ここでクリップをOgg Vorbis形式に変換したり、モノまたはステレオ 再生を強制したり、Decompress On Load（ロード時に解凍）など非常に重要な他のオプションを微調整できます。
+
+
+MP3圧縮または非圧縮音声の詳細については [[class-AudioClip | オーディオクリップ コンポーネント リファレンス ページ]] を参照下さい。
 >><<
 
-Once sound files are imported, they can be attached to any $$GameObject$$.  The Audio file will create an [[class-AudioSource|Audio Source Component]] automatically when you drag it onto a GameObject.
+一回音声ファイルがインポートされた後、任意の $$GameObject$$ できます。音声ファイルは、ゲームオブジェクト上にドラッグ＆ドロップしたときに [[class-AudioSource|オーディオソース コンポーネント]] を自動作成します。
