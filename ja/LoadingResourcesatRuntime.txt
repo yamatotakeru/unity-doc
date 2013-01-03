@@ -1,38 +1,36 @@
-! Loading Resources at Runtime
+! ランタイム時にリソースをロード
 
-In some situations, it is useful to make an asset available to a project without loading it in as part of a scene. For example, there may be a character or other object that can appear in any scene of the game but which will only be used infrequently (this might be a "secret" feature, an error message or a highscore alert, say). Furthermore, you may even want to load assets from a separate file or URL to reduce initial download time or allow for interchangeable game content.
+いくつかの状況では、プロジェクトにとってシーンの一部としてロードせずにアセットを使用可能とすることは便利です。例えば、ゲームのどのシーンでも登場できるキャラクターまたは別のオブジェクトがあるとして、あまり頻繁でないとします（これは "秘密" の機能、エラーメッセージ、またはハイスコアのお知らせ、でも良いです）。さらに初期のダウンロード時間を短縮するか、相互変更が可能とするため、ゲームコンテンツアセットを別のファイルまたはURLからロードしたいかもしれません。
 
-Unity supports $$Resource Folders$$ in the project to allow content to be supplied in the main game file yet not be loaded until requested. In Unity Pro, Unity iOS Advanced and Unity Android Advanced, you can also create $$Asset Bundles$$. These are files completely separate from the main game file which contain assets to be accessed by the game on demand from a file or URL.
+Unityはプロジェクトで $$Resource Folders$$ をサポートして、コンテンツがメインのゲームファイルで供給されるが、リクエストあるまでロードしないかもしれません。Unity Pro、Unity iOS Advanced、およびUnity Android Advancedでは、 $$Asset Bundles$$ を作成することもできます。これらのファイルはメインのゲームファイルから完全に分けられて、あるファイルまたはURLからゲームからオンデマンドでアクセスできるアセットを含みます。
 
-!! Asset Bundles (Unity Pro-only/iOS Advanced/Android Advanced licenses only)
+!! アセットバンドル(Unity Proのみ／iOS Advanced／Android Advanced ライセンスのみ)
 
-An Asset Bundle is an external collection of assets.  You can have many Asset Bundles and therefore many different external collections of assets.  These files exist outside of the built Unity player, usually sitting on a web server for end-users to access dynamically. 
+アセットバンドルは外部アセットの集合です。複数のアセットバンドル、つまりは多くの異なる外部アセットの集合をを保持することは可能です。これらのファイルはビルドされたUnityプレイヤーの外に存在するため、通常はウェブサーバ上にあり、動的にエンドユーザがアクセスできます。
 
-To build an Asset Bundle, you call [[ScriptRef:BuildPipeline.BuildAssetBundle.html | BuildPipeline.BuildAssetBundle()]] from inside an Editor script.  In the arguments, you specify an array of $$Objects$$ to be included in the built file, along with some other options.  This will build a file that you can later load dynamically in the runtime by using [[ScriptRef:AssetBundle.Load.html | AssetBundle.Load()]].
+アセットバンドルをビルドするためには、エディタスクリプトの中から [[ScriptRef:BuildPipeline.BuildAssetBundle.html | BuildPipeline.BuildAssetBundle()]] をコールします。引数の中に、ビルドに含める $$Objects$$ 配列を、他のオプションとともに指定します。これにより後でランタイム時に [[ScriptRef:AssetBundle.Load.html | AssetBundle.Load()]] を使用して動的ロードできるファイルを作成できます。
 
-!! Resource Folders
+!! リソースフォルダ
 
-Resource Folders are collections of assets that are included in the built Unity player, but are not necessarily linked to any GameObject in the Inspector.
+リソースフォルダはビルドされたUnity Playerアセットの集合で、必ずしもインスペクタ上でどれかのゲームオブジェクトにリンクされているわけではありません。
 
-To put anything into a Resource Folder, you simply create a new folder inside the $$Project View$$, and name the folder "Resources".  You can have multiple Resource Folders organized differently in your Project.  Whenever you want to load an asset from one of these folders, you call [[ScriptRef:Resources.Load.html | Resources.Load()]].
+リソースフォルダに何か入れるときは、単に $$Project View$$ に新規フォルダを作成し、フォルダの名前を "Resources" とします。複数のリソースフォルダをプロジェクトの中に異なる形で配置することが出来ます。このフォルダのどれかからアセットをロードしたいとき、 [[ScriptRef:Resources.Load.html | Resources.Load()]] をコールします。
+
+もしデプロイするターゲットは $$Streaming Web Player$$ の場合、シーンのすべてをリソースフォルダに含めて定義することが出来ます。これを $$Player Settings$$ の ^^Edit->Project Settings->Player^^ で行うことが出来ます。ストリーミングのキューはBuild Settingのscene orderで決定されます。
+
+!!! 注意:
+Resourcesフォルダで見つかる全てのアセットとその依存関係は ''resources.assets'' というふぁいるに格納されます。もしアセットがすでに別のレベルで使用される場合、そのレベルの ''.sharedAssets''  に格納されます。
+ ^^Edit -> PlayerSettings^^ ^^First Streamed Level^^ 設定により ''resources.assets'' が集められてビルドに含めるレベルを決定します。
+
+もし ''"最初にストリーミングしたレベル"'' はリソースフォルダのアセットを含む場合、アセットはそのレベルのアセットとして格納されます。もし後から含めた場合、そのレベルは "resources.assets" からのアセットを参照します。
+
+''Resources folder'' にあるアセットのみが Resources.Load によりアクセスできます。しかし依存関係があるため、より多くのアセットが "resources.assets" ファイルに含まれるかもしれません（例えばリソースフォルダのマテリアルはResourcesフォルダの外のテクスチャを参照しているかもしれません）。
 
 
-If your target deployable is a $$Streaming Web Player$$, you can define which scene will include everything in your Resource Folders.  You do this in the $$Player Settings$$, accessible via ^^Edit->Project Settings->Player^^.  Stream queue is determined by Build Settings' scene order.
+!! リソースのアンロード
 
-!!! Note:
-All assets found in the Resources folders and their dependencies are stored in a file called ''resources.assets''. If an asset is already used by another level it is stored in the ''.sharedAssets'' file for that level.
-The ^^Edit -> PlayerSettings^^ ^^First Streamed Level^^ setting determines the level at which the ''resources.assets'' will be collected and included in the build.
+アセットバンドルのリソースをアンロードするには [[ScriptRef:AssetBundle.Unload.html | AssetBundle.Unload()]] をコールします。もし ``unloadAllLoadedObjects`` に ``true`` を渡すと、アセットバンドルにより内部的に保持されたオブジェクトおよび [[ScriptRef:AssetBundle.Load.html | AssetBundle.Load()]] をコールしてアセットバンドルからロードされたものは破棄されて、バンドルが使用していたメモリが解放されます。
 
-If a level prior to ''"First streamed Level"'' is including an asset in a Resource folder, the asset will be stored in assets for that level. if it is included afterwards, the level will reference the asset from the "resources.assets" file.
+ときどきアセットバンドルをロードしたほうが良い場合があり、選んだオブジェクトをインスタンス化して、オブジェクトを残しつつバンドルが使用しているメモリを解放したいかもしれません。長所は他のタスク、例えば別のアセットバンドルをロードする等、のためにメモリを解放します。このシナリオでは ``false`` をパラメータとして渡します。バンドルが破棄された後は、そこからオブジェクトをロード出来なくなります。
 
-Only assets that are in the ''Resources folder'' can be accessed through Resources.Load. However many more assets might end up in the "resources.assets" file since they are dependencies. (For example a Material in the Resources folder might reference a Texture outside of the Resources folder)
-
-
-!! Resource Unloading
-
-You can unload resources of an AssetBundle by calling [[ScriptRef:AssetBundle.Unload.html | AssetBundle.Unload()]]. If you pass ``true`` for the ``unloadAllLoadedObjects`` parameter, both the objects held internally by the AssetBundle and the ones loaded from the AssetBundle using [[ScriptRef:AssetBundle.Load.html | AssetBundle.Load()]] will be destroyed and memory used by the bundle will be released.
-
-Sometimes you may prefer to load an AssetBundle, instantiate the objects desired and release the memory used up by the bundle while keeping the objects around. The benefit is that you free up memory for other tasks, for instance loading another AssetBundle. In this scenario you would pass ``false`` as the parameter. After the bundle is destroyed you will not be able to load objects from it any more.
-
-If you want to destroy scene objects loaded using [[ScriptRef:Resources.Load.html | Resources.Load()]] prior to loading another level, call [[ScriptRef:Object.Destroy.html | Object.Destroy()]] on them. To release assets, use [[ScriptRef:Resources.UnloadUnusedAssets.html | Resources.UnloadUnusedAssets()]].
-
+もし別のレベルをロードする前に、 [[ScriptRef:Resources.Load.html | Resources.Load()]] を使用してロードしたシーンのオブジェクトを破棄したい場合、 [[ScriptRef:Object.Destroy.html | Object.Destroy()]] をコールします。アセットを解放するためには [[ScriptRef:Resources.UnloadUnusedAssets.html | Resources.UnloadUnusedAssets()]] を使用します。
