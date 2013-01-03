@@ -1,42 +1,42 @@
-! Building AssetBundles
+! アセットバンドルのビルド
 
-There are three class methods you can use to build AssetBundles: 
+アセットバンドルのビルドに使用できるクラスメソッドは3つあります:
+* [[ScriptRef:BuildPipeline.BuildAssetBundle.html|BuildPipeline.BuildAssetBundle]] により、どんな種類のアセットでもアセットバンドルをビルドできます。
 
-* [[ScriptRef:BuildPipeline.BuildAssetBundle.html|BuildPipeline.BuildAssetBundle]] allows you to build AssetBundles of any type of asset. 
+* [[ScriptRef:BuildPipeline.BuildStreamedSceneAssetBundle.html|BuildPipeline.BuildStreamedSceneAssetBundle]] は、データが利用可能となったときにシーンのストリーミングおよびロードしたい場合に使用します。
 
-* [[ScriptRef:BuildPipeline.BuildStreamedSceneAssetBundle.html|BuildPipeline.BuildStreamedSceneAssetBundle]] is used when you want to include only scenes to be streamed and loaded as the data becomes available. 
-
-* [[ScriptRef:BuildPipeline.BuildAssetBundleExplicitAssetNames.html|BuildPipeline.BuildAssetBundleExplicitAssetNames]] is the same as BuildPipeline.BuildAssetBundle but has an extra parameter to specify a custom string identifier (name) for each object.
+* [[ScriptRef:BuildPipeline.BuildAssetBundleExplicitAssetNames.html|BuildPipeline.BuildAssetBundleExplicitAssetNames]] は BuildPipeline.BuildAssetBundle とほぼ同様ですが、追加の引数によって各オブジェクトに対応したカスタム文字列の識別子（名前）を指定できます。
 
 
-!! An example of how to build an AssetBundle
+!! アセットバンドルをビルドする方法のサンプル
 
-Building asset bundles is done through editor scripting. There is basic example of this in the scripting documentation for [[ScriptRef:BuildPipeline.BuildAssetBundle.html|BuildPipeline.BuildAssetBundle]]. 
+アセットバンドルのビルドはエディタのスクリプティングを通じて行います。 [[ScriptRef:BuildPipeline.BuildAssetBundle.html|BuildPipeline.BuildAssetBundle]] のスクリプティング ドキュメントにこの基本的な例があります。
 
-For the sake of this example, copy and paste the script from the link above into a new C# script called ExportAssetBundles. This script should be placed in a folder named Editor, so that it works inside the Unity Editor.
+
+このサンプルを実行するために、上記のリンクからExportAssetBundlesという名前のC#スクリプトにコピー＆ペーストします。このスクリプトをEditorという名前のフォルダに配置してUnity Editorで動作するようにします。
 
 Attach:ExportAssetBundlesScript.png
 
-Now in the ^^Assets^^ menu, you should see two new menu options.
+次に ^^Assets^^ メニューから、二つのメニューオプションが表示されます。
 
 Attach:AssetBundleMenuOptions.png
-# ^^Build AssetBundle From Selection - Track dependencies^^. This will build the current object into an asset bundle and include all of its dependencies. For example if you have a prefab that consists of several hierarchical layers then it will recursively add all the child objects and components to the asset bundle.
+# ^^Build AssetBundle From Selection - Track dependencies^^ 。 （選択範囲からからビルド - 依存関係をトラッキング）。これにより現在のオブジェクトからアセットバンドルをビルドし、全ての依存関係が含まれます。例えば、プレハブがいくつかの階層レイヤーから構成される場合、再帰的に全ての子オブジェクトとコンポーネントを追加します。
 
-# ^^Build AssetBundle From Selection - No dependency tracking^^. This is the opposite of the previous and will only include the single asset you have selected. 
+# ^^Build AssetBundle From Selection - No dependency tracking^^ 。（選択範囲からからビルド - 依存関係をトラッキングしない）。これは前述の反対のオプションであり、選択範囲のアセットのみを単独で含みます。
 
-For this example, you should create a new prefab. First create a new Cube by going to ^^GameObject -> Create Other -> Cube^^, which will create a new cube in the Hierarchy View. Then drag the Cube from the Hierarchy View into the Project View, which will create a prefab of that object.
+この例では、新規のプレハブを作成すべきです。最初に新規のキューブを作成するために ^^GameObject -> Create Other -> Cube^^ を選択すると、階層ビューに新規のキューブが作成されます。次にキューブを階層ビューからプロジェクトビューにドラッグ＆ドロップして、オブジェクトのプレハブが作成されます。
 
-You should then right click the Cube prefab in the project window and select ^^Build AssetBundle From Selection - Track dependencies^^. 
-At this point you will be presented with a window to save the �bundled� asset. If you created a new folder called "AssetBundles" and saved the cube as ``Cube.unity3d``, your project window will now look something like this.
+プロジェクトのキューブのプレハブを右クリックして ^^Build AssetBundle From Selection - Track dependencies^^ を選択します。
+
+こうすると、バンドルアセットを保存するウィンドウが表示されます。もし "AssetBundles" という新規のフォルダを作成して、キューブを ``Cube.unity3d``として保存すると、プロジェクトウィンドウは次のようになります。
 
 Attach:AssetBundlesCube.png
 
-At this point you can move the AssetBundle ``Cube.unity3d`` elsewhere on your local storage, or upload it to a server of your choice.
+この時点で、アセットバンドルの ``Cube.unity3d``をローカルのストレージまたは好きなサーバにアップロードすることが出来ます。
 
 
-!! Building AssetBundles in a production enviroment
+!! アセットバンドルを本番環境でビルドする
 
-When first using AssetBundles it may seem enough to manually build them as seen in the previous example. But as a project grows in size and the number of Assets increases doing this process by hand is not efficient. A better approach is to write a function that builds all of the AssetBundles for a project. You can for example use a text file that maps Asset files to AssetBundle files.
+アセットバンドルを初めて使用するとき、前述の例の通りにマニュアルでビルドするので十分に見えます。しかしプロジェクトサイズが大きくなり、アセットの数が増加すると、このプロセスは効果的ではありません。より良いアプローチは、プロジェクトの全てのアセットバンドルをビルドする関数を記述することです。たとえばアセットファイルをアセットバンドルのファイルにマッピングするテキストファイルを使用できます。
 
-
-[[AssetBundlesIntro|back to AssetBundles Intro]]
+[[AssetBundlesIntro|アセットバンドル イントロダクションに戻る]]
