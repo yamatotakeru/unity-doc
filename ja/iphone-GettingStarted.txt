@@ -1,47 +1,46 @@
-! Getting Started with iOS Development
+! iOS開発を始める
 
-Building games for devices like the iPhone and iPad requires a different approach than you would use for desktop PC games. Unlike the PC market, your target hardware is standardized and not as fast or powerful as a computer with a dedicated video card. Because of this, you will have to approach the development of your games for these platforms a little differently. Also, the features available in Unity for iOS differ slightly from those for desktop PCs.
+iPhone および iPadのようなデバイス向けにゲームをビルドすることはデスクトップPC向けゲームとは異なるアプローチが必要です。PCマーケットと異なり、ターゲットのハードウェアは標準化されていて、また専用ビデオカードをもったコンピュータほど高速で協力ではありません。このためこれらプラットフォーム向けのゲーム開発のアプローチは少し異なって行う必要があります。さらにiOS向けのUnityの機能はデスクトップPCのそれとは若干異なります。  
 
-!! Setting Up Your Apple Developer Account
-Before you can run Unity iOS games on the actual device, you will need to have your Apple Developer account approved and set up.  This includes establishing your team, adding your devices, and finalizing your provisioning profiles.  All this setup is performed through Apple's developer website.  Since this is a complex process, we have provided a [[iphone-accountsetup | basic outline]] of the tasks that must be completed before you can run code on your iOS devices.  However, the best thing to do is follow the step-by-step instructions at [[http://developer.apple.com/iphone | Apple's iPhone Developer portal]].
+!! Appleデベロッパーアカウントをセットアップする
+実際のデバイスでUnity iOSゲームを実行する前に、Appleデベロッパー アカウントが承認されてセットアップしておく必要があります。これはチームの決定、デバイスの追加、およびプロビジョニング プロファイルの最終化を含みます。これらすべてはAppleのデベロッパー ウェブサイトを通して実施します。これは複雑なプロセスなので、iOSデバイスでコードを実行する前に実施すべきタスクの [[iphone-accountsetup | 基本的な概要]] をまとめました。しかし  [[http://developer.apple.com/iphone | AppleのiPhoneデベロッパー ポータル]] の手順通りに進めることがベストです。
 
-__Note__: We recommend that you set up your Apple Developer account before proceeding because you will need it to use Unity to its full potential with iOS.
+__注意__: この先に進める前に、Unity向けiOSの潜在的な力を全て引き出せるように、Appleデベロッパー アカウントをセットアップしておくことを推奨します。
 
-!! Accessing iOS Functionality
-Unity provides a number of scripting APIs to access the multi-touch screen, accelerometer, device geographical location system and much more. You can find out more about the script classes on the [[Main.iphone-API | iOS scripting page]].
+!! iOS機能へのアクセス
+UnityはいくつかのスクリプティングAPIによりマルチタッチスクリーン、加速度計、GPS機能、およびその他多くの機能へのアクセスを提供します。スクリプトのクラスについては [[Main.iphone-API | iOS スクリプティング ページ]] を参照下さい。
 
-!! Exposing Native C, C++ or Objective-C Code to Scripts
-Unity allows you to call custom native functions written in C, C++ or Objective-C directly from C# scripts. To find out how to bind native functions, visit the [[Main.Plugins | plugins page]].
+!! ネイティブ C、C++、またはObjective-Cコードをスクリプトに公開する
+Unityにより、C、C++、またはObjective-Cで書かれたカスタムの関数を C# スクリプトからコール出来ます。ネイティブ関数をバインドする方法については、 [[Main.Plugins | プラグイン ページ]] を参照下さい。
 
-!! Prepare Your Application for In-App Purchases
-The Unity iOS runtime allows you to download new content and you can use this feature to implement in-app purchases. See the [[iphone-Downloadable-Content | downloadable content]] manual page for further information.
+!! アプリケーションでのアプリ内課金を準備する
+Unity iOS ランタイムにより、新しいコンテンツをダウンロードする機能があり、これを使ってアプリ内課金を実装できます。詳細については [[iphone-Downloadable-Content | ダウンロード可能コンテンツ]] を参照下さい。
 
-!! Occlusion Culling
-Unity supports ''occlusion culling'' which is useful for squeezing high performance out of complex scenes with many objects. See the [[OcclusionCulling | occlusion culling]] manual page for further information.
+!! オクルージョン カリング
+Unityは ''オクルージョン カリング'' をサポートしていて、多くのオブジェクトのある複雑なシーンでパフォーマンスを高めるのに便利です。詳細については [[OcclusionCulling | オクルージョン カリング]] を参照下さい。
 
-!! Splash Screen Customization
-See the [[MobileCustomizeSplashScreen | splash screen customization page]] to find out how to change the image your game shows while launching.
+!! スプラッシュスクリーン のカスタマイズ
+[[MobileCustomizeSplashScreen | スプラッシュスクリーン カスタマイズ ページ]] により起動時にゲームが表示する画像を変更する方法を確認できます。
 
-!! Troubleshooting and Reporting Crashes.
-If you are experiencing crashes on the iOS device, please consult the [[TroubleShooting#iPhoneTroubleShooting |iOS troubleshooting]] page for a list of common issues and solutions. If you can't find a solution here then please file a bug report for the crash (menu: ^^Help > Report A Bug^^ in the Unity editor).
-
-
-!! How Unity's iOS and Desktop Targets Differ
-
-!!! Statically Typed JavaScript
-Dynamic typing in JavaScript is always turned off in Unity when targetting iOS (this is equivalent to @@#pragma strict@@ getting added to all your scripts automatically). Static typing greatly improves performance, which is especially important on iOS devices. When you switch an existing Unity project to the iOS target, you will get compiler errors if you are using dynamic typing. You can easily fix these either by using explicitly declared types for the variables that are causing errors or taking advantage of type inference.
-
-!!! MP3 Instead of Ogg Vorbis Audio Compression
-For performance reasons, MP3 compression is favored on iOS devices. If your project contains audio files with Ogg Vorbis compression, they will be re-compressed to MP3 during the build. Consult the [[class-AudioClip| audio clip]] documentation for more information on using compressed audio on the iPhone.
-
-!!! PVRTC Instead of DXT Texture Compression
-Unity iOS does not support DXT textures. Instead, PVRTC texture compression is natively supported by iPhone/iPad devices. Consult the [[class-Texture2D | texture import settings]] documentation to learn more about iOS texture formats.
-
-!!! Movie Playback
-MovieTextures are not supported on iOS.  Instead, full-screen streaming playback is provided via scripting functions. To learn about the supported file formats and scripting API, consult the [[Main.VideoFiles | movie page]] in the manual.
+!! トラブルシューティングおよびクラッシュ時のレポート
+もしiOSデバイスでクラッシュを経験しているのであれば [[TroubleShooting#iPhoneTroubleShooting |iOS トラブルシューティング]] ページで良くある問題や解決策について参照下さい。もしここで解決策を見つけられない場合、クラッシュに関するバグレポートを提出下さい。（メニューで: Unityエディタ上で ^^Help > Report A Bug^^ を選択）。
 
 
+!! UnityターゲットでiOSとデスクトップの違い
 
-!! Further Reading
+!!! Static TypeされたJavaScript
+iOS向けの場合、JavaScriptのDynamic TypeはつねにUnityでオフになっています（これはスクリプトに @@#pragma strict@@ を自動的に全てのスクリプトに付加しているのと同等です）。Static Typeはパフォーマンスを著しく改善し、iOSデバイスでは特に重要なことです。既存のiOSプロジェクトをiOSターゲット向けに切り替えるとき、Dynamic Typeを使用しているとコンパイルエラーが出ます。これを修正するのは簡単で、エラーが出ている変数を明示的に宣言するか、typeインタフェースを活用するかのどちらかの方法で解決できます。
+
+!!! Ogg Vorbis 音声圧縮の代わりにMP3の利用
+パフォーマンス上の理由から、OSデバイスではMP3圧縮を使用すべきです。もしプロジェクトがOgg Vorbis 音声圧縮を利用する場合、それらはビルドの際にMP3に再圧縮されます。iPhoneでの圧縮音声についての詳細は [[class-AudioClip| オーディオ クリップ]] を参照下さい。
+
+!!! DXTテクスチャ圧縮の代わりにPVRTC
+Unity iOSはDXTテクスチャをサポートしていません。その代わりにPVRTCテクスチャ圧縮がiPhone/iPadによりネイティブでサポートされています。iOSのテクスチャ形式については[[class-Texture2D | テクスチャ インポート設定]] を参照下さい。
+
+!!! ムービープレイバック
+ムービーテクスチャはiOSでサポートされていません。その代わりに、フルスクリーンのストリーミング プレイバックがスクリプティング関数を通じて提供されています。サポートされているファイル形式およびスクリプティングAPIについてはマニュアルの [[Main.VideoFiles | ムービー ページ]] を参照下さい。
+
+
+
+!! 発展
 (:tocportion:)
-
