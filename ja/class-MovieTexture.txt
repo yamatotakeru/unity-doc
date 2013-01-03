@@ -1,12 +1,12 @@
 !ムービー テクスチャ
 __注意：__　__Unity Pro/ Advancedのみ__
-!デスクトップ!
+!Desktop!
 >>desktop<<
 $$Movie Textures$$ は、ビデオファイルから作成され、アニメーション化された $$Texture$$ です。
 
 プロジェクトの^^Assetsフォルダ^^に動画ファイルを配置することによって、通常使用する[[class-Texture2D | Texture]] とまったく同じように使用できるビデオをインポートすることができます。
 
-動画ファイルはApple社のQuickTimeを介してインポートされます。サポートされるファイルの種類はインストールされたQuickTimeのがサポートするものと一致します（通常は __.mov__、 __.mpg__、 __.mpeg__、 __.mp4__、 __.avi__、 __.asf__）Windows上でムービーがインポートされるためにはQuickTimeがインストールされていることが必要です（([[http://www.apple.com/quicktime/download/ | ここ]] )　からダウンロード）
+動画ファイルはApple社のQuickTimeを介してインポートされます。サポートされるファイルの種類はインストールされたQuickTimeのがサポートするものと一致します（通常は __.mov__、 __.mpg__、 __.mpeg__、 __.mp4__、 __.avi__、 __.asf__）Windows上でムービーがインポートされるためにはQuickTimeがインストールされていることが必要です（[[http://www.apple.com/quicktime/download/ | ここ]] 　からダウンロード）
 
 
 !! プロパティ
