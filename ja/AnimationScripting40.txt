@@ -1,32 +1,32 @@
-! Animation Scripting (Legacy)
+! アニメーションスクリプティング（旧）
 
-Unity's Animation System allows you to create beautifully animated skinned characters. The Animation System supports animation blending, mixing, additive animations, walk cycle time synchronization, animation layers, control over all aspects of the animation playback (time, speed, blend-weights), mesh skinning with 1, 2 or 4 bones per vertex as well as supporting physically based rag-dolls and procedural animation. To obtain the best results, it is recommended that you read about the best practices and techniques for creating a rigged character with optimal performance in Unity on the [[Modeling Optimized Characters]] page.
+Unityのアニメーションシステムにより綺麗にアニメーション、スキニングされたキャラクターを作成できます。アニメーションシステムはアニメーションブレンディング、ミキシング、追加アニメーション、歩行サイクルタイム同期、アニメーションレイヤーをサポート、アニメーションプレイバックの様々な要素（時間、スピード、重みつきウェイト）を制御、頂点あたり1・2または4ボーンでのメッシュスキニング、および物理挙動をサポートしたラグドールおよびプロシージャルアニメーションをサポートします。
 
-Making an animated character involves two things; ''moving'' it through the world and ''animating'' it accordingly. If you want to learn more about moving characters around, take a look at the [[class-CharacterController|Character Controller page]]. This page focuses on the animation. The actual animating of characters is done through Unity's scripting interface.
+アニメーションつきキャラクターの作成は2つの要素を含みます：ゲーム世界を ''移動'' させることとそれに合わせて ''アニメーション'' させることです。キャラクターを動かすことについて詳細を学ぶには  [[class-CharacterController|Character Controller page]] を参照下さい。このページはアニメーションにフォーカスします。実際にキャラクターのアニメーションはUnityのスクリプティング インタフェースを通して行われます。
 
-You can download [[http://unity3d.com/support/resources/example-projects/|example demos]] showing pre-setup animated characters. Once you have learned the basics on this page you can also see the [[ScriptRef:Animation.html|animation script interface]].
+プリセットされたアニメーションの [[http://unity3d.com/support/resources/example-projects/|デモサンプル]] をダウンロードできます。このページで基礎を学んだあとは [[ScriptRef:Animation.html|アニメーション スクリプトインタフェース]] を参照下さい。
 
-This page contains the following sections:-
+このページは次のセクションを含みます:-
 
-*[[#AnimBlend | Animation Blending]]
-*[[#AnimLayers | Animation Layers]]
-*[[#AnimMixing | Animation Mixing]]
-*[[#Additive | Additive Animation]]
-*[[#Procedural | Procedural Animation]]
-*[[#Playback | Animation Playback and Sampling]]
+*[[#AnimBlend | アニメーション ブレンディング]]
+*[[#AnimLayers | アニメーション レイヤー]]
+*[[#AnimMixing | アニメーション ミキシング]]
+*[[#Additive | 追加アニメーション]]
+*[[#Procedural | プロシージャル アニメーション]]
+*[[#Playback | アニメーション プレイバックおよびサンプリング]]
 
 
 [[#AnimBlend]]
 
-!! Animation Blending
+!! アニメーションブレンディング
 
-In today's games, animation blending is an essential feature to ensure that characters have smooth animations. Animators create separate animations, for example, a walk cycle, run cycle, idle animation or shoot animation. At any point in time during your game you need to be able to transition from the idle animation into the walk cycle and vice versa. Naturally, you want the transition to be smooth and avoid sudden jerks in the motion.
+今日のゲームでは、アニメーションブレンディングはキャラクターのスムーズなアニメーションを保証する重要な機能です。アニメータは別々のアニメーション、例えば歩行サイクル、走行サイクル、アイドルまたは射撃、のアニメーションを作成します。ゲームの任意の時点でアイドル状態から歩行サイクルに遷移したり、やその反対の遷移を行うことが出来る必要があります。当然、遷移はスムーズでモーションのずれを回避すべきです。
 
-This is where animation blending comes in. In Unity you can have any number of animations playing on the same character. All animations are blended or added together to generate the final animation.
+ここでアニメーション ブレンディングの登場です。Unityでは同じキャラクターで任意の数だけアニメーションを再生させることが出来ます。全てのアニメーションはブレンディングまたは追加されて最終アニメーションを生成します。
 
-Our first step will be to make a character blend smoothly between the idle and walk animations.  In order to make the scripter's job easier, we will first set the ``Wrap Mode`` of the animation to ``Loop``. Then we will turn off ``Play Automatically`` to make sure our script is the only one playing animations.
+最初のステップは、キャラクターのアイドルと歩行アニメーションをスムーズにブレンドさせることです。スクリプト作成者の仕事を軽減させるため、最初にアニメーションの ``Wrap Mode`` を ``Loop`` に設定します。
 
-Our first script for animating the character is quite simple; we only need some way to detect how fast our character is moving, and then fade between the walk and idle animations. For this simple test, we will use the standard input axes:-
+キャラクターをアニメーションさせる最初のスクリプトはかなり簡単なものです。何らかの方法でキャラクターの移動スピードを検知して、歩行およびアイドルアニメーションの間をフェードさせるのみです。このシンプルなテストをおこなうため、標準的なInputのAxisを使用します。
 
 
 [@function Update () {
@@ -37,95 +37,94 @@ Our first script for animating the character is quite simple; we only need some 
 } @]
 
 
-To use this script in your project:-
-# Create a Javascript file using ^^Assets->Create Other->Javascript^^.
-# Copy and paste the code into it
-# Drag the script onto the character (it needs to be attached to the $$GameObject$$ that has the animation)
+プロジェクトでスクリプトを使用するためには:-
+# Javascriptを作成するため、^^Assets->Create Other->Javascript^^ と選択します。
+# そこにコードをコピー＆ペーストします。
+# キャラクター上にスクリプトをドラッグ＆ドロップします（アニメーションつきの $$GameObject$$ にアタッチする必要があります。）。
 
-When you hit the Play button, the character will start walking in place when you hold the up arrow key and return to the idle pose when you release it.
+再生ボタンを押すと、キャラクターは上向きの矢印キーを押したときにその場で歩き、キーを離したときにアイドルのポーズに戻ります。
 
 
 [[#AnimLayers]]
 
-!! Animation Layers
+!! アニメーションレイヤー
 
-Layers are an incredibly useful concept that allow you to group animations and prioritize weighting.
+レイヤーはきわめて便利な概念で、アニメーションをグルーピングして重みづけすることが出来ます。
 
-Unity's animation system can blend between as many animation clips as you want. You can assign blend weights manually or simply use ``animation.CrossFade()``, which will animate the weight automatically.
+Unityのアニメーション システムは好きなだけアニメーションクリップをのブレンドをすることが出来ます。ブレンドの重みづけはマニュアルで割り当てるか、 ``animation.CrossFade()`` を単に使用して自動的に重みづけすることが出来ます。
 
 
-!!! Blend weights are always normalized before being applied
+!!! ブレンドの適用前に常に行われる重みの正規化
 
-Let's say you have a walk cycle and a run cycle, both having a weight of 1 (100%). When Unity generates the final animation, it will normalize the weights, which means the walk cycle will contribute 50% to the animation and the run cycle will also contribute 50%.
+例えば、歩行サイクルと走行サイクルがあり、ともに重み（weight）が 1 (100%)であるとします。Unityが最終アニメーションを生成するとき、重みの正規化が行われる、すなわち歩行サイクルはアニメーションの50%となり、走行サイクルもまた50%となります。
 
-However, you will generally want to prioritize which animation receives most weight when there are two animations playing. It is certainly possible to ensure that the weight sums up to 100% manually, but it is easier just to use layers for this purpose.
+しかし一般的には、二つのアニメーションが再生されているときに、どのアニメーションがもっとも重みづけされるか優先順をつけたいことがあります。重みの合計が100%となるようにマニュアルで調整することも当然できますが、レイヤーをこの目的で使用するのがもっとも簡単です。
 
 
 [[#LayerExample]]
 
-!!! Layering Example
+!!! レイヤー作成 サンプル
 
-As an example, you might have a shoot animation, an idle and a walk cycle. The walk and idle animations would be blended based on the player's speed but when the player shoots, you would want to show only the shoot animation. Thus, the shoot animation essentially has a higher priority.
+例として、射撃、アイドル、歩行サイクルのアニメーションがあるとします。歩行およびアイドルのアニメーションはプレイヤーのスピードにもとづいてブレンドされますが、プレイヤーが撃つときは、射撃アニメーションのみを表示したいかもしれません。したがって、撃つアニメーションは本来的に優先順位を高くします。
 
-The easiest way to do this is to simply keep playing the walk and idle animations while shooting. To do this, we need to make sure that the shoot animation is in a higher layer than the idle and walk animations, which means the shoot animation will receive blend weights first. The walk and idle animations will receive weights only if the shoot animation doesn't use all 100% of the blend weighting. So, when CrossFading the shoot animation in, the weight will start out at zero and over a short period become 100%. In the beginning the walk and idle layer will still receive blend weights but when the shoot animation is completely faded in, they will receive no weights at all. This is exactly what we need!
+これを実現するもっとも簡単な方法は撃つときも歩行およびアイドルアニメーションを保持することです。このためには、射撃アニメーションがアイドルや歩行アニメーションよりも上位のレイヤーとする、すなわち射撃アニメーションが最初にブレンドの重みづけを配分される、必要があります。射撃のアニメーションがブレンド重みづけで100%使い切らない場合に限り、歩行とアイドルのアニメーションは重みづけを配分されません。もし、射撃アニメーションがクロスフェードするとき、重みづけはゼロで始まり、短い期間の間に100%となります。最初、歩行やアイドルレイヤーはブレンドの重みづけを配分されますが、完全に射撃アニメーションがフェードインすると、まったく重みづけを受けなくなります。実現したいことそのものですね！
 
 
 [@function Start () {
-   // Set all animations to loop
+   // 全てのアニメーションをループに設定
    animation.wrapMode = WrapMode.Loop;
-   // except shooting
+   // ただし射撃は除く
    animation["shoot"].wrapMode = WrapMode.Once;
 
-   // Put idle and walk into lower layers (The default layer is always 0)
-   // This will do two things
-   // - Since shoot and idle/walk are in different layers they will not affect
-   //   each other's playback when calling CrossFade.
-   // - Since shoot is in a higher layer, the animation will replace idle/walk
-   //   animations when faded in.
+   // アイドルと歩行を下位レイヤーとします（デフォルトではレイヤーは0）
+   // 二つのことが行われます
+   // - 射撃およびアイドル／歩行は別のレイヤーにあるため、それぞれ
+   //   CrossFadeをコールしたときにそれぞれのプレイバックに影響しません
+   // - 射撃が上位レイヤーにあるため、アニメーションがフェードインしたとき、アイドル／歩行アニメーション
+   //   が置きかえられます。
    animation["shoot"].layer = 1;
 
-   // Stop animations that are already playing
-   //(In case user forgot to disable play automatically)
+   // すでに再生されているアニメーションを止めます
+   //（ユーザが再生を無効化したことを忘れた場合に備えて自動的に）
    animation.Stop();
 }
 
 function Update () {
-   // Based on the key that is pressed,
-   // play the walk animation or the idle animation
+   // 押されたキーにもとづいて、
+   // 歩行またはアイドルアニメーションを再生します
    if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.1)
       animation.CrossFade("walk");
    else
       animation.CrossFade("idle");
 
-   // Shoot
+   // 射撃を行う
    if (Input.GetButtonDown ("Fire1"))
       animation.CrossFade("shoot");
 } @]
 
-
-By default the ``animation.Play()`` and ``animation.CrossFade()`` will stop or fade out animations that are in the same layer. This is exactly what we want in most cases. In our shoot, idle, run example, playing idle and run will not affect the shoot animation and vice versa (you can change this behavior with an optional parameter to animation.CrossFade if you like).
+デフォルトで ``animation.Play()`` および ``animation.CrossFade()`` は同じレイヤーにあるアニメーションを停止またはフェードアウトさせます。多くのケースではこれがまさに望ましい動作です。射撃、アイドル、走行の例では、アイドルや走行を再生することでは、射撃アニメーションは影響されず、その逆もまた然りです（この動作はanimation.CrossFade のオプション パラメータを変更することで変更可能です）。
 
 [[#AnimMixing]]
 
-!! Animation Mixing
+!! アニメーション ミキシング
 
-Animation mixing allow you to cut down on the number of animations you need to create for your game by having some animations apply to part of the body only. This means such animations can be used together with other animations in various combinations.
+アニメーション ミキシングにより、いくつかのアニメーションが体の一部のみに適用させることによりゲームで作成する必要があるアニメーション数をカットすることが出来ます。つまり、こういったアニメーションを他のアニメーションと様々なコンピネーションで使用することが出来るということです。
 
-You add an animation mixing transform to an animation by calling ``AddMixingTransform()`` on the given AnimationState.
+アニメーションにアニメーション ミキシングのTransformを追加するには特定のアニメーションステートで ``AddMixingTransform()`` をコールします。
 
 [[#MixingExample]]
 
-!!! Mixing Example
+!!! ミキシングのサンプル
 
-An example of mixing might be something like a hand-waving animation. You might want to make the hand wave either when the character is idle or when it is walking. Without animation mixing you would have to create separate hand waving animations for the idle and walking states. However, if you add the shoulder transform as a mixing transform to the hand waving animation, the hand waving animation will have full control only from the shoulder joint to the hand. Since the rest of the body will not be affected by he hand-waving, it will continue playing the idle or walk animation. Consequently, only the one animation is needed to make the hand wave while the rest of the body is using the idle or walk animation.
+ミキシングの例は、たとえば手を振るアニメーションかもしれません。キャラクターがアイドルまたは歩いているときにキャラクターに手を振るようにしたいとします。アニメーション ミキシングを使わないと、アイドルと歩行でそれぞれ手を振るアニメーションを別々に作成する必要があります。しかし、肩のTransformを手を振るアニメ―ションに対するミキシングTransfomとすれば、手を振るアニメーションが肩のJointから頭の部分のみ完全にコントロールします。体の残り部分は手を振る動作に影響を受けないため、アイドルまたは歩く動作を続けます。結果として、アイドルまたは歩くアニメーションを体の残りの部分が行っている間に手を振るアニメーションはひとつのみ必要ということになります。
 
-[@/// Adds a mixing transform using a Transform variable
+[@/// Transform変数を用いてミキシングTransformを追加
 var shoulder : Transform;
 animation["wave_hand"].AddMixingTransform(shoulder);@]
 
 Another example using a path.
 [@function Start () {
-   // Adds a mixing transform using a path instead
+   // パスを用いてミキシングTransformを追加
    var mixTransform : Transform = transform.Find("root/upper_body/left_shoulder");
    animation["wave_hand"].AddMixingTransform(mixTransform);
 }@]
@@ -133,17 +132,18 @@ Another example using a path.
 
 [[#Additive]]
 
-!! Additive Animations
+!! 追加アニメーション
 
-Additive animations and animation mixing allow you to cut down on the number of animations you have to create for your game, and are important for creating facial animations.
+追加アニメーションおよびアニメーションミキシングによりゲームで作るべきアニメーションの数を減らすことが出来るとともに、顔の表情を作成するのに重要です。
 
-Suppose you want to create a character that leans to the sides as it turns while walking and running. This leads to four combinations (walk-lean-left, walk-lean-right, run-lean-left, run-lean-right), each of which needs an animation. Creating a separate animation for each combination clearly leads to a lot of extra work even in this simple case but the number of combinations increases dramatically with each additional action. Fortunately additive animation and mixing avoids the need to produce separate animations for combinations of simple movements.
+例えば、歩いたり走ったりする際に斜めに寄るキャラクターを作成したいとします。これは4つのコンビネーションにつながり（歩く-左に寄る、歩く-右に寄る、走る-左に寄る、走る-右に寄る）、各々アニメーションが必要です。それぞれのコンビネーションで別々のアニメーションに作成することは、このシンプルなケースですらも明らかに余分な作業につながりますが、追加アニメーションを追加するごとに飛躍的に増加します。幸いに追加アニメーションおよびミキシングによりシンプルな動作のコンビネーションで別々のアニメーションを生成する必要性を避けます。
 
-!!! Additive Animation Example
 
-Additive animations allow you to overlay the effects of one animation on top of any others that may be playing. When generating additive animations, Unity will calculate the difference between the first frame in the animation clip and the current frame. Then it will apply this difference on top of all other playing animations.
+!!! 追加アニメーションサンプル
 
-Referring to the previous example, you could make animations to lean right and left and Unity would be able to superimpose these on the walk, idle or run cycle. This could be achieved with code like the following:-
+追加アニメーションによりひとつのアニメーションのエフェクトを再生している別のアニメーションに重ね合わせることが出来ます。追加アニメーションを生成するとき、Unityはアニメーションクリップの最初のフレームおよび現在のフレームとの差分を算出します。次に、再生しているアニメーションの上にこの差分を適用します。
+
+先述の例について触れると、アニメーションを左右に寄るアニメーションを作成すれば、Unityはこれらを歩行、アイドル、走行サイクルに重ね合わせることが出来ます。これは次のようなコードにより実現できます:-
 
 [@private var leanLeft : AnimationState;
 private var leanRight : AnimationState;
@@ -152,37 +152,37 @@ function Start () {
    leanLeft = animation["leanLeft"];
    leanRight = animation["leanRight"];
 
-   // Put the leaning animation in a separate layer
-   // So that other calls to CrossFade won't affect it.
+   // 寄るアニメ―ションを別のレイヤーに含めることにより
+   // CrossFadeｈのコールする他のコールが影響を与えられないようにします。
    leanLeft.layer = 10;
    leanRight.layer = 10;
 
-   // Set the lean animation to be additive
+   // 寄るアニメーションを追加アニメーションにセット
    leanLeft.blendMode = AnimationBlendMode.Additive;
    leanRight.blendMode = AnimationBlendMode.Additive;
 
-   // Set the lean animation ClampForever
-   // With ClampForever animations will not stop 
-   // automatically when reaching the end of the clip
+   // 寄るアニメーションをClampForeverにセット
+   // ClampForeverによりアニメーションはクリップの終わりに
+   // 到達しても自動的に停止しません
    leanLeft.wrapMode = WrapMode.ClampForever;
    leanRight.wrapMode = WrapMode.ClampForever;
 
-   // Enable the animation and fade it in completely
-   // We don't use animation.Play here because we manually adjust the time
-   // in the Update function.
-   // Instead we just enable the animation and set it to full weight
+   // アニメーションを有効化して、完全にフェード
+   // Update関数で手動で時間の調整
+   // を行うため使用しません
+   // その代わりにアニメーションをただ有効化して重みを完全に割当します
    leanRight.enabled = true;
    leanLeft.enabled = true;
    leanRight.weight = 1.0;
    leanLeft.weight = 1.0;
 
-   // For testing just play "walk" animation and loop it
+   // テストするときは "walk" アニメーションをループ再生t
    animation["walk"].wrapMode = WrapMode.Loop;
    animation.Play("walk");
 }
 
-// Every frame just set the normalized time
-// based on how much lean we want to apply
+// 毎フレームごとにどれだけ寄るアニメーションを設定したいかにもとづき、
+// 正規化された時間をセット
 function Update () {
    var lean = Input.GetAxis("Horizontal");
    // normalizedTime is 0 at the first frame and 1 at the last frame in the clip
@@ -191,31 +191,31 @@ function Update () {
 } @]
 
 
-__Tip:__ When using Additive animations, it is critical that you also play some other non-additive animation on every transform that is also used in the additive animation, otherwise the animations will add on top of the last frame's result. This is most certainly not what you want.
+__ヒント:__ 追加アニメーションを使用する際、追加でないアニメーションを、追加アニメーションで使用される全てのTransformで再生することは重要で、そうでない場合はアニメーションは最終フレームの結果に追加されます。ほとんどのケースでこれは望まない結果となります。
 
 [[#Procedural]]
 
-!! Animating Characters Procedurally
+!! キャラクターのプロシージャル アニメーション
 
-Sometimes you want to animate the bones of your character procedurally. For example, you might want the head of your character to look at a specific point in 3D space which is best handled by a script that tracks the target point. Fortunately, Unity makes this very easy, since bones are just Transforms which drive the skinned mesh. Thus, you can control the bones of a character from a script just like the Transforms of a GameObject.
+ときどきキャラクターのボーンをプロシージャルにアニメーションしたい場合があります。例えば、キャラクターの頭が3D空間の特定の地点を見るようにしたい場合があり、これはターゲット地点をトラッキングするスクリプトにより最も適切にハンドリングできます。幸いに、Unityによりこの作業は、ボーンはスキンメッシュをドライブするただのTransformであるため、非常に簡単です。したがってゲームオブジェクトのTransformと同様に、キャラクターのボーンを制御できます。
 
-One important thing to know is that the animation system updates Transforms after the ``Update()`` function and before the ``LateUpdate()`` function. Thus if you want to do a ``LookAt()`` function you should do that in ``LateUpdate()`` to make sure that you are really overriding the animation.
+知っておくべき重要なこととして、アニメーションシステムは、 ``Update()`` の後で ``LateUpdate()`` の前に、Transformを更新します。したがって ``LookAt()`` 関数を使用したい場合は、本当にアニメーションを確実に上書きするためには ``LateUpdate()`` の中で行います。
 
-Ragdolls are created in the same way. You simply have to attach Rigidbodies, Character Joints and Capsule Colliders to the different bones. This will then physically animate your skinned character.
+Ragdoll は同じ方法で作成します。異なるボーンに Rigidbody 、キャラクター ジョイント、およびカプセル コライダ をアタッチ ``WrapMode.Once`` するのみです。これによってスキニングされたキャラクターに物理的にアニメーションを行います。
 
 
 [[#Playback]]
 
-!! Animation Playback and Sampling
+!! アニメーションプレイバックおよびサンプリング
 
-This section explains how animations in Unity are sampled when they are played back by the engine.
+このセクションはUnityのアニメーションがどのようにサンプリングされて、エンジンで再生されるかを説明します。
 
-AnimationClips are typically authored at a fixed frame rate. For example, you may create your animation in 3ds Max or Maya at a frame rate of 60 frames per second (fps). When importing the animation in Unity, this frame rate will be read by the importer, so the data of the imported animation is also sampled at 60 fps.
+アニメーションクリップは一般的に固定フレームレートでオーサリングされます。例えば、キャラクターを3ds Max または Mayaで60フレーム毎秒（fps）フレームレートで作成したとします。Unityにアニメーションをインポートするとき、このフレームレートはインポータにより読み取りされて、インポートされたアニメーションのデータもまた 60 fps でサンプリングします。
 
-However, games typically run at a variable frame rate. The frame rate may be higher on some computers than on others, and it may also vary from one second to the next based on the complexity of the view the camera is looking at at any given moment. Basically this means that we can make no assumptions about the exact frame rate the game is running at. What this means is that even if an animation is authored at 60 fps, it may be played back at a different framerate, such as 56.72 fps, or 83.14 fps, or practically any other value.
+しかし、ゲームは一般的に変動するフレームレートにより実行されます。フレームレートはいくつかのコンピュータでは他よりも高いかもしれず、ある秒から次の秒まで、特定の瞬間にカメラがみているビューの複雑さにもとづいてフレームレートは変動します。これは、ゲームが実行されるフレームレートは基本的に前提にすることができないことを意味します。これはつまり、アニメーションが60 fps でオーサリングされたとしても、オーサリングされたアニメーションと異なるフレームレートでゲームが実行されるかもしれません、例えば56.72 fps とか83.14 fps、あるいはどんな値にでもなりえます。 
 
-As a result, Unity must sample an animation at variable framerates, and cannot guarantee the framerate for which it was originally designed. Fortunately, animations for 3D computer graphics do not consist of discrete frames, but rather of continuous curves. These curves can be sampled at any point in time, not just at those points in time that correspond to frames in the original animation. In fact, if the game runs at a higher frame rate than the animation was authored with, the animation will actually look smoother and more fluid in the game than it did in the animation software.
+結果として、Unityはアニメーションを変動フレームレートでサンプリングする必要があり、もともとデザインされたフレームレートを保証することは出来ません。幸いに、3Dコンピュータグラフィックスのアニメーションは離散的なフレームでなく、むしろ連続的なカーブから構成されます。これらのカーブは、元のアニメーションに対応するフレームだけでなくどの時点でも、サンプリングすることができます。実のところ、ゲームがもとアニメーションがオーサリングされたものより高いフレームレートで実行される場合、アニメーションはアニメーション ソフトウェアよりもスムーズでかつ流れるように見えます。
 
-For most practical purposes, you can ignore the fact that Unity samples animations at variable framerates. However, if you have gameplay logic that relies on animations that animate transforms or properties into very specific configurations, then you need to be aware that the re-sampling takes place behind the scenes. For example, if you have an animation that rotates an object from 0 to 180 degrees over 30 frames, and you want to know from your code when it has reached half way there, you should not do it by having a conditional statement in your code that checks if the current rotation is 90 degrees. Because Unity samples the animation according to the variable frame rate of the game, it may sample it when the rotation is just below 90 degrees, and the next time right after it reached 90 degrees. If you need to be notified when a specific point in an animation is reached, you should use an [[animeditor-AnimationEvents | AnimationEvent]] instead.
+実践的なほとんどの用途において、Unity変動フレームレートでアニメーションをサンプリングすることを無視できます。しかし、アニメーションのTransformやプロパティを特定のコンフィグに設定するアニメーションに依存するゲームロジックがある場合、再サンプリングが裏で行われることに注意する必要があります。例えば、オブジェクトを 0 度から 180 度まで30フレーム以上で回転させるアニメーションがあり、コードの中からその半分にいつ到達したかを知りたい場合コードの現在の回転が90度であるかをチェックする条件文を入れて対応するべきではありません。Unityがゲームの変動フレームレートでサンプリングを行うため、90度より少し低い角度でサンプリングされるかもしれず、次のタイミングで90度を超えるかもしれません。もしアニメーションが特定の地点に到達したか通知される必要がある場合、 [[animeditor-AnimationEvents | アニメーションイベント]] を使用するべきです。
 
-Note also that as a consequence of the variable framerate sampling, an animation that is played back using ``WrapMode.Once`` may not be sampled at the exact time of the last frame. In one frame of the game the animation may be sampled just before the end of the animation, and in the next frame the time can have exceeded the length of the animation, so it is disabled and not sampled further. If you absolutely need the last frame of the animation to be sampled exactly, you should use ``WrapMode.ClampForever`` which will keep sampling the last frame indefinitely until you stop the animation yourself.
+変動フレームレートによるサンプリングの結果として、 ``WrapMode.Once`` を使用したプレイバックのアニメーションの最終フレームもピッタリのタイミングでサンプリングされないかもしれません。ゲームのあるフレームで、アニメーションはアニメーションの終わりの直前でサンプリングするかもしれず次のフレームでアニメーションの長さを超えるために、無効化されてその後サンプリングされません。アニメーションのピッタリとした最終フレームが絶対に必要である場合、 ``WrapMode.ClampForever`` を使用すべきであり、これによりアニメーションを自ら停止するまで、最終フレームを必ずサンプリングを続けます。
