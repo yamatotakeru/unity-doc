@@ -1,37 +1,37 @@
-! Getting Started with Android Development
+! Androidでの開発を始める
 
-Building games for a device running Android OS requires an approach similar to that for iOS development.  However, the hardware is not completely standardized across all devices, and this raises issues that don't occur in iOS development.  There are some feature differences in the Android version of Unity just as there are with the iOS version.
+Android OS が実行されているデバイス向けのゲームを開発することは iOS 開発の場合と似たアプローチが必要です。しかし、全てのデバイスに渡って、ハードウェアが標準化されておらず、そしてそのための iOS開発では発生しない問題が出てきます。iOS バージョン同様に UnityのAndroidバージョンには機能的な違いがあります。
 
-!! Setting up your Android Developer environment
-You will need to have your Android developer environment set up before you can test your Unity games on the device.  This involves downloading and installing the Android SDK with the different Android plaforms and adding your physical device to your system (this is done a bit differently depending on whether you are developing on Windows or Mac).  This setup process is explained on the Android developer website, and there may be additional information provided by the manufacturer of your device.  Since this is a complex process, we've provided a [[android-sdksetup | basic outline]] of the tasks that must be completed before you can run code on your Android device or in the Android emulator.  However, the best thing to do is follow the instructions step-by-step from the [[http://developer.android.com/sdk | Android developer portal]].
+!! Android 開発環境をセットアップする
+デバイス上でUnityゲームをテストする前にAndroid開発環境をセットアップする必要があります。これは、異なるAndroidプラットフォームでの Android SDKのダウンロードおよびインストール、またシステムに物理デバイスを追加することが含まれます（これは Windows または Mac のどちらで開発しているかによりだいぶ異なります）。このセットアップのプロセスは Android デベロッパー ウェブサイトで説明されていて、デバイスの製造元により追加情報があるかもしれません。これは複雑なプロセスであるため、Androidデバイスまたはエミュレータでコードを実行する前に完了しなければならないタスクを [[android-sdksetup | 基本的な概要]] としてまとめました。しかし [[http://developer.android.com/sdk | Android デベロッパー ポータル]] の説明を説明をステップごとに行うことがベストです。
 
-!! Access Android Functionality
-Unity Android provides scripting APIs to access various input data and settings. You can find out more about the available classes on the [[Main.android-API | Android scripting page]].
+!! Android機能へのアクセス
+Unity Android は様々な入力データおよび設定にアクセスするスクリプティング API を提供しています。利用可能なクラスについては [[Main.android-API | Android スクリプティングページ]] を参照下さい。
 
-!! Exposing Native C, C++ or Java Code to Scripts
-Unity Android allows you to call custom functions written in C/C++ directly from C# scripts (Java functions can be called indirectly). To find out how to make functions from native code accessible from Unity, visit the [[Main.Plugins#AndroidPlugins | plugins page]].
+!! ネイティブ C、C++、またはJavaコードをスクリプトに公開する
+Unity Android により、C／C++で書かれたカスタムの関数を C# スクリプトからコール出来ます。（Java関数は間接的にコール出来ます）ネイティブコードの関数をUnityからアクセスできるようにする方法については [[Main.Plugins#AndroidPlugins | プラグインのページ]] を参照下さい。
 
-!! Occlusion Culling
-Unity includes support for occlusion culling which is a particularly valuable optimization on mobile platforms. More information can be found on the [[OcclusionCulling | occlusion culling]] page.
+!! オクルージョン カリング
+Unityはオクルージョン カリングをサポートしていて、これはモバイルプラットフォームにおいて特に価値ある最適化です。詳細については [[OcclusionCulling | オクルージョン カリング]] を参照下さい。
 
-!! Splash Screen Customization
-The splash screen displayed while the game launches can be customized - see [[MobileCustomizeSplashScreen#Android | this page]] for further details.
+!! スプラッシュスクリーン のカスタマイズ
+ゲームが起動される際のスプラッシュスクリーンはカスタマイズすることが出来ます。 - 詳細は [[MobileCustomizeSplashScreen#Android | このページ]] を参照下さい。
 
-!! Troubleshooting and Bug Reports
-There are many reasons why your application may crash or fail to work as you expected. Our [[TroubleShooting#AndroidTroubleShooting | Android troubleshooting guide]] will help you get to the bottom of bugs as quickly as possible. If, after consulting the guide, you suspect the problem is internal to Unity then you should file a bug report - see [[android-bugreporting | this page]] for details on how to do this.
+!! トラブルシューティングおよびバグレポート
+アプリケーションがクラッシュ、または期待通りに動かないことには様々な理由があります。 [[TroubleShooting#AndroidTroubleShooting | Android トラブルシューティング ガイド]] によりバグの根本原因にできるかぎり到達できるようになります。もし、ガイドを見た後に、Unity内部の問題が原因であると判断した場合、バグレポートを提出して下さい - 提出方法の詳細については [[android-bugreporting | このページ]] を参照下さい。
 
-!! How Unity Android Differs from Desktop Unity
-!!! Strongly Typed JavaScript
-For performance reasons, dynamic typing in JavaScript is always turned off in Unity Android, as if #pragma strict were applied automatically to all scripts. This is important to know if you start with a project originally developed for the desktop platforms since you may find you get unexpected compile errors when switching to Android; dynamic typing is the first thing to investigate. These errors are usually easy to fix if you make sure all variables are explicitly typed or use type inference on initialization.
+!! Unity AndroidがデスクトップのUnityとどう異なるか
+!!! Strong TypeのJavaScript
+パフォーマンスの理由から、JavaScriptでのダイナミックタイピングはUnity Androidでは常にオフとなっていて、あたかも #pragma strict が自動的に全てのスクリプトに適用されたかのようになります。これはデスクトッププラットフォーム向けに開発されたプロジェクトに着手する場合は重要なことで、Android に切り替えた途端に想定外のコンパイルエラーが出るかもしれません。ダイナミック タイピングは最初に調べるべきことです。これらのエラーは、全ての変数が明示的にTypeされる、あるいは初期化のときに Type インタフェースであれば通常修正しやすいものです。
 
 
-!!! ETC as Recommended Texture Compression
-Although Unity Android does support DXT/PVRTC/ATC textures, Unity will decompress the textures into RGB(A) format at runtime if those compression methods are not supported by the particular device in use. This could have an impact on the GPU rendering speed and it is recommended to use the ETC format instead. ETC is the de facto standard compression format on Android, and should be supported on all post 2.0 devices. However, ETC does not support an alpha channel and RGBA 16-bit will sometimes be the best trade-off between size, quality and rendering speed where alpha is required.
+!!! 推奨されるテクスチャ圧縮としてのETC
+Unity Androidは DXT/PVRTC/ATC テクスチャをサポートするとはいえ、もしこれらの圧縮方法が使用する個別のデバイスでサポートされてない場合は、Unityは実行時にテクスチャを RGB(A) 形式を解凍します。これはGPUのレンダリングスピードに影響があるため、推奨は代わりにETCフォーマットを使用することです。ETCはAndroidでのデファクトスタンダードの圧縮フォーマットであり、Android 2.0 以降のデバイスでは全てサポートされます。しかし、ETCはアルファチャネルをサポートして、またサイズ、品質、レンダリング スピードの組み合わせのトレードオフとしてアルファが必要な場合に、RGBA 16ビットはときどきベストの選択となることがあります。
 
-It is also possible to create separate android distribution archives (.apk) for each of the DXT/PVRTC/ATC formats, and let the Android Market's filtering system select the correct archives for different devices (see [[ Main.PublishingBuilds#Android | Publishing Builds for Android ]]).
+別のAndroidディストリビューション アーカイブ（.apk）を各々の DXT/PVRTC/ATC 形式ごとに作成することは可能であり、Android マーケットのフィルタリング システムによってデバイスごとに正しいアーカイブを選択させることもできます（ [[ Main.PublishingBuilds#Android | Android向けビルドをパブリッシュ ]] を参照下さい）。
 
-!!! Movie Playback
-Movie textures are not supported on Android, but a full-screen streaming playback is provided via scripting functions. To learn about supported file formats and scripting API, consult the [[Main.VideoFiles | movie page]] or the [[ http://developer.android.com/guide/appendix/media-formats.html | Android supported media formats page ]].
+!!! ムービー プレイバック
+ムービー テクスチャはAndroidがサポートされていませんが、フルスクリーン でのストリーミング プレイバックはスクリプティング関数により提供されます。サポートされるファイル形式およびスクリプティングAPI の詳細については [[Main.VideoFiles | ムービーのページ]] または [[ http://developer.android.com/guide/appendix/media-formats.html | Android がサポートするメディア形式のページ]] を参照下さい。
 
-!!! Further Reading
+!!! 発展
 (:tocportion:)
