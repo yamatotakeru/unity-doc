@@ -1,48 +1,48 @@
-! Prefabs
+! プレハブ
 
-A $$Prefab$$ is a type of asset -- a reusable $$GameObject$$ stored in $$Project View$$. Prefabs can be inserted into any number of scenes, multiple times per scene.  When you add a Prefab to a scene, you create an $$instance$$ of it. All Prefab instances are linked to the original Prefab and are essentially clones of it. No matter how many instances exist in your project, when you make any changes to the Prefab you will see the change applied to all instances.
+$$Prefab$$ はアセットの一種であり、 $$Project View$$ に格納された、再利用ができる $$GameObject$$ です。プレハブは任意の数の複数のシーンにも、シーンごとも複数回でも挿しこむことが出来ます。プレハブをシーンに追加するとき、その $$instance$$ を作成します。全てのプレハブのインスタンスはもとのプレハブにリンクされていて元来はそのクローンです。プロジェクトにどんなにインスタンスが存在していても、プレハブに変更を加えると、変更は全てのインスタンスに対して適用されます。
 
 
-!! Creating Prefabs
+!! プレハブの作成
 
-In order to create a Prefab, simply drag a GameObject that you've created in the scene into the Project View.  The GameObject's name will turn blue to show that it is a Prefab. You can rename your new Prefab.
+プレハブを作成するためには、シーンで作成したゲームオブジェクトをプロジェクトビューにドラッグするだけです。ゲームオブジェクトの名前は青色となることでプレハブであることを示します。新しいプレハブの名前は変更することが出来ます。
 
-After you have performed these steps, the GameObject and all its children have been copied into the Prefab data. The Prefab can now be re-used in multiple instances.  The original GameObject in the Hierarchy has now become an instance of the Prefab.
+これらの手順を行った後、ゲームオブジェクトおよびその全ての子オブジェクトはプレハブ データとしてコピーされています。プレハブは複数のインスタンスで再利用できます。階層ビューにおけるもとのゲームオブジェクトはプレハブのインスタンスとなります。
 
-!! Prefab Instances
-To create a Prefab instance in the current scene, drag the Prefab from the Project View into the $$Scene$$ or Hierarchy View. This instance is $$linked$$ to the Prefab, as displayed by the blue text used for their name in the Hierarchy View.
+!! プレハブ インスタンス
+現在のシーンでプレハブ インスタンスを作成するには、プレハブをプロジェクトビューから $$Scene$$ または 階層ビューにドラッグ＆ドロップします。このインスタンスはプレハブに対して $$Link$$ され、階層ビューでの名前は青色のテキストとなります。
 
 Attach:LinkedPrefab.png
-''Three of these GameObjects are linked to Prefabs.  One of them is not.''
+''3つのゲームオブジェクトはプレハブにリンクされています。ひとつはリンクされていません。''
 
-* If you have selected a Prefab instance, and want to make a change that affects all instances, you can click the ^^Select^^ button in the Inspector to select the source Prefab.
-* Information about instantiating prefabs from scripts is in the [[Instantiating Prefabs]] page.
+* プレハブ インスタンスを選択して、全てのインスタンスに反映する変更をした場合、インスペクタで  ^^Select^^  ボタンを押すことでソース プレハブを選択できます。
+* スクリプトからプレハブをインスタンス化する 方法については [[Instantiating Prefabs]] を参照下さい。
 
-!!! Inheritance
+!!! 継承
 
-Inheritance means that whenever the source Prefab changes, those changes are applied to all linked GameObjects.  For example, if you add a new script to a Prefab, all of the linked GameObjects will instantly contain the script as well.  However, it is possible to change the properties of a single instance while keeping the link intact.  Simply change any property of a prefab instance, and watch as the variable name becomes bold.  The variable is now overridden.  All overridden properties will not be affected by changes in the source Prefab.
+継承とは、ソース プレハブが変更されたとき、それらの変更がリンクされたゲームオブジェクトに適用されることです。例えば、新しいスクリプトをプレハブに追加した場合、全てのリンクされたゲームオブジェクトは即座にスクリプトも含みます。しかし、リンクを維持しながらひとつのインスタンスのプロパティを変更することは可能です。プレハブ インスタンスの任意のプロパティを変更して、変数名が太字になることを確認します。変数はオーバーライドされません。全てのオーバーライドされたプロパティはソース プレハブの変更による影響を受けません。
 
-This allows you to modify Prefab instances to make them unique from their source Prefabs without breaking the Prefab link.
+これによりプレハブ インスタンスを修正して、プレハブのリンクを壊すことなく、ソース プレハブから独立させることが出来ます。
 
 Attach:OverrideOff.png\\
-''A linked GameObject with no overrides enabled.''
+''オーバーライドを有効化していない、リンクされたゲームオブジェクト''
 
 Attach:OverrideOn.png\\
-''A linked GameObject with several (bold) overrides enabled.''
+''いくつかのオーバーライドを有効化した（太字）、リンクされたゲームオブジェクト''
 
-* If you want to update the source Prefab and all instances with the new overridden values, you can click the ^^Apply^^ button in the Inspector. 
-**Note that the root's position and rotation will ''not'' be applied, as that affects the instances absolute position and would put all instances in the same place. However position and rotation from any children or ancestors of the root ''will'' be applied as they are computed relative to the root's transform. 
-* If you want to discard all overrides on a particular instance, you can click the ^^Revert^^ button.
+* ソース プレハブと全てのインスタンスを新しいオーバーライドされた値で更新したい場合は、インスペクタで ^^Apply^^ ボタンをクリックします。
+** インスタンスの位置（相対でなく絶対）が同じ箇所とならないように、ルートのポジションと回転には適用 ''されない'' ことに留意下さい。しかし、ルートの子や祖先からの位置および回転は、ルートのTransformに対して相対的に算出されるため、変更は適用 ''されます'' 。
+* もし特定のインスタンスでオーバーライドを破棄した場合は、 ^^Revert^^ ボタンをクリックします。
 
 
-!! Imported Prefabs
+!! インポートされたプレハブ
 
-When you place a mesh asset into your Assets folder, Unity automatically imports the file and generates something that looks similar to a Prefab out of the mesh.  This is not actually a Prefab, it is simply the asset file itself.  Instancing and working with assets introduces some limitations that are not present when working with normal Prefabs.  
+Assets フォルダにメッシュアセットを配置したとき、Unityは自動的にファイルをインポートして、メッシュからプレハブに似たものを生成します。これは実際にはプレハブではなく、アセットファイルそのものです。アセットでのインスタンス化や作業については、通常のプレハブで作業をしているときに存在していないため、いくつかの制限事項があります。
 
 Attach:PrefabsVsAssetIcons.png\\
-''Notice the asset icon is a bit different from the Prefab icons''
+''アセットアイコンがプレハブ アイコンとかなり違うことを確認して下さい''
 
-The asset is instantiated in the scene as a GameObject, linked to the source asset instead of a normal Prefab.   Components can be added and removed from this GameObject as normal.  However, you cannot apply any changes to the asset itself since this would add data to the asset file itself!  If you're creating something you want to re-use, you should make the asset instance into a Prefab following the steps listed above under "Creating Prefabs".
+アセットはシーン上でゲームオブジェクトとしてインスタンス化され、通常のプレハブのかわりにソースアセットにリンクされます。通常どおり、ゲームオブジェクトに対するコンポーネントの追加、削除が出来ます。しかし、アセット自身への変更は、アセットファイル自身にデータを追加してしまうため、反映することが出来ません。もし再利用したいものを作成しているのであれば、アセット インスタンスをプレハブとして、上記の「プレハブの作成」の手順に従うべきです。
 
-* When you have selected an instance of an asset, the ^^Apply^^ button in the Inspector is replaced with an ^^Edit^^ button.  Clicking this button will launch the editing application for your asset (e.g. Maya or Max).
+* もしアセットのインスタンスを選択した場合、インスタンスの ^^Apply^^ ボタンは ^^Edit^^ により置き換えられます。このボタンをクリックすることでアセットを編集しているアプリケーションが起動されます（例 Maya または Max）。
 
