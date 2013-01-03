@@ -1,7 +1,7 @@
-!The Amount of One Vector's Magnitude that Lies in Another Vector's Direction
+! 別ベクトル方向にある場合のベクトル速度の大きさ
 
-A car's speedometer typically works by measuring the rotational speed of one of the unpowered wheels. The car may not be moving directly forward (it may be skidding sideways, for example) in which case part of the motion will not be in the direction the speedometer can measure. The magnitude of an object's rigidbody.velocity vector will give the speed in its direction of overall motion but to isolate the speed in the forward direction, you should use the dot product:-
+車のスピードメータは典型的には動力のない回転スピードを計ることで動作します。車は直接前に動いていないかもしれず（例えば横方向に横滑りしている、など）、この場合に動作はスピードメーターが計れない方向にあります。オブジェクトの rigidbody.velocity ベクトルの大きさは全体的な動作におけるスピードを示しますが、前方方向のスピードを独立させるには、.Dot の結果を使用すべきです。
 
 [@var fwdSpeed = Vector3.Dot(rigidbody.velocity, transform.forward);@]
 
-Naturally, the direction can be anything you like but the direction vector must always be normalized for this calculation. Not only is the result more correct than the magnitude of the velocity, it also avoids the slow square root operation involved in finding the magnitude.
+当然に、方向は好きなもので良いのですが、方向ベクトルはこの計算のためには必ず正規化しておく必要があります。結果は速度の大きさをより正確に反映するだけでなく、大きさを見つけるために発生する平方根の遅い計算を避けることが出来ます。
