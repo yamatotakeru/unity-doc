@@ -1,15 +1,18 @@
-! Accessing hidden folders
+! 隠しフォルダへのアクセス
 
-On Windows the logs are stored in locations that are hidden by default. To enable navigating to them in the Windows Explorer please perform the steps below.
+Windowsでログはデフォルトで隠されている場所に格納されてます。Windowsのエクスプローラでナビゲーションを行うことを可能にするためには、次のステップを行って下さい。
 
-!! Show hidden folders on Windows XP
-The Local Settings folder is hidden by default.  In order to see it, you have to enable viewing of hidden folders in Windows Explorer from ^^Tools->Folder Options...->View (tab)^^.
+!! Windows XPで隠しフォルダを表示
+
+Local Settingフォルダはデフォルトで隠される設定になってきます。見るためにはWindowsのエクスプローラから ^^Tools->Folder Options...->View (tab)^^  を選択します。
+
 
 Attach:xphiddenfolders.png\\
-''Enabling viewing of hidden folders in Windows XP''
+''Windows XPで隠しフォルダを表示''
 
-!! Show hidden folders on Windows Vista/7
-The AppData folder is hidden by default. In order to see it, you have to enable viewing of hidden folders in Windows Explorer from ^^Tools->Folder Options...->View (tab)^^. The Tools menu is hidden by default, but can be displayed by pressing the Alt key once.
+!! Windows Vista/7で隠しフォルダを表示
+AppDataフォルダはデフォルトで隠されています。見るためには、見るためにはWindowsのエクスプローラで隠しフォルダの表示をWindows Explorer from ^^Tools->Folder Options...->View (tab) で有効化する必要があります。Toolsメニューはデフォルトで非表示ですがAltキーを一回押すことで表示出来ます。
+
 
 Attach:vishiddenfolders.png\\
-''Enabling viewing of hidden folders in Windows Vista''
+''Windows Vistaで隠しフォルダを表示''
