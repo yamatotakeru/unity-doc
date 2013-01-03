@@ -1,104 +1,105 @@
-! iOS Hardware Guide
+! iOS ハードウェアガイド ガイド
 
-!! Hardware models
+!! ハードウェアモデル
 
-The following table summarizes iOS hardware available in devices of various generations:
+様々な世代のデバイスにおける利用可能なiOSデバイスを次の表でまとめています。
 
 (:table width=100%:)
 (:cellnr:)
 
-!!![[http://en.wikipedia.org/wiki/IPhone#Model_comparison | iPhone Models]] 
+!!![[http://en.wikipedia.org/wiki/IPhone#Model_comparison | iPhone モデル
+]] 
 
 
-!!! Original iPhone
-* Screen: 320x480 pixels, LCD at 163ppi
+!!! オリジナル iPhone
+* 画面: 320x480 ピクセル、 LCD 163ppi
 * ARM11, 412 Mhz CPU
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:310px;":)
 %thumb width=280px float=right padding=5px%Attach:skiSafari.jpg
-Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
+固定関数グラフィックス (高度なシェーダなし)、 非常に遅いCPUおよびGPU。
 (:divend:)
-* PowerVR MBX Lite 3D graphics processor
-** Slow
-* 128MB of memory
-* 2 megapixel camera
+* PowerVR MBX Lite 3D グラフィックス プロセッサ
+** 遅い
+* 128MBのメモリ容量
+* 2 メガピクセル カメラ
 
 !!! iPhone 3G
-* Screen: 320x480 pixels, LCD at 163ppi
+* 画面: 320x480 ピクセル、 LCD 163ppi
 * ARM11, 412 Mhz CPU
-* PowerVR MBX Lite 3D graphics processor
-** Slow
-* 128MB of memory
-* 2 megapixel camera
-* GPS support
+* PowerVR MBX Lite 3D グラフィックス プロセッサ
+** 遅い
+* 128MBのメモリ容量
+* 2 メガピクセル カメラ
+* GPS 対応
 
 (:cellnr:)
 
 !!! iPhone 3GS
-* Screen: 320x480 pixels, LCD at 163ppi
+* 画面: 320x480 ピクセル、 LCD 163ppi
 * ARM Cortex A8, 600 MHz CPU
-* PowerVR SGX535 graphics processor
-** Shader perfomance at native resolution, compared to iPad2: 
+* PowerVR SGX535 グラフィックス プロセッサ
+** ネイティブ解像度でのシェーダ パフォーマンス、 iPad2 と比較して: 
 (:div style="margin-left:80px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:84px%Attach:bar.png
 (:divend:)
-** Raw shader perfomance, compared to iPad3: 
+** ロー シェーダ パフォーマンス、 iPad3と比較して: 
 (:div style="margin-left:80px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:23px%Attach:bar.png
 (:divend:)
-* 256MB of memory
-* 3 megapixel camera with video capture capability
+* 256MBのメモリ容量
+* 3 メガピクセル カメラ with video capture capability
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:310px;":)
 %thumb width=300px float=right padding=5px%Attach:shadowgun2.jpg
-Shader-capable hardware, per-pixel-lighting (bumpmaps) can only be on small portions of the screen at once.
-Requires scripting optimization for complex games. This is the average hardware of the app market as of July 2012
+シェーダ対応したハードウェア、 ピクセル ライティング (バンプマップ) は同時には画面の限られた領域のみ対応。
+複雑なゲームでスクリプティングの最適化が必要。2012年7月時点でのアプリマーケットの平均的なハードウェア。
 (:divend:)
-* GPS support
-* Compass support
+* GPS 対応
+* コンパスに対応
 
 !!! iPhone 4
-* Screen: 960x640 pixels, LCD at 326 ppi, 800:1 contrast ratio.
+* 画面: 960x640 ピクセル、 LCD 326 ppi, 800:1 コントラスト比。
 * Apple A4 
 ** 1Ghz ARM Cortex-A8 CPU
 ** PowerVR SGX535 GPU
-*** Shader perfomance at native resolution, compared to iPad2: 
+*** ネイティブ解像度でのシェーダ パフォーマンス、 iPad2 と比較して: 
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:36px%Attach:bar.png
 (:divend:)
-*** Raw shader perfomance, compared to iPad3: 
+*** ロー シェーダ パフォーマンス、 iPad3と比較して: 
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:23px%Attach:bar.png
 (:divend:)
-* 512MB of memory
-* Cameras
-** Rear 5.0 MP backside illuminated CMOS image sensor with 720p HD video at 30 fps and LED flash
-** Front 0.3 MP (VGA) with geotagging, tap to focus, and 480p SD video at 30 fps
-* GPS support
-* Compass Support
+* 512MBのメモリ容量
+* カメラ
+** 後面 5.0 メガピクセル 裏面照射型CMOS イメージセンサー 720p HD video 30 fps および LED フラッシュ
+** 全面 0.3 メガピクセル（VGA） ジオタグつき、タップフォーカス機能、および 480p SD ビデオ 30 fps
+* GPS 対応
+* コンパスに対応
 
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:250px;":)
 %thumb width=240px float=right padding=5px%Attach:csrCar.jpg
-The iPhone 4S, with the new A5 chip, is capable of rendering complex shaders throughout the entire screen. Even image effects may be possible. However, optimizing your shaders is still crucial. But if your game isn't trying to push limits of the device, optimizing scripting and gameplay is probably as much of a waste of time on this generation of devices as it is on PC.
+iPhone 4S、新しい A5 チップ、スクリーン全体を通して複雑なシェーダをレンダリングすることが可能。イメージエフェクトでさえも可能。ただしシェーダ最適化は依然として決定的に重要。しかしゲームがデバイス性能を限界まで使用していない場合、PCと同様にこの世代のデバイスでは、スクリプティングおよびゲームプレイの最適化は時間の無駄になります。
 (:divend:)
 
 !!! iPhone 4S
-* Screen: 960x640 pixels, LCD at 326 ppi, 800:1 contrast ratio.
+* 画面: 960x640 ピクセル、 LCD 326 ppi, 800:1 コントラスト比。
 * Apple A5
-** Dual-Core 1Ghz ARM Cortex-A9 MPCore CPU
-** Dual-Core PowerVR SGX543MP2 GPU
-*** Shader perfomance at native resolution, compared to iPad2: 
+** デュアルコア 1Ghz ARM Cortex-A9 MPCore CPU
+** デュアルコア PowerVR SGX543MP2 GPU
+*** ネイティブ解像度でのシェーダ パフォーマンス、 iPad2 と比較して: 
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:196px%Attach:bar.png
 (:divend:)
-*** Raw shader perfomance, compared to iPad3: 
+*** ロー シェーダ パフォーマンス、 iPad3と比較して: 
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:105px%Attach:bar.png
 (:divend:)
-* 512MB of memory
-* Cameras
-** Rear 5.0 MP backside illuminated CMOS image sensor with 720p HD video at 30 fps and LED flash
-** Front 0.3 MP (VGA) with geotagging, tap to focus, and 480p SD video at 30 fps
-* GPS support
-* Compass Support
+* 512MBのメモリ容量
+* カメラ
+** 後面 5.0 メガピクセル 裏面照射型CMOS image sensor with 720p HD video at 30 fps and LED flash
+** 全面 0.3 メガピクセル（VGA） ジオタグつき、タップフォーカス機能、and 480p SD video at 30 fps
+* GPS 対応
+* コンパスに対応
 
 !!![[http://en.wikipedia.org/wiki/IPod_Touch#Specifications| iPod Touch Models]] 
 
@@ -106,102 +107,102 @@ The iPhone 4S, with the new A5 chip, is capable of rendering complex shaders thr
 
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:212px;":)
 %thumb width=200px float=right padding=5px%Attach:tripletown.jpg
-Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
+固定関数グラフィックス (高度なシェーダなし)、 非常に遅いCPUおよびGPU。
 (:divend:)
 
 !!! iPod Touch 1st generation
-* Screen: 320x480 pixels, LCD at 163ppi
+* 画面: 320x480 ピクセル、 LCD 163ppi
 * ARM11, 412 Mhz CPU
-* PowerVR MBX Lite 3D graphics processor
-** Slow
-* 128MB of memory
+* PowerVR MBX Lite 3D グラフィックス プロセッサ
+** 遅い
+* 128MBのメモリ容量
 
 !!! iPod Touch 2nd generation
-* Screen: 320x480 pixels, LCD at 163ppi
+* 画面: 320x480 ピクセル、 LCD 163ppi
 * ARM11, 533 Mhz CPU
-* PowerVR MBX Lite 3D graphics processor
-** Slow
-* 128MB of memory
-* Speaker and microphone
+* PowerVR MBX Lite 3D グラフィックス プロセッサ
+** 遅い
+* 128MBのメモリ容量
+* スピーカー および マイク
 
 (:cellnr:)
 
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:242px;":)
 %thumb width=230px float=right padding=5px%Attach:csrRacing.jpg
-Shader-capable hardware, per-pixel-lighting (bumpmaps) can only be on small portions of the screen at once.
-Requires scripting optimization for complex games. This is the average hardware of the app market as of July 2012
+シェーダ対応したハードウェア、 ピクセル ライティング (バンプマップ) は同時には画面の限られた領域のみ対応。
+複雑なゲームでスクリプティングの最適化が必要。2012年7月時点でのアプリマーケットの平均的なハードウェア。
 (:divend:)
 
 !!! iPod Touch 3rd generation
-* Comparable to iPhone 3GS
+* iPhone 3GS と同等レベル
 
 !!! iPod Touch 4th generation
-* Comparable to iPhone 4
+* iPhone 4 と同等レベル
 
 (:cellnr:)
 
-!!![[http://en.wikipedia.org/wiki/IPad#Technical_specifications | iPad Models]] 
+!!![[http://en.wikipedia.org/wiki/IPad#Technical_specifications | iPad モデル]] 
 
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:250px;":)
 %thumb width=240px float=right padding=5px%Attach:airmail.jpg
-Similar to iPod Touch 4th Generation and iPhone 4.
+第4世代iPod TouchおよびiPhone4 と同等レベル
 (:divend:)
 
 !!! iPad
-* Screen: 1024x768 pixels, LCD at 132 ppi, LED-backlit.
+* 画面: 1024x768 ピクセル、 LCD 132 ppi, LED-backlit.
 * Apple A4 
 ** 1Ghz MHz ARM Cortex-A8 CPU
 ** PowerVR SGX535 GPU
-*** Shader perfomance at native resolution, compared to iPad2: 
+*** ネイティブ解像度でのシェーダ パフォーマンス、 iPad2 と比較して: 
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:30px%Attach:bar.png
 (:divend:)
-*** Raw shader perfomance, compared to iPad3: 
+*** ロー シェーダ パフォーマンス、 iPad3と比較して: 
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:23px%Attach:bar.png
 (:divend:)
 * Wifi + Blueooth + (3G Cellular HSDPA, 2G cellular EDGE on the 3G version)
-* Accelerometer, ambient light sensor, magnetometer (for digital compass)
-* Mechanical keys: Home, sleep, screen rotation lock, volume.
+* 加速度計、環境ライティングセンサー、磁力計（デジタルコンパス向け）
+* 物理キー: ホーム、スリープ、画面回転ロック、ボリューム。
 
 (:cellnr:)
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:250px;":)
 %thumb width=240px float=right padding=5px%Attach:deadtrigger.jpg
-The A5 can do full screen bumpmapping, assuming the shader is simple enough. However, it is likely that your game will perform best with bumpmapping only on crucial objects. Full screen image effects still out of reach. Scripting optimization less important.
+A5では、十分に簡単なシェーダであれば、フルスクリーン バンプマップが可能。しかし、重要なオブジェクトだけにバンプマップを絞ったほうがゲームのパフォーマンスが上がります。フルスクリーンのイメージエフェクトはできません。スクリプティング最適化の重要性はやや劣ります。
 (:divend:)
 
 !!! iPad 2
-* Screen: 1024x768 pixels, LCD at 132 ppi, LED-backlit.
+* 画面: 1024x768 ピクセル、 LCD 132 ppi, LED-backlit.
 * Apple A5
-** Dual-Core 1Ghz ARM Cortex-A9 MPCore CPU
-** Dual-Core PowerVR SGX543MP2 GPU
-*** Shader perfomance at native resolution, compared to iPad2: 
+** デュアルコア 1Ghz ARM Cortex-A9 MPCore CPU
+** デュアルコア PowerVR SGX543MP2 GPU
+*** ネイティブ解像度でのシェーダ パフォーマンス、 iPad2 と比較して: 
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:200px%Attach:bar.png
 (:divend:)
-*** Raw shader perfomance, compared to iPad3: 
+*** ロー シェーダ パフォーマンス、 iPad3と比較して: 
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:125px%Attach:bar.png
 (:divend:)
-* Same as Previous
+* 前述と同様
 
 (:cellnr:)
 
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:250px;":)
 %thumb width=240px float=right padding=5px%Attach:bladeslinger.jpg
-The iPad 3 has been shown to be capable of render-to-texture effects such as reflective water and fullscreen image effects. However, optimized shaders are still crucial. But if your game isn't trying to push limits of the device, optimizing scripting and gameplay is probably as much of a waste of time on this generation of devices as it is on PC.
+iPad 3 はReflective Waterおよびフルスクリーンのイメージエフェクトといったテクスチャレンダリング エフェクトができます。ただしシェーダ最適化は依然として決定的に重要。しかしゲームがデバイス性能を限界まで使用していない場合、PCと同様にこの世代のデバイスでは、スクリプティングおよびゲームプレイの最適化は時間の無駄になります。
 (:divend:)
 
 !!! iPad 3
-* Screen: 2048 � 1536 pixels, LCD at 264 ppi, LED-backlit.
+* 画面: 2048 x 1536 ピクセル、 LCD 264 ppi, LED-backlit.
 * Apple A5X
-** Dual-Core 1Ghz ARM Cortex-A9 MPCore CPU
+** デュアルコア 1Ghz ARM Cortex-A9 MPCore CPU
 ** Quad-Core PowerVR SGX543MP4 GPU
-*** Shader perfomance at native resolution, compared to iPad2: 
+*** ネイティブ解像度でのシェーダ パフォーマンス、 iPad2 と比較して: 
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:174px%Attach:bar.png
 (:divend:)
-*** Raw shader perfomance, compared to iPad3: 
+*** ロー シェーダ パフォーマンス、 iPad3と比較して: 
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:200px%Attach:bar.png
 (:divend:)
@@ -209,12 +210,12 @@ The iPad 3 has been shown to be capable of render-to-texture effects such as ref
 
 (:tableend:)
 
-!! Graphics Processing Unit and Hidden Surface Removal
-The iPhone/iPad graphics processing unit (GPU) is a Tile-Based Deferred Renderer. In contrast with most GPUs in desktop computers, the iPhone/iPad GPU focuses on minimizing the work required to render an image as early as possible in the processing of a scene.  That way, only the visible pixels will consume processing resources.
+!! グラフィックス プロセッシング ユニット および 隠面消去
+iPhone/iPad グラフィックス プロセッシング ユニット (GPU) はタイルベースのデファードレンダラです。デスクトップコンピュータの多くのGPUと比較して iPhone/iPad GPU はシーンで、イメージをレンダリングするために必要なプロセッシング作業を最小化することにフォーカスしています。これにより、表示ピクセルのみがプロセッシング対象となります。
 
-The GPU's frame buffer is divided up into tiles and rendering happens tile by tile. First, triangles for the whole frame are gathered and assigned to the tiles. Then, visible fragments of each triangle are chosen.  Finally, the selected triangle fragments are passed to the rasterizer (triangle fragments occluded from the camera are rejected at this stage).
+GPUのフレームバッファはタイルに分割され、かつレンダリングはタイルごとに行われます。最初に、フレーム全体での三角形は集積されてタイルに割り当てられます。次に表示されている三角形のフラグメントが選ばれます。最後に、選ばれた三角形フラグメントはラスタライザに渡されます（三角形フラグメントはカメラからオクルージョンされたものはこのステージで排除されます）。
 
-In other words, the iPhone/iPad GPU implements a $$Hidden Surface Removal$$ operation at reduced cost. Such an architecture consumes less memory bandwidth, has lower power consumption and utilizes the texture cache better. Tile-Based Deferred Rendering allows the device to reject occluded fragments before actual rasterization, which helps to keep overdraw low.
+言い換えると、iPhone/iPad GPUは $$Hidden Surface Removal$$ （隠面消去）でコストを削減します。そのようなアーキテクチャはより少ないメモリ帯域の消費、使用電力を節約し、テクスチャ キャッシュ バッファをより良く活用します。タイルベースの Deferred Rendering によりデバイスがオクルージョンされたフラグメントを実際のラスタライゼーションの前に排除し、Overdrawを低く抑えます。
 
 For more information see also:-
 * [[http://www.imgtec.com/factsheets/SDK/PowerVR%20Technology%20Overview.1.0.2e.External.pdf | POWERVR MBX Technology Overview]]
