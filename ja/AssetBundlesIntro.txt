@@ -1,29 +1,30 @@
-!AssetBundles (Pro only)
+! アセットバンドル（Unity Proのみ）
 
-AssetBundles are files which you can export from Unity to contain assets of your choice. These files use a proprietary compressed format and can be loaded on demand by your application. This allows you to stream in content, such as models, textures, audio clips, or even entire scenes separately from the scene in which they will be used. AssetBundles have been designed to simplify downloading content to your application.
-AssetBundles can contain any kind of asset type recognized by Unity, as determined by the filename extension. If you want to include files with custom binary data, they should have the extension ".bytes". Unity will import these files as TextAssets.
+アセットバンドルはUnityから好きなアセットを含めてエクスポートすることが出来るファイルです。これらのファイルは専用の圧縮フォーマットを使用してアプリケーションからオンデマンドでロード出来ます。これによりコンテンツを、例えば、モデル、テクスチャ、オーディオクリップ、または使用されるシーンから切り離してシーン全体を、ストリーミングすることが出来ます。アセットバンドルはアプリケーションにコンテンツをダウンロードすることを単純化するために設計されています。
 
-When working with AssetBundles, here's the typical workflow:
+アセットバンドルにはUnityで認識できる任意のアセットの種類を、拡張子で判断させて、含めることが出来ます。カスタムのバイナリデータを含めたい場合、 ".bytes" 拡張子をつける必要があります。Unityはこれらのファイルをテキストアセットとしてインポートします。
 
-''During development'', the developer prepares AssetBundles and uploads them to a server.
+アセットバンドルで作業するときの通常のワークフローは次の通りです：
+
+''開発時'' 開発者はアセットバンドルを準備してサーバーにアップロードします。
 ->Attach:AssetBundlesBuildPlusUpload.jpg
-                       Building and uploading asset bundles
+                       アセットバンドルの構築およびアップロード
 
-# __Building AssetBundles__. Asset bundles are created in the editor from assets in your scene. The Asset Bundle building process is described in more detail in the section for [[BuildingAssetBundles|Building AssetBundles]]
+# __アセットバンドルの作成__ 。アセットバンドルはエディタ上で、シーンのアセットから作成することが出来ます。アセットバンドルの構築プロセスの詳細は  [[BuildingAssetBundles|アセットバンドルの作成]] を確認下さい。
 
-# __Uploading AssetBundles to external storage__. This step does not include the Unity Editor or any other Unity channels, but we include it for completeness. You can use an [[http://en.wikipedia.org/wiki/File_Transfer_Protocol|FTP client]] to upload your Asset Bundles to the server of your choice. 
+# __外部ストレージにアセットバンドルをロードするe__ 。このステップはUnity Editorあるいはその他のUnityチャネルなど含みませんが、完全性のために含めてます。 [[http://en.wikipedia.org/wiki/File_Transfer_Protocol|FTP クライアント]] を使用してアセットバンドルをアップロードするサーバは好きに選ぶことが出来ます。
 
 
-''At runtime'', on the user's machine, the application will load AssetBundles on demand and operate individual assets within each AssetBundle as needed. 
+''実行時'' ユーザのマシン上で、アプリケーションはアセットバンドルをオンデマンドでロードし、各アセットバンドルの中での個別のアセットを必要に応じて処理します。
 ->Attach:AssetBundlesDownloadPlusLoad.jpg
-                       Downloading AssetBundles and loading assets from them
+                       アセットバンドルのダウンロードと各アセットのロード
 
-# __Downloading AssetBundles at runtime from your application__. This is done from script within a Unity scene, and Asset Bundles are loaded from the server on demand. More on that in [[DownloadingAssetBundles|Downloading Asset Bundles]]. 
+# __アプリケーション実行時にアセットバンドルをダウンロード__ 。これはUnityシーンの中のスクリプトから行われ、アセットバンドルはサーバからオンデマンドでロードされます。詳細については [[DownloadingAssetBundles|アセットバンドルのダウンロード]] を参照下さい。 
 
-# __Loading objects from AssetBundles__. Once the AssetBundle is downloaded, you might want to access its individual Assets from the Bundle. More on that in [[Loading Asset Bundles|Loading Resources from AssetBundles]]
+# __アセットバンドルからのオブジェクトのロード__ 。アセットバンドルがダウンロードされた後は、バンドルから個別のアセットにアクセスしたいことがあります。詳細については [[Loading Asset Bundles|アセットバンドルからリソースをロード]] を参照下さい。
 
 
-See also:
+関連項目:
 * [[abfaq|Frequently Asked Questions]]
 * [[BuildingAssetBundles|Building AssetBundles]]
 * [[DownloadingAssetBundles|Downloading Asset Bundles]]
