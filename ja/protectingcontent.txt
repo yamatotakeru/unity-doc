@@ -1,83 +1,84 @@
-! Protecting Content
+! コンテンツの保護
 
-Whilst it is possible to use encryption to secure your Assets as they are being transmitted, once the data is in the hands of the client it is possible to find ways to grab the content from them. For instance, there are tools out there which can record 3D data at the driver level, allowing users to extract models and textures as they are sent to the GPU. For this reason, our general stance is that if users are determined to extract your assets, they will be able to. 
+暗号化を使用してアセットを送信時に保護することは出来ますが、データがクライアントに渡った後はコンテンツを奪いとる方法が見つかってしまいます。例えば、3Dデータをドライバーのレベルで記録できるツールがあり、GPUに送信されたときにユーザがモデルやテクスチャを抽出できます。この理由から、基本的なスタンスはどうしてもアセットを抽出しようとすれば、出来てしまうということです。
 
-However, it is possible for you to use your own data encryption on AssetBundle files if you still want to.
+しかし、それでもカスタムでアセットバンドルファイルのデータ暗号化を行うことは出来ます。
 
-One way to do this is making use of the TextAsset type to store your data as bytes. You can encrypt your data files and save them with a .bytes extension, which Unity will treat as a TextAsset type. Once imported in the Editor the files as TextAssets can be included in your AssetBundle to be placed in a server. In the client side the AssetBundle would be downloaded and the content decrypted from the bytes stored in the TextAsset. With this method the AssetBundles are not encrypted, but the data stored which is stored as TextAssets is.
+これを行う一つの方法はTextAssetを使用して、データをバイトで格納できます。データファイルを暗号化して .bytes 拡張子で保存出来て、UnityはTextAssetの種類として扱うことが出来ます。エディタで一回インポートするとTextAssetははアセットバンドルに含めてサーバー上に配置できます。クライアントサイドでは、アセットバンドルはダウンロードされて、バイトから復号化されてTextAssetに格納されます。この方法によりアセットバンドルは暗号化されませんが、TextAssetとして格納されたデータは暗号化されます。
 
 
 [@string url = "http://www.mywebsite.com/mygame/assetbundles/assetbundle1.unity3d";
 IEnumerator Start () {
-    // Start a download of the encrypted assetbundle
+    // 暗号化されたアセットバンドルのダウンロードを開始
     WWW www = new WWW.LoadFromCacheOrDownload (url, 1);
 
-    // Wait for download to complete
+    // ダウンロード完了を待機
     yield return www;
 
-    // Load the TextAsset from the AssetBundle
+    // アセットバンドルからTextAssetをロード
     TextAsset textAsset = www.assetBundle.Load("EncryptedData", typeof(TextAsset));
  
-    // Get the byte data
+    // バイトデータを取得
     byte[] encryptedData = textAsset.bytes;
 
-    // Decrypt the AssetBundle data
+    // アセットバンドルデータを復号化
     byte[] decryptedData = YourDecryptionMethod(encryptedData);
 
-    // Use your byte array. The AssetBundle will be cached
+    // バイト配列を使用。アセットバンドルはキャッシュされます。
 }@]
 
 
+別のアプローチとしてはアセットバンドルをソースから完全に暗号化してWWWクラスを使用してダウンロードすることです。サーバがバイナリデータとして扱うかぎり、どのような拡張子をつけても問題ありません。一回ダウンロードした後は、WWWインスタンスの .bytes プロパティから、データに対する復号化ルーチンを使用して復号化されたアセットバンドルのファイルデータを取得して、メモリからアセットバンドルを取得するために[[ScriptRef:AssetBundle.CreateFromMemory.html|AssetBundle.CreateFromMemory]] を使用します。
 An alternative approach is to fully encrypt the AssetBundles from source and then download them using the WWW class. You can give them whatever file extension you like as long as your server serves them up as binary data. Once downloaded you would then use your decryption routine on the data from the .bytes property of your WWW instance to get the decrypted AssetBundle file data and create the AssetBundle from memory using [[ScriptRef:AssetBundle.CreateFromMemory.html|AssetBundle.CreateFromMemory]].
 
 
 [@string url = "http://www.mywebsite.com/mygame/assetbundles/assetbundle1.unity3d";
 IEnumerator Start () {
-    // Start a download of the encrypted assetbundle
+    // 暗号化されたアセットバンドルのダウンロードを開始
     WWW www = new WWW (url);
 
-    // Wait for download to complete
+    // ダウンロード完了を待機
     yield return www;
 
-    // Get the byte data
+    // バイトデータを取得
     byte[] encryptedData = www.bytes;
 
-    // Decrypt the AssetBundle data
+    // アセットバンドルデータを復号化
     byte[] decryptedData = YourDecryptionMethod(encryptedData);
 
-    // Create an AssetBundle from the bytes array
+    // バイト配列からアセットバンドルを作成
     AssetBundle bundle = AssetBundle.CreateFromMemory(decryptedData);
 
-    // You can now use your AssetBundle. The AssetBundle is not cached.
+    // これでアセットバンドルを使用することが出来ます。アセットバンドルはキャッシュされません
 }@]
 
 
-The advantage of this latter approach over the first one is that you can use any method (except AssetBundles.LoadFromCacheOrDownload) to transmit your bytes and the data is fully encrypted - for example sockets in a plugin. The drawback is that it won't be Cached using Unity's automatic caching. You can in all players except the WebPlayer store the file manually on disk and load it using [[ScriptRef:AssetBundle.CreateFromFile.html|AssetBundles.CreateFromFile]]
+後者のアプローチの前者に対する長所は、どのようなメソッドでも使用して（ただしAssetBundles.LoadFromCacheOrDownloadを除いて）バイトを転送して、例えばプラグインのソケットであっても、データは完全に暗号化されることです。欠点としてはUnityの自動キャッシュを使用してキャッシュされないことです。WebPlayer以外のすべてのプレイヤーで、 [[ScriptRef:AssetBundle.CreateFromFile.html|AssetBundles.CreateFromFile]] を使用して、ファイルをディスク上に手動で格納し、ロードできます。
 
-A third approach would combine the best of both approaches and store an AssetBundle itself as a TextAsset, inside another normal AssetBundles. The unencrypted AssetBundle containing the encrypted one would be cached. The original AssetBundle could then be loaded into memory, decrypted and instantiated using [[ScriptRef:AssetBundle.CreateFromMemory.html|AssetBundle.CreateFromMemory]].
+三つ目のアプローチはこの両者を混ぜることであり、アセットバンドルをTextAssetとして、通常のアセットバンドルの中に、格納します。暗号化されているアセットバンドルに含まれる暗号化されてないアセットバンドルがキャッシュされます。元のアセットバンドルはメモリにロードすることが出来て、復号化されて [[ScriptRef:AssetBundle.CreateFromMemory.html|AssetBundle.CreateFromMemory]] を使用してインスタンス化されます。
 
 [@string url = "http://www.mywebsite.com/mygame/assetbundles/assetbundle1.unity3d";
 IEnumerator Start () {
-    // Start a download of the encrypted assetbundle
+    // 暗号化されたアセットバンドルのダウンロードを開始
     WWW www = new WWW.LoadFromCacheOrDownload (url, 1);
 
-    // Wait for download to complete
+    // ダウンロード完了を待機
     yield return www;
 
-    // Load the TextAsset from the AssetBundle
+    // アセットバンドルからTextAssetをロード
     TextAsset textAsset = www.assetBundle.Load("EncryptedData", typeof(TextAsset));
  
-    // Get the byte data
+    // バイトデータを取得
     byte[] encryptedData = textAsset.bytes;
 
-    // Decrypt the AssetBundle data
+    // アセットバンドルデータを復号化
     byte[] decryptedData = YourDecryptionMethod(encryptedData);
 
-    // Create an AssetBundle from the bytes array
+    // バイト配列からアセットバンドルを作成
     AssetBundle bundle = AssetBundle.CreateFromMemory(decryptedData);
 
-    // You can now use your AssetBundle. The wrapper AssetBundle is cached
+    // これでアセットバンドルを使用することが出来ます。ラッピングするアセットバンドルはキャッシュされます。
 }@]
 
 
-[[AssetBundlesIntro|back to AssetBundles Intro]]
+[[AssetBundlesIntro|アセットバンドル イントロに戻る]]
