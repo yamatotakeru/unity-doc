@@ -1,40 +1,41 @@
-! Networked Multiplayer
+! マルチプレイヤーでのネットワーク
 
-Realtime networking is a complex field but Unity makes it easy to add networking features to your game. Nevertheless, it is useful to have some idea of the scope of networking before using it in a game. This section explains the fundamentals of networking along with the specifics of Unity's implementation.  If you have never created a network game before then it is strongly recommended that you work through this guide before getting started.
+リアルタイム ネットワーキングは複雑な分野ですが、Unityにより簡単にネットワーキング機能をゲームに追加出来ます。それでもゲームで使用する前にネットワーキングのスコープについて理解することは役立ちます。本項ではUnity実装の仕様に沿ってネットワーキングの基本を説明します。もしネットワークゲームを開発するのが初めてならば、始めるまえにこのガイドを一通りやってみることを強く推奨します。
 
-!! [[net-HighLevelOverview | High Level Overview]]
+!! [[net-HighLevelOverview | ハイレベル 概要]]
 
-This section outlines all the concepts involved in networking and serves as an introduction to deeper topics.
+本セクションでは、より深いトピックに入る前に、ネットワーキングの全ての概念を説明します。
 
-!! [[net-UnityNetworkElements | Networking Elements in Unity]]
+!! [[net-UnityNetworkElements | Unityでのネットワーキング要素]]
 
-This section of the guide covers Unity's implementation of the concepts explained in the overview.
+このガイドの本セクションでは概要で説明した概念のUnityでの実装についてカバーします。
 
-!!! [[net-RPCDetails | RPC Details]]
+!!! [[net-RPCDetails | RPC 詳細]]
 
-Remote Procedure Call or RPC is a way of calling a function on a remote machine.  This may be a client calling a function on the server, or the server calling a function on some or all clients.  This section explains RPC concepts in detail.
-
-
-!!! [[net-StateSynchronization | State Synchronization]]
-
-State Synchronization is a method of regularly updating a specific set of data across two or more game instances running on the network.
+リモート プロシージャ コールまたはRPCによりリモート マシンで関数をコール出来ます。これはクライアントからサーバの関数をコールすることも、サーバが一部または全てのクライアントの関数をコールすることも出来ます。
 
 
-!!! [[net-MinimizingBandwidth | Minimizing Bandwidth]]
+!!! [[net-StateSynchronization | ステート同期]]
 
-Every choice you make about where and how to share data will affect the network bandwidth your game uses. This page explains how bandwidth is used and how to keep usage to a minimum.
-
-
-!!! [[net-NetworkView | Network View]]
-
-Network Views are Components you use to share data across the network and are a fundamental aspect of Unity networking.  This page explains them in detail.
+ステート同期は定期的にデータのセットをネットワーク上の二つ以上のゲームインスタンスで更新することです。
 
 
-!!! [[net-NetworkInstantiate | Network Instantiate]]
+!!! [[net-MinimizingBandwidth | ネットワーク帯域の最小化]]
 
-A complex subject in networking is ownership of an object and determination of who controls what.  Network Instantiation handles this task for you, as explained in this section.  Also covered are some more sophisticated alternatives for situations where you need more control over object ownership.
+いつどのようにしてデータ共有するかについて決定するひとつひとつの事項はゲームが使用するネットワーク帯域に影響します。このページでネットワーク帯域がどのように使用されていて、どのようにして帯域幅を最小化するか説明します。.
 
 
-!!! [[net-MasterServer | Master Server]]
+!!! [[net-NetworkView | ネットワーク ビュー]]
 
-The Master Server is like a game lobby where servers can advertise their presence to clients. It can also enable communication from behind a firewall or home network using a technique called NAT punchthrough (with help from a facilitator) to make sure your players can always connect with each other.  This page explains how to use the Master Server.
+ネットワーク ビューはネットワーク上でデータを共有するために使用するコンポーネントであり、Unityネットワーキングの基本的な側面です。このページではそれらについて詳細に説明します。
+
+
+!!! [[net-NetworkInstantiate | ネットワーク インスタンス化]]
+
+ネットワーキングで難しことはオブジェクトのオーナーシップと誰が何をコントロールするか決定することです。すでに説明したとおり、このセクションで説明するとおりネットワークのインスタンス化によりこれに対応することが出来ます。
+さらに、オブジェクトのオーナーシップがより必要な状況において、より洗練された別の解決策をカバーします。
+
+
+!!! [[net-MasterServer | マスターサーバ]]
+
+マスターサーバは、クライアントにその存在をアピールできるゲームロビーのようなものです。ファイアウォールの中、またはホームネットワークの中からの通信をNATパンチスルーというテクニックを用いて（ファシリテータの手助けを得て）可能にし、プレイヤーが常に互いに通信が出来ます。このページではさらにマスターサーバの使用方法について説明します。
