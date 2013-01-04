@@ -1,10 +1,11 @@
-!Customizing the Unity Web Player loading screen
+! Web Player ロード画面をカスタマイズ
 
-Customize the loading screen with ''UnityObject2'' is similiar to the way it's done with [[CustomizingtheUnityWebPlayerloadingscreen|UnityObject]].
+ ''UnityObject2'' でロード画面をカスタマイズする方法は [[CustomizingtheUnityWebPlayerloadingscreen|UnityObject]] とほぼ同様です。
 
-Please note that modifying the loader images is only possible with $$Unity Pro$$.
+ロード時の画像を修正できるのは $$Unity Pro$$ でのみ可能であることに留意して下さい。
 
-Here is an example script that customizes the appearance of the Unity Web Player loading screen. The background color is set to light gray (``A0A0A0``), border color to black (``000000``), text color to white (``FFFFFF``) and loader images to ``MyLogo.png``, ``MyProgressBar.png`` and ``MyProgressFrame.png``. 
+ロード画面の外見をカスタマイズしたスクリプトのサンプルは次の通りです。背景色はライトグレー(``A0A0A0``)、境界線のカラーは黒 (``000000``)、テキストのカラーは白 (``FFFFFF``) 、およびロードイメージは ``MyLogo.png`` 、``MyProgressBar.png`` 、および ``MyProgressFrame.png`` です。
+ 
 [@
 var params = {
 	backgroundcolor: "A0A0A0",
@@ -18,5 +19,5 @@ var u = UnityObject2({ params: params });
 u.initPlugin(jQuery("#unityPlayer")[0], "Example.unity3d");
 @]
 
-See [[WorkingwithUnityObject2#constructor|UnityObject2]] for more details.
+詳細については [[WorkingwithUnityObject2#constructor|UnityObject2]] を参照下さい。
 
