@@ -1,6 +1,6 @@
-!Unity Web PlayerおよびUnityObject2とのブラウザコミュニケーション
+!Unity Web PlayerおよびUnityObject2とのブラウザの通信
 
-ブラウザコミュニケーションは大部分において、 [[UnityWebPlayerandbrowsercommunication|UnityObject]] と同様に行われます。しかし、Unity Web Playerコンテンツの関数をウェブページからコールするのは次のように行われます：
+ブラウザの通信は大部分において、 [[UnityWebPlayerandbrowsercommunication|UnityObject]] と同様に行われます。しかし、WebページからUnity Web Player内の関数を呼び出す場合は次のように行われます：
 
 [@
 <script type="text/javascript" language="javascript">
