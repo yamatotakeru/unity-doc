@@ -1,19 +1,19 @@
-Understanding the View Frustum
+ビュー Frustum を理解する
 
-The word ``frustum`` refers to a solid shape that looks like a pyramid with the top cut off parallel to the base. This is the shape of the region that can be seen and rendered by a perspective camera. The following thought experiment should help to explain why this is the case.
+``Frustum`` という言葉はピラメッドのような形の上部を、底面と平行な面で切り取った形状を示します。これはパースペクティブ カメラにより表示できてレンダリングされる領域です。次の仮想の実験によりどうしてそうなるかを説明します。
 
-Imagine holding a straight rod (a broom handle or a pencil, say) end-on to a camera and then taking a picture. If the rod were held in the centre of the picture, perpendicular to the camera lens, then only its end would be visible as a circle on the picture; all other parts of it would be obscured. If you moved it upward, the lower side would start to become visible but you could hide it again by angling the rod upward. If you continued moving the rod up and angling it further upward, the circular end would eventually reach the top edge of the picture. At this point, any object above the line traced by the rod in world space would not be visible on the picture.
+真っ直ぐな棒(ホウキの取っ手か鉛筆)をカメラに端をつけて、もったまま写真を撮る状況を想像して下さい。もし棒をカメラレンズに垂直に真ん中に当てていれば写真には点しか見ることが出来ません。棒の残りは隠れてしまいます。もし上部に移動した場合、下半分は見えるようになりますが、棒を上に傾けることで再び隠すことが出来ます。続けて棒を上に移動してさらに上に向けると丸い端はいずれしゃしの上端に到達します。かのの時点で、棒の軌跡より上のオブジェクトは写真に表示されません。
 
 Attach:Rods.png
 
-The rod could just as easily be moved and rotated left, right, or down or any combination of horizontal and vertical. The angle of the "hidden" rod simply depends on its distance from the centre of the screen in both axes.
+棒を同様に移動して左、右、下、または水平、垂直に組み合わせて回転させることが出来ます。"隠れた" 棒の角度は単にそれぞれの軸での、写真の中心からの距離に依存します。 
 
-The meaning of this thought experiment is that any point in a camera's image actually corresponds to a line in world space and only a single point along that line is visible in the image. Everything behind that position on the line is obscured.
+この仮想実験の意味することは、カメラのイメージのあらゆる点はワールド座標系での直線に相当して、直線上では1点のみがイメージ上に表示できます。直線上の、その点より後ろにあるものは隠されます。
 
-The outer edges of the image are defined by the diverging lines that correspond to the corners of the image. If those lines were traced backwards towards the camera, they would all eventually converge at a single point. In Unity, this point is located exactly at the camera's transform position and is known as the centre of perspective. The angle subtended by the lines converging from the top and bottom centres of the screen at the centre of perspective is called the field of view (often abbreviated to FOV).
-
-As stated above, anything that falls outside the diverging lines at the edges of the image will not be visible to the camera, but there are also two other restrictions on what it will render. The near and far clipping planes are parallel to the camera's XY plane and each set at a certain distance along its centre line. Anything closer to the camera than the near clipping plane and anything farther away than the far clipping plane will not be rendered.
+イメージの外端はイメージの隅に相当する境界線により定義されます。もし直線をカメラに向かって後ろ向きに辿った場合、最終的にひとつの点につながります。Unityでは、この点はカメラのtransform位置と一致し、パースペクティブの中心と呼びます。画面の上端の中心と、パースペクティブの中心と、下端の中心とを、結んで出来る角度は field of view (しばしば略してFOV) と呼ばれます。
+ 
+前述のように、境界線の外にあるものはカメラにより表示されませんが、その他にも何をレンダリングするかについて二つの制約があります。ニア クリッピング プレーンとファー クリッピング プレーンはカメラのXY平面と平行で、中心から直線上である距離でセットされます。ニア クリッピング プレーンよりカメラに近いもの、ファー クリッピング プレーンより遠いものは、レンダリングされません。
 
 Attach:ViewFrustum.png
 
-The diverging corner lines of the image along with the two clipping planes define a truncated pyramid - the view frustum.
+二つのクリッピング プレーンと境界線により切り取られたピラメッドの形状が出来て、これをビュー Frustum と呼びます。
