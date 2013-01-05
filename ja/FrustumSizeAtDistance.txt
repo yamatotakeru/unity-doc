@@ -1,20 +1,20 @@
-!The Size of the Frustum at a Given Distance from the Camera
+! カメラから一定距離での Frustum サイズ
 
-A cross-section of the view frustum at a certain distance from the camera defines a rectangle in world space that frames the visible area. It is sometimes useful to calculate the size of this rectangle at a given distance, or find the distance where the rectangle is a given size. For example, if a moving camera needs to keep an object (such as the player) completely in shot at all times then it must not get so close that part of that object is cut off.
+ビュー Frustum がカメラから一定距離での交差領域はワールド座標での画面表示される領域を四角形で定義します。ある距離での四角形のサイズがどれぐらいであるか、またはある四角形のサイズでは距離がどれぐらいであるか、を計算すると役立つことがあります。例えば、もし動くカメラによりオブジェクトを常に追跡する（例えばプレイヤーなどを追跡する）必要がある場合、オブジェクトがカットオフされる距離まで近づいてはいけません。
 
-The height of the frustum at a given distance (both in world units) can be obtained with the following formula:-
+ある距離での Frustum の高さ（ともにワールド座標系の単位）は次の数式により計算できます:-
 
 [@var frustumHeight = 2.0 * distance * Mathf.Tan(camera.fieldOfView * 0.5 * Mathf.Deg2Rad);@]
 
-...and the process can be reversed to calculate the distance required to give a specified frustum height:-
+...またこの処理を逆に行うことである Frustum の高さから距離を計算することが出来ます:-
 
 [@var distance = frustumHeight * 0.5 / Mathf.Tan(camera.fieldOfView * 0.5 * Mathf.Deg2Rad);@]
 
-It is also possible to calculate the FOV angle when the height and distance are known:-
+さらに高さと距離があるのときの FOV 角度を計算することが出来ます:-
 	
 [@var camera.fieldOfView = 2 * Mathf.Atan(frustumHeight * 0.5 / distance) * Mathf.Rad2Deg;@]
 
-Each of these calculations involves the height of the frustum but this can be obtained from the width (and vice versa) very easily:-
+各々のこれらの計算は Frustum の高さが関連しますすが、これは幅から簡単に計算できます（逆の場合も同様に計算できます）:-
 
 [@var frustumWidth = frustumHeight * camera.aspect;
 var frustumHeight = frustumWidth / camera.aspect;@]
