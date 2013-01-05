@@ -1,14 +1,15 @@
-! Compute Shaders
+! コンピュート シェーダ
 
-Compute Shaders are programs that run on the graphics card, outside of the normal rendering pipeline. They can be used for massively parallel GPGPU algorithms, or to accelerate parts of game rendering. In order to efficiently use them, often an in-depth knowledge of GPU architectures and parallel algorithms is needed; as well as knowledge of [[http://msdn.microsoft.com/en-us/library/windows/desktop/ff476331.aspx | DirectCompute]], [[http://en.wikipedia.org/wiki/OpenCL | OpenCL]] or [[http://en.wikipedia.org/wiki/CUDA | CUDA]].
+コンピュート シェーダ は、通常のレンダリング パイプラインと異なって、グラフィックス カード上で動作するプログラムです。これは超並列 GPGPU アルゴリズム、またはゲームレンダリングの一部を加速させるために使用できます。効果的に使用するためには、しばしば GPU アーキテクチャおよび並列アルゴリズム、さらには [[http://msdn.microsoft.com/en-us/library/windows/desktop/ff476331.aspx | DirectCompute]] 、 [[http://en.wikipedia.org/wiki/OpenCL | OpenCL]] 、または [[http://en.wikipedia.org/wiki/CUDA | CUDA]]に関する深い知識が必要です。
 
-Compute shaders in Unity are built on top of DirectX 11 DirectCompute technology; and currently require Windows Vista or later and a GPU capable of Shader Model 5.0.
+Unityでのコンピュート シェーダ は DirectX 11 DirectCompute テクノロジーにもとづいて作られていて、現在は Windows Vista 以降 かつ シェーダモデル 5.0 を利用可能な GPU が必要です。
 
-!! Compute shader assets
 
-Similar to [[Shaders|normal shaders]], Compute Shaders are asset files in your project, with @@*.compute@@ file extension. They are written in DirectX 11 style [[http://msdn.microsoft.com/en-us/library/windows/desktop/bb509561.aspx | HLSL]] language, with minimal amount of @@#pragma@@ compilation directives to indicate which functions to compile as compute shader kernels.
+!! コンピュート シェーダ アセット
 
-Here's a minimal example of a compute shader file:
+[[Shaders|通常のシェーダ]] と似て、コンピュート シェーダ はプロジェクト上で @@*.compute@@ 拡張子のついたアセットファイルです。DirectX 11 スタイルの [[http://msdn.microsoft.com/en-us/library/windows/desktop/bb509561.aspx | HLSL]] 言語で記述されていて、最小限の @@#pragma@@ コンパイル ディレクティブ 用いてどの関数がコンピュート シェーダ カーネルを用いるか指定します。
+
+コンピュート シェーダ を使用するための最低限のサンプルを示します:
 [@
 // test.compute
 #pragma kernel FillWithRed
@@ -21,11 +22,11 @@ void FillWithRed (uint3 dtid : SV_DispatchThreadID)
     res[dtid.xy] = float4(1,0,0,1);
 }
 @]
-The example above does not do anything remotely interesting, just fills output texture with red color.
+上記のサンプルでは際立って面白いことはやっておらず、ただ出力テクスチャを赤で埋めます。
 
-The language is standard DX11 HLSL, with the only exception of a @@#pragma kernel FillWithRed@@ directive. One compute shader asset file must contain at least one "compute kernel" that can be invoked, and that function is indicated by the #pragma directive. There can be more kernels in the file; just add multiple @@#pragma kernel@@ lines.
+言語は標準的な DirectX 11 HLSL であり、例外として @@#pragma kernel FillWithRed@@ ディレクティブを使用しています。ひとつのコンピュート シェーダ アセットは最低限ひとつの実行可能な "コンピュート カーネル" を含む必要があり、その関数はe #pragma ディレクティブにより指定します。ファイルの中に複数のカーネルを含むことが可能であり、複数の @@#pragma kernel@@ 行を追加するのみです。
 
-The @@#pragma kernel@@ line can optionally be followed by a number of preprocessor macros to define while compiling that kernel, for example:
+@@#pragma kernel@@ 行はオプションとして、カーネルをコンパイルしている間に複数のプリプロセッサ マクロを後に続けて定義することが可能です。サンプルとしては:
 [@
 #pragma kernel KernelOne SOME_DEFINE DEFINE_WITH_VALUE=1337
 #pragma kernel KernelTwo OTHER_DEFINE
@@ -33,16 +34,17 @@ The @@#pragma kernel@@ line can optionally be followed by a number of preprocess
 @]
 
 
-!! Invoking compute shaders
+!! コンピュート シェーダ の実行
 
-In your script, define a variable of @@ComputeShader@@ type, assign a reference to the asset, and then you can invoke them with [[ScriptRef:ComputeShader.Dispatch.html | ComputeShader.Dispatch]] function. See scripting reference of [[ScriptRef:ComputeShader.html | ComputeShader class]] for more details.
+スクリプトのなかで、 @@ComputeShader@@ 型の変数を定義して、アセットに対する参照を割り当てて、その後は [[ScriptRef:ComputeShader.Dispatch.html | ComputeShader.Dispatch]] 関数を用いて実行することが出来ます。詳細についてはスクリプト リファレンスの [[ScriptRef:ComputeShader.html | ComputeShader class]] を参照下さい。
 
-Closely related to compute shaders is a [[ScriptRef:ComputeBuffer.html | ComputeBuffer]] class, which defines arbitrary data buffer ("structured buffer" in DX11 lingo). [[ScriptRef:RenderTexture.html | Render Textures]] can also be written into from compute shaders, if they have "random access" flag set ("unordered access view" in DX11), see [[ScriptRef:RenderTexture-enableRandomWrite.html | RenderTexture.enableRandomWrite]].
+コンピュート シェーダ と密接に関連しているのが [[ScriptRef:ComputeBuffer.html | ComputeBuffer]] クラスであり、任意のデータバッファを定義します （DirectX 11 用語では "structured buffer"）。 [[ScriptRef:RenderTexture.html | Render Texture]] も、 "random access" フラグ (DirecX 11用語では "unordered access view") がセットされていれば、またコンピュート シェーダから書き込むことが出来ます。 [[ScriptRef:RenderTexture-enableRandomWrite.html | RenderTexture.enableRandomWrite]] を参照下さい。
 
 
-!! Texture samplers in compute shaders
 
-Textures and samplers aren't separate objects in Unity, so in order to use them in compute shader you have to follow some Unity specific rules:
+!! コンピュート シェーダ でのテクスチャ サンプラ
 
-* Either use same as texture name, with "sampler" in front (e.g. @@Texture2D MyTex; SamplerState samplerMyTex@@). In this case, sampler will be initialized to that texture's filter/wrap/aniso settings.
-* Or use one of "predefined" samplers; name has to have "Linear" or "Point" (for filter mode) and "Clamp" or "Repeat" (for wrap mode). For example, @@"SamplerState MyLinearClampSampler"@@ - this will have linear filter and clamp wrap mode.
+テクスチャおよびサンプラはUnityで別オブジェクトではないため、コンピュート シェーダ で使用するためには Unity 特有のルールに従う必要があります:
+
+* ネーミングについて、テクスチャ名と同じ名前にするか、または "sampler" を名前の始めに付与した名前 (例えば @@Texture2D MyTexの場合、 SamplerState samplerMyTex@@) のいずれかにします。 
+* さらには、"定義済み" のサンプラを使用します。名前は、 "Linear" または "Point" (フィルタモードとして)、 かつ、 "Clamp" または "Repeat" (Wrapモードとして) 、をつける必要があります。例えば @@"SamplerState MyLinearClampSampler"@@ - これにより フィルタとして Linear 、かつ、 Wrapモードとして Clamp が使用されます。
