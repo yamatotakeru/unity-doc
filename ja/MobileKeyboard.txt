@@ -1,82 +1,87 @@
-!Mobile Keyboard
-In most cases, Unity will handle keyboard input automatically for GUI elements but it is also easy to show the keyboard on demand from a script.
+! モバイル キーボード
+ほとんどの場合、UnityはGUI要素のキーボード入力を自動的にハンドリングしますがスクリプトからの要求によキーボード表示するのも簡単です。
 
 
 !iOS!
 [[#iOS]]
 >>ios<<
-!!Using the Keyboard
-!!!GUI Elements
-The keyboard will appear automatically when a user taps on editable GUI elements. Currently, [[ScriptRef:GUI.TextField.html | GUI.TextField]], [[ScriptRef:GUI.TextArea.html | GUI.TextArea]] and [[ScriptRef:GUI.PasswordField.html | GUI.PasswordField]] will display the keyboard; see the  [[ScriptRef:GUI.html | GUI class]] documentation for further details.
+!! キーボードの使用
+!!! GUI 要素 Elements
+ユーザーが編集可能なGUI要素をタップしたときキーボードは自動表示されます。現在では[[ScriptRef:GUI.TextField.html | GUI.TextField]], [[ScriptRef:GUI.TextArea.html | GUI.TextArea]] および [[ScriptRef:GUI.PasswordField.html | GUI.PasswordField]] によりキーボードが表示されます。詳細については  [[ScriptRef:GUI.html | GUI クラス]] を参照下さい。
 
-!!!Manual Keyboard Handling
-Use the ``iPhoneKeyboard.Open`` function to open the keyboard. Please see the [[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]] scripting reference for the parameters that this function takes.
+!!! 手動でのキーボード ハンドリングManual Keyboard Handling
+``iPhoneKeyboard.Open`` 関数を使用してキーボードを開きます。この関数が使用する引数については [[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]] スクリプティング リファレンスを参照下さい。
+scripting
+Use the ``iPhoneKeyboard.Open`` function to open the keybo
+ard. Please see the [[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]] scripting reference for the parameters that this function takes.
 
-!!Keyboard Type Summary
-The Keyboard supports the following types:
+!! キーボード 種類のまとめ
+キーボードは次の種類をサポートします。
 ||PROPS
-||``iPhoneKeyboardType.Default`` ||Letters. Can be switched to keyboard with numbers and punctuation.||
-||``iPhoneKeyboardType.ASCIICapable`` ||Letters. Can be switched to keyboard with numbers and punctuation.||
-||``iPhoneKeyboardType.NumbersAndPunctuation`` ||Numbers and punctuation. Can be switched to keyboard with letters.||
-||``iPhoneKeyboardType.URL`` ||Letters with slash and .com buttons. Can be switched to keyboard with numbers and punctuation.||
-||``iPhoneKeyboardType.NumberPad`` ||Only numbers from 0 to 9.||
-||``iPhoneKeyboardType.PhonePad`` ||Keyboard used to enter phone numbers.||
-||``iPhoneKeyboardType.NamePhonePad`` ||Letters. Can be switched to phone keyboard.||
-||``iPhoneKeyboardType.EmailAddress`` ||Letters with @ sign. Can be switched to keyboard with numbers and punctuation.||
+||``iPhoneKeyboardType.Default`` ||文字列。数字と記号のキーボードに切り替え出来ます。||
+||``iPhoneKeyboardType.ASCIICapable`` ||文字列。数字と記号のキーボードに切り替え出来ます。||
+||``iPhoneKeyboardType.NumbersAndPunctuation`` ||数字と記号。文字列のキーボードに切り替え出来ます。||
+||``iPhoneKeyboardType.URL`` ||スラッシュ記号と.com ボタン のついた文字列。数字と記号のキーボードに切り替え出来ます。||
+||``iPhoneKeyboardType.NumberPad`` ||0 から 9 までの数字のみ。||
+||``iPhoneKeyboardType.PhonePad`` ||電話番号を入力するためのキーボード。||
+||``iPhoneKeyboardType.NamePhonePad`` ||文字列。電話番号を入力するためのキーボードに切り替え出来ます。||
+||``iPhoneKeyboardType.EmailAddress`` ||@ 記号のついた文字列。数字と記号のキーボードに切り替え出来ます。||
 
-!!Text Preview
-By default, an edit box will be created and placed on top of the keyboard after it appears. This works as preview of the text that user is typing, so the text is always visible for the user. However, you can disable text preview by setting ``iPhoneKeyboard.hideInput`` to true. Note that this works only for certain keyboard types and input modes. For example, it will not work for phone keypads and multi-line text input. In such cases, the edit box will always appear. ``iPhoneKeyboard.hideInput`` is a global variable and will affect all keyboards.
+!! テキスト プレビュー
+デフォルトでは、キーボードが表示された後に編集ボックスが作成されてキーボードの上に配置されます。ユーザが入力しているテキストのプレビューとして動作し、ユーザはテキストを常に見ることができます。しかし、テキスト プレビューを無効化するには ``iPhoneKeyboard.hideInput`` を true にします。特定のキーボードの種類および入力モードでのみ動作することに留意下さい。例えば、電話キーパッドや複数行テキスト入力では動作しません。そういったケースでは、編集ボックスは必ず表示されます。 ``iPhoneKeyboard.hideInput`` はグローバル変数で全てのキーボードに影響します。
 
-!!Keyboard Orientation
-By default, the keyboard automatically follows the device orientation. To disable or enable rotation to a certain orientation, use the following properties available in [[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]]:
+!! キーボード向き
+デフォルトでは、キーボードは自動的にデバイスの向きに従います。ある特定の向きを有効化／無効化するためには [[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]] で利用可能なプロパティを使用下さい:
 ||PROPS
-||``autorotateToPortrait`` ||Enable or disable autorotation to portrait orientation (button at the bottom).||
-||``autorotateToPortraitUpsideDown`` ||Enable or disable autorotation to portrait orientation (button at top).||
-||``autorotateToLandscapeLeft`` ||Enable or disable autorotation to landscape left orientation (button on the right).||
-||``autorotateToLandscapeRight`` ||Enable or disable autorotation to landscape right orientation (button on the left).||
+||``autorotateToPortrait`` ||自動回転をポートレートに有効化／無効化する（ホーム ボタンが下）||
+||``autorotateToPortraitUpsideDown`` ||自動回転をポートレートに有効化／無効化する（ホーム ボタンが上）||
+||``autorotateToLandscapeLeft`` ||自動回転を左ランドスケープに有効化／無効化する（ホーム ボタンが右）||
+||``autorotateToLandscapeRight`` ||自動回転を右ランドスケープに有効化／無効化する（ホーム ボタンが左）||
 
-!!Visibility and Keyboard Size
-There are three keyboard properties in [[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]] that determine keyboard visibility status and size on the screen.
+!! Visibility およびキーボードサイズ
+
+[[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]] には3つのキーボード プロパティにより、キーボード のVisibilityステータスおよび画面上のサイズを決定します。
 ||PROPS
-||``visible`` ||Returns ``true`` if the keyboard is fully visible on the screen and can be used to enter characters.||
-||``area`` ||Returns the position and dimensions of the keyboard.||
-||``active`` ||Returns ``true`` if the keyboard is activated. This property is not static property. You must have a keyboard instance to use this property.||
+||``visible`` ||キーボードが完全に画面に完全に表示されていて、かつ文字列が入力できる場合に``true`` を返します。||
+||``area`` ||キーボードの位置と寸法を返します。||
+||``active`` ||キーボードが有効化されている場合に``true`` を返します。このプロパティは static プロパティでありません。キーボードのインスタンスがないとこのプロパティを使用できません。||
 
-Note that ``iPhoneKeyboard.area`` will return a rect with position and size set to 0 until the keyboard is fully visible on the screen. You should not query this value immediately after ``iPhoneKeyboard.Open``. The sequence of keyboard events is as follows:
+``iPhoneKeyboard.area`` は、キーボードが完全に画面で表示されるまで、位置およびサイズがゼロにセットされた rect を返すことに留意して下さい。 ``iPhoneKeyboard.Open`` の直後に値をクエリーすべきではありません。キーボードイベントのステップは次のとおりです:
 
-*``iPhoneKeyboard.Open`` is called. ``iPhoneKeyboard.active`` returns true. ``iPhoneKeyboard.visible`` returns false. ``iPhoneKeyboard.area`` returns (0, 0, 0, 0).
-*Keyboard slides out into the screen. All properties remain the same.
-*Keyboard stops sliding. ``iPhoneKeyboard.active`` returns true. ``iPhoneKeyboard.visible`` returns true. ``iPhoneKeyboard.area`` returns real position and size of the keyboard.
+* ``iPhoneKeyboard.Open`` がコールされる。``iPhoneKeyboard.active`` が true を返す。``iPhoneKeyboard.visible`` が false を戻す。 ``iPhoneKeyboard.area`` が (0, 0, 0, 0) を戻す。
+* キーボードが画面上にスライドしながら表示される。全てのプロパティは同じまま。
+* キーボードの画面上でのスライドが止まる。``iPhoneKeyboard.active`` が true を戻す。 ``iPhoneKeyboard.visible`` が true を戻す。 ``iPhoneKeyboard.area`` がキーボードの実際の位置とサイズを戻す。
 
-!!Secure Text Input
-It is possible to configure the keyboard to hide symbols when typing. This is useful when users are required to enter sensitive information (such as passwords). To manually open keyboard with secure text input enabled, use the following code:
+!! セキュリティのかかったテキスト入力
+キーボード入力が行われるときに入力した文字を隠すことが可能です。これはユーザがセンシティブ情報（パスワードなど）の入力を求められたときに便利です。キーボードをセキュリティのかかったテキスト入力を有効化して、手動でキーボードを開くためには、次のコードを使用します:
 [@
 iPhoneKeyboard.Open("", iPhoneKeyboardType.Default, false, false, true);
 @]
 
 Attach:KeyboardSecure.png
-''Hiding text while typing''
+''テキスト入力の際にテキストを隠す''
 
-!!Alert keyboard
-To display the keyboard with a black semi-transparent background instead of the classic opaque, call ``iPhoneKeyboard.Open`` as follows:
+!! アラート キーボード
+
+キーボードで、通常の不透明な背景ではなく、部分的に透明で黒い背景としたい場合、次のように ``iPhoneKeyboard.Open`` をコールします:
 [@
 iPhoneKeyboard.Open("", iPhoneKeyboardType.Default, false, false, true, true);
 @]
 
 Attach:KeyboardClassic.png
-''Classic keyboard''
+''通常のキーボード''
 
 Attach:KeyboardAlert.png
-''Alert keyboard''
+''アラート キーボード''
 
 >><<
 
 !Android!
 [[#Android]]
 >>android<<
-Unity Android reuses the iOS API to display system keyboard. Even though Unity Android supports most of the functionality of its iPhone counterpart, there are two aspects which are not supported:
+Unity Android は  iOS API を再利用して、システムキーボードを表示します。 Unity Android が iPhone の同等機能をほとんどサポートしながらも、サポートしていないものが二つあります:
 * ``iPhoneKeyboard.hideInput``
 * ``iPhoneKeyboard.area``
 
-Please also note that the layout of a ``iPhoneKeyboardType`` can differ somewhat between devices.
+ `iPhoneKeyboardType`` のレイアウトがデバイスによりやや異なることに留意下さい。
 >><<
