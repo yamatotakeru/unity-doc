@@ -1,24 +1,25 @@
-!Log Files
+! ログファイル
 
-There might be times during the development when you need to obtain information from the logs of the webplayer you've built, your standalone player, the target device or the editor. Usually you need to see these files when you have experienced a problem and you have to know where exactly the problem occurred.
+開発の際にビルドしたログをWeb Player、スタンドアローンプレイヤー、ターゲットデバイス、またはエディタから取得したい場合があるかもしれません。一般的には何か問題が発生したときにこのファイルをみて、どこで問題が発生したかを明確に確認します。
 
-On Mac the webplayer, player and editor logs can be accessed uniformly through the standard ^^Console.app^^ utility.
+Mac では Web Player、プレイヤー、およびエディタのログは共通して標準的な ^^Console.app^^ ユーティリティで確認できます。
 
-On Windows the webplayer and editor logs are place in folders there are not shown in the Windows Explorer by default. Please see the [[AccessingHiddenFolders | Accessing hidden folders]] page to resolve that situation.
+Windows では Web Playerおよびエディタのログは、デフォルトで Windows エクスプローラが隠すフォルダに格納されます。この状況を解決するには [[AccessingHiddenFolders | 隠しフォルダへのアクセス]] を参照下さい。
 
-!! Editor
+!! エディタ
+エディタのログは Unity コンソール ウィンドウの ^^Open Editor Log^^ で見ることが出来ます。
 Editor log can be brought up through the ^^Open Editor Log^^ button in Unity's Console window.
 
 ||``Mac OS X``            ||~/Library/Logs/Unity/Editor.log||
 ||``Windows XP`` *        ||''C:\Documents and Settings\username\Local Settings\Application Data''\Unity\Editor\Editor.log||
 ||``Windows Vista/7`` *   ||''C:\Users\username\AppData\Local''\Unity\Editor\Editor.log||
 
-(*) On Windows the Editor log file is stored in the local application data folder: ''&#37;LOCALAPPDATA&#37;''\Unity\Editor\Editor.log, where ''LOCALAPPDATA'' is defined by [[http://msdn.microsoft.com/en-us/library/bb762494&#40;VS.85&#41;.aspx | CSIDL_LOCAL_APPDATA]].
+(*) Windows上でエディタ ログ ファイルはローカル アプリケーション データフォルダに格納されます:''&#37;LOCALAPPDATA&#37;''\Unity\Editor\Editor.log、ここで ''LOCALAPPDATA'' は [[http://msdn.microsoft.com/en-us/library/bb762494&#40;VS.85&#41;.aspx | CSIDL_LOCAL_APPDATA]] により定義されます。
 
 !Desktop!
 >>desktop<<
 
-On Mac all the logs can be accessed uniformly through the standard ^^Console.app^^ utility.
+Mac 上では、全てのログは共通して標準的な ^^Console.app^^ ユーティリティで確認できます。
 
 !! Webplayer
 ||``Mac OS X``                        ||~/Library/Logs/Unity/WebPlayer.log||
@@ -26,29 +27,29 @@ On Mac all the logs can be accessed uniformly through the standard ^^Console.app
 ||``Windows  Vista/7`` *              ||''C:\Users\username\AppData\Local\Temp''\UnityWebPlayer\log\log_UNIQUEID.txt||
 ||``Windows Vista/7 + IE7 + UAC`` *   ||''C:\Users\username\AppData\Local\Temp\__Low__''\UnityWebPlayer\log\log_UNIQUEID.txt||
 
-(*) On Windows the webplayer log is stored in a temporary folder:  ''&#37;TEMP&#37;''\UnityWebPlayer\log\log_UNIQUEID.txt, where ''TEMP'' is defined by [[http://msdn.microsoft.com/en-us/library/aa364992&#40;VS.85&#41;.aspx | GetTempPath]].
+*) Windows上で Web Player ログ ファイルはテンポラリ フォルダに格納されます: ''&#37;TEMP&#37;''\UnityWebPlayer\log\log_UNIQUEID.txt、ここで ''TEMP'' は [[http://msdn.microsoft.com/en-us/library/aa364992&#40;VS.85&#41;.aspx | GetTempPath]] により定義されます。.
 
-!! Player
+!! プレイヤー
 ||``Mac OS X``      ||~/Library/Logs/Unity/Player.log||
 ||``Windows `` *    ||''EXECNAME_Data''\output_log.txt||
 
-(*) ''EXECNAME_Data'' is a folder next to the executable with your game.
+(*) ''EXECNAME_Data'' はゲームの実行ファイルの隣にあるフォルダです。
 
-Note that on Windows standalones the location of the log file can be changed (or logging suppressed.)  See the [[CommandLineArguments | command line]] page for further details.
+Windowsスタンドアローンではログファイルの場所は変更が可能である（またはログ出力を止めることが出来る）ことに留意して下さい。詳細は [[CommandLineArguments | command line]] を参照下さい。
 >><<
 
 !iOS!
 >>ios<<
-The device log can be accessed in XCode via GDB console or the Organizer Console. The latter is useful for getting crashlogs when your application was not running through the XCode debugger.
+デバイス ログは XCode の GDB コンソールまたは Organizer コンソールを通してアクセスが出来ます。後者は Xcode デバッガを通して実行してなかった場合に クラッシュ ログを取得するのに便利です。
 
-Please see [[http://developer.apple.com/library/ios/#documentation/Xcode/Conceptual/iphone_development/130-Debugging_Applications/debugging_applications.html | Debugging Applications]] in the iOS Development Guide. Also our [[TroubleShooting#iPhoneTroubleShooting | Troubleshooting]] and [[iphone-bugreporting | Bugreporting]] guides may be useful for you.
+ iOS 開発ガイドの [[http://developer.apple.com/library/ios/#documentation/Xcode/Conceptual/iphone_development/130-Debugging_Applications/debugging_applications.html | Debugging Applications]] を参照下さい。また Unityユーザマニュアルの [[TroubleShooting#iPhoneTroubleShooting | トラブルシューティング]] および [[iphone-bugreporting | バグ レポート]] も役に立つ場合があります。
 >><<
 
 !Android!
 >>android<<
-The device log can be viewed by using the [[http://developer.android.com/guide/developing/tools/adb.html#logcat | logcat console]]. Use the ``adb`` application found in ``Android SDK/platform-tools directory`` with a trailing ``logcat`` parameter:
+デバイス ログは [[http://developer.android.com/guide/developing/tools/adb.html#logcat | logcat console]] を使用して見ることが出来ます。 ``Android SDK/platform-tools ディレクトリ`` にある ``adb`` アプリケーションを使用して ``logcat`` 引数を付加して実行して下さい:
 
 @@$ adb logcat@@
 
-Another way to inspect the LogCat is to use the [[http://developer.android.com/guide/developing/debugging/ddms.html | Dalvik Debug Monitor Server (DDMS)]]. DDMS can be started either from ``Eclipse`` or from inside the ``Android SDK/tools``. DDMS also provides a number of other debug related tools.
+別の方法で LogCatを確認する方法は [[http://developer.android.com/guide/developing/debugging/ddms.html | Dalvik Debug Monitor Server (DDMS)]] を使用する方法です。DDMS は ``Eclipse`` または ``Android SDK/tools`` の中から起動できます。DDMSはこのほかにデバッグ関連のツールを提供します。
 >><<
