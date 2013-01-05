@@ -1,39 +1,39 @@
-! Graphics Emulation
+! グラフィックス エミュレーション
 
-You can choose to emulate less capable graphics hardware when working in the Unity editor. This is very handy when writing custom shaders and rendering effects, and is a quick way to test how your game will look on that eight year old graphics card that someone might have.
+Unityエディタで作業している際に、グラフィックス ハードウェアが劣っている場合のエミュレーションすることを選択できます。これはカスタムシェーダおよびレンダリング エフェクトを記述している場合に便利で、ゲームが八年前の古いグラフィックス カードを持っている人にとってどのようにみられるか簡単にテストできます。
 
-To enable Graphics emulation, go to ^^Edit->Graphics Emulation^^, and choose your desired emulation level.
+グラフィックス エミュレーションを有効化するには ^^Edit->Graphics Emulation^^ へ移動して希望するエミュレーション レベルを選択します。
 
-__Note:__ The available graphic emulation options change depending on the platform you are currently targeting. More information can be found on the [[PublishingBuilds | Publishing builds page]].
+__注意:__ 利用可能なグラフィックス エミュレーションのオプションは現在ターゲットとしているプラットフォームにより変化します。詳細については [[PublishingBuilds | パブリッシュ ビルドのページ]] を参照下さい。
 
 Attach:GraphicsEmulationMenu.jpg\\
-''Enabling Graphics Emulation''
+''グラフィックス エミュレーションの有効化''
 
 
-!! Technical Details
+!! 技術的な詳細
 
-Graphics emulation limits the graphics ''capabilities'' that are supported, but it does not emulate the ''performance'' of graphics hardware. Your game in the editor will still be rendered by your graphics card, more and more features will be disabled as you reduce emulation quality.
+グラフィックス エミュレーションによりグラフィックス ''機能'' を制限しますが、グラフィックス ハードウェアのパフォーマンスはエミュレーションしません。エディタでのゲームは自身のグラフィックス カードによりレンダリングされ、エミュレーション品質を下げるほどより多くの機能が無効化されます。
 
-While emulation is a quick way to check out graphics capabilities, you should still test your game on actual hardware. This will reveal real performance and any peculiarities of the specific graphics card, operating system or driver version.
+エミュレーションによりグラフィックス 機能を確かめる早い方法でありながら、実際のハードウェアでのテストは引き続き行うべきです。これにより真のパフォーマンスおよび特定のグラフィックスカード、オペレーティングシステム、またはドライババージョン特有の動きが明らかとなります。
 
-!! Emulation Levels
+!! エミュレーション レベル
 
-Graphics emulation levels are the following:
+グラフィックス エミュレーション レベルは次の通りです:
 
-!!! In web player or standalone mode:
+!!! Web Player または スタンドアローン モード:
 
-||``No Emulation`` ||No emulation is performed.||
-||``Shader Model 3`` ||Emulates graphics card with Shader Model 3.0 level capabilities. Long vertex & fragment shader programs, realtime shadows, HDR.||
-||``Shader Model 2`` ||Shader Model 2.0 capabilities. Vertex & fragment programs, realtime shadows. No HDR, maximum 4 texture combiner stages. ||
-||``Shader Model 1`` ||Shader Model 1.x capabilities. Vertex programs, 4 texture combiner stages. __Not supported__: fragment programs, shadows, HDR, depth textures, multiple render targets. ||
-||``DirectX 7`` ||DirectX 7 level capabilities. Vertex programs (usually in software mode), two texture combiner stages. __Not supported__: fragment programs, shadows, HDR, depth textures, 3D textures, min/max/sub blending. ||
+||``No Emulation`` ||エミュレーションは行われません。||
+||``Shader Model 3`` ||グラフィックスカードをシェーダ モデル 3.0 レベルの機能でエミュレーションします。長い頂点シェーダおよびフラグメントシェーダ、リアルタイム シャドウ、 HDR。||
+||``Shader Model 2`` ||シェーダ モデル 2.0 レベルの機能。頂点シェーダおよびフラグメントシェーダ、リアルタイム シャドウ。 HDRはなく、最大で4 つのテクスチャ合成ステージ。 __サポート外__ : フラグメントプログラム、シャドウ、HDR、デプステクスチャ、複数レンダリングターゲット。 __サポート外__ : フラグメントプログラム、シャドウ、HDR、デプステクスチャ、複数レンダリングターゲット。||
+||``Shader Model 1`` ||シェーダ モデル 1.0 レベルの機能。頂点プログラム、4 つのテクスチャ合成ステージ。||
+||``DirectX 7`` ||DirectX 7 レベルの機能。 __サポート外__ : フラグメントプログラム、シャドウ、HDR、デプステクスチャ、3D テクスチャ、 Min/Max/Sub ブレンディング。||
 
 
-!!! In iOS or Android mode:
+!!! iOS または Androidモード:
 
-||``No Emulation`` ||No emulation is performed.||
-||``OpenGL ES 1.x`` ||OpenGL ES 1.1: Four texture combiner stages. __Not supported__: vertex or fragment programs, shadows and pretty much all other graphics features ;) ||
-||``OpenGL ES 2.0`` ||OpenGL ES 2.0: Vertex & fragment programs, four texture combiner stages. __Not supported__: HDR, 3D textures. ||
+||``No Emulation`` ||エミュレーションは行われません。||
+||``OpenGL ES 1.x`` ||OpenGL ES 1.1: 4 つのテクスチャ合成ステージ。 __サポート外__ : フラグメントプログラム、シャドウ、およびほとんどの他のグラフィックス機能 ;) ||
+||``OpenGL ES 2.0`` ||OpenGL ES 2.0: 頂点およびフラグメントプログラム、4 つのテクスチャ合成ステージ。 __サポート外__ : HDR、3Dテクスチャ。||
 
-When your graphics card does not support all the capabilities of some emulation level, that level will be disabled. For example, the Intel GMA950 (Intel 915/945/3000) card does not support Shader Model 3.0, so there's no way to emulate that level.
+グラフィックスカードがあるエミュレーションレベルのうちの全ての機能をサポートしない場合、そのレベルは無効化されています。例えば、 Intel GMA950 (Intel 915/945/3000) はシェーダ モデル 3.0 をサポートしないため、そのレベルを笑むレーション出来る方法はありません。
 
