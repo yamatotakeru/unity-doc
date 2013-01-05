@@ -1,6 +1,6 @@
-!Description of the Format
+! フォーマットに関する説明
 
-Unity's scene format is implemented with the YAML data serialization language. While we can't cover YAML in depth here, it is an open format and its specification is available for free at the [[http://yaml.org/spec/1.2/spec.html|YAML website]]. Each object in the scene is written to the file as a separate YAML document, which is introduced in the file by the --- sequence. Note that in this context, the term "object" refers to GameObjects, Components and other scene data collectively; each of these items requires its own YAML document in the scene file. The basic structure of a serialized object can be understood from an example:-
+Unity のシーン形式は YAML データシリアイズ 言語により実装されています。ここではYAMLについて深く掘り下げませんが、オープンな形式であり仕様については無料で [[http://yaml.org/spec/1.2/spec.html]] にて確認できます。シーンの各オブジェクトはファイルに対して別 YAML ドキュメントとして書かれ、ファイルの中では --- シーケンスにより区切られます。文脈のなかで "オブジェクト" はゲームオブジェクト、コンポーネント、および他のシーンのデータを一括して指し示します。これらの各々のアイテムは個々にYAMLドキュメントをシーンのファイルに必要です。シリアイズされたオブジェクトの基本構造は次のサンプルから理解することが出来ます:-
 
 [@--- !u!1 &6
 GameObject:
@@ -21,11 +21,11 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1@]
 
-The first line contains the string "!u!1 &6" after the document marker. The first number after the "!u!" part indicates the class of the object (in this case, it is a GameObject). The number following the ampersand is an object ID number which is unique within the file, although the number is assigned to each object arbitrarily. Each of the object's serializable properties is denoted by a line like the following:-
+最初の行にはドキュメントマーカーの後に "!u!1 &6" 文字列を含みます。 "!u!" の後の最初の数字はオブジェクトのクラスを表します（この場合ではゲームオブジェクト）。続く & の後の数字はファイルのなかで一意のオブジェクトID番号ですが、この番号は任意に各オブジェクトに割り当てられます。各おぶじぇくとのシリアイズ可能なプロパティ次のような行により記されます:-
 
 [@m_Name: Cube@]
 
-Properties are typically prefixed with "m_" but otherwise follow the name of the property as defined in the script reference. A second object, defined further down in the file, might look something like this:-
+プロパティの名前は一般的に "m_" で始めて、スクリプトリファレンスで定義されたプロパティの名前で続けます。二つめのオブジェクトはファイルの中でその下に定義していき、次のように書きます:-
 
 [@--- !u!4 &8
 Transform:
@@ -39,13 +39,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}@]
 
-This is a Transform component attached to the GameObject defined by the YAML document above. The attachment is denoted by the line:-
+これは前述のYAMLドキュメントで定義された ゲームオブジェクトにアタッチされた Transform コンポーネントです。アタッチはこの行により記述します:-
 
 [@m_GameObject: {fileID: 6}@]
 
-...since the GameObject's object ID within the file was 6.
+...このように記述するのは、ファイル内でのゲームオブジェクトのオブジェクト ID が6であったためです。
 
-Floating point numbers can be represented in a decimal representation or as a hexadecimal number in IEE 754 format (denoted by a 0x prefix). The IEE 754 representation is used for lossless encoding of values, and is used by Unity when writing floating point values which don't have a short decimal representation. When Unity writes numbers in hexadecimal, it will always also write the decimal format in parentheses for debugging purposes, but only the hex is actually parsed when loading the file. If you wish to edit such values manually, simply remove the hex and enter only a decimal number. Here are some valid representations of floating point values (all representing the number one):
+浮動小数点数は十進数または十六進数、すなわち IEE 754 形式（0x により始めます）、のいずれかによって表現することが出来ます。IEE 754 表記はデータ喪失のない値のエンコーディングに用いられ、Unityにより、short型の表記がなされてない、浮動小数点の値を記述するときに使用されます。Unityが十六進数で記述するとき、デバッグ目的で十進数表記を括弧の中に併せて記述しますが、実際には十六進数のみがファイルのロード時にパースされます。もしそのような値を手動で編集したい場合、単に十六進数を取り除いて、十進数のみを入力して下さい。次はいくつか有効な表記方法を示します（すべて1の値を表してます）:
 
 [@myValue: 0x3F800000
 myValue: 1
