@@ -1,53 +1,52 @@
-!Unity 3.x Shader Conversion Guide
+!Unity 3.x シェーダ 移行ガイド
 
-Unity 3 has many new features and changes to its rendering system, and ShaderLab did update accordingly. Some advanced shaders that were used in Unity 2.x, especially the ones that used per-pixel lighting, will need update for Unity 3. If you have trouble updating them - just ask for our help!
+Unity 3 にはレンダリングシステムへの新しい機能および変更があり、ShaderLab もあわせて更新しています。いくつかのUnity 2.x で使用されていた発展的なシェーダ、特にピクセルライティングで使用されたものは Unity 3 で更新が必要です。もし更新に問題があれば - サポートに問い合わせ下さい。
 
-For general graphics related Unity 3 upgrade details, see [[Rendering Upgrade Details]].
+一般的なグラフィックス関連の Unity 3 アップグレードの詳細については [[Rendering Upgrade Details]] を参照下さい。
 
-When you open your Unity 2.x project in Unity 3.x, it will automatically upgrade your shader files as much as possible. The document below lists all the changes that were made to shaders, and what to do when you need manual shader upgrade.
-
-
-!! Per-pixel lit shaders
-
-In Unity 2.x, writing shaders that were lit per-pixel was quite complicated. Those shaders would have multiple passes, with $$LightMode$$ tags on each (usually ``PixelOrNone``, ``Vertex`` and ``Pixel``). With addition of [[RenderTech-DeferredLighting | Deferred Lighting]] in Unity 3.0 and changes in old forward rendering, we needed an easier, more robust and future proof way of writing shaders that interact with lighting. __All old per-pixel lit shaders need to be rewritten__ to be [[SL-SurfaceShaders | Surface Shaders]].
+Unity 2.x のプロジェクトを Unity 3.x で開くとき、自動的にシェーダファイルを出来る限りアップグレードします。以下のドキュメントで、シェーダに対して行われた全ての変更を一覧にしていて、手動のシェーダ アップグレードが必要な場合に何をすればよいのか記されています。
 
 
-!! Cg shader changes
+!! ピクセル ライティング シェーダ
 
-!!! Built-in "glstate" variable renames
-
-In Unity 2.x, accessing some built-in variables (like model*view*projection matrix) was possible through built-in Cg names like @@glstate.matrix.mvp@@. However, that does not work on some platforms, so in Unity 3.0 we renamed those built-in variables. All these replacements will be done automatically when upgrading your project:
-
-* @@glstate.matrix.mvp@@ to UNITY_MATRIX_MVP
-* @@glstate.matrix.modelview[0]@@ to UNITY_MATRIX_MV
-* @@glstate.matrix.projection@@ to UNITY_MATRIX_P
-* @@glstate.matrix.transpose.modelview[0]@@ to UNITY_MATRIX_T_MV
-* @@glstate.matrix.invtrans.modelview[0]@@ to UNITY_MATRIX_IT_MV
-* @@glstate.matrix.texture[0]@@ to UNITY_MATRIX_TEXTURE0
-* @@glstate.matrix.texture[1]@@ to UNITY_MATRIX_TEXTURE1
-* @@glstate.matrix.texture[2]@@ to UNITY_MATRIX_TEXTURE2
-* @@glstate.matrix.texture[3]@@ to UNITY_MATRIX_TEXTURE3
-* @@glstate.lightmodel.ambient@@ to UNITY_LIGHTMODEL_AMBIENT
-* @@glstate.matrix.texture@@ to UNITY_MATRIX_TEXTURE
-
-!!! Semantics changes
-
-Additionally, it is recommended to use @@SV_POSITION@@ (instead of @@POSITION@@) semantic for position in vertex-to-fragment structures.
-
-!!! More strict error checking
-
-Depending on platform, shaders might be compiled using a different compiler than Cg (e.g. HLSL on Windows) that has more strict error checking. Most common cases are:
-* All vertex/fragment shader inputs and outputs need to have "semantics" assigned to them. Unity 2.x allowed to not assign any semantics (in which case some TEXCOORD would be used); in Unity 3.0 semantic is required.
-* All shader output variables need to be written into. For example, if you have a @@float4 color : COLOR@@ as your vertex shader output, you can't just write into @@rgb@@ and leave alpha uninitialized.
+Unity 2.x で、ピクセル単位でライティングしたシェーダはかなり複雑でした。それらのシェーダは複数のパスがあり、各々に $$LightMode$$ タグがありました（通常は ``PixelOrNone`` 、 ``Vertex`` 、 および ``Pixel``）。Unity 3.0 で [[RenderTech-DeferredLighting | Deferred Lighting]] および 古いForward Rendering への変更を加えて、より簡単、より堅牢、より将来も保証されるライティングと相互作用を行うシェーダの記述方法が必要でした。 [[SL-SurfaceShaders | Surface Shaders]] とするためには__全ての古いピクセルライティング シェーダは書き直す必要があります__ 。
 
 
-!! Other Changes
+!! Cg シェーダの変更
 
-!!! RECT textures are gone
+!!! ビルトイン "glstate" 変数リネーム
 
-In Unity 2.x, [[class-RenderTexture | RenderTextures]] could be not power of two in size, so called "RECT" textures. They were designated by "RECT" texture type in shader properties and used as @@samplerRECT@@, @@texRECT@@ and so on in Cg shaders. Texture coordinates for RECT textures were a special case in OpenGL: they were in pixels. In all other platforms, texture coordinates were just like for any other texture: they went from 0.0 to 1.0 over the texture.
+Unity 2.x では、いくつかのビルトイン変数（例えば model*view*projection 行列）は、例えば @@glstate.matrix.mvp@@ のような、ビルトインのCg名で可能でした。しかし、それはいくつかのプラットフォームでは動作しないため、Unity 3.0 ではそれらのビルトイン変数をリネームしました。全ての置き換えはプロジェクトをアップグレードするときに自動的に行われます。
 
-In Unity 3.0 we have decided to remove this OpenGL special case, and treat non power of two RenderTextures the same everywhere. It is recommended to replace @@samplerRECT@@, @@texRECT@@ and similar uses with regular @@sampler2D@@ and @@tex2D@@. Also, if you were doing any special pixel adressing for OpenGL case, you need to remove that from your shader, i.e. just keep the non-OpenGL part (look for @@SHADER_API_D3D9@@ or @@SHADER_API_OPENGL@@ macros in your shaders).
+* @@glstate.matrix.mvp@@ は UNITY_MATRIX_MVP
+* @@glstate.matrix.modelview[0]@@ は UNITY_MATRIX_MV
+* @@glstate.matrix.projection@@ は UNITY_MATRIX_P
+* @@glstate.matrix.transpose.modelview[0]@@ は UNITY_MATRIX_T_MV
+* @@glstate.matrix.invtrans.modelview[0]@@ は UNITY_MATRIX_IT_MV
+* @@glstate.matrix.texture[0]@@ は UNITY_MATRIX_TEXTURE0
+* @@glstate.matrix.texture[1]@@ は UNITY_MATRIX_TEXTURE1
+* @@glstate.matrix.texture[2]@@ は UNITY_MATRIX_TEXTURE2
+* @@glstate.matrix.texture[3]@@ は UNITY_MATRIX_TEXTURE3
+* @@glstate.lightmodel.ambient@@ は UNITY_LIGHTMODEL_AMBIENT
+* @@glstate.matrix.texture@@ は UNITY_MATRIX_TEXTURE
 
+!!! セマンティック 変更
+
+さらに、 @@SV_POSITION@@ ( @@POSITION@@ の代わりに) セマンティックを、vertex-to-fragment 構造のpositionでは、使用することを推奨します。
+
+!!! より厳密なエラーチェック
+
+プラットフォームによっては、Cg と別のコンパイラによりコンパイルする可能性があり（例えば Windows ではHLSL）、より厳密なエラーチェックをする場合があります。もっとも良くあるケースは:
+* 全ての頂点／フラグメント シェーダの入力および出力は "セマンティック" をアサインする必要があります。Unity 2.x ではセマンティックをアサインすることは必須としていませんでした（その場合にTEXCOORDを使用）が、 Unity 3.0 ではセマンティックが必要です。
+* 全てのシェーダ出力変数は書き込みされる必要があります。例えば、   @@float4 color : COLOR@@ が頂点シェーダ出力である場合、@@rgb@@ だけ書き込みして alpha を初期化しないということが出来ません。
+
+
+!! その他の変更
+
+!!! RECT テクスチャの廃止
+
+Unity 2.x では、 [[class-RenderTexture | RenderTexture]] は必ずしも 2 の倍数である必要がなく、"RECT" テクスチャとすることが出来ました。これらはシェーダのプロパティで "RECT" テクスチャ型となり、 @@samplerRECT@@ 、 @@texRECT@@ 等々とCgシェーダで使用されていました。RECTのテクスチャ座標はOpenGLで特別なケースでピクセルとなっていました。その他の全てのプラットフォームでは、テクスチャ座標はその他のテクスチャと同じで、テクスチャが 0.0 から1.0の範囲でした。
+
+Unity 3.0では、このOpenGLの特別なケースを廃止することに決めて、2 の倍数でない RenderTexture を他のプロットフォームと同様に扱うこととしました。推奨としては、 @@samplerRECT@@ 、 @@texRECT@@ および同様のケースは通常の @@sampler2D@@ および @@tex2D@@ を使用して下さい。さらにもし特別なピクセル解決を OpenGL で行っていた場合、それをシェーダから外す必要があり、すなわち OpenGL 以外の部分のみを保持してください。（シェーダの @@SHADER_API_D3D9@@ または @@SHADER_API_OPENGL@@ マクロを探してください）。
 
 
