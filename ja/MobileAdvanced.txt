@@ -1,12 +1,13 @@
-! Advanced Unity Mobile Scripting
+! Unity モバイル スクリプティング発展
 [[#iOS]]
 !iOS!
 >>ios<<
-!Advanced iOS scripting
-!! Determining Device Generation
-Different device generations support different functionality and have widely varying performance. You should query the device's generation and decide which functionality should be disabled to compensate for slower devices.
+! iOS スクリプティング発展
+!! デバイス世代の判断
+様々なデバイス世代により異なった機能がサポートされ、パフォーマンスも幅広く違いがあります。デバイス世代のクエリをかけて、遅いデバイスについてどの機能を無効するか判断すべきです。
 
-You can find the device generation from the [[ScriptRef:iPhone-generation.html | iPhone.generation]] property. The reported generation can be one of the following:
+デバイス世代については [[ScriptRef:iPhone-generation.html | iPhone.generation]] プロパティンにより見つけられます。返されるデバイス世代の情報は次のいずれかです:
+
 * ``iPhone``
 * ``iPhone3G``
 * ``iPhone3GS``
@@ -17,30 +18,29 @@ You can find the device generation from the [[ScriptRef:iPhone-generation.html |
 * ``iPodTouch4Gen``
 * ``iPad1Gen``
 
+異なったデバイス世代の情報、パフォーマンス、およびサポートされている機能については [[Main.iphone-Hardware | iPhone ハードウェア ガイド]] を参照下さい。
 
-You can find more information about different device generations, performance and supported functionality in our [[Main.iphone-Hardware | iPhone Hardware Guide]].
 
-
-!! Device Properties
-There are a number of device-specific properties that you can access:-
+!! デバイス プロパティ
+参照できるデバイス固有のプロパティがいくつかあります:
 ||PROPS
-||``[[ScriptRef:SystemInfo-deviceUniqueIdentifier.html | SystemInfo.deviceUniqueIdentifier]]`` ||Unique device identifier.
-||``[[ScriptRef:SystemInfo-deviceName.html |SystemInfo.deviceName]]`` ||User specified name for device.
-||``[[ScriptRef:SystemInfo-deviceModel.html | SystemInfo.deviceModel]]`` ||Is it iPhone or iPod Touch?
-||``[[ScriptRef:SystemInfo-operatingSystem.html | SystemInfo.operatingSystem]]`` ||Operating system name and version.
+||``[[ScriptRef:SystemInfo-deviceUniqueIdentifier.html | SystemInfo.deviceUniqueIdentifier]]`` ||一意のデバイス識別子
+||``[[ScriptRef:SystemInfo-deviceName.html |SystemInfo.deviceName]]`` ||ユーザが指定したデバイス名
+||``[[ScriptRef:SystemInfo-deviceModel.html | SystemInfo.deviceModel]]`` ||iPhone または iPod Touchのいずれか
+||``[[ScriptRef:SystemInfo-operatingSystem.html | SystemInfo.operatingSystem]]`` ||オペレーティングシステムの名前とバージョン
 ||END
 
 
-!! Anti-Piracy Check
-Pirates will often hack an application from the AppStore (by removing Apple DRM protection) and then redistribute it for free. Unity iOS comes with an anti-piracy check which allows you to determine if your application was altered __after__ it was submitted to the AppStore.
+!! 海賊版チェック
+海賊行為をする者は、ときにアプリケーションをAppStoreからハッキングして（Apple DRMプロテクション）を外して、フリーで再配布します。Unity iOS により海賊版チェックがあり、AppStoreに提出した __後に__ アプリケーションが変更されたか判断できます。
 
-You can check if your application is genuine (not-hacked) with the [[ScriptRef:Application-genuine.html | Application.genuine]] property. If this property returns $$false$$ then you might notify the user that he is using a hacked application or maybe disable access to some functions of your application.
+もしアプリケーションが純正である（ハッキングされていない）かを [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティンでチェックできます。もしこのプロパティが $$false$$ である場合、ユーザにアプリケーションがハッキングされたものであると通知するか、またはアプリケーションの一部の機能へのアクセスを無効化できます。
 
-__Note:__ accessing the [[ScriptRef:Application-genuine.html | Application.genuine]] property is a fairly expensive operation and so you shouldn't do it during frame updates or other time-critical code. 
+__注意:__  [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティを参照することはやや高価な処理であり、フレーム Update や処理時間がクリティカルであるコードでは使用すべきではありません。
 
 
-!! Vibration Support
-You can trigger a vibration by calling [[ScriptRef:Handheld.Vibrate.html | Handheld.Vibrate]]. Note that iPod Touch devices lack vibration hardware and will just ignore this call.
+!! バイブレーション 対応
+バイブレーション をトリガーするには [[ScriptRef:Handheld.Vibrate.html | Handheld.Vibrate]] をコールします。iPod Touch デバイスは物理的にバイブレーションできず、このコールを無視することに留意下さい。
 
 (:include UpdateOrder:)
 
@@ -49,30 +49,33 @@ You can trigger a vibration by calling [[ScriptRef:Handheld.Vibrate.html | Handh
 [[#Android]]
 !Android!
 >>android<<
-!Advanced Android scripting
-!! Determining Device Generation
-Different Android devices support different functionality and have widely varying performance. You should target specific devices or device families and decide which functionality should be disabled to compensate for slower devices. There are a number of device specific properties that you can access to which device is being used.
+! Android スクリプティング発展
+!! デバイス世代の判断
 
-__Note:__ Android Marketplace does some additional compatibility filtering, so you should not be concerned if an ARMv7-only app optimised for OGLES2 is offered to some old slow devices.
+様々なデバイス世代により異なった機能がサポートされ、パフォーマンスも幅広く違いがあります。特定のデバイスやデバイス ファミリをターゲットとして、遅いデバイスについてどの機能を無効するか判断すべきです。参照できるデバイス固有のプロパティがいくつかあり、どのデバイスが使用されているか判断することも出来ます。
 
-!! Device Properties
+__注意:__ Androidマーケットプレイスにより追加の互換性フィルタリングが行われているため、OpenGL ES2.0 に向け最適化されている ARMv7 オンリーのアプリが遅いデバイスに対して提供されているか心配する必要はありません。
+
+!! デバイス プロパティ
 ||PROPS
-||``[[ScriptRef:SystemInfo-deviceUniqueIdentifier.html | SystemInfo.deviceUniqueIdentifier]]`` ||Unique device identifier.
-||``[[ScriptRef:SystemInfo-deviceName.html |SystemInfo.deviceName]]`` ||User specified name for device.
-||``[[ScriptRef:SystemInfo-deviceModel.html | SystemInfo.deviceModel]]`` ||Is it iPhone or iPod Touch?
-||``[[ScriptRef:SystemInfo-operatingSystem.html | SystemInfo.operatingSystem]]`` ||Operating system name and version.
+||``[[ScriptRef:SystemInfo-deviceUniqueIdentifier.html | SystemInfo.deviceUniqueIdentifier]]`` |||一意のデバイス識別子
+||``[[ScriptRef:SystemInfo-deviceName.html |SystemInfo.deviceName]]`` ||ユーザが指定したデバイス名
+||``[[ScriptRef:SystemInfo-deviceModel.html | SystemInfo.deviceModel]]`` ||iPhone または iPod Touchのいずれか
+||``[[ScriptRef:SystemInfo-operatingSystem.html | SystemInfo.operatingSystem]]`` ||オペレーティングシステムの名前とバージョン
 ||END
 
 
-!! Anti-Piracy Check
-Pirates will often hack an application (by removing Apple DRM protection) and then redistribute it for free. Unity Android comes with an anti-piracy check which allows you to determine if your application was altered __after__ it was submitted to the AppStore.
+!! 海賊版チェック
 
-You can check if your application is genuine (not-hacked) with the [[ScriptRef:Application-genuine.html | Application.genuine]] property. If this property returns $$false$$ then you might notify user that he is using a hacked application or maybe disable access to some functions of your application.
-
-__Note:__ [[ScriptRef:Application-genuineCheckAvailable.html | Application.genuineCheckAvailable]] should be used along with $$Application.genuine$$ to verify that application integrity can actually be confirmed. Accessing the [[ScriptRef:Application-genuine.html | Application.genuine]] property is a fairly expensive operation and so you shouldn't do it during frame updates or other time-critical code. 
+海賊行為をする者は、ときにアプリケーションをAppStoreからハッキングして（Apple DRMプロテクション）を外して、フリーで再配布します。Unity Android により海賊版チェックがあり、AppStoreに提出した __後に__ アプリケーションが変更されたか判断できます。
 
 
-!! Vibration Support
-You can trigger a vibration by calling [[ScriptRef:Handheld.Vibrate.html | Handheld.Vibrate]]. However, devices lacking vibration hardware will just ignore this call.
+もしアプリケーションが純正である（ハッキングされていない）かを [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティンでチェックできます。もしこのプロパティが $$false$$ である場合、ユーザにアプリケーションがハッキングされたものであると通知するか、またはアプリケーションの一部の機能へのアクセスを無効化できます。
+
+__注意:__ [[ScriptRef:Application-genuineCheckAvailable.html | Application.genuineCheckAvailable]] は $$Application.genuine$$ とともに使用しないと、アプリケーションが純正であるか確認が出来ません。 [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティを参照することはやや高価な処理であり、フレーム Update や処理時間がクリティカルであるコードでは使用すべきではありません。
+
+
+!! バイブレーション 対応
+バイブレーション をトリガーするには [[ScriptRef:Handheld.Vibrate.html | Handheld.Vibrate]] をコールします。物理的にバイブレーションできないデバイスでは、このコールを無視することに留意下さい。
 
 >><<
