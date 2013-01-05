@@ -1,48 +1,49 @@
-! Using DirectX 11 in Unity 4
+! Unity 4 での DirectX 11使用
 
-Unity 4 introduces ability to use DirectX 11 graphics API, with all the goodies that you expect from it: compute shaders, tessellation shaders, shader model 5.0 and so on.
+Unity 4 により DirectX 11 グラフィックス API 、すなわち期待の大きい優れた機能であるコンピュートシェーダ、テッセレーションシェーダ、シェーダモデル5.0、等々を使用することが出来ます。
 
-!! Enabling DirectX 11
+!! DirectX 11 の有効化
 
-To enable DirectX 11 for your game builds and the editor, set "Use DX11" option in [[class-PlayerSettings | Player Settings]]. Unity editor needs to be restarted for this to take effect.
+ゲームおよびエディタでのビルドのためにDirectX 11 を有効化するためには、 [[class-PlayerSettings | Player Settings]] で "Use DX11" オプションをセットします。機能を有効にするたｍには、Unity エディタを再起動する必要があります。
 
-Note that DX11 requires Windows Vista or later and at least a DX10-level GPU (preferably DX11-level). Unity editor window title has "<DX11>" at the end when it is actually running in DX11 mode.
-
-
-
-!! Image Effects that can take advantage of DX11
-
-* [[script-DepthOfFieldScatter | Depth of Field effect]] (optimized Bokeh texture splatting)
-* [[script-NoiseAndGrain | Noise and Grain effect]] (higher quality noise patterns)
-* [[script-CameraMotionBlur| Motion Blur effect]] (higher quality reconstruction filter)
-
-!! Compute Shaders
-
-Compute shaders allow using GPU as a massively parallel processor. See [[Compute Shaders]] page for mode details.
+DirectX 11 は Windows Vista 以降が必要であり、少なくととも DirectX レベルのGPU (望ましくは DirectX 11レベル)が最低限必要です。DirectX 11 モードで実行されているとき、Unityエディタのウィンドウ タイトル名の最後に "<DX11>" が付加されます。
 
 
-!! Tessellation & Geometry Shaders
-
-Surface shaders have support for simple tessellation & displacement, see [[SL-SurfaceShaderTessellation | Surface Shader Tessellation]] page.
-
-When manually writing [[SL-ShaderPrograms | shader programs]], you can use full set of DX11 shader model 5.0 features, including geometry, hull & domain shaders.
 
 
-!! DirectX 11 Examples
+!! DirectX 11 を活用できるイメージエフェクト
 
-The following screenshots show examples of what becomes possible with DirectX 11.
+* [[script-DepthOfFieldScatter | Depth of Field effect]] (最適化された Bokeh テクスチャ スプラッティング)
+* [[script-NoiseAndGrain | Noise and Grain effect]] (高品質のノイズパターン)
+* [[script-CameraMotionBlur| Motion Blur effect]] (高品質の再構築フィルタ)
+
+!! コンピュートシェーダ
+
+コンピュートシェーダによりGPUを超並列プロセッサとして使用できます。モードの詳細については [[Compute Shaders]] を参照下さい
+
+
+!! テッセレーション およびジオメトリ シェーダ
+
+サーフェイス シェーダは簡単なテッセレーション および Displacement をサポートします。詳細については [[SL-SurfaceShaderTessellation | Surface Shaderテッセレーション]] を参照下さい。
+
+手動で [[SL-ShaderPrograms | シェーダプログラム]] を書く場合、DirectX 11 シェーダ モデル 5.0 機能、すなわちジオメトリ、 Hull、ドメイン シェーダ を含めて、を完全に使用できます。
+
+
+!! DirectX 11 サンプル
+
+次の スクリーンショット によりDirectX 11 で出来ることのサンプルを示します。
 
 Attach:DX11Explosion2.png
-''The volumetric explosion in these shots is rendered using raymarching which becomes plausible with shader model 5.0. Moreover, as it generates and updates depth values, it becomes fully compatible with depth based image effects such as depth of field or motion blur.''
+''これらスクリーンショットにおけるRaymarching を使用した Volumetric Explosion は シェーダモデル 5.0 により説得力ある表現となります。さらにデプス値を生成および更新して、デプスにもとづいたイメージエフェクト、すなわち Depth of Field や モーションブラーなど、と完全に互換性があります。
 
 Attach:DX11Hair.png
-''The hair in this shot is implemented via DirectX 11 tessellation & geometry shaders to dynamically generate and animate individual strings of hair. Shading is based on a model proposed by Kajiya-Kai that enables a more believable diffuse and specular behaviour.''
+''このスクリーンショットにおける髪の毛は DirectX 11 テッセレーション および ジオメトリシェーダにより実装されていて、動的に髪の毛を個々に生成、アニメーションしています。シェーダは Kajiya-Kay により提唱されたモデルにもとづいていて、拡散および鏡面の動作がよりリアリティを高めています。''
 
 Attach:DX11Fur.png
-''Similar to the hair technique above, the shown slippers fur is also based on generating geometry emitted from a simple base slippers mesh.''
+''前述の髪の毛のテクニックと似て、スリッパの毛皮もまたシンプルなスリッパのメッシュから発生させたジオメトリの生成にもとづいています。''
 
 Attach:DX11Bokeh1.png
-''The blur effect in this image (known as ``Bokeh``) is based on splatting a texture on top of very bright pixels. This can create very believable camera lens blurs, especially when used in conjunction with [[HDR]] rendering.''
+''この画像でのブラーエフェクト（``Bokeh`` として知られる）は非常に明るいピクセル上でのテクスチャのスプラッティングにもとづいています。これにより [[HDR]] レンダリングとも組み合わせると特にリアリティのあるカメラレンズのブラーを生成できます。
 
 Attach:Bokeh2.png
-''Exaggerated lens blur similar to the screenshot above. This is a possible result using the new [[script-DepthOfFieldScatter | Depth of Field]]  effect''
+''前述のスクリーンショットと似て、レンズ ブラーの強調です。これは新しい [[script-DepthOfFieldScatter | Depth of Field]] を使用して得られる可能性のある結果です''
