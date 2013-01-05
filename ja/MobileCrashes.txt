@@ -1,51 +1,51 @@
-!Crashes
+! クラッシュCrashes
 
-!!Checklist for crashes
+!!クラッシュ時のチェックリスト
 
-*Disable code stripping (and set �slow with exceptions� for iOS)
-*Follow the instructions on Optimizing the Size of the Built iOS Player (http://docs.unity3d.com/Documentation/Manual/iphone-playerSizeOptimization.html) to make sure your game does not crash with stripping on iOS.
-*Verify it is not because of out of memory (restart your device, use the device with maximum RAM for the platform, be sure to watch the logs)
+* コード ストリッピングを無効化（また iOS では "slow with exceptions" をセット）
+* iOS プレイヤーのビルドに関するビルド サイズ最適化の手順に従い (http://docs.unity3d.com/Documentation/Manual/iphone-playerSizeOptimization.html) 、iOS のストリッピングによりクラッシュさせない
+* メモリ不足が原因でないことを確認（デバイスを再起動、そのプラットフォームで最大量のRAMを使用するようにして、ログを観察）
 
-!!Editor.log - on the editor
+!! Editor.log - エディタ上の場合
 
-The Debug messages, warnings and errors all go to the console.  Also Unity prints status reports to the console � loading assets, initializing mono, graphics driver info.
+デバッグ メッセージ、警告、およびエラーは全てコンソールに出力されます。またUnityはステータスレポート、すなわちアセットのロード、Mono 初期化、グラフィックス ドライバ情報など、をコンソールに出力します。
 
-If you are trying to understand what is going on look at the editor.log.  Here you will get the full picture, not just a console fragment. You can try to understand what�s happening, and watch the full log of your coding session. This will help you track down what has caused Unity crash to crash or find out what�s wrong with your assets.
+何が起きているかを理解したい場合は editor.log を確認することです。ここではコンソールによる部分的な情報ではなく、全体像をつかむことが出来ます。何が起きているかを理解し、またコーディング セッションの完全なログを観察できます。何によって Unity がクラッシュしたのか、アセットにどういう問題があったのか追跡することができます。
 
-Unity prints some tjings on the devices as well; Logcat console for android and Xcode gdb console on iOS devices
+Unityはデバイス上にもいくつかの情報を出力します。 Android では logcat コンソール、iOS では Xcode gdb コンソールに出力します。
 
 !Android!
 >>android<<
-!!Debugging on Android
+!! Android でデバッグ
 
-#Use the ''DDMS'' or ''ADB'' tool
-#Watch the stacktrace (Android 3 or newer). Either use ''c++filt'' (part of the ''ndk'') or the other methods, like: http://slush.warosu.org/c++filtjs to decode the mangled function calls
-#Look at the ''.so'' file that the crash occurs on:
-##''libunity.so'' - the crash is in the Unity code or the user code
-##''libdvm.so'' - the crash is in the Java world, somewhere with Dalvik. So find Dalvik�s stacktrace, look at your JNI code or anything Java-related (including your possible changes to the ''AndroidManifest.xml'').
-##''libmono.so'' - either a Mono bug or you're doing something Mono strongly dislikes
-#If the crashlog does not help you can disassemble it to get a rough understanding of what has happened.
-##use ARM EABI tools from the Android NDK like this: ''objdump.exe -S libmono.so >> out.txt''
-##Look at the code around pc from the stacktrace.
-##try to match that code within the fresh ''out.txt'' file.
-##Scroll up to understand what is happening in the function it occurs in.
+# ''DDMS または ''ADB'' ツールを使用
+# スタックトレースを観察（Android 3 以上）。''c++filt'' (''ndk'' の一部) または別の方法、すなわち:  http://slush.warosu.org/c++filtjs  、のいずれかを使用して、マネージド 関数コールをデコード
+# クラッシュが発生した ''.so'' ファイルをチェック:
+##''libunity.so'' - クラッシュが Unity コードまたはユーザコードいずれかで発生
+##''libdvm.so'' - クラッシュが Java コード、 Dalvik のどこか、で発生。 Dalvik スタックトレースをみつけ、JNI コードまたは Java関連を再確認（ ''AndroidManifest.xml'' に加えたかもしれない場合を含め）。
+##''libmono.so'' - Mono のバグか、または Mono が強く嫌うことをしているかもしれない
+# もしクラッシュ ログで分からない場合、逆アセンブルして何が起きたか大体分かるようにする
+## Android NDK の ARM EABI ツールを次のように使用: ''objdump.exe -S libmono.so >> out.txt''
+## スタックトレースから PC 周りのコードをチェック
+## 問題ない場合の ''out.txt'' とコードを比較
+## 上にスクロールして、問題発生した関数で何が起きているか確認
 
 >><<
 
 !iOS!
 >>ios<<
-!!Debugging on iOS
+!! iOS でデバッグ
 
-#Xcode has built in tools.  Xcode 4 has a really nice GUI for debugging crashes, Xcode 3 has less.
-#Full gdb stack - thread apply all bt
-#Enable soft-null-check:
-Enable development build and script debugging. Now uncaught null ref exceptions will be printed to the Xcode console with the appropriate managed call stack.
-#Try turning the "fast script call" and code stripping off. It may stop some random crashes, like those caused by using some rare ''.Net'' functions or reflection.
+# Xcode はビルトインのツールがある。 Xcode 4 はクラッシュのデバッグに優れたツールがあり、Xcode 3 はやや少ない
+# 完全な gdb スタック - thread apply all bt
+# soft-null-check を有効化:
+Development ビルドおよび Script Debugging を有効化します。これで catch できなかった null ref 例外が Xcode コンソールに、適切なマネージド コールスタック とともに、出力されます。
+# "fast script call" および コード ストリッピング を無効化。ランダムなクラッシュ、すなわち稀な ''.Net'' 関数または reflectionによるも、を防止するかもしれない
+
 
 >><<
 
-!!Strategy
+!! 考え方
 
-#Try to figure out which script the crash happens in and debug it using mono develop on the device.
-#If the crash seems to not be in your code, take a closer look at the stacktrace, there should be a hint of something happening. Take a copy and submit it, and we�ll take a look.
-
+# どのスクリプトでクラッシュが起きたかを見つけて、デバイス上で Mono Develop を使用してデバッグ
+# もしクラッシュの原因が コード でない場合、スタック トレース をより詳細に観察して何が起きたかのヒントを得る。コピーをとったうえでクラッシュレポートを提出して、解析を依頼
