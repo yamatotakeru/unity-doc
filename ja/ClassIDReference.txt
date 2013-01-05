@@ -1,8 +1,8 @@
-!YAML Class ID Reference
+!YAML クラスIDリファレンス
 
-A reference of common class ID numbers used by the YAML file format is given below, both in numerical order of class IDs and alphabetical order of class names. Note that some ranges of numbers are intentionally omitted from the sequence - these may represent classes that have been removed from the API or may be reserved for future use. Classes defined from scripts will always have class ID 114 (MonoBehaviour).
+YAML ファイル形式により使用される共通のクラスID番号のリファレンスを、クラスIDの番号順、クラス名のアルファベット順でそれぞれ以下に示します。いくつかの連番は意図的にスキップされていることに留意して下さい - これらはAPIから取り除かれたか、将来の使用のために予約されているか、のいずれかの場合があります。スクリプトにより定義されたクラスは必ずクラスID 114（MonoBehaviour）です。
 
-!!Classes Ordered by ID Number
+!!ID 番号順に並べられたクラス
 
 __1__	GameObject\\
 __2__	Component\\
@@ -165,7 +165,7 @@ __1051__	EditorUserBuildSettings\\
 __1052__	PVRImporter\\
 __1112__	SubstanceImporter\\
 
-!!Classes Ordered Alphabetically
+!!クラス名のアルファベット順に並べられたクラス
 
 __Animation__	111\\
 __AnimationClip__	74\\
