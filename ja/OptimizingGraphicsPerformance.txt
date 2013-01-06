@@ -1,159 +1,159 @@
-! Optimizing Graphics Performance
+! グラフィックス パフォーマンスの最適化
 
-Good performance is critical to the success of many games. Below are some simple guidelines for maximizing the speed of your game's graphical rendering.
+多くのゲームにとって良いパフォーマンスは決定的なことです。ゲームのグラフィックスのレンダリングのスピードを最大化するための簡単なガイドラインを以下でまとめます。
 
-!! Where are the graphics costs
+!! どこにグラフィックスのコストがかかるか
 
-The graphical parts of your game can primarily cost on two systems of the computer: the GPU or the CPU. The first rule of any optimization is to find __where the performance problem is__; because strategies for optimizing for GPU vs. CPU are quite different (and can even be opposite - it's quite common to make GPU do more work while optimizing for CPU, and vice versa).
+ゲームのグラフィックな部分は主にコンピュータの2つのシステムにコストがかかります: GPU または CPUです。どんあ最適化であっても最初にやるべきことは __パフォーマンスの問題がどこにあるか__ を見つけることです。GPU と CPUでは最適化の内容はかなり異なります。（場合によっては相反する内容になります - 良くあることとして CPU 最適化で GPU の処理を増やしたり、その逆など）
 
-Typical bottlenecks and ways to check for them:
-* GPU is often limited by __fillrate__ or memory bandwidth.
-** Does running the game at lower display resolution make it faster? If so, you're most likely limited by fillrate on the GPU.
-* CPU is often limited by the number of things that need to be rendered, also known as "__draw calls__".
-** Check "draw calls" in [[Rendering Statistics]] window; if it's more than several thousand (for PCs) or several hundred (for mobile), then you might want to optimize the object count.
+良くあるボトルネックおよびそれをチェックする方法として:
+* GPU はしばしば __フィルレート__ または メモリ帯域幅で制限されています
+** 低解像度でゲーム実行することにより高速化されますか？もしその場合は GPU のフィルレートにより制限されている可能性が高いです。
+* CPU はしばしばレンダリングする必要があるものの数、すなわち "__ドロー コール__"、に制限されます。
+** [[Rendering Statistics]] ウィンドウで "Draw Calls" をチェックします。もしPCで数千、モバイルで数百である場合、オブジェクト カウントを最適化するのが良いかもしれません。
 
-Of course, these are only the rules of thumb; the bottleneck could as well be somewhere else. Less typical bottlenecks:
-* Rendering is not a problem, neither on the GPU nor the CPU! For example, your scripts or physics might be the actual problem. Use [[Profiler]] to figure this out.
-* GPU has too many vertices to process. How many vertices are "ok" depends on the GPU and the complexity of vertex shaders. Typical figures are "not more than 100 thousand" on mobile, and "not more than several million" on PC.
-* CPU has too many vertices to process, for things that do vertex processing on the CPU. This could be skinned meshes, cloth simulation, particles etc.
+もちろん、これは原則論です。ボトルネックは他のどこかにあるかもしれません。頻度はやや減りますが、他のボトルネックとして:
+* GPU 、 CPU ともにレンダリングが問題でない場合。例えば、スクリプトや物理演算が実際の問題かもしれません。 [[Profiler]] を使って調べて下さい。
+* GPU が処理する頂点数が多すぎる場合。どれだけの頂点数であれば "問題ない" かは GPUおよび頂点シェーダの複雑さに依存します。典型的な指標はモバイルで "十万以下" 、PCで "数百万以下" です。
+* CPU CPU が頂点の処理を行うものに対して頂点数が多すぎる場合。スキン メッシュ、クロス シミュレーション、パーティクル、等かもしれません。
 
 
 
 
 
-!! CPU optimization - draw call count
+!! CPU 最適化 - ドロー コール カウント
 
-In order to render any object on the screen, the CPU has some work to do - things like figuring out which lights affect that object, setting up the shader & shader parameters, sending drawing commands to the graphics driver, which then prepares the commands to be sent off to the graphics card. All this "per object" CPU cost is not very cheap, so if you have lots of visible objects, it can add up.
+画面のオブジェクトをレンダリングするために CPU がやるべきことがいくつかあります - どのライトがオブジェクトに影響するか判断する、シェーダおよびシェーダ パラメータのセットアップ、描画コメンドをグラフィックス ドライバに送信する、次にグラフィックス カードへ送信するコマンドを準備する、等です。これらは "オブジェクト単位" の CPU コストは安価ではないため、表示されるオブジェクトがたくさんある場合、積もり積もってしまう場合があります。
 
-So for example, if you have a thousand triangles, it will be much, much cheaper if they are all in one mesh, instead of having a thousand
-individual meshes one triangle each. The cost of both scenarios on the GPU will be very similar, but the work done by the CPU to render a thousand objects (instead of one) will be significant.
+だから例えば、千個の三角形があれば、それらがひとつのメッシュにあるほうが千個のメッシュが個別に三角形があるより安価です。両方のケースで GPU コストはほぼ同様ですが、CPU が千個のオブジェクトをレンダリングすることはひとつに比べて顕著に差がでます。
+ング a thousand オブジェクトs (instead of one) will be significant.
 
-In order to make CPU do less work, it's good to reduce the visible object count:
-* Combine close objects together, either manually or using Unity's [[DrawCallBatching | draw call batching]].
-* Use less materials in your objects, by putting separate textures into a larger texture atlas and so on.
-* Use less things that cause objects to be rendered multiple times (reflections, shadows, per-pixel lights etc., see below).
+CPU の処理量を減らすため、表示されるオブジェクトカウントを減らすのは良い考えです:
+* 近いオブジェクトを手動または Unity の [[DrawCallBatching | ドロー コール バッチング]] を使用してまとめます。
+* オブジェクトのマテリアル数を減らすために、別のテクスチャをより大きな テクスチャAtlasにまとめる等をします。
+* オブジェクトが複数回レンダリングされることを減らす（リフレクション、シャドウ、ピクセルライト、その他、以下で説明）
 
-Combine objects together so that each mesh has at least several hundred triangles and uses only one $$Material$$ for the entire mesh. It is important to understand that combining two objects which don't share a material does not give you any performance increase at all. The most common reason for having multiple materials is that two meshes don't share the same textures, so to optimize CPU performance, you should ensure that any objects you combine share the same textures.
+オブジェクトをまとめて、各メッシュが少なくとも数百の三角形をもつようにして、メッシュ全体で $$Material$$ がひとつのみになるようにします。重要なことですが、マテリアルが共通でない二つのオブジェクトをまとめてもパフォーマンスは全く向上しません。複数のマテリアルを使用する一般的な理由は二つのメッシュが同じテクスチャを使用しないためなので、 CPU パフォーマンスを最適化するには、オブジェクトをまとめる対象は共通のテクスチャをもつものに絞るべきです。
 
-However, when using many pixel lights in the [[RenderTech-ForwardRendering | Forward rendering path]], there are situations where combining objects may not make sense, as explained below.
+しかし、 [[RenderTech-ForwardRendering | Forward Rendering パス]] でピクセルライトを多く使用する場合、後述するようにオブジェクトをまとめることが無意味な場合があります。
 
 
-!! GPU: Optimizing Model Geometry
+!! GPU: モデル ジオメトリの最適化
 
-When optimizing the geometry of a model, there are two basic rules:
-* Don't use any more triangles than necessary
-* Try to keep the number of UV mapping seams and hard edges (doubled-up vertices) as low as possible
+モデル ジオメトリの最適化を行うとき、基本的に二つのルールがあります:
+* 必要以上に三角形を使用しない
+* UV マッピングのシームおよびハードエッジ（二重化した頂点）をできるかぎり少ない数に抑える
 
-Note that the actual number of vertices that graphics hardware has to process is usually not the same as the number reported by a 3D application. Modeling applications usually display the geometric vertex count, i.e. the number of distinct corner points that make up a model. For a graphics card, however, some geometric vertices will need to be split into two or more logical vertices for rendering purposes. A vertex must be split if it has multiple normals, UV coordinates or vertex colors. Consequently, the vertex count in Unity is invariably higher than the count given by the 3D application.
+実際にグラフィック ハードウェアが処理すべきは3Dアプリケーションで表示される数と通常は一致しないことに留意して下さい。モデリング アプリケーションは通常ジオメトリ頂点数、すなわちモデルを構成する角の数、を表示します。しかし、グラフィックス カードにとっては、いくつかのジオメトリ頂点は二つ以上の論理的な頂点に分ける必要があります。頂点は複数の法線、UV座標、または頂点カラーがある場合に分割する必要があります。結果的に、Unity の頂点数はつねには3Dアプリケーションで表示される数より大きくなります。
 
-While the amount of geometry in the models is mostly relevant for the GPU, some features in Unity also process models on the CPU, for example mesh skinning.
+モデルのジオメトリの数が GPU にとってはもっとも関連がある一方で、Unity のいくつかの機能は例えばメッシュスキンのように CPU でモデルを処理します。
 
 
-!! Lighting Performance
+!! ライティング パフォーマンス
 
-Lighting which is not computed at all is always the fastest! Use [[Lightmapping]] to "bake" static lighting just once, instead of computing it each frame. The process of generating a lightmapped environment takes only a little longer than just placing a light in the scene in Unity, __but__:
-* It is going to run a lot faster (2-3 times for 2 per-pixel lights)
-* And it will look a lot better since you can bake global illumination and the lightmapper can smooth the results
+計算の必要がないライティングはつねに最速です。 [[Lightmapping]] で 毎フレームごと計算するのではなくライティングの "焼き込み" を一回のみ行って下さい。ライトマップ環境を生成するには、Unity上のシーンにライトを配置して、かかる時間はわずかです。_その一方で__ :
+* 遥かに早く実行される（2つのピクセルライトでは2-3倍）
+* さらにグローバル イルミネーションおよびライトマッパーの焼き込みにより結果をスムージングできるため外見も改善
 
-In a lot of cases there can be simple tricks possible in shaders and content, instead of adding more lights all over the place. For example, instead of adding a light that shines straight into the camera to get "rim lighting" effect, consider adding a dedicated "rim lighting" computation into your shaders directly.
+多くの場合、あちこちにライトを配置する代わりに、シェーダおよびコンテンツでのテクニックがあります。例えば、"Rim Lighting" を得るためにカメラに直接を光を差し込むライトの代わりに専用の "Rim Lighting" 計算をシェーダに直接追加することを検討します。
 
 
-!!! Lights in [[RenderTech-ForwardRendering | forward rendering]]
+!!! [[RenderTech-ForwardRendering | Forward Rendering]] でのライト
 
-Per-pixel dynamic lighting will add significant rendering overhead to every affected pixel and can lead to objects being rendered in multiple passes. On less powerful devices, like mobile or low-end PC GPUs, avoid having more than one $$Pixel Light$$ illuminating any single object, and use lightmaps to light static objects instead of having their lighting calculated every frame. Per-vertex dynamic lighting can add significant cost to vertex transformations. Try to avoid situations where multiple lights illuminate any given object.
+動的な ピクセル ライティング により影響を受けるピクセルに顕著にオーバーヘッドが増加し、オブジェクトが複数のパスでレンダリングすることにつながる場合があります。モバイルやローエンドPCおGPUなど、それほど強力でないデバイスでは、複数の $$Pixel Light$$ がいずれかのオブジェクトを照らすことは避け、ライトマップを使用して、毎フレームごとに計算させることなく、静的なオブジェクトをライティングして下さい。動的な頂点ライティングも頂点変換により顕著にコストを増加させます。複数のライトがいずれかのオブジェクトを照らすことを避けててください。
+もしピクセル ライティングを使用する場合、ピクセライトにより各メッシュが照らされる回数だけレンダリングが行われます。もし二つの離れたメッシュをまとめた場合、まとめたオブジェクトの有効サイズを増やします。このまとめたオブジェクトの一部でも照らす全てのピクセルライトはレンダリングで考慮されるため、レンダリングパスの回数が増えるかもしれません。一般的にまとめたオブジェクトに対するレンダリングは各々の別のオブジェクトのパス回数の合計であり、まとめることにより得られるものはありません。この理由から異なるセットのピクセルライトにより影響されるぐらいに十分に離れたメッシュはまとめるべきではありません。
 
-If you use pixel lighting then each mesh has to be rendered as many times as there are pixel lights illuminating it. If you combine two meshes that are very far apart, it will increase the effective size of the combined object. All pixel lights that illuminate any part of this combined object will be taken into account during rendering, so the number of rendering passes that need to be made could be increased. Generally, the number of passes that must be made to render the combined object is the sum of the number of passes for each of the separate objects, and so nothing is gained by combining.  For this reason, you should not combine meshes that are far enough apart to be affected by different sets of pixel lights.
+レンダリングの際に、Unityはメッシュを囲む全てのライトをみつけて、どのライトがそれに最も影響するかを計算します。[[class-QualitySettings | Quality Settings]] によりいくつのライトがピクセルライトおよび頂点ライトとして残るかを調整することが出来ます。各ライトはメッシュからの距離および照らす強度にもとづいて各自の重要度を計算します。さらにいくつかのライトはゲームの流れにもとづいて重要度が異なります。この理由から、全てのライトは ``Render Mode`` 設定があり、``Important`` または ``Not Important`` に設定できます。 ``Not Important`` に設定されたライトは一般的により低いレンダリング オーバーヘッドになります。
 
-During rendering, Unity finds all lights surrounding a mesh and calculates which of those lights affect it most. The [[class-QualitySettings | Quality Settings]] are used to modify how many of the lights end up as pixel lights and how many as vertex lights. Each light calculates its importance based on how far away it is from the mesh and how intense its illumination is. Furthermore, some lights are more important than others purely from the game context. For this reason, every light has a ``Render Mode`` setting which can be set to ``Important`` or ``Not Important``; lights marked as ``Not Important`` will typically have a lower rendering overhead.
+例としてカーレースのゲームで、プレイヤーの車が暗闇の中でヘッドライトをオンにして走っているとします。ヘッドライトはもっとも重要な光源となるため、Render Mode はおそらく``Important`` に設定されます。逆に、ゲームの中で重要性がやや劣るもの（他の車のバックライト、等）およびピクセルライトによりビジュアル効果が改善されない場合があります。それらのライトのRender Mode は``Not Important`` に安全にセットすることで、効果が薄いところでは無駄なレンダリングの消費 を避けます。
 
-As an example, consider a driving game where the player's car is driving in the dark with headlights switched on. The headlights are likely to be the most visually significant light sources in the game, so their Render Mode would probably be set to ``Important``. On the other hand, there may be other lights in the game that are less important (other cars' rear lights, say) and which don't improve the visual effect much by being pixel lights. The Render Mode for such lights can safely be set to ``Not Important`` so as to avoid wasting rendering capacity in places where it will give little benefit.
+ピクセル ライティング 最適化は CPU と GPU の両方を節約します: CPU が処理するドロー コールが減り、 GPU が処理する頂点数、および、追加のオブジェクト レンダリングでラスタライズするピクセル数が減ります。
 
-Optimizing per-pixel lighting saves both CPU and the GPU: the CPU has less draw calls to do, and the GPU has less vertices to process and pixels to rasterize for all these additional object renders.
 
 
+!! GPU: 圧縮テクスチャ と Mip Map
 
-!! GPU: Texture Compression and Mipmaps
+[[Main.class-Texture2D |  圧縮テクスチャ]] の使用によりテクスチャのサイズを削減（結果的にロードタイムの高速化およびメモリ使用の最小化）し、さらにレンダリング パフォーマンス を飛躍的に向上させる場合があります。圧縮テクスチャは 非圧縮 32ビットRGBAテクスチャと比べるとわずかなメモリ帯域幅しか使用しません。
 
-Using [[Main.class-Texture2D | Compressed Textures]] will decrease the size of your textures (resulting in faster load times and smaller memory footprint) and can also dramatically increase rendering performance. Compressed textures use only a fraction of the memory bandwidth  needed for uncompressed 32bit RGBA textures.
 
+!!! テクスチャ Mip Map
 
-!!! Use Texture Mip Maps
+原則として、3Dシーンで使用されるテクスチャでは [[Main.class-Texture2D | Generate Mip Maps]] を有効化して下さい。圧縮テクスチャにより GPU がレンダリングの際に転送されるテクスチャデータの量を制限するのと同様に、Mip Mapされたテクスチャにより GPU が小さな三角形では低解像度を使用します。
 
-As a rule of thumb, always have [[Main.class-Texture2D | Generate Mip Maps]] enabled for textures used in a 3D scene. In the same way Texture Compression can help limit the amount of texture data transfered when the GPU is rendering, a mip mapped texture will enable the GPU to use a lower-resolution texture for smaller triangles.
+このルールで唯一の例外となるのはテクセル（テクスチャ ピクセル）がレンダリングされた画面ピクセルに 1 : 1 でマッピングする、すなわち UI 要素または　2D ゲームのときです。 
 
-The only exception to this rule is when a texel (texture pixel) is known to map 1:1 to the rendered screen pixel, as with UI elements or in a 2D game.
 
 
+!! LOD およびレイヤーごとのカリング距離
 
-!! LOD and Per-Layer Cull Distances
+いくつかのゲームでは積極的に小さなオブジェクトを大きなオブジェクトと比べて無視し、 CPU および GPU ロードを削減することが適切です。例えば、小さな岩や砂塵は遠い距離では透明にして、大きな建物は表示させたままに出来ます。
 
-In some games, it may be appropriate to cull small objects more aggressively than large ones, in order to reduce both the CPU and GPU load. For example, small rocks and debris could be made invisible at long distances while large buildings would still be visible.
+これは [[Level Of Detail]] システムを使用するか、手動で レベル ごとの カリング距離をカメラに設定します。小さなオブジェクトは [[Layers | 別のレイヤー]] において、レベルごとのカリング距離を [[ScriptRef:Camera-layerCullDistances.html | Camera.layerCullDistances]] スクリプト関数をしようしてセットアップできます。
 
-This can be either achieved by [[Level Of Detail]] system, or by setting manual per-layer culling distances on the camera. You could put small objects into a [[Layers | separate layer]] and setup per-layer cull distances using the [[ScriptRef:Camera-layerCullDistances.html | Camera.layerCullDistances]] script function.
 
 
-!! Realtime Shadows
+!! リアルタイム シャドウ
+リアルタイム シャドウ は良いけれども、パフォーマンスをかなり消費するものであり、CPU での余分なドロー コール に加えて、 GPUで追加の処理を要します。詳細については、[[Shadows | シャドウのページ]] を参照下さい。
 
-Realtime shadows are nice, but they can cost quite a lot of performance, both in terms of extra draw calls for the CPU, and extra processing on the GPU. For further details, see the [[Shadows | Shadows page]].
 
+!! GPU: パフォーマンス の高い シェーダ を書くヒント
 
-!! GPU: Tips for writing high-performance shaders
+ハイエンドPCの GPU および ローエンド モバイル GPU は事実上 100 倍の パフォーマンスの差があります。個々のプラットフォームの中でもバラツキは同様に大きいです。PC 上では、高速な GPU は 遅い統合された GPU より 10 数倍以上 高速です。さらにモバイルプラットフォームでは GPU でも同程度の差が GPU で見られます。
 
-A high-end PC GPU and a low-end mobile GPU can be literally hundreds of times performance difference apart. Same is true even on a single platform. On a PC, a fast GPU is dozens of times faster than a slow integrated GPU; and on mobile platforms you can see just as large difference in GPUs.
+モバイルプラットフォーム でのGPU パフォーマンス および ローエンド PC はあなた自身の会はつきより遥かに遅いものです。一般的には シェーダは手動で最適化して計算量およびテクスチャ読み込みを削減しないと良いパフォーマンスが得られません。例えば、Unityのいくつかの内蔵シェーダは "モバイル" 同等物があり、より高速です（制限事項や近似はありますが、それらがまさに高速にさせる内容です）。
 
-So keep in mind that GPU performance on mobile platforms and low-end PCs will be much lower than on your development machines. Typically, shaders will need to be hand optimized to reduce calculations and texture reads in order to get good performance. For example, some built-in Unity shaders have their "mobile" equivalents that are much faster (but have some limitations or approximations - that's what makes them faster).
+モバイルやローエンド PC のグラフィックス カードでもっとも重要なのを以下にガイドラインとしてまとめました:
 
-Below are some guidelines that are most important for mobile and low-end PC graphics cards:
+!!! 複雑な数値計算
 
-!!! Complex mathematical operations
+数学的な超越関数（ $$pow$$, $$exp$$, $$log$$, $$cos$$, $$sin$$, $$tan$$, その他）はかなり高価であり、原則としてピクセルごとにひとつ以上そういう処理がないようにすべきです。可能なかぎりルックアップ テクスチャで可能なかぎり代替することを考えます。
 
-Transcendental mathematical functions (such as $$pow$$, $$exp$$, $$log$$, $$cos$$, $$sin$$, $$tan$$, etc) are quite expensive, so a good rule of thumb is to have no more than one such operation per pixel. Consider using lookup textures as an alternative where applicable.
+一方で、カスタムで $$normalize$$, $$dot$$, $$inversesqrt$$ の処理を記述して作成することは推奨できません。もし内蔵のものを使用すればドライバがより良いコードを生成してくれます。
 
-It is not advisable to attempt to write your own $$normalize$$, $$dot$$, $$inversesqrt$$ operations, however. If you use the built-in ones then the  driver will generate much better code for you.
+アルファテスト（$$discard$$）によりフラグメントが遅くなることを頭に入れておいて下さい。
 
-Keep in mind that alpha test ($$discard$$) operation will make your fragments slower.
 
+!!! 浮動小数点の処理
 
-!!! Floating point operations
+カスタムシェーダを記述するときは浮動小数点はつねに精度を指定すべきです。可能なかぎり最も小さい浮動小数点の形式を選択することはパフォーマンスにとって __決定的__ なことです。処理の精度は多くのデスクトップ GPU では無視されますが、多くのモバイル GPU ではパフォーマンスにとって決定的です。
 
-You should always specify the precision of floating point variables when writing custom shaders. It is __critical__ to pick the smallest possible floating point format in order to get the best performance. Precision of operations is completely ignored on many desktop GPUs, but is critical for performance on many mobile GPUs.
+もし シェーダ が Cg/HLSL で記述されている場合、精度は次のように指定されます:
 
-If the shader is written in Cg/HLSL then precision is specified as follows:
+* $$float$$ - 32ビットの単精度浮動小数点の数値表現であり、頂点変換に適してますが、パフォーマンスは最も遅いです。
+* $$half$$ - 16ビットの半精度浮動小数点数の数値表現であり、テクスチャ UV 座標に適していて、おおよそ $$highp$$ の2 倍ぐらい速いです。
+* $$fixed$$ - 10ビットの固定小数点数の数値表現であり、カラー、ライティング 計算、およびその他のハイパフォーマンスに適していて、おおよそ $$highp$$ の4 倍ぐらい速いです。
 
-* $$float$$ - full 32-bit floating point format, suitable for vertex transformations but has the slowest performance.
-* $$half$$ - reduced 16-bit floating point format, suitable for texture UV coordinates and roughly twice as fast as $$highp$$.
-* $$fixed$$ - 10-bit fixed point format, suitable for colors, lighting calculation and other high-performance operations and roughly four times faster than $$highp$$.
+もし シェーダ がGLSL ESで記述されている場合、浮動小数点の精度は各々 $$highp$$, $$mediump$$, $$lowp$$ で指定されます。
 
-If the shader is written in GLSL ES then the floating point precision is specified specified as $$highp$$, $$mediump$$, $$lowp$$ respectively.
+シェーダ パフォーマンスの詳細については [[SL-ShaderPerformance | シェーダ パフォーマンス]] を参照下さい.
 
-For further details about shader performance, please read the [[SL-ShaderPerformance | Shader Performance page]].
 
 
+!! ゲームを高速化する際のチェックリスト
 
-!! Simple Checklist to make Your Game Faster
+* PC 向けでは、ターゲットとする GPUのスペックに合わせて 頂点数を20万から300万より少なくします。
+* 内蔵シェーダを使用する場合、 Mobile または Unlit のカテゴリーから選択する。モバイルでないプラットフォームでも動作しますが、より複雑なシェーダの簡素化され、近似化されたバージョンです。
+* シーンにおける異なるマテリアルの数を低く抑えます - 異なるオブジェクト間でマテリアルをできるかぎり共有します。
+* 動かないオブジェクトに対して、 $$Static$$ をセットして、 [[DrawCallBatching | Static Batching]] のような内部の最適化を許容します。
+* 不要なときは $$Pixel Lights$$ を使用しません - ジオメトリに影響するのはひとつだけの（推奨は指向性ライト）ピクセルライトとします。
+* 不要なときは動的なライトは使用しません - その代わりにライティングの焼き込みを選択します。
+* 圧縮テクスチャ形式を可能な場合は使用する、その他の場合は32ビットよりも16ビットを選択します。
+* 不要なときはフォグを使用しません。
+* [[Occlusion Culling]] の長所を学んだうえで、複雑でstaticなシーンをオクルージョンにより、表示されるジオメトリの量およびドローコールを削減します。オクルージョン カリング の効果が出るようなレベルの設計をします。
+* Skybox を使用して 遠くのジオメトリを "本物に見せかけます" 。
+* ピクセル シェーダを使用するか、Texture Combiner を使用して、マルチパスではなく複数のテクスチャをミックスします。
+* もしカスタムシェーダを記述する場合は、つねに出来るかぎり小さい浮動小数点の数値表現を使用します:
+** $$fixed$$ / $$lowp$$ - カラー、ライティング情報および法線に適します
+** $$half$$ / $$mediump$$ - テクスチャ UV 座標に適します
+** $$float$$ / $$highp$$ - ピクセル シェーダでは避けて、頂点シェーダの位置計算に適します
+* 複雑な数値計算では使用を最小化し、例えば $$pow$$, $$sin$$, $$cos$$, 等をピクセルシェーダでの使用を最小化します
+* フラグメントごとのテクスチャをより少なくなるようにします
 
-* Keep vertex count below 200K..3M per frame when targetting PCs, depending on the target GPU
-* If you're using built-in shaders, pick ones from Mobile or Unlit category. They work on non-mobile platforms as well; but are simplified and approximated versions of the more complex shaders.
-* Keep the number of different materials per scene low - share as many materials between different objects as possible.
-* Set $$Static$$ property on a non-moving objects to allow internal optimizations like [[DrawCallBatching | static batching]].
-* Do not use $$Pixel Lights$$ when it is not necessary - choose to have only a single (preferably directional) pixel light affecting your geometry.
-* Do not use dynamic lights when it is not necessary - choose to bake lighting instead.
-* Use compressed texture formats when possible, otherwise prefer 16bit textures over 32bit.
-* Do not use fog when it is not necessary.
-* Learn benefits of [[Occlusion Culling]] and use it to reduce amount of visible geometry and draw-calls in case of complex static scenes with lots of occlusion. Plan your levels to benefit from ccclusion culling.
-* Use skyboxes to "fake" distant geometry.
-* Use pixel shaders or texture combiners to mix several textures instead of a multi-pass approach.
-* If writing custom shaders, always use smallest possible floating point format:
-** $$fixed$$ / $$lowp$$ - for colors, lighting information and normals,
-** $$half$$ / $$mediump$$ - for texture UV coordinates,
-** $$float$$ / $$highp$$ - avoid in pixel shaders, fine to use in vertex shader for position calculations.
-* Minimize use of complex mathematical operations such as $$pow$$, $$sin$$, $$cos$$ etc. in pixel shaders.
-* Choose to use less textures per fragment.
 
 
 
 
-!! See Also
+!! 関連項目
 
 (:tocportion:)
 
