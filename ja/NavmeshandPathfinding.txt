@@ -1,32 +1,32 @@
-!Navmesh and Pathfinding (Pro only)
+! ナビメッシュおよび経路探索（Unity Proのみ）
 
-A navigation mesh (also known as the ''Navmesh'') is a simplified representation of world geometry, which gameplay agents use to navigate the world. Typically an agent has a ''goal'', or a ''destination'', to which it is trying to find a path, and then navigate to that goal along the path. This process is called ''pathfinding''. Note that ''Navmesh generation'' (or ''baking'') is done by game developers inside the editor, while the ''pathfinding'' is done by agents at runtime based on that Navmesh.
+ナビゲーションメッシュ（または ''Navmesh'' と呼ばれる）はゲーム世界の物体の簡素化された表現であり、これを使ってゲームプレイの際にエージェントがゲーム世界をナビゲーションします。通常エージェントは ''ゴール'' 、 または ''目的地''、があってそこへの経路を探索して、そしてその経路に沿ってゴールへとナビゲーションします。このプロセスは経路探索（''pathfinding''）と呼ばれます。ナビメッシュの生成（ ''Navmesh generation'' ）または焼き込み（''baking''）はゲーム開発者によりエディタの中で行われるものであり、経路探索はエージェントによって実行時にナビメッシュに沿って行われます。
 
-In the complex world of games, there can be many agents, dynamic obstacles, and constantly changing accessibility levels for different areas in the world. Agents need to react dynamically to those changes. An agent's pathfinding task can be interrupted by or affected by things like collision avoidance with other characters, changing characteristics of the terrain, physical obstacles (such as closing doors), and an update to the actual destination. 
+複雑なゲーム世界では、多くのエージェント、動く障害物、常に変わり続ける世界で移動できるマップエリアが様々あります。エージェントはそれらの変化に対して動的に対応できるようにする必要があります。エージェントの経路探索は、他のキャラクターの衝突回避や地形、物理障害物（閉まるドアなど）、目的地そのものの変更、といったことによって、妨害されたり、影響をうけたりします。
 
-Here is a simple example of how to set up a navmesh, and an agent that will do pathfinding on it:
+ナビメッシュおよびその上で経路探索を行うエージェントのセットアップ方法についての簡単なサンプルを示します:
 
-*Create some geometry in the level, for example a $$Plane$$ or a $$Terrain$$.
-*In the Inspector Window's right hand corner click on ^^Static^^ and make sure that this geometry is marked up as ^^Navigation Static^^ 
+* $$Plane$$ または $$Terrain$$ といった何らかの物体を作成します。
+* インスペクタの右側の隅にて、 ^^Static^^ をクリックすることで、物体が ^^Navigation Static^^ としてマークされるようにします
 ->Attach:NavmeshStaticPulldown.png
 
-*Pull up the Navigation Mesh window (^^Window^^->^^Navigation^^).
-*[[Navmeshbaking|Bake the mesh]]. This will generate the navmesh for all $$navigation-static$$ geometry.
-*Create some dynamic geometry in the scene (such as characters).
-*Set up an agent (or multiple agents), by adding a [[class-NavMeshAgent|NavMeshAgent]] component to a dynamic geometry in the scene.
-*Give the agent a destination (by setting the ''destination'' property) in a script attached to the agent.
-*Press play and watch the magic.
+* Navigation Mesh ウィンドウを立ち上げます (メニューから ^^Window^^->^^Navigation^^ を選択)
+* [[Navmeshbaking|メッシュを焼き込みます]] 。これにより全ての $$Navigation Static$$ である物体についてナビメッシュが生成されます。
+* シーンの中に動的な物体を作成します（キャラクターなど）。
+* エージェント（または複数のエージェント）をセットアップするために、 [[class-NavMeshAgent|NavMeshAgent]] コンポーネントをシーンの動的な物体に追加します。
+* エージェントに対してアタッチされたスクリプトにより、エージェントの目的地を設定（ ''destination'' をセット）します。
+* 実行をすれば、魔法のように動きます。
 
-Note that it is also possible to define custom [[class-NavMeshLayers|NavMesh layers]]. These are needed for situations where some parts of the environment are easier for agents to pass through than others. For parts of the mesh that are not directly connected, it is possible to create [[class-OffMeshLink|Off Mesh Links]].
+カスタムの [[class-NavMeshLayers|ナビメッシュ レイヤー]] を定義できることに留意して下さい。他と比べて、エージェントが通りやすい環境の一部などにおいて、カスタムで行うことが必要な場合があります。直接に接続されてないメッシュの部分については、 [[class-OffMeshLink|オフメッシュ リンク]] を作成することも出来ます。
 
-!!Automatic off-mesh links
-Navmesh geometry can also be marked up for automatic off-mesh link generation, like this:
+!! 自動的な オフメッシュ リンク
+ナビメッシュの物体は、次のようにしてオフメッシュ リンクの自動生成の対象としてマークすることが出来ます:
 
 Attach:NavmeshStaticPlusOffmesh.png
-''Marking up geometry for automatic off-mesh link generation''
+''物体をオフメッシュ リンクの自動生成の対象としてマークする''
 
-Geometry marked up in this way will be checked during the [[Navmeshbaking|Navmesh Baking]] process for creating links to other Navmesh geometry. This way, we can control the auto-generation for each GameObject. Whether an off-mesh link will be auto-generated in the baking process is also determined by the ``Jump distance`` and the ``Drop height`` properties in the ^^Navigation Bake^^ settings. 
+このようにしてマークした物体は [[Navmeshbaking|ナビメッシュ 焼き込み]] プロセスにおいて他のナビメッシュ物体とのリンクを作成するタイミングでチェックされます。これにより、各ゲームオブジェクトの自動生成を制御できます。オフメッシュ リンクが焼き込みプロセスにおいて自動生成されるかは、  ^^Navigation Bake^^ 設定における ``Jump distance`` および ``Drop height`` プロパティにより決定されます。
 
-The NavMeshLayer assigned to auto-generated off-mesh links, is the built-in layer ``Jump``. This allows for global control of the auto-generated off-mesh links costs (see [[class-NavMeshLayers|Navmesh layers]]).
+自動生成された オフメッシュ リンクに割り当てられた ナビメッシュ レイヤーは、内蔵レイヤーである ``Jump`` です。これにより自動生成された オフメッシュ リンクのコストをグローバルに制御できます。( [[class-NavMeshLayers|ナビメッシュ レイヤー]] を参照下さい)
 
-Note, that there is also a possibility for setting up ''manual'' off-mesh links (described [[class-OffMeshLink|here]]).
+''手動による'' オフメッシュ リンクの方法もつねにあることに留意して下さい（ [[class-OffMeshLink|ここ]] を参照）。
