@@ -4,7 +4,6 @@ A common task in game animation is to transition between two or more similar seq
 
 $$Blend Trees$$ are Mecanim's method of allowing one animation to be blended smoothly with another. By tracking the bone movements of the two animations precisely, Mecanim can incorporate parts of both to varying degrees. The amount that each of the two animation clips contributes to the final effect is controlled using a $$blending parameter$$, which is just one of the numeric [[AnimationParameters|animation parameters]] associated with the character. To make for a smooth transition, Mecanim requires that the two clips to be blended are ''aligned'' so that the corresponding movements take place at the same points in normalized time. For example, walking and running animations can be aligned so that the individual footfalls take place at the same points in normalized time, even though the running cycle is faster in real time (the left foot hits at 0.0, the right foot at 0.5, say).
 
-
 To start working with a new blend tree, you need to:
 # Right-click on empty space on the ~~Animator Controller Window~~
 # Select ^^Create State > From New Blend Tree^^ from the context menu that appears.

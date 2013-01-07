@@ -1,6 +1,6 @@
 !Creating the Avatar
 
-After an FBX file is imported, you can specify what kind of rig it is in the ~~Rig~~ tab of the ~~FBX importer options~~. 
+After a model file (FBX, COLLADA, etc.) is imported, you can specify what kind of rig it is in the ~~Rig~~ tab of the ~~ModelImporter options~~. 
 
 !!Humanoid animations
 For a Humanoid rig, select ^^Humanoid^^ and click ^^Apply^^. Mecanim will attempt to match up your existing bone structure to the Avatar bone structure. In many cases, it can do this automatically by analysing the connections between bones in the rig.
@@ -9,7 +9,7 @@ If the match has succeeded, you will see a check mark next to the ^^Configure...
 
 Attach:MecanimImporterRigTab.png
 
-Also, in the case of a successful match, an Avatar sub-asset is added to the FBX asset, which you will be able to see in the project view hierarchy. 
+Also, in the case of a successful match, an Avatar sub-asset is added to the model asset, which you will be able to see in the project view hierarchy. 
 Attach:MecanimFBXNoAvatar.png Attach:MecanimFBXWithAvatar.png\\
 ''Models with and without an Avatar sub-asset''
 
