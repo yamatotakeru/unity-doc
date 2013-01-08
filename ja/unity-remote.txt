@@ -3,11 +3,11 @@
 Unity Remote is an application that allows you to use your iOS device as a remote control for your project in Unity. This is useful during development since it is much quicker to test your project in the editor with remote control than to build and deploy it to the device after each change.
 
 !! Where can I find Unity Remote?
-Unity remote is available for download from the AppStore at no charge. If you prefer to build and deploy the application yourself, you can download the source [[http://unity3d.com/support/resources/unity-extensions/unity-remote| here]] at the Unity website.
+Unity remote is available for download from the AppStore at no charge. If you prefer to build and deploy the application yourself, you can download the source [[http://unity3d.com/unity/download/resources/UnityRemoteSource_3_5_x.zip| here]] at the Unity website.
 
 !! How do I build Unity Remote?
 
-First, download the project source code [[http://unity3d.com/support/resources/unity-extensions/unity-remote| here]] and unzip it to your preferred location. The zip file contains an XCode project to build Unity Remote and install it on your device. 
+First, download the project source code [[http://unity3d.com/unity/download/resources/UnityRemoteSource_3_5_x.zip| here]] and unzip it to your preferred location. The zip file contains an XCode project to build Unity Remote and install it on your device. 
 
 Assuming you have already created the provisioning profile and successfully installed iOS builds on your device, you just need to open the Xcode project file UnityRemote.xcodeproj. Once XCode is launched, you should click "Build and Go" to install the app on your iOS device. If you have never built and run applications before, we recommend that you try building some of the Apple examples first to familiarize yourself with XCode and iOS.
 
