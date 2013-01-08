@@ -1,6 +1,6 @@
-!Computing a Normal/Perpendicular vector
+! 法線／垂直ベクトルの計算
 
-A normal vector (ie, a vector perpendicular to a plane) is required frequently during mesh generation and may also be useful in path following and other situations. Given three points in the plane, say the corner points of a mesh triangle, it is easy to find the normal. Pick any of the three points and then subtract it from each of the two other points separately to give two vectors:-
+法線ベクトル（または平面に垂直なベクトル）はメッシュ生成に頻繁に使用され、経路探索およびその他の状況で便利かもしれません。平面上の3つの点、例えばメッシュ三角形の角、を取得すれば、法線を見つけるのは容易です。3つのうちのひとつを任意に選んで、残る二つから各々引き算することで、二つのベクトルが得られます:-
 
 Attach:CalculateNormal.png
 
@@ -11,15 +11,15 @@ var c: Vector3;
 var side1: Vector3 = b - a;
 var side2: Vector3 = c - a;@]
 
-The cross product of these two vectors will give a third vector which is perpendicular to the surface. The "left hand rule" can be used to decide the order in which the two vectors should be passed to the cross product function. As you look down at the top side of the surface (from which the normal will point outwards) the first vector should sweep around clockwise to the second:-
+この2つのベクトルの外積により平面に垂直な3つ目のベクトルが得られます。"左手の法則" を使用して二つのベクトルのうちどちらを外積の関数に渡すべきか判断できます。表面の上側を見下ろすと（法線が外向きに指す方の側から）、最初のベクトルが二つめに対して時計方向に向いているはずです:-
 
 [@var perp: Vector3 = Vector3.Cross(side1, side2);@]
 
-The result will point in exactly the opposite direction if the order of the input vectors is reversed.
+結果は入力のベクトルを逆の順番にすれば正反対に向きます。
 
-For meshes, the normal vector must also be normalized. This can be done with the normalized property, but there is another trick which is occasionally useful. You can also normalize the perpendicular vector by dividing it by its magnitude:-
+メッシュにとって、法線ベクトルは正規化する必要があります。これは normalized プロパティにより実現できますが、もうひとつのテクニックがあって、ときに便利です。さらに垂直ベクトルを正規化するのに、大きさ (magnitude) で割ることも出来ます:-
 
 [@var perpLength = perp.magnitude;
 perp /= perpLength;@]
 
-It turns out that the area of the triangle is equal to perpLength / 2. This is useful if you need to find the surface area of the whole mesh or want to choose triangles randomly with probability based on their relative areas.
+結果的に三角形の面積は perpLength / 2 と等しくなります。これはメッシュ全体の表面積を知る必要がある場合、または三角形を相対的な面積にもとづいてランダムに選択したい場合に便利です。
