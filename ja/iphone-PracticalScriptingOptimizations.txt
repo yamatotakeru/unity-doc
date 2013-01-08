@@ -1,87 +1,87 @@
-!Practical Guide to Optimization for Mobiles - Optimizing Scripts
+! モバイル最適化のための実用ガイド - スクリプトの最適化
 
-This section demonstrates how you would go about optimizing the actual scripts and methods your game uses, and it also goes into detail about the reasons why the optimizations work, and why applying them will benefit you in certain situations.
+このセクションにより実用的にゲームで使用するスクリプトやメソッドをどのようにして最適化し、さらに最適化の原理ともに、どうしてと個々の状況で適用することで役立つのかを実証して行きます。
 
-!! [[Main.Profiler | Profiler]] is King (Unity Pro)
+!! [[Main.Profiler | Profiler]] は最強のツール (Unity Proのみ)
 
-There is no such thing as a list of boxes to check that will ensure your project runs smoothly. To optimize a slow project, you have to profile to find specific offenders that take up a disproportionate amount of time. Trying to optimize without profiling or without thoroughly understanding the results that the profiler gives is like trying to optimize with a blindfold on. 
+プロジェクトがスムーズに動作することを保証してくれる魔法のチェックリストはありません。遅いプロジェクトを最適化するには分相応に時間を消費する特別要因をプロファイリングする必要があります。プロファイリングせずに、またはprofilerが提供するデータを十分に理解せずに最適化を試みるのは目隠しをして最適化するのと変わりありません。
 
-So, if you want to make a technologically demanding game that runs on mobile platforms, you probably need Unity Pro for the [[Main.Profiler | Profiler]]. 
+モバイルプラットフォームで実行される技術的な要求の高いゲームを作成したい場合、 [[Main.Profiler | Profiler]] を使用するめに Unity Pro が必要かもしれません。
 
-!!! What About Indie?
+!!! フリー版だとどうするか
 
-You can use the [[Main.iphone-InternalProfiler | internal profiler]] to figure out what kind of process is slowing your game down, be it physics, scripts, or rendering, but you can't drill down into specific scripts and methods to find the actual offenders. However, by building switches into your game which enable and disable certain functionality, you can narrow down the worst offenders significantly. For example, if you remove the enemy characters' AI script and the framerate doubles, you know that the script, or something that it brings into the game, has to be optimized. The only problem is that you may have to try a lot of different things before you find the problem.
+[[Main.iphone-InternalProfiler | internal profiler]]  を使用してどんなプロセスががゲームを遅くしているか、例えば物理演算なのか、スクリプトか、レンダリングか、までは判断出来ますが、遅延要因となっている具体的なスクリプトやメソッドにドリルダウン出来ません。しかしゲームの中にスイッチを作成して、最大要因の絞り込みを極めて効率的に見つけることは出来ます。例えば敵キャラクターのAIスクリプトを取り除いたときにフレームレートが二倍になれば、そのスクリプトあるいはそれがゲームにもたらす何かが最適化の対象であることが分かります。唯一の障壁は、様々な実験をしないと問題が見つけられないことです。
 
-For more about profiling on mobile devices, see the [[Main.iphone-PracticalGuide#Profile | profiling section]].
+モバイルデバイスでのプロファイリングについての詳細は [[Main.iphone-PracticalGuide#Profile | profiling section]] を参照下さい。
 
-!! Optimized by Design
+!! 設計での最適化
 
-Attempting to develop something which is fast from the beginning is risky, because there is a trade-off between wasting time making things that would be just as fast if they weren't optimized and making things which will have to be cut or replaced later because they are too slow. It takes intuition and knowledge of the hardware to make good decisions in this regard, especially because every game is different and what might be a crucial optimization for one game may be a flop in another. 
+最初から速いものを開発しようとすることはリスクを伴い、最適化せずとも同じ速さの内容に無駄な時間をかけることになることと、結果的に遅くなって後から削除するか置き換えるか、そのトレードオフになるためです。良い判断に求められるのは直感とハードウェアに関する知識であり、ゲームはひとつひとつが異なるものなので、たとえひとつのゲームで決定的な最適化であっても別のゲームではブレーキになる可能性があります。
 
 ##Object Pooling##
-!!! Object Pooling
+!!! オブジェクト プーリング
 
-We gave object pooling as an example of the intersection between good gameplay and good code design in our [[Main.iphone-OptimizedScriptingMethods | introduction to optimized scripting methods]]. Using object pooling for ephemeral objects is faster than creating and destroying them, because it makes memory allocation simpler and removes dynamic memory allocation overhead and Garbage Collection, or GC.
+[[Main.iphone-OptimizedScriptingMethods | スクリプティング手法の最適化の紹介]] において、オブジェクト プーリングを優れたゲームプレイと優れたコード設計の接点として紹介しました。短命な オブジェクトについてオブジェクト プーリングを使用するのはオブジェクトを作成して破棄するよりも速くなりますが、その理由はメモリ割り当てをシンプルにして動的なメモリ割り当てのオーバーヘッドおよびガーベージコレクション（GC）をなくすためです。
 
-!!! Memory Allocation
+!!! メモリ割り当て
 
-(:showhide name="Simple Explanation of what Automatic Memory Management is":)
-Scripts you write in Unity use automatic memory management. Just about all scripting languages do this. In contrast, lower level languages such as C and C++ use manual memory allocation, where the programmer is allowed to read and write from memory addresses directly, and as a consequence he is responsible for removing every object he creates. For example, if you create objects in your C++, you have to manually de-allocate the memory that they take up when you are done with them. In a scripting language, it is enough to say ``@@objectReference = null;@@``
+(:showhide name="自動メモリ管理とは何かの説明":)
+Unityで記述するスクリプトは自動メモリ管理を使用します。ほぼ全てのスクリプティング言語でこれが行われてます。対照的に低水準言語にあたる C および C++ は手動でメモリ割り当てをを行い、プログラマがメモリを読み書きをメモリアドレスに対して直接に行うことが出来て結果として作成したオブジェクトの全てを削除する責任があります。例えばC++ではメモリを使用し終わった後に手動で割り当てを解除する必要があります。スクリプティング言語では ``@@objectReference = null;@@`` とすれば事足ります。
 
-__Note:__ If I have a game object variable like ``@@GameObject myGameObject;@@`` or ``@@var myGameObject : GameObject;@@``, why isn't it destroyed when I say ``@@myGameObject = null;@@``?
-* The game object is still referenced by Unity, because Unity has to maintain a reference to it in order for it to be drawn, updated, etc. Calling ``@@Destroy(myGameObject);@@`` removes that reference and deletes the object.
+__注意:__ もし ``@@GameObject myGameObject;@@`` or ``@@var myGameObject : GameObject;@@` というようなゲームオブジェクト変数があった場合、``@@myGameObject = null;@@`` とするだけで何故破棄されないのでしょうか。
+* ゲームオブジェクトはUnityによりまだ参照されていて、その理由はUnityが描画、更新、その他を行うために参照を維持する必要ごあるためです。 ``@@Destroy(myGameObject);@@`` をコールすることで参照は外され、オブジェクトは削除されます。
 
-But if you create an object that Unity has no idea about, for example, an instance of a class that does not inherit from anything (in contrast, most classes or "script components" inherit from [[ScriptRef:MonoBehaviour.html | MonoBehaviour]] ) and then set your reference variable to it to null, what actually happens is that the object is lost as far as your script and Unity are concerned; they can't access it and will never see it again, but it stays in memory. Then, some time later, the Garbage Collector runs, and it removes anything in memory that is not referenced anywhere. It is able to do this because, behind the scenes, the number of references to each block of memory is kept track of. This is one reason why scripting languages are slower than C++.
+しかしUnityが関知しないオブジェクトを作成した場合、例えば何からも継承されてないクラスのインスタンスを作成した場合(対照的にほとんどのクラスまたは "スクリプト コンポーネント " は[[ScriptRef:MonoBehaviour.html | MonoBehaviour]] から継承される)、さらに参照変数をnullとした場合、実際に起きることはスクリプトやUnityからみるとオブジェクトは見つけられなくなり、アクセスも出来ませんがめに残ります。その後、ガーベージコレクションが行われてどこからも参照されてないものはメモリから除きます。これは舞台裏では、メモリブロックへの参照の数がトラッキングされているためです。これはスクリプティング言語がC++より低速である理由のひとつです。
 (:showhideend:)
 
-* Read more about [[Main.UnderstandingAutomaticMemoryManagement | Automatic Memory Management and the Garbage Collector]].
+詳細については [[Main.UnderstandingAutomaticMemoryManagement | 自動メモリ管理およびガーベージコレクション]] を参照下さい。
 
-!!! How to Avoid Allocating Memory
+!!! メモリ割り当ての回避方法
 
-Every time an object is created, memory is allocated. Very often in code, you are creating objects without even knowing it.
+オブジェクトが作成されるたびにメモリは割り当てられます。しばしばコードの中で知らずにオブジェクトを作成しています。
 
-* ``Debug.Log("boo" + "hoo");`` creates an object.
-** Use ``System.String.Empty`` instead of ``""`` when dealing with lots of strings.
+* ``Debug.Log("boo" + "hoo");`` によりオブジェクトが作成されます。
+** 文字列を数多く扱う場合は ``System.String.Empty`` を ``""`` の代わりに使用して下さい。
 
-* Immediate Mode GUI (UnityGUI) is slow and should not be used at any time when performance is an issue.
+* ImmediateモードのGUI (UnityGUI)は遅く、パフォーマンスが重要であるときは、いかなる場合も使用すべきではありません。
 
-*Difference between ``class`` and ``struct``:
+* ``クラス`` と ``構造体`` の違い :
 >>padding="0px 0px 0px 50px"<<
-(:showhide name="Class vs Struct":)
-Classes are objects and behave as references. If ``Foo`` is a class and
+(:showhide name="クラス 対 構造体":)
+クラスはオブジェクトであり参照として動作します。``Foo``がクラスであると仮定して
 (:code:)
 Foo foo = new Foo();
 MyFunction(foo); 
 (:codeend:)
-then ``MyFunction`` will receive a reference to the original Foo object that was allocated on the heap. Any changes to ``foo`` inside ``MyFunction`` will be visible anywhere ``foo`` is referenced.
+である場合、``MyFunction`` は、ヒープ上で割り当てられた、もとのFooオブジェクトに対する参照を受け取ります。
 
-Classes are data and behave as such. If ``Foo`` is a struct and
+クラスはデータであり、そのように動作します。もし ``Foo`` が構造体であると仮定して
 (:code:)
 Foo foo = new Foo();
 MyFunction(foo); 
 (:codeend:)
-then ``MyFunction`` will receive a copy of ``foo``. ``foo`` is never allocated on the heap and never garbage collected. If ``MyFunction`` modifies it's copy of ``foo``, the other ``foo`` is unaffected.
+である場合、``MyFunction`` は、``foo``のコピーを受け取ります。``foo`` はヒープ上で割り当てられることはなく、ガーベージコレクションもされません。もし ``MyFunction``が``foo``のコピーを修正しても、もうひとつの``foo``は影響を受けません。
 (:showhideend:)
 >><<
-*Objects which stick around for a long time should be classes, and objects which are ephemeral should be structs.  [[ScriptRef:Vector3.html|Vector3]] is probably the most famous struct. If it were a class, everything would be a lot slower.
+*生存期間の長いオブジェクトはクラスとすべきであり、短命のオブジェクトは構造体であるべきです。 [[ScriptRef:Vector3.html|Vector3]] はもっとも知られた構造体です。もしこれがクラスであったら全てが大分遅くなっていたはずです。
 
-!!! Why Object Pooling is Faster
+!!! オブジェクト プーリングが速い理由
 
-The upshot of this is that __using Instantiate and Destroy a lot gives the Garbage Collector a lot to do__, and this can cause a "hitch" in gameplay. As the [[Main.UnderstandingAutomaticMemoryManagement | Automatic Memory Management page]] explains, there are other ways to get around the common performance hitches that surround Instantiate and Destroy, such as triggering the Garbage Collector manually when nothing is going on, or triggering it very often so that a large backlog of unused memory never builds up.
+この長所は__Instantiate および Destoryを使用することによりガーベージコレクションがやることが増える__ ということになり、ゲームプレイにおける "遅延" につながります。[[Main.UnderstandingAutomaticMemoryManagement | 自動メモリ管理のページ]] で説明しているとおり、Instantiate および Destoryを取り巻く、良くあるパフォーマンスの遅延を回避する方法は他にもあり、例えば何もないときにガーベージコレクションをトリガーするとか、頻繁にトリガーすることで大きな未使用のバックログが積みあがらないようにする、とかいった方法です。
 
-Another reason is that, when a specific prefab is instantiated for the first time, sometimes additional things have to be loaded into RAM, or textures and meshes need to be uploaded to the GPU. This can cause a hitch as well, and with object pooling, this happens when the level loads instead of during gameplay.
+もうひとつの理由は、特定のプレハブが初めてインスタンス化されたとき、ときどき RAM に追加のものがロードされる必要があることや、テクスチャおよびメッシュが GPU にアップロードする必要があるためです。これもまた遅延を起こすことがあり、オブジェクト プーリングによりこれをゲームプレイではなくレベルロードのときに起こすことが出来ます。
 
-Imagine a puppeteer who has an infinite box of puppets, where every time the script calls for a character to appear, he gets a new copy of its puppet out of the box, and every time the character exits the stage, he tosses the current copy. Object pooling is the equivalent of getting all the puppets out of the box before the show starts, and leaving them on the table behind the stage whenever they are not supposed to be visible.
+人形使いが無限の数の操り人形を箱の中に詰め込んでいると想像してみて、キャラクターが登場するようにスクリプトがコールするたびに、新しい人形を取り出して、人形が舞台から消えるたびに現在の人形を箱に戻します。オブジェクトプールというのは、舞台が始まる前に、最初から全ての人形を箱から取り出して、登場しないときはステージの裏のテーブルに隠しておくことです。
 
-!!! Why Object Pooling can be Slower
+!!! オブジェクト プーリングにより遅くなる場合の理由
 
-One issue is that the creation of a pool reduces the amount of heap memory available for other purposes; so if you keep allocating memory on top of the pools you just created, you might trigger garbage collection even more often. Not only that, every collection will be slower, because the time taken for a collection increases with the number of live objects. With these issues in mind, it should be apparent that performance will suffer if you allocate pools that are too large or keep them active when the objects they contain will not be needed for some time. Furthermore, many types of objects don't lend themselves well to object pooling. For example, the game may include spell effects that persist for a considerable time or enemies that appear in large numbers but which are only killed gradually as the game progresses. In such cases, the performance overhead of an object pool greatly outweighs the benefits and so it should not be used.
+ひとつ問題があることとして、オブジェクト プールの作成により他の目的で利用可能であるヒープのメモリを消費してしまうことです。もしオブジェクト プールの使用に加えて、メモリを割り当て続けると、通常よりもガーベージ コレクションを引き起こすかもしれません。それだけでなく、個々のガーベージコレクションも遅くなり、その理由はガーベージコレクションの処理時間は活動しているオブジェクトの数により増加するためです。この問題を念頭に入れておくと、大きすぎるオブジェクトプールや長い期間使用しないときに有効にし続けるとパフォーマンスに問題が出ることは明白です。さらに、多くのオブジェクトにおいてはオブジェクトプールに向かない場合があります。例えばゲームでは継続した効果が続く魔法であるとか、大量に登場する敵が徐々にしかやっつけられないとか、いった場合です。そのような場合、オブジェクト プールのオーバーヘッドは徐々に使用しない場合のメリットを上回るようになります。
 
-!!! Implementation
+!!! 実装
 
-Here's a simple side by side comparison of a script for a simple projectile, one using Instantiation, and one using Object Pooling.
+次にシンプルな発射物を使用して、片方がインスタンス化、片方がオブジェクトプールを使用した簡単な比較例を紹介します。
 
-(:showhide name="Object Pooling Example":)
+(:showhide name="オブジェクト プーリング のサンプル":)
 >>font-size=11px<<
 (:table border=0:)
 (:cellnr:)
@@ -141,9 +141,9 @@ var power = 10.0;
 ``function Start () {``
     ``instances = new ProjectileWithObjectPooling[maximumInstanceCount];``
    `` for(var i = 0; i < maximumInstanceCount; i++) {``
-        ``// place the pile of unused objects somewhere far off the map``
+        ``// 使用されないオブジェクトの山をマップ上から大きく離れた場所に置く
         ``instances[i] = Instantiate(prefab, stackPosition, Quaternion.identity);``
-        ``// disable by default, these objects are not active yet.``
+        ``// デフォルトで無効化し、これらのオブジェクトがアクティブでないようにする
         ``instances[i].enabled = false;``
     ``}``
 ``}``
@@ -236,131 +236,131 @@ function Update () {
 >><<
 (:showhideend:)
 
-Of course, for a large, complicated game, you will want to make a generic solution that works for all your prefabs.
+当然ながら、大規模で複雑なゲームでは、全てのプレハブに適用できる汎用的な解決策が必要です。
 
-!! Another Example: Coin Party!
+!! 別のサンプル: コインパーティ
 
-The example of "Hundreds of rotating, dynamically lit, collectable coins onscreen at once" which was given in the [[Main.iphone-OptimizedScriptingMethods | Scripting Methods section]] will be used to demonstrate how script code, Unity components like the Particle System, and custom shaders can be used to create a stunning effect without taxing the weak mobile hardware.
+"回転していて、動的ライティングがなされて、集められるコインが画面上に同時に百個ある" サンプルは [[Main.iphone-OptimizedScriptingMethods | スクリプティング手法のセクション]] で紹介されてますが、今回はこれによりスクリプトコード、パーティクルシステムのようなUnityコンポーネント、およびカスタムシェーダを使用して貧弱なモバイルハードウェアに負荷を与えずに刺激的なエフェクトを作成できることを紹介します。
 
-Imagine that this effect lives in the context of a 2D sidescrolling game with tons of coins that fall, bounce, and rotate. The coins are dynamically lit by point lights. We want to capture the light glinting off the coins to make our game more impressive. 
+このエフェクトを使用しているゲームが、2D横スクロールゲームで大量のコインが落ち、跳ねて、回転するところを想像して下さい。コインは動的にポイントライトによりライティングされます。ゲームの中のコインからきらめく光をより魅力的なものにしたいとします。
 
-If we had powerful hardware, we could use a standard approach to this problem. Make every coin an object, shade the object with either vertex-lit, forward, or deferred lighting, and then add glow on top as an image effect to get the brightly reflecting coins to bleed light onto the surrounding area.
+もし強力なハードウェアがあれば、この課題に対して標準的なアプローチも出来ます。全てのコインをオブジェクトとして、オブジェクトを頂点ライティング、フォワード、またはデファード ライティング によりシェーディングを行い、それからグローをイメージエフェクトとして加えて、コインのきらめきを周囲に光が広がるようにします。
 
-But mobile hardware would choke on that many objects, and a glow effect is totally out of the question. So what do we do?
+しかしモバイルハードウェアでは多くのオブジェクトだけで苦しみ、グローエフェクトは全くの問題外です。ではどうすれば？
 
 ##Animated_Sprite_Particle_System##
-!!! Animated Sprite Particle System
+!!! アニメーションつきのスプライト パーティクルシステム
 
 %thumb width=300px float=right padding=5px%Attach:coinsLighting.jpg
 
-If you want to display a lot of objects which all move in a similar way and can never be carefully inspected by the player, you might be able to render large amounts of them in no time using a particle system. Here are a few stereotypical applications of this technique:
+もし大量のオブジェクトが全て同様に動作して、プレイヤーが注意深く観察できない前提であれば、大量のオブジェクトをパーティクルシステムによりあっという間にレンダリングできるかもしれません。このテクニックを型通りに適用したサンプルを示します：
 
-* Collectables or Coins
-* Flying Debris 
-* [[http://www.gamespot.com/ikaruga/images/580047/ | Hordes or Flocks of Simple Enemies]]
-* Cheering Crowds
-* Hundreds of Projectiles or Explosions
+* 拾うアイテムやコイン
+* 飛ぶ散る破片
+* [[http://www.gamespot.com/ikaruga/images/580047/ | 無数の単純な敵]]
+* 喜ぶ観衆
+* 数百の発射物や爆発
 
-There is a free editor extension called [[http://u3d.as/content/forest-johnson/sprite-packer-with-legacy-particle-emitter-to-shuriken-converter-/34E | Sprite Packer]] that facilitates the creation of animated sprite particle systems. It renders frames of your object to a texture, which can then be used as an animated sprite sheet on a particle system. For our use case, we would use it on our rotating coin. 
+無料のエディタ拡張で、 [[http://u3d.as/content/forest-johnson/sprite-packer-with-legacy-particle-emitter-to-shuriken-converter-/34E | スプライト パッカー]] と呼ばれるものがあり、アニメーションつき スプライト パーティクルシステムの作成を手助けしてくれます。オブジェクトのフレームをテクスチャにレンダリングして、次にアニメーションつきのスプライトシートとしてパーティクルシステムでしようすることが出来ます。今回のサンプルでいえば、回転するコインに使用します。
 
-!!! Reference Implementation 
+!!! 参考の実装例
 
 %thumb width=250px float=right padding=5px%Attach:coinsParts.jpg
 
-Included in the [[http://u3d.as/content/forest-johnson/sprite-packer-with-legacy-particle-emitter-to-shuriken-converter-/34E | Sprite Packer project]] is an example that demonstrates a solution to this exact problem. 
+ [[http://u3d.as/content/forest-johnson/sprite-packer-with-legacy-particle-emitter-to-shuriken-converter-/34E | スプライト パッカー プロジェクト]] には、全く同じ問題に対する解決策のデモがあります。
 
-It uses a family of assets of all different kinds to achieve a dazzling effect on a low computing budget:
+さまざまな種類のアセット群を使用して、計算負荷を抑えながら、まばゆいばかりのエフェクトを達成しています:
 
-* A control script
-* Specialized textures created from the output of the SpritePacker
-* A specialized shader which is intimately connected with both the control script and the texture.
+* 制御スクリプト
+* スプライト パッカー外部で作成された専用のテクスチャ
+* 制御スクリプトおよびテクスチャの両方に密接に結びついた専用のシェーダ
 
-A readme file is included with the example which attempts to explain why and how the system works, outlining the process that was used to determine what features were needed and how they were implemented. This is that file:
+readme ファイルがサンプルに含まれていて、システムがどのようにしてどうやって動作するか説明し、どのような機能が必要であったか判断した過程の概略や、どのようにして実装しているか、などを説明しています。これがそのファイルです:
 
-(:showhide name="Coin Party README":)
-The problem was defined as "Hundreds of rotating, dynamically lit, collectable coins onscreen at once." 
+(:showhide name="コイン パーティ README":)
+お題は "回転していて、動的ライティングがなされて、集められるコインが画面上に同時に百個ある" です。
 
-The naive approach is to Instantiate a bunch of copies of a coin prefab, but instead we are going to use particles to render our coins. However, this introduces a number of challenges that we have to overcome.
+ばか正直なアプローチは コインのプレハブを大量にインスタンス化することですが、その代わりにパーティクルをしようしてコインをレンダリングします。これは一方で、いくつかの乗り越えなければ行けないチャレンジが発生します。
 
-*Viewing angles are a problem because particles don't have them.
-**We assume that the camera stays right-side up and the coins rotate around the Y-axis.
-**We create the illusion of coin rotation with an animated texture that we packed using the SpritePacker.
-***This introduces a new problem: Monotony of rotating coins all rotating at the same speed and in the same direction
-***We keep track of rotation and lifetime ourselves and "render" rotation to the particle lifetimes in script to fix this.
-		
-*Normals are a problem because particles don't have them, and we need real time lighting.
-**Generate a single normal vector for the face of the coin in each animation frame generated by the Sprite Packer.
-**Do Blinn-Phong lighting for each particle in script, based on the normal vector grabbed from the above list.
-**Apply the result to the particle as a color.
-**Handle the face of the coin and the rim of the coin separately in the shader.
-***Introduces a new problem: How does the shader know where the rim is, and what part of the rim it's on?
-****Can't use UV's, they are already used for the animation.
-****Use a texture map.
-***** Need Y-position relative to coin.
-***** Need binary "on face" vs "on rim".
-****We don't want to introduce another texture, more texture reads, more texture memory.
-****Combine needed information into one channel and replace one of the texture's color channels with it.
-***** Now our coin is the wrong color! What do we do?
-***** Use the shader to reconstruct missing channel as a combination of the two remaining channels.
+* 視野角（ビューアングル）は問題で、パーティクルにはありません。
+** カメラが正しい向きでじっとしていることと、コインがY軸を中心に回転していることが前提です。
+** コインが回転しているように見せかけるために、アニメーションつきテクスチャを使用し、あらかじめスプライトパッカーによりパックしておきます。
+*** これにより新たな問題が生じます: 回転するコインが全て同じスピードで同じ向きであることの単調さです
+*** 回転や生存期間をトラッキングして、パーティクル の生存期間中に 回転を "レンダリング" させてこの問題を解決します
+
+*パーティクルには存在しないため、法線をどうするかは問題でありリアルタイムのライティングが必要ですい
+** スプライトパッカーにより生成された各アニメーションフレームに対してコインの面にひとつの法線ベクトルを生成します
+** スクリプトの各パーティクルでBlinn-Phongライティングを、上記で決めた法線ベクトルにもとづいて行います
+** パーティクルの残り部分にカラーとして結果を適用します。
+** コインの面およびコインの縁を別のシェーダとしてハンドリングします。
+*** これにより新たな問題が生じます: シェーダはどのようにして縁がどこにあるか知り、そして縁のどの部分であるかを知るのか？
+**** UVはすでにアニメーションに使用されており使用できません
+**** テクスチャマップを使用します
+***** コインに対応する Y 位置が必要です
+***** "面にある" vs "縁にある" の2変数が必要です
+**** 新たなテクスチャを増やしてしまうと、テクスチャ読み込み、テクスチャ メモリの増加につながるため、増やしたくありません
+**** 必要な情報をひとつのチャネルに組み合わせてテクスチャの色のチャネルのひとつと置き換えます
+***** コインがおかしな色になります。これの対策はどうする？
+***** シェーダを使って、不足するチャネルを、残った二つの情報を組み合わせて再構築します
 					
-*Say we want glow from light glinting off our coins. Post process is too expensive for mobile devices.
-**Create another particle system and give it a softened, glowy version of the coin animation.
-**Color a glow only when the corresponding coin's color is super bright.
-**Can't have glow rendered on every coin every frame - fill rate killer.
-***Reset glows every frame, only position ones with brightness > 0.
+* コインからの光のきらめきからグローがほしいとします。モバイルデバイスにとっては後処理が高価すぎます
+** 別のパーティクルシステムを作成して、やわらげたグロー風のコインアニメーションのバージョンにします。
+** コインの色が極めて明るいときのみグローに色づけを行います。
+** グローを全てのコインで毎フレームを行うことは出来ません - フィルレートが耐え切れません。
+*** 毎フレーム、グローをリセットし、明るさ (brightness) > 0 のもののみ配置します。
+
+* 物理演算、コインを集めることはともに問題です - パーティクルはうまく衝突しません。
+** 内蔵パーティクルの衝突は使用できるか？
+** そうではなく、単にスクリプトの中にコリジョンを記述した
 		
-*Physics is a problem, collecting coins is a problem - particles don't collide very well.
-**Could use built-in particle collision?
-**Instead, just wrote collision into the script.
+* 最後に、大きな問題がひとつ残っています - スクリプトは大量の演算があり、どんどん遅くなっています。
+** パフォーマンスはアクティブなコインの数と比例します。
+*** 最大のコイン数を制限します。次の設定のみでゴール達成のためには十分機能します: 100 コイン、 2つのライト でモバイルデバイスで十分に速く動作します。
 		
-*Finally, we have one more problem - this script does a lot, and its getting slow!
-**Perfomance scales linearly with number of active coins.
-***Limit maximum coins. This works well enough to acheive our goal: 100 coins, 2 lights, runs really fast on mobile devices.
-		
-*Things to try to optimize further:
-**Instead of calculating lighting for every coin individually, cut the world into chunks and calculate lighting conditions for every rotation frame in every chunk.
-***Use as a lookup table with coin position and coin rotation as indices.
-***Increase fidelity by using bilinear interpolation with position.
-***Sparse updates on the lookup table, or, entirely static lookup table.
-***Use Light Probes for this?
+* さらに最適化すべきこと:
+** ライティングをすべてのコインで個別に計算するのではなく、ゲーム世界をかたまりに分けてライティング条件をすべてのかたまりの回転フレームで計算します。
+*** コイン位置と回転をインデックスとした ルックアップ テーブルを使用します。
+*** 位置とともに双線形補間を使用して再現性を高めます
+*** ルックアップテーブルへのアップデートがまばら、または完全に static なルックアップテーブルにします。
+*** このために ライト プローブを使用する？
 			
-**Instead of calculating lighting in script, use normal-mapped particles?
-***Use "Display Normals" shader to bake frame animation of normals.
-***Limits number of lights.
-***Fixes slow script problem.
+** スクリプトでライティングを計算する代わりに、法線マップ パーティクルを使用する？
+*** "Display Normals" （法線表示）シェーダを使用して法線のフレームアニメーションを焼き込みます
+*** ライトの数を限定します。
+*** スクリプトが遅い問題が解決されます。
 (:showhideend:)
 
-The end goal of this example or "moral of the story" is that if there is something which your game really needs, and it causes lag when you try to achieve it through conventional means, that doesn't mean that it is impossible, it just means that you have to put in some work on a system of your own that runs much faster.
+このサンプルの最終目標、あるいは "話の教訓" はゲームの中に必要な部分があり、それを既存の手法で成し遂げようしても遅い場合、それは解決が不可能だということではなくて、より速く走る独自のシステムによって速く動かす必要がある、ということです。
 
 
-!!! Techniques for Managing Thousands of Objects
+!!! 何千のオブジェクトを管理するテクニック
 
-These are specific scripting optimizations which are applicable in situations where hundreds or thousands of dynamic objects are involved. Applying these techniques to every script in your game is a terrible idea; they should be reserved as tools and design guidelines for large scripts which handle tons of objects or data at run time.
+これらは、何百または何千という動的オブジェクトが絡んだ状況での、具体的なスクリプティング最適化です。これらのテクニックをゲームの全てのスクリプトに適用するのは最悪な考えで、大規模なスクリプトのなかで、実行時に大量のオブジェクトやデータを扱うためのツールおよび設計ガイドラインとしてとっておくべきです。
 
-* Avoid or minimize O(n'^2^') operations on large data sets
+* 大きなデータセットで O(n'^2^') 演算を回避または最小化
 >>padding="0px 0px 0px 50px"<<
-(:showhide name="Order N Squared":)
-In computer science, the ``Order`` of an operation, denoted by ``O(n)``, refers to the way that the number of times that the operation has to be evaluated increases as the number of objects it is applied to (``n``) increases.
+(:showhide name="オーダー n の二乗":)
+計算機科学では、演算の ``オーダー`` は ``O(n)`` と表現され、その演算が評価される回数が、それが適用されているオブジェクトの数 (``n``) の増加に伴って増加する様子を表現しています。
 
-For example, consider a basic sorting algorithm. I have n numbers and I want to sort them from smallest to largest.
+例えば、基本的なソーティング アルゴリズムを考えます。n 個の数があり、最も小さいものか最も大きいものまで並び替えたいとします。
 (:code:)
 void sort(int[] arr) {
 	int i, j, newValue;
 	for (i = 1; i < arr.Length; i++) {
-		// record
+		// 記録する
 		newValue = arr[i];
-		//shift everything that is larger to the right
+		//大きい場合は全て右にシフト
 		j = i;
 		while (j > 0 && arr[j - 1] > newValue) {
 			arr[j] = arr[j - 1];
 			j--;
 		}
-		// place recorded value to the left of large values
+		// 記録した値を大きい値の左に配置
 		arr[j] = newValue;
 	}
 }(:codeend:)
 
-The important part is that there are two loops here, one inside the other.
+重要なところは二つのループがあり、ひとつがもうひとつの中にあることです。
 
 (:code:)
 for (i = 1; i < arr.Length; i++) {
@@ -373,31 +373,31 @@ for (i = 1; i < arr.Length; i++) {
 }
 (:codeend:)
 
-Let's assume that we give the algorithm the worst possible case: the input numbers are sorted, but in reverse order. In that case, the innermost loop will run ``j`` times. On average, as ``i`` goes from ``1`` to ``arr.Length-1``, ``j`` will be ``arr.Length/2``. In terms of ``O(n)``, ``arr.Length`` is our ``n``, so, in total, the innermost loop runs ``n*n/2`` times, or ``n'^2^'/2`` times. But in ``O(n)`` terms, we chuck all constants like ``1/2``, because we want to talk about the way that the number of operations increases, not the actual number of operations. So the algorithm is ``O(n'^2^')``. The order of an operation matters a lot if the data set is large, because the number of operations can explode exponentially.
+アルゴリズムに対して最悪ケースを与えたとします: 入力される数字はソートされているけれども全く逆の順序です。この場合、もっとも内側のループは  ``j`` 回実行されます。平均では、 ``i`` が ``1`` から ``arr.Length-1`` に行く間に ``j`` は　``arr.Length/2`` になります。``O(n)`` に関して言えば、``arr.Length`` が ``n`` に相当して、全体でみるともっとも内側のループは ``n*n/2`` 回、すなわち``n'^2^'/2`` 回実行されます。しかし ``O(n)`` 用語では、 ``1/2`` といった定数は全て放棄します。その理由は、実際の演算の回数ではなくて、演算の回数の増え方について議論をしたいためです。このためアルゴリズムは ``O(n'^2^')`` です。データセットが大きい場合に、演算の順番は大きく関係があり、演算の回数は等比級数的に爆発する可能性があるためです。
 
-An in-game example of an ``O(n'^2^')`` operation is 100 enemies, where the AI of each enemy takes the movements of every other enemy into account. It might be faster to divide the map into cells, record the movement of each enemy into the nearest cell, and then have each enemy sample the nearest few cells. That would be an ``O(n)`` operation.
+ゲーム内での ``O(n'^2^')`` 演算の例をあげると、 100人の敵がいるとして、各々のAIが他の敵全ての動きを考慮するようなケースです。マップをセルに分解して、各々の敵の動きを最も近いセルに記録して、次に各々の敵にもっとも近い数個のセルをサンプリングしたほうが速いかもしれません。これにより  ``O(n)`` 演算に抑えることが出来ます。
 (:showhideend:)
 >><<
 
-* Cache references instead of performing unnecessary searches
+* 不要な探索を行う代わりに辞書をキャッシュする
 >>padding="0px 0px 0px 50px"<<
-(:showhide name="Reference Caching":)
-Say you have 100 enemies in your game, and they all move towards the player.
+(:showhide name="辞書のキャッシング":)
+例えばゲームに100人の敵がいたとして、各々キャラクターに向かって動くとします。
 (:code:)
 // EnemyAI.js
 var speed = 5.0;
 
 function Update () {
 	transform.LookAt(GameObject.FindWithTag("Player").transform);
-	// this would be even worse:
+	// これはより悪化:
 	//transform.LookAt(FindObjectOfType(Player).transform);
 
 	transform.position += transform.forward * speed * Time.deltaTime;
 }(:codeend:)
 
-That could be slow, if there are enough of them running at the same time. Little known fact: all of the component accessors in ``[[ScriptRef:MonoBehaviour.html | MonoBehaviour]]``, things like ``transform``, ``renderer``, and ``audio``, are equivalent to their ``GetComponent(Transform)`` counterparts, and they are actually a bit slow. ``[[ScriptRef:GameObject.html | GameObject]].FindWithTag`` has been optimized, but in some cases, for example, in inner loops, or on scripts that run on a lot of instances, this script might be a bit slow.
+同時実行されている数が十分に多い場合、これは遅いかもしれません。あまり知られてない事実として、 ``[[ScriptRef:MonoBehaviour.html | MonoBehaviour]]` のコンポーネントのアクセスを行うもの、 ``transform`` 、 ``renderer`` 、 および ``audio`` は全て ``GetComponent(Transform)`` と同様でありやや遅いものです。 ``[[ScriptRef:GameObject.html | GameObject]].FindWithTag`` は最適化をされてはいるものの、それでもいくつかのケース、例えば内部ループや多くのインスタンス上で実行される場合、スクリプトはやや遅くなるかもしれません。
 
-This is a better version of the script.
+改良バージョンのスクリプトは次の通りです。
 (:code:)
 // EnemyAI.js
 var speed = 5.0;
@@ -419,25 +419,25 @@ function Update () {
 (:showhideend:)
 >><<
 
-* Minimize expensive math functions
+* 高価な数学関数を最小化します
 >>padding="0px 0px 0px 50px"<<
-(:showhide name="Expensive Math Functions":)
-Transcendental functions (``Mathf.Sin``, ``Mathf.Pow``, etc), Division, and Square Root all take about 100x the time of a multiplication. (In the grand scheme of things, no time at all, but if you are calling them thousands of times per frame it can add up).
+(:showhide name="高価な数学関数":)
+超越関数  (``Mathf.Sin``、 ``Mathf.Pow``、 その他)、除算、および平方根の計算は乗算の100倍の時間を要します。（全体からみれば個別は一瞬かもしれませんが、これをフレームごとに千回コールしているのであれば計算時間は積み上がってきます。）
 
-The most common case of this is vector normalization. If you are normalizing the same vector over and over, consider normalizing it once instead and caching the result for use later.
+もっとも良くあるケースはベクトルの正規化です。同じベクトルを繰り返し正規化する場合、代わりに一回だけ正規化をして後続で使用するときのために結果をキャッシュしておくのを検討してください。
 
-If you are both using the length of a vector and normalizing it, it would be faster to obtain the normalized vector by multiplying the vector by the reciprocal of the length rather than by using the ``.normalized`` property.
+もしベクトルの長さおよびその正規化されたものの両方を使用しているのであれば、ベクトルを正規化されたベクトルを取得するには、長さの逆数を乗算する方が ``.normalized`` プロパティを使用するよりも高速になります。
 
-If you are comparing distances, you don't have to compare the actual distances. You can compare the squares of the distances instead by using the ``.sqrMagnitude`` property and save a square root or two.
+もし距離を比較するのであれば実際の距離を比較する必要がありません。距離の2乗を ``.sqrMagnitude`` プロパティを代わりに用いて比較することで平方根計算をひとつかふたつ節約できます。
 
-Another one, if you are dividing over and over by a constant ``c``, you can multiply by the reciprocal instead. Calculate the reciprocal first by doing ``1.0/c``.
+追加でさらにひとつ、もし定数 ``c`` により繰り返し除算を行う場合、代わりに逆数を乗算することができます。あらかじめ ``1.0/c`` を使用して逆数を先に計算しておきます。
 (:showhideend:)
 >><<
 
-* Only execute expensive operations occasionally, e.g. Physics.Raycast()
+* 高価な演算の計算頻度は下げます 例 Physics.Raycast()
 >>padding="0px 0px 0px 50px"<<
-(:showhide name="Infrequent Calling":)
-If you have to do something expensive, you might be able to optimize it by doing it less often and caching the result. For example, consider a projectile script that uses Raycast:
+(:showhide name="コール頻度の節約":)
+もし高価な演算があるとして、最適化するにはその頻度を下げて結果をキャッシュすると良いかもしれません。例えばRaycastを使用する発射物のスクリプトを考えてみます:
 
 (:code:)
 // Bullet.js
@@ -447,7 +447,7 @@ function FixedUpdate () {
 	var distanceThisFrame = speed * Time.fixedDeltaTime;
 	var hit : RaycastHit;
 
-	// every frame, we cast a ray forward from where we are to where we will be next frame
+	// 毎フレーム、 現在地から forwad 方向に Raycast して次のフレームの場所を計算
 	if(Physics.Raycast(transform.position, transform.forward, hit, distanceThisFrame)) {
 		// Do hit
 	} else {
@@ -456,7 +456,7 @@ function FixedUpdate () {
 }
 (:codeend:)
 
-Right away, we could improve the script by replacing FixedUpdate with Update and fixedDeltaTime with deltaTime. FixedUpdate refers to the Physics update, which happens more often than the frame update. But let's go even further by only raycasting every n seconds. A smaller n gives greater temporal resolution, and a bigger n gives better performance. The bigger and slower your targets are, the bigger n can be before temporal aliasing occurs. (Appearance of latency, where the player hit the target, but the explosion appears where the target used to be n seconds ago, or the player hit the target, but the projectile goes right through).
+このスクリプトはFixedUpdate を Update で置き換えて、fixedDeltaTime を deltaTime で置き換えることにより直ちに改善が出来ます。FixedUpdate は 物理演算の Update に該当し、フレーム Updateより頻度が高くなります。しかしさらに一歩進めて Raycasting を n 秒おきにするようにします。より小さな n の値とすることで一時的な解像度があがり、そしてより大きな n の値とすることでパフォーマンスがより良くなります。ターゲットが大きくて遅いほど、n は一時的なエイリアシングが発生するまでに n がより大きな値となります。（ラテンシーの見え方、プレイヤーがターゲットに当たるけれども爆発はターゲットが n 秒前にいたところで発生するか、またはプレイヤーがターゲットに当たったけれども、何もおきず通過してしまいます））
 
 (:code:)
 // BulletOptimized.js
@@ -469,19 +469,19 @@ private var hasHit = false;
 private var timeTillImpact = 0.0;
 private var hit : RaycastHit;
 
-// set up initial interval
+// 初期インターバルのセットアップ
 function Start () {
 	begin = transform.position;
 	timer = interval+1;
 }
 
 function Update () {
-	// don't allow an interval smaller than the frame.
+	// フレームより小さなインターバルを許容しません
 	var usedInterval = interval;
 	if(Time.deltaTime > usedInterval) usedInterval = Time.deltaTime;
 
-	// every interval, we cast a ray forward from where we were at the start of this interval
-	// to where we will be at the start of the next interval
+	// 毎インターバルごとに、インターバルの最初に、現在の位置から forward 方向にRaycastして
+	// そこが次のインターバルの最初にいる位置となります
 	if(!hasHit && timer >= usedInterval) {
 		timer = 0;
 		var distanceThisInterval = speed * usedInterval;
@@ -496,10 +496,10 @@ function Update () {
 
 	timer += Time.deltaTime;
 
-	// after the Raycast hit something, wait until the bullet has traveled
-	// about as far as the ray traveled to do the actual hit
+	// Raycast が何かに当たった後、弾丸が、交差する Ray の位置
+	// まで実際に移動して当たるまで待機
 	if(hasHit && timer > timeTillImpact) {
-		// Do hit
+		// 当たる
 	} else {
 		transform.position += transform.forward * speed * Time.deltaTime;
 	}
@@ -510,22 +510,22 @@ function Update () {
 >><<
 
 
-* Minimize callstack overhead in inner loops
+* 内部ループでのコールスタックのオーバーヘッドを最小化
 >>padding="0px 0px 0px 50px"<<
-(:showhide name="Callstack Overhead":)
-Just calling a function has a little bit of overhead in itself. If you are calling things like ``x = Mathf.Abs(x)`` thousands of times per frame, it might be better to just do ``x = (x > 0 ? x : -x);`` instead.
+(:showhide name="コールスタックのオーバーヘッド":)
+関数を呼ぶだけで、少しのオーバーヘッドになります。もし ``x = Mathf.Abs(x)`` という形で毎フレームごとに1000回コールしているのであれば、代わりに ``x = (x > 0 ? x : -x);`` とするほうが良いかもしれません
 (:showhideend:)
 >><<
 
 
-!!! Optimizing Physics Performance
-The NVIDIA PhysX physics engine used by Unity is available on mobiles, but the performance limits of the hardware will be reached more easily on mobile platforms than desktops.
+!!! 物理演算パフォーマンスの最適化
+Unityが使用するNVIDIA PhysX 物理エンジンはモバイルで利用可能ですが、ハードウェアのパフォーマンス限界はデスクトップよりもモバイルプラットフォームで、より到達しやすくなります。
 
-Here are some tips for tuning physics to get better performance on mobiles:-
-* You can adjust the ``Fixed Timestep`` setting (in the [[Main.class-TimeManager|Time manager]]) to reduce the time spent on physics updates. Increasing the timestep will reduce the CPU overhead at the expense of the accuracy of the physics. Often, lower accuracy is an acceptable tradeoff for increased speed.
-* Set the ``Maximum Allowed Timestep`` in the [[Main.class-TimeManager|Time manager]] in the 8-10fps range to cap the time spent on physics in the worst case scenario.
-* Mesh colliders have a much higher performance overhead than primitive colliders, so use them sparingly. It is often possible to approximate the shape of a mesh by using child objects with primitive colliders. The child colliders will be controlled collectively as a single compound collider by the rigidbody on the parent.
-* While wheel colliders are not strictly colliders in the sense of solid objects, they nonetheless have a high CPU overhead.
+* 物理演算をチューニングしてモバイルでより良いパフォーマンスを得るためのテクニックです:-
+*  ``Fixed Timestep`` 設定を調整 ( [[Main.class-TimeManager|Time manager]] の中) して物理演算の Update に要する時間を削減できます。Timestep を増加させることで CPU オーバーヘッドが減少し、その代償として物理演算の正確性が落ちます。多くの場合で正確性はパフォーマンスと引き換えであれば受け入れできる状況のトレードオフになります。 
+* [[Main.class-TimeManager|Time manager]] の ``Maximum Allowed Timestep`` を 8-10fps 範囲として、最悪シナリオでの物理演算に要する時間の上限とします。
+* メッシュコライダはプリミティブ コライダより大きいパフォーマンス オーバーヘッドがあるため、慎重に使用して下さい。メッシュの形状は多くの場合で、プリミティブ コライダを使用した子オブジェクトを使用することで、近似することが可能です。子コライダは親の Rigidbody の複合コライダにより、まとめて制御できます。
+* ホイール コライダは厳密には固定オブジェクトという意味ではコライダではありませんが、それでも高いCPUオーバーヘッドがあります。
 
 
 
