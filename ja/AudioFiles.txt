@@ -1,18 +1,18 @@
-!Audio Files
+!音声ファイル
 
-As with Meshes or Textures, the workflow for $$Audio File$$ assets is designed to be smooth and trouble free.  Unity can import almost every common file format but there are a few details that are useful to be aware of when working with Audio Files.
+メッシュやテクスチャと同様に、 $$Audio File$$ アセットのワークフローはスムーズでトラブルがないようにデザインされています。Unity 一般的なファイル形式をほとんどインポートできますが、いくつか音声ファイルで作業をする際に知っておくと役立つことがあります
 
-Audio in Unity is either ''Native'' or ''Compressed''.  Unity supports most common formats (see the list below) and will import an audio file when it is added to the project. The default mode is ''Native'', where the audio data from the original file is imported unchanged. However, Unity can also compress the audio data on import, simply by enabling the ''Compressed'' option in the importer. (iOS projects can make use of the hardware decoder - see the iOS documentation for further details). The difference between Native and Compressed modes are as follows:-
+Unity での音声は ''ネイティブ'' または ''圧縮'' のいずれかです。Unityはほとんどの共通フォーマット（以下のリストを参照）をサポートし、音声ファイルをプロジェクトの追加時にインポートします。デフォルトのモードは ''ネイティブ'' で、元ファイルからの音声ファイルは変更されずにインポートされます。しかし、Unity は音声データをインポート時に、インポータで ''Compressed'' オプションを有効化することで、圧縮することができます。（iOS プロジェクトはハードウェアデコーダーを活用できます - iOS ドキュメントで詳細を確認下さい。ネイティブ および 圧縮 のモードの違いはつぎの通りです:-
 
-* $$Native$$: Use Native (WAV, AIFF) audio for short sound effects. The audio data will be larger but sounds won't need to be decoded at runtime.
+* $$Native$$: ネイティブ（WAV, AIFF）音声を短い効果音に使用します。音声データは大きくなりますが、実行時にデコードされません
 
-* $$Compressed$$: The audio data will be small but will need to be decompressed at runtime, which entails a processing overhead. Depending on the target, Unity will encode the audio to either Ogg Vorbis(Mac/PC/Consoles) or MP3 (Mobile platforms). For the best sound quality, supply the audio in an uncompressed format such as WAV or AIFF (containing PCM data) and let Unity do the encoding. If you are targeting Mac and PC platforms only (including both standalones and webplayers) then importing an Ogg Vorbis file will not degrade the quality. However, on mobile platforms, Ogg Vorbis  and MP3 files will be re-encoded to MP3 on import, which will introduce a slight quality degradation.
+* $$Compressed$$: 音声データは小さくなりますが、実行時に解凍する必要があり、処理オーバーヘッドが伴います。ターゲットに応じて、UnityはオーディオをOgg Vorbis（Mac／PC／コンソール）またはMP3（モバイル）にエンコードをします。ベストの音声品質のためにはオーディオを WAV または AIFF （PCMデータ含む）など非圧縮形式を提供して Unity にエンコードをまかせます。もしMac および PC プラットフォームのみターゲットとしている場合（スタンドアローンおよびWebPlayer含む）、Ogg Vorbisファイルをインポートすることで品質は劣化しません。しかし、モバイルプラットフォームで、Ogg Vorbis および MP3 ファイルは インポート時に MP3 に再エンコードされ、わずかな品質劣化を伴います。
 
-Any Audio File imported into Unity is available from scripts as an $$Audio Clip$$ instance, which is effectively just a container for the audio data. The clips must be used in conjunction with $$Audio Sources$$ and an $$Audio Listener$$ in order to actually generate sound. When you attach your clip to an object in the game, it adds an Audio Source component to the object, which has ``Volume``, ``Pitch`` and a numerous other properties.  While a Source is playing, an Audio Listener can "hear" all sources within range, and the combination of those sources gives the sound that will actually be heard through the speakers.  There can be only one Audio Listener in your scene, and this is usually attached to the $$Main Camera$$.
+Unity へインポートされる全ての音声データはスクリプトから $$Audio Clip$$ として利用可能で、単なる音声データのコンテナの扱いです。音声クリップは $$Audio Sources$$ および $$Audio Listener$$ とともに使用することで実際に音を生成します。もしクリップをゲームのオブジェクトにアタッチするとき、Audio Source コンポーネントをオブジェクトに追加し、これには ``Volume`` 、 ``Pitch`` 、および数多くのプロパティがあります。Audio Source が再生しているとき、Audio Listener は範囲内にある Audio Source が "聞こえて" 、それらの Audio Source の組み合わせによりスピーカーを通して聞くことの出来る音となります。シーンには Audio Listener はひとつのみ存在することが出来て、通常は $$Main Camera$$ にアタッチされます。
 
-!! Supported Formats
+!! サポートする形式
 ||border=1
-||!Format||!Compressed as (Mac/PC)||!Compressed as (Mobile)||
+||!形式||!(Mac/PC)での圧縮||!(モバイル)での圧縮||
 ||MPEG(1/2/3)    || Ogg Vorbis || MP3 || 
 ||Ogg Vorbis     || Ogg Vorbis || MP3 ||
 ||WAV            || Ogg Vorbis || MP3 ||
@@ -25,6 +25,6 @@ Any Audio File imported into Unity is available from scripts as an $$Audio Clip$
 >><<
 
 
-See the [[Sound|Sound chapter]] in the [[Creating Gameplay]] section of this manual for more information on using sound in Unity.
+このマニュアルの [[Creating Gameplay]] の中の [[Sound|サウンド の チャプター]] で Unity で音声を使用する情報について参照下さい。
 
 (:include class-AudioClip:)
