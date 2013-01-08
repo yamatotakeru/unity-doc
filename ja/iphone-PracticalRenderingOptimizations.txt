@@ -1,47 +1,48 @@
-!Practical Guide to Optimization for Mobiles - Rendering Optimizations
+!モバイル向けの最適化実用ガイド - レンダリング最適化
 
-This section introduces the technicalities of rendering optimization. It shows how to bake lighting results for better performance, and how the developers of Shadowgun levered high-contrast textures, with lighting baked-in, to make their game look great. If you are looking for general information on what a mobile-optimized game looks like, check out the [[Main.iphone-OptimizedGraphicsMethods | Graphics Methods page]].
+本項ではレンダリング最適化の技術的な要素を紹介します。パフォーマンスを向上せるためにライティングの結果を焼き込む方法とShadowgun開発陣が高解像度のテクスチャへのライティング焼き込みを活用してゲームの見栄えを美麗なものにしたか紹介します。もし最適化されたモバイルゲームがどのような見栄えとなるかか一般的な情報を探しちいるのであれば [[Main.iphone-OptimizedGraphicsMethods | グラフィックス手法のページ]] を参照下さい。
 
-!! Get Artsy!
+!! 美麗なゲームにする
 
-Sometimes optimizing the rendering in your game requires some dirty work. All of the structure that Unity provides makes it easy to get something working fast, but if you require top notch fidelity on limited hardware, doing things yourself and sidestepping that structure is the way to go, provided that you can introduce a key structural change that makes things a lot faster. Your tools of choice are editor scripts, simple shaders, and good old-fashioned art production.
+レンダリング最適化はしばしば泥臭い作業が必要になります。Unityが提供する仕組みにより速く動作させることは簡単ですが、限られたハードウェアで最強のスピードを必要な場合、パフォーマンスの鍵となる変更を導入出来る前提であれば、カスタムで作業を行い、Unityの仕組みを迂回すべきです。エディタ スクリプト、簡単なシェーダー、および古き良き画像制作です。
 
-__Note for Unity Indie users:__ The editor scripts referenced here use RenderTextures to make production smooth, so they wont work for you right away, but the principles behind them work with screenshotting as well, so nothing is stopping you from using these techniques for a few texture bakes of your own.
+__Unity フリー版 ユーザ向けの注意:__ ここで参照されているエディタ スクリプトは RenderTexture を使用して本番環境でスムーズになるようにしているため、フリー版では動作しません。一方で背後の原理および付随しているスクリーンショットは十分活用出来るのでこれらのテクニックを使ってテクスチャ焼き込みを行うことは問題ありません。
 
-!!! How to Dive Under the Hood
+!!! 裏の裏まで知る
 
-First of all, check out this [[Main.Shaders | introduction to how shaders are written]].
+まず最初に [[Main.Shaders | シェーダの書き方の紹介]] を参照下さい。
 
-* [[http://unity3d.com/support/resources/assets/built-in-shaders | Built in shaders]]
-** Examine the source code of the built in shaders. Often, if you want to make a new shader that does something different, you can achieve it by taking parts of two already-existing shaders and putting them together.
+* [[http://unity3d.com/support/resources/assets/built-in-shaders | 内蔵シェーダ]] 
+** 内蔵シェーダのソースコードを眺めて下さい。何か別のことを行うシェーダを作成したい場合、すでに存在する二つのシェーダを組み合わせて実現出来ることがしばしばあります。
 
-* Surface Shader Debugging (#pragma debug)
-** A CG Shader is generated from every surface shader, and then fully compiled from there. If you add ``#pragma debug`` to the top of your surface shader, when you open the compiled shader via the inspector, you can see the intermediate CG code. This is useful for inspecting how a specific part of a shader is actually calculated, and it can also be useful for grabbing certain aspects you want from a surface shader and applying them to a CG shader.
+* サーフェイス シェーダ デバッグ (#pragma debug)
+** 全てのサーフェイス シェーダからCG シェーダが生成され、そこで完全にコンパイルされます。``#pragma debug``  をサーフェイス シェーダの冒頭に加えると、コンパイルされたシェーダをインスペクタで開いたとき中間CGコードをみることが出来ます。これはシェーダの特定の箇所が実際にどういう計算をしているか知るのに便利であり、さらにサーフェイス シェーダ から切り出してCGシェーダに適用するのにも便利です。
 
-* Shader Include Files
-** A lot of shader helper code is included in every shader, and usually it isn't used, but this is why you will sometimes see shaders calling functions like WorldReflectionVector which don't seem to be defined anywhere. Unity has several [[SL-BuiltinIncludes | built-in shader include files]] that contain these helper definitions. To find a specific function, you will need to search through all of the different includes.
-** These files are a major part of internal structure that Unity uses to make it easy to write shaders; the files provide things like real time shadows, different light types, lightmaps, and multiple platform support.
+* シェーダのIncludeファイル
+** それぞれのシェーダには多くのシェーダ ヘルパー関数 コードがIncludeされていて普段は使用されませんが、しばしばどこにも定義されてないように見えるWorldReflectionVector をシェーダがコールしているのはここにあるためです。Unityにはいくつかの [[SL-BuiltinIncludes | 内蔵シェーダの include ファイル]] がありわこれらのヘルパー関数の定義を行っています。特定の関数を見つけるには全てのincludeファイルを検索する必要があります。
 
-
-* Hardware documentation
-**Take your time to study Apple documentations on 
-[[http://developer.apple.com/library/ios/#documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/OpenGLESPlatforms/OpenGLESPlatforms.html%23//apple_ref/doc/uid/TP40008793-CH106-SW6 | hardware]] and [[http://developer.apple.com/library/ios/#documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/BestPracticesforShaders/BestPracticesforShaders.html | best practices for writing shaders]]. Note that we would suggest to be more aggressive with floating point precision hints however.
+** これらのファイルはUnityが使用する仕組みの主要な部分でありシェーダを記述することを容易にします。これらのファイルはリアルタイムシャドウ、異なるライトの種類、ライトマップ、および複数プラットフォーム対応の機能を提供します。
 
 
-!! [[http://blogs.unity3d.com/2012/03/23/shadowgun-optimizing-for-mobile-sample-level/ | Shadowgun]] in-depth
+* ハードウェアに関するドキュメント
+**時間をかけて次のAppleドキュメントを読み込んで下さい。 
+[[http://developer.apple.com/library/ios/#documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/OpenGLESPlatforms/OpenGLESPlatforms.html%23//apple_ref/doc/uid/TP40008793-CH106-SW6 | ハードウェア]] および [[http://developer.apple.com/library/ios/#documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/BestPracticesforShaders/BestPracticesforShaders.html | シェーダを書くベストプラクティス]] 。ただし、留意してほしいこととして浮動小数点精度のヒントについてはより積極的にすることを推奨します。
 
-Shadowgun is a great graphical achievement considering the hardware it runs on. While the art quality seems to be the key to the puzzle, there are a couple tricks to achieving such quality that programmers can pull off to maximize their artists' potential.
 
-In the [[Main.iphone-OptimizedGraphicsMethods | Graphics Methods page]] we used the golden statue in Shadowgun as an example of a great optimization; instead of using a normal map to give their statue some solid definition, they just baked lighting detail into the texture. Here, we will show you how and why you should use a similar technique in your own game.
 
-(:showhide name="Shader code for Real-Time vs Baked Golden Statue":)
+!! [[http://blogs.unity3d.com/2012/03/23/shadowgun-optimizing-for-mobile-sample-level/ | Shadowgun]] での詳細
+
+実行されているハードウェアを考えるとShadowgunのグラフィックスは素晴らしいものです。品質が鍵に見える一方でそのような品質を達成するためにプログラマがアーティストの潜在能力を最大限に引き出すために出来るテクニックがいくつかあります。
+ [[Main.iphone-OptimizedGraphicsMethods | グラフィックス手法のページ]] の中でShadowgunの黄金の像を素晴らしい最適化の事例として挙げました。法線マップを使用する代わりに像の定義を固定で決定して、ライティングの詳細をテクスチャに焼き込みました。ここでは、ゲームの中でどのようにしてなぜ同じテクニックを使用すべきかを紹介します。
+
+(:showhide name="黄金の像を、 リアルタイム 対 焼き込み のシェーダをコード比較":)
 (:table border=0:)
 (:cellnr:)
 (:code:)
-// This is the pixel shader code for drawing normal-mapped
-// specular highlights on static lightmapped geometry
+// staticにライトマップされた物体の法線マッピング
+//  された鏡面ハイライトのピクセルシェーダのコード
 
-// 5 texture reads, lots of instructions
+// テクスチャ読み込み 5回、多くの命令
 
 SurfaceOutput o;
 
@@ -83,10 +84,10 @@ return half4(lm, 1);
 (:codeend:)
 (:cell:)
 (:code:)
-// This is the pixel shader code for lighting which is
-// baked into the texture
+// テクスチャに焼き込みされたライティングの
+//  ピクセルシェーダのコード
 
-// 2 texture reads, very few instructions
+// テクスチャ読み込み 2 回、極めて少ない命令
 
 
 
@@ -133,14 +134,14 @@ return c;
 (:cellnr:)
 (:div style="float:right; text-align:right; padding-right:20px;":)
 
-Reflective Bumped Specular
+鏡面反射バンプ
 
 %thumb width=180px float=left padding=5px%Attach:statuetex2.jpg %thumb width=150px float=right padding=5px%Attach:bumpStatue.gif
 (:divend:)
 (:cell:)
 (:div style="float:left; text-align:left; padding-left:20px;":)
 
-Baked Light with Reflection
+反射によるライトの焼き込み
 
 %thumb width=150px  padding=5px%Attach:bakedStatue.gif %thumb width=180px float=right padding=5px%Attach:statuetex1.jpg
 
@@ -148,54 +149,54 @@ Baked Light with Reflection
 (:cellnr:)
 (:tableend:)
 
-!!! Render to Texel
+!!! テクセルへのレンダリング
 
-The real-time light is definitely higher quality, but the performance gain from the baked version is massive. So how was this done? An editor tool called [[http://u3d.as/content/forest-johnson/render-to-texel-baker/3fD | Render to Texel]] was created for this purpose. It bakes the light into the texture through the following process: 
+リアルタイムライトは間違いなく品質が上がりますが、焼き込みによるパフォーマンスの改善は著しいものです。ではどうやってこれを達成したのか？ [[http://u3d.as/content/forest-johnson/render-to-texel-baker/3fD | Render to Texel]] と呼ばれるエディタ ツールがこの目的で作成されました。テクスチャへのライトの焼き込みを次のプロセスで行っています:
 
-* Transform the tangent space normal map to world space via script. %thumb width=300px float=right padding=5px%Attach:statueBake.jpg
+* 接空間法線マップをスクリプト経由でワールド座標に変換。 %thumb width=300px float=right padding=5px%Attach:statueBake.jpg
 
-* Create a world space position map via script.
+* ワールド座標の位地マップをスクリプト経由で作成
 
-* Render to Texture a fullscreen pass of a the entire texture using the two previous maps, with one additional pass per light.
+* テクスチャに前述のふたつのマップを使用してテクスチャ全体をフルスクリーン パスを、ライトごとにひとつの追加のパスつきでレンダリング
 
-* Average results from several different vantage points to yield something which looks plausible all around, or at least from common viewing angles in your game. 
+* いくつかの見晴らしの良い点から平均的な結果が得られるように、全体的に満足な仕上がりにするか、せめてゲームで最も良く使われるビューアングルで良い仕上がりにする。
 
-This is how the best graphics optimizations work. They sidestep tons of calculations by preforming them in the editor or before the game runs. In general, this is what you want to do:
+これがベストのグラフィックス最適化を行う方法です。大量の計算を飛ばすためにあらかじめエディタまたはゲームの実行前に行っておきます。一般的には行うべきことは次の通りです:
 
-* Create something that looks great, don't worry about performance.
+* パフォーマンスは気にせず見栄えが最高のものを作成
 
-* Use tools like [[Main.Lightmapping | Unity's lightmapper]] and editor extensions like [[http://u3d.as/content/forest-johnson/render-to-texel-baker/3fD | Render to Texel]] and [[http://u3d.as/content/forest-johnson/sprite-packer-with-legacy-particle-emitter-to-shuriken-converter-/34E | Sprite Packer]] to bake it down to something which is very simple to render. 
-** Making your own tools is the best way to do this, you can create the perfect tool suited for whatever problem your game presents.
+* [[Main.Lightmapping | Unityのライトマップツール]] および [[http://u3d.as/content/forest-johnson/render-to-texel-baker/3fD | Render to Texel]] というようなエディタ拡張、および [[http://u3d.as/content/forest-johnson/sprite-packer-with-legacy-particle-emitter-to-shuriken-converter-/34E | スプライト パッカー]] などを使用して容易にレンダリング出来るものに焼き込みます。
+** カスタムでツールを自作するのがベストであり、ゲームで発生しているどんな問題にとっても完璧なツールを作成出来ます。
 
-* Create shaders and scripts which modulate your baked output to give it some sort of "shine"; an eye-catching effect to create an illusion of dynamic light.
+* 焼き込みした結果に "輝き" かわ足されるように調整してシェーダおよびスクリプトを作成します。動的ライトに見せかける見栄えの良いエフェクトです。
 
-!!! Concept of Light Frequency
+!!! ライトの周波数という概念
 
 Attach:imageFrequency.jpg
 
-Just like the Bass and Treble of an audio track, images also have high-frequency and low-frequency components, and when you're rendering, it's best to handle them in different ways, similar to how stereos use subwoofers and tweeters to produce a full body of sound. One way to visualize the different frequencies of an image is to use the "High Pass" filter in Photoshop. ^^Filters->Other->High Pass^^. If you have done audio work before, you will recognize the name High Pass. Essentially what it does is cut off all frequencies lower than X, the parameter you pass to the filter. For images, Gaussian Blur is the equivalent of a Low Pass. 
+オーディオ トラックのバスやトレブルと同じように画像にも高周波と低周波の要素があり、レンダリングするときはそれらを、ステレオがサブウーハーやツィーターを使用して音全体を構築するように、個別にハンドリングするのがベストです。画像の異なる周波数を視覚化するひとつの方法は Photoshopの "High Pass" フィルタを使用することです。メニューから^^Filters->Other->High Pass^ です。もしオーディオ業務を経験したことがあれば、ハイパスは聞いたことがあるはずです。要は、Xというバラメータを渡してあげるとそれより低い周波数を全てカットする働きをします。画像についてはガウス ブラーがろーパスに相当するものです。
 
-This applies to realtime graphics because frequency is a good way to separate things out and determine how to handle what. For example, in a basic lightmapped environment, the final image is obtained by composite of the lightmap, which is low frequency, and the textures, which are high-frequency. In Shadowgun, low frequency light is applied to characters quickly with light probes, high frequency light is faked through the use of a simple bumpmapped shader with an arbitrary light direction. 
+これはリアルタイム グラフィックスに適用出来るのは、周波数により分類を行って何をハンドリングするか判断しやすいためです。例えば、基本的なライトマップ環境では最終画像は合成として、ライトマップから低周波を、テクスチャから高周波を取得します。Shadowgunでは低周波のライトはライトプローブを使用して速やかに適用出来て、高周波のライトは、簡単なバンプマップのシェーダを任意のライト方向つきで使用することで擬似的に再現します。
 
-In general, by using different methods to render different frequencies of light, for example, baked vs dynamic, per-object vs per-level, per pixel vs per-vertex, etc, you can create full bodied images on limited hardware. Stylistic choices aside, it's generally a good idea to try to have strong variation colors or values at both high and low frequencies. 
+一般的には、異なる手法により異なる周波数のライトをレンダリングすることで、例えば 焼き込み 対 動的 、オブジェクト単位 対 レベル単位、ピクセル単位 対 頂点単位、等々の手法により制限のあるハードウェアで完全に再現される画像を作成出来ます。好みによる選択は置いといて、強いバリエーションのカラーまたは値を高周波と低周波ともにもたせるのは良い考えです。
 
-!!! Frequency in Practice: Shadowgun Decomposition
+!!! 周波数活用の実例: Shadowgunの分解
 
 Attach:shadowgunComposite.jpg
 
-* Top Row
-** Ultra-Low-Frequency Specular Vertex Light (Dynamic) | High Frequency Alpha Channel | Low Frequency Lightmap | High Frequency Albedo
+* 最上行
+** 超低周波 鏡面 頂点ライティング| 高周波 アルファ チャネル | 低周波 ライトマップ | 高周波 アルベド
 
-* Mid Row
-** Specular Vertex Light * Alpha | High Frequency Additive Details | Lightmap * Color Channel
+* 中間行
+** 鏡面 頂点ライティング * アルファ | 高周波の追加の詳細 | ライトマップ * カラーチャネル
 
-* Bottom
-** Final Sum
+* 最下行
+** 最終的な合計
 
-__Note__: Usually these decompositions refer to steps in a deferred renderer, but that's not the case here. All of this is done in just one pass. These are the two relevant shaders which this composition was based on:
+__注意__: 通常はこの分解はディファード レンダラのステップに該当しますが、今回の場合は該当しません。全てがひとつのパスで行われます。合成が行われたもとのシェーダを次に示します:
 
 
-(:showhide name="Lightmapped with Virtual Gloss Per-Vertex Additive":)
+(:showhide name="グロス風の頂点追加ライティング":)
 (:code:)
 Shader "MADFINGER/Environment/Virtual Gloss Per-Vertex Additive (Supports Lightmap)" {
 Properties {
@@ -300,7 +301,7 @@ SubShader {
 (:codeend:)
 (:showhideend:)
 
-(:showhide name="Lightprobes with Virtual Gloss Per-Vertex Additive":)
+(:showhide name="グロス風の頂点追加ライトプローブ":)
 (:code:)
 Shader "MADFINGER/Environment/Lightprobes with VirtualGloss Per-Vertex Additive" {
 Properties {
@@ -387,30 +388,30 @@ SubShader {
 (:codeend:)
 (:showhideend:)
 
-!! Best Practices
+!! ベスト プラクティス
 
-!!! GPU optimization: Alpha-Testing
+!!! GPU 最適化: アルファテスト
 
-Some GPUs, particularly ones found in mobile devices, incur a high performance overhead for alpha-testing (or use of the $$discard$$ and $$clip$$ operations in pixel shaders). You should replace alpha-test shaders with alpha-blended ones if possible. Where alpha-testing cannot be avoided, you should keep the overall number of visible alpha-tested pixels to a minimum.
+いくつかのGPU、特にモバイルデバイスのものは、アルファテスト(または $$discard$$ および $$clip$$ 演算のピクセルシェーダ) によりオーバーヘッドが大きくなります。アルファテストシェーダは出来る限りアルファブレンドのものと置き換えるべきです。アルファテストが避けられない場合、表示されるアルファテストされたピクセル数を最小にとどめるべきです。
 
-!!! iOS Texture Compression
+!!! iOS テクスチャ圧縮
 
-Some images, especially if using iOS/Android PVR texture compression, are prone to visual artifacts in the alpha channel. In such cases, you might need to tweak the PVRT compression parameters directly in your imaging software. You can do that by installing the ``PVR export plugin`` or using [[http://www.imgtec.com/powervr/insider/powervr-pvrtextool.asp | ``PVRTexTool``]] from Imagination Tech, the creators of the PVRTC format. The resulting compressed image file with a ``.pvr`` extension will be imported by the Unity editor directly and the specified compression parameters will be preserved. If PVRT-compressed textures do not give good enough visual quality or you need especially crisp imaging (as you might for GUI textures) then you should consider using 16-bit textures instead of 32-bit. By doing so, you will reduce the memory bandwidth and storage requirements by half.
-
-
-!!! Android Texture Compression
-
-All Android devices with support for OpenGL ES 2.0 also support the [[Main.class-Texture2D | ETC1 compression format]]; it's therefore encouraged to whenever possible use ETC1 as the prefered texture format.
-
-If targeting a specific graphics architecture, such as the Nvidia Tegra or Qualcomm Snapdragon, it may be worth considering using the proprietary compression formats available on those architectures. The Android Market also allows filtering based on supported texture compression format, meaning a distribution archive (.apk) with for example [[Main.class-Texture2D | DXT compressed textures]] can be prevented for download on a device which doesn't support it.
+いくつかの画像、特にiOS/Android PVR テクスチャ圧縮はアルファチャネルで画像の乱れが発生しやすいものです。そのような場合、PVRT圧縮パラメータを画像ソフトウェアで直接変更が必要かもしれません。そのためにら ``PVR export plugin`` をダウンロードするかPVRTC形式の作成者である Imagination Techの [[http://www.imgtec.com/powervr/insider/powervr-pvrtextool.asp | ``PVRTexTool``]] を使用出来ます。結果となる ``.pvr`` 拡張子のついた圧縮画像ファイルはUnityエディタにより直接インポート出来て、指定された圧縮パラメータは保持されます。もしPVRT圧縮されたテクスチャで十分な見栄えとならない場合、またはクッキリした画像処理が必要な場合 (GUIテクスチャなどで) は16ビットテクスチャを32ビットの代わりに使用すべきです。それによってメモリ帯域幅およびストレージ要件を半分に節約出来ます。
 
 
-!!! An Exercise
+!!! Android テクスチャ圧縮
 
-* Download [[http://u3d.as/content/forest-johnson/render-to-texel-baker/3fD | Render to Texel]].
-* Bake lighting on your model.
-* Run the High Pass filter on the result in Photoshop.
-* Edit the "Mobile/Cubemapped" shader, included in the Render to Texel package, so that the missing low-frequency light details are replaced by vertex light.
+OpenGL ES 2.0をサポートする全てのAndroidデバイスは [[Main.class-Texture2D | ETC1 圧縮形式]] もサポートします。このため可能な限りETC1を優先すべきテクスチャ形式とすることを推奨します。
+
+もし特定のグラフィックス アーキテクチャ、すなわちNvidia Tegra または Qualcomm Snapdragon等、をターゲットとする場合、それらのアーキテクチャで利用可能な専用の圧縮形式を検討する価値があります。Android Marketもまた、サポートされるテクスチャ圧縮形式にもとづいたフィルタリングを許容していて、配布アーカイブ (.apk) に [[Main.class-Texture2D | DXT 圧縮テクスチャ]] をサポートしないデバイスへの配布を防止することが可能です。
+
+
+!!! 演習
+
+* [[http://u3d.as/content/forest-johnson/render-to-texel-baker/3fD | テクセルにレンダリング]] をダウンロード
+* モデルにライティングを焼き込みます。
+* 出力結果にPhotoshop上でさらにハイパスフィルタをかけます。
+*  Render to Texel パッケージに含まれる "Mobile/Cubemapped" シェーダの中身を、低周波のライト詳細が頂点ライトで置き換えられるように、編集します。
 
 
 
