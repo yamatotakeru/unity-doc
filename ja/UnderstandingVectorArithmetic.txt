@@ -1,76 +1,78 @@
-!Understanding Vector Arithmetic
+!ベクトル演算の理解
+Understanding Vector Arithmetic
 
-Vector arithmetic is fundamental to 3D graphics, physics and animation and it is useful to understand it in depth to get the most out of Unity. Below are descriptions of the main operations and some suggestions about the many things they can be used for.
+ベクトル演算は3Dグラフィックス、物理演算およびアニメーションにとって基本であり、さらに深く理解することでUnityを最大限活用するのに役立ちます。以下で主要な演算および活用できる多くの場面に関しての提案をまとめます。
 
-!!Addition
+!!加算
 
-When two vectors are added together, the result is equivalent to taking the original vectors as "steps", one after the other. Note that the order of the two parameters doesn't matter, since the result is the same either way.
+二つのベクトルが互いに足しあわされるとき、結果はもとのベクトルを次から次への "ステップ" とみなすのと同じです。二つのパラメータの順番はどちらにせよ同じになるので影響がないことに留意下さい。
 
 Attach:VectorAdd.png
 
-If the first vector is taken as a point in space then the second can be interpreted as an offset or "jump" from that position. For example, to find a point 5 units above a location on the ground, you could use the following calculation:-
+もし最初のベクトルを空間上の点とした場合、2つ目のベクトルはその位置からのオフセットまたは "ジャンプ" とみなすことが出来ます。例えば、地面から5ユニット上の位置を見つけるためには次の計算を用いることが出来ます:-
 
 [@var pointInAir = pointOnGround + new Vector3(0, 5, 0);@]
 
-If the vectors represent forces then it is more intuitive to think of them in terms of their direction and magnitude (the magnitude indicates the size of the force). Adding two force vectors results in a new vector equivalent to the combination of the forces. This concept is often useful when applying forces with several separate components acting at once (eg, a rocket being propelled forward may also be affected by a crosswind).
+もしベクトルが力を表す場合、より直感的な捉え方は向きや大きさです（大きさは力の大きさです）。二つのベクトルを足すことは力の合成と同じです。この考え方は別のコンポーネントで同時に加えるときに便利です（例えば、正面に向うロケットが横風の影響を受けているかもしれません）。
 
 
-!!Subtraction
+!!減算
 
-Vector subtraction is most often used to get the direction and distance from one object to another. Note that the order of the two parameters ``does`` matter with subtraction:-
+ベクトルの減算をもっとも良く使う場面はひとつのオブジェクトから別のオブジェクトへの向きと距離を出すためです。減算の場合は二つのパラメータの順番は ``影響がある`` ことに留意下さい。
 
 Attach:VectorSubtract.png
 
-[@// The vector d has the same magnitude as c but points in the opposite direction.
+[@// ベクトル d は c と同じ大きさですが、異なる方向を指します。
 var c = b - a;
 var d = a - b;@]
 
-As with numbers, adding the negative of a vector is the same as subtracting the positive.
+数字については、負の値のベクトルを足すのはその正の値のベクトルを減算するのと同じです。
 	
-[@// These both give the same result.
+[@// 両方は同じ結果となります
 var c = a - b;
 var c = a + -b;@]
 
-The negative of a vector has the same magnitude as the original and points along the same line but in the exact opposite direction.
+負の値のベクトルはもとと同じ大きさであり、同一線分上に沿いますが、全く逆の方向となります。
 
 
-!!Scalar Multiplication and Division
 
-When discussing vectors, it is common to refer to an ordinary number (eg, a float value) as a scalar. The meaning of this is that a scalar only has "scale" or magnitude whereas a vector has both magnitude and direction.
+!!スカラー乗算および除算
 
-Multiplying a vector by a scalar results in a vector that points in the same direction as the original. However, the new vector's magnitude is equal to the original magnitude multiplied by the scalar value.
+ベクトルについて議論するとき、普通の数字（例えば浮動少数点の値）をスカラーとみなすことが通常です。この意味は、スカラーはひとつの "スケール" または大きさしかありませんが、ベクトルには大きさと向きがあります。
 
-Likewise, scalar division divides the original vector's magnitude by the scalar.
+ベクトルにスカラーを乗算すると、元のベクトルと同じ方向を向くベクトルが得られます。しかし、新しいベクトルの大きさは元の大きさにスカラーの値を乗算した値となります。
 
-These operations are useful when the vector represents a movement offset or a force. They allow you to change the magnitude of the vector without affecting its direction.
+同様に、スカラーの除算は元のベクトルの大きさをスカラーで割ります。
 
-When any vector is divided by its own magnitude, the result is a vector with a magnitude of 1, which is known as a normalized vector. If a normalized vector is multiplied by a scalar then the magnitude of the result will be equal to that scalar value. This is useful when the direction of a force is constant but the strength is controllable (eg, the force from a car's wheel always pushes forwards but the power is controlled by the driver).
+これらの演算はベクトルが動作のオフセットまたは力を表現するときに便利です。これによりベクトルの向きを変えることなくの大きさを変更できます。
+
+あるベクトルが自身の大きさにより除算されると結果は大きさが1のベクトルとなり、これは正規化ベクトルと呼ばれています。もし成果ベクトルにスカラーを乗算すると、結果の大きさはスカラーの値と同じになります。これは力の向きが一定でありながら強さが制御できるときに便利です（例えば、車の車輪はつねに前に進みますが、強さはドライバーにより制御されます）。
 
 
-!!Dot Product
+!!内積
 
-The dot product takes two vectors and returns a scalar. This scalar is equal to the magnitudes of the two vectors multiplied together and the result multiplied by the cosine of the angle between the vectors. When both vectors are normalized, the cosine essentially states how far the first vector extends in the second's direction (or vice-versa - the order of the parameters doesn't matter).
+内積は二つのベクトルによりスカラーを返します。このスカラーは二つのベクトルの大きさを乗算したもの、およびベクトルのなす角のコサインと等しくなります。両方のベクトルが正規化されているとき、コサインは本質的に最初のベクトルが二つめのベクトルの向きに進んでいるかを表します（あるいはその逆もあり、パラメータの順番は影響ありません）。
 
 Attach:DotProduct.png
 
-It is easy enough to think in terms of angles and then find the corresponding cosines using a calculator. However, it is useful to get an intuitive understanding of some of the main cosine values as shown in the diagram below:-
+角度をもとにして、対応するコサインを計算機により見つけることは容易です。しかし、下図のようにいくつかの主なコサインの値を直感的に理解することが役に立ちます:-
 
 Attach:CosineValues.png
 
-The dot product is a very simple operation that can be used in place of the Mathf.Cos function or the vector magnitude operation in some circumstances (it doesn't do exactly the same thing but sometimes the effect is equivalent). However, calculating the dot product function takes much less CPU time and so it can be a valuable optimization.
+内積はとてもシンプルな演算であり、Mathf.Cos関数のまたはいくつかのケースではベクトルの magnitude 演算の代わりに使用でｓきます。（まったく同じではありませんが、場合によっては得られる効果は同じです）。しかし、内積の関数を利用したほうが要するCPU時間が短く、このために価値の高い演算となります。
 
 
-!!Cross Product
+!!外積
 
-The other operations are defined for 2D and 3D vectors and indeed vectors with any number of dimensions. The cross product, by contrast, is only meaningful for 3D vectors. It takes two vectors as input and returns another vector as its result.
+この他の演算は 2D および 3D 、あるいはより高次元ベクトルのでも定義ができます。一方で対照的に、外積は、3Dベクトルでしか意味をなしません。二つのベクトルをもとに、別のベクトルを結果として出力します。
 
-The result vector is perpendicular to the two input vectors. The "left hand rule" can be used to remember the direction of the output vector from the ordering of the input vectors. If the first parameter is matched up to the thumb of the hand and the second parameter to the forefinger, then the result will point in the direction of the middle finger. If the order of the parameters is reversed then the resulting vector will point in the exact opposite direction but will have the same magnitude.
+結果ベクトルは二つの入力ベクトルに対して垂直になります。"左手の法則" を覚えることで、入力ベクトルの順番による出力ベクトルの向きを判断することが出来ます。もし最初のパラメータが手の親指、二つめのパラメータが人差し指、そして結果は中指の方向を指します。もしパラメータの順番が逆になると結果のベクトルは正反対の向きで、ただし同じ大きさとなります。
 
 Attach:LeftHandRuleDiagram.png
 
-The magnitude of the result is equal to the magnitudes of the input vectors multiplied together and then that value multiplied by the sine of the angle between them. Some useful values of the sine function are shown below:-
+結果の大きさは入力ベクトルの大きさを乗算して、さらにそれらがなす角のサインを乗算したものとなります。サイン関数で役立つ値を以下で示します:-
 
 Attach:SineValues.png
 
-The cross product can seem complicated since it combines several useful pieces of information in its return value. However, like the dot product, it is very efficient mathematically and can be used to optimize code that would otherwise depend on slow transcendental functions.
+外積は、いくつかの便利な情報を返り値に合成するため複雑に感じられるかもしれません。しかし、内積と同様に数学的にとても効率的であり、これを使用しなければ遅い超越関数に依存するコードを最適化することが出来ます。
 
