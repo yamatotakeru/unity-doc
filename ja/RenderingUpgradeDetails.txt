@@ -1,50 +1,50 @@
-! Rendering upgrade details
+! レンダリング アップグレード詳細
 
-Unity 3 brings a lot of graphics related changes, and some things might need to be tweaked when you upgrade existing Unity 2.x projects. For changes related to shaders, see [[SL-V3Conversion | Shader Upgrade Guide]].
+Unity 3 によりグラフィック関連の変更が多くもたらされ、そしていくつかの事項は既存の Unity 2.x プロジェクトをアップグレードするときに微調整が必要です。シェーダに関連した変更については [[SL-V3Conversion | シェーダ アップグレードガイド]] を参照下さい。
 
-!! Forward Rendering Path changes
+!! Forward Rendering パスの変更
 
-Unity 2.x had one rendering path, which is called [[RenderTech-ForwardRendering | Forward]] in Unity 3. Major changes in it compared to Unity 2.x:
-* Most common case (one directional per-pixel light) is drawn in one pass now! (used to be two passes)
-* Point & Spot light shadows are not supported. Only one Directional light can cast shadows. Use [[RenderTech-DeferredLighting | Deferred Lighting]] path if you need more shadows.
-* Most "Vertex" lights replaced with Spherical Harmonics lighting.
-* Forward rendering path is purely shader based now, so it works on OpenGL ES 2.0, Xbox 360, PS3 (i.e. platforms that don't support fixed function rendering).
-
-
-!! Shader changes
-
-See [[SL-V3Conversion | Shader Upgrade Guide]] for more details. Largest change is: if you want to write shaders that interact with lighting, you should use [[SL-SurfaceShaders | Surface Shaders]].
+Unity 2.x はひとつのレンダリングパスのみであり、Unity 3では [[RenderTech-ForwardRendering | Forward]] と呼ばれます。Unity 2.x と比較した際の主要な変更は:
+* 最も良くあるケース（ひとつの方向性ピクセルライト）はひとつのパスで描画されます（過去は2つのパス）
+* ポイントライトおよびスポットライト のシャドウはサポートされません。ひとつの方向性ライトのみがシャドウを投影します。もしシャドウがより多く必要である場合は [[RenderTech-DeferredLighting | Deferred Lighting]] パスを使用下さい。
+* ほとんどの "頂点" ライトは球面調和 (Spherical Harmonics) ライティングで置き換えられています。
+*  Forward Rendering パスは純粋にシェーダベースであり、 OpenGL ES 2.0, Xbox 360, PS3で動作します。（すなわち固定関数レンダリングをサポートしないプラットフォーム）
 
 
-!! Obscure Graphics Changes That No One Will Probably Notice '^TM^'
+!! シェーダ の変更
 
-* Removed Mac Radeon 9200 pixel shader support (@@!!ATIfs@@ assembly shaders).
-* Removed support for per-pixel lighting on pre-ShaderModel2.0 hardware. As a result, Diffuse Fast shader is just VertexLit now.
-* Removed non-attenuated lights. All point and spot lights are attenuated now.
-* Removed script callbacks: @@OnPreCullObject@@ and @@RenderBeforeQueues@@ attribute.
-* Removed p-buffer based RenderTextures. RenderTextures on OpenGL require FBO support now.
-* Most [[SL-PassTags | Pass LightMode tags]] are gone, and replaced with new tags. You should generally be using [[SL-SurfaceShaders | Surface Shaders]] for that stuff anyway.
-* Texture instanceIDs are not OpenGL texture names anymore. Might affect C++ Plugins that were relying on that; use @@texture.GetNativeTextureID()@@ instead.
-* Rename shader keywords SHADOWS_NATIVE to SHADOWS_DEPTH; SHADOWS_PCF4 to SHADOWS_SOFT.
-* Removed ambient boost on objects that were affected by more than 8 vertex lights.
-* Removed @@_ObjectSpaceCameraPos@@ and @@_ObjectSpaceLightPos0@@ (added @@_WorldSpaceCameraPos@@ and @@_WorldSpaceLightPos0@@).
-* @@LightmapMode@@ tag in shader texture property does nothing now.
-* Skybox shaders do not write into depth buffer.
-* @@GrabPass@@ (i.e. refractive glass shader) now always grabs texture of the size of the screen.
-* @@#pragma multi_compile_vertex@@ and @@#pragma multi_compile_fragment@@ are gone.
-* Polygon offset in ShaderLab can't reference variables anymore (like @@Offset [_Var1], [_Var2]@@).
-* Renamed @@TRANSFER_EYEDEPTH/OUTPUT_EYEDEPTH@@ to @@UNITY_TRANSFER_DEPTH/UNITY_OUTPUT_DEPTH@@. They also work on a float2 in Unity 3.
-* Removed special shader pass types: R2TPass, OffscreenPass.
-* Removed @@_Light2World0@@, @@_World2Light0@@ built-in shader matrices.
-* Removed _SceneAmbient, _MultiModelAmbient, _MultiAmbient, _ModelAmbient, _MultiplyFog, _LightHackedDiffuse0, _ObjectCenterModelLightColor0 built-in shader vectors.
-* Removed @@_FirstPass@@ built-in shader float.
-* Fog mode in shader files can't come from variable (like @@Fog { Mode [_MyFogMode] }@@). To use global fog mode, write @@Fog { Mode Global }@@.
-* Removed @@BlendColor@@ color from ShaderLab.
-* Removed support for declaring texture matrix by-value in shader property.
-* Removed support for "static" shader properties.
-* Removed support for texture border color (@@RenderTexture.SetBorderColor@@).
-* Removed @@ColorMaterial Ambient, Diffuse, Specular@@ support (ColorMaterial AmbientAndDiffuse & Emission left). Support for the removed ones varied a lot depending on the platform causing confusion; and they didn't seem to be very useful anyway.
-* Built-in @@_CameraToWorld@@ and @@_WorldToCamera@@ matrices now do what you'd expect them to do. Previously they only contained the rotation part, and camera-to-world was flipped on Y axis. Yeah, we don't know how that happened either :)
-* Removed @@Shader.ClearAll()@@. Was deprecated since 2007, time to let it go.
-* Vertex shaders are compiled to Shader Model 2.0 now (before was 1.1). If you want to compile to SM1.1, add @@#pragma target 1.1@@ in the shader.
+詳細は [[SL-V3Conversion | シェーダ アップグレードガイド]] を参照下さい。もっとも大きな変更は:ライティングと相互作用を行うシェーダを書く場合、 [[SL-SurfaceShaders | サーフェイス シェーダ]] を使用すべきです。
+
+
+!! 誰も気付かないであろう目立たないグラフィックス変更 '^TM^'
+
+* Mac Radeon 9200 ピクセルシェーダサポートを終了 (@@!!ATIfs@@ アセンブリシェーダ)。
+* シェーダモデル2.0前のハードウェアのピクセルライティングのサポートを終了。結果として、Diffuse Fast シェーダは単に頂点ライティングとなりました。
+* 非減衰ライトを削除。全てのポイントライトおよびスポットライトは減衰します。
+* スクリプトコールバックを削除:@@OnPreCullObject@@ および @@RenderBeforeQueues@@ 属性。
+* p-バッファ ベースのRenderTextureを削除。OpenGL上のRenderTextureはFBO対応が必要となりました。
+* [[SL-PassTags | Pass LightMode タグ]] はほとんどがなくなり、新しいタグで置き換えられました。一般的にはどちらにせよ [[SL-SurfaceShaders | Surface Shader]] を使用しているはずです。 
+* テクスチャの instanceID はもはやOpenGLテクスチャ名ではありません。これにより、それに依存した C++ プラグインは影響されるかもしれません。代わりに use @@texture.GetNativeTextureID()@@ を使用して下さい。
+* シェーダ キーワードである SHADOWS_NATIVE  をSHADOWS_DEPTHに、SHADOWS_PCF4 を SHADOWS_SOFT にリネームしました。
+* 8 個以上の頂点ライトで影響されるオブジェクトでの環境光ブースト を 削除しました。
+* @@_ObjectSpaceCameraPos@@ および @@_ObjectSpaceLightPos0@@ を削除しました（@@_WorldSpaceCameraPos@@ および @@_WorldSpaceLightPos0@@ を追加しました）。
+* シェーダテクスチャ プロパティの @@LightmapMode@@ タグは何も行わなくなりました。
+* Skyboxシェーダはデプスバッファに書き込みしません。
+* @@GrabPass@@ （すなわちRefractive Glass シェーダ）は常に画面サイズのテクスチャをつかみます。
+* @@#pragma multi_compile_vertex@@ および @@#pragma multi_compile_fragment@@ はなくなりました。
+* ShaderLab の Polygon offset は変数を参照できなくなりました ( @@Offset [_Var1] 、 [_Var2]@@ のように)。
+* @@TRANSFER_EYEDEPTH/OUTPUT_EYEDEPTH@@ を @@UNITY_TRANSFER_DEPTH/UNITY_OUTPUT_DEPTH@@ にリネーム。Unity 3では floatで動作します。
+* 特別なシェーダパス型:R2TPass, OffscreenPass を削除。
+* 内蔵シェーダ マトリクス @@_Light2World0@@, @@_World2Light0@@ を削除
+* 内蔵シェーダ ベクトル_SceneAmbient, _MultiModelAmbient, _MultiAmbient, _ModelAmbient, _MultiplyFog, _LightHackedDiffuse0, _ObjectCenterModelLightColor0 を削除
+* 内蔵シェーダ float である @@_FirstPass@@ を削除。
+* シェーダファイルのフォグモードは変数をもとにすることが出来ません(@@Fog { Mode [_MyFogMode] }@@ のように)。グローバル フォグ モードを使用するには @@Fog { Mode Global }@@ と記述してください。
+* ShaderLabから @@BlendColor@@ カラーを削除。
+* シェーダプロパティで、テクスチャマトリクスを変数ごとに宣言するサポートを終了。
+* "static" シェーダプロパティ のサポート終了。
+* テクスチャ ボーダー カラーのサポート終了(@@RenderTexture.SetBorderColor@@)。
+* @@ColorMaterial Ambient, Diffuse, Specular@@ のサポート終了（ColorMaterial AmbientAndDiffuse および Emission はサポートが残ります）。終了したもののサポートはプラットフォームによりバラツキがあり混乱を招いていて、便利さもいずれに不十分であった。
+* 内蔵マトリクスの @@_CameraToWorld@@ および @@_WorldToCamera@@ は期待どおりの動作を行う。以前は回転部分のみ含んでいて、camera-to-world はY軸で反転していた。原因は不明でした :)
+* @@Shader.ClearAll()@@ を削除。2007より廃止予定であったためにいよいよ廃止
+* 頂点シェーダはシェーダモデル 2.0 にコンパイルされるようになりました（過去は1.1）。もしシェーダモデル 1.1 にコンパイルしたい場合はシェーダに @@#pragma target 1.1@@ を追加します。
 
