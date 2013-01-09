@@ -10,11 +10,11 @@ This module is always present, cannot be removed or disabled.
 ||``Looping``            ||Is the Particle System looping.||
 ||``Prewarm``            ||Only looping systems can be prewarmed which means that the Particle System will have emitted particles at start as if it had already emitted particles one cycle. ||
 ||``Start Delay``        ||Delay in seconds that this Particle System will wait before emitting particles. Note prewarmed looping systems cannot use a start delay.||
-||``Start Lifetime``           ||The lifetime of particles in seconds (see [[ParticleSystemCurveEditor|MinMaxCurve]]). ||
-||``Start Speed``              ||The speed of particles when emitted.(see [[ParticleSystemCurveEditor|MinMaxCurve]]).||
-||``Start Size``               ||The size of particles when emitted. (see [[ParticleSystemCurveEditor|MinMaxCurve]]).||
-||``Start Rotation``       ||The rotation of particles when emitted. (see [[ParticleSystemCurveEditor|MinMaxCurve]]).||
-||``Start Color``              ||The color of particles when emitted. (see [[ParticleSystemColorEditor|MinMaxGradient]]).||
+||``Start Lifetime``           ||The lifetime of particles in seconds. (See [[ParticleSystemCurveEditor|MinMaxCurve]]). ||
+||``Start Speed``              ||The speed of particles when emitted.(See [[ParticleSystemCurveEditor|MinMaxCurve]]).||
+||``Start Size``               ||The size of particles when emitted. (See [[ParticleSystemCurveEditor|MinMaxCurve]]).||
+||``Start Rotation``       ||The rotation of particles when emitted. (See [[ParticleSystemCurveEditor|MinMaxCurve]]).||
+||``Start Color``              ||The color of particles when emitted. (See [[ParticleSystemColorEditor|MinMaxGradient]]).||
 ||``Gravity Modifier``            ||The amount of gravity that will affect particles during their lifetime.||
 ||``Inherit Velocity``   ||Factor for controlling the amount of velocity the particles should inherit of the transform of the Particle System (for moving Particle Systems).||
 ||``Simulation Space``  ||Simulate the Particle System in local space or world space.||
@@ -27,7 +27,7 @@ This module is always present, cannot be removed or disabled.
 Attach:ShurikenEmissionModule.png
 Controls the rate of particles being emitted and allows spawning large groups of particles at certain moments (over Particle System duration time). Useful for explosions when a bunch of particles need to be created at once.
 ||PROPS
-||``Rate``               ||Amount of particles emitted over Time (per second) or Distance (per meter). (see [[ParticleSystemCurveEditor|MinMaxCurve]])||
+||``Rate``               ||Amount of particles emitted over Time (per second) or Distance (per meter). (See [[ParticleSystemCurveEditor|MinMaxCurve]]).||
 ||``Bursts`` (Time option only)  ||Add bursts of particles that occur within the duration of the Particle System
 ||>>>``Time and Number of Particles`` ||Specify time (in seconds within duration) that a specified amount of particles should be emitted. Use the + and - for adjusting number of bursts.||
 
@@ -37,21 +37,23 @@ Defines the shape of the emitter: Sphere, Hemishpere, Cone, Box and Mesh. Can ap
 
 ||PROPS
 ||``Sphere``             || ||
-||>>>``Radius``          ||Radius of the sphere (can also be manipulated by handles in the Scene View)||
+||>>>``Radius``          ||Radius of the sphere. (Can also be manipulated by handles in the Scene View).||
 ||>>>``Emit from Shell`` ||Emit from shell of the sphere. If disabled, particles will be emitted from the volume of the sphere.||
 ||>>>``Random Direction``||Should particles have have a random direction when emitted or a direction along the surface normal of the sphere||
 ||``Hemisphere``         || ||
-||>>>``Radius``          ||Radius of the hemisphere (can also be manipulated by handles in the Scene View)||
+||>>>``Radius``          ||Radius of the hemisphere. (Can also be manipulated by handles in the Scene View).||
 ||>>>``Emit from Shell`` ||Emit from shell of the hemisphere. If disabled particles will be emitted from the volume of the hemisphere.||
 ||>>>``Random Direction``||Should particles have have a random direction when emitted or a direction along the surface normal of the hemisphere.||
 ||``Cone``               || ||
-||>>>``Angle``           ||Angle of the cone. If angle is 0 then particles will be emitted in one direction. (can also be manipulated by handles in the Scene View)||
-||>>>``Radius``          ||A value larger than 0 when basically create a capped cone, using this will change emission from a point to a disc.(can also be manipulated by handles in the Scene View)||
+||>>>``Angle``           ||Angle of the cone. If angle is 0 then particles will be emitted in one direction. (Can also be manipulated by handles in the Scene View).||
+||>>>``Radius``          ||A value larger than 0 when basically create a capped cone, using this will change emission from a point to a disc. (Can also be manipulated by handles in the Scene View).||
+||>>>``Length``          ||Length of the emission volume. Only available when emitting from a Volume or Volume Shell. (Can also be manipulated by handles in the Scene View).
 ||>>>``Emit From``       ||Determines where emission originates from. Possible values are Base, Base Shell, Volume and Volume Shell.
+||>>>``Random Direction``||Should particles have have a random direction when emitted or a direction along the cone.||
 ||``Box``                || ||
-||>>>``Box X``          ||Scale of box in X (can also be manipulated by handles in the Scene View)||
-||>>>``Box Y``          ||Scale of box in Y (can also be manipulated by handles in the Scene View)||
-||>>>``Box Z``          ||Scale of box in Z (can also be manipulated by handles in the Scene View)||
+||>>>``Box X``          ||Scale of box in X. (Can also be manipulated by handles in the Scene View).||
+||>>>``Box Y``          ||Scale of box in Y. (Can also be manipulated by handles in the Scene View).||
+||>>>``Box Z``          ||Scale of box in Z. (Can also be manipulated by handles in the Scene View).||
 ||>>>``Random Direction``||Should particles have have a random direction when emitted or a direction along the Z-axis of the box||
 ||``Mesh``               || ||
 ||>>>``Type``            ||Particles can be emitted from either Vertex, Edge or Triangle||
@@ -71,8 +73,7 @@ Attach:ShurikenLimitVelocityOverLifetimeModule.png
 Basically can be used to simulate drag. Dampens or clamps velocity, if it is over certain threshold. Can be configured per axis or per vector length.
 ||PROPS
 ||``Separate Axis``         ||Use for setting per axis control.||
-||>>>``Speed``          ||Specify magnitude as constant or by curve that will limit all axes of velocity.||
-||>>>``XYZ``  ||Control each axis seperately. See [[ParticleSystemCurveEditor|MinMaxCurve]].||
+||>>>``Speed``          ||Specify magnitude as constant or by curve that will limit all axes of velocity. See [[ParticleSystemCurveEditor|MinMaxCurve]].||
 ||``Dampen``                ||(0-1) value that controls how much the exceeding velocity should be dampened. For example, a value of 0.5 will dampen exceeding velocity by 50%||
 
 
@@ -80,20 +81,19 @@ Basically can be used to simulate drag. Dampens or clamps velocity, if it is ove
 Attach:ShurikenForceOverLifetimeModule.png
 ||PROPS
 ||``XYZ``               ||Use either constant values for curves or random between curves for controlling the force applied to the particles. See [[ParticleSystemCurveEditor|MinMaxCurve]].||
-||``Randomize``       ||Randomize the force applied to the particles every frame ||
+||``Space``             ||Local / World: Are the velocity values in local space or world space ||
+||``Randomize``         ||Randomize the force applied to the particles every frame ||
 
 !!Color Over Lifetime Module
 Attach:ShurikenColorOverLifetimeModule.png
 ||PROPS
 ||``Color``         ||Controls the color of each particle during its lifetime. If some particles have a shorter lifetime than others, they will animate faster. Use constant color, random between two colors, animate it using gradient or specify a random color using two gradients (see  [[GradientEditor|Gradient]]). Note that this colour will be ''multiplied'' by the value in the $$Start Color$$ property - if the Start Color is black then Color Over Lifetime will not affect the particle.||
-||``Color Scale``   ||Use the color scale for easy adjustment of color or gradient.||
 
 !!Color By Speed Module
 Attach:ShurikenColorBySpeedModule.png
 Animates particle color based on its speed. Remaps speed in the defined range to a color.
 ||PROPS
 ||``Color``         ||Color used for remapping of speed. Use gradients for varying colors. See [[ParticleSystemColorEditor|MinMaxGradient]].||
-||``Color Scale``   ||Use the color scale for easy adjustment of color or gradient.||
 ||``Speed Range``   ||The min and max values for defining the speed range which is used for remapping a speed to a color.||
 
 
@@ -113,13 +113,13 @@ Attach:ShurikenSizeBySpeedModule.png
 Attach:ShurikenRotationOverLifetime.png
 Specify values in degrees.
 ||PROPS
-||``Rotational Speed``         ||Controls the rotational speed of each particle during its lifetime. Use constant rotational speed, animate it using a curve or specify a random rotational speed using two curves. See [[ParticleSystemCurveEditor|MinMaxCurve]].||
+||``Angular Velocity``         ||Controls the rotational speed of each particle during its lifetime. Use constant rotational speed, animate it using a curve or specify a random rotational speed using two curves. See [[ParticleSystemCurveEditor|MinMaxCurve]].||
 
 
 !!Rotation By Speed Module
 Attach:ShurikenRotationBySpeedModule.png
 ||PROPS
-||``Rotational Speed``          ||Rotational speed used for remapping of a particle's speed. Use curves for varying rotational speeds. See [[ParticleSystemCurveEditor|MinMaxCurve]].||
+||``Angular Velocity``          ||Rotational speed used for remapping of a particle's speed. Use curves for varying rotational speeds. See [[ParticleSystemCurveEditor|MinMaxCurve]].||
 ||``Speed Range``       ||The min and max values for defining the speed range which is used for remapping a speed to a rotational speed.||
 
 

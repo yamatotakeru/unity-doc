@@ -8,10 +8,6 @@ The color-based properties will have a pull down menu on the right hand side, wh
 
 Attach:ShurikenColorDropdown.png
 
-``Color``: The color will be the same throughout time (see [[EditingValueProperties|Color Picker]])
-
 ``Gradient``: The gradient (RGBA) will vary throughout time, edited in the [[GradientEditor|Gradient Editor]]
-
-``Random Between Two Colors``: The color varies with time and is chosen at random between two values specified in the [[EditingValueProperties|Color Picker]]
 
 ``Random Between Two Gradients``: The gradient (RGBA) varies with time and is chosen at random between two values specified [[GradientEditor|Gradient Editor]]

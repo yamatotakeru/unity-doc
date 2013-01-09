@@ -7,12 +7,12 @@ Attach:MinMaxDropDown.png
 
 ``Constant``: The value of the property will not change with time, and will not be displayed in the $$Curve Editor$$
 
-``Random between constants``: The value of the property will be selected at random between the two constants
-
 ``Curve``: The value of the property will change with time based on the curve specified in the $$Curve Editor$$
 
 Attach:ParticleSystemOneCurve.png
 ->A property animated with a Curve
+
+``Random between constants``: The value of the property will be selected at random between the two constants
 
 ``Random between curves``: A curve will be generated at random between the min and the max curve, and the value of the property will change in time based on the generated curve
 Attach:BetweenTwoCurves.png
