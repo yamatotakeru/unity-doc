@@ -1,8 +1,8 @@
-!Example - Creating a Billboard Plane
+!サンプル - ビルボード平面の作成
 
-Unity comes with a Plane primitive object but a simpler plane may be useful in 2D games or GUI, and in any case makes a good starting example. A minimal plane will consist of four vertices to define the corners along with two triangles.
+Unityは Plane プリミティブオブジェクトが付属していますが、2Dゲーム または GUI ではよりシンプルな平面がより便利であるかも知れず、始めてみるには良いサンプルです。最小の平面は 4つの頂点により二つの三角形とその角から構成されます。
 
-The first thing is to set the vertices array. We'll assume that the plane lies in the X and Y axes and let its width and height be determined by parameter variables. We'll supply the vertices in the order bottom-left, bottom-right, top-left, top-right.
+最初に頂点配列セットします。平面が X および Y 軸にあるとして、幅と高さをパラメータ変数により決定できるようにします。頂点は、左下、右下、左上、右上の順に提供します。
 
 Attach:MeshConstruction.png
 
@@ -15,9 +15,9 @@ vertices[3] = new Vector3(width, height, 0);
 
 mesh.vertices = vertices;@]
 
-(Since the Mesh data properties execute code behind the scenes, it is much more efficient to set up the data in your own array and then assign this to a property rather than access the property array element by element.)
-	
-Next come the triangles. Since we want two triangles, each defined by three integers, the triangles array will have six elements in total. Remembering the clockwise rule for ordering the corners, the lower left triangle will use 0, 2, 1 as its corner indices, while the upper right one will use 2, 3, 1.
+（メッシュデータ プロパティは裏でコードを実行するため、データを独自の配列の中でセットアップしてそれからこれをプロパティに割り当てるほうが、このプロパティの配列を要素ごとにアクセスするよりも効率的です。）
+
+次は三角形の順番です。2つの三角形が必要であり、各々3つの整数から定義され、三角形の配列は合計6つの要素を持つことになります。角を定義する際に時計回りに並べるルールからすると、左下の三角形は 0 、2 、1 を頂点のインデックスとして、右上の三角形は 2 、 3 、 1を使用します。
 
 [@var tri: int[] = new int[6];
 
@@ -32,8 +32,8 @@ tri[4] = 3;
 tri[5] = 1;
 
 mesh.triangles = tri;@]
-	
-A mesh with just the vertices and triangles set up will be visible in the editor but will not look very convincing since it is not correctly shaded without the normals. The normals for the flat plane are very simple - they are all identical and point in the negative Z direction in the plane's local space. With the normals added, the plane will be correctly shaded but remember that you need a light in the scene to see the effect.
+
+頂点と三角形だけのメッシュでセットアップしたメッシュはエディタで見れるようになりますが、法線で正しくシェーディングしないと見栄えは悪くなります。平面の法線は非常に簡単です - それらは同一のものであり、平面のローカル座標で負の Z 方向に向きます。法線を追加すると平面は正しくシェーディングされますが、シーンにライトがないと効果が見られないことを忘れないで下さい。
 
 [@var normals: Vector3[] = new Vector3[4];
 
@@ -44,7 +44,7 @@ normals[3] = -Vector3.forward;
 
 mesh.normals = normals;@]
 
-Finally, adding texture coordinates to the mesh will enable it to display a material correctly. Assuming we want to show the whole image across the plane, the UV values will all be 0 or 1, corresponding to the corners of the texture.
+最後に、メッシュにテクスチャ座標を追加することでマテリアルを正しく表示します。平面に渡って画像全体を表示すると仮定すると、 UV 値はテクスチャの角に対応して すべて 0 または 1となります。
 
 [@var uv: Vector2[] = new Vector2[4];
 
@@ -55,7 +55,7 @@ uv[3] = new Vector2(1, 1);
 
 mesh.uv = uv;@]
 
-The complete script might look a bit like this:-
+スクリプト全体は次のような形かもしれません:-
 
 [@var width: float;
 var height: float;
@@ -105,4 +105,4 @@ function Start() {
 	mesh.uv = uv;
 }@]
 
-Note that the if the code is executed once in the Start function then the mesh will stay the same throughout the game. However, you can just as easily put the code in the Update function to allow the mesh to be changed each frame (although this will increase the CPU overhead considerably).
+もしコードが一回 Start 関数で実行されるとメッシュはゲームを通して同じとなることに留意して下さい。一方で、 Update 関数の中にコードを入れてメッシュを毎フレーム変更することも容易です（ただし、これは CPU オーバーヘッドを著しく増加させます）。
