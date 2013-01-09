@@ -1,34 +1,34 @@
-! Optimizing the Size of the Built iOS Player
+! ビルドされるiOSプレイヤーのサイズ最適化
 
-The two main ways of reducing the size of the player are by changing the $$Active Build Configuration$$ within Xcode and by changing the $$Stripping Level$$ within Unity.
+プレイヤーのサイズを削減するふたつの主な方法は、Xcodeの $$Active Build Configuration$$ と、 Unityの $$Stripping Level$$ を変更する方法です。
 
-!! Building in Release Mode
+!! リリースモードでビルド
 
-You can choose between the $$Debug$$ and $$Release$$ options on the $$Active Build Configuration$$ drop-down menu in Xcode. Building as $$Release$$ instead of $$Debug$$ can reduce the size of the built player by as much as 2-3MB, depending on the game.
+Xcodeの $$Active Build Configuration$$ ドロップダウンメニューで $$Debug$$ および $$Release$$ オプションのどちらかを選択することでゲームによっては2-3MBが節約出来ます。
 
 Attach:iphone-activeBuildConfig.png\\
-''The Active Build Configuration drop-down''
+''Active Build Configuration ドロップダウンメニュー''
 
-In Release mode, the player will be built without any debug information, so if your game crashes or has other problems there will be no stack trace information available for output. This is fine for deploying a finished game but you will probably want to use Debug mode during development.
+リリースモードでは、プレイヤーはデバッグ情報なしでビルドされるため、ゲームがクラッシュするかその他の問題があった場合、出力にはスタックトレースの情報が利用出来ません。これは完成ゲームのデプロイとしては問題ありませんが、開発中はデバッグモードの使用を希望するはずです。
 
 
-!! iOS Stripping Level (Advanced License feature)
+!! iOS ストリッピング レベル (Advanced ライセンス機能)
 
-The size optimizations activated by stripping work in the following way:-
+ストリッピング作業によるサイズの最適化は次の通りにアクティベートします。
 
-# $$Strip assemblies$$ level: the scripts' bytecode is analyzed so that classes and methods that are not referenced from the scripts can be removed from the DLLs and thereby excluded from the AOT compilation phase. This optimization reduces the size of the main binary and accompanying DLLs and is safe as long as no reflection is used.
+# $$Strip assemblies$$ レベル: スクリプトのバイトコードは分析がなされて、スクリプトから参照されないクラスやメソッドはDLLからはずすことが出来て、AOTコンパイルフェーズからは、除外することが出来ます。この最適化によりメインのバイナリ サイズおよび付随するDLLのサイズを削減し、reflectionが使用されてないかぎり安全です。
 
-# $$Strip ByteCode$$ level: any .NET DLLs (stored in the Data folder) are stripped down to metadata only. This is possible because all the code is already precompiled during the AOT phase and linked into the main binary.
+# $$Strip ByteCode$$ レベル:  .NET DLLはストリッピングされてメタデータのみとなります。これが出来るのは全てのコードがAOTフェーズでプリコンパイルされていてメイン バイナリにリンクされているためです。
 
-# $$Use micro mscorlib$$ level: a special, smaller version of mscorlib is used. Some components are removed from this library, for example, Security, Reflection.Emit, Remoting, non Gregorian calendars, etc. Also, interdependencies between internal components are minimized. This optimization reduces the main binary and mscorlib.dll size but it is not compatible with some System and System.Xml assembly classes, so use it with care.
+# $$Use micro mscorlib$$ レベル: 特別で小さいバージョンのmscorlibが使用されます。いくつかのコンポーネント、例えば、Security、 Reflection.Emit、 Remoting、 non Gregorian calendars、その他はこのライブラリから除かれます。さらに内部コンポーネント間の相互依存関係は最小化されます。この最適化によりメイン バイナリおよびmscorlib.dllサイズを削減しますがいくつかのSystemおよびSystem.Xmlアセンブリクラスと互換性がないため、慎重に使用して下さい。
 
-These levels are cumulative, so level 3 optimization implicitly includes levels 2 and 1, while level 2 optimization includes level 1.
+これらのレベルは累積なので、レベル3の最適化は明示的にレベル1、2を含み、レベル2は明示的にレベル1を含みます。
 
-__Note:__ ``Micro mscorlib`` is a heavily stripped-down version of the core library. Only those items that are required by the Mono runtime in Unity remain. Best practice for using micro mscorlib is not to use any classes or other features of .NET that are not required by your application. GUIDs are a good example of something you could omit; they can easily be replaced with custom made pseudo GUIDs and doing this would result in better performance and app size. 
+__注意:__ ``Micro mscorlib`` はのコアライブラリの大きくストリッピングされたバージョンです。UnityでMonoランタイムにより必要とされるアイテムのみが残ります。micro mscorlib を使用するベストプラクティスはアプリケーションで必要ないクラスまたは他の機能を使用しないことです。GUIDは省くことが出来る良い例です。簡単にカスタム作成された擬似GUIDにより簡単に置き換えることが出来てこれによりより良いパフォーマンスおよびアプリケーションサイズにつながります。
 
-!! Tips
-!!! How to Deal with Stripping when Using Reflection
-Stripping depends highly on static code analysis and sometimes this can't be done effectively, especially when dynamic features like reflection are used. In such cases, it is necessary to give some hints as to which classes shouldn't be touched. Unity supports a per-project custom stripping ''blacklist''. Using the blacklist is a simple matter of creating a ``link.xml`` file and placing it into the ``Assets`` folder. An example of the contents of the ``link.xml`` file follows. Classes marked for preservation will not be affected by stripping:-
+!! テクニック
+!!! Reflection を使用するときのストリッピングの対応方法
+ストリッピングは静的なコード分析や依存していて効率的に行うことが難しい場合があり、特にreflectionのように動的な機能が使用される場合です。そういう状況ではどのクラスを対象外とするかの情報をヒントとして渡す必要があります。Unityは ''ブラックリスト'' をプロジェクト単位でサポートします。ブラックリストを使用するには ``link.xml`` ファイルを作成して``Assets`` フォルダに置くのみです。 ``link.xml`` の記載方法のサンプルは次の通りです:-
 [@
 <linker>
        <assembly fullname="System.Web.Services">
@@ -44,22 +44,22 @@ Stripping depends highly on static code analysis and sometimes this can't be don
 </linker>
 @] 
 
-__Note:__ it can sometimes be difficult to determine which classes are getting stripped in error even though the application requires them. You can often get useful information about this by running the stripped application on the simulator and checking the Xcode console for error messages.
+__注意:__ どのクラスが誤ってアプリケーションに必要とされているのにストリッピングされてしまったか判断するのか難しい場合があります。シミュレータうえでストリッピングされたアプリケーションを実行しXcodeコンソールのメッセージをチェックすることで有用な情報が得られることがしばしばあります。
 
-!!! Simple Checklist for Making Your Distribution as Small as Possible
+!!! ディストリビューションを出来る限り最小化する簡単なチェックリスト
 
-# Minimize your assets: enable PVRTC compression for textures and reduce their resolution as far as possible. Also, minimize the number of uncompressed sounds. There are some additional tips for file size reduction [[Main.ReducingFilesize|here]].
-# Set the iOS Stripping Level to $$Use micro mscorlib$$.
-# Set the script call optimization level to $$Fast but no exceptions$$.
-# Don't use anything that lives in System.dll or System.Xml.dll in your code. These libraries are __not__ compatible with micro mscorlib.
-# Remove unnecessary code dependencies.
-# Set the  API Compatibility Level to $$.Net 2.0 subset$$. Note that .Net 2.0 subset has limited compatibility with other libraries.
-# Set the Target Platform to $$armv6 (OpenGL ES1.1)$$.
-# Don't use JS Arrays.
-# Avoid generic containers in combination with value types, including structs.
+# アセットを最小化します: テクスチャでPVRTC圧縮を有効化し解像度を出来る限り下げます。さらに未圧縮音声の数も最小化します。ファイルサイズのテクニックについては [[Main.ReducingFilesize|ここ]] を参照下さい。
+# iOSストリッピングレベルを $$Use micro mscorlib$$ に設定します。
+# スクリプト コール最適化を $$Fast but no exceptions$$ に設定します。
+# コードの中でSystem.dll または System.Xml.dll に存在するものは一切使用しないで下さい。これらのライブラリはmicro mscorlibと互換性ご __ありません__ 。
+# 不要なコードを取り除
+# API Compatibility Level に $$.Net 2.0 subset$$ をセットします。.Net 2.0 subsetは他のライブラリと限られた互換性しかないことに留意下さい。
+# Target Platform を $$armv6 (OpenGL ES1.1)$$ にセットします。
+# JS配列は使用しないで下さい。
+# 値型とジェネリック コンテナの組み合わせは構造体も含めて避けます。
 
-!!!Can I produce apps of less than 20 megabytes with Unity?
-Yes. An empty project would take about 13 MB in the AppStore if all the size optimizations were turned off. This gives you a budget of about 7MB for compressed assets in your game. If you own an Advanced License (and therefore have access to the stripping option), the empty scene with just the main camera can be reduced to about 6 MB in the AppStore (zipped and DRM attached) and you will have about 14 MB available for compressed assets.  
+!!! Unityで20MBより小さいアプリケーションは作成出来ますか？
+はい。空プロジェクトはサイズ最適化を全てオフにすればAppStoreで13 MBになります。これによりゲームの圧縮されたアセットのために7MB確保出来ます。もしAdvancedライセンス保有の場合（すなわちストリッピング オプションにアクセス出来る場合）、メインカメラのみの空シーンはAppStoreで6 MBに下げるのとが出来て (zipつき および DRM 付属) 、圧縮されたアセットに14MBが残ります。
 
-!!!Why did my app increase in size after being released to the AppStore?
-When they publish your app, Apple first encrypt the binary file and then compresses it via zip. Most often Apple's DRM increases the binary size by about 4 MB or so. As a general rule, you should expect the final size to be approximately equal to the size of the zip-compressed archive of all files (except the executable) plus the size of the uncompressed executable file.
+!!!AppStoreでリリースした後にアプリサイズご増加したのはなぜでしょう？
+アプリをパブリッシュするときにAppleは最初にバイナリファイルを暗号化してzipとして圧縮します。多くの場合AppleのDRMは4 MBほど増えます。原則として最終的なサイズ全てのファイル (実行ファイルを除いて) をzip圧縮したアーカイブ容量に圧縮してない実行ファイルを加えた容量です。
