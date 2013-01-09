@@ -1,11 +1,11 @@
-! Modifying Source Assets Through Scripting
+! スクリプティングをとおしたソース アセットの修正
 
-!! Automatic Instantiation
-Usually when you want to make a modification to any sort of game asset, you want it to happen at runtime and you want it to be temporary.  For example, if your character picks up an invincibility power-up, you might want to change the $$shader$$ of the $$material$$ for the player character to visually demonstrate the invincible state.  This action involves modifying the material that's being used.  This modification is not permanent because we don't want the material to have a different shader when we exit $$Play Mode$$.
+!! 自動インスタンス化
+何らかのゲームアセットに修正を加えたい場合、実行時に行い、一時的に行うことが望ましい場合が通常です。例えば、もしキャラクターが無敵パワーアップを拾ったとして、プレイヤーキャラクターの $$Material$$ の $$Shader$$ を変更して、無敵モードを表現したい場合があります。このアクションは使用しているマテリアルの修正を伴います。この修正は、$$Play Mode$$ （実行モード）を終了したときに、マテリアルに別のシェーダをもってほしくないため、永続的な変更ではありません。
 
-However, it is possible in Unity to write scripts that will permanently modify a source asset.  Let's use the above material example as a starting point.
+しかし、Unityで永続的にソースアセットを修正するスクリプトを書くことが可能です。例えば前述のマテリアルの例をスタート地点として使用します。
 
-To temporarily change the material's shader, we change the ``shader`` property of the ``material`` component.
+マテリアルのシェーダを一時的に変更するには、 ``material`` コンポーネントの ``shader`` プロパティを変更します。
 
 	private var invincibleShader = Shader.Find ("Specular");
 
@@ -13,17 +13,17 @@ To temporarily change the material's shader, we change the ``shader`` property o
 		[[ScriptRef:Renderer.html|renderer]].[[ScriptRef:Renderer-material.html|material]].shader = invincibleShader;
 	}
 
-When using this script and exiting Play Mode, the state of the ``[[ScriptRef:Material.html|material]]`` will be reset to whatever it was before entering Play Mode initially. This happens because whenever renderer.material is accessed, the material is automatically instantiated and the instance is returned.  This instance is simultaneously and automatically applied to the renderer.  So you can make any changes that your heart desires without fear of permanence.
+スクリプトを使用して、 実行モードを終了したとき、 ``[[ScriptRef:Material.html|material]]`` の 状態 は実行モードに入る前の値にリセットされます。これは renderer.material がアクセスされるときはつねに、マテリアルが自動的にインスタンス化されて、インスタンスが返されるためです。このインスタンスは同時に、かつ、自動的にレンダラに適用されます。このため永続的に反映されることを心配せずに変更を行うことができます。
 
 
-!! Direct Modification
+!! 直接の修正
 
-!!! IMPORTANT NOTE
-The method presented below will modify actual source asset files used within Unity. These modifications are not undoable. Use them with caution.
+!!! 重要な注意
+以下で示す手法はUnityの中での実際のソース アセット ファイルを修正します。これらの変更は元に戻すことが出来ないため、注意深く使用して下さい。
 
-Now let's say that we don't want the material to reset when we exit play mode.  For this, you can use [[ScriptRef:Renderer-sharedMaterial.html|renderer.sharedMaterial]].  The sharedMaterial property will return the actual asset used by this renderer (and maybe others).
+次に実行モードを終了したときに、マテリアルをリセットしたくないとします。このためには [[ScriptRef:Renderer-sharedMaterial.html|renderer.sharedMaterial]] を使用できます。sharedMaterial プロパティはレンダラにより使用される実際のアセットを（および場合によっては他も）返します。
 
-The code below will permanently change the material to use the Specular shader.  It will not reset the material to the state it was in before Play Mode.
+以下のコードによりマテリアルが鏡面シェーダを使用するように永続的に変更を行います。実行モードに入る前の状況にマテリアルをリセットしません。
 
 	private var invincibleShader = Shader.Find ("Specular");
 
@@ -31,37 +31,37 @@ The code below will permanently change the material to use the Specular shader. 
 		[[ScriptRef:Renderer.html|renderer]].[[ScriptRef:Renderer-sharedMaterial.html|sharedMaterial]].shader = invincibleShader;
 	}
 
-As you can see, making any changes to a sharedMaterial can be both useful and risky.  Any change made to a sharedMaterial will be permanent, and not undoable.
+見てのとおり、sharedMaterial への変更を行うことは便利でありリスクも伴うものです。sharedMaterial への変更は永続的であり、元に戻すことが出来ません。
 
 
-!! Applicable Class Members
+!! 適用可能なクラスメンバ
 
-The same formula described above can be applied to more than just materials.  The full list of assets that follow this convention is as follows:
+この同じ法則はマテリアル以外でも適用が出来ます。このルールにしたがう全てのアセットの一覧は次のとおりです。
 
-* Materials: renderer.material and renderer.sharedMaterial
-* Meshes: meshFilter.mesh and meshFilter.sharedMesh
-* Physic Materials: collider.material and collider.sharedMaterial
+* Material: renderer.material および renderer.sharedMaterial
+* Mesh: meshFilter.mesh および meshFilter.sharedMesh
+* Physic Material: collider.material および collider.sharedMaterial
 
 
-!! Direct Assignment
+!! 直接の割り当て
 
-If you declare a public variable of any above class: Material, Mesh, or Physic Material, and make modifications to the asset using that variable instead of using the relevant class member, you will not receive the benefits of automatic instantiation before the modifications are applied.
+もし上記のクラスのどれか（Material, Mesh, または Physic Material）でパブリック変数を宣言して、関連するクラスメンバではなく変数によりアセットに変更を加えた場合、修正が適用される前の自動インスタンス化による恩恵は受けられません。
 
-!! Assets that are not automatically instantiated
+!! 自動的にインスタンス化されないアセット
 !Desktop!
 >>desktop<<
-There are two different assets that are never automatically instantiated when modifying them.
+修正したときに必ず自動的にインスタンス化されない2つの異なるアセットがあります。
 
 * [[ScriptRef:Texture2D.html | Texture2D]]
 * [[ScriptRef:TerrainData.html | TerrainData]]
 
-Any modifications made to these assets through scripting are always permanent, and never undoable.  So if you're changing your terrain's heightmap through scripting, you'll need to account for instantiating and assigning values on your own.  Same goes for Textures.  If you change the pixels of a texture file, the change is permanent.
+スクリプティングを通してこれらのアセットに行った変更は常に永続的であり、元に戻すことが出来ません。このためもしTerrain（地形）のHeight Map（高さ）をスクリプティングを通して変更する場合、インスタンス化および値の割り当てをカスタムで検討する必要があります。同様のことがテクスチャでもいえます。もしテクスチャファイルのピクセルを変更した場合、変更は永続的です。
 >><<
 !iOS!
 >>ios<<
-[[ScriptRef:Texture2D.html | Texture2D]] assets are never automatically instantiated when modifying them. Any modifications made to these assets through scripting are always permanent, and never undoable.  So if you change the pixels of a texture file, the change is permanent.
+[[ScriptRef:Texture2D.html | Texture2D]] アセットは修正したときに自動的にインスタンス化されることはありません。これらのアセットに行った修正はつねに永続的であり、元に戻すことが出来ません。もしテクスチャファイルのピクセルを変更した場合、変更は永続的です。
 >><<
 !Android!
 >>android<<
-[[ScriptRef:Texture2D.html | Texture2D]] assets are never automatically instantiated when modifying them. Any modifications made to these assets through scripting are always permanent, and never undoable.  So if you change the pixels of a texture file, the change is permanent.
+[[ScriptRef:Texture2D.html | Texture2D]] アセットは修正したときに自動的にインスタンス化されることはありません。これらのアセットに行った修正はつねに永続的であり、元に戻すことが出来ません。もしテクスチャファイルのピクセルを変更した場合、変更は永続的です。
 >><<
