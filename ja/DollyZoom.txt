@@ -1,12 +1,12 @@
-!Dolly Zoom (AKA the "Trombone" Effect)
+! ドリー ズーム（別名 "トロンボーン" エフェクト）
 
-Dolly Zoom is the well-known visual effect where the camera simultaneously moves towards a target object and zooms out from it. The result is that the object appears roughly the same size but all the other objects in the scene change perspective. Done subtly, dolly zoom has the effect of highlighting the target object, since it is the only thing in the scene that isn't shifting position in the image. Alternatively, the zoom can be deliberately performed quickly to create the impression of disorientation.
+ドリーズームは良く知られた視覚エフェクトで、カメラがオブジェクトに向かうと同時にズームアウトするものです。この結果はオブジェクトがほとんど同じ大きさとなりますが、シーンの他の全てのオブジェクトのパースペクティブが変更されます。さりげなく行うことで、ドリー ズームは、イメージの中で唯一位置が移動しないものであるため、ターゲットオブジェクトをハイライトする効果があります。別の手段として、ズームを意図的に素早く行って方向感覚を失った印象を作り出すことが出来ます。
 
-An object that just fits within the frustum vertically will occupy the whole height of the view as seen on the screen. This is true whatever the object's distance from the camera and whatever the field of view. For example, you can move the camera closer to the object but then widen the field of view so that the object still just fits inside the frustum's height. That particular object will appear the same size onscreen but everything else will change size as the distance and FOV change. This is the essence of the dolly zoom effect.
+Frustumの中に縦方向にちょうどおさまるオブジェクトは画面でみたとおりにビューの高さ全体を占めます。これはオブジェクトのカメラからの距離がいくつであっても、Field of Viewが何であっても変わりません。例えば、カメラをオブジェクトに近づけて、Field of Viewを広げてオブジェクトがちょうどFrustumの高さにちょうどおさまるようにすることが出来ます。その特定のオブジェクトは画面上で同じ大きさで表示されますが、その他の全ては距離およびField of Viewの変更に伴ってサイズが変更されます。これはドリー ズーム効果の最重要点です。
 
 Attach:EqualFrustumHeight.png
 
-Creating the effect in code is a matter of saving the height of the frustum at the object's position at the start of the zoom. Then, as the camera moves, its new distance is found and the FOV adjusted to keep it the same height at the object's position. This can be accomplished with the following code:-
+コードでこのエフェクトを作成するには、ズーム開始時のオブジェクトの位置におけるFrustm の height を保存することになります。次に、カメラが移動するにつれ、新しい距離が見つかり、そしてオブジェクトの位置と同じ高さであるようにField fo Viewは保持されます。これは次のようなコードにより実現できます:-
 
 [@var target: Transform;
 
@@ -14,19 +14,19 @@ private var initHeightAtDist: float;
 private var dzEnabled: boolean;
 
 
-// Calculate the frustum height at a given distance from the camera.
+// カメラから一定の距離のFrustumのHeightを計算
 function FrustumHeightAtDistance(distance: float) {
 	return 2.0 * distance * Mathf.Tan(camera.fieldOfView * 0.5 * Mathf.Deg2Rad);
 }
 
 
-// Calculate the FOV needed to get a given frustum height at a given distance.
+// 一定の距離でのFrustm の Heightとなるために必要なField of View (FOV) を計算
 function FOVForHeightAndDistance(height: float, distance: float) {
 	return 2 * Mathf.Atan(height * 0.5 / distance) * Mathf.Rad2Deg;
 }
 
 
-// Start the dolly zoom effect.
+// ドリー ズーム エフェクトを開始
 function StartDZ() {
 	var distance = Vector3.Distance(transform.position, target.position);
 	initHeightAtDist = FrustumHeightAtDistance(distance);
@@ -34,7 +34,7 @@ function StartDZ() {
 }
 
 
-// Turn dolly zoom off.
+// ドリー ズーム をオフに変更
 function StopDZ() {
 	dzEnabled = false;
 }
@@ -47,11 +47,11 @@ function Start() {
 
 function Update () {
 	if (dzEnabled) {
-		// Measure the new distance and readjust the FOV accordingly.
+		// 新しい距離を計り、Field of View (FOV) をそれにあわせて再調整
 		var currDistance = Vector3.Distance(transform.position, target.position);
 		camera.fieldOfView = FOVForHeightAndDistance(initHeightAtDist, currDistance);
 	}
 	
-	// Simple control to allow the camera to be moved in and out using the up/down arrows.
+	// カメラが 上下のカーソルキーにより前後に移動するための制御
 	transform.Translate(Input.GetAxis("Vertical") * Vector3.forward * Time.deltaTime * 5);
 }@]
