@@ -8,11 +8,7 @@ Attach:ShurikenColorProperty.png
 
 Attach:ShurikenColorDropdown.png
 
-``Color``: 色は常に同じになります（[[EditingValueProperties40|Color Picker]] を参照してください）。
-
 ``Gradient``: グラデーション（RGBA）は[[GradientEditor|Gradient Editor]] で編集したとおりに、時間とともに変化します。
-
-``Random Between Two Colors``: 色は時間とともに変化し、[[EditingValueProperties40|Color Picker]] で指定した二つの値の間でランダムに選択されます。
 
 
 ``Random Between Two Gradients``: グラデーション（RGBA）は[[GradientEditor|Gradient Editor]] で指定した二つの値の間でランダムに選択され、時間とともに変化します。
