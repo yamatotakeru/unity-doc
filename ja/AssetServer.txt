@@ -1,25 +1,25 @@
-! Asset Server (Pro Only)
+! Asset Server (Unity Pro のみ)
 
-!! Unity Asset Server Overview
+!! Unity Asset Server 概要
 
-The $$Unity Asset Server$$ is an asset and version control system with a graphical user interface integrated into Unity.  It is meant to be used by team members working together on a project on different computers either in-person or remotely.  The Asset Server is highly optimized for handling large binary assets in order to cope with large multi gigabyte project folders. When uploading assets, $$Import Settings$$ and other meta data about each asset is uploaded to the asset server as well. Renaming and moving files is at the core of the system and well supported.
+$$Unity Asset Server$$ はUnityに統合された GUI つきのアセットおよびバージョンの管理システムです。チームのメンバーが共同して別々のコンピュータにより同じロケーション、またはリモートでプロジェクト作業を行えるようにすることが主眼になっています。Asset Server は、複数のギガバイトのプロジェクトフォルダを取り扱って、大容量のバイナリアセットをハンドリングするために最適化されています。アセットをアップロードするとき、 $$Import Settings$$ およびその他の各アセットのメタデータもともに Asset Server にアップロードされます。ファイルのリネームおよび移動はこのシステムの中心であり、優れた対応が出来ます。
 
-It is available only for Unity Pro, and is an additional license per client.  To purchase an Asset Server Client License, please visit the Unity store at [[http://unity3d.com/store]]
+Unity Proでのみ利用可能であり、クライアントごとに追加ライセンスが必要です。Asset Server クライアントライセンスを購入するには、 [[http://unity3d.com/store]] のUnityストアを訪れて下さい。
 
-!! New to Source Control?
+!! ソースコントロールの初心者？
 
-If you have never used Source Control before, it can be a little unfriendly to get started with any versioning system.  Source Control works by storing an entire collection of all your assets - meshes, textures, materials, scripts, and everything else - in a database on some kind of server.  That server might be your home computer, the same one that you use to run Unity.  It might be a different computer in your local network.  It might be a remote machine colocated in a different part of the world.  It could even be a virtual machine.  There are a lot of options, but the location of the server doesn't matter at all.  The important thing is that you can access it somehow over your network, and that it stores your game data.
+もしソースコントロールのソフトウェアを以前に使用したことがない場合、どのようなバージョン管理システムであっても最初は少し不親切に感じるかもしれません。ソースコントロール は全てのアセットのセットを格納することで動作します - メッシュ、テクスチャ、マテリアル、スクリプト、およびその他の全て - を何らかのサーバのデータベースに格納します。そのサーバはUnity実行に使用しているのと同じ、自身のホームコンピュータかもしれません。ローカルネットワーク上の別のコンピュータかもしれません。世界の全く異なる箇所におかれたリモートマシンかもしれません。バーチャルマシンでさえあるかもしれません。オプションはたくさんありますが、サーバの場所はまったく関係がありません。重要なことは何らかネットワーク上でアクセスすることが出来て、ゲームデータを格納してくれるということです。
 
-In a way, the Asset Server functions as a backup of your Project Folder.  You do not directly manipulate the contents of the Asset Server while you are developing.  You make changes to your Project locally, then when you are done, you ^^Commit Changes^^ to the Project on the Server.  This makes your local Project and the Asset Server Project identical.
+ある意味において、Asset Server はプロジェクトフォルダのバックアップとして機能します。開発している間は、Asset Serverのコンテンツを直接操作しません。ローカル上でプロジェクトに変更を加え、完了したときにサーバ上のプロジェクトに対して ^^Commit Changes^^ を行います。これによりローカルプロジェクトおよびAsset Server プロジェクトは完全に同一になります。
 
-Now, when your fellow developers make a change, the Asset Server is identical to their Project, but not yours.  To synchronize your local Project, you request to ^^Update from Server^^.  Now, whatever changes your team members have made will be downloaded from the server to your local Project.
+次に、仲間の開発者が変更を行ったとき、Asset Serverは仲間のプロジェクトと完全に同一になりますが、あなた自身のものとは別になります。ローカルプロジェクトを同期するには ^^Update from Server^^ のリクエストを行います。これで、チームメンバーが行った変更はサーバからあなたのローカルプロジェクトにダウンロードされます。
 
-This is the basic workflow for using the Asset Server.  In addition to this basic functionality, the Asset Server allows for rollback to previous versions of assets, detailed file comparison, merging two different scripts, resolving conflicts, and recovering deleted assets.
+これがAsset Serverを使用した基本的なワークフローです。基本的な機能に加えて、Asset Serverは過去バージョンのアセットへのロールバック、詳細なファイル比較、異なるスクリプトのマージ、コンフリクトの解消、削除されたアセットの回復などの機能が提供されています。
 
-!! Setting up the Asset Server 
+!! Asset Server のセットアップ
 
-The Asset Server requires a one time server setup and a client configuration for each user.  You can read about how to do that in the [[assetserver-Setup | Asset Server Setup page]].
+Asset Server はワンタイムのサーバーセットアップおよび各ユーザのクライアント設定が必要です。これを行う方法については [[assetserver-Setup | Asset Server セットアップのページ]] を参照下さい。
 
-The rest of this guide explains how to deploy, administrate, and regularly use the Asset Server.
+このガイドの残りで、Asset Server をデプロイ、管理、定期的に使用する方法を説明します。
 
 (:include assetserver-DailyUse:)
