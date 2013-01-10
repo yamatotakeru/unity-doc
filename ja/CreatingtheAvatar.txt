@@ -1,6 +1,6 @@
 !Avatar作成
 
-FBXファイルをインポートした後、~~FBX importerオプション~~ の ~~Rig~~ タブでリグの指定をすることができます。
+モデルファイル（FBX、Collada、その他）をインポートした後、~~FBX importerオプション~~ の ~~Rig~~ タブでリグの指定をすることができます。
 
 !!ヒューマノイドアニメーション
 Humanoidリグの場合、^^Humanoid^^ を選択し ^^Apply^^ をクリックします。MecanimはAvatarのボーン構造に現在のボーン構造のマッチングを試みます。多くの場合、リグのボーンのつながりを正しく分析し、ほぼ自動作業となります。
@@ -9,7 +9,7 @@ Humanoidリグの場合、^^Humanoid^^ を選択し ^^Apply^^ をクリックし
 
 Attach:MecanimImporterRigTab.png
 
-また、マッチングが成功した場合には、FBXのアセットにAvatarの子アセットが追加されたことがプロジェクト・ビュー階層にて表示されます。
+また、マッチングが成功した場合には、モデルのアセットにAvatarの子アセットが追加されたことがプロジェクト・ビュー階層にて表示されます。
 Attach:MecanimFBXNoAvatar.png Attach:MecanimFBXWithAvatar.png\\
 ''Avatarの子アセットがある場合とない場合のモデル''
 
