@@ -1,55 +1,55 @@
-! Using Scripts
+! スクリプトの使用
 
-This brief introduction explains how to create and use scripts in a project.  For detailed information about the Scripting API, please view the [[Path:../ScriptReference/index.html|Scripting Reference]].  For detailed information about creating game play through scripting, please view the [[Creating Gameplay]] page of this manual.
+この短い紹介文の中でプロジェクトでスクリプトを作成および使用する方法を説明します。スクリプティングAPI についての詳細については [[Path:../ScriptReference/index.html|Scripting Reference]] を参照下さい。スクリプティングを通じたゲームプレイの作成の詳細についてはこのマニュアルの [[Creating Gameplay]] を参照下さい。
 
-Behaviour scripts in Unity can be written in $$JavaScript$$, $$C#$$, or $$Boo$$. It is possible to use any combination of the three languages in a single project, although there are certain restrictions in cases where one script incorporates classes defined in another script.
+Unityの Behaviour スクリプトは $$JavaScript$$, $$C#$$, または $$Boo$$ で作成することが出来ます。これらの3つの言語をひとつのプロジェクトで組み合わせて使用することが出来ますが、ひとつのスクリプトが別のスクリプトを参照する場合には特定の制限があります。
 
 
-!! Creating New Scripts
 
-Unlike other assets like Meshes or Textures, Script files can be created from within Unity. To create a new script, open the ^^Assets->Create->JavaScript^^ (or ^^Assets->Create->C Sharp Script^^ or ^^Assets->Create->Boo Script^^) from the main menu. This will create a new script called ``NewBehaviourScript`` and place it in the selected folder in $$Project View$$.  If no folder is selected in Project View, the script will be created at the root level.
+!! 新しいスクリプトの作成
+
+メッシュやテクスチャといった他のアセットと違って、Unityの中でスクリプトファイルを作成することが出来ます。新しいスクリプトを作成するには、メニューから ^^Assets->Create->JavaScript^^ (または ^^Assets->Create->C Sharp Script^^ または ^^Assets->Create->Boo Script^^) を開きます。これにより ``NewBehaviourScript`` という名前のスクリプトが $$Project View$$ の選択フォルダに作成されます。もし Project View にフォルダが選択されていない場合、フォルダはルートレベルに作成されます。
 
 Attach:Scripting-1.png
 
-You can edit the script by double-clicking on it in the Project View.  This will launch your default text editor as specified in Unity's preferences. To set the default script editor, change the drop-down item in ^^Unity->Preferences->External Script editor^^.
+Project View の中でスクリプトをダブルクリックすることで編集することが出来ます。これによりUnity の Preferencesで指定したデフォルトのテキストエディタが起動されます。デフォルトのスクリプトエディタを設定するには ^^Unity->Preferences->External Script editor^^ のドロップダウンのアイテムを変更します。
 
-These are the contents of a new, empty behaviour script:
+次に新規作成された、空のBehaviourスクリプトの中身です:
 
 [@function Update () {
 } @]
 
 
-A new, empty script does not do a lot on its own, so let's add some functionality.  Change the script to read the following:
+新規で、空のスクリプトはそれ自体では何もしないので、機能を追加してみます。次のようにスクリプトを変更してみて下さい:
 
 [@function Update () {
     print("Hello World");
 } @]
 
-When executed, this code will print "Hello World" to the console.  But there is nothing that causes the code to be executed yet.  We have to attach the script to an active $$GameObject$$ in the $$Scene$$ before it will be executed.
+実行されたとき、このコードはコンソールに "Hello World" を出力します。しかし、コードを実行をトリガーするものがまだ何もありません。実行される前にスクリプトを $$Scene$$ 上のアクティブな $$GameObject$$ にアタッチする必要があります。
 
 
-!! Attaching scripts to objects
+!! オブジェクトをスクリプトにアタッチする
 
-Save the above script and create a new object in the Scene by selecting ^^GameObject->Create Other->Cube^^. This will create a new GameObject called "Cube" in the current Scene.
+前述のスクリプトを保存して、 ^^GameObject->Create Other->Cube^^ と選択することでシーンに新規のオブジェクトを作成します。これにより "Cube" という名前の新規のゲームオブジェクトを現在のシーンに作成します。
 
 Attach:Scripting-2.png
 
-Now drag the script from the Project View to the Cube (in the Scene or $$Hierarchy View$$, it doesn't matter). You can also select the Cube and choose ^^Component->Scripts->New Behaviour Script^^.  Either of these methods will attach the script to the Cube.  Every script you create will appear in the ^^Component->Scripts^^ menu.
+次にプロジェクトビューからスクリプトをキューブ上にドラッグ＆ドロップします（シーン または $$Hierarchy View$$ （階層ビュー）どちらでも問題ありません）。さらにキューブを選択して ^^Component->Scripts->New Behaviour Script^^ を選択することもできます。いずれかの方法によりキューブにスクリプトがアタッチされます。全ての作成されたスクリプトは ^^Component->Scripts^^ メニューに表示されます。
 
 Attach:Scripting-3.png
 
-If you select the Cube and look at the $$Inspector$$, you will see that the script is now visible.  This means it has been attached.
+キューブを選択して、 $$Inspector$$ をみると、スクリプトが表示されています。すなわちアタッチに成功しています。
 
 Attach:Scripting-4.png
-
-Press $$Play$$ to test your creation. You should see the text "Hello World" appear beside the Play/Pause/Step buttons. Exit play mode when you see it.
+$$Play$$ （再生）ボタンをクリックして作成したものをテストします。Play/Pause/Step ボタンの側に "Hello World" というテキストが表示されるのが確認できます。確認した後は再生モードを抜けます。
 
 Attach:Scripting-5.png
 
 
-!! Manipulating the GameObject
+!! ゲームオブジェクトの微調整
 
-A ``print()`` statement can be very handy when debugging your script, but it does not manipulate the GameObject it is attached to. Let's change the script to add some functionality:
+``print()`` ステートメントはスクリプトをデバッグするうえでは非常に便利ですが、アタッチされているゲームオブジェクトを変更しません。スクリプトを変更して機能を少し追加します:
 
 
 [@function Update () {
@@ -57,26 +57,26 @@ A ``print()`` statement can be very handy when debugging your script, but it doe
 } @]
 
 
-If you're new to scripting, it's okay if this looks confusing.  These are the important concepts to understand:
+もしスクリプティングが初めての場合、これが難しく見えても問題ありません。次が覚えるべき重要な概念です:
 
-# ``function Update () {}`` is a container for code that Unity executes multiple times per second (once per frame).
-# ``transform`` is a reference to the GameObject's [[class-Transform | Transform Component]].
-# ``Rotate()`` is a function contained in the Transform $$Component$$.
-# The numbers in-between the commas represent the degrees of rotation around each axis of 3D space: X, Y, and Z.
-# ``Time.deltaTime`` is a member of the Time class that evens out movement over one second, so the cube will rotate at the same speed no matter how many frames per second your machine is rendering.  Therefore, ``5 * Time.deltaTime`` means 5 degrees per second.
+# ``function Update () {}`` はUnityが1秒間に複数回（フレームごとに1回）実行するコードのコンテナです。
+# ``transform`` はゲームオブジェクトの[[class-Transform | Transform コンポーネント]] への参照です。
+# ``Rotate()`` は Transform $$Component$$ に含まれる関数です。
+# カンマの間の数は3D空間 におけるX, Y, Z軸の周りの回転を示します。
+# ``Time.deltaTime`` は Time クラスのメンバであり、1秒間の間の動作をスムーズにして、マシンが1秒間あたり何フレームでレンダリングしているかに関わらず同じスピードでキューブが回転するようにしています。``5 * Time.deltaTime`` は1秒あたり5度を示します。
 
-With all this in mind, we can read this code as "every frame, rotate this GameObject's Transform component a small amount so that it will equal five degrees around the Y axis each second."
+これらを全て頭に入れたうえで、このコードを読み取ると、 "毎フレームごとに、ゲームオブジェクトのTransformコンポーネントを少しづつY軸の回りに1秒間に5度スムーズに回転させる"
 
-You can access lots of different Components the same way as we accessed ``transform`` already.  You have to add Components to the GameObject using the ^^Component^^ menu.  All the Components you can access directly are listed under $$Variables$$ on the [[Path:../ScriptReference/GameObject.html|GameObject Scripting Reference Page]].
+すでに ``transform`` をアクセスした方法と同様にして、さまざまなコンポーネントを同じようにアクセスすることが出来ます。ゲームオブジェクトにコンポーネントを追加するのに ^^Component^^ メニューを使用します。直接にアクセスできる全てのコンポネーントは [[Path:../ScriptReference/GameObject.html|ゲームオブジェクト スクリプティング リファレンス ページ]] の $$Variables$$ として一覧で表示されています。
 
-For more information about the relationship between GameObjects, Scripts, and Components, please jump ahead to the [[GameObjects]] page or [[Using Components]] page of this manual.
+ゲームオブジェクト、スクリプト、およびコンポーネントの関係については、このマニュアルの [[GameObjects]] ページまたは [[Using Components]]ページへと先に読み進めてください。
 
 
-!! The Power of Variables
+!! 変数の威力
 
-Our script so far will always rotate the Cube 5 degrees each second.  We might want it to rotate a different number of degrees per second.  We could change the number and save, but then we have to wait for the script to be recompiled and we have to enter Play mode before we see the results.  There is a much faster way to do it.  We can experiment with the speed of rotation in real-time during Play mode, and it's easy to do.
+ここまでのスクリプトはつねに毎秒5度回転します。毎秒異なる角度だけ回転させたいかもしれません。数字を変更して保存することも出来ますが、その場合はスクリプトがリコンパイルされて、結果をみるために 実行モードに入る必要があります。もっと早い方法があります。実行モードの際にリアルタイムで回転の速度を試すことができて、非常に簡単な方法なのです。
 
-Instead of typing ``5`` into the ``Rotate()`` function, we will declare a ``speed`` variable and use that in the function.  Change the script to the following code and save it:
+``Rotate()`` 関数で ``5`` と入力する代わりに、 ``speed`` 変数を宣言して、それを関数で使用します。スクリプトを次のコードおのとおりに変更して保存して下さい:
 
 [@var speed = 5.0;
 
@@ -84,52 +84,53 @@ function Update () {
     transform.Rotate(0, speed*Time.deltaTime, 0);
 }@]
 
-Now, select the Cube and look at the Inspector. Notice how our ``speed`` variable appears.
+次に、キューブを選択して、インスペクタをみて下さい。 ``speed`` 変数が表示されていることに気がつきます。
 
 Attach:Scripting-6.png
 
-This variable can now be modified directly in the Inspector.  Select it, press ^^Return^^ and change the value.  You can also right- or option-click on the value and drag the mouse up or down.  You can change the variable at any time, even while the game is running.
+この変数はインスペクタで直接編集することが出来ます。それを選択して、^^Enter^^ を押して値を変更します。さらに値の上で右クリックまたOptionクリックしてマウスを上下にドラッグできます。ゲームが実行中の場合を含めて、値はいつでも変更できます。
 
-Hit Play and try modifying the ``speed`` value. The Cube's rotation speed will change instantly.  When you exit Play mode, you'll see that your changes are reverted back to their value before entering Play mode.  This way you can play, adjust, and experiment to find the best value, then apply that value permanently.
+Play をクリックして ``speed`` 値を変更してください。キューブの回転スピードは瞬時に変更されます。実行モードを出たとき、行った変更が全て実行モードに入る前の値に戻っていることが確認できます。これにより、再生、調整、試行を行ってもっともベストの値をみつけて、その後にこの値を永続的に反映させることが出来ます。
 
-The technique of changing a variable's value in the Inspector makes it easy to reuse one script on many objects, each with a different variable value.  If you attach the script to multiple Cubes, and change the ``speed`` of each cube, they will all rotate at different speeds even though they use the same script.
+変数の値をインスペクタで変更できるテクニックにより、ひとつのスクリプトを複数のオブジェクトで、各々異なった変数の値で、再利用するのに役立ちます。もしスクリプトを複数のキューブにアタッチして、各々のキューブの ``speed``  を変更すると、それらは同じスクリプトであるにも関わらず全て異なるスピードで回転します。
 
 
-!! Accessing Other Components
+!! 他のコンポーネントへのアクセス
 
-When writing a script Component, you can access other components on the GameObject from within that script.
+スクリプトコンポーネントを記述するとき、そのスクリプトの中から同じゲームオブジェクト上の他のコンポーネントをアクセスできます。
 
-!!! Using the GameObject members
+!!! ゲームオブジェクトメンバーの使用
 
-You can directly access any member of the ``GameObject`` class.  You can see a list of all the ``GameObject`` class members [[class-GameObject| here]].  If any of the indicated classes are attached to the GameObject as a Component, you can access that Component directly through the script by simply typing the member name.  For example, typing ``transform`` is equivalent to ``gameObject.transform``.  The ``gameObject`` is assumed by the compiler, unless you specifically reference a different GameObject.
+``GameObject`` クラスのメンバーを直接アクセスすることが出来ます。``GameObject`` クラスメンバーの全ての一覧は [[class-GameObject| ここ]] でみることが出来ます。もし示されたクラスのどれかがゲームオブジェクトにクラスとしてアタッチされていれば、そのコンポーネントを直接スクリプトを通して、メンバー名を記述するだけで、アクセスすることが出来ます。 例えば、``transform`` と記述するのは ``gameObject.transform`` と記述するのと同等です。``gameObject`` は、明示的に別のゲームオブジェクトを参照するように指定しないかぎり、コンパイラが認識するため省力ができます。
 
-Typing ``this`` will be accessing the script Component that you are writing.  Typing ``this.gameObject`` is referring to the GameObject that the script is attached to.  You can access the same GameObject by simply typing ``gameObject``.  Logically, typing ``this.transform`` is the same as typing ``transform``.  If you want to access a Component that is not included as a GameObject member, you have to use ``gameObject.GetComponent()`` which is explained on the next page.
+``this`` と入力すると、記述しているスクリプトのコンポーネントをアクセスすることになります。``this.gameObject`` と記述すると、アタッチされているゲームオブジェクトを指します。同じゲームオブジェクトへアクセスするには単に ``gameObject`` と記述します。論理的には、``this.transform`` と入力することは``transform`` と記述することで同じです。もしゲームオブジェクトとして含まれてないコンポーネントをアクセスしたい場合は、次のページで説明するように``gameObject.GetComponent()`` を使用する必要があります。
 
-There are many Components that can be directly accessed in any script.  For example, if you want to access the ``Translate`` function of the Transform component, you can just write ``transform.Translate()`` or ``gameObject.transform.Translate()``.  This works because all scripts are attached to a GameObject.  So when you write ``transform`` you are implicitly accessing the Transform Component of the GameObject that is being scripted.  To be explicit, you write ``gameObject.transform``.  There is no advantage in one method over the other, it's all a matter of preference for the scripter.
+どんなスクリプトからも直接アクセスすることの出来るコンポーネントがたくさんあります。例えば、もしTransform コンポーネントの ``Translate`` をアクセスしたい場合、``transform.Translate()`` または ``gameObject.transform.Translate()`` と記述すればよいだけです。これが正しく動作するのは、全てのスクリプトがゲームオブジェクトにアタッチされているためです。このため、``transform`` と記述したときは、明示的にスクリプトが書かれているゲームオブジェクトの Transfom コンポーネントをアクセスしています。明示的にするためには、 ``gameObject.transform`` と記述します。各々の記述方法には優劣はなく、スクリプトを書く人の好みとなります。
 
-To see a list of all the Components you can access implicitly, take a look at the [[ScriptRef:GameObject.html | GameObject]] page in the [[ScriptRef:index.html |Scripting Reference]].
+明示的にアクセスすることが出来る全てのコンポーネントの一覧については [[ScriptRef:GameObject.html | GameObject]] page in the [[ScriptRef:index.html |スクリプティング リファレンス]] を参照してください。
 
-!!! Using ``GetComponent()``
+!!! ``GetComponent()`` の使用
 
-There are many Components which are not referenced directly as members of the ``GameObject`` class.  So you cannot access them implicitly, you have to access them explicitly.  You do this by calling the ``GetComponent("component name")`` and storing a reference to the result.  This is most common when you want to make a reference to another script attached to the GameObject.
+``GameObject``クラスのメンバーとしてダイレクトに参照されないコンポーネントがたくさんあります。このため、これらは暗黙的にアクセスすることが出来ず、明示的ににアクセスする必要があります。このためには、 ``GetComponent("コンポーネント名")`` をコールして結果への参照を格納します。もっとも良くあるのはゲームオブジェクトにアタッチされた別のスクリプトへの参照を作成した場合です。
 
-Pretend you are writing ''Script B'' and you want to make a reference to ''Script A'', which is attached to the same GameObject.  You would have to use ``GetComponent()`` to make this reference.  In Script B, you would simply write:
+''Script B'' を記述していると仮定して、同じゲームオブジェクトにアタッチされている''Script A''への参照を作成したいとします。 ``GetComponent()`` を使用してこの参照を行います。Script Bでは次のように記述するのみです:
 
 ``scriptA = GetComponent("ScriptA");``
 
-For more help with using ``GetComponent()``, take a look at the [[ScriptRef:GameObject.GetComponent.html | GetComponent() Script Reference page]].
+``GetComponent()`` を使用するうえでの詳細については [[ScriptRef:GameObject.GetComponent.html | GetComponent() Script Reference page]].
+For more help with using ``GetComponent()``, take a look at the [[ScriptRef:GameObject.GetComponent.html | スクリプティング リファレンスの GetComponent() ページ]] を参照して下さい。
 
 
-!! Accessing variables in other script Components
+!! 他のスクリプト コンポーネント変数へのアクセス
 
-All scripts attached to your GameObjects are Components. Therefore to get access to a public variable (and methods) in a script you make use of the GetComponent method. For example:
+ゲームオブジェクトにアタッチされた全てのスクリプトはコンポーネントでえす。このため、スクリプトからのパブリック変数（およびメソッド）へのにはGetComponentメソッドを使用します。例えば:
 
 [@function Start () {
-   // Print the position of the transform component, for the gameObject this script is attached to
+   // このスクリプトがアタッチされているゲームオブジェクトの Transform コンポーネントの位置を出力
    Debug.Log(gameObject.GetComponent<Transform>.().position);
 }@]
 
-In the previous example the GetComponent<T>. function is used to access the position property of the Transform component. The same technique can be used to access a variable in a custom script Component:
+前述の例では GetComponent<T>. 関数 を使用してTransform コンポーネントの position プロパティをアクセスしました。同じテクニックをカスタムスクリプトのコンポーネントの変数にアクセスするために使用できます。
 
 
 [@(MyClass.js)
@@ -137,20 +138,20 @@ public var speed : float = 3.14159;
 
 (MyOtherClass.js)
 function Start () {
-   // Print the speed variable from the MyClass script Component attached to the gameObject
+   // ゲームオブジェクトにアタッチされた MyClass スクリプト コンポーネント から speed 変数を出力
    Debug.Log(gameObject.GetComponent<MyClass>.().speed);
 }@]
 
 
-!!! Accessing a variable defined in C# from Javascript
+!!! Javascriptから C# で定義された変数をアクセス
 
-To access variables defined in C# scripts the compiled Assembly containing the C# code must exist when the Javascript code is compiled. Unity performs the compilation in different stages as described in the [[Path:../ScriptReference/index.Script_compilation_28Advanced29.html|Script Compilation]] section in the Scripting Reference. If you want to create a Javascript that uses classes or variables from a C# script just place the C# script in the "Standard Assets", "Pro Standard Assets" or "Plugins" folder and the Javascript outside of these folders. The code inside the "Standard Assets", "Pro Standard Assets" or "Plugins" is compiled first and the code outside is compiled in a later step making the Types defined in the compilation step (your C# script) available to later compilation steps (your Javascript script).
+C# スクリプトで定義された変数をアクセスするためには、C# コードを含む コンパイルされたアセンブリ が Javascript コードがコンパイルされたときに存在している必要があります。Unity は異なるステージでのコンパイルについて、スクリプティング リファレンスの [[Path:../ScriptReference/index.Script_compilation_28Advanced29.html|スクリプト コンパイル]] セクションで説明しているように行います。もしC# スクリプトでのクラスや変数 を使用する Javascript を作成したい場合、 "Standard Assets", "Pro Standard Assets",  または "Plugins" フォルダに C# スクリプトを配置して、Javascript スクリプトをこれらのフォルダとは別のところに配置します。"Standard Assets", "Pro Standard Assets", または "Plugins" に含まれるコードは先にコンパイルされ、その外のコードはその後のステップでコンパイルされます。すなわちコンパイル段階で定義された型 (C# スクリプトの中のもの) はその後のステップ（Javascriptスクリプト）で利用可能です。
 
-In general the code inside the "Standard Assets", "Pro Standard Assets" or "Plugins" folders, regardless of the language (C#, Javascript or Boo), will be compiled first and available to scripts in subsequent compilation steps.
+一般的には "Standard Assets", "Pro Standard Assets",  または "Plugins" フォルダに含まれるコードは言語（C#, Javascript, または Boo）に関わらず最初にコンパイルされ、そして後続のコンパイル段階で利用可能となります。
 
-!!! Optimizing variable access
+!!! 変数アクセスの最適化
 
-In some circumstances you may be using GetComponent multiple times in your code, or multiple times per frame. Every call to GetComponent does a few extra steps internally to get the reference to the component you require. A more efficient approach is to store the reference to the component for example in your Start() function. As you will be storing the reference and not retrieving directly it is always good practice to check for null references:
+いくつかの状況ではGetComponentをコードの中で複数回、またはフレームごとに複数回使用しているかもしれません。GetComponentへのコールは必要なコンポーネントへの参照を取得するために内部的にステップが余分に必要となります。より効果的なアプローチは例えば Start() 関数などの中で参照を格納することです。参照を格納するだけであり、直接取得しているわけではないので、null 参照を事前にチェックするのは良い習慣です。
 
 [@(MyClass.js)
 public var speed : float = 3.14159;
@@ -158,19 +159,19 @@ public var speed : float = 3.14159;
 (MyOtherClass.js)
 private var myClass : MyClass;
 function Start () {
-   // Get a reference to the MyClass script Component attached to the gameObject
+   // ゲームオブジェクト にアタッチされた MyClass スクリプト コンポーネントへの参照を取得
    myClass = gameObject.GetComponent<MyClass>.();
 }
 function Update () {
-   // Verify that the reference is still valid and print the speed variable
+   // 参照がまだ有効であることをチェックして、speed 変数を出力
    if(myClass != null)
       Debug.Log (myClass.speed);
 }
 @]
 
-!!! Static Variables
+!!! Static 変数
 
-It is also possible to declare variables in your classes as static. There will exist one and only one instance of a static variable for a specific class and it can be modified without the need of an instance of a class object:
+さらにクラスの中で変数を static と宣言することも出来ます。この場合は特定のクラスの static 変数は一つのみ存在し、そしてクラスオブジェクトのインスタンスがなくとも変更することが出来ます。
 
 [@(MyClass.js)
 static public var speed : float = 3.14159;
@@ -180,8 +181,8 @@ function Start () {
    Debug.Log (MyClass.speed);
 }@]
 
-It is recommended to __not__ use static variables for object references to make sure unused objects are removed from memory.
+使用されないオブジェクトをメモリから取り除くため、オブジェクト参照のためにstatic 変数を使用 __しない__ ことを推奨します。
 
-!! Where to go from here
+!! この先どうするか
 
-This was just a short introduction on how to use scripts inside the Editor. For more examples, check out the Unity tutorials, available for free on our Asset Store. You should also read through the [[Path:../ScriptReference/index.html|Scripting Overview]] in the Script Reference, which contains a more thorough introduction into scripting with Unity along with pointers to more in-depth information. If you're really stuck, be sure to visit the [[http://answers.unity3d.com | Unity Answers]] or [[http://forum.unity3d.com | Unity Forums]] and ask questions there.  Someone is always willing to help.
+これはエディタの中でスクリプトを使用するための、短い紹介文でした。より多くのサンプルについては、アセットストアで無料で利用可能な Unity チュートリアルを確認します。Unityのスクリプトに関するより詳細なチュートリアルや、より深い情報に関するポイントは、スクリプトリファレンスの [[Path:../ScriptReference/index.html|スクリプト概要]] を参照下さい。もし詰まってしまった場合は [[http://answers.unity3d.com | Unity Answers]] または [[http://forum.unity3d.com | Unity Forums]] を訪れて、そこで質問をしてください。常に誰かが助けようとしてくれています。
