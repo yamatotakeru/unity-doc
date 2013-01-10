@@ -7,12 +7,12 @@ Attach:MinMaxDropDown.png
 
 ``Constant``: プロパティの値が時間とともに変化しないので、$$Curve Editor$$に表示されません。
 
-``Random between constants``: プロパティの値は、2つの定数間のランダム値に設定されます。
-
 ``Curve``:プロパティの値が時間とともに$$Curve Editor$$のカーブに基づいて変化します。
 
 Attach:ParticleSystemOneCurve.png
 カーブでアニメーションされたプロパティ
+
+``Random between constants``: プロパティの値は、2つの定数間のランダム値に設定されます。
 
 ``Random between curves``: プロパティの値は、2つの最大、最小のカーブの間でランダムに設定され、値は時とともに生成されたカーブに基づいて変化します。
 Attach:BetweenTwoCurves.png
