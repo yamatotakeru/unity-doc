@@ -1,49 +1,49 @@
-!Procedural Materials
+! プロシージャル マテリアル
 
-Unity incorporates a new asset type known as $$Procedural Materials$$. These are essentially the same as standard Materials except that the textures they use can be generated at runtime rather than being predefined and stored.
+Unity は $$Procedural Materials$$ と呼ばれる新しいアセットの種類を導入しています。これらは本質的に標準的なマテリアルと同じですが、それらが使用するテクスチャは、事前に定義されて格納されるのではなく、実行時に生成することができます。
 
-The script code that generates a texture procedurally will typically take up much less space in storage and transmission than a bitmap image and so Procedural Materials can help reduce download times. Additionally, the generation script can be equipped with parameters that can be changed in order to vary the visual properties of the material at runtime. These properties can be anything from color variations to the size of bricks in a wall. Not only does this mean that many variations can be generated from a single Procedural Material but also that the material can be animated on a frame-by-frame basis. Many interesting visual effects are possible - imagine a character gradually turning to stone or acid damaging a surface as it touches.
+テクスチャをプロシージャルに生成するスクリプトコードは一般的にストレージ上で使用する容量や転送量がビットマップ画像より小さく、このためプロシージャル マテリアルはダウンロード時間を節約できます。さらに、生成スクリプトはマテリアルの実行時の見栄えのプロパティに幅を持たせるためのパラメータを持たせることができます。これらのプロパティはカラーのバリエーションから壁のブロックのサイズまで種類があります。これはひとつのプロシージャル マテリアル から多くのバリエーションが生成できることを意味するだけでなくマテリアルをフレームごとの単位でアニメーションできるという意味です。多くの興味深い視覚効果が実現できます - 例えばキャラクターが徐々に石に変わったり、硫酸が表面に触れて傷つける瞬間を創造してみてください。
 
-Unity's Procedural Material system is based around an industry standard product called Substance, developed by [[http://www.allegorithmic.com/|Allegorithmic]]
-
-
-!!Supported Platforms
-
-In Unity, Procedural Materials are fully supported for standalone and webplayer build targets only (Windows and Mac OS X). For all other platforms, Unity will pre-render or ''bake'' them into ordinary Materials during the build. Although this clearly negates the runtime benefits of procedural generation, it is still useful to be able to create variations on a basic material in the editor.
+Unity のプロシージャル マテリアル システムは、 [[http://www.allegorithmic.com/|Allegorithmic]] によって開発された、 Substanceと呼ばれる業界標準の商品にもとづいています。
 
 
-!!Adding Procedural Materials to a Project
+!!サポートされているプラットフォーム
 
-A Procedural Material is supplied as a Substance Archive file (SBSAR) which you can import like any other asset (drag and drop directly onto the Assets folder or use ^^Assets->Import New Asset...^^). A Substance Archive asset contains one or more Procedural Materials and contains all the scripts and images required by these. Uncompiled SBS files are not supported.
-
-Although they are implemented differently, Unity handles a Procedural Material just like any other Material. To assign a Procedural Material to a mesh, for example, you just drag and drop it onto the mesh exactly as you would with any other Material.
+Unityではプロシージャル マテリアルはスタンドアローンおよびWebPlayerビルド向けのターゲット（Windows および Mac OS X）で完全にサポートされています。他のすべてのプラットフォームでは、Unity は 事前レンダリングまたは通常のマテリアルへの ''焼きこみ'' をビルドの際に行います。これは実行時のプロシージャル生成の長所を打ち消すにも関わらず、エディタ上で基本的なマテリアルのバリエーションを作成するには便利です。
 
 
-!!Procedural Properties
+!!プロジェクトにプロシージャル マテリアルを追加する
 
-Each Procedural Material is a custom script which generates a particular type of material. These scripts are similar to Unity scripts in that they can have variables exposed for assignment in the inspector. For example, a "Brick Wall" Procedural Material could expose properties that let you set the number of courses of bricks, the colors of the bricks and the color of the mortar. This potentially offers infinite material variations from a single asset. These properties can also be set from a script at runtime in much the same way as the public variables of a MonoBehaviour script.
+プロシージャル マテリアルは Substance Archive ファイル (SBSAR) として提供されていて、他のアセット同様にインポートできます（Assets フォルダに直接ドラッグ＆ドロップするか、または、^^Assets->Import New Asset...^^ を使用します）。Substance Archive アセットはひとつ以上の プロシージャルマテリアル を含み、さらにこれが必要とする全てのスクリプトおよび画像を含みます。コンパイルされてない SBS ファイルは未サポートです。
 
-Procedural Materials can also incorporate complex texture animation. For example, you could animate the hands of the clock or cockroaches running across a floor.
+別に実装されているにも関わらず、Unity は他のマテリアルと同様にプロシージャル マテリアルを取り扱います。例えばプロシージャルマテリアルをメッシュに割り当てるには、他のマテリアルと同様にメッシュ上にドラッグ＆ドロップするのみです。
+
+
+!!プロシージャル プロパティ
+
+各々のプロシージャル マテリアルは、特定のマテリアルの種類を生成するカスタムスクリプトです。これらのスクリプトがUnityスクリプトと共通しているのは、インスペクタ上に変数を公開して、アクセスすることができることです。たとえば、"レンガの壁" プロシージャル マテリアルによって プロパティを公開して、レンガの列の数、レンガの色、モルタルの色などセットすることが出来ます。潜在的には、ひとつのアセットから無限にマテリアルのバリエーションが作成できることになります。これらのプロパティは、MonoBehaviour スクリプトのパブリック変数と同様に、実行時にスクリプトからセットすることが出来ます。
+
+さらにプロシージャル マテリアルは複雑なテクスチャ アニメーションを取り扱うことが出来ます。例えば、時計の針または床を這うゴキブリをアニメーションできます。
 
 Attach:SubstanceCockroach.png
 
 
-!!Creating Procedural Materials From Scratch
+!!ゼロからプロシージャルマテリアルを作成
 
-Procedural Materials can work with any combination of procedurally generated textures and stored bitmaps. Additionally, included bitmap images can be filtered and modified before use. Unlike a standard Material, a Procedural Material can use vector images in the form of SVG files which allows for resolution-independent textures.
-
-The design tools available for creating Procedural Materials from scratch use visual, node-based editing similar to the kind found in artistic tools. This makes creation accessible to artists who may have little or no coding experience. As an example, here is a screenshot from Allegorithmic's Substance Designer which shows a "brick wall" Procedural Material under construction: 
+プロシージャルマテリアルはプロシージャルに生成されたテクスチャおよび格納されたビップマップの任意の組み合わせで動作します。さらに、含まれるビットマップ画像は使用前にフィルタリングおよび修正が出来ます。標準的なマテリアルと異なって、プロシージャル マテリアルは解像度に依存しないテクスチャとして、SVGファイルの形式でベクトル画像を使用できます。
+ゼロからプロシージャルマテリアルを作成するために利用可能なデザイン ツール はアーティストの使用するツールと同様に 視覚的で、ノードベースの編集が出来ます。これによりコーディングがほとんど、または全く経験のないアーティストでも作成が可能となります。例として、Allegorithmic の Substance Designer により "レンガの壁" のプロシージャル マテリアル作成中のスクリーンショットを示します。
 
 Attach:SubstanceDesigner.png
 
 
-!!Obtaining Procedural Materials
+!!プロシージャル マテリアルの取得
 
-Since Unity's Procedural Materials are based on the industry standard Substance  product, Procedural Material assets are readily available from internet sources, including Unity's own Asset Store. Allegorithmic's Substance Designer can be used to create Procedural Materials, but there are other applications (3D modelling apps, for example) that incorporate the Substance technology and work just as well with Unity.
+Unity のプロシージャル マテリアルが業界標準の Substance 製品に基づいているため、 プロシージャル マテリアル アセットはインターネット上の情報から、すなわち Unity のアセットストアを含めて、ただちに利用可能です。Allegorithmic の Substance Designer を使用してプロシージャル マテリアル を作成できますが、Substance テクノロジーを取り扱う他のアプリケーション（例えば 3D モデリングアプリケーション）があり、同様にUnity と親和性があります。
 
 
-!! Performance and Optimization
+!! パフォーマンスおよび最適化
 
+プロシージャル マテリアルはビットマップ画像よりも少ない容量を使用する
 Procedural Materials inherently tend to use less storage than bitmap images. However, the trade-off is that they are based around scripts and running those scripts to generate materials requires some CPU and GPU resources. The more complex your Procedural Materials are, the greater their runtime overhead.
 
 Procedural Materials support a form of caching whereby the material is only updated if its parameters have changed since it was last generated. Further to this, some materials may have many properties that could theoretically be changed and yet only a few will ever need to change at runtime. In such cases, you can inform Unity about the variables that will not change to help it cache as much data as possible from the previous generation of the material. This will often improve performance significantly.
