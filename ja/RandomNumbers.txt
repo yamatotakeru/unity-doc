@@ -1,31 +1,31 @@
-!Adding Random Gameplay Elements
+! ランダムなゲームプレイ要素の追加
 
-Randomly chosen items or values are important in many games. This sections shows how you can use Unity's built-in random functions to implement some common game mechanics.
+ランダムに選ばれたアイテムまたは値は多くのげーむで重要です。本項ではUnityの内蔵 random 関数を使用して良くあるゲーム システムを実装する方法を取り上げます。
 
 
-!!Choosing a Random Item from an Array
+!!配列からランダムなアイテムを選択する
 
-Picking an array element at random boils down to choosing a random integer between zero and the array's maximum index value (which is equal to the length of the array minus one). This is easily done using the built-in Random.Range function:-
+ランダムな配列要素を選ぶことはランダムな整数をゼロから配列の最大のインデックス値（配列の長さから1を引いた値）を選ぶことに要約できる。これは内蔵の Random.Range 関数により実現できます:-
 
 [@var element = myArray[Random.Range(0, myArray.Length)];@]
 
-Note that Random.Range returns a value from a range that includes the first parameter but excludes the second, so using myArray.Length here gives the correct result.
+Random.Range が最初の引数の含むけれども二つめの引数は除くかれるため、myArray.Lengthとすることが正しいことに留意して下さい。
 
 
-!!Choosing Items with Different Probabilities
+!!異なる発生確率をもったアイテムを選択する
 
-Sometimes, you need to choose items at random but with some items more likely to be chosen than others. For example, an NPC may react in several different ways when it encounters a player:-
+アイテムをランダムに選択しなければいけないが、あるアイテムは他よりも可能性が高い場合があります。例えば、NPC キャラクターはプレイヤーに遭遇したときにいくつかの反応を示す可能性があります:-
 
-* 50% chance of friendly greeting
-* 25% chance of running away
-* 20% chance of immediate attack
-* 5% chance of offering money as a gift
+* 50% の確率で親しみやすい挨拶
+* 25% 確率で逃走
+* 20% 確率で急な攻撃
+* 5% 確率でお金をプレゼント
 
-You can visualise these different outcomes as a paper strip divided into sections each of which occupies a fraction of the strip's total length. The fraction occupied is equal to the probability of that outcome being chosen. Making the choice is equivalent to picking a random point along the strip's length (say by throwing a dart) and then seeing which section it is in.
+これらの異なる結果を分割した紙切れで表現することができて、各々の切れ端は紙切れの全長の一部を占めるとします。その占める長さが選択される結果の確率に相当します。選択を行うことは紙切れの長さ上の任意の点を選んで（例えばダーツを投げるように）、どの切れ端にあたるか確認することに相当します
 
 Attach:ProbStrip.png
 
-In the script, the paper strip is actually an array of floats that contain the different probabilities for the items in order. The random point is obtained by multiplying Random.value by the total of all the floats in the array (they need not add up to 1; the significant thing is the relative size of the different values). To find which array element the point is "in", firstly check to see if it is less than the value in the first element. If so, then the first element is the one selected. Otherwise, subtract the first element's value from the point value and compare that to the second element and so on until the correct element is found. In code, this would look something like the following:-
+スクリプトの中では紙切れは実際には float の配列で、各々のアイテムに異なる確率を順に格納しています。ランダムな点は Random.valueを全ての float の合計に掛け算することで得られます（足して 1 になる必要はなく、重要なことは異なる値の相対的な長さ）。点がどの配列要素に "入っているか" 調べるために、点の値が最初の要素の値より小さいか比較します。それであれば選択されるのは最初の要素です。そうでなければ、最初の要素の値を点の値から引き算して、それを二つめの要素の値より小さいか比較する、などを繰り返して最終的に正しい要素を見つけます。コードでは次のようになるはずです:-
 
 
 [@function Choose(probs: float[]) {
@@ -47,16 +47,16 @@ In the script, the paper strip is actually an array of floats that contain the d
 	return probs.Length - 1;
 }@]
 
-Note that the final return statement is necessary because Random.value can return a result of 1. In this case, the search will not find the random point anywhere. Changing the line
+最後の return ステートメントが必要である理由は Random.value は1の値を返す可能性があるためだということに留意して下さい。このケースでは、検索はどこでもランダムな点を見つけることが出来ません。次の行を変更して、
 
 [@if (randomPoint < probs[i])@]
 
-...to a less-than-or-equal test would avoid the extra return statement but would also allow an item to be chosen occasionally even when its probability is zero.
+...値を <= 記号に変更することで余分な return ステートメントを回避できますが、確率が 0 の場合でもアイテムを選択することも許容してしまいます。
 
 
-!!Shuffling a List
+!!リストをシャッフルする
 
-A common game mechanic is to choose from a known set of items but have them arrive in random order. For example, a deck of cards is typically shuffled so they are not drawn in a predictable sequence. You can shuffle the items in an array by visiting each element and swapping it with another element at a random index in the array:-
+よくあるゲーム システムは知られたアイテムのセットから選択するけれどもランダムな順番で訪れるというものです。例えば、カードの山は一般的にシャッフルして予想できる順番とならないようにします。アイテムを配列でシャッフルするためには、各々のアイテムを参照して、他のランダムな配列インデックスの要素と入れ替えることが出来ます。
 
 [@function Shuffle(deck: int[]) {
 	for (i = 0; i < deck.Length; i++) {
@@ -68,11 +68,11 @@ A common game mechanic is to choose from a known set of items but have them arri
 }@]
 
 
-!!Choosing from a Set of Items Without Repetition
+!! 繰り返しなしでアイテムのセットから選択する
 
-A common task is to pick a number of items randomly from a set without picking the same one more than once. For example, you may want to generate a number of NPCs at random spawn points but be sure that only one NPC gets generated at each point. This can be done by iterating through the items in sequence, making a random decision for each as to whether or not it gets added to the chosen set. As each item is visited, the probability of its being chosen is equal to the number of items still needed divided by the number still left to choose from.
+良くある作業は、アイテムをセットからランダムに選択して、繰り返し同じものを一回以上選択しないようにするということです。例えば、一定数のNPC キャラクターをランダム位置で生成したけれども、ひとつのNPC だけがある位置で生成されるようにしたい場合があります。これは順番にアイテムを反復して、各々について選択したセットに追加するかどうかランダムな判断を行います。各々のアイテムを参照するたび、それが選択される確率は、まだ必要なアイテムの数をまだ選べる数で割ったものです。
 
-As an example, suppose that ten spawn points are available but only five must be chosen. The probability of the first item being chosen will be 5 / 10 or 0.5. If it is chosen then the probability for the second item will be 4 / 9 or 0.44 (ie, four items still needed, nine left to choose from). However, if the first was not chosen then the probability for the second will be 5 / 9 or 0.56 (ie, five still needed, nine left to choose from). This continues until the set contains the five items required. You could accomplish this in code as follows:-
+サンプルとして、10 個の生成点が利用可能であるけれども、5 個のみから最初のアイテムが選択される確率は 5 / 10 または 0.5です。もし、それが選ばれた場合、二つめのアイテムが選ばれる確立は 4 / 9 または 0.44 （すなわち、4 個がまだ必要で、9 個からまだ選べます）。これを、セットが必要な 5 個のアイテムを含むまで繰り返します。次のようなコードによりこれを実現できます:-
 
 [@var spawnPoints: Transform[];
 
@@ -97,23 +97,23 @@ function ChooseSet(numRequired: int) {
 	return result;
 }@]
 
-Note that although the selection is random, items in the chosen set will be in the same order they had in the original array. If the items are to be used one at a time in sequence then the ordering can make them partly predictable, so it may be necessary to shuffle the array before use.
+選択がランダムであるにも関わらず、選択されたセットのアイテムは最初の配列と同じ順序であることに留意して下さい。もしアイテムが順番に一回づつ使用されるとしたら、順番によって予想可能となってしまうため、配列を使用する前にシャッフルする必要があるかもしれません。
 
 
 
-!!Random Points in Space
+!! 空間におけるランダムな点
 
-A random point in a cubic volume can be chosen by setting each component of a Vector3 to a value returned by Random.value:-
+立方体の体積におけるランダムな点は、Vector3 の各々のコンポーネントを Random.valueにより返される値でセットすることで選択できます :-
 
 [@var randVec = Vector3(Random.value, Random.value, Random.value);@]
 
-This gives a point inside a cube with sides one unit long. The cube can be scaled simply by multiplying the X, Y and Z components of the vector by the desired side lengths. If one of the axes is set to zero, the point will always lie within a single plane. For example, picking a random point on the "ground" is usually a matter of setting the X and Z components randomly and setting the Y component to zero.
+これにより辺の長さが 1 単位である立方体の中の点が返されます。立方体を拡大／縮小するにははベクトルのX 、Y 、Z 要素を希望する辺の長さに掛け算するのみです。もし軸のひとつがゼロにセットされる点はひとつの平面上に置かれます。例えば、ランダムな地点を "地面" から選ぶ必要がある場合は、 X、 Z をランダムに選択して、 Y はゼロ にセットすることになります。
 
-When the volume is a sphere (ie, when you want a random point within a given radius from a point of origin), you can use Random.insideUnitSphere multiplied by the desired radius:-
+体積が球である場合（すなわち、原点から一定の半径に含まれるランダムな点が必要な場合）、 Random.insideUnitSphere を希望の半径に掛け算できます:-
 
 [@var randWithinRadius = Random.insideUnitSphere * radius;@]
 
-Note that if you set one of the resulting vector's components to zero, you will *not* get a correct random point within a circle. Although the point is indeed random and lies within the right radius, the probability is heavily biased toward the edge of the circle and so points will be spread very unevenly. You should use Random.insideUnitCircle for this task instead:-
+もし結果のベクトルの要素のひとつをゼロにしても、 円の中のランダムな点を正しく得ることには「出来ません」。点は確かにランダムで、半径は希望する範囲内にありますが、確率が円周に近づくにつれ大きく偏りができていて、点は不均等に並びます。その状況では変わりに Random.insideUnitCircle を使用すべきです:-
 
 [@var randWithinCircle = Random.insideUnitCircle * radius;@]
 
