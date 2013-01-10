@@ -1,46 +1,47 @@
-! FBX export guide
+! FBX エクスポート ガイド
 
-Unity supports FBX files which can be generated from many popular 3D applications. Use these guidelines to help ensure the most best results.
+Unityは多くの主要な3Dアプリケーションで生成されるFBXファイルをサポートします。このガイドラインを用いてベストの結果を確実に得られるようにして下さい。
 
 !!Select > Prepare > Check Settings > Export > Verify > Import
 
-!!! '''What''' do you want to export? - be aware of export scope e.g. meshes, cameras, lights, animation rigs, etc. - 
+!!! '''何を''' エクスポートしますか？ - エクスポートの範囲に注意して下さい、すなわちメッシュ、カメラ、ライト、アニメーションリグ、その他 -
 
-*Applications often let you export '''''selected objects''''' or a '''''whole scene'''''
-*Make sure you are exporting only the objects you want to use from your scene by either exporting selected, or removing unwanted data from your scene.
-*Good working practice often means keeping a working file with all lights, guides, control rigs etc. but only export the data you need with ''export selected,'' an export preset or even a custom scene exporter. 
+* アプリケーションにより''''選択オブジェクト'''' または''''シーン全体''''のエクスポートご出来ます。
+* シーンで使用したいオブジェクトのみをエクスポートすることを確認するために、シーンで必要なオブジェクトのみを選択したり不必要なデータを省いて下さい。
+*良い作業習慣としては、全ての作業ファイル、すなわち全てのライト、ガイド、コントロールリグ、その他を保持しつつ、''選択エクスポート'' によってか、事前に定義したエクスポートのセットか、さらにはカスタムで作成したシーンエクスポーターにより必要なデータのみをエクスポートします。
 
-!!! '''What''' do you need to include? - prepare your assets:
+!!! '''何を''' 含めふ必要がありますか？ - アセットの準備:
 
-* Meshes - Remove construction history, Nurbs, Nurms, Subdiv surfaces must be converted to polygons - e.g. triangulate or quadrangulate
-* Animation - Select the correct rig, check frame rate, animation length etc.  
-* Textures - Make sure your textures are sourced already from your Unity project or copied into a folder called \textures in your project
-* Smoothing - Check if you want smoothing groups and/or smooth mesh
+* メッシュ - 作業履歴を削除、Nurbs、Nurms, Subdiv surface はポリゴンに変換が必要です - 例えば三角形か四角形にします
+* アニメーション - 正しいリグの選択、フレームレート、アニメーションの長さ等のチェック
+* テクスチャ - Unityプロジェクトにソースがあるか、プロジェクト中の \textures フォルダにすでにコピーされていることを確かめます。
+* スムージング - スムージング グループ および/または スムーズ メッシュ が必要であるかチェックします。
 
-!!! '''How''' do I include those elements? - check the FBX export settings
+!!! '''どのようにして''' これらの要素を含めますか？- FBXエクスポート設定のチェック
 
-* Be aware of your settings in the export dialogue so that you know what to expect and can match up the fbx settings In Unity - see figs 1, 2 & 3 below
-* Nodes, markers and their transforms can be exporte
-* Cameras and Lights are not currently imported in to Unity
+* エクスポート ダイアログの中の設定を意識して、Unityで何が出来るのか、およびUnityのFBX設定とマッチング出来るようにします。
+* ノード、マーカー、および transform はエクスポート出来ます
+* カメラ、ライトは現在Unityにインポートされません
 
-!!! '''Which''' version of FBX are you using? if in doubt use [[http://usa.autodesk.com/adsk/servlet/pc/item?siteID=123112&id=18817399|2012.2]]
+!!! '''どの''' FBX バージョンを使用していますか？ 不明な場合は  [[http://usa.autodesk.com/adsk/servlet/pc/item?siteID=123112&id=18817399|2012.2]]
+ を使用して下さい。
+*Autodesk は FBX インストーラを定期的に更新し、複数の結果を、Autodeskの複数のソフトウェア バージョン、また他のサードパーティ3D製品向けに提供出来ます。
+*'''''Advanced Options >  FBX file format を参照下さい'''''
 
-*Autodesk update their FBX installer regularly and it can provide different results with different versions of their own software and other 3rd party 3D apps.
-*'''''See Advanced Options >  FBX file format'''''
+!!! 正しく動作するか？ - エクスポートを検証
 
-!!! Will it work? - Verify your export
+* ファイルサイズをチェック - ファイルサイズに含まれるゴミのチェックをします。 (>10kb であるか、等)
+* FBXを使用している3Dパッケージの新規のシーンに再インポートします。- 期待通りですか?
 
-* Check your file size - do a sanity check on the file size (e.g. >10kb?)
-* Re-import your FBX into a new scene in the 3D package you use to generate it - is it what you expected?
+!!! '''いよいよインポート'''
 
-!!! '''Import!'''
+* Unityにインポート
+*インスペクタで FBX import settings をチェック: テクスチャ、アニメーション、スムージング、その他
 
-* Import into Unity
-* Check FBX import settings in inspector : texures, animations, smoothing, etc.
+Maya FBXでのダイアログのサンプルについて以下を参照下さい:
 
-See below for Maya FBX dialogue example:
-
-Fig 1 General, Geometry & Animation
+図1 一般的なジオメトリおやびアニメーション
 Attach:FBX_A.png
-Fig 2 Lights, Advanced options
+
+図2 ライト、Advanced オプション
 Attach:FBX_B.png
