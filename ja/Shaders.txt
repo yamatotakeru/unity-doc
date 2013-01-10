@@ -1,52 +1,52 @@
-!Shaders
+! シェーダ
 
-All rendering in Unity is done with ''Shaders'' - small scripts that let you configure the how the graphics hardware is set up for rendering. Unity ships with over eighty built-in shaders (documented in the [[Built-in Shader Guide]]). You can extend this set by making your own shaders. 
+全ての Unity のレンダリングは ''シェーダ'' により行われます - すなわち、グラフィックス ハードウェアがレンダリングをどうセットアップすべきか設定することのできる短いスクリプトです。Unity は出荷時に 80 以上の内蔵シェーダが含まれます（ドキュメントは [[Built-in Shader Guide]] ）。これを拡張するには自身のシェーダを作成します。
 
-Shaders in Unity can be written in one of three different ways:
+Unityのシェーダは3種類の方法のいずれかで書くことが出来ます:
 
-!!! Surface Shaders
+!!! サーフェイス シェーダ
 
-[[SL-SurfaceShaders | Surface Shaders]] are your best option ''if your shader needs to be affected by lights and shadows''. Surface shaders make it easy to write complex shaders in a compact way - it's a higher level of abstraction for interaction with Unity's lighting pipeline. Most surface shaders automatically support both forward and deferred lighting. You write surface shaders in a couple of lines of __Cg/HLSL__ and a lot more code gets auto-generated from that.
+[[SL-SurfaceShaders | Surface Shaders]] は ''もしシェーダがライトおよびシャドウの影響を受ける必要がある場合'' にベストのオプションです。サーフェイス シェーダにより複雑なシェーダをコンパクトな方法で書くことを容易にします - Unityのライティングパイプラインに対して、より高いレベルの抽象化がされています。ほとんどのサーフェイスシェーダは自動的に Forward および Deffered Lightingをサポートします。サーフェイス シェーダを __Cg/HLSL__ ではかなり行数で書き、さらにそこからより多くのコードが自動生成されます。
 
-Do ''not'' use surface shaders if your shader is not doing anything with lights. For [[comp-ImageEffects|Image Effects]] or many special-effect shaders, surface shaders are a suboptimal option, since they will do a bunch of lighting calculations for no good reason!
-
-
-!!! Vertex and Fragment Shaders
-
-Vertex and Fragment Shaders will be required, if your shader doesn't need to interact with lighting, or if you need some very exotic effects that the surface shaders can't handle. Shader programs written this way are the most flexible way to create the effect you need (even surface shaders are automatically converted to a bunch of vertex and fragment shaders), but that comes at a price: you have to write more code and it's harder to make it interact with lighting. These shaders are written in __Cg/HLSL__ as well.
+もしシェーダがライトで何もしない場合は、サーフェイス シェーダを使用 "しないで" ください。[[comp-ImageEffects|Image Effects]] および多くの特殊効果シェーダでは、サーフェイス シェーダは次善策のオプションであり、あまり良い理由なく非常にたくさんのライティング計算を行うことになります。
 
 
-!!! Fixed Function Shaders
+!!! 頂点およびフラグメントシェーダ
 
-Fixed Function Shaders need to be written for old hardware that doesn't support programmable shaders. You will probably want to write fixed function shaders as an n-th fallback to your fancy fragment or surface shaders, to make sure your game still renders something sensible when run on old hardware or simpler mobile platforms. Fixed function shaders are entirely written in a language called __ShaderLab__, which is similar to Microsoft's .FX files or NVIDIA's CgFX.
+もしシェーダがライティングと作用する必要がない、またはサーフェイス シェーダではハンドリングできないとてもエギゾチックなエフェクトが必要である場合、頂点およびフラグメントシェーダは必要となります。この方法で書かれたシェーダプログラムは必要なエフェクトを作成するもっとも柔軟な方法です（サーフェイス シェーダでさえ自動的に大量の頂点およびフラグメントシェーダに変換されます）が、これにはコストが伴います:より多くのコードを記述する必要があり、ライティングと作用させることは難しくなります。これらのシェーダもまた __Cg/HLSL__ で記述されます。
+
+
+!!! 固定関数シェーダ
+
+固定関数シェーダは、プログラマブル シェーダをサポートしない古いハードウェアのために記述する必要があります。固定関数シェーダはしゃれたフラグメントシェーダまたはサーフェイスシェーダの後の n 番目の fallback とし記述して、古いハードウェアやシンプルなモバイルプラットフォームで実行したときも何か意味のあるレンダリングを行えるようにします。固定関数シェーダは完全に __ShaderLab__ と呼ばれる言語で書かれ、これはMicrosoftの .FX ファイルまたは NVIDIAの CgFX に似ています。
 
 
 !! ShaderLab
 
-Regardless of which type you choose, the actual meat of the shader code will always be wrapped in ShaderLab, which is used to organize the shader structure. It looks like this:
+どのタイプを選んだとしても、シェーダ コードの実際の本体は ShaderLab で常にラッピングされ、シェーダ構造を整理するためにこれを使用します。次のようなものです:
 
 [@Shader "MyShader" {
     Properties {
         _MyTexture ("My Texture", 2D) = "white" { }
-        // other properties like colors or vectors go here as well
+        // カラーやベクトルなどのプロパティもこの箇所に記述
     }
     SubShader {
-        // here goes the 'meat' of your
-        //  - surface shader or
-        //  - vertex and fragment shader or
-        //  - fixed function shader
+        // この箇所に以下の本体を記述
+        //  - サーフェイスシェーダ または
+        //  - 頂点およびフラグメントシェーダ または
+        //  - 固定関数シェーダ
     }
     SubShader {
-        // here goes a simpler version of the SubShader above that can run on older graphics cards
+        // この箇所に、古いグラフィックスカードで実行される、より簡易のバージョンの前述のサブシェーダを記述
     }
 } @]
 
-We recommend that you start by reading about some basic concepts of the ShaderLab syntax in the [[SL-Shader | ShaderLab reference]] and then move on to the tutorials listed below.
+最初は ShaderLab 文法の基本コンセプトについて [[SL-Shader | ShaderLab リファレンス]] で読んで、それから下に並ぶチュートリアルに進むことを推奨します。
 
-The tutorials include plenty of examples for the different types of shaders. For even more examples of surface shaders in particular, you can get the source of Unity's built-in shaders from the [[http://www.unity3d.com/support/resources/assets/built-in-shaders | Resources section]]. Unity's [[comp-ImageEffects | Image Effects]] package contains a lot of interesting vertex and fragment shaders.
+チュートリアルは様々な種類のシェーダに関する多くの例を含みます。さらにサーフェイスシェーダに特化したより多くのサンプルについては、 [[http://www.unity3d.com/support/resources/assets/built-in-shaders | リソース セクション]] で内蔵シェーダのソースコードが入手できます。 Unityの [[comp-ImageEffects | Image Effects]] パッケージにはたくさんの興味深い頂点およびフラグメントシェーダを含みます。
 
-Read on for an introduction to shaders, and check out the [[SL-Reference | shader reference]]!
+シェーダの紹介については読み進めて、 [[SL-Reference | shader reference]] に目を通して下さい。
 
-* [[ShaderTut1 | Tutorial: ShaderLab & Fixed Function Shaders]]
-* [[ShaderTut2 | Tutorial: Vertex and Fragment Shaders]]
-* [[SL-SurfaceShaders | Surface Shaders]]
+* [[ShaderTut1 | Tutorial: ShaderLab および 固定関数シェーダ]] 
+* [[ShaderTut2 | Tutorial: 頂点およびフラグメントシェーダ]] 
+* [[SL-SurfaceShaders | サーフェイス シェーダ]] 
