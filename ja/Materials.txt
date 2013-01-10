@@ -1,78 +1,77 @@
-!Materials and Shaders
+!マテリアルおよびシェーダ
 
-There is a close relationship between $$Materials$$ and $$Shaders$$ in Unity.  Shaders contain code that defines what kind of properties and assets to use.  Materials allow you to adjust properties and assign assets.
+Unityの $$Materials$$ および $$Shaders$$ には密接な関係があります。シェーダは使用できるプロパティやアセットを定義するコードを含みます。マテリアルによりプロパティを調整し、アセットを割り当てできます。
 
 Attach:Shader-NormalBumpSpec.png\\
-''A Shader is implemented through a Material''
+''シェーダはマテリアルを通じて実装されます。''
 
-To create a new Material, use ^^Assets->Create->Material^^ from the main menu or the $$Project View$$ context menu.  Once the Material has been created, you can apply it to an object and tweak all of its properties in the $$Inspector$$.  To apply it to an object, just drag it from the $$Project View$$ to any object in the $$Scene$$ or $$Hierarchy$$.
+新規のマテリアルを作成するにはメインメニューまたは $$Project View$$ から ^^Assets->Create->Material^^ を使用します。マテリアルを作成した後はオブジェクトに適用して $$Inspector$$ でプロパティを微調整できます。オブジェクトに適用するには $$Project View$$ から $$Scene$$ または $$Hierarchy$$ のいずれかのオブジェクトにドラッグ＆ドロップします。
 
-!!Setting Material Properties
+!!マテリアル プロパティのセット
 
-You can select which Shader you want any particular Material to use.  Simply expand the ^^Shader^^ drop-down in the Inspector, and choose your new Shader.  The Shader you choose will dictate the available properties to change. The properties can be colors, sliders, textures, numbers, or vectors. If you have applied the Material to an active object in the $$Scene$$, you will see your property changes applied to the object in real-time.
+特定のマテリアルに使用させたいシェーダを選択できます。インスペクタの ^^Shader^^ ドロップダウンを拡張して新しいシェーダを選択します。選択するシェーダによって、変更することが出来るプロパティが示されます。プロパティには、カラー、スライドバー、テクスチャ、数字、またはベクトルがあります。もし $$Scene$$ 上のアクティブなオブジェクトにマテリアルを適用した場合、オブジェクトに対するプロパティ変更がリアルタイムで行われることが画面で確認できます。
 
-There are two ways to apply a $$Texture$$ to a property.
+$$Texture$$ をプロパティに適用する方法が二つあります。
 
-# Drag it from the Project View on top of the Texture square
-# Click the ^^Select^^ button, and choose the texture from the drop-down list that appears
+# プロジェクトビューからテクスチャのボックスの上にドラッグ＆ドロップします。
+# ^^Select^^ ボタンをクリックして、表示されるドロップダウンリストからテクスチャを選択します。
 
-Two placement options are available for each $$Texture$$:
+各々の $$Texture$$ には配置オプションが二つ利用可能です:
 
 ||PROPS
-||``Tiling``   ||Scales the texture along the different.||
-||``Offset``  ||Slides the texture around.||
+||``Tiling``   ||異なるテクスチャ上でスケールします。||
+||``Offset``  ||テクスチャをスライドします。||
 
 
 
-!!Built-in Shaders
+!!内蔵シェーダ
 
-A set of [[Built-in Shader Guide | built-in Shaders]] are installed with the Unity editor. Over eighty shaders are available - the main ones used for texturing game objects fall into the following categories:-
+[[Built-in Shader Guide | 内蔵シェーダ]] のセットがUnityエディタとともにインストールされています。80以上のシェーダが利用可能です - ゲームオブジェクトのテクスチャに使用される主要なものは次の分類に当てはまります:-
 
-*[[ shader-NormalFamily | Normal ]]: For opaque textured objects.
-*[[ shader-TransparentFamily | Transparent ]]: For partly transparent objects. The texture's alpha channel defines the level of transparency.
-*[[ shader-TransparentCutoutFamily | TransparentCutOut ]]: For objects that have only fully opaque and fully transparent areas, like fences.
-*[[ shader-SelfIllumFamily |  Self-Illuminated ]]: For objects that have light emitting parts.
-*[[ shader-ReflectiveFamily |  Reflective ]]: For opaque textured objects that reflect an environment $$Cubemap$$.
+*[[ shader-NormalFamily | 法線 ]]: 不透明のテクスチャオブジェクト向け。
+*[[ shader-TransparentFamily | 透明 ]]: 部分的に透明のオブジェクト向け。テクスチャのアルファチャンネルにより透明度合いを定義。
+*[[ shader-TransparentCutoutFamily | 透明カットアウト ]]: 完全に不透明および完全に透明な領域がある、例えばフェンスのようなオブジェクト。
+*[[ shader-SelfIllumFamily |  自己発光 ]]: 光を発光する部分のあるオブジェクト。
+*[[ shader-ReflectiveFamily |  鏡面 ]]: 環境 $$Cubemap$$ を反射する不透明なオブジェクト。
 
-In each group, built-in shaders range by complexity, from the simple ``VertexLit`` to the complex ``Parallax Bumped with Specular``.  For more information about performance of Shaders, please read the built-in Shader [[ shader-Performance | performance page]]
+各々のグループで、内蔵シェーダは、シンプルな ``VertexLit`` (頂点ライティング) から複雑な ``Parallax Bumped with Specular`` （視差バンプ鏡面）まで複雑さに幅があります。シェーダのパフォーマンスについては内蔵シェーダの [[ shader-Performance | パフォーマンスのページ]] を参照下さい。
 
 Attach:BuiltinShaders.png\\
 
-In addition to the main game object shaders, there are a number of other categories for specialised purposes:-
+主要なゲームオブジェクトのシェーダに加えて、特殊な目的のための分類がいくつかあります:-
 
-* __FX__: lighting and water effects.
-* __GUI__: graphic user interface display.
-* __Nature__: trees and terrain.
-* __Particles__: particle system effects.
-* __Render FX__: skybox shaders.
-* __Toon__: cartoon-style rendering.
+* __FX__: ライティングおよび水のエフェクト。
+* __GUI__: グラフィカル ユーザ インタフェース 表示。
+* __Nature__: 樹木および地形。
+* __Particles__: パーティクルシステム エフェクト。
+* __Render FX__: Skybox シェーダ。
+* __Toon__: カートゥーン（漫画）風のレンダリング。
 
+さらに、これらのシェーダのいくつかはモバイルデバイスで使用できる特殊バージョンをもっています。
 Also, some of these shaders have special versions for use with mobile devices. 
 
 
-!!Shader technical details
+!! シェーダ技術詳細
 
-Unity has an extensive Shader system, allowing you to tweak the look of all in-game graphics. It works like this:
-
-A Shader basically defines a formula for how the in-game shading should look. Within any given Shader is a number of properties (typically textures). Shaders are implemented through $$Materials$$, which are attached directly to individual $$GameObjects$$.  Within a Material, you will choose a Shader, then define the properties (usually textures and colors, but properties can vary) that are used by the Shader.
-
-This is rather complex, so let's look at a workflow diagram:
+Unityには大規模なシェーダシステムがあり、ゲーム内のグラフィックの見栄えを微調整できます。次のように動作します
+シェーダはゲーム内のシェーディングの見栄えを判断する計算式を定義します。任意のシェーダについて、複数のプロパティがあります（典型的にはテクスチャ）。シェーダは $$Materials$$ を通じて実装されていて、個別の $$GameObjects$$ に直接アタッチされています。マテリアルの中で、シェーダを選択して、それからシェーダにより使用されるプロパティ（通常はテクスチャおよびカラー、しかしプロパティは異なることがあります）を定義します。
+これはやや複雑であるため、ワークフロー図を見てみます:
 
 Attach:material_diagram.png
 
-On the left side of the graph is the $$Carbody Shader$$. 2 different Materials are created from this: ``Blue car Material`` and ``Red car Material``. Each of these Materials have 2 textures assigned; the ``Car Texture`` defines the main texture of the car, and a ``Color FX texture``. These properties are used by the shader to make the car finish look like 2-tone paint. This can be seen on the front of the red car: it is yellow where it faces the camera and then fades towards purple as the angle increases. The car materials are attached to the 2 cars. The car wheels, lights and windows don't have the color change effect, and must hence use a different Material. At the bottom of the graph there is a ``Simple Metal Shader``. The ``Wheel Material`` is using this Shader. Note that even though the same ``Car Texture`` is reused here, the end result is quite different from the car body, as the Shader used in the Material is different.
+このグラフの左側は $$Carbody Shader$$ があります。2つの異なるシェーダがここから作成されます:  ``Blue car Material`` および ``Red car Material`` です。各々のマテリアルは2つのテクスチャが割り当てされています。``Car Texture`` は車のメイン テクスチャおよび ``Color FX texture`` を定義します。シェーダによって、最終的に2つのトーンでペイントされた車の見栄えとなるよう、これらのプロパティが使われます。これは赤い車のフロントで見られます: カメラを向いた側は黄色で角度が広がるほっど紫にフェードします。車のマテリアルは2つの車にアタッチされます。車のホイール、ライト、およびウィンドウはこのカラー変化のエフェクトがなく、したがって異なるマテリアルを使用する必要があります。グラフの最下部には ``Simple Metal Shader``  があります。``Wheel Material`` はこのシェーダを使用しています。同じ``Car Texture`` が使用されているにも関わらず、最終結果は、マテリアルで使用されるシェーダが異なるために、車のボディーとは大きく異なることに留意して下さい。
 
-To be more specific, a Shader defines:
-* The method to render an object. This includes using different methods depending on the graphics card of the end user.
-* Any vertex and fragment programs used to render.
-* Some texture properties that are assignable within Materials.
-* Color and number settings that are assignable within Materials.
+より具体的には、シェーダが定義するのは:
+* オブジェクトをレンダリングする手法。これはエンドユーザのグラフィックス カードにより異なる手法を用いることを含みます。
+* レンダリングに用いられる頂点およびフラグメント プログラム
+* マテリアルの中で割り当てすることができるテクスチャ プロパティ
+* マテリアルの中で割り当てすることができるカラーおよび数字の設定
 
-A Material defines:
-* Which textures to use for rendering.
-* Which colors to use for rendering.
-* Any other assets, such as a Cubemap that is required by the shader for rendering.
+マテリアルが定義するのは:
+* レンダリングで用いられるテクスチャ
+* レンダリングで用いられるカラー
+* シェーダでレンダリングに必要なその他のアセット、例えばキューブマップ
 
-Shaders are meant to be written by graphics programmers. They are created using the $$ShaderLab$$ language, which is quite simple. However, getting a shader to work well on a variety graphics cards is an involved job and requires a fairly comprehensive knowledge of how graphics cards work.
+シェーダはグラフィックス プログラマにより記述されることを意図しています。$$ShaderLab$$ 言語を用いて作成されていて、かなりシンプルです。しかし、シェーダを幅広い グラフィックス カード で動作するようにすることはややこしい作業でありグラフィックスについて相当に網羅的な知識が必要です。
 
-A number of shaders are built into Unity directly, and some more come in the [[HOWTO-InstallStandardAssets|Standard Assets]] Library.  For further information about shaders, see the [[Built-in Shader Guide]].
+いくつかのシェーダはUnityに内蔵されていて、いくつかは [[HOWTO-InstallStandardAssets|Standard Assets]] ライブラリに含まれます。シェーダの詳細については [[Built-in Shader Guide]] を参照下さい。
