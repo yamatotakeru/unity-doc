@@ -1,4 +1,4 @@
-! 反射視差拡散
+! 反射視差鏡面
 
 Attach:Shaders./Shader-ReflParallaxBumpSpec.png
 
