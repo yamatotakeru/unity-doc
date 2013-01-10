@@ -1,28 +1,29 @@
-! Instantiating Prefabs at runtime
+! 実行時のプレハブのインスタンス化
 
-By this point you should understand the concept of $$Prefabs$$ at a fundamental level.  They are a collection of predefined $$GameObjects$$ & $$Components$$ that are re-usable throughout your game.  If you don't know what a Prefab is, we recommend you read the [[Prefabs]] page for a more basic introduction.
+この時点までに基本的なところまで $$Prefabs$$ の概念について理解できているはずです。これらはゲームを通じて再利用できる、事前に定義済みの $$GameObjects$$ および $$Components$$ です。もしプレハブが何か分からない場合は、 [[Prefabs]] でより基本的な説明があるため参照下さい。
 
-Prefabs come in very handy when you want to instantiate complicated GameObjects at runtime.  The alternative to instantiating Prefabs is to create GameObjects from scratch using code.  Instantiating Prefabs has many advantages over the alternative approach:
+プレハブは複雑なゲームオブジェクトを実行時にインスタンス化したい場合に便利です。プレハブのインスタンス化に関する代替手段はゼロからコードを使用してゲームオブジェクトを作成することです。プレハブのインスタンス化はこの代替手段に比べて多くの長所があります:
 
-* You can instantiate a Prefab from one line of code, with complete functionality.  Creating equivalent GameObjects from code takes an average of five lines of code, but likely more.
-* You can set up, test, and modify the Prefab quickly and easily in the Scene and Inspector.
-* You can change the Prefab being instanced without changing the code that instantiates it. A simple rocket might be altered into a super-charged rocket, and no code changes are required.
-
-
-!! Common Scenarios
-
-To illustrate the strength of Prefabs, let's consider some basic situations where they would come in handy:
-
-# Building a wall out of a single "brick" Prefab by creating it several times in different positions.
-# A rocket launcher instantiates a flying rocket Prefab when fired. The Prefab contains a Mesh, $$Rigidbody$$, $$Collider$$, and a child GameObject with its own trail $$Particle System$$.
-# A robot exploding to many pieces. The complete, operational robot is destroyed and replaced with a wrecked robot Prefab. This Prefab would consist of the robot split into many parts, all set up with Rigidbodies and Particle Systems of their own. This technique allows you to blow up a robot into many pieces, with just one line of code, replacing one object with a Prefab.
+* プレハブのインスタンス化をコード一行で、完全な機能つきで行うことが出来ます。コードから同等のゲームオブジェクトを作成することは平均で5行か、実際にはそれ以上かかります。
+* シーンおよびインスペクタ上で早く簡単にプレハブをセットアップ、テスト、修正できます。
+* インスタンス化に使用したコードを変更することなく、インスタンス化されるプレハブを変更することが出来ます。シンプルなロケットを最速のロケットに変更することが出来てコードの変更が必要ありません。
 
 
-!!! Building a wall
 
-This explanation will illustrate the advantages of using a Prefab vs creating objects from code.
+!! 良くあるシナリオ
 
-First, lets build a brick wall from code:
+プレハブの威力を確認するために、便利に使える基本的な場面を考えて見ます:
+
+# ひとつの "レンガ" から壁を作成するために、複数回異なる場所に作成する
+# ロケットランチャーが発射時に空飛ぶロケット プレハブ をインスタンス化します。プレハブはメッシュ, $$Rigidbody$$, $$Collider$$, および子ゲームオブジェクトと軌跡に $$Particle System$$ を含みます。
+# ロボットがバラバラにいくつもの部分に爆発します。完全な、機能するロボットは破壊されて、壊れたロボットプレハブで置き換えられます。このプレハブはいくつもの部分に分割されたロボットを含み、全て各々のRigidbody や パーティクルシステムでセットアップされています。このテクニックによりロボットをいくつもの部分に爆発させるのに、一行のコードだけでオブジェクトをプレハブで置き換えることにより実現できます。
+
+
+!!! 壁の作成
+
+このサンプルではプレハブの使用をコードからオブジェクト作成と比較して長所を確認していきます。
+
+最初に、コードからレンガの壁を作成します:
 
 [@
 // JavaScript
@@ -52,14 +53,16 @@ public class Instantiation : MonoBehaviour {
 }
 @]
 
-* To use the above script we simply save the script and drag it onto an empty GameObject.
-* Create an empty GameObject with ^^GameObject->Create Empty^^.
+* 上記のスクリプトを使用するには、単にスクリプトを保存して空のゲームオブジェクトにドラッグ＆ドロップします。
+* 空のゲームオブジェクトを^^GameObject->Create Empty^^ で作成します。
 
-If you execute that code, you will see an entire brick wall is created when you enter $$Play Mode$$.  There are two lines relevant to the functionality of each individual brick: the ``CreatePrimitive()`` line, and the ``AddComponent()`` line.  Not so bad right now, but each of our bricks is un-textured.  Every additional action to want to perform on the brick, like changing the texture, the friction, or the Rigidbody ``mass``, is an extra line.
+もしコードを実行すると、 $$Play Mode$$ に入ったときにレンガの壁全体が見られます。個別のレンガの機能に関連する箇所が二行あります:  ``CreatePrimitive()`` 行、および ``AddComponent()`` 行です。ここまで悪くはないですが、各々のレンガはテクスチャがありません。行いたい全ての追加のアクションは一行づつ必要となります、例えばテクスチャ変更、摩擦、Rigidbody の  ``mass`` （重量）は別の行です。
 
-If you create a Prefab and perform all your setup before-hand, you use one line of code to perform the creation and setup of each brick.  This relieves you from maintaining and changing a lot of code when you decide you want to make changes.  With a Prefab, you just make your changes and Play.  No code alterations required.
+もしプレハブを作成して、セットアップをあらかじめ行っておくと、一行のコードを使って各レンガの作成とセットアップを行います。
 
-If you're using a Prefab for each individual brick, this is the code you need to create the wall.
+これにより、もし変更を行いたい場合に大量のコードの保守と変更が不要となります。プレハブがあれば、変更を行って実行するのみっです。コードの修正は必要ありません。
+
+もし各レンガでプレハブを使用している場合、次のコードで壁が作成できます。
 
 [@// JavaScript
 
@@ -85,57 +88,58 @@ void Start() {
 }
 @]
 
-This is not only very clean but also very reusable. There is nothing saying we are instantiating a cube or that it must contain a rigidbody. All of this is defined in the Prefab and can be quickly created in the Editor.
+これは綺麗であるだけでなく再利用性も高いものです。キューブをインスタンス化する、またはrigidbodyを含む必要があると書いているところはありません。この全てはプレハブに定義されていてエディタで速やかに作成することが出来ます。
 
-Now we only need to create the Prefab, which we do in the Editor.  Here's how:
+次にプレハブを作成して、これをエディタで行います。次はそれを行う方法です:
 
-# Choose ^^GameObject->Create Other->Cube^^
-# Choose ^^Component->Physics->Rigidbody^^
-# Choose ^^Assets->Create->Prefab^^
-# In the $$Project View$$, change the name of your new Prefab to "Brick"
-# Drag the cube you created in the $$Hierarchy$$ onto the "Brick" Prefab in the $$Project View$$
-# With the Prefab created, you can safely delete the Cube from the Hierarchy (^^Delete^^ on Windows, ^^Command-Backspace^^ on Mac)
+# ^^GameObject->Create Other->Cube^^ を選択
+# ^^Component->Physics->Rigidbody^^ を選択
+# ^^Assets->Create->Prefab^^ を選択
+# $$Project View$$ でプレハブの名前を "Brick" に変更します。
+# $$Hierarchy$$ で作成したキューブを $$Project View$$ の "Brick" プレハブにドラッグ＆ドロップします。
+# 作成したプレハブで、階層ビューか
+ら安全にキューブを削除出来ます。（Windows では ^^Delete^^ 、Macでは ^^Command-Backspace^^ ）
 
-We've created our Brick Prefab, so now we have to attach it to the ``brick`` variable in our script.  Select the empty GameObject that contains the script. Notice that a new variable has appeared in the Inspector, called "brick".
+レンガ プレハブを作成したので、これでスクリプトの ``brick`` 変数にアタッチする必要があります。スクリプトを含む空のゲームオブジェクトを選択します。インペクタ上で "brick" という名前で新しい変数が表示されたことを確認してください。
 
 Attach:InspectorWithCubeVar.png\\
-''This variable can accept any GameObject or Prefab''
+''この変数はどのようなゲームオブジェクトまたはプレハブでも使用できます''
 
-Now drag the "Brick" Prefab from the Project View onto the ``brick`` variable in the Inspector.  Press Play and you'll see the wall built using the Prefab.
+次にプロジェクトビューから "Brick" プレハブをインスペクタ上の ``brick`` 変数にドラッグ＆ドロップします。Play をクリックすれば、プレハブで作成された壁が表示されます。
 
-This is a workflow pattern that can be used over and over again in Unity. In the beginning you might wonder why this is so much better, because the script creating the cube from code is only 2 lines longer.
+このワークフローパターンはUnityで繰り返し何回も使用できるものです。はじめは、スクリプトから作成すると2行だけが長いだけで、何故このほうがそこまで良いのか分からないかもしれません。
 
-But because you are using a Prefab now, you can adjust the Prefab in seconds. Want to change the mass of all those instances? Adjust the Rigidbody in the Prefab only once. Want to use a different $$Material$$ for all the instances?  Drag the Material onto the Prefab only once. Want to change friction?  Use a different $$Physic Material$$ in the Prefab's collider. Want to add a Particle System to all those boxes?  Add a child to the Prefab only once.
+しかし、今はプレハブを使用しているので、プレハブの調整を数秒で出来ます。全てのインスタンスの重さを変更したい？そういった場合はプレハブのRigidbody を一回だけ調整するだけです。全てのインスタンスで $$Material$$ を別のものに変更したい？マテリアルをプレハブの上に一回だけドラッグ＆ドロップするだけです。摩擦を変更したい？プレハブのコライダで $$Physic Material$$ を変更するだけです。全てのボックスにパーティクルシステムを追加したい？ プレハブに子オブジェクトを一回追加するのみです。
 
 
-!!! Instantiating rockets & explosions
+!!! ロケットおよび爆発のインスタンス化
 
-Here's how Prefabs fit into this scenario:
+プレハブをこのシナリオで使用する方法は次のとおりです:
 
-# A rocket launcher instantiates a rocket Prefab when the user presses fire. The Prefab contains a mesh, Rigidbody, Collider, and a child GameObject that contains a trail particle system.
-# The rocket impacts and instantiates an explosion Prefab. The explosion Prefab contains a Particle System, a light that fades out over time, and a script that applies damage to surrounding GameObjects.
+# ロケットランチャーにより、ユーザが発射ボタンを押すとロケットプレハブをインスタンス化します。プレハブにはメッシュ, Rigidbody, コライダ およびトレイル パーティクルシステムを含む子ゲームオブジェクトから構成されます。
+# ロケットは発射されて、爆発プレハブをインスタンス化します爆発プレハブは、パーティクルシステム、時間を経るとフェードアウトするライト、および周囲のゲームオブジェクトに力を加えるスクリプト、を含みます。
 
-While it would be possible to build a rocket GameObject completely from code, adding Components manually and setting properties, it is far easier to instantiate a Prefab. You can instantiate the rocket in just one line of code, no matter how complex the rocket's Prefab is.  After instantiating the Prefab you can also modify any properties of the instantiated object (e.g. you can set the velocity of the rocket's Rigidbody).
+ロケットのゲームオブジェクトを完全にコードから、手動でコンポーネントを追加しプロパティをセットして、作成することも出来ますが、プレハブをインスタンス化したほうが遥かに簡単です。ロケットのインスタンス化を、ロケットのプレハブの複雑さに関わらず、一行のコードで行うことが出来ます。プレハブをインスタンス化した後、さらにインスタンス化されたオブジェクトのプロパティを変更することが出来ます。（例えば、ロケットの Rigidbody の velocity をセットする、等）
 
-Aside from being easier to use, you can update the prefab later on. So if you are building a rocket, you don't immediately have to add a Particle trail to it. You can do that later. As soon as you add the trail as a child GameObject to the Prefab, all your instantiated rockets will have particle trails. And lastly, you can quickly tweak the properties of the rocket Prefab in the Inspector, making it far easier to fine-tune your game.
+使用することが簡単であることとは別に、後からプレハブを変更することが出来ます。このためロケットを作成している場合、すぐにトレイル パーティクルを加える必要がありません。それは後から出来ます。トレイルを子ゲームオブジェクトとしてプレハブに加えると、全てのインスタンス化されたロケットはトレイルのパーティ来るが出来ます。そして最後に、速やかにインスペクタ上でロケットプレハブのプロパティを微調整できるため、ゲームの調整が遥かに容易になります。
 
-This script shows how to launch a rocket using the ``Instantiate()`` function.
+次のスクリプトでロケットを ``Instantiate()`` 関数を使用して発射する方法を示します。
 
 [@// JavaScript
 
-// Require the rocket to be a rigidbody.
-// This way we the user can not assign a prefab without rigidbody
+// ロケットがRigidbodyである必要があります。
+// これによって、ユーザはRigidbodyなしにプレハブをアサインすることが出来ません。
 var rocket : Rigidbody;
 var speed = 10.0;
 
 function FireRocket () {
     var rocketClone : Rigidbody = Instantiate(rocket, transform.position, transform.rotation);
     rocketClone.velocity = transform.forward * speed;
-    // You can also acccess other components / scripts of the clone
+    // クローンの他のコンポーネント／スクリプトにアクセスが可能
     rocketClone.GetComponent(MyRocketScript).DoSomething();
 }
 
-// Calls the fire method when holding down ctrl or mouse
+// Ctrl押下またはマウス クリックにより発射するメソッドをコール
 function Update () {
     if (Input.GetButtonDown("Fire1")) {
         FireRocket();
@@ -145,8 +149,8 @@ function Update () {
 
 // C#
 
-// Require the rocket to be a rigidbody.
-// This way we the user can not assign a prefab without rigidbody
+// ロケットがRigidbodyである必要があります。
+// これによって、ユーザはRigidbodyなしにプレハブをアサインすることが出来ません。
 public Rigidbody rocket;
 public float speed = 10f;
 
@@ -154,11 +158,11 @@ void FireRocket () {
 	Rigidbody rocketClone = (Rigidbody) Instantiate(rocket, transform.position, transform.rotation);
 	rocketClone.velocity = transform.forward * speed;
 	
-	// You can also acccess other components / scripts of the clone
+    // クローンの他のコンポーネント／スクリプトにアクセスが可能
 	rocketClone.GetComponent<MyRocketScript>().DoSomething();
 }
 
-// Calls the fire method when holding down ctrl or mouse
+// Ctrl押下またはマウス クリックにより発射するメソッドをコール
 void Update () {
 	if (Input.GetButtonDown("Fire1")) {
 		FireRocket();
@@ -167,48 +171,47 @@ void Update () {
 @]
 
 
-!!! Replacing a character with a ragdoll or wreck
+!!! キャラクターを Ragdoll または破壊物で置き換える
 
-Let's say you have a fully rigged enemy character and he dies.  You could simply play a death animation on the character and disable all scripts that usually handle the enemy logic. You probably have to take care of removing several scripts, adding some custom logic to make sure that no one will continue attacking the dead enemy anymore, and other cleanup tasks.
+完全にリギングされた敵キャラクターがいて、死亡したとします。キャラクター上で短に死亡したアニメーションを再生して、全ての敵ロジックをハンドリングしていた全てのスクリプトを無効化します。おそらくいくつかのスクリプトを取り除くことが必要となり、追加のカスタムロジックにより誰も死亡した敵に対する攻撃を行わない、などその他クリーンアップのタスクが必要です。
 
-A far better approach is to immediately delete the entire character and replace it with an instantiated wrecked prefab. This gives you a lot of flexibility. You could use a different material for the dead character, attach completely different scripts, spawn a Prefab containing the object broken into many pieces to simulate a shattered enemy, or simply instantiate a Prefab containing a version of the character.
+遥かに良いアプローチは敵キャラクターを直ちに削除して、インスタンス化された破壊物で置き換えることです。これにより柔軟性が高まります。死亡キャラクターに対して異なるマテリアルを使用できたり、まったく異なるスクリプトをアタッチしたり、いくつもの部分に破壊されたオブジェクトを含むプレハブを生成してバラバラになった敵を再現したり、または単にキャラクターのあるバージョンを持ったプレハブをインスタンス化することも出来ます。
 
-Any of these options can be achieved with a single call to ``Instantiate()``, you just have to hook it up to the right prefab and you're set!
+いずれのオプションであっても、一回 ``Instantiate()`` をコールするだけであり、正しいプレハブに結び付けて、それで完了です。
 
-The important part to remember is that the wreck which you ``Instantiate()`` can be made of completely different objects than the original. For example, if you have an airplane, you would model two versions. One where the plane consists of a single GameObject with $$Mesh Renderer$$ and scripts for airplane physics. By keeping the model in just one GameObject, your game will run faster since you will be able to make the model with less triangles and since it consists of fewer objects it will render faster than using many small parts. Also while your plane is happily flying around there is no reason to have it in separate parts.
+覚えるべき重要な部分は ``Instantiate()``する破壊物は元とは全く異なるオブジェクトで作成できることです。例えば、飛行機があったとして、二つのバージョンをモデリングします。ひとつは飛行機が、 $$Mesh Renderer$$ および飛行機の物理挙動を実行するスクリプトです。モデルをひとつのオブジェクトにだけすることでゲームは、より少ない三角形で作成され、より少ないオブジェクトで構成されるため、より小さいパーツを多く使用するよりもレンダリングが早く、より高速に実行できます。さらに飛行機が幸せそうに飛び回っている間はわざわざいくつかの部分に分ける必要性がありません。
 
-To build a wrecked airplane Prefab, the typical steps are:
-# Model your airplane with lots of different parts in your favorite modeler
-# Create an empty Scene
-# Drag the model into the empty Scene
-# Add Rigidbodies to all parts, by selecting all the parts and choosing ^^Component->Physics->Rigidbody^^
-# Add Box Colliders to all parts by selecting all the parts and choosing ^^Component->Physics->Box Collider^^
-# For an extra special effect, add a smoke-like Particle System as a child GameObject to each of the parts
-# Now you have an airplane with multiple exploded parts, they fall to the ground by physics and will create a Particle trail due to the attached particle system. Hit Play to preview how your model reacts and do any necessary tweaks.
-# Choose ^^Assets->Create Prefab^^
-# Drag the root GameObject containing all the airplane parts into the Prefab
+破壊された飛行機のプレハブを作成するときに典型的なステップは:
+# 好みのモデリングツールを使用して飛行機をたくさんのパーツから作成します。
+# 空のシーンを作成
+# 空のシーンにモデルをドラッグ＆ドロップ
+# Rigidbody を 全てのパーツを選択して ^^Component->Physics->Rigidbody^^ を選択することで、全てのパーツにに追加
+# Box Collidersを 全てのパーツを選択して ^^Component->Physics->Box Collider^^ を選択することで、全てのパーツにに追加
+# より特別なエフェクトのために、煙のようなパーティクルシステムを子ゲームオブジェクトとして全てのパーツに追加
+# これで飛行機には複数の爆発するパーツがあり、地面には物理挙動で落ち、アタッチされたパーティクルシステムによるトレイルパーティクルが作成されます
+# ^^Assets->Create Prefab^^ を選択
+# 全ての飛行機のパーツを含むルートのゲームオブジェクトをプレハブにドラッグ＆ドロップ
 
 
 [@// JavaScript
 
 var wreck : GameObject;
 
-// As an example, we turn the game object into a wreck after 3 seconds automatically
+// サンプルとして、ゲームオブジェクトを3秒後に破壊物に変更
 function Start () {
     yield WaitForSeconds(3);
     KillSelf();
 }
-
-// Calls the fire method when holding down ctrl or mouse
+// Ctrl押下またはマウス クリックにより発射するメソッドをコール
 function KillSelf () {
-    // Instantiate the wreck game object at the same position we are at
+    // 現在いる位置に破壊されたゲームオブジェクトをインスタンス化
     var wreckClone = Instantiate(wreck, transform.position, transform.rotation);
 
-    // Sometimes we need to carry over some variables from this object
-    // to the wreck
+    // 場合により、このオブジェクトからいくつかの変数を
+    // 破壊物に移行
     wreckClone.GetComponent(MyScript).someVariable = GetComponent(MyScript).someVariable;
 
-    // Kill ourselves
+    // 自らを破棄
     Destroy(gameObject);
 
 
@@ -216,43 +219,42 @@ function KillSelf () {
 
 public GameObject wreck;
 
-// As an example, we turn the game object into a wreck after 3 seconds automatically
+// サンプルとして、ゲームオブジェクトを3秒後に破壊物に変更
 IEnumerator Start() {
 	yield return new WaitForSeconds(3);
 	KillSelf();
 }
 
-// Calls the fire method when holding down ctrl or mouse
+// Ctrl押下またはマウス クリックにより発射するメソッドをコール
 void KillSelf () {
-	// Instantiate the wreck game object at the same position we are at
+    // 現在いる位置に破壊されたゲームオブジェクトをインスタンス化
 	GameObject wreckClone = (GameObject) Instantiate(wreck, transform.position, transform.rotation);
 	
-	// Sometimes we need to carry over some variables from this object
-	// to the wreck
+    // 場合により、このオブジェクトからいくつかの変数を
+    // 破壊物に移行
 	wreckClone.GetComponent<MyScript>().someVariable = GetComponent<MyScript>().someVariable;
 	
-	// Kill ourselves
+	// 自らを破棄
 	Destroy(gameObject);
 }
 
 } @]
 
+First Person Shooter チュートリアル によりキャラクターを Ragdoll バージョンを置き換えて、さらに手足を最後のアニメーションの状態と同期させる方法を説明します。チュートリアルについては [[Tutorials]] を参照下さい。
 
-The First Person Shooter tutorial explains how to replace a character with a ragdoll version and also synchronize limbs with the last state of the animation. You can find that tutorial on the [[Tutorials]] page.
 
+!!! たくさんのオブジェクトを特定パターンで配置する
 
-!!! Placing a bunch of objects in a specific pattern
+例えばたくさんのオブジェクトをグリッド状または円状に配置したいとします。伝統的にはこれは次のいずれかの方法をとります:
 
-Lets say you want to place a bunch of objects in a grid or circle pattern.  Traditionally this would be done by either:
+# コードから完全にオブジェクトを作成するとします。これは退屈な作業です。スクリプトから値を入力するのは遅く、直感的でなく、労力に見合いません。
+# 完全にリギングされたオブジェクトを作成し、複製して、シーン上に複数回配置するとします。これは退屈な作業で、グリッドに性格に配置することが難しい作業です。
 
-#Building an object completely from code. This is tedious! Entering values from a script is both slow, unintuitive and not worth the hassle.
-#Make the fully rigged object, duplicate it and place it multiple times in the scene. This is tedious, and placing objects accurately in a grid is hard.
-
-So use ``Instantiate()`` with a Prefab instead!  We think you get the idea of why Prefabs are so useful in these scenarios.  Here's the code necessary for these scenarios:
+このため、代わりにプレハブで ``Instantiate()`` を使用して下さい。なぜゲームオブジェクトがこのシナリオで役に立つのかは理解できたいとおもいます。このシナリオのため必要なコードは次の通りです:
 
 [@// JavaScript
 
-// Instantiates a prefab in a circle
+// プレハブを円状にインスタンス化
 
 var prefab : GameObject;
 var numberOfObjects = 20;
@@ -268,7 +270,7 @@ function Start () {
 
 
 // C#
-// Instantiates a prefab in a circle
+// プレハブを円状にインスタンス化
 
 public GameObject prefab;
 public int numberOfObjects = 20;
@@ -285,7 +287,7 @@ void Start() {
 
 [@// JavaScript
 
-// Instantiates a prefab in a grid
+// プレハブをグリッド状にインスタンス化
 
 var prefab : GameObject;
 var gridX = 5;
@@ -304,7 +306,7 @@ function Start () {
 
 // C#
 
-// Instantiates a prefab in a grid
+// プレハブをグリッド状にインスタンス化
 
 public GameObject prefab;
 public float gridX = 5f;
