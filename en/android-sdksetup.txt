@@ -15,7 +15,7 @@ This can be tricky, especially under Windows based systems where drivers tend to
 --->Additional info can be found here: [[http://developer.android.com/sdk/win-usb.html|USB Drivers for Windows]]
 * For '''Mac''': If you're developing on Mac OSX then no additional drivers are usually required.
 
-__Note:__ Don't forget to turn on "USB Debugging" on your device. You can do this from the home screen: press MENU, select Applications > Development, then enable USB debugging.
+__Note:__ Don't forget to turn on "USB Debugging" on your device. Go to Settings -> Developer options, then enable USB debugging. As of Jelly Bean the Developer options are hidden and it only appears when Settings -> About -> Build number has been tapped multiple times.
 
 If you are unsure whether your device is properly installed on your system, please read the [[TroubleShooting#AndroidTroubleShooting | trouble-shooting page]] for details.
 
