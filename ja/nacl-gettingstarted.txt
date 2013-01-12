@@ -1,68 +1,68 @@
-! Getting Started with Native Client Development
+! ネイティブ クライアント開発を始める
 
-Native Client (''NaCl'') is a new technology by Google which allows you to embed native executable code in web pages to allow deployment of very performant web apps without requiring the install of plugins. Currently, NaCl is only supported in Google Chrome on Windows, Mac OS X and Linux (with Chrome OS support being worked on), but the technology is open source, so it could be ported to other browser platforms in the future.
+ネイティブ クライアント（以下、''NaCl'' ）は Google の新しいテクノロジーでありネイティブ実行コードをウェブページい埋め込み、非常にパフォーマンスの高いウェブアプリをプラグインのインストールを必要とせずにデプロイできます。現在 NaCl はWindows, Mac OS X および Linux （Chrome OSサポートを有効にした状態）の Google Chrome でのみサポートされていますが、テクノロジーはオープンソースであるため、将来的に他のブラウザプラットフォームにポートすることが出来ます。
 
-Unity 3.5 offers support to run Unity Web Player content (.unity3d files) using NaCl to allow content to be run without requiring a plugin install in Chrome. This is an early release - it should be stable to use, but it does not yet support all features supported in the Unity Web Player, because NaCl is an evolving platform, and does not support everything we can do in a browser plugin.
+Unity 3.5 では NaCl で Unity Web Player コンテンツ(.unity3d ファイル)を実行して、Chrome でプラグイン インストールなしにコンテンツ実行できることをサポートしています。これはまだ評価版です - 安定して使用できますが、 NaCl は進化が早いプラットフォームであるため、Unity Web Player でサポートされている全ての機能をサポートしませんしブラウザ プラグインで出来ることを全てサポートしていません。
 
-!! Building and Testing games on NaCl
+!! NaCl でのゲームのビルドおよびテスト
 
-Building and testing games on NaCl is very simple. You need to have Google Chrome installed. Simply choose "Web Player" in Build Settings, and tick the "Enable NaCl" checkbox. This will make sure the generated unity3d file can be run on NaCl (by including GLSL ES shaders needed for NaCl, and by disabling dynamic fonts not supported by NaCl), and install the NaCl runtime and a html file to launch the game in NaCl. If you click Build & Run, Unity will install your player as an app in Chrome and launch it automatically.
+NaCl でのゲームのビルドおよびテストは非常に簡単です。Google Chrome のインストールが必要です。単に "Web Player" を Build Settings で選択肢、 "Enable NaCl" チェックボックスをチェックします。これにより生成された unity3d ファイルが Nacl で実行できることを確認し（NaCl で必要な GLSL ESシェーダ を含め、NaCl でサポートされていないダイナミック フォントを無効化して）、そして NaCl ランタイム および HTML ファイル をインストールして NaCl ゲームを起動します。もしビルドをして実行すると、 Unity はプレイヤーを Chrome のアプリとしてインストールし、自動的に起動します。
 
-!! Shipping Games with NaCl
+!! NaCl でのゲームの出荷
 
-In its current state, NaCl is not enabled for generic web pages in Chrome by default. While you can embed a NaCl player into any web page, and direct your users to manually enable NaCl in chrome://flags, the only way to currently ship NaCl games and have them work out of the box is to deploy them on the [[https://chrome.google.com/webstore|Chrome Web Store]] (for which NaCl is enabled by default). Note that the Chrome Web Store is fairly unrestrictive, and allows you to host content embedded into your own web site, or to use your own payment processing system if you like. The plan is that this restriction will be lifted when Google has finished a new technology called portable NaCl (PNaCl), which lets you ship executables as LLVM bitcode, thus making NaCl apps independent of any specific CPU architectures. Then NaCl should be enabled for any arbitrary web site.
+現状では、 NaCl は デフォルトでChrome での汎用的なウェブ向けに有効化されていません。NaCl プレイヤーをどのようなウェブページに埋め込みできて、そしてユーザにより手動で chrome://flags から有効化するように促すことが出来る一方で、現在 NaCl ゲームを出荷して難しい設定なしで動作させるためには [[https://chrome.google.com/webstore|Chrome Web Store]] にデプロイすることです（ここではNaCl がデフォルトで有効）。Chrome Web Store は比較的制限がなく、また自身のウェブサイトのコンテンツをホストすることが許容されている、または自身の希望する支払い処理システムを使用していることに留意して下さい。予定としてはこの制限は Google が新しいテクノロジーであるポータブル ネイティブ クライアント（PNaCl）を完了したときに取り除かれ、このテクノロジーでは実行ファイルを LLVM ビットコードとして出荷でき、したがって Nacl アプリを 全てのCPU アーキテクチャとは独立して動作できるようになります。次に NaCl は任意のウェブサイトで有効化されるはずです。
 
-!!! Notes on Build size
+!!! ビルドサイズに関する補足
 
-When you make a NaCl build, you will probably notice that the ''unity_nacl_files_3.x.x'' folder is very large, over 100 MB. If you are wondering, if all this much data needs to be downloaded on each run for NaCl content, the answer is generally "no". There are two ways to serve apps on the Chrome Web Store, as a hosted or packaged app. If you serve your content as a packaged app, all data will be downloaded on install as a compressed archive, which will then be stored on the user's disk. If you serve your content as a hosted app, data will be downloaded from the web each time. But the nacl runtime will only download the relevant architecture (i686 or x86_64) from the ''unity_nacl_files_3.x.x'' folder, and when the web server is configured correctly, the data will be compressed on transfer, so the actual amount of data to be transferred should be around 10 MB (less when physics stripping is used). The ''unity_nacl_files_3.x.x'' folder contains a ''.htaccess'' file to set up Apache to compress the data on transfer. If  you are using a different web server, you may have to set this up yourself.
+NaCl ビルドを作成するとき、 ''unity_nacl_files_3.x.x'' が非常に大きく、 100 MB を超えることに多分気付きます。NaCl コンテンツの実行をするたびに、このデータがダウンロードされる必要があるかというと、一般的には違います。アプリをChrome Web Storeで供給するには2つの方法があり、ホストされたアプリかパッケージされたアプリか、のいずれかです。もしコンテンツをパッケージされたアプリとして供給する場合、全てのデータはインストール時に圧縮アーカイブとしてダウンロードされ、次にユーザのハードディスク上に格納されます。もしコンテンツをホストされたアプリとして供給する場合、データはウェブから毎回ダウンロードされます。しかし、NaCl ランタイムは関連するアーキテクチャのみを ''unity_nacl_files_3.x.x'' フォルダからダウンロード（i686 または x86_64）してウェブサーバが正しく設定されていれば、データは送信時に圧縮され、実際の送信データは 10MB ぐらいになります（Physics Stripping が使用されている場合はより少なくなります）。 ''unity_nacl_files_3.x.x'' フォルダは ''.htaccess'' ファイルを含み、 データを送信時に圧縮するように Apache を設定します。もし異なるウェブサーバを使用している場合、これを自身で設定する必要があるかもしれません。
 
-!! Limitations in NaCl
+!! NaCl の制約事項
 
-NaCl does not yet support all the features in the regular Unity Web Player. Support for many of these will be coming in future versions of Chrome and Unity. Currently, NaCl these features are unsupported by NaCl:
+NaCl は通常の Unity Web Player の全ての機能をまだサポートしていません。これらの多くのサポートは Chrome および Unity の将来バージョンで予定されています。現在、 NaCl では次の機能がサポートされていません:
 
-* Webcam Textures
-* Joystick Input
-* Caching
-* Substances
-* Dynamic Fonts
-* Networking of any kind other then WWW class.
-* The Profiler does not work, because it requires a network connection to the Editor.
-* As with the standard webplayer plugin, native C/C++ plugins are not currently supported by NaCl.
+* Webcam テクスチャ
+* ジョイスティック入力
+* キャッシング
+* Substance
+* ダイナミック フォント
+* WWWクラスを除いた全てのネットワーキング
+* エディタへのネットワーク接続が必要であるため、プロファイラ は動作しません。
+* 標準の Webplayer プラグインについては、ネイティブ C/C++ プラグインは現在 NaCl によりサポートされていません。
 
-The following features are supported, but have some limitations:
+次の機能はサポートされていますが、いくつかの制限があります:
 
-* Depth textures: 
-->Depth textures are required for real-time shadows and other effects. Depth textures are supported in Unity NaCl, but Chrome's OpenGL ES 2.0 implementation does not support the required extensions on windows, so Depth textures will only work on OS X and Linux.
+* デプス テクスチャ:
+-> デプス テクスチャ は リアルタイム シャドウ および他のエフェクトで必要です。デプス テクスチャは Unity NaCl でサポートされていますが、 Chrome の OpenGL ES 2.0 実装は Windows で必要な拡張機能をサポートしていないため、デプステクスチャは OS X および Linux でのみ動作します。
 
-* Other graphics features:
-->NaCl uses OpenGL ES 2.0, which does not support all extensions included in the normal OpenGL. This means that some features relying on extensions, such as linear and HDR lighting will not currently work on NaCl. Also Shaders need to be able to compile as GLSL shaders. Currently, not all built-in Unity shaders support this, for instance, the Screen Space Ambient Occlusion is not supported on GLSL.
+* 他のグラフィックス機能:
+->NaCl は OpenGL ES 2.0 を使用し、通常の OpenGL に含まれる拡張機能の全てをサポートしません。これはつまりいくつかの拡張機能に依存する機能、例えば リニア および HDR ライティングは現在 NaCl で動作しません。さらにシェーダは GLSL シェーダとしてコンパイルされる必要があります。現在、全ての内蔵シェーダがこれをサポートしておらず、例えば、 スクリーン スペース アンビエント オクルージョン は GLSL でサポートされていません。
 
-* Cursor locking:
-->Cursor locking is supported, but only in fullscreen mode. Cursor locking in windowed mode is planned for a later Chrome release.
+* カーソル ロック:
+->カーソル ロックはサポートされていますが、フルスクリーン モードのみの場合です。ウィンドウ モードでのカーソル ロックは将来の Chrome リリースで予定されてます。
 
-* NullReferenceExceptions:
-->NaCl does not have support for hardware exception handling. That means that a NullReferenceException in scripting code results in a crash in NaCl. You can, however pass @@softexceptions="1"@@ to the embed parameters (set automatically by Unity when building a development player), to tell mono to do checking for NullReferences in software, which results in slower script execution but no crashes.
+* NullReference例外:
+-> NaCl はハードウェアの例外ハンドリングをサポートしていません。つまりスクリプティングでの NullReference 例外は NaCl でクラッシュします。しかし @@softexceptions="1"@@ を埋め込みパラメータに渡すことが出来て（Unity により Development プレイヤー をビルドするときは自動的にセットされる）、これにより Mono に対してNull参照 をソフトウェアで実施し、結果的にスクリプト実行が遅くなりその代わりにクラッシュはしません。
 
-While Google does not give any system requirements for NaCl other then requiring at least OS X 10.6.7 on the Mac, we've found it to not work very well with old systems - especially when these systems have old GPUs or graphics drivers, or a low amount of installed main memory. If you need to target old hardware, you may find that the Web Player will give you a better experience.
+Google は NaCl に対するシステム要件について、 Mac OS X 10.6.7が必要ということ以外に条件がない一方で、古いシステムでは正しく動作しない場合があることをわれわれは発見しています - 特にこれらのシステムが古い GPU や グラフィックス ドライバーがある場合や積まれているメインメモリーが少ない場合などです。もし古いハードウェアをターゲットとする必要がある場合、 Web Player のほうが良い体験を得られることに気付くかもしれません。
 
-!! Fullscreen mode:
+!! フルスクリーン モード:
 
-Fullscreen mode is supported by setting Screen.fullScreen, but you can only enter fullscreen mode in a frame where the user has released the mouse button. NaCl will not actually change the hardware screen resolution, which is why Screen.resolutions will only ever return the current desktop resolution. However, Chrome supports rendering into smaller back buffers, and scaling those up when blitting to the screen. So, requesting smaller resolutions then the desktop resolution is generally supported for fullscreen mode, but will result in GPU based scaling, instead of changing the screen mode.
+フルスクリーン モードは Screen.fullScreen をセットすることによりサポートされますが、 ユーザがマウスボタンを離したフレームでしかフルスクリーン モードに入ることが出来ません。NaCl は実際にはハードウェア画面の解像度を変更せず、このため Screen.resolutions はつねに現在のデスクトップ解像度を返します。しかし、 Chrome はより小さいバックバッファへのレンダリングをサポートしていて、画面転送するときに拡大縮小を行います。このため、デスクトップ解像度より小さい解像度をリクエストすることはフルスクリーンモードで一般的にサポートされていますが、スクリーンモードの変更ではなくGPU ベースのスケーリングとなります。
 
-!! WWW class:
+!! WWW クラス:
 
-The WWW class is supported in NaCl, but follows different security policies then the Unity Web Player. While the Unity Web Player uses [[Security Sandbox|crossdomain.xml]] policy files, similar to flash, Unity NaCl has to follow the cross-origin security model followed by NaCl, documented [[http://www.w3.org/TR/cors/|here]]. Basically, in order to access html documents on a different domain then the player is hosted, you need to configure your web server to send a @@Access-Control-Allow-Origin@@ respond header for the requests, which allows the domain hosting the player.
+WWW クラスは NaCl でサポートされていますが、Unity Web Playerと異なるセキュリティポリシーに従います。Unity Web Player が [[Security Sandbox|crossdomain.xml]] ポリシーファイルを使用する一方で、 Flash と同様に、 Unity NaCl は [[http://www.w3.org/TR/cors/|ここ]] に記載されている、NaCl が従うcross-origin セキュリティモデル に従う必要があります。基本的に、プレイヤーがホストされているのと異なるドメインでHTML ドキュメントをアクセスするためには、ウェブサーバを設定して リクエストに対して @@Access-Control-Allow-Origin@@ 応答ヘッダ を送信して、ドメインにプレイヤーホストすることを許可させる必要があります。
 
-!! Communicating with browser javascript in NaCl
+!! NaCl でブラウザ Javascript と通信する
 
-Interacting with the web page using JavaScript is supported, and is very similar to [[Unity Web Player and browser communication|using the Unity Web Player]], with one exception: The syntax for sending messages to Unity from html javascript is different, because it has to go through the NaCl module. When you are using the default Unity-generated html, then this code will work:
+JavaScriptを使ってウェブページと通信することはサポートされていて、 [[Unity Web Player and browser communication|Unity Web Player を使用する]] 場合と非常ににていますが、ひとつだけ例外があります: NaCl モジュールを通過する必要があるため Unity から HTML Javascript へのメッセージ送信の構文が異なります。デフォルトの Unity により生成された HTML を使用しちえる場合、次のコードが動作します:
 
 @@document.getElementById('UnityEmbed').postMessage("GameObject.Message(parameter)");@@
 
-!! Logging
+!! ロギング
 
-Since NaCl does not allow access to the user file system, it will not write log files. Instead it outputs all logging to stdout. To see the player logs from NaCl: 
+NaCl はユーザアイルシステムへのアクセスを許可しないため、ログファイルを書き込みしません。その代わりにすべてのロギングを stdout に出力します。NaClからプレイヤーログを見るためには:
 
-* Do a Build & Run in the edtior once to make sure your game is installed into Chrome as an app.
-* On Mac OS X, start Chrome from a Terminal, and start the app by clicking on it's icon. You should see the Unity player log output in the terminal.
-* On Windows it's the same, but you need to set the NACL_EXE_STDOUT and NACL_EXE_STDERR environment variables, and start Chrome with the --no-sandbox option. See Google's [[https://sites.google.com/a/chromium.org/dev/nativeclient/how-tos/debuggingtips|documentation]].
+* エディタで一回ビルドおよび実行を行い、ゲームが Chrome でアプリとしてインストールされていることを確認します。
+* Mac OS X 上で、ターミナルから Chrome を開始し、アイコンをクリックすることでアプリを開始します。ターミナルで Unity player ログ出力が見られます。
+* Windows上で同じですが、 NACL_EXE_STDOUT および NACL_EXE_STDERR 環境変数をセットする必要があり、Chrome を --no-sandbox オプションで開始する必要があります。Google の [[https://sites.google.com/a/chromium.org/dev/nativeclient/how-tos/debuggingtips|ドキュメント]] を参照下さい。
