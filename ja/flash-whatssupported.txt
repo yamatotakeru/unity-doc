@@ -1,73 +1,73 @@
-!Flash: What is and is not supported 
+!Flash: サポートされている／いない内容
 
-!!Supported
+!!サポートされている内容
 
-* Flash Player 11.2, 11.3 and 11.4
-* Full ActionScript API Access
-* Lightmapping
-* Occlusion culling
-* Editor Scripting (JavaScript / C# / Boo). Note: for JavaScript, use @@#pragma strict.@@
-* Custom shaders 
-* Animation / skinning
-* Basic types like int, string, List
-* Basic audio features, such as AudioSource / AudioListener
-* Physics 
-* Navigation Meshes
-* Substance Textures, however the textures are baked at build time so cannot be dynamically changed at runtime
-* PlayerPrefs - On Flash PlayerPrefs are stored per SWF per machine
-* UnityGUI classes that do not require text input
-* Particle System (Shuriken) works and is script accessible
-* Asset bundles - These are supported but caching of bundles (i.e. use of LoadFromCacheOrDownload) is not currently supported
-* WWW and WWWForm
-* Mecanim
-
-\\
-
-!!Limited support
-* Realtime shadows work, but do get affected by bugs in image effects
-* Untyped variables in JavaScript and implicit type conversions
-* Unity GUI / Immediate mode GUI
-* Any .NET specific stuff. Do not use stuff from exotic class libraries (reflection, LINQ etc).
-* GUIText wil have a dramatic impact on performance
+* Flash Player 11.2, 11.3 および 11.4
+* 完全な ActionScript API アクセス
+* ラインマッピング
+* オクルージョン カリング
+* エディタ スクリプティング (JavaScript / C# / Boo)。 注意: JavaScriptでは,@@#pragma strict.@@ を使用して下さい。
+* カスタム シェーダ 
+* アニメーション / スキニング
+* int, string, List など基本の型
+* 基本的なオーディオ機能、例えばAudioSource / AudioListener
+* 物理計算 
+* ナビゲーション メッシュ
+* Substance Texture、ただしテクスチャはビルド時に焼き込みされるため実行時に動的に変更は出来ません
+* PlayerPrefs - Flashでは PlayerPrefsはマシンごとに SWF ごとに格納されます
+* テキスト入力を必要としないUnityGUI クラス
+* パーティクル システム (Shuriken) は機能しスクリプトへのアクセスが可能
+* アセット バンドル - サポートされるがバンドルのキャッシングは現在サポート外 (例えば LoadFromCacheOrDownloadの使用) 
+* WWW および WWWForm
+* メカニム
 
 \\
 
-!!Not Currently Supported 
+!!限定サポー
+* リアルタイム シャドウは動作するが、 image effects ではバグがある
+* JavaScriptの型なし変数 および明示的な方変換
+* Unity GUI / Immediate モード GUI
+* 全ての .NET 特有のもの。特殊なクラスライブラリを使用しないこと (reflection、 LINQ、その他)。
+* GUIText はパフォーマンスに劇的な影響あり
+
+\\
+
+!!現在サポートされていない内容
 * Image Effects
-* Unity profiler
-* UnityGUI classes that require text input
-* Raknet networking (if you need networking, you can write it in Action Script 3 directly, using flash API)
-* Cloth
-* VertexLit shaders currently do not support Spot Lights (they are treated just like point lights).
-* Advanced audio features, such as audio effects
+* Unity プロファイラ
+* テキスト入力が必要な UnityGUI クラス
+* Raknet ネットワーキング（もしネットワーキングが必要であれば Flash API を使用してAction Script 3で直接記述できます）
+* クロス
+* 頂点ライティング シェーダはスポットライトはサポートしていません（ポイントライトと同様に扱われます）
+* 発展的なオーディオ機能、例えばオーディオ エフェクト
 * Terrain
-* Texture mipMapBias
-* Non-triangle MeshTopology and wireframe rendering
-* AsyncOperation
+* テクスチャ ミップマップ バイアス
+* 非三角形のメッシュ トポロジーおよびワイヤフレーム レンダリング
+* 非同期オペレーション
 
 \\
 
-!!Won't be supported
-* Sockets - It is possible to use ActionScript sockets by implementing them in AS3.
-* Deferred rendering
+!!サポートされない
+* ソケット - Action Script 3でで実装することによって ActionScript ソケットが使用できます
+* Deferred レンダリング
 
 \\
 
-!!Texture Support
+!!テクスチャサポート
 
-We support @@jpeg@@ textures, as well as RGBA / Truecolor. Textures which are jpg-xr compressed are not readable and thus not supported.
+@@jpeg@@ テクスチャおよび RGBA / Truecolor をサポートします。 jpg-xr 圧縮されたテクスチャは読み取りできず、このためサポートされません。
 
-The compression ratio can be specified in the texture import under 'Override for FlashPlayer' setting.  Compressed textures get converted to @@jpeg@@ with the chosen compression ratio.  The compression ratio is worth experimenting with since it can considerably reduce the size of the final SWF.
+テクスチャインポート時の圧縮率は 'Override for FlashPlayer' 設定で指定できます。圧縮テクスチャは指定された圧縮率により @@jpeg@@ に変換されます。圧縮率は最終SWFの大きさを著しく節約するため調整する価値があります。
 
 Attach:flashtextureoverride.png
 
-Texture quality ranges from 0 to 100, with 100 indicating no compression, and 0 the highest amount of compression possible.  
+テクスチャ品質は 0 から 100までの範囲であり、100 は非圧縮、0 は最大限の圧縮。
 
-The maximum supported texture resolution is 2048x2048.
+テクスチャ解像度の最大値は2048x2048です。
 
 \\
 
-!!Unavailable APIs
+!!利用可能でないAPI
 * UnityEngine.AccelerationEvent
 * UnityEngine.Achievement
 * UnityEngine.AchievementDescription
