@@ -1,58 +1,59 @@
 ! Unity Remote
 
-Unity Remote is an application that allows you to use your iOS device as a remote control for your project in Unity. This is useful during development since it is much quicker to test your project in the editor with remote control than to build and deploy it to the device after each change.
+Unity RemoteはUnityプロジェクトでiOSデバイスをリモコンとして使用出来るアプリケーションです。これは開発において便利で、エディタ上でプロジェクトをリモコンでテストするほうが変更毎に毎回ビルドしてデプロイするより早いためです。
+is an application that allows you to use your iOS device as a remote control for your project in Unity. This is useful during development since it is much quicker to test your project in the editor with remote control than to build and deploy it to the device after each change.
 
-!! Where can I find Unity Remote?
-Unity remote is available for download from the AppStore at no charge. If you prefer to build and deploy the application yourself, you can download the source [[http://unity3d.com/unity/download/resources/UnityRemoteSource_3_5_x.zip| here]] at the Unity website.
+!! どこでUnity Remoteを入手するか
+Unity RemoteはAppStoreから無料でダウンロード出来ます。もし自身でリモコン アプリケーションをビルドしてデプロイしたい場合はソースがUnityウェブサイトの [[http://unity3d.com/support/resources/unity-extensions/unity-remote| ここ]] にあります。
 
-!! How do I build Unity Remote?
+!! Unity Remoteはどうビルドするか
 
-First, download the project source code [[http://unity3d.com/unity/download/resources/UnityRemoteSource_3_5_x.zip| here]] and unzip it to your preferred location. The zip file contains an XCode project to build Unity Remote and install it on your device. 
+初めにプロジェクトのソースコードを
+ [[http://unity3d.com/support/resources/unity-extensions/unity-remote| ここ]] からダウンローして希望の場所に解凍します。 ZipファイルにはUnity Remoteをビルドしてデバイス上にインストールするためのXCodeプロジェクトが含まれています。
 
-Assuming you have already created the provisioning profile and successfully installed iOS builds on your device, you just need to open the Xcode project file UnityRemote.xcodeproj. Once XCode is launched, you should click "Build and Go" to install the app on your iOS device. If you have never built and run applications before, we recommend that you try building some of the Apple examples first to familiarize yourself with XCode and iOS.
+既にプロビジョニング プロファイルを作成してiOSのビルドをデバイスにインストールしたしていれば、後はUnityRemote.xcodeprojのXcodeプロジェクトを開くだけです。一回XCodeを起動した後は "Build and Go"  をクリックしてiOSデバイスにアプリをインストールします。もしアプリケーションをビルドして実行したことがない場合、Appleのサンプルを先にビルドしてみてXCodeおよびiOSに慣れておくことを推奨します。
 
-Once Unity Remote is installed, make sure your device is connected via Wi-Fi to the same network as your development machine or else connected to the machine directly via USB. Launch Unity Remote on your iPhone/iPad while Unity is running on your computer and select your computer from the list that appears. Now, whenever you enter Play mode in the Editor, your device will act as a remote control that you can use for developing and testing your game. You can control the application with the device wirelessly and you will also see a low-res version of the app on the device's screen.
+一回Unity Remoteをインストールした後、Wi-Fi 経由で開発マシンと同じネットワークに接続されているか、そうでなければマシンに直接USBで接続されていることを確認して下さい。コンピュータ上でUnityiPhone/iPad 上でUnity Remoteを起動して表示されるリストから自身のコンピュータを選択します。これでエディタ上で実行モードに入ったときにゲームを開発およびテストする際にデバイスをリモコンとして動作します。アプリケーションの入ったデバイスはワイヤレスで使用が可能であり、デバイスの画面に低解像度のバージョンが表示されます。
 
-__Note:__ The Unity iOS editor cannot emulate the device's hardware perfectly, so you may not get the exact behavior (graphics performance, touch responsiveness, sounds playback, etc) that you would on a real device.
+__注意:__ Unity iOS エディタはデバイスのハードウェアを完全にエミュレート出来ないため本物のデバイスと同じ動作 (グラフィック パフォーマンス、タッチ レスポンス、サウンド再生、その他) は得られない場合があります。 editor cannot emulate the device's hardware perfectly, so you may not get the exact behavior (graphics performance, touch responsiveness, sounds playback, etc) that you would on a real device.
 
-!! Xcode shows strange errors while deploying Unity Remote to my device.  What should I do?
-This indicates that the default Identifier in the Unity Remote project is not compatible with your provisioning profile. You will have to alter this Identifier manually in your XCode project. The Identifier must match your provisioning profile.
+!! Xcode がUnity Remoteをデバイスにデプロイする際に変なエラーが出ます。どうすれば良いか。
+これはUnity Remoteプロジェクトのデフォルトの識別子がプロビジョニング プロファイルと互換性がないことを示しています。この識別子はXCodeプロジェクトにて手動で変更する必要があります。識別子はプロビジョニング プロファイルと一致する必要があります。
 
-You will need to create an AppID with an trailing asterisk if you have not already done so; you can do this in the Program Portal on Apple's iPhone Developer Program. First, go to the Program Portal and choose the AppIDs tab. Then, click the Add ID button in the top right corner and type your usual bundle identifier followed by dot and asterisk (eg, com.mycompany.*) in the App ID Bundle Seed ID and Bundle Identifier field. Add the new AppID to your provisioning profile, then download and reinstall it. Don't forget to restart Xcode afterwards. If you have any problems creating the AppID, consult the [[http://developer.apple.com/iphone/manage/provisioningprofiles/howto.action | Provisioning How-to section]] on Apple's website.
+もしすでにそうしてない場合は、名前がアスタリスクで終わるAppIDを作成する必要があります。Appleの iPhone Developer ProgramのProgram Portalで変更が出来ます。まず初めに、Program Portalに移動してAppIDタブを選択します。次に右上隅のAdd IDボタンをクリックしてバンドル識別子に続けてドットとアスタリスクをApp ID Bundle、 Seed ID、 および Bundle Identifierフィールドに入力します。(例えば com.mycompany.*) 新規のAppIDをプロビジョニング プロファイルに追加して、それからダウンロードして再インストールします。Xcodeを後で再起動することを忘れないで下さい。もしAppID作成で問題があればAppleウェブサイトの[[http://developer.apple.com/iphone/manage/provisioningprofiles/howto.action | Provisioning How-to section]] を参照下さい。
 
 Attach:target_unity_remote_info.png\\
-''Don't forget to change the Identifier before you install Unity Remote on your device.''
+''デバイスにUnity Remoteをインストールする前に識別子を変更することを忘れないで下さい。''
+XCodeでUnity Remoteプロジェクトを開きます。メニューから ^^Project->Edit Active Target "Unity Remote"^^ を選択します。これによりTarget "Unity Remote" Infoという新規のウィンドウが開きます。Propertiesタブを選択します。Identifier プロパティ フィールドの値を__com.unity3d.UnityRemote__ からAppIDのバンドル識別子に "__.__" (ドット) 、"__UnityRemote__ と続けます。例えば、もしプロビジョニング プロファイルが ######.com.mycompany.* AppID を含むのであれば、Identifier フィールドを __com.mycompany.UnityRemote__ に変更します。
 
-Open the Unity Remote project with XCode. From the menu, select ^^Project->Edit Active Target "Unity Remote"^^. This will open a new window entitled Target "Unity Remote" Info. Select the Properties tab. Change the Identifier property field from __com.unity3d.UnityRemote__ to the bundle identifier in your AppID followed by "__.__" (dot) followed by "__UnityRemote__". For example, if your provisioning profile contains ######.com.mycompany.* AppID, then change the Identifier field to __com.mycompany.UnityRemote__. 
+次にメニューから ^^Build->Clean all targets^^ を選択肢、Unity Remoteをコンパイルおよびインストールを再度します。実際のSDKをSimulatorからDevice - 2.0 | Release に変更する必要があるかもしれません。デバイスがより新しいOSのバージョンがあったとしても SDK 2.0 を使用して問題はありません。
 
-Next, select ^^Build->Clean all targets^^ from the menu, and compile and install Unity Remote again. You may also need to change the active SDK from Simulator to Device - 2.0 | Release. There is no problem using SDK 2.0 even if your device runs a newer version of the OS.
+!! ゲームの実行時にUnity Remoteのグラフィックス品質がきわめて低くなります。どうすれば改善できますか？
+Unity Remoteを使用するとき、ゲームは実際には Mac で実行され、画面情報が高圧縮されデバイスにストリーミングされます。結果として、デバイス画面で見られるのはただアプリが実際にどう表示されるかの低画質版です。ゲームがどうデバイスで実行されるのか確認するためには、定期的にアプリをビルド、デプロイすべきです（Unity エディタで ^^File->Build & Run^^ を選択）。
 
-!! I'm getting really poor graphics quality when running my game in Unity Remote. What can I do to improve it?
-When you use Unity Remote, the game actually runs on your Mac while its visual content is heavily compressed and streamed to the device. As a result, what you see on the device screen is just a low-res version of what the app would really look like. You should check how the game runs on the device occasionally by building and deploying the app (select ^^File->Build & Run^^ in the Unity editor).
+!! Unity Remoteのレスポンスが遅いです。どうすれば改善できますか？
+Unity Remoteのパフォーマンスは Wi-Fi ネットワーク速度、ネットワーク ハードウェア、および他の要素に強く依存します。ベストのゲーム体験を得るためには、Mac および iOSデバイス間でアドホック ネットワークを作成します。 MacのAirport アイコンをクリックし、 "Create Network" を選択します。次に名前とパスワードを入力して OK をクリックします。デバイス上で ''Settings->Wi-Fi'' を選択し、作成したばかりの Wi-Fi ネットワークを選択します。アドホック ネットワークは実際にアクセスポイントを必要としないはワイヤレス通信です。このため通常はアドホック通信をしている間インターネットアクセスが出来ません。
 
-!! Unity Remote is laggy. Can I improve it?
-The performance of Unity Remote depends heavily on the speed of the Wi-Fi network, the quality of the networking hardware and other factors. For the best experience, create an ad-hoc network between your Mac and iOS device. Click the Airport icon on your Mac and choose "Create Network". Then, enter a name and password and click OK. On the device, choose ''Settings->Wi-Fi'' and select the new Wi-Fi network you have just created.  Remember that an ad-hoc network is really a wireless connection that does not involve a wireless access point.  Therefore, you will usually not have internet access while using ad-hoc networking.
+iPhone/iPad および Mac の両方で Bluetooth をオフにすることで通信品質が改善されます。
 
-Turning Bluetooth off on both on your iPhone/iPad and on Mac should also improve connection quality.
+もしゲームビューをデバイス上でみる必要がない場合、リモートマシンの一覧で Image Synchronization をオフに変更できます。これにより Remoteが動作するためのネットワーク トラフィックを削減します。
 
-If you do not need to see the game view on the device, you can turn image synchronization off in the Remote machine list. This will reduce the network traffic needed for the Remote to work.
+!!Unity Remoteへの接続が簡単に切断されます
+これはインストールまたは他の要素によってUnity Remoteが正しく機能しない問題に起因しているかもしれません。次のステップを順番に行い、各ステップで次に移る前にパフォーマンスが改善されるかチェックして下さい:-
 
-!!The connection to Unity Remote is easily lost
-This can be due to a problem with the installation or other factors that prevent Unity Remote from functioning properly. Try the following steps in sequence, checking if the performance improves at each step before moving on to the next:-
+# 最初に、Bluetoothがオンとなっているかチェックします。Mac および iOS デバイスは 最高のパフォーマンスを得るためにBluetoothを無効にすべきです。
+# ~/Library/Preferences/com.unity3d.UnityEditoriPhone.plist にある設定ファイルを削除して下さい
+# ゲームを iPhone/iPad で再インストールして下さい。
+# Mac上で Unityを再インストールして下さい。
+# 最終手段として、iOS デバイスでハードリセットを行うことにより、場合によっては Unity Remote のパフォーマンスが改善されます。
 
-# First of all, check if Bluetooth is switched on. Both your Mac and iOS device should have Bluetooth disabled for best performance.
-# Delete the settings file located at ~/Library/Preferences/com.unity3d.UnityEditoriPhone.plist
-# Reinstall the game on your iPhone/iPad.
-# Reinstall Unity on your Mac.
-# As a last resort, performing a hard reset on the iOS device can sometimes improve the performance of Unity Remote.
-
-If you still experience problems then try installing Unity Remote on another device (in another location if possible) and see if it gives you better results.  There could be problems with RF interference or other software influencing the performance of the wireless adapter on your Mac or iOS device.
+もしまだ問題が解決されない場合、Unity Remoteを他のデバイスにインストール（可能であれば別のロケーションにて）して、結果が良くなるか確認して下さい。電波干渉または他のソフトウェアでの問題があり、Mac または iOS デバイスのワイヤレスアダプタのパフォーマンスに影響しているかもしれません。
 
 
-!! Unity Remote doesn't see my Mac.  What should I do?
-* Check if Unity Remote and your Mac are connected to the same wireless network. 
-* Check your firewall settings, router security settings, and any other hardware/software that may filter packets on your network.
-* Leave Unity Remote running, switch off your Mac's Airport for a minute or two, and switch on again.
-* Restart both Unity and Unity Remote. Sometimes you also need to cold-restart your iPhone/iPad (hold down the menu and power buttons simultaneously).
-* Unity Remote uses the Apple Bonjour service, so check that your Mac has it switched on.
-* Reinstall Unity Remote from the latest Unity iOS package.
+!! Unity Remote で Mac が見れません。どうすれば良いですか？
+* Unity Remote と Mac が同じワイヤレスネットワークに接続されているか確認して下さい。
+* ファイアウォール設定、ルーターセキュリティ設定、そしてネットワーク上でパケットをフィルタリングしている他のハードウェア／ソフトウェアを確認して下さい。
+* Unity Remote を実行したまま、 Mac の Airport を 1 - 2 分ほどオフにして、再度オンにして下さい。
+* Unity と Unity Remote の両方を再起動します。ときどき iPhone/iPad の物理的な再起動が必要です（スリープボタン と ホームボタンを同時に長押し）。
+* Unity Remote は Apple Bonjour を使用しているため、Mac 上でオンとなっていることを確認して下さい。
+* 最新の Unity iOS パッケージから Unity Remote を再インストールします。
