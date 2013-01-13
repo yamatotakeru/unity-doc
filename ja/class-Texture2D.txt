@@ -227,11 +227,11 @@ Tegra など特定のハードウェアを対象としていない場合、ETC1 
 この場合、テクスチャの解凍に無駄な時間を使い、2 回格納することでメモリも無駄になります。 これはまた、レンダリング パフォーマンスに大きな悪影響を及ぼす場合があります。
 >><<
 !Flash
-||``Format`` ||Image format ||
-||>>>``RGB JPG Compressed`` ||RGB image data compressed in JPG format ||
-||>>>``RGBA JPG Compressed`` ||RGBA image data (ie, with alpha) compressed in JPG format ||
-||>>>``RGB 24-bit`` ||Uncompressed RGB image data, 8 bits per channel ||
-||>>>``RGBA 32-bit`` ||Uncompressed RGBA image data, 8 bits per channel ||
+||``Format`` ||画像フォーマット||
+||>>>``RGB JPG Compressed`` ||JPG形式に圧縮された RGB 画像データ||
+||>>>``RGBA JPG Compressed`` ||JPG形式に圧縮された RGBA 画像データ (すなわちアルファあり)||
+||>>>``RGB 24-bit`` ||非圧縮 RGB 画像データ、チャネルあたり 8 ビット||
+||>>>``RGBA 32-bit`` ||非圧縮 RGBA 画像データ、チャネルあたり 8 ビット||
 
 [[#details]]
 !! 詳細
