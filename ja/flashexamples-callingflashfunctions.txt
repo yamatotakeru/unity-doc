@@ -1,13 +1,13 @@
-!Example: Calling ActionScript Functions from Unity
+!サンプル: ActionScript 関数を Unity からコールする
 
-This example shows how you can call different AS3 functions from Unity. You will encounter three scripts:
-* An AS3 class (ExampleClass.as) containing different function examples. Any AS3 classes you create must be placed within an "ActionScript" folder in your project.
-* A C#/JavaScript class (ExampleClass.cs/js) which mimics the AS3 implementation. You only need one of these.
-* An example of how to call the functions from Unity.
+このサンプルでは異なるAction Script 3 (以下、AS3) 関数を Unity からコールする方法を示します。3つのスクリプトを見ていただきます:
+* 異なる関数の例を含むAS3 クラス (ExampleClass.as)。作成する全ての AS3 クラスはプロジェクトの "ActionScript" フォルダに格納する必要があります。
+* AS3 実装を模倣するC#/JavaScript w(ExampleClass.cs/js)。これはひとつあれば十分です。
+* Unity から関数をコールするサンプル
 
-When built to Flash, the AS3 implementation of ExampleClass is used. When run in-editor or built to any platform other than Flash the C#/JavaScript implementation will be used.
+Flash 向けにビルドしたとき、ExampleClass の AS3実装が使用されます。エディタ上で実行したとき、または Flash 以外のプラットフォーム向けにビルドした場合、ExampleClass  の AS3実装が使用されます。
 
-By creating an ActionScript version of your classes, this will enable you to use native AS3 libraries when building for Flash Player. This is particularly useful when you need to work around a .net library which isn't yet supported for Flash export.
+クラスの ActionScript バージョンを作成することによって、Flash Player 向けにビルドするときに ネイティブの AS3 ライブラリを使用できるようになります。これはFlash エクスポートがサポートされてない .NET ライブラリで作業が必要なときに特に役立ちます。
 
 \\
 
@@ -24,7 +24,7 @@ public class ExampleClass
   public static function aStaticFunctionWithParams(a : int) : void
   {
     trace("aStaticFunctionWithParams - AS3 Implementation");
-��}
+}
 
   public static function aStaticFunctionWithReturnType() : int
   {
@@ -41,11 +41,11 @@ public class ExampleClass
 
 \\
 
-!!ExampleClass - C#/JavaScript Implementation 
+!!ExampleClass - C#/JavaScript 実装
 
-You can create the class to mimic the AS3 implementation in either C# or JavaScript. The implementations are very similar. Both examples are provided below.
+クラスを作成して AS3 実装 を C# または JavaScriptのいずれかで模倣できます。実装は非常に似通っています。両方のサンプルを以下のとおりに提供します。
 
-!!!C# Implementation (ExampleClass.cs)
+!!!C# 実装 (ExampleClass.cs)
 [@
 using UnityEngine;
 
@@ -62,26 +62,26 @@ public class ExampleClass
     [NotRenamed]
     public static void aStaticFunctionWithParams(int a)
     {
-        Debug.Log("aStaticFunctionWithParams - C# Implementation");
+        Debug.Log("aStaticFunctionWithParams - C# 実装");
     }
     
     [NotRenamed]
     public static int aStaticFunctionWithReturnType()
     {
-        Debug.Log("aStaticFunctionWithReturnType - C# Implementation");
+        Debug.Log("aStaticFunctionWithReturnType - C# 実装");
         return 1;
     }
     
     [NotRenamed]
     public void aFunction()
     {
-        Debug.Log("aFunction - C# Implementation");
+        Debug.Log("aFunction - C# 実装");
     }
 }
 @]
 
 
-!!!JavaScript Implementation (ExampleClass.js)
+!!!JavaScript 実装 (ExampleClass.js)
 [@
 @NotConverted
 @NotRenamed
@@ -90,35 +90,35 @@ class ExampleClass
     @NotRenamed
     static function aStaticFunction()
     {
-        Debug.Log("aStaticFunction - JS Implementation");
+        Debug.Log("aStaticFunction - JavaScript 実装");
     }
   
     @NotRenamed
     static function aStaticFunctionWithParams(a : int)
     {
-        Debug.Log("aStaticFunctionWithParams - JS Implementation");
+        Debug.Log("aStaticFunctionWithParams - JavaScript 実装");
     }
   
     @NotRenamed
     static function aStaticFunctionWithReturnType() : int
     {
-      Debug.Log("aStaticFunctionWithReturnType - JS Implementation");
+      Debug.Log("aStaticFunctionWithReturnType - JavaScript 実装");
       return 1;
     }
   
     @NotRenamed
     function aFunction()
     {
-        Debug.Log("aFunction - JS Implementation");
+        Debug.Log("aFunction - JS 実装");
     }
 }
 
 @]
 \\
 
-!!How to Call the Functions
+!!関数をコールする方法
 
-The below code will call the methods in the ActionScript (.as) implementation when building for Flash. This will allow you to use native AS3 libraries in your flash export projects. When building to a non-Flash platform or running in editor, the C#/JS implementation of the class will be used.
+次のコードによりFlash向けにビルドするときに ActionScript (.as) のメソッドをコールします。これによりネイティブ AS3 ライブラリを Flash エクスポート プロジェクトで使用することが出来ます。非Flash プラットフォーム向けにビルドするか、またはエディタで実行するとき、クラスの C#/Javascript実装が使用されます。 
 
 [@
 ExampleClass.aStaticFunction();
