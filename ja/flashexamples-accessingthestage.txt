@@ -1,6 +1,6 @@
-!Example: Accessing the Stage
+!サンプル: Stage をアクセス
 
-You can access the [[http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Stage.html | Flash Stage]] from your C#/JS scripts in the following way:
+[[http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Stage.html | Flash Stage] を C#/JavaScript スクリプトから次の方法でアクセス出来ます:
 
 [@
 ActionScript.Import("com.unity.UnityNative"); 
@@ -8,7 +8,7 @@ ActionScript.Statement("trace(UnityNative.stage);");
 @]
 
 
-As an example, the following C# code will output the flashvars supplied to a SWF:
+サンプルとして、次の C# コードにより SWF に供給された Flash 変数を出力します:
 [@
 ActionScript.Import("flash.display.LoaderInfo"); 	
 ActionScript.Statement(

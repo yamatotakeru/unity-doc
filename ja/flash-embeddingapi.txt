@@ -1,14 +1,14 @@
-!Flash: Embedding Unity Generated Flash Content in Larger Flash Projects
+!Flash: 規模の大きなプロジェクトでUnity により生成された Flash コンテンツを埋め込む
 
 !!embeddingapi.swc
 
-If you want to embed your Unity generated Flash content within a larger Flash project, you can do so using the $$embeddingapi.swc$$. This SWC provides functionality to load and communicate with Unity published Flash content. In the $$embeddingapi.swc$$ file, you will find two classes and two interfaces. Each of these, and their available functions, are described below.
+規模の大きなプロジェクトでUnity により生成された Flash コンテンツを埋め込みたい場合、 $$embeddingapi.swc$$ により出来ます。このSWCはUnityによりパブリッシュされた Flash コンテンツをロードし通信する機能を提供します。$$embeddingapi.swc$$ ファイルの中で二つのクラスと二つおｎインタフェースがあります。これらについて、各々の利用可能な機能を含めて以下で説明します。
 
-When your Unity Flash project is built, a copy of the embeddingapi.swc file will be placed in the same location as your built SWF. You can then use this in your Flash projects as per other SWCs. For more details on [[http://www.adobe.com/mena_fr/devnet/flash/articles/concept_swc.html|what SWCs are]] and how to use them, see [[http://livedocs.adobe.com/flex/3/html/help.html?content=building_overview_5.html|Adobe's documentation]].
+Unity Flash プロジェクトがビルドされたとき、embeddingapi.swc ファイルはビルドされた SWF ファイルと同じ場所に配置されます。これを他の SWC と同様に自身の Flash プロジェクト で使用できます。詳細について [[http://www.adobe.com/mena_fr/devnet/flash/articles/concept_swc.html|SWC が何であるか]] および どのように使用するかについては [[http://livedocs.adobe.com/flex/3/html/help.html?content=building_overview_5.html|Adobe ドキュメント]] を参照して下さい。
 
 \\
 
-!!Stage3D Restrictions
+!!Stage3D 制約事項
 
 When embedding your Unity Flash content within another Flash project, it is useful to understand the Flash display model. All Stage3D content is displayed behind the Flash Stage. This means that any Flash display list content added to the Stage will always render in front of your 3D content. For more information on this, please refer to [[http://www.adobe.com/devnet/flashplayer/articles/how-stage3d-works.html|Adobe's "How Stage3D Works" page]].
 
