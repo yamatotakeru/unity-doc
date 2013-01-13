@@ -1,20 +1,20 @@
-!Example: Browser JavaScript Communication
+!サンプル: ブラウザ JavaScript 通信
 
-This example shows how AS3 code can communicate JavaScript in the browser. This example makes use of the [[http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html |ExternalInterface]] ActionScript class.
+このサンプルで Action Script 3 コードによりブラウザのJavaScriptと通信する方法を示します。このサンプルはActionScriptクラスの [[http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html |ExternalInterface]] を活用します。
 
-When run, the BrowserCommunicator.TestCommunication() function will register a callback that the browser JavaScript can then call. The ActionScript will then call out to the browser JavaScript, causing an alert popup to be displayed. The exposed ActionScript function will then be invoked by the JavaScript, completing the two-way communication test.
+実行されたとき、BrowserCommunicator.TestCommunication() 関数はコールバックを登録しその後にブラウザJavaScriptがコール出来ます。次にActionScriptはブラウザJavaScriptをコールして警告ポップアップが表示されます。公開されたActionScript関数は、JavaScriptにより実行され二方向のコミュニケーションテストとして完了です。
 
 \\
 
-!!Required JavaScript
-The following JavaScript needs to be added to the html page that serves the Unity published SWF. It creates the function which will be called from ActionScript: 
+!!必要なJavaScript
+次のJavaScriptをHTMLページに追加してUnityによりパブリッシュされたSWFを供給します。これがActionScriptからコールされる関数を作成します: 
 
 [@
 <script type="text/javascript">
 
 function calledFromActionScript()
 {
-    alert("ActionScript called Javascript function")
+    alert("ActionScript が Javascript 関数を呼び出しました")
 
     var obj = swfobject.getObjectById("unityPlayer");
     if (obj)
@@ -28,7 +28,7 @@ function calledFromActionScript()
 
 \\
 
-!!BrowserCommunicator.as (and matching C# class)
+!!BrowserCommunicator.as (およびマッチングする C# クラス)
 
 [@
 package
@@ -38,13 +38,13 @@ package
   
     public class BrowserCommunicator
     {
-        //Exposed so that it can be called from the browser JavaScript.
+        //ブラウザJavaScriptからコール出来るように公開
         public static function callFromJavascript() : void
         {
-            trace("Javascript successfully called ActionScript function.");
+            trace("Javascript は正常に ActionScript 関数をコールしました。");
         }
     
-        //Sets up an ExternalInterface callback and calls a Javascript function.
+        //ExternalInterfaceコールバックをセットアップしてJavascript関数をコール
         public static function TestCommunication() : void
         {
             if (ExternalInterface.available)
@@ -55,18 +55,18 @@ package
                 }
                 catch (error:SecurityError)
                 {
-                    trace("A SecurityError occurred: " + error.message);
+                    trace("SecurityError が発生しました: " + error.message);
                 }
                 catch (error:Error)
                 {
-                    trace("An Error occurred: " + error.message);
+                    trace("Error が発生しました: " + error.message);
                 }
         
                 ExternalInterface.call('calledFromActionScript');
             }
             else
             {
-                trace("External interface not available");
+                trace("External interface が利用出来ません");
             }
         } 
     }
@@ -74,7 +74,7 @@ package
 @]
 
 
-C# dummy implementation of the class:
+クラスのC#ダミー実装 :
 
 [@
 [NotConverted]
@@ -90,21 +90,21 @@ public class BrowserCommunicator
 
 \\
 
-!!How to test
+!!テストする
 
-Simply call BrowserCommunicator.TestCommunication() and this will invoke the two-way communication test.
+BrowserCommunicator.TestCommunication() をコールするだけで二方向の通信テストが実行されます。 
 
 \\
 
 
-!!Potential Issues
+!!潜在的な問題
 
-!!!Security Sandbox Violation
+!!!Security Sandbox 違反
 
 ''A SecurityError occurred: Error #2060: Security sandbox violation''
 
-This happens when your published SWF does not have permission to access your html file. To fix this locally, you can either:
-* Add the folder containing the SWF to the Flash Player's trusted locations in the [[http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html |Global Security Settings Panel]].
-* Host the file on localhost.
+これはパブリッシュした、SWFファイルが自身のHTMLファイルへのアクセス権限がないときに発生します。これをろーかで解決するためには次のいずれかをします:
+* SWFを含むフォルダをFlash Playerの [[http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html |Global Security Settings Panel]] のtrusted locations (信頼するロケーション) として追加します。
+* ファイルを localhost でホストします。
 
-For more information on the Flash Security Sandboxes, please refer to the Adobe [[http://livedocs.adobe.com/flex/3/html/help.html?content=05B_Security_04.html |documentation]].
+Flash Security SandboxについてはAdobeの [[http://livedocs.adobe.com/flex/3/html/help.html?content=05B_Security_04.html |documentation]] を参照して下さい。

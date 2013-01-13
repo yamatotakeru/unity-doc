@@ -1,6 +1,6 @@
-!ƒTƒ“ƒvƒ‹: Stage ‚ğƒAƒNƒZƒX
+!ã‚µãƒ³ãƒ—ãƒ«: Stage ã‚’ã‚¢ã‚¯ã‚»ã‚¹
 
-[[http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Stage.html | Flash Stage] ‚ğ C#/JavaScript ƒXƒNƒŠƒvƒg‚©‚çŸ‚Ì•û–@‚ÅƒAƒNƒZƒXo—ˆ‚Ü‚·:
+[[http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Stage.html | Flash Stage] ã‚’ C#/JavaScript ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰æ¬¡ã®æ–¹æ³•ã§ã‚¢ã‚¯ã‚»ã‚¹å‡ºæ¥ã¾ã™:
 
 [@
 ActionScript.Import("com.unity.UnityNative"); 
@@ -8,7 +8,7 @@ ActionScript.Statement("trace(UnityNative.stage);");
 @]
 
 
-ƒTƒ“ƒvƒ‹‚Æ‚µ‚ÄAŸ‚Ì C# ƒR[ƒh‚É‚æ‚è SWF ‚É‹Ÿ‹‹‚³‚ê‚½ Flash •Ï”‚ğo—Í‚µ‚Ü‚·:
+ã‚µãƒ³ãƒ—ãƒ«ã¨ã—ã¦ã€æ¬¡ã® C# ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚Š SWF ã«ä¾›çµ¦ã•ã‚ŒãŸ Flash å¤‰æ•°ã‚’å‡ºåŠ›ã—ã¾ã™:
 [@
 ActionScript.Import("flash.display.LoaderInfo"); 	
 ActionScript.Statement(
