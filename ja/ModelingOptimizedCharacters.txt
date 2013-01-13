@@ -1,27 +1,26 @@
-! Modeling Characters for Optimal Performance
+! 最適なパフォーマンスのためのキャラクター モデリング
 
-Below are some tips for designing character models to give optimal rendering speed.
+最適なレンダリングスピードが出るキャラクター モデル の設計を行うテクニックを以下で示します。
 
-!! Use a Single Skinned Mesh Renderer
+!! スキン メッシュ レンダラはひとつ
 
-You should use only a single [[class-SkinnedMeshRenderer | skinned mesh renderer]] for each character. Unity optimizes animation using visibility culling and bounding volume updates and these optimizations are only activated if you use one [[class-Animation | animation component]] and one skinned mesh renderer in conjunction. The rendering time for a model could roughly double as a result of using two skinned meshes in place of a single mesh and there is seldom any practical advantage in using multiple meshes.
-
-
-!! Use as Few Materials as Possible
-
-You should also keep the number of [[class-Material | materials]] on each mesh as low as possible. The only reason why you might want to have more than one material on a character is that you need to use different shaders for different parts (eg, a special shader for the eyes). However, two or three materials per character should be sufficient in almost all cases.
+各キャラクタで [[class-SkinnedMeshRenderer | スキン メッシュ レンダラ]] はひとつとすべきです。Unity は表示カリング および 境界ボリュームの更新をしようしてアニメーションを最適化し、これらの最適化はひとつの [[class-Animation | アニメーション コンポーネント]] および ひとつの スキン メッシュ レンダラ を使用した場合のみ有効化されます。モデルのレンダリング時間はふたつの スキン メッシュ をひとつの スキン メッシュ レンダラ の代わりに使用することでおおよそ 2 倍となる場合があり、複数のメッシュを使用する実用的なメリットがあることは稀です。
 
 
-!! Use as Few Bones as Possible
+!! できるかぎりマテリアルを少なくする
 
-A bone hierarchy in a typical desktop game uses somewhere between fifteen and sixty bones. The fewer bones you use, the better the performance will be. You can achieve very good quality on desktop platforms and fairly good quality on mobile platforms with about thirty bones. Ideally, keep the number below thirty for mobile devices and don't go too far above thirty for desktop games.
-
-!! Polygon Count
-
-The number of polygons you should use depends on the quality you require and the platform you are targeting.  For mobile devices, somewhere between 300 and 1500 polygons per mesh will give good results, whereas for desktop platforms the ideal range is about 1500 to 4000. You may need to reduce the polygon count per mesh if the game can have lots of characters onscreen at any given time. As an example, Half Life 2 used 2500-5000 triangles per character. Current AAA games running on the PS3 or Xbox 360 usually have characters with 5000-7000 triangles.
+各メッシュの [[class-Material | マテリアル]] の数をできるかぎり少なくするべきです。複数のマテリアルをキャラクターで使用する唯一の理由は異なった部分で異なったシェーダが必要である場合です（例えば眼の部分は特殊なシェーダ）。しかしキャラクターで二つか三つのマテリアルでほぼ全てのケースは問題ありません。
 
 
-!! Keep Forward and Inverse Kinematics Separate
+!! できるかぎりボーンを少なくする
 
-When animations are imported, a model's inverse kinematic (IK) nodes are baked into forward kinematics (FK) and as a result, Unity doesn't need the IK nodes at all. However, if they are left in the model then they will have a CPU overhead even though they don't affect the animation. You can delete the redundant IK nodes in Unity or in the modeling tool, according to your preference.  Ideally, you should keep separate IK and FK hierarchies during modeling to make it easier to remove the IK nodes when necessary.
+典型的なデスクトップ ゲームのボーン階層は 15 個から 60 個の間のボーンを使用します。ボーンの数が少ないほど、パフォーマンスが良くなります。30 個ぐらいのボーンでデスクトップ プラットフォームでは非常に良い品質が得られ、モバイルプラットフォームでも比較的良い品質が得られます。理想的には、モバイルデバイスでは 30 個より少なく抑えて、デスクトップ ゲームでも 30 個を大きく超えないようにします。
 
+!! ポリゴンのカウント数
+
+ポリゴン数は必要な品質およびターゲットするプラットフォームに依存します。モバイルデバイスでは、メッシュあたり 300 から 1500 ポリゴンで良い結果が得られ、デスクトップ プラットフォームでは 理想的な範囲として 1500 から 4000 ぐらいです。あるときにゲームがたくさんのキャラクターがあるときメッシュあたりのポリゴン数を減らす必要があるかもしれません。例として、 Half Life 2 はキャラクターに 2500 - 5000 三角形数でした。現在 PS3 や XBox 360 の最高ランクゲームでは通常キャラクターに 5000 から 7000 三角形数です。
+
+
+!! フォワード および インバース キネマティクスを分ける
+
+アニメーションがインポートされるとき、モデルのインバース キネマティクス（IK）ノードはフォワード キネマティクス（FK）に焼き込みされ、結果としてUnity は IK ノードが全く必要ありません。しかしモデルに残ったままであるとアニメーションに影響しないにも関わらず CPU オーバーヘッドが生じます。好みに応じてUnityまたはモデリングツール、どちらでも冗長な IK ノードを削除することが出来ます。理想的には、IK および FK 階層はモデリングの際に別に保持して、必要なときに IK ノードを容易に削除できるようにすべきです。
