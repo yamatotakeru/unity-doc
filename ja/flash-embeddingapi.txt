@@ -10,59 +10,59 @@ Unity Flash プロジェクトがビルドされたとき、embeddingapi.swc フ
 
 !!Stage3D 制約事項
 
-When embedding your Unity Flash content within another Flash project, it is useful to understand the Flash display model. All Stage3D content is displayed behind the Flash Stage. This means that any Flash display list content added to the Stage will always render in front of your 3D content. For more information on this, please refer to [[http://www.adobe.com/devnet/flashplayer/articles/how-stage3d-works.html|Adobe's "How Stage3D Works" page]].
+Unity Flash コンテンツを別のFlashプロジェクトの中に埋め込むとき、Flashの表示モデルを理解すると便利です。全てのStage3DコンテンツはFlash Stageの背後に表示されます。これはつまり全てのStageに追加された Flash表示リスト コンテンツは自身の3Dコンテンツの前につねにレンダリングされるということです。詳細については [[http://www.adobe.com/devnet/flashplayer/articles/how-stage3d-works.html|Adobe's "How Stage3D Works" のページ]] を参照下さい。
 
 \\
 
 !!IUnityContent
 
-``IUnityContent`` is implemented by Unity built Flash content. This interface is how you communicate with or modify the Untiy content.
+``IUnityContent`` はUnityでビルドされたFlashコンテンツにより実装されます。このインタフェースによりUntiyコンテンツと通信したり、Untiyコンテンツを修正したりします。
 		
-!!!Methods:
+!!!メソッド:
 
-||getTextureFromNativeId(id : int) : TextureBase;||Enables retrieving of textures. A full example project using this can be found on the [[http://forum.unity3d.com/threads/128057-Flash-Simple-AS3-Bridge-Demo-Loading-textures-from-web.?p=864642&viewfull=1#post864642|forums]].||
-||sendMessage(objectPath : String, methodName : String, value : Object = null) : Boolean;||The ``sendMessage`` function can be used to call a method on an object in the Unity content.||
-||setContentHost(contentHost : IUnityContentHost) : void;||Sets the host (which must implement ``IUnityContentHost``) for the Unity content. The host can then listen for when the Unity content has loaded/started.||
-||setSize(width : int, height : int) : void;||Modifies the size of the Unity content||
-||setPosition(x:int = 0, y:int = 0):void;||Enables you to reposition the Unity content within the content host.||
-||startFrameLoop() : void;||Starts the Unity content.||
-||stopFrameLoop() : void;||Stops the unity content.||
-||forceUnload():void;||Unloads the Unity flash content.||
+||getTextureFromNativeId(id : int) : TextureBase;||テクスチャの取得を有効化します。これを使用した完全なプロジェクト サンプルが  [[http://forum.unity3d.com/threads/128057-Flash-Simple-AS3-Bridge-Demo-Loading-textures-from-web.?p=864642&viewfull=1#post864642|forums]] で確認出来ます。||
+||sendMessage(objectPath : String, methodName : String, value : Object = null) : Boolean;||``sendMessage`` 関数を使用してUnityコンテンツのオブジェクトのメソッドをコール出来ます。.||
+||setContentHost(contentHost : IUnityContentHost) : void;||Unityコンテンツのホスト (``IUnityContentHost`` を実装する必要がある) をセットします。次にホストはUnityコンテンツがロード/開始したかリスニング出来ます。|
+||setSize(width : int, height : int) : void;|| Unityコンテンツの大きさを修正します。||
+||setPosition(x:int = 0, y:int = 0):void;|| Unity コンテンツをコンテンツ ホストの中で移動出来ます。 ||
+||startFrameLoop() : void;||Unity コンテンツを開始します。||
+||stopFrameLoop() : void;||Unity コンテンツを停止します。||
+||forceUnload():void;||Unity コンテンツをアンロードします。||
 
 \\
 
 !!IUnityContentHost
 
-This must be implemented by whichever class will host the Unity content.
+Unity コンテンツをホストするいずれかのクラスによって実装する必要があります。
 
-!!!Methods:
+!!!メソッド:
 
-||unityInitComplete() : void;||Called when the Unity engine is done initializing and the first level is loaded.||
-||unityInitStart() : void;||Called when the content is loaded and the initialization of the Unity engine is started.||
+||unityInitComplete() : void;||Unityエンジンが初期化を完了して最初のレベルがロードされた時にコールされます。||
+||unityInitStart() : void;||コンテンツがロードされて Unity エンジンの初期化が始まったときにコールされます。||
 
 \\
 
 !!UnityContentLoader
 
-The ``UnityContentLoader`` class can be used to load Unity published Flash content and extends the AS3 [[http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Loader.html | Loader]] class. As with standard AS3 Loader instances, you can add event listeners to its ``contentLoaderInfo`` in order to know the progress of the load and when it is complete.
+``UnityContentLoader`` クラスはUnity Flashコンテンツをロードすために使用することが出来てAction Script 3 [[http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Loader.html | Loader]] クラスを拡張します。標準 Action Script 3 Loaderインスタンスと同様に、 ``contentLoaderInfo``  にイベント リスナーを追加してロードの進行状況および、いつ完了したか分かります。
 
 
-!!!Constructor:
+!!!コンストラクタ:
 
 [@
 UnityContentLoader(contentURL : String, contentHost : IUnityContentHost = null, params : UnityLoaderParams = null, autoLoad : Boolean = true) : void;
 @]
 
-Creates a ``UnityContentLoader`` instance which you can attach event listeners to and use to load the unity content.
-* ``contentURL``: The URL of the Unity published SWF to load.
-* ``contentHost``: The host for the content. This should be your own ActionScript class that implements ``IUnityContentHost``.
-* ``params``: Supply a ``UnityLoaderParams`` instance if you wish to override the default load details.
-* ``autoLoad``: If set to true, the load will begin as soon as the ``UnityContentLoader`` has been created (rather than needing to call ``loadUnity()`` separately). If you wish to track progress of the load using events, this should be set to false. You can then call ``loadUnity()`` manually once the relevant event listeners have been added.
+Creates aイベントリスナーをアタッチ出来て、Unity コンテンツをロード出来る ``UnityContentLoader`` インスタンスを作成します。
+* ``contentURL``: Unity でパブリッシュした SWF をロードするURL。
+* ``contentHost``: コンテンツのホスト。これは ``IUnityContentHost`` を実装する自身のActionScript クラスであるべきです。
+* ``params``: デフォルトのロード詳細を オーバーライドしたい場合に ``UnityLoaderParams`` インスタンスを提供します。
+* ``autoLoad``: もし true にセットすると、``UnityContentLoader`` が作成されると同時にロードが開始されます (``loadUnity()`` を別にコールするのではなく)。もしイベントを使用してロードの進捗をトラッキングしたい場合、これをfalse にセットすべきです。関連するイベントリスナーを追加した後は、 ``loadUnity()`` を手動でコールできます。
 
-!!!Accessible Properties:
-||unityContent : IUnityContent;||Once the content has finished loading, you can access the Unity content to perform functionality such as ``sendMessage()``.||
+!!!アクセス可能なプロパティ:
+||unityContent : IUnityContent;||コンテンツがロードを完了した後は、Unityコンテンツをアクセスして ``sendMessage()`` といった機能を実行できます。||
 
-!!!Methods:
+!!!メソッド:
 ||loadUnity() : void;||Instructs the ``UnityContentLoader`` to load the Unity content from the URL supplied in the constructor.||
 ||forceUnload() : void;||Unloads the unity content from the host.||
 ||unload() : void;||Overrides the default unload() method of the AS3 [[http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Loader.html | Loader]] class and calls forceUnload.||
@@ -72,27 +72,27 @@ Creates a ``UnityContentLoader`` instance which you can attach event listeners t
 
 !!UnityLoaderParams
 
-!!!Constructor:
+!!!コンストラクタ:
 
-Parameters can be supplied to the ``UnityContentLoader`` when created to provide additional loader configuration.
+追加のローだ設定を提供するように作成された場合は、``UnityContentLoader`` に引数を供給することが出来ます。
 	
 [@
 function UnityLoaderParams(scaleToStage : Boolean = false, width : int = 640, height : int = 480, usePreloader : Boolean = false, autoInit : Boolean = true, catchGlobalErrors : Boolean = true) : void;
 @]
 
-* ``scaleToStage``: Whether the Unity content remains at a fixed size or whether it scales as the parent Flash window resizes.
-* ``width``: The width of the Unity content.
-* ``height``: The height of the Unity content.
-* ``usePreloader``: Whether or not to show the Unity preloader. 
-* ``autoInit``: This is not currently used.
-* ``catchGlobalErrors``: Whether to catch errors and display them in a red box in the top left corner of the swf.
+* ``scaleToStage``: Unity コンテンツが固定サイズを維持するか、親 Flash ウィンドウがリサイズしたときにあわせて拡大縮小するか。
+* ``width``: Unity コンテンツの幅。
+* ``height``: Unity コンテンツの高さ。
+* ``usePreloader``: Unity プリローダーを表示するかどうか。
+* ``autoInit``: 現在未使用。
+* ``catchGlobalErrors``: エラーを catch して SWF の左上の赤いボックスに表示するかどうか。
 	
 \\
 
 
-!!Example
+!!サンプル
 
-The following example shows how to load Unity published Flash content into a host SWF. It shows how to supply custom ``UnityLoaderParams`` and track progress of the file load. Once the Unity content has been added to the host, a function in the Unity content is called using the ``sendMessage`` function.
+次のサンプルにより Unity でパブリッシュした Flash コンテンツを ホスト SWF にロードする方法を示します。カスタムの``UnityLoaderParams`` を供給して、ファイルロードの進捗をトラッキングする方法を示します。Unity コンテンツがホストに追加された後は、Unity コンテンツの関数は ``sendMessage`` 関数を使用してコールできます。
 
 \\
 [@
@@ -111,7 +111,7 @@ public class MyLoader extends Sprite implements IUnityContentHost
 
   private function onUnityContentLoaderProgress(event:ProgressEvent):void
   {
-      //Respond to load progress
+      // ロードの進捗状況に応答
   }
 		
   private function onUnityContentLoaderComplete(event:Event):void
@@ -120,15 +120,15 @@ public class MyLoader extends Sprite implements IUnityContentHost
      unityContentLoader.unityContent.setContentHost(this);
   }
 
-  //unityInitStart has to be implemented by whatever implements IUnityContenthost
-  //This is called when the content is loaded and the initialization of the unity engine is started.
+  //IUnityContenthost を実装するもの全てに対して unityInitStart を実装する必要があります。
+  //これはコンテンツがロードされて、 Unity エンジンの初期化が始まった時にコールされます。
   public function unityInitStart():void
   {
-    //Unity engine started	
+    //Unity エンジンが開始
   }
 	
-  //unityInitComplete has to be implemented by whatever implements IUnityContenthost
-  //This is called when the unity engine is done initializing and the first level is loaded.
+  //IUnityContenthost を実装するもの全てに対して unityInitComplete  を実装する必要があります
+  //これは Unity エンジンの初期化が完了し、最初のレベルがロードされたときにコールされます。
   public function unityInitComplete():void
   {
      unityContentLoader.unityContent.sendMessage("Main Camera","SetResponder",{responder:this});
