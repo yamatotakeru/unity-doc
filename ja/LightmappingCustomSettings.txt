@@ -1,14 +1,14 @@
-! Custom Beast Settings
+! ƒJƒXƒ^ƒ€‚Ì Beast İ’è
 
-If you need a different baking setup than the one Unity is using by default, you can specify it by using custom Beast settings.
+‚à‚µUnity‚ªg—p‚µ‚Ä‚¢‚é‚à‚Ì‚Æ•Ê‚ÌÄ‚«‚İİ’è‚ª•K—v‚Èê‡AƒJƒXƒ^ƒ€‚Ì Beast İ’è‚ğg—p‚·‚é‚±‚Æ‚Åw’è‚Å‚«‚Ü‚·B
 
-Beast reads bake settings defined in XML format. Normally Unity generates the XML file based on the configuration you have chosen in Bake pane of the Lightmap Editor window and a number of other internal settings. You can override those settings by specifying your own settings in Beast's XML format.
+Beast‚ÍXMLŒ`®‚Å’è‹`‚³‚ê‚½Ä‚«‚İİ’è‚ğ“Ç‚İ‚İ‚Ü‚·B’ÊíUnity‚ÍLightmap Editor ƒEƒBƒ“ƒhƒE‚ÌBakeƒyƒCƒ“‚¨‚æ‚Ñ‚»‚Ì‘¼‚Ó‚­‚·‚Ì“à•”İ’è‚É‚æ‚èXMLƒtƒ@ƒCƒ‹‚ğ¶¬‚µ‚Ü‚·B‚»‚ê‚ç‚Ìİ’è‚Í©g‚Ìİ’è‚ğBeast‚ÌXMLŒ`®‚Åw’è‚·‚é‚±‚Æ‚ÅƒI[ƒo[ƒ‰ƒCƒh‚Å‚«‚Ü‚·B
 
-To have Unity automatically generate the XML file for you, click the tab menu in the upper-right corner of the Lightmap Editor window and select ''Generate Beast settings file''. You will notice that the BeastSettings.xml file appeared in the project next to your lightmaps and that the Lightmap Editor informs you, that your XML settings will override Unity's settings during the next bake. Click the ''open'' button to edit your custom settings.
+Unity‚É‚æ‚èXMLƒtƒ@ƒCƒ‹‚ğ©“®¶¬‚·‚é‚É‚ÍLightmap Editor ƒEƒBƒ“ƒhƒE‚Ì‰Eã‹÷‚É‚ ‚éƒ^ƒuƒƒjƒ…[‚ğƒNƒŠƒbƒN‚µ‚Ä ''Generate Beast settings file'' ‚ğ‘I‘ğ‚µ‚Ü‚·BBeastSettings.xml ƒtƒ@ƒCƒ‹‚ªƒvƒƒWƒFƒNƒg‚Ìƒ‰ƒCƒgƒ}ƒbƒv‚Ì—×‚É•\¦‚³‚ê‚é‚±‚ÆA‚³‚ç‚É‚ÍLightmap Editor‚ªXMLİ’è‚ªŸ‚ÌÄ‚«‚İ‚ÌÛ‚ÉUnityİ’è‚ğƒI[ƒo[ƒ‰ƒCƒh‚·‚é‚±‚Æ‚É‹C•t‚«‚Ü‚·BƒJƒXƒ^ƒ€İ’è‚ğ•ÒW‚·‚é‚É‚Í ''open'' ƒ{ƒ^ƒ“‚ğƒNƒŠƒbƒN‚µ‚Ü‚·B
 
 Attach:XMLSettings40.png
 
-A sample Beast configuration file is given below:-
+ŠÈ’P‚ÈBeast ƒRƒ“ƒtƒBƒO ƒtƒ@ƒCƒ‹‚ÍŸ‚Ì’Ê‚è‚Å‚·:-
 
 [@<?xml version="1.0" encoding="ISO-8859-1"?>
 <ILConfig>
@@ -84,131 +84,131 @@ A sample Beast configuration file is given below:-
 </ILConfig>
 @]
 
-The toplevel XML elements are described in the sections below along with their subelements.
+ÅãˆÊ‚ÌXML—v‘f‚ÍƒTƒu—v‘f‚Æ‚Æ‚à‚ÉˆÈ~‚ÌƒZƒNƒVƒ‡ƒ“‚Åà–¾‚µ‚Ü‚·B
 
-!!Adaptive Sampling (''<AASettings>'' element)
+!!Adaptive ƒTƒ“ƒvƒŠƒ“ƒO (''<AASettings>'' —v‘f)
 
-Beast uses an adaptive sampling scheme when sampling light maps. The light must differ more than a user set contrast threshold for Beast to place additional samples in an area. The sample area is defined by a Min and Max sample rate. The user sets the rate in the -4..4 range which means that Beast samples from 1/256 sample per pixel to 256 samples per pixel (the formula is: 4 to the power of samplerate). It is recommended to use at least one sample per pixel for production use (Min sample rate = 0). Undersampling is most useful when doing camera renders or baking textures with big UV-patches. When Beast has taken all necessary samples for an area, the final pixel value is weighed together using a filter. The look the filter produces is dependent on the filter type used and the size of the filter kernel. The available filters are:
+Beast‚Íƒ‰ƒCƒgƒ}ƒbƒv‚ğƒTƒ“ƒvƒŠƒ“ƒO‚·‚é‚Æ‚«‚ÉAdaptive SamplingƒXƒL[ƒ€‚ğg—p‚µ‚Ü‚·Bƒ†[ƒU[’è‹`‚µ‚½ƒRƒ“ƒgƒ‰ƒXƒgè‡’l‚æ‚è‚àƒ‰ƒCƒg‚Ì·‚ª‚È‚¢‚ÆBeast‚ÍƒGƒŠƒA‚É’Ç‰Á‚ÌƒTƒ“ƒvƒ‹‚ğ”z’u‚µ‚Ü‚¹‚ñBƒTƒ“ƒvƒ‹ƒGƒŠƒA‚ÍÅ‘å‚ÆÅ¬‚ÌƒTƒ“ƒvƒ‹ƒŒ[ƒg‚É‚æ‚è’è‹`‚³‚ê‚Ü‚·Bƒ†[ƒU‚ÍƒTƒ“ƒvƒ‹ƒŒ[ƒg‚ğ -4 ‚©‚ç 4 ‚Ì”ÍˆÍ‚Å’è‹`‚µABeast‚ÍƒsƒNƒZƒ‹–ˆ‚É 1/256 ƒTƒ“ƒvƒ‹‚©‚ç ƒsƒNƒZƒ‹–ˆ‚É 256 ƒTƒ“ƒvƒ‹iŒvZ®‚Í: ƒTƒ“ƒvƒ‹ƒŒ[ƒg‚Ì4æ‚Å‚·j‚µ‚Ü‚·B–{”ÔƒŠƒŠ[ƒX‚Ì—p“r‚Å‚ÍAƒsƒNƒZƒ‹–ˆ‚É ­‚È‚­‚Æ‚à‚Ğ‚Æ‚Â‚ÌƒTƒ“ƒvƒ‹‚ğg—p‚·‚é‚±‚Æ‚ğ„§‚µ‚Ü‚· (Å¬‚ÌƒTƒ“ƒvƒ‹ƒŒ[ƒg = 0 )BƒAƒ“ƒ_[ ƒTƒ“ƒvƒŠƒ“ƒO‚ÍƒJƒƒ‰‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ü‚½‚Í‘å‚«‚ÈUVƒpƒbƒ`‚Ì‚ ‚éƒeƒNƒXƒ`ƒƒ‚ğÄ‚«‚İ‚·‚é‚Æ‚«‚É‚à‚Á‚Æ‚à•Ö—˜‚Å‚·BBeast‚ªƒGƒŠƒA‚Å•K—v‚ÈƒTƒ“ƒvƒŠƒ“ƒO‚ğ‘S‚Äæ“¾‚µ‚½‚Æ‚«ÅIƒsƒNƒZƒ‹’l‚ÍƒtƒBƒ‹ƒ^‚ğg—p‚µ‚Äd‚İ•t‚«ŒvZ‚ğ‚µ‚Ü‚·BƒtƒBƒ‹ƒ^‚ª¶¬‚·‚éŒ©‚½–Ú‚Íg—p‚³‚ê‚éƒtƒBƒ‹ƒ^‚Ìí—Ş‚¨‚æ‚ÑƒtƒBƒ‹ƒ^ ƒJ[ƒlƒ‹‚Ì‘å‚«‚³‚ÉˆË‘¶‚µ‚Ü‚·B—˜—p‰Â”\‚ÈƒtƒBƒ‹ƒ^‚Í:
 
-* Box: Each sample is treated as equally important. The fastest filter to execute but it gives blurry results.
-* Triangle: The filter kernel is a tent which means that distant samples are consideredless important.
-* Gauss: Uses the Gauss function as filter kernel. This gives the best results (removes noise, preserves details).
+* Box: ŠeƒTƒ“ƒvƒ‹‚Í“™‚µ‚­d—v‚Éˆµ‚í‚ê‚Ü‚·BÅ‘¬‚ÌƒtƒBƒ‹ƒ^‚Å‚·‚ªŒ‹‰Ê‚Í‚Ú‚â‚¯‚Ü‚·B
+* Triangle: ƒtƒBƒ‹ƒ^ƒJ[ƒlƒ‹‚Í tent ‚Å‚ ‚èA‚æ‚è‰“‚¢ƒTƒ“ƒvƒ‹‚Íd—v“x‚ª—ò‚é‚à‚Ì‚Æ‚µ‚Äæ‚èˆµ‚¢‚Ü‚·B
+* Gauss: ƒKƒEƒXŠÖ”‚ğƒtƒBƒ‹ƒ^ ƒJ[ƒlƒ‹‚Æ‚µ‚Äg—p‚µ‚Ü‚·BÅ‚à—Ç‚¢Œ‹‰Ê‚ª“¾‚ç‚ê‚Ü‚·iƒmƒCƒY‚ğæ‚èœ‚«ƒfƒBƒe[ƒ‹‚ğ•Û‚µ‚Ü‚·jB
 
-There are more filters available, but these three are the most useful. The kernel (filter) size is given in pixels in the range 1..3. Beast actually uses all sub pixels when filtering, which yields better results than doing it afterwards in Photoshop.
+ƒtƒBƒ‹ƒ^‚Í‘¼‚É‚à—˜—p‰Â”\‚Å‚·‚ªA‚±‚ÌO‚Â‚ªÅ‚à•Ö—˜‚Å‚·BƒJ[ƒlƒ‹iƒtƒBƒ‹ƒ^jƒTƒCƒY‚ÍƒsƒNƒZƒ‹’PˆÊ‚Å1-3‚Ì”ÍˆÍ‚Å’è‹`‚µ‚Ü‚·BBeast‚ÍƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ÌÛ‚É‘S‚Ä‚ÌƒTƒuƒsƒNƒZƒ‹‚ğg—p‚·‚é‚½‚ßAPhotoshop‚ÅŒã‚©‚çÀs‚·‚é‚æ‚è‚à—Ç‚¢Œ‹‰Ê‚ª“¾‚ç‚ê‚Ü‚·B
 
 ||PROPS
 ||``AASettings``||||
-||>>>``samplingMode``||The sampling strategy to use. Default is Adaptive. Adaptive: Adaptive anti-aliasing scheme for under/over sampling (from 1/256 up to 256 samples per pixel). SuperSampling: Anti-aliasing scheme for super sampling (from 1 up to 128 samples per pixel).||
-||>>>``minSampleRate``||Sets the min sample rate, default is 0 (ie one sample per pixel).||
-||>>>``maxSampleRate``||Sets the max sample rate, the formula used is 4^maxSampleRate (1, 4, 16, 64, 256 samples per pixel)||
-||>>>``contrast``||The contrast value which controls if more samples are necessary - a lower value forces more samples.||
-||>>>``filter``||Sets which filter type to use. Most useful ones for Baking are Box, Triangle and Gauss.||
-||>>>``filterSize``||Sets the filter size in pixels, from 1 to 3.||
-||>>>``diagnose``||Enable to diagnose the sampling. The brighter a pixel is, the more samples were taken at that position.||
+||>>>``samplingMode``||g—p‚·‚éƒTƒ“ƒvƒŠƒ“ƒO •û®BƒfƒtƒHƒ‹ƒg’l‚Í AdaptiveBAdaptive: ƒAƒ“ƒ_[^ƒI[ƒo[ ƒTƒ“ƒvƒŠƒ“ƒO‚Åg—po—ˆ‚é Adaptive ‚ÈƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•û®iƒsƒNƒZƒ‹–ˆ‚É 1/256 ƒTƒ“ƒvƒ‹‚©‚ç 256 ƒTƒ“ƒvƒ‹‚Ü‚ÅjBSuperSampling: ƒX[ƒp[ ƒTƒ“ƒvƒŠƒ“ƒO‚ÌƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•û®iƒsƒNƒZƒ‹–ˆ‚É 1ƒTƒ“ƒvƒ‹‚©‚ç 128 ƒTƒ“ƒvƒ‹‚Ü‚Åj||
+||>>>``minSampleRate``||Å¬ƒTƒ“ƒvƒ‹ƒŒ[ƒg‚ğƒZƒbƒgAƒfƒtƒHƒ‹ƒg’l‚Í0 i‚·‚È‚í‚¿ƒsƒNƒZƒ‹–ˆ‚É1ƒTƒ“ƒvƒ‹jB||
+||>>>``maxSampleRate``||Å‘åƒTƒ“ƒvƒ‹ƒŒ[ƒg‚ğƒZƒbƒgAŒvZ®‚Í4^maxSampleRate iƒsƒNƒZƒ‹–ˆ‚É1, 4, 16, 64, 256 ƒTƒ“ƒvƒ‹jB||
+||>>>``contrast``||ƒTƒ“ƒvƒ‹‚ª‚æ‚è‘½‚­•K—v‚Å‚ ‚é‚©§Œä‚·‚éƒRƒ“ƒgƒ‰ƒXƒg•Ï”Bnecessary - ’á‚¢’l‚Æ‚·‚é‚±‚Æ‚ÅƒTƒ“ƒvƒ‹”‚ª‘‰Á B||
+||>>>``filter``||‚Ç‚ÌƒtƒBƒ‹ƒ^‚Ìí—Ş‚ğg—p‚·‚é‚©B Ä‚«‚İ‚É•Ö—˜‚È‚Ì‚Í Box, Triangle ‚¨‚æ‚Ñ Gauss||
+||>>>``filterSize``||ƒtƒBƒ‹ƒ^ ƒTƒCƒY‚ğƒsƒNƒZƒ‹’PˆÊ‚Åw’èA’l‚Í 1 ‚©‚ç 3B||
+||>>>``diagnose``||ƒTƒ“ƒvƒŠƒ“ƒO‚Ìf’f‚ğ—LŒø‰»BƒsƒNƒZƒ‹‚ª–¾‚é‚¢‚Ù‚Ç‚»‚ÌˆÊ’u‚Å‚Æ‚ç‚ê‚éƒTƒ“ƒvƒ‹‚ª‘‰ÁB||
 
-!!Texture Bake (''<TextureBakeSettings>'' element)
+!!ƒeƒNƒXƒ`ƒƒ ƒxƒCƒN (''<TextureBakeSettings>'' —v‘f)
 
-These settings help getting rid of any artifacts that are purely related to how lightmaps are rasterized and read from a texture.
+‚±‚ê‚ç‚Ìİ’è‚Íƒ‰ƒCƒgƒ}ƒbƒv‚Ìƒ‰ƒXƒ^ƒ‰ƒCƒY‚¨‚æ‚ÑƒeƒNƒXƒ`ƒƒ‚©‚ç‚Ì“Ç‚İ‚İ‚Éƒˆ‚É‹Nˆö‚·‚é‚ª‰æ‘œ‚Ì—‚ê‚ğæ‚èœ‚­‚Ì‚É–ğ—§‚¿‚Ü‚·B
 
 ||PROPS
 ||``TextureBakeSettings``||||
-||>>>``edgeDilation``||Expands the rendered region with the number of pixels specified. This is needed to prevent the artifacts occurring when GPU filters in empty pixels from around the rendered region. Should be set to 0 though, since a better algorithm is part of the import pipeline.||
-||>>>``bilinearFilter``||Is used to make sure that the data in the lightmap is "correct" when the GPU applies bilinear filtering. This is most noticable when the atlases are tightly packed. If there is only one pixel between two different UV patches, the bilinear functionality in Beast will make sure the that pixel is filled with the color from the correct patch. This minimizes light seams.||
-||>>>``conservativeRasterization``||Is used when the UV-chart does not cover the entire pixel. If such a layout is used, Beast may miss the texel by mistake. If conservative rasterization is used Beast will guarantee that it will find a UV-layout if present. Note that Beast will pick any UV-layout in the pixel. Conservative Rasterization often needs to be turned on if the UV atlases are tightly packed in low resolutions or if there are very thin objects present.||
-||>>>``bgColor``||The background color of the lightmap. Should be set to white (1,1,1,1).||
+||>>>``edgeDilation``||w’è‚³‚ê‚½ƒsƒNƒZƒ‹”‚ÅƒŒƒ“ƒ_ƒŠƒ“ƒO—Ìˆæ‚ğŠg‘å‚µ‚Ü‚·B‚Ì‚ê‚ÍGPU‚ÌƒtƒBƒ‹ƒ^‚É‚æ‚âüˆÍ‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—Ìˆæ‚©‚ç‹ó‚ÌƒsƒNƒZƒ‹‚ğæ‚è‚ñ‚Å‰æ‘œ‚Ì—‚ê‚ª”­¶‚·‚é‚±‚Æ‚ğ–h~‚·‚éê‡‚É•K—v‚Å‚·B‚½‚¾‚µ0‚ÉƒZƒbƒg‚·‚×‚«‚Å‚ ‚èA‚æ‚è—Ç‚¢ƒAƒ‹ƒSƒŠƒYƒ€‚ªd—v‚ÈƒpƒCƒvƒ‰ƒCƒ“‚Ìˆê•”‚Å‚ ‚é‚½‚ß‚Å‚·B||
+||>>>``bilinearFilter``||GPU‚ªbilinear ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğ“K—p‚·‚é‚Æ‚«‚Éƒ‰ƒCƒgƒ}ƒbƒv‚Ìƒf[ƒ^‚ª "³‚µ‚¢" ‚±‚Æ‚ğŠm”F‚µ‚Ü‚·B‚±‚ê‚ÍƒAƒgƒ‰ƒX‚ª–§‚É‹l‚ß‚İ‚³‚ê‚Ä‚¢‚é‚Æ‚«‚É‚ÉÅ‚àŒ°’˜‚Å‚·B‚à‚µ“ñ‚Â‚ÌˆÙ‚È‚éUVƒpƒbƒ`‚ÌŠÔ‚É1ƒsƒNƒZƒ‹‚µ‚©‚È‚¢ê‡ABeast‚Ìbilinear‹@”\‚É‚æ‚è³‚µ‚¢ƒpƒbƒ`‚©‚ç‚ÌƒJƒ‰[‚Å“h‚ç‚ê‚é‚æ‚¤‚É‚µ‚Ü‚·B‚±‚ê‚É‚æ‚èƒ‰ƒCƒg‚ÌƒV[ƒ€‚ªÅ¬‰»‚³‚ê‚Ü‚·B||
+||>>>``conservativeRasterization``||UVƒ`ƒƒ[ƒg‚ªƒsƒNƒZƒ‹‘S‘Ì‚ğƒJƒo[‚µ‚È‚¢‚Ég—p‚³‚ê‚Ü‚·B‚à‚µ‚»‚Ì‚æ‚¤‚ÈƒŒƒCƒAƒEƒg‚²g—p‚³‚ê‚½ê‡ABeast‚ÍƒeƒNƒZƒ‹‚ğŒë‚Á‚ÄŒ©“¦‚·‚±‚Æ‚ª‚ ‚è‚Ü‚·B‚à‚µ•Ûç“I‚Èƒ‰ƒXƒ^ƒ‰ƒCƒ[[ƒVƒ‡ƒ“‚ªg—p‚³‚ê‚ê‚ÎBeast‚ÍUVƒŒƒCƒAƒEƒg‚ª‚ ‚ê‚ÎŒ©‚Â‚¯‚é‚±‚Æ‚ğ•ÛØ‚µ‚Ü‚·BBeast‚ªƒsƒNƒZƒ‹‚Ì”CˆÓ‚ÌUVƒŒƒCƒAƒEƒg‚ğ‘I‘ğ‚·‚é‚±‚Æ‚É—¯ˆÓ‚µ‚Ä‰º‚³‚¢BUVƒAƒgƒ‰ƒX‚ª’á‰ğ‘œ“x‚Å–§‚É‹l‚ß‚İ‚³‚ê‚Ä‚éê‡A‚Ü‚½‚ÍA”ñí‚É×‚¢ƒIƒuƒWƒFƒNƒg‚ª‘¶İ‚·‚éê‡A•Ûç“I‚Èƒ‰ƒXƒ^ƒ‰ƒCƒ[[ƒVƒ‡ƒ“‚ÍƒIƒt‚É‚·‚é•K—v‚²‚ ‚é‚©‚à‚µ‚ê‚Ü‚¹‚ñB||
+||>>>``bgColor``||ƒ‰ƒCƒgƒ}ƒbƒv‚Ì”wŒiFB”’ (1,1,1,1)‚ÉƒZƒbƒg‚·‚×‚«‚Å‚·B||
 
-!!Environment (''<EnvironmentSettings>'' element)
+!!ŠÂ‹« (''<EnvironmentSettings>'' —v‘f)
 
-The environment settings in Beast control what happens if a ray misses all geometry in the scene. The environment can either be a constant color or an HDR image in lat-long format for Image Based Lighting (IBL). Note that environments should only be used for effects that can be considered to be infinitely far away, meaning that only the directional component matters.
+Beast‚ÌŠÂ‹«İ’è‚ÍA‘S‚Ä‚Ì•¨‘Ì‚É“–‚½‚ç‚È‚¢ê‡‚É‚Ç‚¤‚·‚é‚©‚ğ§Œä‚µ‚Ü‚·BŠÂ‹«—v‘f‚ÍAˆê’è‚ÌF‚©AImage Based Lighting (IBL) ‚ÌˆÜ“xŒo“xŒ`®‚ÌHDR‰æ‘œ‚ğæ‚é‚±‚Æ‚ªo—ˆ‚Ü‚·BŠÂ‹«—v‘f‚ÍA–³ŒÀ‚É‰“‚¢‚Æ‘¨‚¦‚Ä–â‘è‚È‚¢ê‡‚ÌƒGƒtƒFƒNƒg‚Å‚µ‚æ‚¤‚·‚×‚«‚Å‚ ‚é‚±‚Æ‚É—¯ˆÓ‚µ‚Ä‰º‚³‚¢B‚·‚È‚í‚¿wŒü«ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‚İ‚ªˆÓ–¡‚ğ‚¿‚Ü‚·B
 
-Defining an environment is usually a very good way to get very pleasing outdoor illumination results, but might also increase bake times.
+ŠÂ‹«—v‘f‚ğ’è‹`‚·‚é‚±‚Æ‚É‚æ‚è”ü‚µ‚¢ŠO‚ÌŒõ‚ÌÆË‚ğ“¾‚é—Ç‚¢•û–@‚Å‚·‚ªÄ‚«‚İ‚ÌŠÔ‚ğ‘‰Á‚³‚¹‚Ü‚·B
 
 ||PROPS
 ||``EnvironmentSettings``||||
-||>>>``giEnvironment``||The type of Environment: None, Skylight or IBL.||
-||>>>``giEnvironmentIntensity``||A scale factor for the intensity, used for avoiding gamma correction errors and to scale HDR textures to something that fits your scene. (in Unity: ''Sky Light Intensity'')||
-||>>>``skyLightColor``||A constant environment color. Used if type is Skylight. It is often a good idea to keep the color below 1.0 in intensity to avoid boosting by gamma correction. Boost the intensity instead with the giEnvironmentIntensity setting. (in Unity: ''Sky Light Color'')||
-||>>>``iblImageFile``||High-dynamic range IBL background image in Long-Lat format, .HDR or .EXR, absolute path.||
+||>>>``giEnvironment``||ŠÂ‹«‚Ìí—Ş: None, Skylight ‚Ü‚½‚Í IBLiImage Based LightingjB||
+||>>>``giEnvironmentIntensity``||ƒKƒ“ƒ}•â³ƒGƒ‰[‚Ì‰ñ”ğ‚âAHDR ƒeƒNƒXƒ`ƒƒ‚Ì‚ğƒV[ƒ“‚É‚ ‚í‚¹‚ÄŠg‘åk¬‚·‚é‚½‚ß‚Ì‹­“x‚ğ¦‚·ƒXƒP[ƒ‹ŒW” (Unity‚Å‚Í: ''Sky Light Intensity'')||
+||>>>``skyLightColor``||ŠÂ‹«‚Ì’è”’l‚ÌƒJƒ‰[Bí—Ş‚ª Skylight ‚Ìê‡‚Ég—p‚³‚ê‚Ü‚·BƒJƒ‰[‚ğ 1.0 ˆÈ‰º‚Ì‹­“x‚Æ‚·‚é‚±‚Æ‚ÅAƒKƒ“ƒ}•â³‚É‚æ‚é‘•‚ğ‰ñ”ğ‚·‚é‚Ì‚ª—Ç‚¢l‚¦‚Å‚·B‘ã‚í‚è‚É‹­“x‚Ì‘•‚ÍgiEnvironmentIntensity ‚Ås‚¢‚Ü‚·B(Unity‚Å‚Í: ''Sky Light Color'')||
+||>>>``iblImageFile``||‚ƒ_ƒCƒiƒ~ƒbƒNƒŒƒ“ƒW IBL iImage Based Lightingj”wŒi‰æ‘œ‚ğˆÜ“xŒo“xŒ`®A.HDR ‚Ü‚½‚Í .EXRAâ‘ÎƒpƒX‚Åw’èB||
 
-!!Render Settings/Shadows (''<RenderSettings>'' element)
+!!ƒŒƒ“ƒ_ƒŠƒ“ƒOİ’è^ƒVƒƒƒhƒE (''<RenderSettings>'' —v‘f)
 
-Settings for ray-traced shadows.
+Ray ‚ÅƒgƒŒ[ƒX‚µ‚½ƒVƒƒƒhƒE‚Ìİ’è
 
 ||PROPS
 ||``RenderSettings``||||
-||>>>``bias``||An error threshold to avoid double intersections of shadow rays. For example, a shadow ray should not intersect the same triangle as the primary ray did, but because of limited numerical precision this can happen. The bias value moves the intersection point to eliminate this problem. If set to zero this value is computed automatically depending on the scene size.||
-||>>>``maxShadowRays``||The maximum number of shadow rays per point that will be used to generate a soft shadow for any light source. Use this to shorten render times at the price of soft shadow quality. This will lower the maximum number of rays sent for any light sources that have a shadowSamples setting higher than this value, but will not raise the number if shadowSamples is set to a lower value.||
-||>>>``maxRayDepth``||The maximum amount of bounces a ray can have before being considered done. A bounce can be a reflection or a refraction. Increase the value if a ray goes through many transparent triangles before hitting an opaque object and you get light in areas that should be in the shadow. Common failure case: trees with alpha-tested leaves placed in a shadow of a mountain.||
-||>>>``giTransparencyDepth``||Maximum transparency depth for global illumination rays, i.e. the number of transparent surfaces the ray can go through, before you can assume it has been absorbed. Lower values speed up rendering, in scenes with, e.g. dense foliage, but may cause overlapping transparent objects to cast too much shadow. The default is 2.||
+||>>>``bias``||ƒVƒƒƒhƒE Ray ‚Ì“ñdŒğ·‚ğ‰ñ”ğ‚·‚é‚½‚ß‚ÌƒGƒ‰[è‡’lB—á‚¦‚ÎAƒVƒƒƒhƒE Ray ‚Í ƒvƒ‰ƒCƒ}ƒŠ Ray ‚Æ“¯‚¶OŠpŒ`‚ÆŒğ·‚·‚é‚×‚«‚Å‚Í‚ ‚è‚Ü‚¹‚ñ‚ªA”’l‚Ì¸“x‚É‚æ‚Á‚Ä‚Í‚±‚ê‚ª”­¶‚µ‚Ü‚·BƒoƒCƒAƒX’l‚ÍŒğ·“_‚ğˆÚ“®‚µ‚Ä‚±‚Ì–â‘è‚ğ‰ğÁ‚µ‚Ü‚·B‚à‚µƒ[ƒ‚ÉƒZƒbƒg‚µ‚½ê‡A‚±‚Ì’l‚ÍƒV[ƒ“ƒTƒCƒY‚É‚æ‚Á‚Ä©“®“I‚ÉŒvZ‚³‚ê‚Ü‚·B||
+||>>>``maxShadowRays``||‚¢‚¸‚ê‚©‚ÌŒõŒ¹‚É‘Î‚·‚éƒ\ƒtƒgƒVƒƒƒhƒE‚ğ¶¬‚·‚éÛ‚Ég—p‚³‚ê‚é“_‚ ‚½‚è‚ÌƒVƒƒƒhƒE Ray ‚ÌÅ‘å”B‚±‚ê‚ğg—p‚·‚é‚ÆAƒ\ƒtƒgƒVƒƒƒhƒE‚Ì•i¿’á‰º‚Æˆø‚«Š·‚¦‚ÉƒŒƒ“ƒ_ƒŠƒ“ƒOŠÔ‚ğ’Zk‚µ‚Ü‚·B‚±‚ê‚É‚æ‚èA‚¢‚¸‚ê‚©‚ÌŒõŒ¹‚Å shadowSamples İ’è‚æ‚è‘å‚«‚¢’l‚Ìê‡‚Í‚É“Š‰e‚³‚ê‚é Ray ‚ÌÅ‘å”‚ğŒ¸‚ç‚µ‚Ü‚·‚ªAshadowSamples ‚ª’á‚¢’l‚Éİ’è‚³‚ê‚½ê‡‚É”š‚ğ‰º‚°‚é‚à‚Ì‚Å‚Í‚ ‚è‚Ü‚¹‚ñB||
+||>>>``maxRayDepth``||Ray ‚ª Á–Å‚·‚é‚Ü‚Å’µ‚Ë•Ô‚è‚ª‚Å‚«‚éÅ‘å‰ñ”B’µ‚Ë•Ô‚è‚Í”½Ë‚Ü‚½‚Í‹üÜ‚Ì‚¢‚¸‚ê‚©‚ª‚ ‚è‚¦‚Ü‚·B‚à‚µ Ray ‚ª‘½‚­‚Ì“§–¾‚ÌOŠpŒ`‚ğ’Ê‰ß‚µ‚Ä‚à•s“§–¾‚ÌƒIƒuƒWƒFƒNƒg‚É“–‚½‚èA‚»‚ÌŒ‹‰ÊƒVƒƒƒhƒE‚Å‚ ‚é‚×‚«‚Æ‚±‚ë‚ÉŒõ‚ª‚ ‚éê‡‚Í‚±‚Ì’l‚ğ‘‰Á‚³‚¹‚Ä‰º‚³‚¢B—Ç‚­‚ ‚é•s‹ï‡‚ÌƒP[ƒX: R‚Ì‰A‚É‚ ‚éAƒAƒ‹ƒtƒ@ƒeƒXƒgİ’è‚Ì}—t‚ª‚Â‚¢‚½÷–ØB||
+||>>>``giTransparencyDepth``||‘åˆæÆ–¾ Ray ‚ÌÅ‘å“§–¾ƒfƒvƒXA‚·‚È‚í‚¿ Ray ‚ÌŒõ‚ªŠ®‘S‚É‹zû‚³‚ê‚é‚Ü‚Å‚É’Ê‰ß‚Å‚«‚é“§–¾‚È•\–Ê‚Ì”‚Å‚·B’á‚¢’l‚Éİ’è‚·‚é‚±‚Æ‚ÅA—á‚¦‚Î –§“x‚Ì”Z‚¢}—t‚ÌƒV[ƒ“‚ÅAƒŒƒ“ƒ_ƒŠƒ“ƒO‘¬“x‚ª‚ ‚ª‚è‚Ü‚·‚ªAd•¡‚µ‚½“§–¾ƒIƒuƒWƒFƒNƒg‚ªƒVƒƒƒhƒE‚ğ“Š‰e‚µ‚·‚¬‚é•s‹ï‡‚ª‹N‚«‚é‚±‚Æ‚ª‚ ‚è‚Ü‚·BƒfƒtƒHƒ‹ƒg‚Í 2 ‚Å‚·B||
 
 
-!!Global Illumination (''<GISettings>'' element)
+!!‘åˆæÆ–¾ (''<GISettings>'' —v‘f)
 
-The Global Illumination system allows you to use two separate algorithms to calculate indirect lighting. You can for instance calculate multiple levels of light bounces with a fast algorithm like the Path Tracer, and still calculate the final bounce with Final Gather to get a fast high-quality global illumination render. Both subsystems have individual control of Intensity and Saturation to boost the effects if necessary.
+‘åˆæÆ–¾iGlobal Illuminationj ƒVƒXƒeƒ€‚É‚æ‚è“ñ‚Â‚ÌˆÙ‚È‚éƒAƒ‹ƒSƒŠƒYƒ€‚ğg—p‚µ‚ÄŠÔÚƒ‰ƒCƒeƒBƒ“ƒO‚ğŒvZ‚µ‚Ü‚·B—á‚¦‚Î•¡”‚ÌƒŒƒxƒ‹‚ÌŒõ‚Ì’µ‚Ë•Ô‚è‚ğAPath TraceriƒpƒX ƒgƒŒ[ƒVƒ“ƒOj ‚Ì‚æ‚¤‚È‚‘¬‚ÈƒAƒ‹ƒSƒŠƒYƒ€‚ÅŒvZ‚Å‚«‚ÄA‚³‚ç‚ÉÅI‚Ì’µ‚Ë•Ô‚è‚ğ Final Gatheriƒtƒ@ƒCƒiƒ‹ ƒMƒƒƒUƒŠƒ“ƒOj‚É‚æ‚èŒvZ‚µ‚ÄA‚‘¬‚©‚Â‚•i¿‚È‘åˆæÆ–¾ƒŒƒ“ƒ_ƒ‰‚ª“¾‚ç‚ê‚Ü‚·B—¼•û‚ÌƒTƒuƒVƒXƒeƒ€‚ÍŒÂ•Ê‚É Intensity ‚¨‚æ‚Ñ Saturation ‚ğ§Œä‚µ‚Ä•K—v‚É‰‚¶‚ÄŒø‰Ê‚ğ‘•‚³‚¹‚Ü‚·B
 
-It's recommended to use FinalGather as the primary integrator and either None or PathTracer as the secondary integrator. Unity uses the first option (so final gather only) as the default, since it produces the best quality renders in most cases. Path Tracer should be used if many indirect bounces are needed and Final Gather-only solution with acceptable quality would take to much time to render.
+FinalGather ‚ğƒvƒ‰ƒCƒ}ƒŠ ƒCƒ“ƒeƒOƒŒ[ƒ^‚Æ‚µ‚Äg—p‚µ‚ÄANone ‚Ü‚½‚Í PathTracer ‚ğƒZƒJƒ“ƒ_ƒŠ ƒCƒ“ƒeƒOƒŒ[ƒ^‚Æ‚·‚é‚±‚Æ‚ğ„§‚µ‚Ü‚·B Unity ‚ÍÅ‰‚ÌƒIƒvƒVƒ‡ƒ“i‚Â‚Ü‚è FinalGather ‚Ì‚İjƒfƒtƒHƒ‹ƒg‚É‚µ‚Ä‚¢‚ÄA‚Ù‚Æ‚ñ‚Ç‚ÌƒP[ƒX‚ÅƒxƒXƒg‚Ì•i¿‚ÅƒŒƒ“ƒ_ƒŠƒ“ƒO‚µ‚Ü‚·BPathTracer ‚Í‚à‚µŠÔÚ‚Ì’µ‚Ë•Ô‚è‚ª•K—v‚Æ‚³‚ê‚Ä‚¢‚ÄAFinalGather ‚Ì‚İ‚Å‚Ìƒ\ƒŠƒ…[ƒVƒ‡ƒ“‚ª•i¿‚Í‚‚¢‚à‚Ì‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒOŠÔ‚ª‚©‚©‚è‚·‚¬‚éê‡‚Ég—p‚·‚×‚«‚Å‚·B
 
 ||PROPS
 ||``GISettings``||||
-||>>>``enableGI``||Setting to true enables Global Illumination.||
-||>>>``primaryIntegrator``||The integrator used for the final calculations of indirect light. FinalGather is default.||
-||>>>``secondaryIntegrator``||The integrator used for initial bounces of indirect light. Default is None, PathTracer is optional.||
-||>>>``primaryIntensity``||As a post process, converts the color of the primary integrator result from RGB to HSV and scales the V value. (in Unity: ''Bounce Intensity'')||
-||>>>``primarySaturation``||As a post process, converts the color of the primary integrator result from RGB to HSV and scales the S value.||
-||>>>``secondaryIntensity``||As a post process, converts the color of the secondary integrator result from RGB to HSV and scales the V value.||
-||>>>``secondarySaturation``||As a post process, converts the color of the secondary integrator result from RGB to HSV and scales the S value.||
-||>>>``diffuseBoost``||This setting can be used to exaggerate light bouncing in dark scenes. Setting it to a value larger than 1 will push the diffuse color of materials towards 1 for GI computations. The typical use case is scenes authored with dark materials, this happens easily when doing only direct lighting since it is easy to compensate dark materials with strong light sources. Indirect light will be very subtle in these scenes since the bounced light will fade out quickly. Setting a diffuse boost will compensate for this. Note that values between 0 and 1 will decrease the diffuse setting in a similar way making light bounce less than the materials says, values below 0 is invalid. The actual computation taking place is a per component pow(colorComponent, (1.0 / diffuseBoost)). (in Unity: ''Bounce Boost'')||
-||>>>``fgPreview``||Enable for a quick preview of the final image lighting.||
+||>>>``enableGI``||true ‚ğƒZƒbƒg‚·‚é‚±‚Æ‚Å‘åˆæÆ–¾‚ğ—LŒø‰»B||
+||>>>``primaryIntegrator``||ŠÔÚÆ–¾‚ÌÅIŒvZ‚Ég—p‚³‚ê‚éƒCƒ“ƒeƒOƒŒ[ƒ^BƒfƒtƒHƒ‹ƒg’l‚ÍFinalGatherB||
+||>>>``secondaryIntegrator``||ŠÔÚÆ–¾‚Ì‚Ì‰Šú‚Ì’µ‚Ë•Ô‚è‚Ég—p‚³‚ê‚éƒCƒ“ƒeƒOƒŒ[ƒ^BƒfƒtƒHƒ‹ƒg’l‚Í NoneA”CˆÓ‚ÅPathTracer‚ğw’è‚Å‚«‚Ü‚·B||
+||>>>``primaryIntensity``||Œãˆ—‚Æ‚µ‚ÄAƒvƒ‰ƒCƒ}ƒŠ ƒCƒ“ƒeƒOƒŒ[ƒ^‚ÌŒ‹‰Ê‚ÌF‚ğRGB ‚©‚ç HSV ‚É•ÏŠ·‚µAV ’l‚ğƒXƒP[ƒ‹‚µ‚Ü‚·B(Unity‚Å‚Í: ''Bounce Intensity'')||
+||>>>``primarySaturation``||Œãˆ—‚Æ‚µ‚ÄAƒvƒ‰ƒCƒ}ƒŠ ƒCƒ“ƒeƒOƒŒ[ƒ^‚ÌŒ‹‰Ê‚ÌF‚ğRGB ‚©‚ç HSV ‚É•ÏŠ·‚µAS ’l‚ğƒXƒP[ƒ‹‚µ‚Ü‚·B||
+||>>>``secondaryIntensity``||Œãˆ—‚Æ‚µ‚ÄAƒZƒJƒ“ƒ_ƒŠ ƒCƒ“ƒeƒOƒŒ[ƒ^‚ÌŒ‹‰Ê‚ÌF‚ğRGB ‚©‚ç HSV ‚É•ÏŠ·‚µAV ’l‚ğƒXƒP[ƒ‹‚µ‚Ü‚·B||
+||>>>``secondarySaturation``||Œãˆ—‚Æ‚µ‚ÄAƒZƒJƒ“ƒ_ƒŠ ƒCƒ“ƒeƒOƒŒ[ƒ^‚ÌŒ‹‰Ê‚ÌF‚ğRGB ‚©‚ç HSV ‚É•ÏŠ·‚µAS ’l‚ğƒXƒP[ƒ‹‚µ‚Ü‚·B||
+||>>>``diffuseBoost``||‚±‚Ìİ’è‚ğg—p‚µ‚ÄˆÃ‚¢ƒV[ƒ“‚Å‚Ìƒ‰ƒCƒg‚Ì’µ‚Ë•Ô‚è‚ğŒÖ’£‚Å‚«‚Ü‚·B1 ‚æ‚è‘å‚«‚¢’l‚Éİ’è‚·‚é‚±‚Æ‚Å‘åˆæÆ–¾ŒvZ‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌŠgUƒJƒ‰[‚ğ1‚É‹ß‚Ã‚¯‚Ü‚·B“TŒ^“I‚Èg—pê–Ê‚ÍˆÃ‚¢ƒ}ƒeƒŠƒAƒ‹‚ª¶¬‚³‚ê‚½ƒV[ƒ“‚Å‚ ‚èAˆÃ‚¢ƒ}ƒeƒŠƒAƒ‹‚ğ‹­‚¢ŒõŒ¹‚Å‘ŠE‚·‚é‚±‚Æ‚ª—Ç‚¢‚Å‚ ‚é‚½‚ß’¼ÚÆ–¾‚Ì‚İ‚ª‚ ‚é‚Æ‚«‚É”­¶‚µ‚â‚·‚­‚È‚è‚Ü‚·B‚±‚ê‚ç‚ÌƒV[ƒ“‚Å‚ÍA’µ‚Ë•Ô‚Á‚½ƒ‰ƒCƒg‚ª‚·‚®‚ÉƒtƒF[ƒhƒAƒEƒg‚·‚é‚½‚ßAŠÔÚÆ–¾‚Í‚©‚·‚©‚É‚È‚è‚Ü‚·BŠgU‚Ì‘•‚ğİ’è‚·‚é‚±‚Æ‚Å‘ŠE‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B0 ‚©‚ç 1 ‚Ì”ÍˆÍ‚Ì’l‚ÍAƒ}ƒeƒŠƒAƒ‹‚æ‚è‚àƒ‰ƒCƒg‚Ì’µ‚Ë•Ô‚è‚ğ­‚È‚­‚·‚é‚±‚Æ‚ÅŠgUİ’è‚ğ—‚½•û–@‚ÅŒ¸­‚³‚¹A0 ‚æ‚è¬‚³‚¢’l‚Í–³Œø‚Å‚·BÀÛ‚És‚í‚ê‚éŒvZ‚ÍƒRƒ“ƒ|[ƒlƒ“ƒg–ˆ‚Ì pow(colorComponent, (1.0 / diffuseBoost)) ‚Å‚·B(Unity‚Å‚Í: ''Bounce Boost'')||
+||>>>``fgPreview``||ÅI‰æ‘œ‚Å‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ÌƒNƒCƒbƒN ƒvƒŒƒrƒ…[‚ğ—LŒø‰»B||
 
 !!!Final Gather
 
-The settings below control the quality or correctness of the Final Gather solution. The normal usage scenario is this:
+ˆÈ‰º‚Ìİ’è‚É‚æ‚èƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒOè–@‚Ì•i¿‚â³Šm‚³‚ğ§Œä‚µ‚Ü‚·B’Êí‚Ìg—p‚·‚éƒVƒiƒŠƒI‚Æ‚µ‚Ä‚Í:
 
-# For each baking set up Contrast Threshold and Number of Rays may be adjusted. There are no perfect settings for these since they depend on the complexity of the geometry and light setup.
-# Check Visibility and Light Leakage reduction are expensive operations and should only be used to remedy actual light leakage problems. These settings will only help if the light leakage is caused by the Global Illumination calculations. A very common light leakage situation occurs with a wall as a single plane with no thickness. The light leaking through in that situation does not come from GI.
-# Gradient threshold should only be changed if there are white halos around corners.
+# ŠeX‚ÌÄ‚«‚İ‚ÌÛ‚ÉA Contrast Threshold ‚¨‚æ‚Ñ Number of Rays ‚ğ’²®‚µ‚Ü‚·B‚±‚ê‚ç‚É‚Â‚¢‚ÄAƒWƒIƒƒgƒŠ‚âƒ‰ƒCƒgİ’è‚Ì‚Ì•¡G‚³‚ÉˆË‘¶‚·‚é‚½‚ßAŠ®àø‚Èİ’è‚Í‘¶İ‚µ‚Ü‚¹‚ñB
+# Visibility ‚¨‚æ‚Ñ Light Leakage iƒ‰ƒCƒg‚Ì˜R‚êjíŒ¸‚ÍŒø‰Ê‚È‰‰Z‚Å‚ ‚èAÀÛ‚Éƒ‰ƒCƒg‚Ì˜R‚ê‚Å–â‘è‚ª‚ ‚Á‚½ê‡‚Ì‘Îˆ–@‚Æ‚µ‚ÄŒÀ’è‚·‚×‚«‚Å‚·B‚±‚ê‚ç‚Ìİ’è‚Íƒ‰ƒCƒg‚Ì˜R‚ê‚ª‘åˆæÆ–¾ŒvZ‚É‹Nˆö‚·‚éê‡‚É‚Ì‚İ–ğ—§‚¿‚Ü‚·BÅ‚à—Ç‚­‚ ‚éƒ‰ƒCƒg‚Ì˜R‚ê‚Ìó‹µ‚ÍAŒú‚İ‚ğ‚½‚È‚¢•½–Ê‚Ì•Ç‚Å‚·B‚»‚Ìó‹µ‚Å‚Ìƒ‰ƒCƒg‚Ì˜R‚ê‚Í‘åˆæÆ–¾‚©‚ç—ˆ‚é‚í‚¯‚Å‚Í‚ ‚è‚Ü‚¹‚ñB
+# ƒOƒ‰ƒf[ƒVƒ‡ƒ“‚Ìè‡’l‚Í‹÷‚Ì‚ ‚½‚è‚É”’‚¢ƒnƒ[‚ª‚ ‚éê‡‚Ì‚İ•ÏX‚·‚×‚«‚Å‚·B
 
-Steps 2 and 3 should not need much tweaking in most scenes.
+ƒXƒeƒbƒv 2 ‚¨‚æ‚Ñ 3 ‚Í‘½‚­‚ÌƒV[ƒ“‚Å”÷’²®‚ª‚Ù‚Æ‚ñ‚Ç•K—v‚È‚¢‚Í‚¸‚Å‚·B
 
 ||PROPS
 ||``GISettings``||||
-||>>>``fgContrastThreshold``||Controls how sensitive the final gather should be for contrast differences between the points during precalculation. If the contrast difference is above this threshold for neighbouring points, more points will be created in that area. This tells the algorithmto place points where they are really needed, e.g. at shadow boundaries or in areas where the indirect light changes quickly. Hence this threshold controls the number of points created in the scene adaptively. Note that if a low number of final gather rays are used, the points will have high variance and hence a high contrast difference. In that the case contrast threshold needs to be raised to prevent points from clumping together or using more rays per sample. (in Unity: ''Contrast Threshold'')||
-||>>>``fgRays``||The maximum number of rays taken in each Final Gather sample. More rays gives better results but take longer to evaluate. (in Unity: ''Final Gather Rays'')||
-||>>>``fgCheckVisibility``||Turn this on to reduce light leakage through walls. When points are collected to interpolate between, some of them can be located on the other side of geometry. As a result light will bleed through the geometry. To prevent this Beast can reject points that are not visible.||
-||>>>``fgCheckVisibilityDepth``||Controls for how many bounces the visibility checks should be performed. Adjust this only if experiencing light leakage when using multi bounce Final Gather.||
-||>>>``fgLightLeakReduction``||This setting can be used to reduce light leakage through walls when using final gather as primary GI and path tracing as secondary GI. Leakage, which can happen when e.g. the path tracer filters in values on the other side of a wall, is reduced by using final gather as a secondary GI fallback when sampling close to walls or corners. When this is enabled a final gather depth of 3 will be used automatically, but the higher depths will only be used close to walls or corners. Note that this is only usable when path tracing is used as secondary GI.||
-||>>>``fgLightLeakRadius``||Controls how far away from walls the final gather will be called again, instead of the secondary GI. If 0.0 is used Beast will try to estimate a good value. If this does not eliminate the leakage it can be set to a higher value manually.||
-||>>>``fgGradientThreshold``||Controls how the irradiance gradient is used in the interpolation. Each point stores its irradiance gradient which can be used to improve the interpolation. In some situations using the gradient can result in white "halos" and other artifacts. This threshold can be used to reduce those artifacts (set it low or to 0). (in Unity: ''Interpolation'')||
-||>>>``fgInterpolationPoints``||Sets the number of final gather points to interpolate between. A higher value will give a smoother result, but can also smooth out details. If light leakage is introduced through walls when this value is increased, checking the sample visibility solves that problem. (in Unity: ''Interpolation Points'')||
-||>>>``fgNormalThreshold``||Controls how sensitive the final gather should be for differences in the points normals. A lower value will give more points in areas of high curvature.||
-||>>>``fgDepth``||Controls the number of indirect light bounces. A higher value gives a more correct result, but the cost is increased rendering time. For cheaper multi bounce GI, use Path Tracer as the secondary integrator instead of increasing depth. (in Unity: ''Bounces'')||
-||>>>``fgAttenuationStart``||The distance where attenuation is started. There is no attenuation before this distance. This can be used to add a falloff effect to the final gather lighting. When fgAttenuationStop is set higher than 0.0 this is enabled.||
-||>>>``fgAttenuationStop``||Sets the distance where attenuation is stopped (fades to zero). There is zero intensity beyond this distance. To enable attenuation set this value higher than 0.0. The default value is 0.0.||
-||>>>``fgFalloffExponent``||This can be used to adjust the rate by which lighting falls off by distance. A higher exponent gives a faster falloff.||
-||>>>``fgAOInfluence``||Blend the Final Gather with Ambient Occlusion. Range between 0..1. 0 means no occlusion, 1 is full occlusion. If Final Gather is used with multiple depths or with Path Tracing as Secondary GI the result can become a bit "flat". A great way to get more contrast into the lighting is to factor in a bit of ambient occlusion into the calculation. This Ambient Occlusion algorithm affects only final gather calculations. The Ambient Occlusion exposed in the Lightmapping window is calculated differently - by a separate, geometry-only pass.||
-||>>>``fgAOMaxDistance``||Max distance for the occlusion rays. Beyond this distance a ray is considered to be unoccluded. Can be used to avoid full occlusion for closed scenes such as rooms or to limit the AO contribution to creases.||
-||>>>``fgAOContrast``||Can be used to adjust the contrast for ambient occlusion.||
-||>>>``fgAOScale``||A scaling of the occlusion values. Can be used to increase or decrease the shadowing effect.||
+||>>>``fgContrastThreshold``||–‘OŒvZ‚Ì‚Æ‚«‚Ì“_‚ÌŠÔ‚ÌƒRƒ“ƒgƒ‰ƒXƒg·•ª‚É‚Â‚¢‚Ä‚Ìƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚ÌŠ´“x‚ğ§Œä‚µ‚Ü‚·B‚à‚µƒRƒ“ƒgƒ‰ƒXƒg·•ª‚ª‹ß—×‚Ì“_‚É‚Â‚¢‚ÄA‚±‚Ìè‡’l‚æ‚è‚‚¢ê‡A‚æ‚è‘½‚­‚Ì“_‚ª‚»‚Ì—Ìˆæ‚Éì¬‚³‚ê‚Ü‚·BƒAƒ‹ƒSƒŠƒYƒ€‚É‘Î‚µ‚ÄA–{“–‚É•K—v‚È“_‚É‚·‚È‚í‚¿ƒVƒƒƒhƒE‚Ì‹«ŠE‚Ü‚½‚ÍŠÔÚÆ–¾‚ª‘f‘‚­•Ï‰»‚·‚é“_‚ÉA”z’u‚·‚é‚æ‚¤‚Éw¦‚µ‚Ü‚·B‚µ‚½‚ª‚Á‚Ä‚±‚Ìè‡’l‚ÍƒV[ƒ“‚Éì¬‚³‚ê‚é“_‚ğ adaptive ‚É§Œä‚µ‚Ü‚·B‚à‚µƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚É’á‚¢”‚Ì Ray ‚ªg—p‚³‚ê‚éê‡A“_‚Í‘å‚«‚Èƒoƒ‰ƒcƒL‚ª¶‚¶AŒ‹‰Ê“I‚É‘å‚«‚ÈƒRƒ“ƒXƒgƒ‰ƒXƒg‚Ì·•ª‚ªo—ˆ‚é“_‚É—¯ˆÓ‚µ‚Ä‰º‚³‚¢B‚±‚ÌƒP[ƒX‚É‚¨‚¢‚Ä‚ÍAContrast Threshold ‚ÍˆÈ‘O‚Ì“_‚Ì”‚É–ß‚µ‚ÄA“_‚ğ‚Ü‚Æ‚ß‚½‚è Ray ‚Ìg—p‚ğƒVƒ“ƒvƒ‹‚É‚µ‚ÄH•v‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B(Unity‚Å‚Í: ''Contrast Threshold'')
+||>>>``fgRays``|| Šeƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚ÌƒTƒ“ƒvƒŠƒ“ƒO‚Å‚Ì Ray ‚ÌÅ‘å”BRay ‚ª‘½‚¢‚Ù‚Ç—Ç‚¢Œ‹‰Ê‚Í“¾‚ç‚ê‚Ü‚·‚ªA•]‰¿‚ÉŠÔ‚ª‚©‚©‚è‚Ü‚·B(Unity‚Å‚Í: ''Final Gather Rays'')||
+||>>>``fgCheckVisibility``||—LŒø‰»‚·‚é‚ÆA•Ç‚ğ’Ê‰ß‚·‚éƒ‰ƒCƒg‚Ì˜R‚ê‚ğŒ¸‚ç‚·‚Ì‚Ég—p‚Å‚«‚Ü‚·B•âŠ®‚ğs‚¤“_‚ªûW‚³‚ê‚é‚ÆA‚»‚ê‚ç‚Ì‚¤‚¿‚¢‚­‚Â‚©‚Ì“_‚Í•¨‘Ì‚Ì‹t‘¤‚É”z’u‚³‚ê‚é‚±‚Æ‚ª‚ ‚è‚Ü‚·BŒ‹‰Ê‚Æ‚µ‚Ä•¨‘Ì‚ğ’Ê‰ß‚·‚éŒ`‚Éƒ‰ƒCƒg‚ª˜R‚ê‚Ü‚·B‚±‚ê‚ğ–h~‚·‚é‚½‚ßBeast‚Í•\¦o—ˆ‚È‚¢“_‚ğ‚Í‚¶‚­‚±‚Æ‚ªo—ˆ‚Ü‚·B||
+||>>>``fgCheckVisibilityDepth``||’µ‚Ë•Ô‚è‚Ì‰ñ”‚ª‚Ç‚ê‚­‚ç‚¢‚Å‚ ‚é‚Æ•\¦ƒ`ƒFƒbƒN‚ğÀs‚·‚é‚©§Œä‚µ‚Ü‚·B‚à‚µ•¡”‚Ì’µ‚Ë•Ô‚è‚Ìƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚Åƒ‰ƒCƒg‚Ì˜R‚ê‚ª‚ ‚éê‡‚Ì‚İ’²®‚µ‚Ä‚­‚¾‚³‚¢B||
+||>>>``fgLightLeakReduction``||‚±‚Ìİ’è‚ÍAƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚ğƒvƒ‰ƒCƒ}ƒŠ‚Ì‘åˆæÆ–¾A‚»‚µ‚ÄƒpƒXƒgƒŒ[ƒVƒ“ƒO‚ğƒZƒJƒ“ƒ_ƒŠ‚Ì‘åˆæÆ–¾‚Æ‚µ‚Äg—p‚·‚éê‡‚ÉA•Ç‚ğ’Ê‰ß‚·‚éƒ‰ƒCƒg‚Ì˜R‚ê‚ğíŒ¸‚·‚é‚Ì‚Ég—p‚Å‚«‚Ü‚·B—á‚¦‚Î•Ç‚Ì”½‘Î‘¤‚Ì’l‚Å‚ÌƒpƒXƒgƒŒ[ƒVƒ“ƒO ƒtƒBƒ‹ƒ^‚È‚Ç‚Å”­¶‚·‚é˜R‚ê‚ğíŒ¸‚·‚é‚É‚ÍA•Ç‚Ü‚½‚Í‹÷‚É‹ß‚¢ˆÊ’u‚ÅƒTƒ“ƒvƒŠƒ“ƒO‚·‚éê‡‚Éƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚ğƒZƒJƒ“ƒ_ƒŠ‚Ì‘åˆæÆ–¾‚Ì fallback ‚Æ‚µ‚Äg—p‚µ‚Ü‚·B—LŒø‰»‚·‚é‚ÆAƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚ÌƒfƒvƒX‚Í 3 ‚ª©“®“I‚Ég—p‚³‚ê‚Ü‚·‚ªA‘å‚«‚¢ƒfƒvƒX‚Í•Ç‚Ü‚½‚Í‹÷‚Å‚µ‚©g—p‚³‚ê‚Ü‚¹‚ñB‚±‚ê‚ÍƒpƒXƒgƒŒ[ƒVƒ“ƒO‚ªƒZƒJƒ“ƒ_ƒŠ‚Ì‘åˆæÆ–¾‚Åg—p‚³‚ê‚éê‡‚Ì‚İg—p‚Å‚«‚é‚±‚Æ‚É—¯ˆÓ‚µ‚Ä‰º‚³‚¢B||
+||>>>``fgLightLeakRadius``||•Ç‚©‚ç‚Ç‚ê‚®‚ç‚¢—£‚ê‚é‚Æƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚ªAƒZƒJƒ“ƒ_ƒŠ‚Ì‘åˆæÆ–¾‚Ì‘ã‚í‚è‚ÉƒR[ƒ‹‚³‚ê‚é‚©§Œä‚µ‚Ü‚·B‚à‚µ 0.0 ‚É‚·‚é‚ÆABeast ‚Í—Ç‚¢’l‚ğ„’è‚µ‚æ‚¤‚Æ‚µ‚Ü‚·B‚±‚ê‚É‚æ‚è˜R‚ê‚ª‚È‚­‚È‚ç‚È‚¢ê‡Aè“®‚Å‘å‚«‚È’l‚Éİ’è‚Å‚«‚Ü‚·B||
+||>>>``fgGradientThreshold``||Irradiance Gradient ‚ª•âŠÔ‚Å‚Ç‚¤g—p‚³‚ê‚Ä‚¢‚é‚©§Œä‚µ‚Ü‚·BŠeX‚Ì“_‚Í•âŠÔ¸“x‚ğ‚ ‚°‚é‚Ì‚ÉIrradiance Gradient‚ğŠi”[‚µ‚Ü‚·Bó‹µ‚É‚æ‚Á‚Ä‚Í Gradient ‚ğg—p‚·‚é‚±‚Æ‚Å”’‚¢ "ƒnƒ[" ‚â‚»‚Ì‘¼‚Ì‰æ‘œ‚Ì—‚ê‚ª¶‚¶‚Ü‚·B‚±‚Ìè‡’l‚Í‚»‚ê‚ç‚Ì‰æ‘œ‚Ì—‚ê‚ğíŒ¸‚·‚é‚Ì‚Ég—p‚Å‚«‚Ü‚·i’á‚¢’l‚Ü‚½‚Í 0 ‚Éİ’è‚µ‚Ü‚·jB(Unity‚Å‚Í: ''Interpolation'')||
+||>>>``fgInterpolationPoints``||•âŠÔ‚·‚×‚«ƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚Ì“_‚Ì”‚ğƒZƒbƒg‚µ‚Ü‚·B‚æ‚è‘å‚«‚¢’l‚Ì‚Ù‚¤‚ªƒXƒ€[ƒY‚ÈŒ‹‰Ê‚ª“¾‚ç‚ê‚Ü‚·‚ªAƒfƒBƒe[ƒ‹‚Ü‚ÅƒXƒ€[ƒWƒ“ƒO‚µ‚Ä‚µ‚Ü‚¤‚©‚à‚µ‚ê‚Ü‚¹‚ñB‚à‚µ‚±‚Ì’l‚ğ‘å‚«‚­‚·‚é‚±‚Æ‚Åƒ‰ƒCƒg‚Ì˜R‚ê‚ª•Ç‚Å¶‚¶‚Ä‚¢‚éê‡AƒTƒ“ƒvƒŠƒ“ƒO‚Ì•\¦ƒ`ƒFƒbƒN‚ğs‚¤‚±‚Æ‚Å–â‘è‚Í‰ğŒˆ‚³‚ê‚Ü‚·B(Unity‚Å‚Í: ''Interpolation Points'')||
+||>>>``fgNormalThreshold``||ƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚Ì“_‚Ì–@ü‚Ì·•ª‚É‘Î‚·‚éŠ´“x‚ğ§Œä‚µ‚Ü‚·B’á‚¢’l‚É‚·‚é‚ÆAƒJ[ƒu‚Ì‹­‚¢ƒGƒŠƒA‚Å“_‚ª‘‚¦‚Ü‚·B||
+||>>>``fgDepth``||ŠÔÚÆ–¾‚Ì’µ‚Ë•Ô‚è‚Ì”‚ğ§Œä‚µ‚Ü‚·B‚‚¢’l‚É‚æ‚è³Šm‚ÈŒ‹‰Ê‚ª“¾‚ç‚ê‚Ü‚·‚ªAƒRƒXƒg‚Æ‚µ‚ÄƒŒƒ“ƒ_ƒŠƒ“ƒOŠÔ‚ª‘‰Á‚µ‚Ü‚·B‚æ‚èˆÀ‰¿‚È•¡”‚Ì’µ‚Ë•Ô‚è‚Ì‘åˆæÆ–¾‚Å‚ÍAƒfƒvƒX‚ğ‘‰Á‚³‚¹‚é‘ã‚í‚è‚ÉPath Tracer ‚ğƒZƒJƒ“ƒ_ƒŠ ƒCƒ“ƒeƒOƒŒ[ƒ^‚Æ‚µ‚Äg—p‚µ‚Ü‚·B(Unity‚Å‚Í: ''Bounces'')||
+||>>>``fgAttenuationStart``||Œ¸Š‚ªŠJn‚·‚é‹——£B‚±‚Ì‹——£‚æ‚è‘O‚ÍŒ¸Š‚ª”­¶‚µ‚Ü‚¹‚ñBƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚ÉŒ¸­Œø‰Ê‚ğ‰Á‚¦‚é‚Ì‚Ég—p‚Å‚«‚Ü‚·BfgAttenuationStop‚É 0.0 ‚æ‚è‘å‚«‚¢’l‚ğƒZƒbƒg‚·‚é‚Æ—LŒø‰»‚³‚ê‚Ü‚·B||
+||>>>``fgAttenuationStop``||Œ¸Š‚ª’â~‚·‚é‹——£‚ğİ’è‚µ‚Ü‚·iƒ[ƒ‚ÉƒtƒF[ƒhjB‚±‚Ì‹——£‚ğ’´‚¦‚é‚Æ‹­“x‚Íƒ[ƒ‚É‚È‚è‚Ü‚·BŒ¸Š‚ğ—LŒø‰»‚·‚é‚É‚Í‚±‚Ì’l‚ğ 0.0 ‚æ‚è‘å‚«‚­‚µ‚Ü‚·BƒfƒtƒHƒ‹ƒg’l‚Í 0.0 ‚Å‚·B||
+||>>>``fgFalloffExponent``||ƒ‰ƒCƒeƒBƒ“ƒO‚ª‹——£‚É‰‚¶‚ÄŒ¸­‚·‚éŠ„‡‚ğ’²®‚·‚é‚Ì‚Ég—p‚Å‚«‚Ü‚·B‘å‚«‚Èw” (Exponent) ‚Æ‚·‚é‚±‚Æ‚ÅŒ¸­‚Í‘‚­‚È‚è‚Ü‚·B||
+||>>>``fgAOInfluence``||ƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚ğƒAƒ“ƒrƒGƒ“ƒg ƒIƒNƒ‹[ƒWƒ‡ƒ“‚ÆƒuƒŒƒ“ƒh‚µ‚Ü‚·B0 ‚©‚ç 1 ‚Ì”ÍˆÍB0 ‚ÍƒIƒNƒ‹[ƒWƒ‡ƒ“‚È‚µA 1 ‚ÍŠ®‘S‚ÈƒIƒNƒ‹[ƒWƒ‡ƒ“B‚à‚µƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚ªA•¡”‚ÌƒfƒvƒX‚Ü‚½‚Í ƒpƒXƒgƒŒ[ƒVƒ“ƒO ‚ğ ƒZƒJƒ“ƒ_ƒŠ‚Ì‘åˆæÆ–¾‚Æ‚µ‚Äg—p‚·‚éê‡AŒ‹‰Ê‚Í‚©‚È‚è "‹Ïˆê" ‚É‚È‚é‚©‚à‚µ‚ê‚Ü‚¹‚ñBƒ‰ƒCƒeƒBƒ“ƒO‚ÉƒRƒ“ƒgƒ‰ƒXƒg‚ğ‚æ‚è‚¦‚é•û–@‚ÍAŒvZ‚ÉƒAƒ“ƒrƒGƒ“ƒg ƒIƒNƒ‹[ƒWƒ‡ƒ“‚Ì—v‘f‚ğæ‚è“ü‚ê‚é‚±‚Æ‚Å‚·BLightmapping ƒEƒBƒ“ƒhƒE‚ÉŒöŠJ‚³‚ê‚Ä‚¢‚é Ambient Occlusion ‚Í•Ê‚ÉŒvZ‚³‚ê‚Ä‚¢‚Ü‚· - •Ê‚ÌƒWƒIƒƒgƒŠŒÀ’è‚ÌƒpƒX‚Å‚·B||
+||>>>``fgAOMaxDistance``|ƒIƒNƒ‹[ƒWƒ‡ƒ“ Ray ‚ÌÅ‘å‹——£B‚±‚Ì‹——£‚ğ’´‚¦‚é‚Æ Ray ‚ÍƒIƒNƒ‹[ƒWƒ‡ƒ“‚³‚ê‚È‚¢‚Æ‚İ‚È‚³‚ê‚Ü‚·B•”‰®‚È‚Ç•Â‚¶‚½ƒV[ƒ“‚Ü‚½‚Í ƒNƒŠ[ƒXiÜ‚è–Új‚É‘Î‚·‚éƒAƒ“ƒrƒGƒ“ƒg ƒIƒNƒ‹[ƒWƒ‡ƒ“ (AO) ‚Ì‰e‹¿—Í‚ğŒÀ’è‚·‚é‚Ì‚ÉA‚ÅŠ®‘S‚ÈƒIƒNƒ‹[ƒWƒ‡ƒ“‚ğ‰ñ”ğ‚µ‚Ü‚·B||
+||>>>``fgAOContrast``||ƒAƒ“ƒrƒGƒ“ƒg ƒIƒNƒ‹[ƒWƒ‡ƒ“ (AO) ‚ÌƒRƒ“ƒgƒ‰ƒXƒg‚ğ’²®‚·‚é‚Ì‚Ég—p‚Å‚«‚Ü‚·B||
+||>>>``fgAOScale``||ƒIƒNƒ‹[ƒWƒ‡ƒ“‚Ì’l‚ÌƒXƒP[ƒŠƒ“ƒOBƒVƒƒƒhƒE ƒGƒtƒFƒNƒg‚ğ‚ğ‘‰Á‚Ü‚½‚ÍŒ¸­‚³‚¹‚é‚Ì‚Ég—p‚Å‚«‚Ü‚·B||
 
 !!!Path Tracer
 
-Use path tracing to get fast multi bounce global illumination. It should not be used as primary integrator for baking since the results are quite noisy which does not look good in light maps. It can be used as primary integrator to adjust the settings, to make sure the cache spacing and accuracy is good. The intended usage is to have it set as secondary integrator and have single bounce final gather as primary integrator. Accuracy and Point Size can be adjusted to make sure that the cache is sufficiently fine grained.
+ƒpƒX ƒgƒŒ[ƒVƒ“ƒO ‚ğg—p‚µ‚ÄA‚‘¬‚Å•¡”‚Ì’µ‚Ë•Ô‚è‚Ì‚ ‚é‘åˆæÆ–¾‚ª“¾‚ç‚ê‚Ü‚·BÄ‚«‚İ‚ÌƒvƒŒƒCƒ}ƒŠ ƒCƒ“ƒeƒOƒŒ[ƒ^‚Æ‚µ‚Äg—p‚·‚é‚ÆAŒ‹‰Ê‚ª‚©‚È‚èƒmƒCƒY‚ğŠÜ‚İƒ‰ƒCƒgƒ}ƒbƒv‚ÌŒ©‰f‚¦‚ª—Ç‚­‚È‚¢‚½‚ß‚·‚×‚«‚Å‚ ‚è‚Ü‚¹‚ñBİ’è‚ğ’²®‚·‚é‚½‚ß‚Éƒvƒ‰ƒCƒ}ƒŠ ƒCƒ“ƒeƒOƒŒ[ƒ^‚Æ‚µ‚Äg—p‚µ‚ÄƒLƒƒƒbƒVƒ… ƒXƒy[ƒX ‚Æ³Šm‚³‚ª“KØ‚©Šm”F‚ªo—ˆ‚Ü‚·B–{—ˆ‚Ìg—p•û–@‚ÍƒZƒJƒ“ƒ_ƒŠ ƒCƒ“ƒeƒOƒŒ[ƒ^‚Æ‚µ‚Äg—p‚µ‚ÄA’P“Æ‚Ì’µ‚Ë•Ô‚è‚Ìƒtƒ@ƒCƒiƒ‹ƒMƒƒƒUƒŠƒ“ƒO‚ğƒvƒ‰ƒCƒ}ƒŠ ƒCƒ“ƒeƒOƒŒ[ƒ^‚Æ‚·‚é‚±‚Æ‚Å‚·BAccuracy ‚¨‚æ‚Ñ Point Size‚ğ’²®‚µ‚ÄƒLƒƒƒbƒVƒ…‚ğ\•ª‚É‚«‚ß×‚©‚­o—ˆ‚Ü‚·B
 
 ||PROPS
 ||``GISettings``||||
-||>>>``ptAccuracy``||Sets the number of paths that are traced for each sample element (pixel, texel or vertex). For preview renderings, a low value like 0.5 to 0.1 can be used. This means that 1/2 to 1/10 of the pixels will generate a path. For production renderings values above 1.0 may be used, if necessary to get good quality.||
-||>>>``ptPointSize``||Sets the maximum distance between the points in the path tracer cache. If set to 0 a value will be calculated automatically based on the size of the scene. The automatic value will be printed out during rendering, which is a good starting value if the point size needs to be adjusted.||
-||>>>``ptCacheDirectLight``||When this is enabled the path tracer will also cache direct lighting from light sources. This increases performance since fewer direct light calculations are needed. It gives an approximate result, and hence can affect the quality of the lighting. For instance indirect light bounces from specular highlights might be lost.||
-||>>>``ptCheckVisibility``||Turn this on to reduce light leakage through walls. When points are collected to interpolate between, some of them can be located on the other side of geometry. As a result light will bleed through the geometry. To prevent this Beast can reject points that are not visible. Note: If using this turn off light leakage reduction for Final Gather.||
+||>>>``ptAccuracy``||ŠeƒTƒ“ƒvƒ‹—v‘f (ƒsƒNƒZƒ‹AƒeƒNƒZƒ‹A‚Ü‚½‚Í’¸“_) ‚ÌƒgƒŒ[ƒX‚³‚ê‚éƒpƒX‚Ì”BƒvƒŒƒrƒ…[ ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Í0.5 ‚©‚ç 0.1  ‚Ü‚Å‚Ì’á‚¢’l‚ğg—p‚µ‚Ü‚·B‚Â‚Ü‚èƒsƒNƒZƒ‹‚Ì1/2 ‚©‚ç 1/10‚ªƒpƒX‚ğ¶¬‚³‚ê‚é‚±‚Æ‚É‚È‚è‚Ü‚·B–{”Ô‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Í—Ç‚¢•i¿‚ğ“¾‚é‚Ì‚É•K—v‚Å‚ ‚ê‚Î 1.0 ˆÈã‚Ì’l‚ğg—p‚µ‚Ü‚·B||
+||>>>``ptPointSize``||Path Tracer ƒLƒƒƒbƒVƒ…‚Ì“_‚ÌŠÔ‚Ì‹——£‚ÌÅ‘å’lB‚à‚µ0‚ÉƒZƒbƒg‚µ‚½ê‡‚ÍƒV[ƒ“‚ÌƒTƒCƒY‚É‰‚¶‚Ä©“®“I‚ÉŒvZ‚³‚ê‚Ü‚·B©“®“I‚È’l‚ÍƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌÛ‚Éo—Í‚³‚ê‚é‚½‚ßA“_‚Ì‘å‚«‚³‚Ì’²®‚ª•K—v‚Èê‡‚Í—Ç‚¢‰Šú’l‚Æ‚µ‚Äg—p‚µ‚Ü‚·B||
+||>>>``ptCacheDirectLight``||—LŒø‰»‚·‚é‚ÆApath tracer ‚Í‚³‚ç‚ÉŒõŒ¹‚©‚ç‚Ì’¼ÚÆ–¾‚ğƒLƒƒƒbƒVƒ“ƒO‚µ‚Ü‚·B‚±‚ê‚É‚æ‚è’¼ÚÆ–¾‚ÌŒvZ‚ª­‚È‚­Ï‚Ş‚½‚ßƒpƒtƒH[ƒ}ƒ“ƒX‚ª‚‚­‚È‚è‚Ü‚·B‹ß—‚ÌŒvZŒ‹‰Ê‚ª“¾‚ç‚êA‚±‚Ì‚½‚ßƒ‰ƒCƒeƒBƒ“ƒO‚Ì•i¿‚É‰e‹¿‚·‚é‚©‚à‚µ‚ê‚Ü‚¹‚ñB—á‚¦‚Î‹¾–ÊƒnƒCƒ‰ƒCƒg‚©‚ç‚ÌŠÔÚÆ–¾‚Ì’µ‚Ë•Ô‚è‚ÍÁ–Å‚·‚é‚©‚à‚µ‚ê‚Ü‚¹‚ñB||
+||>>>``ptCheckVisibility``||—LŒø‰»‚·‚é‚ÆA•Ç‚ğ’Ê‰ß‚·‚éƒ‰ƒCƒg‚Ì˜R‚ê‚ğŒ¸‚ç‚·‚Ì‚Ég—p‚Å‚«‚Ü‚·B•âŠ®‚ğs‚¤“_‚ªûW‚³‚ê‚é‚ÆA‚»‚ê‚ç‚Ì‚¤‚¿‚¢‚­‚Â‚©‚Ì“_‚Í•¨‘Ì‚Ì‹t‘¤‚É”z’u‚³‚ê‚é‚±‚Æ‚ª‚ ‚è‚Ü‚·BŒ‹‰Ê‚Æ‚µ‚Ä•¨‘Ì‚ğ’Ê‰ß‚·‚éŒ`‚Éƒ‰ƒCƒg‚ª˜R‚ê‚Ü‚·B‚±‚ê‚ğ–h~‚·‚é‚½‚ßBeast‚Í•\¦o—ˆ‚È‚¢“_‚ğ‚Í‚¶‚­‚±‚Æ‚ªo—ˆ‚Ü‚·B’ˆÓ: ƒIƒ“‚É‚·‚éê‡‚ÍAFinal Gather‚Ìƒ‰ƒCƒg˜R‚ê–h~‚ÍƒIƒt‚É‚µ‚Ü‚·B||
 
-!!Frame Settings (''<FrameSettings>'' element)
+!!ƒtƒŒ[ƒ€İ’è (''<FrameSettings>'' —v‘f)
 
-Allow to control the amount of threads Beast uses and also the gamma correction of the input and output.
+Beast ‚ªg—p‚·‚éƒXƒŒƒbƒh—Ê‚¨‚æ‚Ñ“üo—Í‚ÌƒKƒ“ƒ}•â³‚ğ§Œä‚Å‚«‚é‚æ‚¤‚É‚Ü‚·B
 
 ||PROPS
 ||``FrameSettings``||||
-||>>>``inputGamma``||Keep at 1, as this setting is set appropriately per texture.||
+||>>>``inputGamma``||ƒeƒNƒXƒ`ƒƒ–ˆ‚É“KØ‚Éİ’è‚³‚ê‚é‚½‚ßA1 ‚Ì‚Ü‚Ü‚Æ‚µ‚Ä‰º‚³‚¢B||
 
-!!Surface Transfer (''<SurfaceTransferSettings>'' element)
+!!Surface Transfer (''<SurfaceTransferSettings>'' —v‘f)
 
-SurfaceTransferSettings are used to allow for transferring the lighting from LOD0 (the level of detail that is shown when the camera is close to an object) to LOD's with lower fidelity. Keep the settings at their defaults.
+SurfaceTransferSettings ‚Íƒ‰ƒCƒeƒBƒ“ƒO‚ğ LOD0 iƒJƒƒ‰‚ªƒIƒuƒWƒFƒNƒg‚É‹ß‚¢‚Æ‚«‚É•\¦‚³‚ê‚éLODj‚©‚ç‚æ‚è¸“x‚Ì’á‚¢LOD‚ÖˆÚ“®‚·‚é‚±‚Æ‚ğ‹–—e‚µ‚Ü‚·BƒfƒtƒHƒ‹ƒgİ’è‚ğˆÛ‚µ‚Ä‚­‚¾‚³‚¢B
