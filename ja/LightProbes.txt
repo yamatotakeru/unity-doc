@@ -1,58 +1,58 @@
-!Light Probes
+! ライト プローブ
 
-Although lightmapping adds greatly to the realism of a scene, it has the disadvantage that non-static objects in the scene are less realistically rendered and can look disconnected as a result. It isn't possible to calculate lightmapping for moving objects in real time but it is possible to get a similar effect using $$light probes$$. The idea is that the lighting is sampled at strategic points in the scene, denoted by the positions of the probes. The lighting at any position can then be approximated by interpolating between the samples taken by the nearest probes. The interpolation is fast enough to be used during gameplay and helps avoid the disconnection between the lighting of moving objects and static lightmapped objects in the scene.
+ライトマップによりシーンのリアリティは大きく向上しますが、static でないオブジェクトのレンダリングのリアリティが劣り結果として分断されてるように見える場合があります。移動オブジェクトのライトマッピングをリアルタイムで計算することは出来ませんが、$$light probe$$ により似た効果を得られる場合があります。やり方として、ライティングはシーンの中で、プローブにより示される重要な点でサンプリングします。次に、あらゆる地点のライティングはサンプルの間を最も近いプローブにより補完します。ゲームプレイの中で使用出来るぐらいに高速であり、移動オブジェクトのライティングおよびシーンのライトマップされたオブジェクトの分断を解消するのに役立ちます。
 
 
-!!Adding Light probes
+!! ライトプローブの追加
 
-The Light Probe Group component (menu: ^^Component -> Rendering -> Light Probe Group^^) can be added to any available object in the scene. The inspector can be used to add new probes to the group. The probes appear in the scene as yellow spheres which can be positioned in the same manner as GameObjects. Selected probes can also be duplicated with the usual keyboard shortcut (ctrl+d/cmd+d).
+ライトプローブ グループ コンポーネント（メニューから: ^^Component -> Rendering -> Light Probe Group^^）はシーンのあらゆる利用可能なオブジェクトに追加できます。インスペクタを使用してグループに新規のプローブを追加できます。プローブはシーンに黄色い球として表示され、ゲームオブジェクトと同じ様に配置できます。選択されたプローブを通常通りのキーボードショートカットで複製できます（Ctrl + d/Cmd + d）。
 
 Attach:LightProbesTestScene-sourceselected.png
 
 
-!!Choosing Light Probe positions
+!! ライトプローブ位置のの選択
 
-Remember to __place probes where you want to sample light or sample darkness__. The probes need to __form a volume__ within the scene for the space subdivision to work properly.
+__ライトまたは暗がりをサンプルしたいところに配置すること__ を忘れないで下さい。プローブはシーン上で Subdivision が正しく動作するためには __体積を持つ__ 必要があります。
 
-The simplest approach to positioning is to arrange them in a regular 3D grid pattern. While this setup is simple and effective, it is likely to consume a lot of memory (each light probe is essentially a spherical, panoramic HDR image of the view from the sample point). It is worth noting that probes are only needed for regions that players, NPCs or other dynamic objects can actually move to. Also, since lighting conditions are interpolated for positions between probes, it is not necessary to use lots of them across areas where the light doesn't change very much. For example, a large area of uniform shadow would not need a large number of probes and neither would a brightly lit area far away from reflective objects. Probes are generally needed where the lighting conditions change abruptly, for instance at the edge of a shadow area or in places where pieces of scenery have different colors.
+最もシンプルな配置のアプローチは、3Dグリッドのパターンに整列することです。このセットアップがシンプルで有効である一方で、メモリを大量に消費しがちです（各々のライトプローブは要するにサンプル観点からはビューの 球状の、パノラマ方式の HDR イメージです）。プローブはプレイヤー、NPCキャラクター、またはその他の動的オブジェクトが実際に移動できる位置にのみ必要ということに留意して下さい。さらに、ライティング条件はプローブ間の位置に補間されるため、ライトの変化があまりないところにたくさん使用する必要がありません。例えば、均一のシャドウが大きな領域は多くのプローブを必要とせず、また反射オブジェクトから遠く離れた明るい点もまた同様です。プローブは一般的にライティング状況が急激に変化する場所で必要であり、例えばシャドウエリアの端または風景の中で様々な色があるところです。
 
-In some cases, the infrastructure of the game can be useful in choosing light probe positions. For example, a racing game typically uses waypoints around the track for AI and other purposes. These are likely to be good candidates for probe positions and it would likely be straightforward to set these positions from an editor script. Similarly, navigation meshes typically define the areas that can be reached by players and these also lend themselves to automated positioning of probes.
+いくつかの場合では、ゲームのインフラによってライトプローブの位置を選択することが便利な場合があります。例えば、カーレースは典型的にトラックの周囲に沿ってに地点を配置します。これらはプローブの位置として良い候補となりがちで、エディタスクリプトからこの位置をセットするのが分かりやすいです。同様にして、ナビゲーション メッシュは典型的にプレイヤーが到達出来る領域を定義し、またプローブの自動的な配置に役立ちます。
 
 
-Here light probes have been baked over surfaces where our characters can walk on, but only where there are interesting lighting changes to capture:
+ここではライトプローブを、キャラクターが歩けるところ、但しライティングの変化が興味深い箇所に限定して、表面に焼き込みしています:
 
 Attach:LightProbesTestScene-baked.png
 
-!!Flat 2D levels
+!! 平らな 2D レベル
 
-As it is now, the light probe system can't bake a completely flat probe cloud. So even if all your characters move only on a plane, you still have to take care to position at least some probes in a higher layer, so that a volume is formed and interpolation can work properly.
+現時点では、ライトプローブ システムにより完全に平らなプローブの雲を焼き込みできません。もし全てのキャラクターが平面でのみ動いたとしても、それでもいくつかのプローブをより高いレイヤーに配置して、体積を持たせて補間が正しく動作するようにする必要があります。
 
 Attach:LightProbes-placement-original.png\\
-''__Good__: This is the original probe placement. The characters can move up the ramps and up onto the boxes, so it's good to sample lighting up there as well.''
+''__良い例__: これが元のプローブの配置です。キャラクターは斜面を上に移動して箱の上に移動できるため、上にもライティングをサンプルすることは正しいです。''
 
 Attach:LightProbes-placement-stillgood.png\\
-''__Good__: Here we assume the characters can only move on the plane. Still, there's a couple of probes placed a little bit higher, so that a volume is formed and thin cell are avoided.''
+''__良い例__: ここでは、キャラクターが下の平面上でのみ移動できると仮定します。それっでも、いくつかのプローブを少し高い位置に配置して、体積を持たせて薄いセルとなること避けています。''
 
 Attach:LightProbes-placement-bad.png\\
-''__Bad__: The probes are placed too flat, which creates really long and thin cells and produces unintuitive interpolation results.''
+''__悪い例__: プローブはあまりに平らに配置されていて、非常に長くて薄いセルが生成されるため違和感のある補間結果が得られることになります。''
 
-!!Using Light Probes
+!! ライトプローブの使用
 
-To allow a mesh to receive lighting from the probe system, you should enable the Use Light Probes option on its Mesh Renderer:
+メッシュがプローブ システム からライティングを受けるために、 Mesh Renderer の Use Light Probes オプションを有効化する必要があります:
 
 Attach:MeshRendInspector.png
 
 Attach:LightProbes-character.png
 
-The probe interpolation requires a point in space to represent the position of the mesh that is receiving light. By default, the centre of the mesh's bounding box is used but it is possible to override this by dragging a Transform to the Mesh Renderer's Light Probe Anchor property (this Transform's position will be used as the interpolation point instead). This may be useful when an object contains two separate adjoining meshes; if both meshes are lit individually according to their bounding box positions then the lighting will be discontinuous at the place where they join. This can be prevented by using the same Transform (for example the parent or a child object) as the interpolation point for both Mesh Renderers.
+プローブ補間は空間上の点が、ライトを受けるメッシュの位置を表現すること、が必要です。デフォルトでは、メッシュの境界をなす箱の中心が使用されますが、Transform を Mesh Renderer の Light Probes Anchor プロパティにドラッグすることでこれをオーバーライドすることは出来ません（代わりにTranform の位置は補間地点として使用されます）。これはオブジェクトが二つの別の隣接するメッシュがある場合は便利かもしれません。もし両方のメッシュが個別に境界をなす箱の位置にもとづいてライティングされていれば、らいティングはそれらが交差する位置で不連続となります。これを防止するには同じ Transform （例えば親または子オブジェクト）を両方の Mesh Renderer の補間地点として使用します。
 
-When an object using light probes is the active selected object in the Light Probes Scene View mode, its interpolated probe will be rendered on top of it for preview. The interpolated probe is the one used for rendering the object and is connected with 4 thin blue lines (3 when outside of the probe volume) to the probes it is being interpolated between:
+ライトプローブを使用しているオブジェクトが、Light Probes Scene ビューで、アクティブで選択されているオブジェクトである場合、補間されているプローブはプレビューのためにその上にレンダリングされます。補間されているプローブはオブジェクトのレンダリングに使用されているものであり、4 つの 細い青い線（プローブの体積の外にあるときは 3 つ）で、補間する元となっている複数のプローブと繋がっています:
 
 Attach:LightProbes-characterandprobes.png
 
-!!Dual Lightmaps vs. Single Lightmaps mode
+!! デュアル ライトマップ と シングルライトマップモードの比較
 
-In Single Lightmaps mode all static lighting (including lights set to 'Auto' lightmapping mode) is baked into the light probes.
+シングルライトマップモードでは全ての static ライティングは（'Auto' ライトマッピングモードにセットｓれたライトを含めて）ライトプローブに焼き込みされます。
 
-In Dual Lightmaps mode light probes will store lighting in the same configuration as 'Near' lightmaps, i.e. full illumination from sky lights, emissive materials, area lights and 'Baked Only' lights, but only indirect illumination from 'Auto' lights. Thanks to that the object can be lit in real-time with the 'Auto' lights and take advantage of dynamic elements such as real-time shadows, but at the same time receive indirect lighting added to the scene by these lights.
+デュアル ライトマップモードではライトプローブは 'Near' ライトマップ、すなわちSky Light、自己発光マテリアル、エリアライト、および 'Baked Only' ライトから完全な照明として、ただし'Auto' ライトからは間接照明のみ、と同様の設定でライティングを格納します。これのおかげで、オブジェクトは 'Auto' ライトでリアルタイムにライティングすることが出来て、リアルタイムシャドウなどの動的な要素を活用すると同時に、シーンに追加された間接照明からのライトを受け取ることが出来ます。
 
