@@ -1,153 +1,153 @@
-! Profiler (Pro only)
+! プロファイラー (Unity Pro のみ)
 
-The Unity Profiler helps you to optimize your game.  It reports for you how much time is spent in the various areas of your game.  For example, it can report the percentage of time spent rendering, animating or in your game logic.
+Unityプロファイラーはゲームの最適化に役立ちます。ゲームの様々な要素で要した時間を報告してくれます。例えばゲームロジックのレンダリング、アニメーションに要した時間の割合が分かります。
 
-You can play your game in the Editor with Profiling on, and it will record performance data. The Profiler window then displays the data in a timeline, so you can see the frames or areas that spike (take more time) than others. By clicking anywhere in the timeline, the bottom section of the Profiler window will display detailed information for the selected frame.
+プロファイリングを有効にしてエディタで実行することが出来て、パフォーマンスを記録することが出来ます。次にProfiler ウィンドウがデータをタイムラインで表示するため、スパイクした (他より時間を要した) フレームや要素が分かります。タイムライン上の任意の位置をクリックすることでProfilerウィンドウの下部に選択したフレームの詳細情報が表示されます。
 
-Note that profiling has to ''instrument'' your code.  This instrumentation has a small impact on the performance of your game.  Typically this overhead is small enough to not affect the game framerate.  When using profiling it is typical to consider only the ratio (or percentage) of time spent in certain areas.  Also, to improve performance focus on those parts of the game that consume the most time.  Compare profiling results before and after code changes and determine the improvements you measure.  Sometimes changes you make to improve performance might have a negative effect on frame rate; unexpected consequences of code optimization should be expected.
+プロファイリングがコードを "測定する" ことに留意して下さい。測定はゲームのパフォーマンスにわずかな影響があります。一般的にはこのオーバーヘッドはゲームのフレームレートに影響するほどの大きさするときではありません。プロファイリングを使用するとき、特定のエリアで要した時間の割合 (またはパーセンテージ) のみを考慮することが一般的です。さらにパフォーマンスを改善するためには時間を最も要する部分のみにフォーカスして下さい。コード変更の前後のプロファイリングの結果を比較して改善結果を測定します。場合によっては行った変更がフレームレートにマイナス影響を与える場合があり、コード最適化による想定外の結果があることを加味すべきです。
 
 Attach:ProfilerWindow2.png\\
-''Profiler window''
+''Profiler ウィンドウ''
 
-!! Attaching to Unity players
-To profile your game running on an other device or a player running on another computer, it is possible to connect the editor to that other player. The dropdown __Active Profiler__ will show all players running on the local network. These players are identified by player type and the host name running the player "iPhonePlayer (Toms iPhone)".
-To be able to connect to a player, the player must be launched with the __Development Build__ checkbox found in the __Build Settings__ dialog. From here it is also possible to tick a checkbox to make the Editor and Player Autoconnect at startup. 
+!! Unity プレイヤーへのアタッチ
+ゲームが他のデバイスまたは他のコンピュータでプレイヤーにより実行されているのをプロファイリングするためには他のプレイヤーにエディタを接続することが可能です。ドロップダウンの __Active Profiler__ によりローカルネットワークで実行されている全てのプレイヤーご表示されます。これらのプレイヤーはプレイヤーの種類とプレイヤーが実行されているホスト名"iPhonePlayer (トムの iPhone)" で識別できます。プレイヤーに接続するためには
+ iPhone)"。_Build Settings_ダイアログの__Development Build__ チェックボックスを有効にして起動する必要があります。その先はさらにチェックボックスを選択してエディタおよびプレイヤーを起動時に自動接続させることが出来ます。
 
-!! Profiler Controls
+!! プロファイラーのコントロール
 
 Attach:ProfilerControls.png
 
-Profiler controls are in the toolbar at the top of the window. Use these to turn profiling on and off, navigate through profiled frames and so on.  The transport controls are at the far right end of the toolbar.  Note that when the game is running and the profiler is collecting data clicking on any of these transport controls will pause the game.  The controls go to the first recorded frame, step one frame back, step one frame forward and go to the last frame respectively.  The profiler does not keep all recorded frames, so the notion of the ''first'' frame should really be though of as the oldest frame that is still kept in memory.  The "current" transport button causes the profile statistics window to display data collected in real-time. The Active Profiler popup menu allows you to select whether profiling should be done in the editor or a separate player (for example, a game running on an attached iOS device).
+プロファイラーのコントロールはウィンドウ上部のツールバーにあります。プロファイリングを有効/無効にするのにこれらを使用し、プロファイリングされたフレームを操作する、等々に使用して下さい。トランスポートのコントロールはツールバーの一番右端にあります。ゲームが実行されていてプロファイラーがデータを収集している間、これらのトランスポートのコントロールをクリックすることでゲームがポーズされます。コントロールはまず最初の記録されたフレームに移動して、1フレーム戻り、1フレーム進んで各々の最終フレームに移動します。プロファイラーは全ての記録されたフレームを保持せず、 ''first'' フレームの捉え方はメモリに残っている最も古いフレームと考えるべきです。 "current" トランスポート ボタンによりリアルタイムで収集されたデータを表示します。Active Profiler ポップアップメニューによりプロファイリングがエディタで行うべきか別のプレイヤー (例えば接続されたiOSデバイスで実行されているゲーム) で行うべきかを選択できます。
 
-!!! Deep Profiling
+!!! ディープ プロファイリング
 
-When you turn on ``Deep Profile``, ''all'' your script code is profiled - that is, all function calls are recorded. This is useful to know where exactly time is spent in your game code.
+``Deep Profile`` を有効にすると ''全ての'' スクリプトコードがプロファイリングされます  - すなわち全ての関数コールが記録されます。これはゲーム コードの正確にどこで時間を要したかを知りたいときに便利です。
 
-Note that Deep Profiling incurs a __very large overhead__ and uses a lot of memory, and as a result your game will run significantly slower while profiling. If you are using complex script code, Deep Profiling might not be possible at all.  Deep profiling should work fast enough for small games with simple scripting.  If you find that Deep Profiling for your entire game causes the frame rate to drop so much that the game barely runs, you should consider not using this approach, and instead use the approach described below.  You may find deep profiling more helpful as you are designing your game and deciding how to best implement key features.  Note that for large games deep profiling may cause Unity to run out of memory and so for this reason deep profiling may not be possible.
+ディープ プロファイリングは __非常に大きなオーバーヘッド__ を要するとともにメモリも大量に使用するため、プロファイリングしている間にゲームが著しく遅くなります。もし複雑なスクリプトコードを使用している場合、ディープ プロファイリングは完全に無理である場合があります。ディープ プロファイリングはシンプルなスクリプトつきの小規模なゲームでは十分に速く動作します。もしゲーム全体で使用するとげがほとんど実行出来ないほどフレームレートが落ちる場合、このアプローチは避けるべきで代わりに以下に説明するアプローチを使用すべきです。ディープ プロファイリングはゲームを設計しながら鍵となる機能をどう実装するか決めるときに役立ちます。大規模なゲームではディープ プロファイリングによりUnityがメモリ不足に陥るためこの場合は不可能かもしれません。
 
-Manually profiling blocks of your script code will have a smaller overhead than using Deep Profiling. Use [[ScriptRef:Profiler.BeginSample.html | Profiler.BeginSample]] and [[ScriptRef:Profiler.EndSample.html | Profiler.EndSample]] scripting functions to enable and disable profiling around sections of code.
+手動でスクリプトのブロックをプロファイリングすることはディーププロファイリングよりもオーバーヘッドがかかります。 [[ScriptRef:Profiler.BeginSample.html | Profiler.BeginSample]] および [[ScriptRef:Profiler.EndSample.html | Profiler.EndSample]] スクリプティング関数を使用してコードのセクション周りのプロファイリングを有効化/無効化します。
 
-!!! View SyncTime
+!! SyncTimeの表示
 
-When running at a fixed framerate or running in sync with the vertical blank, Unity records the waiting time in "Wait For Target FPS". By default this amount of time is not shown in the profiler. To view how much time is spent waiting, you can toggle "View SyncTime". This is also a measure of how much headroom you have before losing frames.
+固定フレームレートまたは垂直ブランクと同期するとき、Unityは待ち時間を "Wait For Target FPS" に記録します。デフォルトではこの時間はプロファイラーに表示されていません。待ち時間に要したじかんを表示するには "View SyncTime" をオンにします。これはフレームを失い始めるまでの空きスペースに該当します。
 
-!! Profiler Timeline
+!! プロファイラー タイムライン
 
 Attach:ProfilerTimeline.png
 
-The upper part of the Profiler window displays performance data over time. When you run a game, data is recorded each frame, and the history of the last several hundred frames is displayed. Clicking on a particular frame will display it's details in the lower part of the window. Different details are displayed depending on which timeline area is currently selected.
+プロファイラーウィンドウの上側にある期間のパフォーマンスを表示します。ゲームを実行したとき、データは毎フレーム記録されて、直近の100フレームの履歴が表示されます。特定フレームをクリックすることでウィンドウの下部に詳細が表示されます。どのタイムラインのエリアを現在選択しているかによって異なる詳細が表示されます。
 
-The vertical scale of the timeline is managed automatically and will attempt to fill the vertical space of the window.  Note that to get more detail in say the CPU Usage area you can remove the Memory and Rendering areas.  Also, the splitter between the timeline and the statistics area can be selected and dragged downward to increase the screen area used for the timeline chart.
+タイムラインの垂直方向のスケールは自動的に管理されていてウィンドウの垂直方向のスペースを埋めようたもします。例えばCPU使用率でより詳細を確認したいとき、メモリやレンダリングのエリアを閉じます。さらにタイムラインと統計情報の間の枠線を選択してドラッグすることでタイムラインのチャートで使用される画面領域を増やすことご出来ます。
 
-The timeline consists of several areas: CPU Usage, Rendering and Memory. These areas can be removed by clicking the close button in the panel, and re-added again using the ''Add Area'' drop down in the Profile Controls bar.
+タイムラインはいくつかのエリアからこうせいされます: CPU使用率、レンダリング、およびメモリです。これらのエリアを閉じるにはパネルの close ボタンをクリックし、もう一回追加するにはProfile Controls バーの、 ''Add Area'' ドロップダウンを使用します。
 
-!! CPU Usage Area
+!! CPU 使用率エリア
 
 Attach:ProfilerCPU.png
 
-The CPU Usage area displays where time is spent in your game. When it is selected, the lower pane displays hierarchical time data for the selected frame.
+CPU 使用率エリアはゲームで使用された時間を表示します。選択したとき、下側のパネルは選択されたフレームの階層データを表示します。
 
-* __Hierarchy mode:__ Displays hierarchical time data.
-* __Group Hierarchy mode:__ Groups time data into logical groups (Rendering, Physics, Scripts etc.). Because children of any group can be in different group (e.g. some script might call rendering functions), the percentages of group times often add up to more than 100%.  (This is not a bug.)
+* __Hierarchy mode:__ 階層により時間データを表示。 hierarchical time data.
+* __Group Hierarchy mode:__ データを論理グループ (Rendering, Physics, Scripts その他) に分けます。グループのあらゆる子が別のグループに存在出来るため (例えば スクリプトがレンダリングを呼ぶ、等)、グループの時間は100%を超えることがしばしばあります (バグではありません) 。
 
-The way the CPU chart is stacked can be reordered by simply dragging chart labels up & down.
+CPUチャートの縦の並び順はチャートラベルを上下にドラッグするだけで並び替えできます。
 
-When an item is selected in the lower pane, it's contribution to the CPU chart is highlighted (and the rest are dimmed). Clicking on an item again de-selects it.
+低いペインでアイテムが選択されたとき、CPUチャートに占める割合がハイライトされます (それ以外は暗くなります)。再度クリックすることで選択範囲から除きます。
 
 Attach:ProfilerCPUSelected.png\\
-''Shader.SetPass is selected and it's contribution is highlighted in the chart.''
+''Shader.SetPass は選択されていてそれが全体に占める割合はチャートでハイライトされます。''
 
-In the hierarchical time data the self time refers to the amount of time spent in a particular function not including the time spent calling sub-functions.  In the screenshot above, for example 51.2% of time is spent in the Camera.Render function.  This function does a lot of work and calls the various drawing and culling functions.  Excluding all these functions only 0.8% of time is spent actually in the Camera.Render function.
+階層タイムデータの中で self time は特定の関数についてサブ関数を呼ぶ時間を含まない残りの時間を示します。上記のスクリーンショットでは例えば時間の 51.2% がCamera.Render関数に時間を要しています。この関数は多くの作業を行って様々な描画およびカリングの関数をコールします。これらの関数を取り除くとCamera.Render関数に要した時間は0.8%のみです。
 
-!! Rendering Area
+!! レンダリング エリア
 
 Attach:RenderProfiler35.png
 
-The Rendering area displays rendering statistics. The Number of Draw Calls, Triangles and Vertices rendered is displayed graphical in the timeline. The Lower pane displays more rendering statistics and these more closely match the ones shown in the GameView [[RenderingStatistics | Rendering Statistics]] window.
+レンダリング エリアはレンダリング統計を表示します。ドローコールの数、三角形数、および頂点数がタイムラインにグラフ表示されます。低いペインはより多くのレンダリング統計を表示し、そしてこれらはGameView [[RenderingStatistics | Rendering Statistics]] ウィンドウとより一致します。
 
 
-!! Memory Area
+!! メモリ エリア
 
 Attach:ProfilerMemory.png
 
-The Memory area displays some memory usage data:
-* ``Total Allocated`` is the total RAM used by the application. Note that in the Unity Editor this is memory used by everything in the editor; game builds will use much less.
-* ``Texture Memory`` is the amount of video memory used by the textures in the current frame.
-* ``Object Count`` is the total number of Objects that are created. If this number rises over time then it means your game is creating some objects that are never destroyed.
+メモリ エリア はいくつかのメモリ使用に関するデータを表示します:
+* ``Total Allocated`` はアプリケーションにより使用されたRAM 容量の合計です。Unityエディタではこのメモリはエディタで全て使用され、ゲームビルドでは遥かに少なく使用されます。
+* ``Texture Memory`` 現在のフレームで使用されるビデオメモリの量。
+* ``Object Count`` 作成されたオブジェクトの総数です。もしこの数値が時間経過とともに増える場合、ゲームが破棄されないオブジェクトを作成しているということです。
 [[#Audio]]
-!! Audio Area
+!! オーディオ エリア
 
 Attach:AudioProfiler35.png
 
-The Audio area displays audio statistics:
-* ``Playing Sources`` is the total playing sources in the scene at a specific frame. Monitor this to see if audio is overloaded. 
-* ``Paused Sources`` is the total paused sources in the scene at a specific frame.
-* ``Audio Voice`` is the actually number of audio (FMOD channels) voices used. PlayOneShot is using voices not shown in Playing Sources. 
-* ``Audio Memory`` is the total RAM used by the audio engine.
+オーディオ エリアは音声に関する統計を表示します:
+* ``Playing Sources`` はシーンにある再生されたオーディオ ソースの特定フレームにおける合計です。もし音声がオーバーロードされている場合にはモニタリングして下さい。
+* ``Paused Sources`` はシーンにあるポーズされたオーディオ ソースの特定フレームにおける合計です。
+* ``Audio Voice`` はオーディオ（FMODチャネル）ボイスの実際の数です。PlayOneShot は  Playing Sources で表示されないボイスを使用します。
+* ``Audio Memory`` はオーディオ エンジンにより使用される RAM 容量の合計です。
 
-CPU usage can be seen in the bottom. Monitor this to see if Audio alone is taking up too much CPU.
+CPU 使用率は下部でみることが出来ます。オーディオ単独でCPUを使用しすぎている場合はモニタリングして下さい。
 
-__Note:__ When an audio asset in Ogg Vorbis format is imported with the Compressed In Memory option, the memory usage reported by the profiler may be unexpectedly low. This happens for platforms that use FMOD audio - FMOD doesn't support Ogg Vorbis with the Compressed In Memory option, so the import setting is silently changed to Stream From Disk (which has much lower memory overheads).
+__注意:__ Ogg Vorbis 形式のオーディオ アセットがCompressed In Memory を使用してインポートされると、プロファイラーにより報告されるメモリ使用が予想外に小さくなります。これは FMOD オーディオを使用するプラットフォームで発生します - FMOD は  Compressed In Memory を使用した Ogg Vorbis をサポートしないため、import setting は （遥かにメモリオーバーヘッドの少ない）Compressed In Memory に無条件で書き換えられます。。
 
 
-!!Physics Area
+!! 物理計算 エリア
 
 Attach:PhysicsProfiler.png
 
-The Physics area shows the following statistics about the physics in the scene:-
-* ``Active Rigidbodies`` is the number of rigidbodies that are not currently sleeping (ie, they are moving or just coming to rest).
-* ``Sleeping Rigidbodies`` is the number of rigidbodies that are completely at rest and therefore don't need to be updated actively by the physics engine (see [[Rigidbody Sleeping]] for further details).
-* ``Number of Contacts`` is the total number of points of contact between all colliders in the scene.
-* ``Static Colliders`` is the number of colliders attached to non-rigidbody objects (ie, objects which never move under physics).
-* ``Dynamic Colliders`` is the number of colliders attached to rigidbody objects (ie, objects which do move under physics).
+物理計算 エリアによりシーンの物理計算に関する次の統計を表示します:-
+* ``Active Rigidbodies`` は現在スリープしていない Rigidbody の数です（すなわち移動しているか、ちょうどスリープに入る前か）。
+* ``Sleeping Rigidbodies`` は完全にスリープに入っている Rigidbody の数、すなわち物理エンジンによりアクティブに更新する必要がないものの数です（詳細については [[Rigidbody Sleeping]] を参照して下さい）。
+* ``Number of Contacts`` はシーンにおける全てのコライダーの接触している数の合計です。
+* ``Static Colliders`` は非 Rigidbody オブジェクトにアタッチされたコライダの数です（すなわち物理挙動を示すことがないオブジェクト）。
+* ``Dynamic Colliders`` はRigidbody オブジェクトにアタッチされたコライダの数です（すなわち物理挙動を示すオブジェクト）。
 
-!!GPU Area
+!!GPU エリア
 
 Attach:GPUProfiler.png
 
-The GPU profiler is similar to the CPU profiler with the various contributions to rendering time shown as a hierarchy in the bottom panel. Selecting an item from the hierarchy will show a breakdown in the panel to the right.
+GPU プロファイラは CPU プロファイラと似て、レンダリング タイム に占める割合を最下部のパネルに階層として表示されます。階層からアイテムを選択することで右側に内訳が表示されます。
 
-Please note that on the Mac, GPU profiling is only available under OSX 10.7 Lion and later versions.
+Mac 上では、GPU プロファイリングは OSX 10.7 Lion 以降でのみ利用可能です。
 
-!! See Also
+!! さらに詳細について
 
-* [[OptimizingGraphicsPerformance | Optimizing Graphics Performance]] page.
+* [[OptimizingGraphicsPerformance | グラフィックス パフォーマンス最適化]] ページ。
 
 >>ios<<
 !! iOS
-Remote profiling can be enabled on iOS devices by following these steps:
-# Connect your iOS device to your WiFi network (local/adhoc WiFi network is used by profiler to send profiling data from device to the Unity Editor). 
-# Check "Autoconnect Profiler" checkbox in Unity's build settings dialog. 
-# Attach your device to your Mac via cable and hit "Build & Run" in Unity Editor.
-# When app launches on device open profiler window in Unity Editor (Window->Profiler)
+リモートプロファイリング は 次の手順により iOS デバイスで有効化できます:
+# iOS デバイスを WiFi ネットワークに接続します（デバイスから Unity エディタにプロファイリングデータを送信するためにプロファイラはローカル／アドホック WiFi ネットワークを使用します）
+# UnityのBuild Settings ダイアログで "Autoconnect Profiler" をチェックします。
+# ケーブル経由で Mac にデバイスを接続し、Unity エディタで "Build & Run" をクリックします。
+# デバイスでアプリが起動した後、Unity エディタで Profiler ウィンドウを開きます。(Window->Profiler)
 
-If you are using a firewall, you need to make sure that ports 54998 to 55511 are open in the firewall's outbound rules - these are the ports used by Unity for remote profiling.
+ファイアウォールを使用している場合、 送信のルールでポート番号  54998 to 55511が 開放されていることを確認します - これらのポートは Unity によりリモートプロファイリングで使用されます。
 
-__Note:__ Sometimes Unity Editor might not autoconnect to the device. In such cases profiler connection might be initiated from Profiler Window ``Active Profiler`` drop down menu by select appropriate device.
+__注意:__ Unity エディタはデバイスに自動接続しない場合があります。そのような場合は、プロファイラの接続は Profiler ウィンドウの ``Active Profiler`` ドロップダウンメニューで適切なデバイスを選択して開始できます。
 >><<
 
 >>android<<
 !! Android
-Remote profiling can be enabled on Android devices through two different paths : WiFi or [[ http://developer.android.com/guide/developing/tools/adb.html | ADB ]].
+リモートプロファイリング は 異なるパスにより Android デバイスで有効化できます: WiFi または [[ http://developer.android.com/guide/developing/tools/adb.html | ADB ]] 。
 
-For WiFi profiling, follow these steps:
-# Make sure to disable Mobile Data on your Android device.
-# Connect your Android device to your WiFi network. 
-# Check the "Autoconnect Profiler" checkbox in Unity's build settings dialog. 
-# Attach your device to your Mac/PC via cable and hit "Build & Run" in Unity Editor.
-# When the app launches on the device, open the profiler window in Unity Editor (Window->Profiler)
-# If the Unity Editor fails to autoconnect to the device, select the appropriate device from the Profiler Window ``Active Profiler`` drop down menu.
-__Note:__ The Android device and host computer (running the Unity Editor) must both be on the same [[ http://en.wikipedia.org/wiki/Subnetwork | subnet ]] for the device detection to work.
+WiFi プロファイリングでは、次のステップに従います:
+# Androidデバイスで モバイルデータ通信 を無効化します。
+# Android デバイスを WiFi ネットワークに接続します。
+# UnityのBuild Settings ダイアログで "Autoconnect Profiler" をチェックします。 
+# ケーブル経由で Mac/PC にデバイスを接続し、Unity エディタで "Build & Run" をクリックします。
+# デバイスでアプリが起動した後、Unity エディタで Profiler ウィンドウを開きます。(Window->Profiler)
+# もしUnity エディタがデバイスに自動接続しない場合、Profiler ウィンドウの ``Active Profiler`` ドロップダウンメニューで適切なデバイスを選択します。
+__注意:__ Android デバイス および （Unity エディタを実行している）ホストコンピュータ は両方とも同じ [[ http://en.wikipedia.org/wiki/Subnetwork | サブネット ]] にないとデバイス検知が正しく動作しません。
 
-For ADB profiling, follow these steps:
-* Attach your device to your Mac/PC via cable and make sure ADB recognizes the device (i.e. it shows in ''adb devices'' list).
-* Open a Terminal window / CMD prompt and enter
-->@@adb forward tcp:54999 localabstract:Unity-<insert bundle identifier here>@@
-* Check the "Development Build" checkbox in Unity's build settings dialog, and hit "Build & Run".
-* When the app launches on the device, open the profiler window in Unity Editor (Window->Profiler)
-* Select the ''AndroidProfiler(ADB@127.0.0.1:54999)'' from the Profiler Window ``Active Profiler`` drop down menu.
-__Note:__ The entry in the drop down menu is only visible when the selected target is Android.
+ADB プロファイリングを行うには、次の手順に従います:
+* ケーブル経由で Mac/PC にデバイスを接続し、ADB がデバイスを認識することを確認します（すなわち ''adb devices'' のリストに表示されます）。
+* ターミナル/コマンドウィンドウを開き、次を入力
+->@@adb forward tcp:54999 localabstract:Unity-<バンドル識別子をここに記述>@@
+* Unity の Build Settings ダイアログで "Development Build" をチェックし、"Build & Run" をクリックします。
+* デバイスでアプリが起動した後、Unity エディタで Profiler ウィンドウを開きます。(Window->Profiler)
+* Profiler ウィンドウの ``Active Profiler`` ドロップダウンメニューで ''AndroidProfiler(ADB@127.0.0.1:54999)'' を選択します。
+__注意:__ ドロップダウンメニューのエントリは選択されたターゲットが Android の場合のみ表示されます。
 
-If you are using a firewall, you need to make sure that ports 54998 to 55511 are open in the firewall's outbound rules - these are the ports used by Unity for remote profiling.
+ファイアウォールを使用している場合、 送信のルールでポート番号  54998 to 55511が 開放されていることを確認します - これらのポートは Unity によりリモートプロファイリングで使用されます。
 
 >><<
