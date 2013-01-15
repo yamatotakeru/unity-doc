@@ -1,73 +1,73 @@
-!Shaders: Vertex and Fragment Programs
+! シェーダ: 頂点およびフラグメント プログラム
 
-This tutorial will teach you how to write custom vertex and fragment programs in Unity shaders. For a basic introduction to $$ShaderLab$$ see the [[ShaderTut1|Getting Started tutorial]]. If you want to write shaders that interact with lighting, read about __[[SL-SurfaceShaders | Surface Shaders]]__ instead.
+このチュートリアルでは自身でUnity シェーダで頂点およびフラグメント プログラムを書く方法を学びます。 $$ShaderLab$$ の基本の紹介については [[ShaderTut1|初心者向けのチュートリアル]] を参照下さい。もしライティングに作用するシェーダを書く場合は代わりに __[[SL-SurfaceShaders | Surface Shaders]]__ について読んで下さい。
 
-Lets start with a small recap of the general structure of a shader:
+最初にシェーダの一般的な構造の復習から始めます:
 
 
 [@Shader "MyShaderName" {
     Properties {
-        // ... properties here ...
+        // ... ここにプロパティ...
     }
     SubShader {
-        // ... subshader for graphics hardware A ...
+        // ... グラフィックスハードウェア A のためのサブシェーダ ...
         Pass {
-            // ... pass commands ...
+            // ... コマンドを渡す ...
         }
-        // ... more passes if needed ...
+        // ... 必要であればさらにパスを追加 ...
     }
     SubShader {
-        // ... subshader for graphics hardware B ...
+        // ... グラフィックスハードウェア B のためのサブシェーダ ...
     }
-    // ... Optional fallback ...
+    // ... オプションの Fallback ...
     FallBack "VertexLit"
 } @]
 
-Here at the end we introduce a new command:
+最後に新しいコマンドを紹介します:
     ``FallBack "VertexLit"``
 
-The ``[[SL-Fallback|Fallback]]`` command can be used at the end of the shader; it tells which shader should be used if no $$SubShaders$$ from the current shader can run on user's graphics hardware. The effect is the same as including all SubShaders from the fallback shader at the end. For example, if you were to write a normal-mapped shader, then instead of writing a very basic non-normal-mapped subshader for old graphics cards you can just fallback to built-in $$VertexLit$$ shader.
+``[[SL-Fallback|Fallback]]`` コマンドはシェーダの最後に使用できます。もし現在のシェーダからどの $$SubShaders$$ もユーザのグラフィックス ハードウェア で動作しない場合にどのシェーダを使用すべきか指示します。効果としては、全てのFallbackシェーダからのサブシェーダを全て最後に記述するのと同じです。例えば、もし法線マッピング シェーダを書く場合に、古いグラフィックスカードのために基本的な 非法線マッピングのサブシェーダを記述する代わりに、内蔵 $$VertexLit$$ シェーダに Fallback するだけです。
 
-The basic building blocks of the shader are introduced in the [[ShaderTut1|first shader tutorial]] while the full documentation of [[SL-Properties|Properties]], [[SL-SubShader|SubShaders]] and [[SL-Pass|Passes]] are also available.
+基本的なシェーダの構成要素は [[ShaderTut1|最初のシェーダチュートリアル]]で紹介されていますが、 [[SL-Properties|Property]], [[SL-SubShader|SubShader]] および [[SL-Pass|Pass]]完全なドキュメントもまた利用可能です。
 
-A quick way of building SubShaders is to use passes defined in other shaders. The command ``[[SL-UsePass|UsePass]]`` does just that, so you can reuse shader code in a neat fashion. As an example the following command uses the pass with the name "BASE" from the built-in $$Specular$$ shader:
+サブシェーダ を構築する早い方法は他のシェーダで定義されたパスを使用することです。``[[SL-UsePass|UsePass]]`` コマンドはまさにそれをしていて、シェーダコードをスマートに再利用できます。サンプルとして、次のコードは内蔵 $$Specular$$ シェーダの "BASE" という名前のパスを使用します:
     ``UsePass "Specular/BASE"``
 
-In order for ``UsePass`` to work, a name must be given to the pass one wishes to use. The ``[[SL-Name|Name]]`` command inside the pass gives it a name:
+``UsePass`` が動作するためには、使用したいパスに名前をつける必要があります。パスの中の ``[[SL-Name|Name]]`` コマンドにより名前がつけられます:
     ``Name "MyPassName"``
 
 
-!! Vertex and fragment programs
+!! 頂点およびフラグメント プログラム
 
-We described a pass that used just a single texture combine instruction in the [[ShaderTut1|first tutorial]]. Now it is time to demonstrate how we can use vertex and fragment programs in our pass.
+[[ShaderTut1|最初のチュートリアル]] でひとつの texture combine コマンドだけを使用するパスを説明しました。次に自身のパスで頂点およびフラグメント プログラムを使用する方法をみていきます。
 
-When you use vertex and fragment programs (the so called "programmable pipeline"), most of the hardcoded functionality ("fixed function pipeline") in the graphics hardware is switched off. For example, using a vertex program turns off standard 3D transformations, lighting and texture coordinate generation completely. Similarly, using a fragment program replaces any texture combine modes that would be defined in SetTexture commands; thus SetTexture commands are not needed.
+頂点およびフラグメント プログラムを使用するとき（いわゆる "プログラマブル パイプライン"）、グラフィックスカードにあるほとんどのハードコードされた機能（"固定関数パイプライン"）はオフになります。たとえば頂点プログラムを使用すると標準3D変換、ライティング、およびテクスチャ座標生成は完全にオフにされます。同様にして、フラグメント プログラムを使用することで SetTexture コマンドで定義された texture combine モードを置き換えられるため、 SetTexture コマンドは必要ありません。
 
-Writing vertex/fragment programs requires a thorough knowledge of 3D transformations, lighting and coordinate spaces - because you have to rewrite the fixed functionality that is built into API's like OpenGL yourself. On the other hand, you can do much more than what's built in!
+頂点／フラグメント プログラムを書くことは3D変換、ライティング、およびテクスチャ座標空間に関する網羅的な知識が必要です。なぜならOpenGLのようなAPIに内蔵されている固定関数機能を自身で書き直す必要があるためです。一方で、ビルトインされている以上のことが実現できるようになります。
 
 
-!! Using Cg in ShaderLab
+!! ShaderLabでのCgの使用
 
-Shaders in ShaderLab are usually written in [[http://developer.nvidia.com/page/cg_main.html|Cg programming language]] by embedding "Cg snippets" in the shader text. Cg snippets are compiled into low-level shader assembly by the Unity editor, and the final shader that is included in your game's data files only contains this low-level assembly. When you select a shader in the $$Project View$$, the $$Inspector$$ shows shader text after Cg compilation, which might help as a debugging aid. Unity automatically compiles Cg snippets for both Direct3D, OpenGL, Flash and so on, so your shaders will just work on all platforms. Note that because Cg code is compiled by the editor, you can't create Cg shaders from scripts at runtime.
+ShaderLabのシェーダは通常シェーダテキストに "Cg スニペット" (短いコード) を埋め込んで [[http://developer.nvidia.com/page/cg_main.html|Cg プログラミング言語]] で書かれています。Cgスニペットは Unity エディタにより 低水準シェーダアセンブリにコンパイルされ、そしてゲームのデータファイルに含まれる最終シェーダはこの低水準アセンブリしか含まれません。$$Project View$$ でシェーダを選択するとき、$$Inspector$$ は Cg コンパイル後の シェーダテキストを表示し、デバッグの手助けとなるかもしれません。Unity は自動的に Cg スニペットをDirect3D, OpenGL, Flash, その他にコンパイルするため、シェーダは全てのプラットフォームで動作します。Cg コードはエディタによりコンパイルされるため、ランタイムで Cg シェーダを作成することは出来ません。
 
-In general, Cg snippets are placed inside Pass blocks. They look like this:
+一般的には、Cg スニペットは Pass ブロックに配置されます。次のように書きます:
 
   Pass {
-      ''// ... the usual pass state setup ...''
+      ''// ... 通常の Pass State セットアップ ...''
       
       __CGPROGRAM__
-      ''// compilation directives for this snippet, e.g.:''
+      ''// このスニペットのコンパイル ディレクティブ, 例えば:''
       __#pragma vertex__ vert
       __#pragma fragment__ frag
       
-      ''// the Cg code itself''
+      ''// Cg コードそのもの''
       
       __ENDCG__
-      ''// ... the rest of pass setup ...''
+      ''// ... 残りの Pass セットアップ ...''
   }
 
 
-The following example demonstrates a complete shader with Cg programs that renders object normals as colors:
+次のサンプルでオブジェクトの法線をカラーとしてレンダリングする Cg プログラムの完全なシェーダを示します:
 
 [@Shader "Tutorial/Display Normals" {
 SubShader {
@@ -103,11 +103,11 @@ Fallback "VertexLit"
 } @]
 
 
-When applied on an object it will result in an image like this (if your graphics card supports vertex & fragment programs of course):
+オブジェクトに適用したとき、次のような画像が結果として得られます（当然グラフィックスカードが頂点およびフラグメントシェーダをサポートしている場合にかぎります）:
 
 Attach:ShaderTutNormalsShader.png
 
-Our "Display Normals" shader does not have any properties, contains a single SubShader with a single Pass that is empty except for the Cg code. Finally, a fallback to the built-in $$VertexLit$$ shader is defined. Let's dissect the Cg code part by part:
+この"Display Normals" シェーダにはプロパティがなく、ひとつのパスを持った、ひとつのサブシェーダであり、Cg コードを除いて空白です。最後に 内蔵 $$VertexLit$$ シェーダへの Fallback が定義されています。Cg コードをひとつづつ解析していきます:
 
     __CGPROGRAM__
     __#pragma vertex__ vert
@@ -115,37 +115,37 @@ Our "Display Normals" shader does not have any properties, contains a single Sub
     ''// ... snip ...''
     __ENDCG__
 
-The whole Cg snippet is written between ``CGPROGRAM`` and ``ENDCG`` keywords. At the start compilation directives are given as ``#pragma`` statements:
-* ``#pragma vertex`` $$name$$ tells that the code contains a vertex program in the given function (``vert`` here).
-* ``#pragma fragment`` $$name$$ tells that the code contains a fragment program in the given function (``frag`` here).
+Cg スニペット全体は``CGPROGRAM`` および ``ENDCG``キーワードの間に書かれています。最初にコンパイルディレクティブが ``#pragma`` ステートメントとして与えられます:
+* ``#pragma vertex`` $$name$$ により、与えられた関数でコードが頂点プログラムを含むこと (ここでは ``vert``) を意味します。
+* ``#pragma fragment`` $$name$$ により、、与えられた関数でコードがフラグメントプログラムを含むこと (ここでは ``frag``) を意味します。
 
-Following the compilation directives is just plain Cg code. We start by including a [[SL-BuiltinIncludes | builtin Cg file]]:
+コンパイルディレクティブに続くのは、生のCg コードです。[[SL-BuiltinIncludes | 内蔵 Cg ファイル]] を include することで始めます。
     #include $$UnityCg.cginc$$
 
-The $$UnityCg.cginc$$ file contains commonly used declarations and functions so that the shaders can be kept smaller (see [[SL-BuiltinIncludes | shader include files]] page for details). Here we'll use ``appdata_base`` structure from that file. We could just define them directly in the shader and not include the file of course.
+$$UnityCg.cginc$$ ファイルは共通で使用される宣言は関数を含み、シェーダが小さく維持できるようにしています（詳細については[[SL-BuiltinIncludes | シェーダ include ファイル]] を参照して下さい）。ここでは、このファイルから ``appdata_base`` を使用します。もちろん、シェーダの中で定義して、ファイルを include しないことも出来ます。
 
-Next we define a "vertex to fragment" structure (here named ``v2f``) - what information is passed from the vertex to the fragment program. We pass the position and color parameters. The color will be computed in the vertex program and just output in the fragment program.
+次に "vertex to fragment" 構造（ここでは ``v2f`` ）、すなわちどの情報が頂点プログラムからフラグメントプログラムに渡されるか、を定義します。位置およびカラーの引数を渡します。カラーは頂点プログラムで計算され、フラグメントプログラムに出力します。
 
-We proceed by defining the vertex program - ``vert`` function. Here we compute the position and output input normal as a color:
+次に頂点プログラム、ここでは ``vert`` 関数、を定義します。ここでは位置および入力された法線をカラーとして出力します:
     o.color = v.normal * 0.5 + 0.5;
 
-Normal components are in -1..1 range, while colors are in 0..1 range, so we scale and bias the normal in the code above. Next we define a fragment program - ``frag`` function that just outputs the calculated color and 1 as the alpha component:
+通常のコンポーネントは -1 から 1 の範囲にあり、カラーは 0 から 1 範囲にあるため、上記コードの法線をスケールしたうえバイアスします。次にフラグメントプログラム、ここでは ``frag`` 関数を定義し、これは計算したカラーおよび 1 をアルファ コンポーネントとして出力します。
 
     half4 frag (v2f i) : COLOR
     {
         return half4 (i.color, 1);
     }
 
-That's it, our shader is finished! Even this simple shader is very useful to visualize mesh normals.
+これで完了であり、シェーダは完成です! この簡単なシェーダでもメッシュ法線を視覚化するのに便利です。
 
-Of course, this shader does not respond to lights at all, and that's where things get a bit more interesting; read about [[SL-SurfaceShaders | Surface Shaders]] for details.
+当然、このシェーダは全ての光に全く反応せず、そこで色々と面白くなります。詳細については [[SL-SurfaceShaders | サーフェイス シェーダ]] を参照して下さい。
 
 
-!! Using shader properties in Cg code
+!! Cg コードで シェーダ プロパティ を使用
 
-When you define properties in the shader, you give them a name like ``_Color`` or ``_MainTex``. To use them in Cg you just have to define a variable of a matching name and type. Unity will automatically set Cg variables that have names matching with shader properties.
+シェーダでプロパティを定義するとき、``_Color`` または ``_MainTex`` という名前をつけます。Cg で使用するためには、マッチングする名前と型で変数を定義するだけです。 Unity は自動的にシェーダプロパティとマッチングした名前の Cg 変数をセットします。
 
-Here is a complete shader that displays a texture modulated by a color. Of course, you could easily do the same in a texture combiner call, but the point here is just to show how to use properties in Cg:
+カラーにより調整されたテクスチャを表示する、完全なシェーダを次に示します。当然、texture combine コールでも同様のことを簡単に行うことができますが、ここでのポイントは Cg でのプロパティを使用する方法をみていくことです:
 
 
 [@Shader "Tutorial/Textured Colored" {
@@ -193,20 +193,20 @@ Fallback "VertexLit"
 } @]
 
 
-The structure of this shader is the same as in the previous example. Here we define two properties, namely ``_Color`` and ``_MainTex``. Inside Cg code we define corresponding variables:
+このシェーダの構造は前述のサンプルと同じです。ここでは二つのプロパティ、すなわち``_Color`` および ``_MainTex`` を定義します。 Cg コードの中で対応する変数を定義します:
 
     float4 ``_Color``;
     sampler2D ``_MainTex``;
 
-See [[SL-PropertiesInPrograms | Accessing Shader Properties in Cg]] for more information.
+詳細については [[SL-PropertiesInPrograms | Cg でシェーダプロパティをアクセスする]] を参照して下さい。
 
-The vertex and fragment programs here don't do anything fancy; vertex program uses the ``TRANSFORM_TEX`` macro from UnityCG.cginc to make sure texture scale&offset is applied correctly, and fragment program just samples the texture and multiplies by the color property.
+ここでの頂点およびフラグメントプログラムは何か素晴らしいことをしてくれるわけではありません。頂点プログラムは UnityCG.cginc から ``TRANSFORM_TEX`` マクロを使用してテクスチャ スケールおよびオフセットが正しく適用されていることを確認し、フラグメントプログラムはテクスチャをサンプリングし、カラープロパティに掛け合わせます。
 
-Note that because we're writing our own fragment program here, we don't need any [[SL-SetTexture|SetTexture]] commands. How the textures are applied in the shader is entirely controlled by the fragment program.
+ここでは自身のフラグメントプログラムを記述しているため、 [[SL-SetTexture|SetTexture]] コマンドが必要ないことに留意して下さい。テクスチャがシェーダにどう適用されているか完全にフラグメントプログラムにより制御されています。
 
 
-!! Summary
+!! 要約
 
-We have shown how custom shader programs can be generated in a few easy steps. While the examples shown here are very simple, there's nothing preventing you to write arbitrarily complex shader programs! This can help you to take the full advantage of Unity and achieve optimal rendering results.
+いくつかの簡単なステップで自身のシェーダプログラムを生成する方法をみてきました。ここのサンプルはシンプルですが、自身の裁量で複雑なシェーダプログラムを書くことは問題ありません。これにより Unity を完全に活用して最適なレンダリング結果が得られます。
 
-The complete ShaderLab reference manual is [[SL-Reference | here]].  We also have a forum for shaders at [[http://forum.unity3d.com | forum.unity3d.com]] so go there to get help with your shaders!  Happy programming, and enjoy the power of Unity and Shaderlab.
+完全な ShaderLab リファレンスマニュアルは [[SL-Reference | ここ]] にあります。シェーダのためのフォーラムは [[http://forum.unity3d.com | forum.unity3d.com]] にあるので、シェーダのことで手助けが必要であれば行ってみて下さい。プログラミングとともに Unity および ShaderLab のパワーを楽しく味わって下さい!
