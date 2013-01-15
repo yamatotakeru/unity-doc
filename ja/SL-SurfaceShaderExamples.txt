@@ -424,7 +424,7 @@ Attach:SurfaceShaderFinalColorSimple.png
       };
       void myvert (inout appdata_full v, out Input data)
       {
-          __UNITY_INITIALIZE_OUTPUT(Input,v);__
+          __UNITY_INITIALIZE_OUTPUT(Input,data);__
           __float4 hpos = mul (UNITY_MATRIX_MVP, v.vertex);__
           __data.fog = min (1, dot (hpos.xy, hpos.xy) * 0.1);__
       }

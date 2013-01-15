@@ -161,6 +161,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 *** [[flashexamples-callingflashfunctions]]
 *** [[flashexamples-browserjavascriptcommunication]]
 *** [[flashexamples-accessingthestage]]
+*** [[flashexamples-flashvars]]
 ** [[FAQ]]
 *** [[Upgrade Guide35_40|Upgrade guide from 3.5 to 4.0]]
 *** [[UpgradeGuide34_35|Upgrade guide from 3.4 to 3.5]]

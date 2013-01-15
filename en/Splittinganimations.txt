@@ -15,7 +15,7 @@ For models where the clips are supplied as one continuous animation, the ~~Anima
 
 Attach:MecanimImportAnimationNoSplit.png
 
-4In cases like this, you can define the frame ranges that correspond to each of the separate animation sequences (walking, jumping, etc). You can create a new animation clip by pressing (+) and selecting the range of frames that are included in it. 
+In cases like this, you can define the frame ranges that correspond to each of the separate animation sequences (walking, jumping, etc). You can create a new animation clip by pressing (+) and selecting the range of frames that are included in it. 
 
 For example:
 *walk animation during frames 1 - 33
