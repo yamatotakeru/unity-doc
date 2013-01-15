@@ -1,42 +1,42 @@
-! Lightmapping Quickstart
+! ライトマッピング クイックスタート
 
-This an introductory description of lightmapping in Unity. For more advanced topics see [[Main.LightmappingInDepth| in-depth description of lightmapping in Unity]]
+これはUnity のライトマッピングの紹介文です。発展的なトピックについては [[Main.LightmappingInDepth| Unity のライトマッピングに関する詳細説明]] を参照して下さい。
 
-Unity has a built-in lightmapper: it's __[[ http://www.illuminatelabs.com/products/beast | Beast]]__ by Illuminate Labs. Lightmapping is fully integrated in Unity. This means that Beast will bake lightmaps for your scene based on how your scene is set up within Unity, taking into account meshes, materials, textures and lights. It also means that lightmapping is now an integral part of the rendering engine - once your lightmaps are created you don't need to do anything else, they will be automatically picked up by the objects.
+Unity にはビルトインライトマッピングのエンジンがあります。Illuminate Labs社による __[[ http://www.illuminatelabs.com/products/beast | Beast]]__ です。つまり Beast はUnityでシーンがどう構成されているか、メッシュ、マテリアル、テクスチャ、およびライト、にもとづいてライトマップの焼き込みを行います。これは、ライトマッピングはレンダリング エンジンに統合されていることを意味します - 一回ライトマップを作成すれば他には何も行う必要がなく、オブジェクトにより自動的に対応されます。
 
 Attach:LightmapEditor-ApartmentScene.png
 
-!! Preparing the scene and baking the lightmaps
+!! シーンの準備とライトマップの焼き込み
 
-Selecting __^^Window^^ &ndash; ^^Lightmapping^^__ from the menu will open the Lightmapping window:
+メニューから __^^Window^^ &ndash; ^^Lightmapping^^__ を選択することでLightmappingウィンドウを開きます。
 
-# Make sure any mesh you want to be lightmapped has proper UVs for lightmapping. The easiest way is to choose the __^^Generate Lightmap UVs^^__ option in [[Main.class-Mesh | mesh import settings]].
-# In the __^^Object^^__ pane mark any Mesh Renderer, Skinned Mesh Renderer or Terrain as __^^static^^__ &ndash; this will tell Unity, that those objects won't move nor change and they can be lightmapped.\\
+# ライトマップさせたいメッシュが全てライトマッピングのための適切な UV となっていることを確認します。もっとも簡単な方法は [[Main.class-Mesh | mesh import settings]] で __^^Generate Lightmap UVs^^__ オプションを選択することです。
+# __^^Object^^__ ペインで、全てのメッシュレンダラ、スキンメッシュレンダラ、または地形（Terrain）を __^^static^^__ &ndash;として選択します。これにより、オブジェクトが移動や変化しないためライトマッピングして良いことをUnityに伝えます。\\
 Attach:LightmapperObject40.png
-# To control the resolution of the lightmaps, go to the __^^Bake^^__ pane and adjust the __^^Resolution^^__ value. (To have a better understanding on how you spend your lightmap texels, look at the small __^^Lightmap Display^^__ window within the ^^Scene View^^ and select __^^Show Resolution^^__).\\
+# ライトマップの解像度を制御するには、 __^^Bake^^__ に移動して __^^Resolution^^__ 値を調整します。（ライトマップテクセルをどのように使用すればよいかについては、^^Scene View^^ 内にある小さな __^^Lightmap Display^^__ ウィンドウをみて __^^Show Resolution^^__ を選択します）。\\
 Attach:LightmapperBakeAndShowResolution40.png
-# Press __^^Bake^^__
-# A progress bar appears in Unity Editor's status bar, in the bottom right corner.
-# When baking is done, you can see all the baked lightmaps at the bottom of the Lightmap Editor window.
+# __^^Bake^^__ をクリックします。
+# Unity のステータスバーの右下隅にに進捗バーが表示されます。
+# 焼き込みが完了すると、全ての焼き込みされたライトマップを Lightmap Editor ウィンドウの下部でみることが出来ます。
 
-Scene and game views will update - your scene is now lightmapped!
+シーンおよびゲームビューは更新され、 - シーンのライトマップは完了です!
 
-!! Tweaking Bake Settings
+!! 焼き込み設定の微調整
 
-Final look of your scene depends a lot on your lighting setup and bake settings. Let's take a look at an example of some basic settings that can improve lighting quality.
+シーンの最終的な見映えはライティングのセットアップおよび焼き込み設定に大きく依存します。ライティングの品質を改善するためいくつかの基本的な設定の例を見ていきます。
 
-This is a basic scene with a couple of cubes and one point light in the centre. The light is casting hard shadows and the effect is quite dull and artificial.\\
+次は、いくつかのキューブとひとつのポイントライトが中央にある基本的なシーンです。ライトはハードシャドウを投影していて、エフェクトはかなり味気なく画像の乱れもあります。\\
 Attach:LightmappedCubesTut1.png
 
-Selecting the light and opening the ^^Object^^ pane of the ^^Lightmapping^^ window exposes ``Shadow Radius`` and ``Shadow Samples`` properties. Setting Shadow Radius to 1.2, Shadow Samples to 100 and re-baking produces soft shadows with wide penumbra - our image already looks much better.\\
+ライトを選択して ^^Lightmapping^^ ウィンドウの ^^Object^^ ペインを開くことで ``Shadow Radius`` および ``Shadow Samples`` プロパティが公開されます。 Shadow Radius を 1.2、Shadow Samplesを 100 にセットすることで再度行った焼き込みはソフトシャドウと広い周縁部が生成されます - すでにして画像はかなり良くなりました。\\
 Attach:LightmappedCubesTut2.png Attach:SoftBakedLightCrop40.png
 
 
-With Unity Pro we can take the scene one step further by enabling Global Illumination and adding a Sky Light. In the ^^Bake^^ pane we set the number of ``Bounces`` to 1 and the ``Sky Light Intensity`` to 0.5. The result is much softer lighting with subtle diffuse interreflection effects (color bleeding from the green and blue cubes) - much nicer and it's still only 3 cubes and a light!
+Unity Pro によりさらに一歩進んで大域照明を有効化してSky Lightを足すことが出来ます。 ^^Bake^^ ペインで``Bounces``の数字を 1 、``Sky Light Intensity`` に0.5をセットします。結果はよりソフトなライティングとなり、かすかな拡散の相互反射エフェクト（緑や青のキューブから染み出たカラー）が得られています - まだ 3 つのキューブとライトだけでより良いものになっています!
 Attach:LightmappedCubesTut3.png Attach:BakeSettingsGIandSkyLightCrop40.png
 
 
-!! Lightmapping In-Depth
+!! ライトマッピングの詳細
 
-For more information about the various lightmapping-related settings, please refer to the [[Main.LightmappingInDepth| in-depth description of lightmapping in Unity]].
+様々なライトマッピング関連の設定の詳細については、 [[Main.LightmappingInDepth| Unity のライトマッピングに関する詳細説]] を参照して下さい。
 
