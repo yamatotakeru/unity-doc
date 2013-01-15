@@ -1,52 +1,52 @@
-!Build Player Pipeline
+! ビルド プレイヤー パイプライン
 
-When building a player, you sometimes want to modify the built player in some way. For example you might want to add a custom icon, copy some documentation next to the player or build an Installer. Doing this manually can become tedious and if you know how to write sh or perl scripts you can automate this task.
+プレイヤーをビルドするとき、ビルドされたプレイヤーを何らか修正したい場合があります。例えばカスタムアイコンの追加、プレイヤーの隣にドキュメントをコピーしたり、またはインストーラを構築する、などあるかもしれません。これを手動で行うことは煩雑であり、shコマンドやPerlスクリプトを記述する方法を知っている場合、このタスクを自動化できます。
 
 !!Mac OSX
-After building a player Unity automatically looks for a sh or perl script called __PostprocessBuildPlayer__ (without any extension) in your Project's Assets/Editor folder. If the file is found, it is invoked when the player finishes building.
+プレイヤーをビルドした後、Unityは自動的に __PostprocessBuildPlayer__ （拡張子なし）という sh コマンドまたは Perl スクリプトを プロジェクトの Assets/Editor フォルダの中から探します。もしファイルが見つかった場合、プレイヤーがビルド完了した後に実行されます。
 
-In this script you can post process the player in any way you like. For example build an installer out of the player.
+このスクリプトにより、プレイヤーのポストプロセスを好きなように行うことが出来ます。例えばプレイヤーからインストーラを構築する、などです。
 
-You can use perl, sh or any other commandline compatible language.
+Perl を使用したり、 sh コマンドまたはコマンドラインと互換のある言語を使用できます。
 
-Unity passes some useful command line arguments to the script, so you know what kind of player it is and where it is stored.
+Unity は便利なコマンドライン引数をスクリプトを渡すため、どのようなプレイヤーであるか、およびどこに格納されているか知っています。
 
-The current directory will be set to be the project folder, that is the folder containing the Assets folder.
+現在のディレクトリはプロジェクトフォルダに設定され、それが Assets フォルダを含むフォルダです。
 
 [@#!/usr/bin/perl
 
 my $installPath = $ARGV[0];
 
-# The type of player built:
+# 作成されるプレイヤーの種類:
 # "dashboard", "standaloneWin32", "standaloneOSXIntel", "standaloneOSXPPC", "standaloneOSXUniversal", "webplayer"
 my $target = $ARGV[1];
 
-# What optimizations are applied. At the moment either "" or "strip" when Strip debug symbols is selected.
+# どの最適化が適用されるか。現在では "" または Strip デバッグ記号が選択されたときに "strip" のいずれかです。
 my $optimization = $ARGV[2];
 
-# The name of the company set in the project settings
+# Project Settingsでセットした Name of the Company
 my $companyName = $ARGV[3];
 
-# The name of the product set in the project settings
+# Project Settingsでセットした Name of the Product
 my $productName = $ARGV[4];
 
-# The default screen width of the player.
+# デフォルトのプレイヤーのスクリーン幅。
 my $width = $ARGV[5];
 
-# The default screen height of the player 
+# デフォルトのプレイヤーのスクリーン高さ。
 my $height = $ARGV[6];
 
-print ("\n*** Building at '$installPath' with target: $target \n");
+print ("\n*** パス '$installPath' でビルド中、ターゲット: $target \n");
 @]
 
-Note that some languages, such as Python, pass the name of the script as one of the command line arguments. If you are using one of these languages then the arguments will effectively be shifted along one place in the array (so the install path will be in ARGV[1], etc).
+いくつかの言語、例えば Python では、スクリプトの名前をコマンドライン引数として渡します。もしそういった言語を使用している場合、引数は配列のどこか箇所に効果的にシフト（インストールパスが  ARGV[1] となるように、等）されます。
 
-In order to see this feature in action please visit the Example Projects page on our website and download the PostprocessBuildPlayer example package file and import it for use into your own project. It uses the Build Player Pipeline feature to offer customized post-processing of web player builds in order to demonstrate the types of custom build behavior you can implement in your own PostprocessBuildPlayer script.
+この機能が動作しているところを見たい場合、Unity のウェブサイトの Example Projects を訪れて PostprocessBuildPlayer サンプル パッケージ ファイルをダウンロードして自身のプロジェクトで使用できるようにインポートして下さい。ビルドプレイヤー パイプライン機能を使用してWeb Player ビルドのカスタマイズしたポスト プロセッシングを提供していて、自身のPostprocessBuildPlayer スクリプトでどのようなカスタムのビルドの動作を実装できることのデモとなっています。
 
 
 !!Windows
 
-On Windows, the PostprocessBuildPlayer script is not supported, but you can use editor scripting to achieve the same effect. You can use [[ScriptRef:BuildPipeline.BuildPlayer.html|BuildPipeline.BuildPlayer]] to run the build and then follow it with whatever postprocessing code you need:-
+Windows上で、PostprocessBuildPlayer スクリプトはサポートされていませんが、エディタ スクリプティングを使用して同じ効果を得られます。 [[ScriptRef:BuildPipeline.BuildPlayer.html|BuildPipeline.BuildPlayer]] を使用してビルドを実行して、自分が必要なポストプロセッシングコードを続けることが出来ます:-
 
 [@using UnityEditor;
 using System.Diagnostics;
@@ -56,16 +56,16 @@ public class ScriptBatch : MonoBehaviour
     [MenuItem("MyTools/Windows Build With Postprocess")]
     public static void BuildGame ()
     {
-        // Get filename.
+        // ファイル名の取得
         string path = EditorUtility.SaveFolderPanel("Choose Location of Built Game", "", "");
  
-        // Build player.
+        // プレイヤーをビルド
         BuildPipeline.BuildPlayer(levels, path + "BuiltGame.exe", BuildTarget.StandaloneWindows, BuildOptions.None);
 
-        // Copy a file from the project folder to the build folder, alongside the built game.
+        // ファイルをプロジェクトフォルダからビルドフォルダへビルドしたゲームと一緒にコピー
         FileUtil.CopyFileOrDirectory("Assets/WebPlayerTemplates/Readme.txt", path + "Readme.txt");
 
-        // Run the game (Process class from System.Diagnostics).
+        // ゲームを実行（System.Diagnostics の Process クラス）
         Process proc = new Process();
         proc.StartInfo.FileName = path + "BuiltGame.exe";
         proc.Start();
