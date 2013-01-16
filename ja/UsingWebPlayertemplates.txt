@@ -1,73 +1,74 @@
-!Using web player templates
+!Web Player テンプレートの使用
 
-When you build a webplayer project, Unity embeds the player in an HTML page so that it can be played in the browser. The default page is very simple, with just a white background and some minimal text. There are actually three different variations of this page which can be selected from the Player Settings inspector (menu: Edit > Project Settings > Player).
+Web Player プロジェクトをビルドするとき、 Unity は HTMLページにプレイヤーを埋め込み、ブラウザで再生できるようにします。デフォルトのページは非常にシンプルで、ただの白い背景と最小限のテキストのみです。実際にはこのページに3種類のバリエーションがあり、Player Settings インスペクタにより選択できます（メニューから: Edit > Project Settings > Player）。
 
 Attach:WPPlayerSettings.png
 
-The built-in HTML pages are fine for testing and demonstrating a minimal player but for production purposes, it is often desirable to see the player hosted in the page where it will eventually be deployed. For example, if the Unity content interacts with other elements in the page via the external call interface then it must be tested with a page that provides those interacting elements. Unity allows you to supply your own pages to host the player by using __webplayer templates__.
+ビルトインの HTML ページはテストおよび最小限のプレイヤーのデモには十分ですが、本番リリースの場合には実際にデプロイされるページにプレイヤーがホストされているのを見ることが望ましい場合があります。例えば、もし Unity コンテンツがページの他の要素と外部コールインタフェースを経由して作用しあう場合、作用する要素が提供されているページでテストされる必要があります。 Unity では __Web Player テンプレート__ を使用してプレイヤーをホストする自身のページを提供することが出来ます。
 
 
-!!Structure of a Webplayer Template
+!!Webplayer テンプレートの構造
 
-Custom templates are added to a project by creating a folder called "WebPlayerTemplates" in the Assets folder - the templates themselves are sub-folders within this folder. Each template folder contains an index.html or index.php file along with any other resources the page needs, such as images or stylesheets.
+ Assets フォルダに "WebPlayerTemplates" というフォルダを作成することによりカスタムのテンプレートをプロジェクトに追加することが出来ます - テンプレート自身はこのフォルダ内のサブフォルダです。各テンプレートフォルダは index.html または index.php ファイルとともにページが必要とする他の要素、例えば画像やスタイルシートが含まれます。
 
 Attach:WPTemplatesFoldout.png
 
-Once created, the template will appear among the options on the Player Settings inspector. (the name of the template will be the same as its folder). Optionally, the folder can contain a file named thumbnail.png, which should have dimensions of 128x128 pixels. The thumbnail image will be displayed in the inspector to hint at what the finished page will look like.
+作成した後、テンプレートは Player Setting インスペクタのオプションとして表示されます。（テンプレートの名前はフォルダと同じです）。オプションとして、フォルダは  thumbnail.png というファイル名を含むことが出来て、128 x 128 ピクセルの大きさとする必要があります。サムネイル画像はインスペクトに表示され、最終ページがどのように表示されるかをプレビューします。
 
 
-!!Template Tags
+!!テンプレート タグ
 
-During the build process, Unity will look for special tag strings in the page text and replace them with values supplied by the editor. These include the name, onscreen dimensions and various other useful information about the player.
+ビルド プロセスの間、 Unity はページに含まれる特別なタグ文字列を探し、エディタにより提供される値に置き換えます。これはプレイヤー名、オンスクリーンの幅／高さ、およびプレイヤーに関するその他様々な便利な情報を含みます。
 
-The tags are delimited by percent signs (%) in the page source. For example, if the product name is defined as "MyPlayer" in the Player settings:-
+タグはページソースに含まれるパーセント記号（%）により区切られます。例えば、もしプロダクト名が Player Settings で "MyPlayer" として定義されている場合:-
 
 [@<title>%UNITY_WEB_NAME%</title>@]
 	
-...in the template's index file will be replaced with
+...これはテンプレートの index ファイルでは
 
 [@<title>MyPlayer</title>@]
 
-...in the host page generated for the build. The complete set of tags is given below:-
+...と置き換えられ、ビルドで生成されるホストページとなります。完全なタグの一覧は次のとおりです:-
 
 
 ``UNITY_WEB_NAME``\\
-Name of the webplayer.
+Web Player の名前。
 
 ``UNITY_WIDTH``\\
 ``UNITY_HEIGHT``\\
-Onscreen width and height of the player in pixels.
+ピクセル単位でプレイヤーのオンスクリーンの幅および高さ。
 
 ``UNITY_WEB_PATH``\\
-Local path to the webplayer file.
+Web Player ファイルのローカルパス。
 
 ``UNITY_UNITYOBJECT_LOCAL``\\
-A browser JavaScript file called UnityObject2.js is generally used to embed the player in the host page and provide part of the interaction between Unity and the host's JavaScript. This is normally supplied to a page by downloading from Unity's website. However, this requires an internet connection and causes problems if the page is to be deployed offline from the user's hard drive. This tag provides the local path to the UnityObject.js file, which will be generated if the Offline Deployment option is enabled in the Build Settings.
+
+一般的にUnityObject2.js という名前のブラウザ JavaScript により、プレイヤーをホストページに埋め込み、Unity およびホストの JavaScriptの間の相互作用の一部を担うために使用されます。これは通常、Unityのウェブページからダウンロードすることによりページに提供されます。しかし、このためにはインターネット接続が必要であり、もしユーザのハードディスクからオフラインでデプロイするべき場合は問題となります。このタグにより、もしBuild SettingsでOffline Deploymentを有効にすると、 UnityObject.js ファイルへのローカルパスを提供します。
 
 ``UNITY_UNITYOBJECT_URL``\\
-In the usual case where the page will download UnityObject2.js from the Unity's website (ie, the Offline Deployment option is disabled), this tag will provide the download URL.
+通常のケースでページが Unity のウェブサイトから UnityObject2.js をダウンロードする場合（すなわち、Offline Deployment が無効化された場合）、このタグによりダウンロード URL が提供されます。
 
 ``UNITY_UNITYOBJECT_DEPENDENCIES``\\
-The UnityObject2.js have dependencies and this tag will be replaced with the needed dependencies for it to work properly.
+UnityObject2.js には依存関係があり、このタグで必要な依存関係と置き換えて適切に動作させます。
 
 ``UNITY_BETA_WARNING``\\
-If the webplayer has been built with a beta version of Unity, this tag will be replaced with a short warning message about the fact. Otherwise, it is replaced with nothing.
+もし Web Player が Unity のベータバージョンでビルドされている場合、このタグはその事実を伝える短い注意メッセージと置き換えられます。ベータバージョンでない場合、置き換えられません。
 
 ``UNITY_CUSTOM_SOME_TAG``\\
-If you add a tag to the index file with the form UNITY_CUSTOM_XXX, then this tag will appear in the Player Settings when your template is selected. For example, if something like
+もしこのタグを index ファイルに UNITY_CUSTOM_XXX という形式で追加した場合、このタグは Player Settings にテンプレートが選択されたときに表示されます。例えば、もし
 
 [@<title>Unity Web Player | %UNITY_CUSTOM_MYTAG%</title>@]
 
-...is added to the source, the Player Settings will look like this:-
+...をソースに追加した場合、 Player Settings は次のようになります:-
 
 Attach:WPPlayerSettingsCustomTag.png
 
-The textbox next to the tag's name contains the text that the custom tag will be replaced with during the build.
+タグの名前の隣のテキストボックスは、ビルドの際にカスタムタグを置き換えるテキストを含みます。
 
 
-!!Example
+!!サンプル
 
-To illustrate the use of the template tags, here is the HTML source that Unity uses for its default webplayer build.
+テンプレート タグの使用を例示するために、次に Unity がデフォルトの Web Player ビルドで使用するHTMLソースを示します。
 
 
 [@
