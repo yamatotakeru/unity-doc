@@ -1,161 +1,161 @@
-!Profiling
+!プロファイリング
 
-Ports that the Unity profiler uses:
-	MulticastPort : 54998
-	ListenPorts : 55000 - 55511
-	Multicast(unittests) : 55512 - 56023
-They should be accessible from within the network node. That is, the devices that you�re trying to profile on should be able to see these ports on the machine with the Unity Editor with the Profiler on.
+Unityプロファイラが使用するポートは:
+	マルチキャストポート : 54998
+	リスナーポート : 55000 - 55511
+	マルチキャスト(ユニットテスト) : 55512 - 56023
+ネットワーク ノードの中からアクセス出来る必要があります。つまりプロファイリングを行うデバイスはプロファイラを有効にしてUnityエディタ上でマシンのポートをみることが出来る必要があります。
 
-!!First steps
+!!最初のステップ
 
-Unity relies on the CPU (heavily optimized for the SIMD part of it, like SSE on x86 or NEON on ARM) for skinning, batching, physics, user scripts, particles, etc. 
+Unityはスキニング、バッチング、物理計算、ユーザスクリプト、パーティクルについてCPUに依存します（部分的にはSIMD、例えばx86ならSSE、ARMならNEON）。
 
-The GPU is used for shaders, drawcalls, image effects.
+GPUはシェーダ、ドローコール、イメージ エフェクトで使用されます。
 
-!!!CPU or GPU bound
+!!!CPU の制約か GPU の制約か
 
-*Use the internal profiler to detect the CPU and GPU ms
+*CPUおよびGPUの処理時間（ms）を検知するのに内部プロファイラを使用して下さい。
 
-!!!Pareto analysis 
-A large majority of problems (80%) are produced by a few key causes (20%).
+!!!パレート分析
+大部分の問題 (80%) は少数の問題により引き起こされます(20%).。
 
-#Use the Editor profiler to get the most problematic function calls and optimize them first.
-#Make sure the scripts run only when necessary.
-##Use ''OnBecameVisible/OnBecameInvisible'' to disable inactive objects.
-##Use coroutines if you don�t need some scripts to run every frame.
+#エディタ プロファイラを使用して最も問題となる関数コールをみつけて最初に最適化します。
+#スクリプトが必要なときだけ実行されていることを確認して下さい。
+##''OnBecameVisible/OnBecameInvisible'' を使用して非アクティブなオブジェクトを無効化して下さい。
+##毎フレーム毎に実行する必要がない場合コルーチンを使用します。
 [@
-// Do some stuff every frame:
+// 毎フレーム毎に何か処理
 void Update () {
 }
 
-//Do some stuff every 0.2 seconds:
+//0.2秒毎に何か処理
 IEnumerator Start ()_ {
    while (true) {
       yield return new WaitForSeconds (0.2f);
    }
 }
 @]
-##Use the ''.NET System.Threading.Thread'' class to put heavy calculations to the other thread. This allows you to run on multiple cores, but Unity API is not thread-safe. So buffer inputs and results and read and assign them on the main thread.
+##''.NET System.Threading.Thread'' クラスを使用して重い処理は別スレッドにします。これによりマルチコア実行出来ますがUnityAPIはスレッドに完全には対応していません。バッファ入力や結果や読み込みはメインスレッドに割り当てします。
 
-!!CPU Profiling
+!!CPU プロファイリング
 
-!!!Profile user code
+!!!ユーザ コードのプロファイリング
 
-Not all of the user code is shown in the Profiler. But you can use ''Profiler.BeginSample'' and ''Profiler.EndSample'' to make the required user code appear in the profiler.
+全てのユーザコードがプロファイラに表示されるわけではありません。しかし ''Profiler.BeginSample'' および ''Profiler.EndSample'' を使用さて必要なユーザ コードをプロファイラに表示させることが出来ます。
 
-!!GPU Profiling
+!!GPU プロファイリング
 
-The Unity Editor profiler cannot show GPU data as of now. We�re working with hardware manufacturers to make it happen with the Tegra devices being the first to appear in the Editor profiler.
+Unityエディタ プロファイラは現時点でGPUデータは表示出来ません。われわれはハードウェア製造元と協力をしながらエディタプロファイラにTegraデバイスでは表示出来るように進めています。
 
 !iOS!
 >>ios<<
-!!!Tools for iOS
+!!! iOS向けツール
 
-*Unity internal profiler (not the Editor profiler).  This shows the GPU time for the whole scene.
-*PowerVR PVRUniSCo shader analyzer.  See below.
-*iOS: Xcode OpenGL ES Driver Instruments can show only high-level info:
-**�Device Utilization %� - GPU time spent on rendering in total. >95% means the app is GPU bound.
-**�Renderer Utilization %� - GPU time spent drawing pixels.
-**�Tiler Utilization %� - GPU time spent processing vertices.
-**�Split count� - the number of frame splits, where the vertex data didn�t fit into allocated buffers.
+*Unity 内部プロファイラ（エディタ プロファイラではなく）。これはシーン全体のGPU時間を表示します。
+*PowerVR PVRUniSCo シェーダ アナライザ。以下を参照下さい。
+*iOS: Xcode OpenGL ES ドライバ Instruments ではハイレベルな情報のみが表示されます:
+**"Device Utilization %" - 全体の中でレンダリングに要したGPU 時間。95%以上の場合はGPU 制約を受けていることを示します。
+**"Renderer Utilization %" - ピクセル描画に要したGPU 時間。
+**"Tiler Utilization %" - 頂点処理に要したGPU 時間。
+**"Split count" - フレーム スプリット数、すなわち割り当てられたバッファに当てはまらなかった頂点データ。
 
-PowerVR is tile based deferred renderer, so it&#146;s impossible to get GPU timings per draw call. However you can get GPU times for the whole scene using Unity�s built-in profiler (the one that prints results to Xcode output). Apple�s tools currently can only tell you how busy the GPU and its parts are, but do not give times in milliseconds.
+PowerVR はタイルベース ディファード レンダラ であり、ドローコール毎のGPUタイミングを取得することは不可能です。しかしシーン全体のGPU時間を取得するのにUnityのビルトイン プロファイラを使用出来ます（Xcodeに結果出力する分）。現在AppleツールはGPUおよびそのパーツがどれだけビジーかのみ伝達し、ミリ秒単位で知ることは出来ません。
 
-PVRUniSCo gives cycles for the whole shader, and approximate cycles for each line in the 
-shader code. Windows & Mac! But it won�t match what Apple�s drivers are doing exactly anyway. Still, a good ballpark measure. 
+PVRUniSCo によりシェーダ コードの中のシェーダ全体のサイクルをWindows および Macともに知ることが出来ます。しかしAppleドライバの状況を正確には反映出来ていません。それでもラフな指標としては十分です。
 >><<
 
 !Android!
 >>android<<
-!!!Tools for Android
+!!!Androidツール
 
 *Adreno (Qualcomm)
 *NVPerfHUD (NVIDIA)
 *PVRTune, PVRUniSCo (PowerVR)
 
-On Tegra, NVIDIA provides excellent performance tools which does everything you want - GPU time per draw call, Cycles per shader, Force 2x2 texture, Null view rectangle, runs on Windows, OSX, Linux. PerfHUD ES does not easily work with consumer devices, you need the development board from NVIDIA.
+Tegraでは、NVIDIAから最高級のパフォーマンス測定ツールが提供されていて実現したいことのすべてが出来ます - ドローコール毎のGPU時間、シェーダ毎のサイクル、強制 2x2 テクスチャ、Nullビュー四角形、でWindows, OSX, Linuxにて動作します。PerfHUD ESはコンシューマ デバイスで上手く動作しないためNVIDIAのdevelopment board が必要です。
 
-Qualcomm provides excellent Adreno Profiler (Windows only) which is Windows only, but works with consumer devices! It features Timeline graphs, frame capture, Frame debug, API calls, Shader analyzer, live editing.
+Qualcomm により優秀なAdreno Profiler (Windows のみ) が提供されていてWindowsのみですが、タイムライン グラフ
+
+フレーム キャプチャ、APIコール、シェーダ アナライザ、ライブ編集の機能があります。
 >><<
 
-!!!Graphics related CPU profiling
+!!!グラフィックス関連 CPU プロファイリング
+内部プロファイラによりモジュール毎の良い概要が得られます:
+*OpenGL ES APIに要した時間
+*バッチング効率
+*スキニング、アニメーション、パーティクル
 
-The internal profiler gives a good overview per module:
-*time spent in OpenGL ES API
-*batching efficiency
-*skinning, animations, particles
+!!メモリ
 
-!!Memory
+Unityメモリおよびmonoメモリ。
 
-There is Unity memory and mono memory. 
+!!!Mono メモリ
 
-!!!Mono memory
+Mono メモリはスクリプトオブジェクト、Unityオブジェクトのラッパー（ゲームオブジェクト、アセット、コンポーネント、その他）をハンドリングします。ガーベージ コレクションにより、利用可能なメモリへの割り当てが出来なかった場合、または ''System.GC.Collect()'' コールの場合、クリーンアップを行います。
 
-Mono memory handles script objects, wrappers for Unity objects (game objects, assets, components, etc). Garbage Collector cleans up when the allocation does not fit in the available memory or on a ''System.GC.Collect()'' call.
+メモリはヒープブロックに割り当てされます。ヒープブロックはアプリが閉じられるまでMonoに保持されます。すなわちMonoは使用メモリをOS に対して開放じせん (Unity 3.x)。特定の量のメモリを割り当てるとMonoのために予約されてOSでは利用可能ではありません。リリースしたときもMonoで内部的に利用可能となるのみでOSにとつては利用可能ではありません。プロファイラのヒープメモリは増加するのみで、減ることがありません。
 
-Memory is allocated in heap blocks. More can allocated if it cannot fit the data into the allocated block. Heap blocks will be kept in Mono until the app is closed. In other words, Mono does not release any memory used to the OS (Unity 3.x). Once you allocate a certain amount of memory, it is reserved for mono and not available for the OS. Even when you release it, it will become available internally for Mono only and not for the OS. The heap memory value in the Profiler will only increase, never decrease.
+もしシステムが割り当てたヒープブロックに新しいデータを当てはめる領域が十分にない場合、Monoにより "GC" がコールされ、新しいヒープブロックを割り当て出来るようになります（例えばフラグメンテーションにより）。
 
-If the system cannot fit new data into the allocated heap block, the Mono calls a "GC" and can allocate a new heap block (for example, due to fragmentation).
+ヒープのセクションがありすぎるということはMonoメモリを使い切ったことを意味します（フラグメンテーションまたは重い処理により）。
 
-�Too many heap sections� means you�ve run out of Mono memory (because of fragmentation or heavy usage). 
+''System.GC.GetTotalMemory'' をしようして Mono でメモリ使用量の合計を取得します。
 
-Use ''System.GC.GetTotalMemory'' to get the total used Mono memory.
+一般的なアドバイスとしては、出来るかぎり割り当ては小さくします。
 
-The general advice is, use as small an allocation as possible.
+!!!Unity メモリ
 
-!!!Unity memory
+Unity メモリはアセット データ（テクスチャ、メッシュ、音声、アニメーション、等）、ゲームオブジェクト、エンジン内部処理（レンダリング、パーティクル、物理計算、その他）をハンドリングします。
+''Profiler.usedHeapSize'' を使用してUnity メモリ使用量の合計を取得します。
 
-Unity memory handles Asset data (Textures, Meshes, Audio, Animation, etc), Game objects, Engine internals (Rendering, Particles, Physics, etc).
-Use ''Profiler.usedHeapSize'' to get the total used Unity memory.
+!!!メモリマップ
+ツールはまだ存在しませんが次のものが使用出来ます。
 
-!!!Memory map
-No tools yet but you can use the following.
-
-*Unity Profiler - not perfect, skips stuff, but you can get an overview.  It works on the device!
-*Internal profiler
-**Shows Used heap and allocated heap - see mono memory.
-**Shows the number of mono allocations per frame.
-*Xcode tools - iOS
-**Xcode Instruments Activity Monitor - Real Memory column.
-**Xcode Instruments Allocations - net allocations for created and living objects.
+*Unity プロファイラ - 完璧ではなく、スキップするものもあるが、概要情報を得ることが出来ます。デバイス上でも動作します。
+*内部プロファイラ
+**使用済みヒープおよび割り当て済みヒープが表示されます。monoメモリを参照して下さい。
+**フレーム毎の mono メモリ割り当てを表示します。
+*Xcode ツール - iOS
+**Xcode Instruments Activity Monitor - Real Memory列をみて下さい
+**Xcode Instruments Allocations - 作成済みおよび有効なオブジェクトの割り当て
 **VM Tracker
-***textures usually get allocated with IOKit label.
-***meshes usually go into VM Allocate.
-*Make your own tool
+***テクスチャはIOKitラベルにより割り当てされます。
+***メッシュはVM Allocateに入ります
+*自身でツールを作成
 **''FindObjectsOfTypeAll (type : Type) : Object[]''
 **''FindObjectsOfType (type : Type): Object[]''
 **''GetRuntimeMemorySize (o : Object) : int	''
 **''GetMonoHeapSize''
 **''GetMonoUsedSize''
-**''Profiler.BeginSample/EndSample'' - profile your own code
+**''Profiler.BeginSample/EndSample'' - 自身のコードをプロファイリング
 **''UnloadUnusedAssets () : AsyncOperation''
 **''System.GC.GetTotalMemory/Profiler.usedHeapSize''
-*References to the loaded objects - There is no way to figure this out.  A workaround is to �Find references in scene� for public variables.
+*ロードされたオブジェクトへの参照 - これを知る方法はありません。回避方法としてパブリック変数の参照をFindすることです。
 
-!!!Memory hiccups
+!!!メモリ による処理低下
 
-*Garbage collector
-**This fires when the system cannot fit new data into the allocated heap block.
-**Don�t use ''OnGUI'' on mobiles
-***It shoots several times per frame
-***It completely redraws the view.
-***It creates tons of memory allocation calls that require Garbage Collection to be invoked.
-**Creating/removing too many objects too quickly?
-***This may lead to fragmentation.
-***Use the Editor profiler to track the memory activity.
-***The internal profiler can be used to track the mono memory activity.
-**''System.GC.Collect()'' You can use this ''.Net'' function when it�s ok to have a hiccup.
-*New memory allocations
-**Allocation hiccups
-***Use lists of preallocated, reusable class instances to implement your own memory management scheme.
-***Don�t make huge allocations per frame, cache, preallocate instead
-**Problems with fragmentation?
-***Preallocate the memory pool.
-***Keep a List of inactive GameObjects and reuse them instead of Instantiating and Destroying them.
-**Out of mono memory
-***Profile memory activity - when does the first memory page fill up?
-***Do you really need so many gameobjects that a single memory page is not enough?
-**Use structs instead of classes for local data. Classes are stored on the heap; structs on the stack.
+*ガーベージ コレクター
+**システムが割り当て済みヒープブロックに新しいデータ領域を確保出来ない場合に実行
+** モバイルで ''OnGUI'' は使用しないこと
+*** 毎フレーム数回実行
+***ビューを完全に書き換え
+***ガーベージ コレクション実行を必要とする大量のメモリ割り当てをコール
+**多くのオブジェクトの作成／破棄が頻繁に行い過ぎていないか？
+***フラグメンテーションにつながるThis may lead to fragmentation.
+***Editor プロファイラを使用してメモリ活動をトラッキング
+***内部プロファイラを使用してmono メモリ活動のトラッキングを実施可能
+**処理低下があっても問題ないときに ''System.GC.Collect()'' という ''.Net'' 関数を使用可能
+*新しいメモリの割り当て
+**処理低下タイミングの割り当て
+***割り当て済み、再利用可能なクラス インスタンスを使用して自身のメモリ管理スキームを実装
+***フレーム毎に膨大なメモリ割り当てをせず、代わりにキャッシュして事前割り当てすべき
+**フラグメンテーションでの問題がある場合はどうするか
+***メモリプールを事前割り当て
+***非アクティブなゲームオブジェクトの一覧を保持してインスタンス化、破棄の代わりに再利用
+**mono メモリが不足
+***メモリ活動のプロファイリング - 最初のメモリはいつ一杯になっているか？
+***ひとつのメモリページでは足りないほどゲームオブジェクトは本当に必要ですか?
+**ローカルデータではクラスの代わりに構造体を使用して下さい。ヒープ上にクラスは格納され、構造体はスタックに格納されます。
 	
 [@
 class MyClass {
@@ -167,28 +167,28 @@ struct MyStruct {
 }
 
 void Update () {
-   //BAD
-   // allocated on the heap, will be garbage collected later!
+   //悪い例
+   //ヒープ上で割り当てされ、後でガーベージ コレクションが行われる
    MyClass c = new MyClass();
    
-   //GOOD
-   //allocated on the stack, no GC going to happen!
+   //良い例
+   //スタック上で割り当てされ、後でガーベージ コレクションが行われない
    MyStruct s = new MyStruct();
 }
 @]
 
-*Read the relevant section in the manual Link to http://docs.unity3d.com/Documentation/Manual/UnderstandingAutomaticMemoryManagement.html
+*関連するセクションをマニュアルを次のリンク先で確認  http://docs.unity3d.com/Documentation/Manual/UnderstandingAutomaticMemoryManagement.html
 
-!!!Out of memory crashes
+!!!メモリ不足なよるクラッシュ
 
-At some points a game may crash with "out of memory" though it in theory it should fit in fine. When this happens compare your normal game memory footprint and the allocated memory size when the crash happens. If the numbers are not similar, then there is a memory spike. This might be due to:
-*Two big scenes being loaded at the same time - use an empty scene between two bigger ones to fix this.
-*Additive scene loading - remove unused parts to maintain the memory size.
-*Huge asset bundles loaded to the memory
-*Loading via WWW or instantiating (a huge amount of) big objects like:
-**Textures without proper compression (a no go for mobiles).
-**Textures having Get/Set pixels enabled. This requires an uncompressed copy of the texture in memory.
-**Textures loaded from JPEG/PNGs at runtime are essentially uncompressed.
-**Big mp3 files marked as decompress on loading.
-*Keeping unused assets in weird caches like static monobehavior fields, which are not cleared when changing scenes.
+どこかの時点でゲームはメモリ不足 "out of memory" でクラッシュするかもしれませんが、理論的には十分なはずです。これが発生した場合、通常のゲームメモリ使用量と今回割り当てされたメモリの大きさを比較します。もし数字がかなり差がある場合、メモリの急増が発生しています。これの要因としては:
+*同時に二つの大きなシーンがロードされる - 二つの大きなシーンの間に空のシーンを挟んでこれを解消
+*追加シーン ローディング - 未使用のパーツを取り除いてメモリサイズを維持
+*メモリにロードされた巨大なアセットバンドル
+*次のようなWWW経由のロードまたは（大量の）大きなオブジェクトのインスタンス化:
+**適切な圧縮のないテクスチャ（モバイルでは絶対にしない）
+**Get/Set ピクセルを有効化したテクスチャ。非圧縮のテクスチャがメモリに必要となります
+**実行時にJPEG/PNGからロードされたテクスチャは本質的に非圧縮
+**大きなmp3ファイルで、decompress on loadin（ロード時に解凍）とマーキングされたもの
+*未使用アセットを変なキャッシュ、例えば シーンが変わってもクリアされないstatic な monobehavior フィールド、に入れてないか
 
