@@ -1,52 +1,52 @@
-!HDR (High Dynamic Range) Rendering in Unity
+!UnityでのHDR (High Dynamic Range) レンダリング
 
-In standard rendering, the red, green and blue values for a pixel are each represented by a fraction in the range 0..1, where 0 represents zero intensity and 1 represents the maximum intensity for the display device. While this is straightforward to use, it doesn't accurately reflect the way that lighting works in a real life scene. The human eye tends to adjust to local lighting conditions, so an object that looks white in a dimly lit room may in fact be less bright than an object that looks grey in full daylight. Additionally, the eye is more sensitive to brightness differences at the low end of the range than at the high end.
+通常のレンダリングでは、ピクセルの赤、緑、青は0から1の範囲の小数点数により表現され、0は強度ゼロであり、1はディスプレイ デバイスの最大の強度を意味します。これを使用するのは簡単である一方で、現実世界の場面でのライティングの働きを正確に反映しません。人間の目は、近隣のライティング条件に合わせようとするため、もし暗く照らされた部屋で白く見えるものでも、昼間の明るい光で灰色に見えるものほどに実際は明るくない場面があります。さらに目はレンジの低いほうが高い方よりも明るさの差に敏感です。
 
-More convincing visual effects can be achieved if the rendering is adapted to let the ranges of pixel values more accurately reflect the light levels that would be present in a real scene. Although these values will ultimately need to be mapped back to the range available on the display device, any intermediate calculations (such as Unity's image effects) will give more authentic results. Allowing the internal representation of the graphics to use values outside the 0..1 range is the essence of __High Dynamic Range (HDR)__ rendering. 
+、レンダリングにてピクセル値の範囲がより正確に現実世界の場面にあるようなライトのレベルに反映されるように調整した場合はより魅力的なエフェクトを得られます。たとえこれらの値は究極的にはディスプレイ デバイスで利用可能な範囲にマッピングを戻す必要があるとはいえ、中間的な演算（Unityのイメージエフェクトのような）によって本物に近い結果が得られます。グラフィックスの内部表現で0から1の範囲外を許容することは __High Dynamic Range (HDR)__  レンダリングにとって重要です。
 
-!!Working with HDR
+!!HDRでの作業
 
-HDR is enabled separately for each camera using a setting on the Camera component:-
+HDRはカメラ コンポーネントの設定を使用して各々のカメラで別々に有効化します:-
 
 Attach:Camera-HDR.png
 
-When HDR is active, the scene is rendered into an HDR image buffer which can accommodate pixel values outside the 0..1 range. This buffer is then postprocessed using image effects such as [[script-Bloom|HDR bloom]]. The [[script-Tonemapping|tonemapping]] image effect is what converts the HDR image into the standard low dynamic range (LDR) image to be sent for display. The conversion to LDR must be applied at some point in the image effect pipeline but it need not be the final step if LDR-only image effects are to be applied afterwards. For convenience, some image effects can automatically convert to LDR after applying an HDR effect (see Scripting below).
+HDRが有効化な時、シーンはピクセルが0から1の範囲外に関連付け出来る HDR画像バッファにレンダリングされます。次にバッファは [script-Bloom|HDR ブルーム]] といったイメージエフェクトを使用してポストプロセッシングされます。 
+[[script-Tonemapping|トーンマッピング]] にてイメージエフェクトにより HDR 画像を標準の low dynamic range (LDR) 画像に変換して表示されます。LDRへの変換はイメージエフェクト パイプラインのどこかの時点で適用される必要がありますが、LDRのみのイメージエフェクトが後から適用するのであれば最終ステップである必要はありません。簡便のため、いくつかのイメージエフェクトはHDRエフェクトを適用した後に自動的にLDRに変換します（以下のスクリプティングを参照下さい）。
 
-!!!Tonemapping
-Tonemapping is the process of mapping HDR values back into the LDR range. There are many different techniques, and what is good for one project may not be the best for another. A variety of tonemapping image effects have been included in Unity. To use them select $$Assets -> Import Package -> Image Effects (Pro Only)$$ select the camera in the scene then select $$Component -> Image Effects ->ToneMapping$$ a detailed description of the tonemapping types can be found in the [[script-Tonemapping|image effects documentation]].
+!!!トーンマッピング
+トーンマッピングは HDR 値 を LDR 範囲に戻すマッピングの処理です。多くの異なるテクニックがあり、ひとつのプロジェクトで役立つことが他でベストとは限りません。Unity にはバラエティに富んだイメージエフェクトが含まれています。これを使用するためには $Assets -> Import Package -> Image Effects (Pro Only)$$ を選択し、シーンのカメラを選択して $$Component -> Image Effects ->ToneMapping$$ を選択します。トーンマッピングの種類については詳細な説明については [[script-Tonemapping|イメージエフェクトのドキュメント]] を参照して下さい。
 
 Attach:WithoutTonemap.png
-''An exceptionally bright scene rendered in HDR. Without tonemapping, most pixels seem out of range.''
+''極めて明るいシーンを HDR でレンダリング。トーンマッピングなしではほとんどのピクセルは範囲外。''
 
 Attach:WithTonemap.png
-''The same scene as above. But this time, the tonemapping effect is bringing most intensities into a more plausible range. Note that adaptive tonemapping can even blend between above and this image thus simulating the adaptive nature of capturing media (e.g. eyes, cameras).''
+''前述と同じシーン。ただし、トーンマッピング エフェクトによりほとんどの強度を満足できる範囲に移動しています。 Adaptive であるトーンマッピング によりこれを超えてブレンドすることさえ出来て、この画像はキャプチャリング メディアの Adaptive 特性をシミュレートします（目、カメラ）。''
 
-!!!HDR Bloom and Glow
-Using HDR allows for much more control in post processing. LDR bloom has an unfortunate side effect of blurring many areas of a scene even if their pixel intensity is less than 1.0. By using HDR it is possible to only bloom areas where the intensity is greater than one. This leads to a much more desiarable outcome with only super bright elements of a scene bleeding into neighboring pixels. The built in 'Bloom and Lens Flares' image effect now also supports HDR. To attach it to a camera select $$Assets -> Import Package -> Image Effects (Pro Only)$$ select the camera in the scene then select $$Component -> Image Effects ->Bloom$$ a detailed description of the 'Bloom' effect can be found in the [[script-Bloom|image effects documentation]].
-
+!!!HDR ブルーム および グロー
+HDR の使用により、ポストプロセッシングをより制御できます。 LDR ブルームは残念な副作用があり、シーンの多くのエリアに、例えばピクセル強度が 1.0 より小さくても ブラー をかけます。HDR を使用することで、強度が 1 より大きいエリアのみをブルームすることが出来ます。これによって、より望ましい結果につながり、シーンの非常に明るい要素が隣接するピクセルに染み出します。この内蔵 'ブルーム および レンズフレア' エフェクトは HDR もサポートします。カメラにアタッチするには $$Assets -> Import Package -> Image Effects (Pro Only)$$ を選択し、シーンのカメラを選択して  $$Component -> Image Effects ->Bloom$$ を選択します。'ブルーム' エフェクトの詳細な説明については [[script-Bloom|イメージエフェクトのドキュメント]] を参照して下さい。
+ 
 Attach:GlowWithHdrAdjusted.png
-''The car window sun reflections in this scene have intensity values far bigger than 1.0. Bloom can only pick up and glow these parts if the camera is HDR enabled thus capturing these intensities.''
+''車のウィンドウの太陽の反射は 1.0 より遥かに大きい強度の値です。カメラが HDR を有効にしていればこの強度がキャプチャできるので、ブルームでこの部分だけを検知して グロー させることが出来ます。''
 
 Attach:GlowWithoutHdrAdjusted.png
-''The car window will remain without glow if the camera is not HDR enabled. Only way to add glow is to lower the intensity threshhold but then unwanted parts of the image will start glowing as well.''
+''HDR を有効にしない場合、車のウィンドウはグローなしで残ります。グローを追加する唯一の方法は強度の閾値を下げることですが、そうすると画像の意図しない場所も グロー するようになってしまいます。''
 
-!!Advantages of HDR
-*Colors not being lost in high intensity areas
-*Better bloom and glow support
-*Reduction of banding in low frequency lighting areas
+!!HDR の長所
+* カラーが高い強度のエリアで失われない
+* ブルーム および グロー の優れたサポート
+* 低い周波数のエリアでの バンディング の削減
 
-!!Disadvantages of HDR
-* Uses Floating Point buffers (rendering is slower and requires more VRAM)
-* No hardware anti-aliasing support (but you can use [[script-AntialiasingAsPostEffect | Anti-Aliasing image effect]] to smooth out the edges)
-* Not supported on all hardware
+!!HDR の短所
+* フローティング ポイント バッファを使用（レンダリングが遅くなり、より多くの VRAM を必要とする）
+* ハードウェア アンチエイリアスはサポートされていない（ただし [[script-AntialiasingAsPostEffect | Anti-Aliasing image effect]] を使用してエッジをスムージングすることは出来ます）
+* 全てのハードウェアではサポートされていない
 
-!!Usage notes
+!!使用するうえでの注意
 !!!Forward Rendering
-In forward rendering mode HDR is only supported if you have an image effect present. This is due to performance considerations. If you have no image effect present then no tone mapping will exist and intensity truncation will occur. In this situation the scene will be rendered directly to the backbuffer where HDR is not supported.
-
+Forward Renderingモードで HDR はイメージエフェクトが存在する場合のみサポートされます。これはパフォーマンスへの配慮によります。もしイメージエフェクトが存在しないのであればトーンマッピングは存在せず、そして強度の切捨ては発生します。この状況でシーンはバックバッファに直接レンダリングされ、 HDR はそこではサポートされていません。
+ 
 !!!Deferred Rendering
-In HDR mode the light prepass buffer is also allocated as a floating point buffer. This reduces banding in the lighting buffer. HDR is supported in deferred rendering even if no image effects are present.
+HDR モードではライトのプリパス バッファはフローティング ポイント バッファ として割り当てられます。これによりライティング バッファにおけるバンディングを抑えます。Deferred Renderingの場合、HDR は イメージエフェクトが存在しなくてもサポートされます。
 
-!!!Scripting
-
-The $$ImageEffectTransformsToLDR$$ attribute can be added to an image effect script to indicate that the target buffer should be in LDR instead of HDR. Essentially, this means that a script can automatically convert to LDR after applying its HDR image effect.
+!!!スクリプティング
+$$ImageEffectTransformsToLDR$$ 属性をイメージエフェクトのスクリプトに追加して、ターゲットバッファは HDR でなく LDR であるべきということを示すことが出来ます。要するに、スクリプトは HDR イメージエフェクトを適用した後に LDR に変換することが出来ます。
