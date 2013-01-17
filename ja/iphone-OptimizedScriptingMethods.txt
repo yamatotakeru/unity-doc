@@ -1,76 +1,77 @@
-! Practical Guide to Optimization for Mobiles - Scripting and Gameplay Methods
+!モバイル最適化のための実用ガイド - スクリプティング および ゲームプレイ手法
 
-This section demonstrates ways that mobile developers write code and structure their games so that they run fast. The core idea here is that game design and optimization aren't really separate processes; decisions you make when you are designing your game can make it both fun and fast.
+このセクションはモバイル開発者がコードを書いてゲームが速く実行できるように構成する方法を解説します。ここで中心となる考え方はゲームデザインと最適化は完全に別々のプロセスではないということです。ゲームを設計するときの決定によりゲームを面白く速くすることが出来ます。
 
-!! A historical example
+!! 歴史的な事例
 
 (:div style="float:right; padding:5px":)
 Attach:spaceInvaders.jpg
 (:divend:)
 
-You may remember old games where the player was only allowed one shot on the screen at a time, and reload speed was controlled by whether the bullet missed or not, instead of a timer. This technique is called $$object pooling$$, and it simplifies memory management, making programs run smoother. 
+過去の古いゲームで、プレイヤーが画面で一回づつしか発射できなかったころを思い出すと、リロードする速度はタイマーでなく、弾が外れたかどうかにより制御されていました。このテクニックは $$object pooling$$ と呼ばれて、メモリ管理をシンプルにして、プログラムの実行をスムーズにします。
 
-The creators of space invaders only had a small amount of RAM, and they had to ensure that their program would never need to allocate more than was available. If they let the player fire once every second, and they offered a powerup that decreased the reload time to a half a second, they would have to ensure that there was enough memory space to allocate a lot of projectiles in the case where the player fires as fast as possible and all of the shots live for the longest possible time. That would probably pose a problem for them, so instead, they just allocated one projectile and left it at that. As soon as the projectile dies, it is simply deactivated, and repositioned and activated when it is fired again. But it always lives in the same space in memory and doesn't have to move around or be constantly deleted and recreated. 
-
-!!! An optimization, or a gameplay gem?
-
-This is hardly realistic, but it happens to be __fun__. Tension is released in a climactic moment when the alien invaders approach the ground, similar to a climax in film or literature. The invaders' close proximity gives the adept player near-instantaneous reload time, allowing them to miraculously defend earth by mashing the fire key in perfect time. Good game designs live in a bizarre space between the interactive narrative and the background technology that powers it all. It's hard to plan out awesome, fun, efficient stuff like this, because code logistics and user interaction are two wildly different and deeply finicky things, and using them together to synthesize something fresh and fun takes a lot of thought and experimentation. 
-
-You probably can't plan out every aspect of your game in terms of interaction and playing nice with mobile hardware simultaneously. It's more likely that these "gems" where the two meet in harmony will pop up as accidents while you're experimenting. But having a solid understanding of the way your code runs on the hardware you intend to deploy on will help. If you want to see the detailed technical explanation of why object pooling is better, and learn about memory allocation, see our [[Main.iphone-PracticalScriptingOptimizations | Scripting Optimizations]] page.
+スペースインベーダのクリエイターは RAM 容量が小さかったのみならず、プログラムが利用可能である以上のメモリを絶対に使用しないことを保証する必要がありました。もしプレイヤーに 1 秒ごとに発射すること、パワーアップによりリロード時間を 0.5 秒に縮めることを提供していたら、許してしまっていたら、プレイヤーが出来るかぎり発射を速く行い、発射物の持続時間が最も長い場合を想定して、たくさんの発射物を割り当てるだけの十分なメモリ空間を保証しないといけなくなります。これは彼らにとって問題となったであろうから、その代わりに発射物はひとつとして、そこで止めました。発射物が消滅するとすぐに、シンプルに無効化されて、再配置されたうえでもう一回発射されたときに有効化されます。それでも同じメモリ空間に居続けて、全く動かず繰り返し削除されたり再作成さるような必要がありません。
 
 
-!! Will X run fast on Mobiles?
+!!! 最適化、それともゲームプレイの宝石？
 
-Say you are beginning to work on a game, and you want to impress your players with lots of action and flashy stuff happening at once. How do you plan those things out? How do you know where the limits are, in game terms like how many coins, how many zombies, how many opponent cars, etc? It all depends on how you code your game.
+これはあまり現実味を感じないかもしれないが、 __面白い__ ものです。エイリアンのインベーダーが地面に迫ってくるような高潮する場面では、フィルムまたは文学のように、テンションが緩和されます。インベーダの近い近接さは名人のプレイヤーにほとんど瞬間的に近いリロード時間を与え、発射キーを完璧なタイミングで押すことで奇跡的に地球を守ります。良いゲームデザイン、インタラクティブな物語部と背景にあるそれを動かす技術との間にあるは奇妙な位置にあります。このようにクールで、楽しくて、効果的なものの計画を練るのは難しいことで、コードのロジスティクスおよびユーザのインタラクションは二つの激しく異なり、深くて気難しいであって、両方をあわせて何か新鮮で面白いものとして合成するのは多くの知恵と実験が必要です。
 
-Generally, if you write your game code the easy way, or the most general and versatile way, you will run into performance issues a lot sooner. The more you rely on specific structures and tricks to run your game, the more horizons will expand, and you will be able to cram more stuff on screen.
+ゲームの全ての側面をインタラクションおよびモバイルのハードウェアに優しいものと同時にすることは無理でしょう。それよりも、こういった "宝石" のように両者が偶然に実験している間に調和してくるほうがありがちです。しかしコードが自分がデプロイしようと考えているハードウェアでどう実行されているのか完全に理解することが役立ちます。もしオブジェクトプーリングがなぜ良いのかの詳細な技術的説明およびメモリの割り当てについて学ぶには [[Main.iphone-PracticalScriptingOptimizations | スクリプティング 最適化]] を参照して下さい。
 
-!!! Easy and versatile, but slow
 
-* Rigidbodies limited to 2 dimensions in a 2D game.
-* Rigidbodies on projectiles.
-* Using Instantiate and Destroy a lot.
-* Lots of individual 3D objects for collectables or characters.
-* Performing calculations every frame.
-* Using OnGUI for your GUI or HUD.
+!! X はモバイルで速く動作するか?
 
-!!! Complicated and limited, but faster
+例えばゲームの作成を始めたところで、多くのアクションと派手なことを同時にしてプレイヤーの気を引きたいとします。どうやってその計画を練ればよいのか？どこに制約があるのか、ゲーム用語で言えばどれぐらいのコイン、いくつのゾンビ、敵の車は何台で、などどうやって知れば良いのか。それはすべて自身のゲームをどうコードするかに依存します。
 
-* Writing your own physics code for a 2D game.
-* Handling collision detection for projectiles yourself.
-* Using Object Pooling instead of Instantiate and Destroy.
-* Using animated sprites on particles to represent simple objects.
-* Performing expensive calculations every few frames and caching the results.
-* A custom GUI solution.
+一般的に、もしゲームのコードを簡単な方法で、すなわち最も普遍的で融通の利く方法で作成すると、パフォーマンスの問題により早く遭遇します。ゲームを実行するには、特定のパターンやテクニックを活用すれば、道は拓けてきて画面上により多くを詰め込むことが出来ます。
 
-!! Examples
+!!! 簡単で融通が利くけど、遅い
+
+* Rigidbody を 2次元に限定した 2Dゲーム
+* Rigidbody を発射物にアタッチ
+* Instantiate および Destroy を頻繁に使用
+* 個別の 3D オブジェクト を アイテム や キャラクター が大量
+* 毎フレーム計算を実行
+* GUI または HUD のために OnGUI を使用
+
+!!! 複雑 かつ 限定されているが、速い
+
+* 2D ゲームのために自身の物理計算コードを記述
+* 発射物の衝突判定を自身でハンドリング
+* Instantiate および Destroy の代わりにオブジェクトプーリングを使用
+* パーティクルにアニメーションつきスプライトを使用してシンプルなオブジェクトを表現
+* 高価な計算は数フレームおきにして、結果をキャッシュ
+* カスタムのGUIソリューション
+
+!! サンプル
 
 (:div style="float:right; padding:5px":)
 Attach:coinsLighting.jpg
 (:divend:)
 
-!!! Hundreds of rotating, dynamically lit, collectable coins onscreen at once
+!!! 回転していて、動的ライティングがなされて、集められるコインが画面上に同時に百個ある
 
-* NO: Each coin is a separate object with a rigidbody and a script that rotates it and allows it to be picked up. 
+* 悪い例: 各コインは Rigidbody のアタッチされた別々のオブジェクトであり、スクリプトが回転させて拾うことを許容する
 
-* YES: The coins are a particle system with an animated texture, one script does the collision testing for all the coins and sets their color according to distance from a light.
-** This example is implemented in the [[Main.iphone-PracticalScriptingOptimizations#Animated_Sprite_Particle_System | Scripting Optimization]] page. 
+* 良い例: コインはアニメーションつきテクスチャのあるパーティクルシステムで、ひとつのスクリプトが全てのコインの衝突テストを行い、ライトからの距離にもとづいてカラーをセットする。
+** このサンプルは [[Main.iphone-PracticalScriptingOptimizations#Animated_Sprite_Particle_System | スクリプティング最適化]] ページで実装されています。
 
-!!! Your custom-built soft-body simulation
+!!! カスタム 作成したソフトボディ シミュレーション
 
-* NO: The world has pillows lying around everywhere, which you can throw around and make piles of.
+* 悪い例: ゲーム世界に 枕があちこちにあり、投げて山積み出来る
 
-* YES: Your character is a pillow, there is only one of them, and the situations it will be in are somewhat predictable (It only collides with spheres and axis-aligned cubes). You can probably code something which isn't a full-featured softbody simulation, but looks really impressive and runs fast.
+* 良い例: 自身のキャラクターが枕であり、それはひとつしかなく、およびどこなのか何らか予想できる（球や軸が整列したキューブとのみ衝突）。完全な機能まではないソフトボディ シミュレーションをコーディングして、それでいて見映えが良く素早く実行させる
 
-!!! 30 enemy characters shooting at the player at once
+!!! 30 人の敵キャラクターがプレイヤーへ向けて同時に発射する
 
-* NO: Each enemy has his own skinned mesh, a separate object for his weapon, and instantiates a rigidbody-based projectile every time he fires. Each enemy takes the state of all of his compatriots into account in a complicated AI script that runs every frame.
+* 悪い例: 各々の敵は、自身のスキンメッシュがあり、武器を別のオブジェクトとして、発射する度に Rigidbody ベースの発射物をインスタンス化。毎フレームごとに実行される AI スクリプトにて各々の敵は同胞の状態を考慮する
 
-* YES: Most of the enemies are far away, and are represented by single sprites, or, the enemies are 2D and are just a couple sprites anyway. Every enemy bullet is drawn by the same particle system and simulated by a script which does only rudimentary physics. Each enemy updates his AI state twice per second according to the state of the other enemies in his sector.
+* 良い例: ほとんどの敵は遠く離れていて、ひとつのスプライトで表現、または、敵は 2D として何個かのスプライトのみからなる。敵の弾丸は同じパーティクルシステムにより描画され、原始的な物理計算により再現する。各々の敵は AI 状態をそのセクターにいる敵の状態にもとづいて 毎秒あたり2回だけ更新する。
 
-!! The how and why of script optimization
+!! スクリプト最適化の疑問について
 
-See our page on [[Main.iphone-PracticalScriptingOptimizations | Optimizing Scripts]].
+次の [[Main.iphone-PracticalScriptingOptimizations | スクリプトの最適化]] を参照して下さい。
 
 
 (:tocportion:)
