@@ -1,27 +1,27 @@
-!Understanding Automatic Memory Management
+!自動メモリ管理を理解する
 
-When an object, string or array is created, the memory required to store it is allocated from a central pool called the __heap__. When the item is no longer in use, the memory it once occupied can be reclaimed and used for something else. In the past, it was typically up to the programmer to allocate and release these blocks of heap memory explicitly with the appropriate function calls. Nowadays, runtime systems like Unity's Mono engine manage memory for you automatically. Automatic memory management requires less coding effort than explicit allocation/release and greatly reduces the potential for memory leakage (the situation where memory is allocated but never subsequently released).
-
-
-!!Value and Reference Types
-
-When a function is called, the values of its parameters are copied to an area of memory reserved for that specific call. Data types that occupy only a few bytes can be copied very quickly and easily. However, it is common for objects, strings and arrays to be much larger and it would be very inefficient if these types of data were copied on a regular basis. Fortunately, this is not necessary; the actual storage space for a large item is allocated from the heap and a small "pointer" value is used to remember its location. From then on, only the pointer need be copied during parameter passing. As long as the runtime system can locate the item identified by the pointer, a single copy of the data can be used as often as necessary.
-
-Types that are stored directly and copied during parameter passing are called value types. These include integers, floats, booleans and Unity's struct types (eg, ``Color`` and ``Vector3``). Types that are allocated on the heap and then accessed via a pointer are called reference types, since the value stored in the variable merely "refers" to the real data. Examples of reference types include objects, strings and arrays.
+オブジェクト、文字列、配列が作成されるとき、それを格納するのに必要なメモリは __ヒープ__ と呼ばれる中央集約的なプールから割り当てされます。そのアイテムがもはや使用されなくなると、占有されたメモリは何か別のもののために確保することが出来ます。過去は一般的にヒープメモリブロックを割り当てて解放することを、適切な関数コールを通じて明示的に行うことはプログラマ自身の責任でした。最近では Mono エンジンのような ランタイムシステムががメモリ管理を自動化しています。自動メモリ管理では、明示的に割り当て／リリースするよりコーディングの労力が大幅に削減され、かつメモリリーク（メモリが割り当てされたけど後続でリリースされない状況）の潜在的な可能性を著しく下げます。
 
 
-!!Allocation and Garbage Collection
+!!値型および参照型
 
-The memory manager keeps track of areas in the heap that it knows to be unused. When a new block of memory is requested (say when an object is instantiated), the manager chooses an unused area from which to allocate the block and then removes the allocated memory from the known unused space. Subsequent requests are handled the same way until there is no free area large enough to allocate the required block size. It is highly unlikely at this point that all the memory allocated from the heap is still in use. A reference item on the heap can only be accessed as long as there are still reference variables that can locate it. If all references to a memory block are gone (ie, the reference variables have been reassigned or they are local variables that are now out of scope) then the memory it occupies can safely be reallocated.
+関数がコールされると、引数の値はその特定のコールのために予約されたメモリエリアにコピーされます。数バイトを占有するデータ型は速やかに間単にコピーが出来ます。しかし、オブジェクト、文字列、配列がそれよりも大きいことは良くあることであり、もしこれらのデータ型が定期的にコピーされることは非常に非効率的です。幸いにこれは必要ありません。大きなアイテムのための実際のストレージのスペースはヒープから割り当てされ、小さな "ポインタ" 値がロケーションを覚えるために存在しています。その先は、ポインタのみがパラメータ渡しの際に必要となります。ランタイムシステムがポインタにより識別されるアイテムを見つけられるかぎり、データのひとつのコピーは何回でも使用することが出来ます。
 
-To determine which heap blocks are no longer in use, the memory manager searches through all currently active reference variables and marks the blocks they refer to as "live". At the end of the search, any space between the live blocks is considered empty by the memory manager and can be used for subsequent allocations. For obvious reasons, the process of locating and freeing up unused memory is known as garbage collection (or GC for short).
+パラメータ渡しのときに直接格納されてコピーされる型は値型と呼ばれます。これらは整数、浮動小数点数、論理型、およびUnity の構造体型（例えば、``Color`` および ``Vector3``）も含みます。ヒープに割り当てられて、ポインタを通してアクセスされる型は参照型と呼ばれ、変数に格納されている値はあくまでも実際のデータへの "参照" です。参照型の例にはオブジェクト、文字列、および配列が含まれます。
 
 
-!!Optimization
+!!メモリ割り当ておよびガーベージコレクション
 
-Garbage collection is automatic and invisible to the programmer but the collection process actually requires significant CPU time behind the scenes. When used correctly, automatic memory management will generally equal or beat manual allocation for overall performance. However, it is important for the programmer to avoid mistakes that will trigger the collector more often than necessary and introduce pauses in execution.
+メモリマネージャがヒープの中で未使用であると認識している領域をトラッキングします。新しいメモリブロックが要求されるとき（例えばオブジェクトがインスタンス化された）、マネージャはブロックを割り当てる未使用領域を選択し、未使用と認識している割り当てされたメモリを取り除きます。後続のリクエストは、要求されたブロックサイズを割り当てるために十分な空き領域がなくなるまで、同じ方法でハンドリングされます。この時点ではピープに割り当てられた全てのメモリが使用されていることは極めて稀です。ヒープ上の参照されるアイテムは、まだそれを参照できる参照変数が存在するかぎりでしか、アクセスできません。もしメモリを参照する全てのメモリブロックがなくなったとき（すなわち参照変数が再度割り当てされたか、スコープ外となったローカル変数である場合）は、占有していたメモリは安全に再割り当てできます。
 
-There are some infamous algorithms that can be GC nightmares even though they seem innocent at first sight. Repeated string concatenation is a classic example:-
+どのヒープブロックがもはや使用されていないか判断するために、メモリマネージャは全ての現在アクティブな参照変数を検索して、ブロックを "活動中" としてマーキングします。検索の最後に活動中のブロックの間の空間はメモリマネージャにより空いていると判断され、後続の割り当てで使用することが出来ます。明らかなことですが、未使用のメモリの検索および解放はガーベージコレクション、略して GC と呼ばれます。
+
+
+!!最適化
+
+ガーベージ コレクションは自動的であり、プログラマにとって目に見えませんが、コレクションプロセスは実際には裏で顕著に CPU 時間 を必要とします。正しく使用されたとき、自動メモリ管理は一般的に手動割り当てと同等またはそれ以上の全体パフォーマンスが得られます。しかし、プログラマにとって重要なことととして、コレクターを必要以上にトリガーし、実行中にポーズするとうい誤りを避けることがあります。
+
+いくつかの悪名高いアルゴリズムにより、 一見では問題ないようにみえてGC の悪夢となります。繰り返しの文字列連結は昔からある事例です:-
 
 (:code:)
 function ConcatExample(intArray: int[]) {
@@ -34,9 +34,9 @@ function ConcatExample(intArray: int[]) {
 	return line;
 }(:codeend:)
 
-The key detail here is that the new pieces don't get added to the string in place, one by one. What actually happens is that each time around the loop, the previous contents of the line variable become dead - a whole new string is allocated to contain the original piece plus the new part at the end. Since the string gets longer with increasing values of i, the amount of heap space being consumed also increases and so it is easy to use up hundreds of bytes of free heap space each time this function is called. If you need to concatenate many strings together then a much better option is the Mono library's [[http://msdn.microsoft.com/en-gb/library/system.text.stringbuilder.aspx|System.Text.StringBuilder]] class.
+ここで鍵となるポイントは、新しい部分が文字列の正しいところにひとつひとつ追加されないということです。実際にループするたびに行われることは、line 変数の前回の中身が消滅します - もとの部分に新しい部分を加えたまったく新しい文字列が格納されます。文字列は 1 づつ値が増加されるため、消費されるヒープの量もまた増加し、この関数がコールされるたびに数百バイトの空きヒープ領域を容易に占有します。もし多くの文字列を連結するとき、 Mono ライブラリの [[http://msdn.microsoft.com/en-gb/library/system.text.stringbuilder.aspx|System.Text.StringBuilder]] クラスを使用したより良い例があります。
 
-However, even repeated concatenation won't cause too much trouble unless it is called frequently, and in Unity that usually implies the frame update. Something like:-
+しかし、繰り返しの連結ですら、頻繁にコールされないかぎりそこまでの問題を引き起こしませんが、Unityでその頻繁となりうる要因は暗黙的にはフレーム更新です。次のような場合です:-
 
 (:code:)
 var scoreBoard: GUIText;
@@ -47,7 +47,7 @@ function Update() {
 	scoreBoard.text = scoreText;
 }(:codeend:)
 
-...will allocate new strings each time Update is called and generate a constant trickle of new garbage. Most of that can be saved by updating the text only when the score changes:-
+...このコードで各々の Update がコールされるたびに新しい文字列が割り当てされ、新しいガーベージがつねに生成されます。そのほとんどはスコアが変更されたときのみテキストを更新することで節約できます:-
 
 (:code:)
 var scoreBoard: GUIText;
@@ -64,7 +64,7 @@ function Update() {
 }(:codeend:)
 
 
-Another potential problem occurs when a function returns an array value:-
+もうひとつの潜在的な問題は関数が配列の値を戻すときに発生します:-
 
 (:code:)
 function RandomList(numElements: int) {
@@ -77,7 +77,7 @@ function RandomList(numElements: int) {
 	return result;
 }(:codeend:)
 
-This type of function is very elegant and convenient when creating a new array filled with values. However, if it is called repeatedly then fresh memory will be allocated each time. Since arrays can be very large, the free heap space could get used up rapidly, resulting in frequent garbage collections. One way to avoid this problem is to make use of the fact that an array is a reference type. An array passed into a function as a parameter can be modified within that function and the results will remain after the function returns. A function like the one above can often be replaced with something like:-
+この種の関数のは、値で埋められた新しい配列を作成するときに、非常にエレガントで便利です。しかし、繰り返しコールされると、真新しいメモリが毎回割り当てられます。配列は非常に大きくなりえるため、空きヒープ領域があっという間に使い切られることがあり、結果的に頻繁にガーベージコレクションが行われます。この問題を回避する方法は配列が参照型であることを活用することです。関数に引数として渡される配列はその関数の中で更新することが出来て、結果は関数が戻った後も残ります。前述のような関数は、多くの場合に次のような関数で置き換え出来ます:-
 
 (:code:)
 function RandomList(arrayToFill: float[]) {
@@ -86,15 +86,15 @@ function RandomList(arrayToFill: float[]) {
 	}
 }(:codeend:)
 
-This simply replaces the existing contents of the array with new values. Although this requires the initial allocation of the array to be done in the calling code (which looks slightly inelegant), the function will not generate any new garbage when it is called.
+これにより単に既存の配列の中身を新しい値で置き換えます。これにより初期割り当てがコールする元のコードの中で行われることが必要となるにも関わらず（ややエレガントでなくみえますが）、関数はコールされるときに新しいガーベージを生成することはなくなります。
 
 
-!!Requesting a Collection
-As mentioned above, it is best to avoid allocations as far as possible. However, given that they can't be completely eliminated, there are two main strategies you can use to minimise their intrusion into gameplay:-
+!!ガーベージ コレクション要求
+前述のとおり、できるかぎり割り当てをさけることがベストです。しかし、完全には排除できないことを考えると、ゲームプレイへの進入を防ぐには主に二つのアプローチがあります。
 
-!!!Small heap with fast and frequent garbage collection
+!!!小さなヒープで速く頻繁なガーベージコレクション
 
-This strategy is often best for games that have long periods of gameplay where a smooth framerate is the main concern. A game like this will typically allocate small blocks frequently but these blocks will be in use only briefly. The typical heap size when using this strategy on iOS is about 200KB and garbage collection will take about 5ms on an iPhone 3G. If the heap increases to 1MB, the collection will take about 7ms. It can therefore be advantageous sometimes to request a garbage collection at a regular frame interval. This will generally make collections happen more often than strictly necessary but they will be processed quickly and with minimal effect on gameplay:-
+このアプローチがベストであるのは、長期間のゲームプレイにおいて、スムーズなフレームレートを実現することが主な関心事であるゲームの場合などです。このようなゲームは一般的に小さなブロックを頻繁に割り当てしますが、これらのブロックは短期間しか使用されません。iOS でこのアプローチをとるときの典型的ななヒープサイズは 200KB ぐらいであり、iPhone 3G において 5ms ほどかかります。もしヒープが 1 MB に増加すると、コレクションは 7ms かかります。このため定期的なフレームのインターバルでガーベージコレクションを要求することにメリットがあります。厳密にはこれは一般的にコレクションを必要以上に発生させますが、素早く処理されゲームプレイへの最小の影響で済みます:-
 
 (:code:)
 if (Time.frameCount % 30 == 0)
@@ -103,40 +103,40 @@ if (Time.frameCount % 30 == 0)
 }
 (:codeend:)
 
-However, you should use this technique with caution and check the profiler statistics to make sure that it is really reducing collection time for your game.
+しかし、このテクニックは注意して使用すべきで、プロファイラ統計をチェックして、本当に自身のゲームでコレクション時間を削減していることを確認すべきです。
 
-!!!Large heap with slow but infrequent garbage collection
+!!!大きなヒープで遅いが頻繁でないガーベージコレクション
 
-This strategy works best for games where allocations (and therefore collections) are relatively infrequent and can be handled during pauses in gameplay. It is useful for the heap to be as large as possible without being so large as to get your app killed by the OS due to low system memory. However, the Mono runtime avoids expanding the heap automatically if at all possible. You can expand the heap manually by preallocating some placeholder space during startup (ie, you instantiate a "useless" object that is allocated purely for its effect on the memory manager):-
+このアプローチがベストであるのは、メモリ割り当て（ひいてはコレクション）が相対的に頻繁でなく、ゲームプレイのポーズの際にハンドリング出来ます。OS がシステムメモリ 不足のためににヒープが破棄されない範囲で、できるかぎり ヒープを大きくすることが役立ちます。しかし、 mono ランタイムはヒープを自動的に拡大することを出来るかぎりにおいて回避します。ヒープを手動で拡大するには起動のどこかでプレースホルダーを事前割り当てします（すなわち、 "無意味な" オブジェクトをインスタンス化して、メモリ管理の効果のために割り当てます）:-
 
 (:code:)
 function Start() {
 	var tmp = new System.Object[1024];
 
-	// make allocations in smaller blocks to avoid them to be treated in a special way, which is designed for large blocks
+	// 割り当ては小さなブロックにより行うことで、大きなブロックとして特別に取り扱われないようにする
         for (var i : int = 0; i < 1024; i++)
 		tmp[i] = new byte[1024];
 
-	// release reference
+	// 参照を解放
         tmp = null;
 }
 
 (:codeend:)
 
-A sufficiently large heap should not get completely filled up between those pauses in gameplay that would accommodate a collection. When such a pause occurs, you can request a collection explicitly:-
+十分に大きなヒープにより、コレクションを伴うようなポーズの間に、完全に埋まることはすべきでありません。もしポーズが生じる場合は、コレクションを明示的に要求します:-
 
 (:code:)
 [[http://msdn.microsoft.com/en-gb/library/xe0c2357.aspx|System.GC.Collect]]();
 (:codeend:)
 
-Again, you should take care when using this strategy and pay attention to the profiler statistics rather than just assuming it is having the desired effect.
+繰り返しとなりますが、このアプローチをとるときは注意すべきであり、プロファイラ統計をチェックして、思い込みでなく本当に効果が得られていることをきちんと確認すべきです。
 
-!!Reusable Object Pools
+!!再利用可能なオブジェクトプール
 
-There are many cases where you can avoid generating garbage simply by reducing the number of objects that get created and destroyed. There are certain types of objects in games, such as projectiles, which may be encountered over and over again even though only a small number will ever be in play at once. In cases like this, it is often possible to reuse objects rather than destroy old ones and replace them with new ones. 
+作成および破棄されるオブジェクトの数を削減するのみで、ガーベージを回避できる場合が良くあります。ゲームの中で、発射物のような特定のオブジェクトのように、わずかな数しか一回に必要なにもかかわらず何度も繰り返し遭遇するようなケースがあります。こういったケースでは、古いものを破棄して新しいもので置き換えるのではなく、オブジェクトを再利用することが可能です。
 
-See [[iphone-PracticalScriptingOptimizations#Object%20Pooling | here]] for more information on Object Pools and their implementation.
+オブジェクトプールとその実装についての詳細は [[iphone-PracticalScriptingOptimizations#Object%20Pooling | ここ]] を参照して下さい。
 
-!!Further Information
+!!更なる詳細
 
-Memory management is a subtle and complex subject to which a great deal of academic effort has been devoted. If you are interested in learning more about it then [[http://www.memorymanagement.org/|memorymanagement.org]] is an excellent resource, listing many publications and online articles. Further information about object pooling can be found on the [[http://en.wikipedia.org/wiki/Object_pool_pattern|Wikipedia page]] and also at [[http://sourcemaking.com/design_patterns/object_pool|Sourcemaking.com]].
+メモリ管理は巧妙で複雑なトピックであり、知識を獲得する労力も大きいものです。もし詳細を学びたい場合は [[http://www.memorymanagement.org/|memorymanagement.org]] が素晴らしい情報を抱えていて、出版物やオンラン記事が一覧になっています。オブジェクトプーリングの詳細については [[http://en.wikipedia.org/wiki/Object_pool_pattern|Wikipedia ページ]] および [[http://sourcemaking.com/design_patterns/object_pool|Sourcemaking.com]] に含まれます。
