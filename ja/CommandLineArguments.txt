@@ -1,56 +1,56 @@
-!Command line arguments
+!コマンドライン引数
 
-Typically, Unity will be launched by double-clicking its icon from the desktop but it is also possible to run it from the command line (ie, the MacOS Terminal or the Windows Command Prompt). When launched in this way, Unity can receive commands and information on startup, which can be very useful for test suites, automated builds and other production tasks.
+一般的には、Unityを起動する時はデスクトップからアイコン起動しますが、コマンドライン実行（すなわちMacOSターミナルまたはWindowsコマンドプロンプト）も可能です。こうして起動するとUnityは起動時にコマンドや情報を受け取ることが出来てテスト スイート、自動ビルド、またはその他の本番タスクに非常に役立ちます。
 
-Under MacOS, you can launch Unity from the Terminal by typing:-
+MacOSでTerminalからUnityを起動するには次の通りに入力します:-
 
 [@/Applications/Unity/Unity.app/Contents/MacOS/Unity@]
 
-...while under Windows, you should type
+... Windowsでの入力は
 
 [@"C:\Program Files (x86)\Unity\Editor\Unity.exe"@]
 
-...at the command prompt.
+...をコマンドプロンプトから行います。
 
-Standalone Unity games can be launched in a similar way.
-
-
-!!Command Line Arguments
-As mentioned above, the editor and also built games can optionally be supplied with additional commands and information on startup. This is done using the following command line arguments:-
-
-:``-batchmode``:Run Unity in batch mode. This should always be used in conjunction with the other command line arguments as it ensures no pop up windows appear and eliminates the need for any human intervention. When an exception occurs during execution of script code, asset server updates fail or other operations fail Unity will immediately exit with return code 1. Note that in batch mode, Unity will send a minimal version of its log output to the console. However, the [[Log Files]] still contain the full log information.
+スタンドアローンUnityゲームは同様の方法で起動します。
 
 
-:``-quit``:Quit the Unity editor after other commands have finished executing.  Note that this can cause error messages to be hidden (but they will show up in the Editor.log file).
+!!コマンドライン引数
+上で述べた通り、エディタに加えてビルド するゲームもスタートアップの時に追加のコマンドおよび情報をオプションとして提供出来ます。これは次のコマンドライン引数を使用して行います:-
 
-:``-buildWindowsPlayer <pathname>``:Build a standalone Windows player (eg, -buildWindowsPlayer path/to/your/build.exe).
+:``-batchmode``:バッチモードでUnityを実行。これは常に他のコマンドライン引数との組み合わせで使用すべきでポップアップウィンドウが表示され人の手が介在する必要がありません。もし例外エラーがスクリプトコード実行時に発生するか、アセットサーバの更新が失敗するか、またはその他の処理が失敗した場合にUnityは直ちに戻り値 1  で終了します。バッチモードではUnityは最小限のログ出力をコンソールに送信することに留意して下さい。しかし [[Log Files]]  には完全なログ情報が含まれます。
 
-:``-buildOSXPlayer <pathname>``:Build a standalone Mac OSX player (eg, -buildOSXPlayer path/to/your/build.app).
 
-:``-buildLinux32Player <pathname>``:Build a 32-bit standalone Linux player (eg, -buildLinux32Player path/to/your/build).
+:``-quit``:他のコマンド実行の終了後にUnityエディタを終了します。これによりエラーメッセージが隠される場合があることに留意して下さい。
 
-:``-buildLinux64Player <pathname>``:Build a 64-bit standalone Linux player (eg, -buildLinux64Player path/to/your/build).
+:``-buildWindowsPlayer <pathname>``:スタンドアローンWindowsプレイヤーをビルド（例えば、, -buildWindowsPlayer path/to/your/build.exe）。
 
-:``-importPackage <pathname>``:Import the given [[HOWTO-exportpackage | package]]. No import dialog is shown.
+:``-buildOSXPlayer <pathname>``:スタンドアローン Mac OSX player をビルド（例えば, -buildOSXPlayer path/to/your/build.app）。
 
-:``-createProject <pathname>``:Create an empty project at the given path.
+:``-buildLinux32Player <pathname>``:スタンドアローン Linux player をビルド（例えば, -buildLinux32Player path/to/your/build).
 
-:``-projectPath <pathname>``:Open the project at the given path.
+:``-buildLinux64Player <pathname>``:スタンドアロー ン64ビットLinux player をビルド（例えば, -buildLinux64Player path/to/your/build)。
 
-:``-logFile <pathname>``:Specify where the Editor or Windows standalone log file will be written.
+:``-importPackage <pathname>``:特定の [[HOWTO-exportpackage | パッケージ]] をインポート。インポートダイアログは表示されません。
 
-:``-assetServerUpdate <IP[[=:=]port] projectName username password [r <revision>]>``:Force an update of the project in the [[AssetServer | Asset Server]] given by ''IP:port''. The port is optional and if not given it is assumed to be the standard one (10733). It is advisable to use this command in conjunction with the ''-projectPath'' argument to ensure you are working with the correct project. If no project name is given then the last project opened by Unity is used. If no project exists at the path given by ''-projectPath'' then one is created automatically.
+:``-createProject <pathname>``:特定のパスに空のプロジェクトを作成。
 
-:``-exportPackage <exportAssetPath1 exportAssetPath2 ExportAssetPath3 exportFileName>``:Exports a package given a path (or set of given paths).  ``exportAssetPath`` is a folder (relative to to the Unity project root) to export from the Unity project and ``exportFileName`` is the package name. Currently, this option can only export whole folders at a time.  This command normally needs to be used with the ``-projectPath`` argument.
+:``-projectPath <pathname>``:特定のパスでプロジェクトを開く。
 
-:``-nographics (Windows only)``:When running in batch mode, do not initialize graphics device at all. This makes it possible to run your automated workflows on machines that don't even have a GPU (automated workflows only work, when you have a window in focus, otherwise you can't send simulated input commands). A standalone player generated with this option will not feature any graphics.
+:``-logFile <pathname>``:エディタまたはWindowsスタンドアローンのログファイルが書き込みされる場所を指定。
 
-:``-executeMethod <ClassName.MethodName>``:Execute the static method as soon as Unity is started, the project is open and after the optional asset server update has been performed. This can be used to do continous integration, perform Unit Tests, make builds, prepare some data, etc. If you want to return an error from the commandline process you can either throw an exception which will cause Unity to exit with 1 or else call [[ScriptRef:EditorApplication.Exit.html | EditorApplication.Exit]] with a non-zero code. If you want to pass parameters you can add them to the command line and retrieve them inside the method using System.Environment.GetCommandLineArgs. 
+:``-assetServerUpdate <IP[[=:=]port] projectName ユーザ名 パスワード [r <revision>]>``:強制的に ''IP:port'' で指定された [[AssetServer | Asset Server]] の中のプロジェクト更新を行なう。ポート情報は任意であり、ない場合は標準のポート (10733)を使用。このコマンドは ''-projectPath'' 引数と組み合わせて正しいプロジェクトで作業していることを保証したうえで使用することを推奨します。もりプロジェクト名ごない場合、Unityで最も最近開かれたファイルが使用されます。もし ''-projectPath'' にプロジェクトが存在しない場合、プロジェクトが新たに作成されます。
 
-To use @@-executeMethod@@ __you need to have a script in an Editor folder and a static function in the class__. 
+:``-exportPackage <exportAssetPath1 exportAssetPath2 ExportAssetPath3 exportFileName>``:特定のパス（または複数のパス）にエクスポート。  ``exportAssetPath`` はUnityプロジェクトからエクスポートするフォルダ（Unityプロジェクトのルートディレクトリに対する相対パス指定）であり、``exportFileName`` はパッケージの名前です。現在、このオプションはフォルダ全体の単位でしかエクスポート出来ません。通常このコマンドは ``-projectPath`` 引数を使って使用する必要があります。
+
+:``-nographics (Windows only)``:バッチモードで実行するとき、グラフィックス デバイスは一切初期化しないで下さい。これにより自動化されたワークフローをGPUがないマシンで実行出来るようになります（自動化されたワークフローは、ウィンドウにフォーカスがあるときのみ機能し、そうでない場合はシミュレートされた入力コマンドを送信出来ません）。このオプションで生成されたスタンドアローン プレイヤーはグラフィックス機能がつきません。
+
+:``-executeMethod <ClassName.MethodName>``: このstaticメソッドをUnityのスタート直後に実行、すなわちプロジェクトが開かれて、オプションにあたるasset server更新が行われた直後です。これにより継続的インテグレーション、ユニットテストの実施、ビルド作成、データ準備等々に使用出来ます。もしコマンドライン処理のエラー結果がほしい場合は、例外を投げてUnityが戻り値 1 で終了するか、  [[ScriptRef:EditorApplication.Exit.html | EditorApplication.Exit]] をコールしてゼロ以外の戻り値のコードとします。もし引数を渡したい場合コマンドラインに追加してSystem.Environment.GetCommandLineArgs を使用して取得します。
+
+@@-executeMethod@@ を使用するためには __Editorフォルダにスクリプトごありクラスにstatic関数が存在する必要があります__ 。
 
 [@
-// C# example
+// C# サンプル
 using UnityEditor;
 class MyEditorScript
 {
@@ -63,7 +63,7 @@ class MyEditorScript
 @]
 
 [@
-// JavaScript example
+// JavaScript サンプル
 static void PerformBuild ()
 {
     string[] scenes = { "Assets/MyScene.unity" };
@@ -72,9 +72,9 @@ static void PerformBuild ()
 @]
 
 
-!!! Example usage
+!!! サンプル の使用例
 
-Execute Unity in batch mode, execute @@MyEditorScript.MyMethod@@ method, and quit upon completion.
+Unityをバッチモードで実行し、@@MyEditorScript.MyMethod@@ メソッドを実行し、完了時に終了します。
 
 __Windows:__\\
 @@C:\program files\Unity\Editor>Unity.exe -quit -batchmode -executeMethod MyEditorScript.MyMethod@@
@@ -83,53 +83,53 @@ __Mac OS:__\\
 @@/Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchmode -executeMethod MyEditorScript.MyMethod@@
 
 
-Execute Unity in batch mode. Use the project path given and update from the asset server. Execute the given method after all assets have been downloaded and imported from the asset server. After the method has finished execution, automatically quit Unity.
+Unityをバッチモードで実行します。与えられたプロジェクトパスを使用してasset serverから更新します。全てのアセットがダウンロードしasset serverからインポートされた後に与えられたメソッドを実行します。メソッド実行が完了した後、Unityを自動的に終了します。
 
 @@/Applications/Unity/Unity.app/Contents/MacOS/Unity -batchmode -projectPath ~/UnityProjects/AutobuildProject -assetServerUpdate 192.168.1.1 MyGame AutobuildUser l33tpa33 -executeMethod MyEditorScript.PerformBuild -quit@@
 
 
 [[#player]]
-!! Unity Standalone Player command line arguments
+!! Unity スタンドアローン プレイヤー  コマンドライン引数
 
-Standalone players built with Unity also understand some command line arguments:
+Unityでビルドしたスタンドアローン プレイヤーはコマンドライン引数を読み取ることが出来ます:
 
-:``-batchmode``:Run the game in "headless" mode. The game will not display anything or accept user input. This is mostly useful for running servers for [[NetworkReferenceGuide | networked games]].
+:``-batchmode``:ゲームを "headless" モードで実行します。ゲームは何も表示せず、ユーザ入力を受付しません。これは[[NetworkReferenceGuide | ネットワーク ゲーム]] でのサーバ実行に最も便利です。
 
-:``-force-opengl (Windows only)``: Make the game use OpenGL for rendering, even if Direct3D is available. Normally Direct3D is used but OpenGL is used if Direct3D 9.0c is not available.
+:``-force-opengl (Windows only)``: Direct3Dが利用可能であったとしても強制的にレンダリングでOpenGLを使用するようにします。通常Direct3Dが使用されますが、Direct3D 9.0cが利用可能でない場合OpenGLが使用されます。
 
-:``-force-d3d9 (Windows only)``: Make the game use Direct3D 9 for rendering. This is the default, so normally there's no reason to pass it.
+:``-force-d3d9 (Windows only)``: 強制的にレンダリングでDirect3D 9を使用します。これはデフォルト値のため、渡す意味がありません。
 
-:``-force-d3d11 (Windows only)``: Make the game use Direct3D 11 for rendering. 
+:``-force-d3d11 (Windows only)``: 強制的にレンダリングでDirect3D 11を使用します。
 
-:``-single-instance (Linux & Windows only)``:Allow only one instance of the game to run at the time. If another instance is already running then launching it again with @@-single-instance@@ will just focus the existing one.
+:``-single-instance (Linux & Windows only)``:同時に実行出来るゲームのインスタンスはひとつのみとします。もし他のインスタンスが既に実行されている場合に、 @@-single-instance@@ を使用して再度起動すると既存のものにフォーカスがあたるのみです。
 
-:``-nolog (Windows only)``:Do not produce output log. Normally @@output_log.txt@@ is written in the @@*_Data@@ folder next to the game executable, where [[ScriptRef:Debug.Log.html | Debug.Log]] output is printed.
+:``-nolog (Windows only)``:ログ出力しない。通常は @@output_log.txt@@ が ゲーム実行可能ファイルの隣、すなわち[[ScriptRef:Debug.Log.html | Debug.Log]] が出力される @@*_Data@@ フォルダに書き込まれます。
 
-:``-force-d3d9-ref (Windows only)``:Make the game run using Direct3D's "Reference" software renderer. The [[http://msdn.microsoft.com/en-us/directx/default.aspx | DirectX SDK]] has to be installed for this to work. This is mostly useful for building automated test suites, where you want to ensure rendering is exactly the same no matter what graphics card is being used.
+:``-force-d3d9-ref (Windows only)``:強制的にDirect3Dの "Reference" ソフトウェア レンダラで実行します。正しく動作するためには [[http://msdn.microsoft.com/en-us/directx/default.aspx | DirectX SDK]] がインストールされている必要があります。自動的なテスト スイートで、グラフィックス カードにどれが使用されていてもレンダリングが同一であるようにする場合、最も役立ちます。
 
-:``-adapter N (Windows only)``:Allows the game to run full-screen on another display, where N denotes the display number.
+:``-adapter N (Windows only)``:別のディスプレイでフルスクリーン実行することを許容し、ここで N はディスプレイ番号を指します。
 
-:``-popupwindow (Windows only)``:The window will be created as a a pop-up window (without a frame).
+:``-popupwindow (Windows only)``: ウィンドウは（フレームなしの）ポップアップウィンドウとして作成されます。
 
-:``-screen-width (Linux & Windows only)``:Overrides the default screen width.  This must be an integer from a supported resolution.
+:``-screen-width (Linux および Windows のみ)``:デフォルトのスクリーン幅を上書きします。サポートされている解像度の整数である必要があります。
 
-:``-screen-height (Linux & Windows only)``: Overrides the default screen height.  This must be an integer from a supported resolution.
+:``-screen-height (Linux および Windows のみ)``:デフォルトのスクリーン高さを上書きします。サポートされている解像度の整数である必要があります。
 
-:``-screen-quality (Linux only)``: Overrides the default screen quality.  Example usage would be: @@/path/to/myGame -screen-quality Beautiful@@
-
-
-!!Editor Installer
-The following options can be used when installing the Unity Editor from command line:
+:``-screen-quality (Linux のみ)``: デフォルトのスクリーン品質を上書きします。使用例としては:
 
 
-:``/S (Windows only)``:Performs a silent (no questions asked) install.
+!!Editor インストーラ
+Unityエディタをコマンドラインからインストールする場合、次のオプションが使用出来ます:
 
-:``[=/D=PATH=] (Windows only)``:Sets the default install directory. Useful when combined with the silent install option.
+
+:``/S (Windows のみ)``:サイレント インストール（途中のダイアログなし）を行います。
+
+:``[=/D=PATH=] (Windows のみ)``:デフォルトのインストール ディレクトリをセットします。サイレント インストールと組み合わせると便利です。
 
 
-!!! Example usage
+!!! サンプル 使用例
 
-Install Unity silently to E:\Development\Unity.
+Unityをサイレントモードで E:\Development\Unityにインストール。
 
 __Windows:__\\
 @@[=UnitySetup.exe /S /D=E:\Development\Unity=]@@
