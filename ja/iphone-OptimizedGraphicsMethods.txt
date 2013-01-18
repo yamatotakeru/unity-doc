@@ -1,6 +1,6 @@
-! Practical Guide to Optimization for Mobiles - Graphics Methods
+! モバイルのための最適化実用ガイド - グラフィックス手法
 
-What are mobile devices capable of? How should you plan your game accordingly? If your game runs slow, and the profiler indicates that it's a rendering bottleneck, how do you know what to change, and how to make your game look good but still run fast? This page is dedicated to a general and non-technical exposition of the methods. If you are looking for the specifics, see the [[Main.iphone-PracticalRenderingOptimizations | Rendering Optimizations]] page.
+モバイル デバイスはどこまでが実現出来るのか。実現レベルに合わせどやってゲームのプランニングをすれば良いのか。もしゲームの実行速度が遅くてプロファイラーでレンダリングのパフォーマンスがネックだと判明した場合、何を変更すれば良いのかと、ゲームの見映えを落とさずに速くする方法をどうやって知れば良いのか。このページでは一般的かつ技術的でない手法に特化してカバーします。詳細については [[Main.iphone-PracticalRenderingOptimizations | レンダリング 最適化]] を参照して下さい。
 
 (:table width=100%:)
 (:cellnr:)
@@ -8,137 +8,137 @@ What are mobile devices capable of? How should you plan your game accordingly? I
 Attach:iphonegames2.jpg
 (:divend:)
 
-!! What you can reasonably expect to run on current consumer mobiles:
+!! コンシューマ向けモバイルで十分に期待出来ることは:
 
-* Lightmapped static geometry. But beware of:
-** Using a lot of alpha-test shaders 
-** Bumpmapping, especially using built-in shaders.
-** High polygon count
+* static ライトマップ の物体。しかし注意が必要な点としては:
+** アルファテストのシェーダを大量に使用すること
+** バンプマップの使用、特に内蔵シェーダを使用したもの
+** 高いポリゴン数
 
-* Animated characters, even with fancy shaders! But beware of:
-** Massive crowds or high-poly characters
+* アニメーションつきキャラクター、洒落たシェーダつきでも問題ない。ただし注意が必要な点としては:
+** 大量の観衆やハイポリゴン キャラクター
 
-* 2D games with sprites. But beware of:
-** Overdraw, or, lots of layers drawn on top of eachother.
+* スプライトつき2D ゲーム。ただし注意する点としては:
+** オーバードロー、または、たくさんの重なり合ったレイヤー
 
-* Particle effects. But beware of:
-** High density on large particles. (Lots of particles drawn on top of each other. This is another overdraw situation)
-** Ridiculous numbers of particles, or particle colliders.
+* パーティクル エフェクト。ただし注意する点としては:
+** 高密度で大規模なパーティクル（たくさんの重なり合ったパーティクルこれは一種のオーバードローです。）
+** 馬鹿げた数のパーティクル、またはパーティクル コライダ。
 
-* Physics. But beware of:
-** Mesh colliders.
-** Lots of active bodies.
+* 物理計算。ただし注意する点としては:
+** メッシュ  コライダ
+** たくさんのアクティブなRigidbody
 
 (:cellnr:)
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:302px;":)
 Attach:imgEffects.jpg
 (:divend:)
-!! What you CANNOT reasonably expect to run on current consumer mobiles:
+!! コンシューマ向けモバイルで十分に「期待出来ない」ことは:
 
-* Fullscreen screen image effects like glow and depth of field.
+* フルスクリーン でのイメージエフェクト、例えばグローおよびデプス オブ フィールド。
 
-* Dynamic per-pixel lighting (multiple lights marked Important and not baked into the lightmap)
-** Every affected object is drawn an additional time for every dynamic light you use, and this gets slow quickly.
+* 動的なピクセルライティング（Important とマーキングされてライトマップに焼き込みされてない複数のライト）
+** 全ての影響受けるオブジェクトは使用される動的ライト毎に追加で描画され、すぐに遅くなります。
 
-* Real time shadows on everything
-** Unity 4 offers native support for real time shadows on mobile platforms, but their use must be very judicious, and likely limited to higher-end devices.
+* 全てにつけられたリアルタイムシャドウ
+** Unity 4 はモバイル プラットフォームでリアルタイムシャドウをサポートしますが、使用は熟慮が必要でハイエンド デバイスに限定される可能性が高いです。
 
 (:cellnr:)
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:302px;":)
 Attach:ShadowGunExample.jpg
 (:divend:)
 
-!! Examples - How top-notch mobile games are made
+!! サンプル - 最高クラスのゲームはどう作成されているのか
 
 !!![[ http://www.youtube.com/watch?v=YhA0cbu1BxI | Shadowgun ]]
 
-Shadowgun is an impressive example of what can be done on current mobile hardware. But more specifically, it's a good example of what cannot be done, and how to get around the limitations. Especially because a small part of the game has been made __publicly available__ in this [[ http://blogs.unity3d.com/2012/03/23/shadowgun-optimizing-for-mobile-sample-level/ | blog post]].
+Shadowgun は現在のモバイル ハードウェアで何が出来るのかの関心させられる事例ですりより具体的には、何が出来ないことかを明確にして制限を回避する方法の見本です。ゲームのごく一部が、 [[ http://blogs.unity3d.com/2012/03/23/shadowgun-optimizing-for-mobile-sample-level/ | ブログ投稿で]] __公に提供されています。__ 
 
-Here's a basic rundown of things that Shadowgun does in order to keep performance up:
+パフォーマンスを高く維持するために、Shadowgun で行われている基本的な対応内容の一覧は次のとおりです:
 
-* Dynamic lighting - barely used.
-** Blob shadows and Lightmaps are used instead of any real shadows.
-** Lightprobes, instead of real lights, are used on their characters.
-*** Muzzle flashes added into the lightprobe data via script.
-** The only dynamic per-pixel lighting is an arbitrary light direction used to calculate a BRDF on the characters.
+* 動的ライティング - ほとんど使用されていない。
+** Blob シャドウおよび Lightmaps は一切のリアルシャドウの代わりに使用されています。
+** ライトプローブがリアルライトの代わりにキャラクターに使用されています。
+*** マズル フラッシュはライトプローブデータにスクリプト経由で追加されています。
+** 唯一の動的ピクセルライティングはキャラクターのBRDF を計算するための任意のライト方向です。
 
-* Bumpmapping - barely used.
-** Real bumpmapping only used on characters.
-** As much contrast and detail as possible is baked into the diffuse texture maps. Lighting information from bumpmaps is baked in.
-** A good example is their statue texture, or their shiny wall, as seen on the right. No bumpmaps are used to render these, the specularity is faked by baking it into the texture. Lightmapping is combined with a vertex-lighting-based specular highlight to give these models a shiny look.
-** If you want to learn how to create textures like this one, check out the [[Main.iphone-PracticalRenderingOptimizations | Rendering Optimizations page]].
+* バンプマップ - ほぼ使用されていません。
+** リアル バンプマップはキャラクターのみに使用されています。
+** コントラストおよびディテールは出来るかぎり拡散テクスチャ マップに焼き込みされています。
+** 良い事例が右側に見られる像のテクスチャ、または輝く壁です。これらをレンダリングするためにバンプマップは使われておらず反射は偽装してテクスチャに焼き込みことでます。ライトマッピングは頂点ライティング ベースの反射ハイライトと組み合わせられてこれらのモデルに輝きの見映えを生み出してます。
+** もしこのようなテクスチャの作成方法を知りたい場合は [[Main.iphone-PracticalRenderingOptimizations | レンダリング最適化ページ]] を参照して下さい。
 
-* Dense particles - avoided.
-** UV-scrolling textures used instead of dense particle effects.
+* 高密度のパーティクル - 回避。
+** 高密度のパーティクルエフェクトの代わりにUV スクロール テクスチャ。
 
-* Fog effects - avoided.
-** Their god rays are hand-modeled.
-** Single planes that fade in and out are used to achieve cinematic fog effects without actually rendering any fog.
-*** This is faster because the planes are few and far between, and it means that fog doesn't have to be calculated on every pixel and in every shader.
+* フォグ エフェクト - 回避。
+** 神からの光線は手動モデリングされています。
+** フェードイン、フェードアウトする平面を使用して実際にフォグのレンダリングすることなくシネマ風のフォグ エフェクトが得られています。
+*** 平面の数が少なく間が空いているためこの方が速く、全てのピクセルおよびシェーダで計算する必要性がないことを意味しています。
 
-* Glow - avoided.
-** Blended sprite planes are used to give the appearance of a glow on certain objects.
+* グロー - 回避。
+** ブレンドされたスプライト平面を使用して特定のオブジェクトでグローの見映えが再現されています。
 
 
 (:cellnr:)
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:302px;":)
 Attach:skycastle.jpg
 (:divend:)
-!!![[ http://video.unity3d.com/video/4991636/sky-castle-demo| Sky Castle Demo ]]
+!!![[ http://video.unity3d.com/video/4991636/sky-castle-demo| Sky Castle デモ ]]
 
-This demo was designed to show what Unity is capable of on high-end Android devices.
+このデモはハイエンドのAndroidデバイスでUnityが出来ることを確認することを確認する目的で作られてます。
 
-* Dynamic lighting - not used.
-** Lightmaps only.
+* 動的ライティング - 未使用。ら
+** ライトマップのみ。
 
-* Bumpmapping - used
-** The bricks are all bumpmapped, lit by directional lightmaps. This is where the "high-end devices" part comes into play.
+* バンプマップ - 使用。
+** レンガは全てバンプマップつきで、指向性ライトによりライティングされています。ここで "ハイエンドデバイス" が活躍します。
 
-* Real time reflections - limited.
-** They carefully placed their real-time reflecting surfaces separately and in isolated areas, so that only one runs at a time, and the environment that needs to be rendered twice can be easily culled.
-
+* リアルタイム反射 - 限定的。
+** 隔離された別々の場所に慎重にリアルタイム反射を配置し、同時にひとつのみが実行されるようにして、2回レンダリングすべき環境を簡単にカリング出来るようにしています。
 
 (:cellnr:)
-!! Bottom line - What this means for your game
+!! 結論 - 自身のゲームにとって何を意味するか
 
-The more you respect and understand the limitations of the mobile devices, the better your game will look, and the smoother it will perform. If you want to make a high-class game for mobile, you will benefit from understanding Unity's graphics pipeline and being able to write your own shaders. But if you want something to grab to use right away, ShadowGun's shaders, available [[ http://blogs.unity3d.com/2012/03/23/shadowgun-optimizing-for-mobile-sample-level/ | here]], are a good place to start.
+モバイル デバイスの制限を尊重して理解するほど、ゲームの見映えは良くなり、スムーズに動作します。モバイル向けにハイクラスのゲームを作成したい場合、Unityのグラフィックス パイプラインを理解し、自身のシェーダを書くことが出来ることが役立ちます。しかし、すぐに使用出来るものを使いたい場合、ShadowGunのシェーダが [[ http://blogs.unity3d.com/2012/03/23/shadowgun-optimizing-for-mobile-sample-level/ | ここ]] でが利用可能で、良いスタート地点です。
 
-!!! Don't Simulate It, Bake It !
+!!! シミュレーションせず、焼き込みせよDon't Simulate It, Bake It !
 
-There is no question that games attempt to follow the laws of nature. The movement of every parabolic projectile and the color of every pixel of shiny chrome is derived by formulas first written to mimic observations of the real world. But a game is one part scientific simulation and one part painting. You can't compete in the mobile market with physically accurate rendering; the hardware simply isn't there yet, if you try to imitate the real world all the way, your game will end up limited, drab, and laggy.
+ゲームご自然の法則に従うことは疑いがありません、放物線状の発射物の動きおよびクロムのひとつひとつのピクセルの輝きは最初に現実世界の場面を模倣することで計算式が導かれています。しかしゲームはある面で科学的なシミュレーションで、ある面でお絵描きです。モバイル マーケットで正確な物理計算でレンダリングするのでは競争出来ません。ハードウェアが単純にそこまで行っていないので、もし現実世界をどこまでも模倣するとゲームは制限つきで冴えない、遅いものになります。
 
-You have to pick up your polygons and your blend modes like they're paintbrushes. 
+ポリゴンやブレンド モードを見直してペイントブラシとして扱う必要があります。
 
-The [[Main.iphone-PracticalRenderingOptimizations | baked bumpmaps]] shown in [[ http://www.youtube.com/watch?v=YhA0cbu1BxI | Shadowgun ]] are great examples of this. There are specular highlights already in the texture - the human eye doesn't notice that they don't actually line up with the reflected light and view directions - they are simply high-contrast details on the texture, completely faked, yet they end up looking great. This is a common cheating technique which has been used in many successful games. Compare the visor in [[http://en.wikipedia.org/wiki/File:First_official_halo_screenshot.jpg | the first Halo screenshot ever released]] with the visor from this [[http://halo.wikia.com/wiki/File:MJOLNIR_Armor.jpg | release screenshot]]. It appears that the armor protrusions from the top of the helmet are reflected in the visor, but the reflection is actually baked into the visor texture. In League of Legends, [[http://www.youtube.com/watch?v=TQSLPO8LEhY&t=0m34s | a spell effect]] appears to have a pixel-light attached to it, but it actually is a blended plane with a texture that was probably generated by taking a screenshot of a pixel light shining on the ground.
+[ http://www.youtube.com/watch?v=YhA0cbu1BxI | Shadowgun ]] で見られる [[Main.iphone-PracticalRenderingOptimizations | 焼き込みされたバンプマップ]] ではこの素晴らしい事例です。テクスチャには既に反射ハイライトが含まれています - 人の目では反射光とビュー方向が一致してないことに気付きません - 単にテクスチャについたコントラストのディテールで、偽装のものですが、それでも素晴らしい結果になっています。これは良くあるチートのテクニックでいくつもの成功したゲームで使用されてきました。
+[[http://en.wikipedia.org/wiki/File:First_official_halo_screenshot.jpg | 初代のリリースされたHaloのスクリーンショット]] のバイザー [[http://halo.wikia.com/wiki/File:MJOLNIR_Armor.jpg | このリリースにおけるスクリーンショット]] のバイザーと比較してみて 下さい。アーマーの突起がバイザーに反射しているように見えますが、実際にはバイザーのテクスチャに焼き込みされています。League of Legends では [[http://www.youtube.com/watch?v=TQSLPO8LEhY&t=0m34s | 魔法のエフェクト]] はピクセルライトごついているように見えますが実際には焼き込みされた平面で、地面に照らされたピクセルライトのスクリーンショットをとったものと思われます。
 
-!!!What works well:
+!!!良く機能するもの:
 
-* Lightmapped static geometry
-** Dramatic lighting and largely dynamic environments don't mix. Pick one or the other.
+* ライトマッピングされたstaticな物体
+** ドラマチックなライティングと大規模な動的ライティング環境はミックスしません。どちらか片方を選びます。
 
-* Lightprobes for moving objects
-** Current mobile hardware is not really cut out for lots of dynamic lights, and it can't do shadows. Lightprobes are a really neat solution for complex game worlds with static lighting.
+* 動くオブジェクトでライトプローブLightprobes for moving objects
+** 現在のモバイル ハードウェアは多くの動的ライト向けに作られておらず、シャドウは対応していません。ライトプローブはstaticライティングつきで複雑なゲーム世界を実現する優れたソリューションです。
 
-* Specialized shaders and detailed, high-contrast textures
-** The shaders in ShadowGun minimize per-pixel calculations and exploit complex and high-quality textures. See our [[Main.iphone-PracticalRenderingOptimizations | Rendering Optimizations]] page for information on how to make textures that look great even when the shader is simple.
+* 特別なシェーダおよび、ディテールがあり、高コントラストのテクスチャ
+** ShadowGunのシェーダはピクセル毎の計算を最小化し、複雑で高品質なテクスチャを利用します。 [[Main.iphone-PracticalRenderingOptimizations | レンダリング最適化]] ページを参照して、シンプルなシェーダでもテクスチャが素晴らしく見えるための方法を確認して下さい。
 
-* Cartoon Graphics
-** Who says your game has to look like a photo? If you make lighting and atmosphere the responsibility of the texture artist, not the engine, you hardly even have to worry about optimizing rendering.
+* カートゥーン （漫画風）グラフィックス
+** 写真のようなゲームでないといけないことはありません。もしライティングおよび環境をエンジンではなくてテクスチャ アーティストの責任とすると、レンダリングの最適化につえち悩むことさえありません。
 
-!!!What does not work:
+!!!あまり機能しないもの:
 
-* Glow and other Post processing effects
-** Approximate such effects when possible by using blended quads, check out the Shadowgun project for an example of this.
+* グロー および その他のポストプロセッシング エフェクト
+** ブレンドした四角形を使用してそのようなエフェクトを出来るかぎり近似して下さい。この事例としては Shadowgun プロジェクトを確認して下さい。
 
-* Bumpmapping, especially with the built-in shaders
-** Use it sparingly, only on the most important characters or objects. Anything that can take up the whole screen probably shouldn't be bumpmapped. 
-** Instead of using bump maps, bake more detail and contrast into the diffuse texture. The effect from League of Legends is an interesting example of this being used successfully in the industry.
+* バンプマッピング、特に内蔵シェーダ
+** 大事に使用し、もっとも重要なキャラクターまたはオブジェクトのみとします。スクーン全体を占有することが出来るものはバンプマップすべきではありません。
+** バンプマップを使用する代わりに、ディテールおよびコントラストを拡散テクスチャに焼き込みます。League of Legends におけるエフェクトは業界において正しく活用されている興味深い事例です。
 
 (:tableend:)
 
-!!! But how do I actually ''do'' it?
+!!! それでは具体的には ''どうすれば'' 良いのか
 
-See our [[Main.iphone-PracticalRenderingOptimizations | Rendering Optimizations]] page.
+詳細については [[Main.iphone-PracticalRenderingOptimizations | レンダリング最適化]] を参照して下さい。
 
 (:tocportion:)
 
