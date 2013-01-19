@@ -82,7 +82,7 @@ function ChooseSet(numRequired: int) {
 	var numToChoose = numRequired;
 	
 	for (numLeft = spawnPoints.Length; numLeft > 0; numLeft--) {
-		// Adding 0.0 is simply to cast the integers to float for the division.
+		// 0.0 を足す理由は割り算のために integer を float に型キャストするため
 		var prob = numToChoose + 0.0 / numLeft + 0.0;
 		
 		if (Random.value <= prob) {
