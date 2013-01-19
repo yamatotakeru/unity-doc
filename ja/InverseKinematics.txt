@@ -59,7 +59,6 @@ public class IKCtrl : MonoBehaviour {
 			}
 
                         //IKがアクティブでないならば、位置や回転を元の場所に設定を戻します。
-                        if the IK is not active, set the position and rotation of the hand back to the original position
 			else {			
 				animator.SetIKPositionWeight(AvatarIKGoal.RightHand,0);
 				animator.SetIKRotationWeight(AvatarIKGoal.RightHand,0);				
