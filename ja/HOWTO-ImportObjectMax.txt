@@ -5,7 +5,7 @@
 !! Unity は現在、3ds Max から以下のものをインポートします。Saving a Max file or exporting a generic 3D file type each has advantages and disadvantages see [[class-Mesh|class-Mesh]]
 
 # 位置、回転、スケールのあるすべてのノード。 回転軸および名前もインポートされます。
-# 頂点色のあるメッシュ、法線および [[#twouvs | two UV sets]]。
+# 頂点色のあるメッシュ、法線および [[#twouvs | two UV sets]] 。
 # ディフューズ色とテクスチャのあるマテリアル。 メッシュごとの複数のマテリアル。
 # アニメーション
 # [[#bones | Bone based animations]].
@@ -49,7 +49,7 @@ Unity に 3ds Max からメッシュやアニメーションのあるボーン�
 [[#twouvs]]
 !! Lightmapping への 2 つの UV セットのエクスポート
 
-3ds Max の Render To Texture および自動アンラッピング機能を使用して、ライト マップを作成できます。 Unity には組み込み [[Lightmapping | lightmapper]]がありますが、それがワークフローにより適する場合は、3dsmax を使用する方がよい場合があります。 通常、1 つの UV セットを、メイン テクスチャおよび/または法線マップに使用され、別の UV セットが、ライトマップ テクスチャに使用されます。 両方の UV セットが適切に動作するには、3ds Max のマテリアルは、標準である必要があり、デフューズ (メイン テクスチャの場合) およびセルフ イルミネーション (ライトマップの場合) の両方のマップ スロットを設定する必要があります。
+3ds Max の Render To Texture および自動アンラッピング機能を使用して、ライト マップを作成できます。 Unity には組み込み [[Lightmapping | lightmapper]] がありますが、それがワークフローにより適する場合は、3dsmax を使用する方がよい場合があります。 通常、1 つの UV セットを、メイン テクスチャおよび/または法線マップに使用され、別の UV セットが、ライトマップ テクスチャに使用されます。 両方の UV セットが適切に動作するには、3ds Max のマテリアルは、標準である必要があり、デフューズ (メイン テクスチャの場合) およびセルフ イルミネーション (ライトマップの場合) の両方のマップ スロットを設定する必要があります。
 
 Attach:3dsMaxLightmapMaterial.png
 「セルフ イルミネーション マップを使用した 3ds Max での Lightmapping に設定されたマテリアル」
