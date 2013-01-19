@@ -1,61 +1,60 @@
-! �v���V�[�W���� �}�e���A��
+! プロシージャル マテリアル
 
-Unity �� $$Procedural Materials$$ �ƌĂ΂��V�����A�Z�b�g�̎�ނ𓱓����Ă��܂��B�����͖{���I�ɕW���I�ȃ}�e���A���Ɠ����ł����A����炪�g�p����e�N�X�`���́A���O�ɒ�`����Ċi�[�����̂ł͂Ȃ��A���s���ɐ������邱�Ƃ��ł��܂��B
+Unity は $$Procedural Materials$$ と呼ばれる新しいアセットの種類を導入しています。これらは本質的に標準的なマテリアルと同じですが、それらが使用するテクスチャは、事前に定義されて格納されるのではなく、実行時に生成することができます。
 
-�e�N�X�`�����v���V�[�W�����ɐ�������X�N���v�g�R�[�h�͈�ʓI�ɃX�g���[�W��Ŏg�p����e�ʂ�]���ʂ��r�b�g�}�b�v�摜��菬�����A���̂��߃v���V�[�W���� �}�e���A���̓_�E�����[�h���Ԃ�ߖ�ł��܂��B����ɁA�����X�N���v�g�̓}�e���A���̎��s���̌��h���̃v���p�e�B�ɕ����������邽�߂̃p�����[�^���������邱�Ƃ��ł��܂��B�����̃v���p�e�B�̓J���[�̃o���G�[�V��������ǂ̃u���b�N�̃T�C�Y�܂Ŏ�ނ�����܂��B����͂ЂƂ̃v���V�[�W���� �}�e���A�� ���瑽���̃o���G�[�V�����������ł��邱�Ƃ��Ӗ����邾���łȂ��}�e���A�����t���[�����Ƃ̒P�ʂŃA�j���[�V�����ł���Ƃ����Ӗ��ł��B�����̋����[�����o���ʂ������ł��܂� - �Ⴆ�΃L�����N�^�[�����X�ɐ΂ɕς������A���_���\�ʂɐG��ď�����u�Ԃ�n�����Ă݂Ă��������B
+テクスチャをプロシージャルに生成するスクリプトコードは一般的にストレージ上で使用する容量や転送量がビットマップ画像より小さく、このためプロシージャル マテリアルはダウンロード時間を節約できます。さらに、生成スクリプトはマテリアルの実行時の見栄えのプロパティに幅を持たせるためのパラメータを持たせることができます。これらのプロパティはカラーのバリエーションから壁のブロックのサイズまで種類があります。これはひとつのプロシージャル マテリアル から多くのバリエーションが生成できることを意味するだけでなくマテリアルをフレームごとの単位でアニメーションできるという意味です。多くの興味深い視覚効果が実現できます - 例えばキャラクターが徐々に石に変わったり、硫酸が表面に触れて傷つける瞬間を創造してみてください。
 
-Unity �̃v���V�[�W���� �}�e���A�� �V�X�e���́A [[http://www.allegorithmic.com/|Allegorithmic]] �ɂ���ĊJ�����ꂽ�A Substance�ƌĂ΂��ƊE�W���̏��i�ɂ��ƂÂ��Ă��܂��B
-
-
-!!�T�|�[�g����Ă���v���b�g�t�H�[��
-
-Unity�ł̓v���V�[�W���� �}�e���A���̓X�^���h�A���[�������WebPlayer�r���h�����̃^�[�Q�b�g�iWindows ����� Mac OS X�j�Ŋ��S�ɃT�|�[�g����Ă��܂��B���̂��ׂẴv���b�g�t�H�[���ł́AUnity �� ���O�����_�����O�܂��͒ʏ�̃}�e���A���ւ� ''�Ă�����'' ���r���h�̍ۂɍs���܂��B����͎��s���̃v���V�[�W���������̒�����ł������ɂ��ւ�炸�A�G�f�B�^��Ŋ�{�I�ȃ}�e���A���̃o���G�[�V�������쐬����ɂ͕֗��ł��B
+Unity のプロシージャル マテリアル システムは、 [[http://www.allegorithmic.com/|Allegorithmic]] によって開発された、 Substanceと呼ばれる業界標準の商品にもとづいています。
 
 
-!!�v���W�F�N�g�Ƀv���V�[�W���� �}�e���A����ǉ�����
+!!サポートされているプラットフォーム
 
-�v���V�[�W���� �}�e���A���� Substance Archive �t�@�C�� (SBSAR) �Ƃ��Ē񋟂���Ă��āA���̃A�Z�b�g���l�ɃC���|�[�g�ł��܂��iAssets �t�H���_�ɒ��ڃh���b�O���h���b�v���邩�A�܂��́A^^Assets->Import New Asset...^^ ���g�p���܂��j�BSubstance Archive �A�Z�b�g�͂ЂƂȏ�� �v���V�[�W�����}�e���A�� ���܂݁A����ɂ��ꂪ�K�v�Ƃ���S�ẴX�N���v�g����щ摜���܂݂܂��B�R���p�C������ĂȂ� SBS �t�@�C���͖��T�|�[�g�ł��B
-
-�ʂɎ�������Ă���ɂ��ւ�炸�AUnity �͑��̃}�e���A���Ɠ��l�Ƀv���V�[�W���� �}�e���A������舵���܂��B�Ⴆ�΃v���V�[�W�����}�e���A�������b�V���Ɋ��蓖�Ă�ɂ́A���̃}�e���A���Ɠ��l�Ƀ��b�V����Ƀh���b�O���h���b�v����݂̂ł��B
+Unityではプロシージャル マテリアルはスタンドアローンおよびWebPlayerビルド向けのターゲット（Windows および Mac OS X）で完全にサポートされています。他のすべてのプラットフォームでは、Unity は 事前レンダリングまたは通常のマテリアルへの ''焼きこみ'' をビルドの際に行います。これは実行時のプロシージャル生成の長所を打ち消すにも関わらず、エディタ上で基本的なマテリアルのバリエーションを作成するには便利です。
 
 
-!!�v���V�[�W���� �v���p�e�B
+!!プロジェクトにプロシージャル マテリアルを追加する
 
-�e�X�̃v���V�[�W���� �}�e���A���́A����̃}�e���A���̎�ނ𐶐�����J�X�^���X�N���v�g�ł��B�����̃X�N���v�g��Unity�X�N���v�g�Ƌ��ʂ��Ă���̂́A�C���X�y�N�^��ɕϐ������J���āA�A�N�Z�X���邱�Ƃ��ł��邱�Ƃł��B���Ƃ��΁A"�����K�̕�" �v���V�[�W���� �}�e���A���ɂ���� �v���p�e�B�����J���āA�����K�̗�̐��A�����K�̐F�A�����^���̐F�ȂǃZ�b�g���邱�Ƃ��o���܂��B���ݓI�ɂ́A�ЂƂ̃A�Z�b�g���疳���Ƀ}�e���A���̃o���G�[�V�������쐬�ł��邱�ƂɂȂ�܂��B�����̃v���p�e�B�́AMonoBehaviour �X�N���v�g�̃p�u���b�N�ϐ��Ɠ��l�ɁA���s���ɃX�N���v�g����Z�b�g���邱�Ƃ��o���܂��B
+プロシージャル マテリアルは Substance Archive ファイル (SBSAR) として提供されていて、他のアセット同様にインポートできます（Assets フォルダに直接ドラッグ＆ドロップするか、または、^^Assets->Import New Asset...^^ を使用します）。Substance Archive アセットはひとつ以上の プロシージャルマテリアル を含み、さらにこれが必要とする全てのスクリプトおよび画像を含みます。コンパイルされてない SBS ファイルは未サポートです。
 
-����Ƀv���V�[�W���� �}�e���A���͕��G�ȃe�N�X�`�� �A�j���[�V��������舵�����Ƃ��o���܂��B�Ⴆ�΁A���v�̐j�܂��͏��𔇂��S�L�u�����A�j���[�V�����ł��܂��B
+別に実装されているにも関わらず、Unity は他のマテリアルと同様にプロシージャル マテリアルを取り扱います。例えばプロシージャルマテリアルをメッシュに割り当てるには、他のマテリアルと同様にメッシュ上にドラッグ＆ドロップするのみです。
+
+
+!!プロシージャル プロパティ
+
+各々のプロシージャル マテリアルは、特定のマテリアルの種類を生成するカスタムスクリプトです。これらのスクリプトがUnityスクリプトと共通しているのは、インスペクタ上に変数を公開して、アクセスすることができることです。たとえば、"レンガの壁" プロシージャル マテリアルによって プロパティを公開して、レンガの列の数、レンガの色、モルタルの色などセットすることが出来ます。潜在的には、ひとつのアセットから無限にマテリアルのバリエーションが作成できることになります。これらのプロパティは、MonoBehaviour スクリプトのパブリック変数と同様に、実行時にスクリプトからセットすることが出来ます。
+
+さらにプロシージャル マテリアルは複雑なテクスチャ アニメーションを取り扱うことが出来ます。例えば、時計の針または床を這うゴキブリをアニメーションできます。
 
 Attach:SubstanceCockroach.png
 
 
-!!�[������v���V�[�W�����}�e���A�����쐬
+!!ゼロからプロシージャルマテリアルを作成
 
-�v���V�[�W�����}�e���A���̓v���V�[�W�����ɐ������ꂽ�e�N�X�`������ъi�[���ꂽ�r�b�v�}�b�v�̔C�ӂ̑g�ݍ��킹�œ��삵�܂��B����ɁA�܂܂��r�b�g�}�b�v�摜�͎g�p�O�Ƀt�B���^�����O����яC�����o���܂��B�W���I�ȃ}�e���A���ƈقȂ��āA�v���V�[�W���� �}�e���A���͉𑜓x�Ɉˑ����Ȃ��e�N�X�`���Ƃ��āASVG�t�@�C���̌`���Ńx�N�g���摜���g�p�ł��܂��B
-�[������v���V�[�W�����}�e���A�����쐬���邽�߂ɗ��p�\�ȃf�U�C�� �c�[�� �̓A�[�e�B�X�g�̎g�p����c�[���Ɠ��l�� ���o�I�ŁA�m�[�h�x�[�X�̕ҏW���o���܂��B����ɂ��R�[�f�B���O���قƂ�ǁA�܂��͑S���o���̂Ȃ��A�[�e�B�X�g�ł��쐬���\�ƂȂ�܂��B��Ƃ��āAAllegorithmic �� Substance Designer �ɂ�� "�����K�̕�" �̃v���V�[�W���� �}�e���A���쐬���̃X�N���[���V���b�g�������܂��B
+プロシージャルマテリアルはプロシージャルに生成されたテクスチャおよび格納されたビップマップの任意の組み合わせで動作します。さらに、含まれるビットマップ画像は使用前にフィルタリングおよび修正が出来ます。標準的なマテリアルと異なって、プロシージャル マテリアルは解像度に依存しないテクスチャとして、SVGファイルの形式でベクトル画像を使用できます。
+ゼロからプロシージャルマテリアルを作成するために利用可能なデザイン ツール はアーティストの使用するツールと同様に 視覚的で、ノードベースの編集が出来ます。これによりコーディングがほとんど、または全く経験のないアーティストでも作成が可能となります。例として、Allegorithmic の Substance Designer により "レンガの壁" のプロシージャル マテリアル作成中のスクリーンショットを示します。
 
 Attach:SubstanceDesigner.png
 
 
-!!�v���V�[�W���� �}�e���A���̎擾
+!!プロシージャル マテリアルの取得
 
-Unity �̃v���V�[�W���� �}�e���A�����ƊE�W���� Substance ���i�Ɋ�Â��Ă��邽�߁A �v���V�[�W���� �}�e���A�� �A�Z�b�g�̓C���^�[�l�b�g��̏�񂩂�A���Ȃ킿 Unity �̃A�Z�b�g�X�g�A���܂߂āA�������ɗ��p�\�ł��BAllegorithmic �� Substance Designer ���g�p���ăv���V�[�W���� �}�e���A�� ���쐬�ł��܂����ASubstance �e�N�m���W�[����舵�����̃A�v���P�[�V�����i�Ⴆ�� 3D ���f�����O�A�v���P�[�V�����j������A���l��Unity �Ɛe�a��������܂��B
-
-
-!! �p�t�H�[�}���X����эœK��
-
-�v���V�[�W���� �}�e���A���̓r�b�g�}�b�v�摜�������Ȃ��e�ʂ��g�p����
-Procedural Materials inherently tend to use less storage than bitmap images. However, the trade-off is that they are based around scripts and running those scripts to generate materials requires some CPU and GPU resources. The more complex your Procedural Materials are, the greater their runtime overhead.
-
-Procedural Materials support a form of caching whereby the material is only updated if its parameters have changed since it was last generated. Further to this, some materials may have many properties that could theoretically be changed and yet only a few will ever need to change at runtime. In such cases, you can inform Unity about the variables that will not change to help it cache as much data as possible from the previous generation of the material. This will often improve performance significantly.
-
-->Procedural Materials can refer to hidden, system-wide, variables, such as elapsed time or number of Procedural Material instances (this data can be useful for animations). Changes in the values of these variables can still force a Procedural Material to update even if none of the explicitly defined parameters change.
-
-Procedural Materials can also be used purely as a convenience in the editor (ie, you can generate a standard Material by setting the parameters of a Procedural Material and then "baking" it). This will remove the runtime overhead of material generation but naturally, the baked materials can't be changed or animated during gameplay.
+Unity のプロシージャル マテリアルが業界標準の Substance 製品に基づいているため、 プロシージャル マテリアル アセットはインターネット上の情報から、すなわち Unity のアセットストアを含めて、ただちに利用可能です。Allegorithmic の Substance Designer を使用してプロシージャル マテリアル を作成できますが、Substance テクノロジーを取り扱う他のアプリケーション（例えば 3D モデリングアプリケーション）があり、同様にUnity と親和性があります。
 
 
-!!Using the Substance Player to Analyze Performance
+!! パフォーマンスおよび最適化
 
-Since the complexity of a Procedural Material can affect runtime performance, Allegorithmic incorporates profiling features in its ''Substance Player'' tool. This tool is available to download for free from [[http://www.allegorithmic.com/|Allegorithmic's website]].
+プロシージャル マテリアルは本質的にビットマップ画像よりも少ない容量を使用する傾向があります。しかし、トレードオフとして、スクリプトにもとづいていて、そのマテリアルを生成するスクリプトの実行は CPU および GPU リソースを消費します。プロシージャル マテリアルが複雑であるほど、実行時のオーバーヘッドが大きくなります。
 
-Substance Player uses the same optimized rendering engine as the one integrated into Unity, so its rendering measurement is more representative of performance in Unity than that of Substance Designer.
+プロシージャル マテリアルはキャッシングの一種をサポートし、マテリアルはもし最後生成されたとき以降に変更されていれば、そのパラメータを更新します。さらに、いくつかのマテリアルは理論的には変更できるいくつかのプロパティがあり、実際には実行時に変更する必要性があるのはわずかはです。そういった場合、 Unity に更新されない変数を伝えて、前回のマテリアル生成のデータを出来るかぎりキャッシュさせるようにすることが出来ます。一般的にこれによってパフォーマンスは著しく改善されます。
+
+->プロシージャル マテリアルは隠れた、システム全体に渡った変数、例えば経過時間またはプロシージャル マテリアルの数など（このデータはアニメーションに便利）、を参照することが出来ます。これらの変数の値の変更により、たとえ明示的に定義されたパラメータのうちひとつも変更されていない場合も、強制的にプロシージャル マテリアルが更新される場合があります。
+
+プロシージャル マテリアルはエディタでの便利機能として純粋に使用できます（すなわち、プロシージャル マテリアルのパラメータをセットして、 "焼き込む" ことにより標準マテリアルを生成できます）。これによりマテリアル生成の実行時オーバーヘッドを取り除きますが、当然ながら焼き込みされたマテリアルはゲームプレイの際は変更やアニメーションが出来ません。
+
+
+!! サブスタンス プレイヤーを使用したパフォーマンスの分析
+
+プロシージャル マテリアルの複雑さにより実行時パフォーマンスが影響されることがあるため、Allegorithmic 社は ''Substance Player'' ツールの中でプロファイリング機能を提供しています。このツールは無料で [[http://www.allegorithmic.com/|Allegorithmic ウェブサイト]] よりダウンロード出来ます。
+
+サブスタンス プレイヤーは Unity に統合されている最適化されたレンダリング エンジンと同等のエンジンを使用するため、レンダリングの測定は Substance Designer よりも Unity でのパフォーマンスを正しく表現します。
 
