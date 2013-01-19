@@ -15,19 +15,19 @@ __回答__: いいえ、しかしUnity iOSは最新のSDKを使用している�
 !!! タッチスクリーンおよび加速度計で作業するにはどうしたら良いですか？
 __回答__: Unity iOSをインストールした際のスクリプティング リファレンスのの中で、アプリをビルドするうえで必要なデバイス機能をフックするクラスを見つけることが出来ます。 詳細については [[Input#Input | システム入力のページ]] を参照下さい。
 
-!!! My existing particle systems seem to run very slowly on iOS.  What should I do?
-__回答__: iOS has relatively low fillrate. If your particles cover a rather large portion of the screen with multiple layers, it will kill iOS performance even with the simplest shader. We suggest baking your particle effects into a series of textures off-line. Then, at run-time, you can use 1-2 particles to display them via animated textures. You can get fairly decent looking effects with a minimum amount of overdraw this way.
+!!! 既存のパーティクルシステムが iOS で非常に遅く実行されるようです。どうすれば良いですか？
+__回答__: iOS のフィルレートは比較的遅いものです。もしパーティクルが画面の大きな割合を占めてマルチレイヤーつきであると、簡単なシェーダでも iOS パフォーマンスに致命的です。推奨としては、パーティクルエフェクトをオフラインでテクスチャのセットに焼き込みをして下さい。次に、ランタイムにおいて、1 - 2 パーティクルをしようしてアニメーションつきテクスチャで表示します。最小限のオーバードローにより比較的優れたエフェクトが得られます。
 
-!!! Can I make a game that uses heavy physics?
-__回答__:  Physics can be expensive on iOS is it requires a lot of floating point number crunching. You should completely avoid MeshColliders if at all possible, but they can be used if they are really necessary. To improve performance, use a low fixed framerate using ^^Edit->Time->Fixed Delta Time^^. A framerate of 10-30 is recommended. Enable rigidbody interpolation to achieve smooth motion while using low physics frame rates. In order to achieve completely fluid framerate without oscillations, it is best to pick fixed @@deltaTime@@ value based on the average framerate your game is getting on iOS. Either 1:1 or half the frame rate is recommended. For example, if you get 30 fps, you should use 15 or 30 fps for fixed frame rate (0.033 or 0.066)
+!!! 重い物理計算のあるゲームを作れますか？
+__回答__:  iOS では物理計算は、たくさんの浮動小数点に対する計算の高速処理が必要であるため、高価です。可能ならばメッシュ コライダは完全に避けて、どうしても絶対に必要という場合のみ使用します。パフォーマンスを改善するために、 ^^Edit->Time->Fixed Delta Time^^ を使用して低い固定のフレームレートを使用します。フレームレートの設定は 10 - 30 を推奨します。Rigidbody 補間を使用してスムーズな動作と低い物理計算のフレームレートを両立します。安定した完全に滑らかなフレームレートを得るには、iOS 上で実際に得られている平均的なフレームレートにあった、固定の @@deltaTime@@ を選ぶことがベストです。1:1 またはフレームレートの半分が推奨されます。例えば、 30 fps が得られた場合、 15 または 30 fps の固定フレームレートとなるようにすべきです（0.033 または 0.066）。
 
-!!!Can I access the gallery, music library or the native iPod player in Unity iOS?
-__回答__: Yes - if you implement it. Unity iPhone supports the native plugin system, where you can add any feature you need -- including access to Gallery, Music library, iPod Player and any other feature that the iOS SDK exposes. Unity iOS does not provide an API for accessing the listed features through Unity scripts.
+!!! Unity iOSからフォトアルバム、ミュージック ライブラリ、またはネイティブ iPod プレイヤーにアクセスできますか？
+__回答__: はい - 自身で実装すれば出来ます。 Unity iPhone はネイティブ プラグイン システムをサポートし、必要な機能を追加できます -- フォトアルバム、ミュージック ライブラリ、iPod プレイヤー、または iOS SDK が公開しているその他の機能を含みます。ここまで列挙した機能をアクセスするにあたり、Unity iOS での Unity スクリプトを通じた APIはありません。
 
 
-!! UnityGUI Considerations
-!!! What kind of performance impact will UnityGUI make on my games?
-__回答__: UnityGUI is fairly expensive when many controls are used.  It is ideal to limit your use of UnityGUI to game menus or very minimal GUI Controls while your game is running.  It is important to note that every object with a script containing an @@OnGUI()@@ call will require additional processor time -- even if it is an empty @@OnGUI()@@ block.  It is best to disable any scripts that have an @@OnGUI()@@ call if the GUI Controls are not being used.  You can do this by marking the script as @@enabled = false@@.
+!! UnityGUI 考慮事項
+!!! UnityGUI によりどのようなパフォーマンス影響がゲームにありますか？
+__回答__: UnityGUI は多くのコントロールが使用されているとき比較的高価です。理想的には UnityGUI の使用をゲームメニュー またはゲーム実行中においては極めて最小限の GUI コントロールに限定します。 @@OnGUI()@@ コールを含むスクリプトのある全てのオブジェクトは、追加の処理時間を要することに留意して下さい -- たとえ @@OnGUI()@@ が空であったとしてもです。GUI コントロールが使用されていない @@OnGUI()@@ コールのあるスクリプトは無効化するのがベストです。これはスクリプトで @@enabled = false@@ とマーキングすることで対応できます。
 
-!!! Any other tips for using UnityGUI?
-__回答__: Try using GUILayout as little as possible. If you are not using GUILayout at all from one @@OnGUI()@@ call, you can disable all GUILayout rendering using @@MonoBehaviour.useGUILayout = false;@@ This doubles GUI rendering performance. Finally, use as few GUI elements while rendering 3D scenes as possible.
+!!! Unity GUI を使用するテクニックはありますか？
+__回答__: GUILayout は出来るかぎり最小限に使用して下さい。ひとつの @@OnGUI()@@ コールで GUILayout を全く使用していない場合、全ての GUILayout を無効化するのに @@MonoBehaviour.useGUILayout = false;@@ を使用できます。これにより GUI レンダリング パフォーマンスが倍増します。最後に、3D シーンにおける GUI 要素は出来る限り最小限に使用して下さい。
