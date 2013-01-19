@@ -1,15 +1,11 @@
-! Features currently not supported by Unity Android
 ! Unity Android が現在サポートしていない機能
 
 !! グラフィックス
-
 * 非正方形テクスチャは、ETC 形式によりサポートされていません。
 * ムービーテクスチャはサポートされていないため、フルスクリーンのストリーミングプレイバックを代わりに使用して下さい。詳細については [[Main.VideoFiles | ムービープレイバックのページ]] を参照して下さい。
 
 !! スクリプティング
-
 * ``OnMouseEnter``, ``OnMouseOver``, ``OnMouseExit``, ``OnMouseDown``, ``OnMouseUp``, and ``OnMouseDrag`` events are not supported on Android. 
 * ''OnMouseEnter''、''OnMouseOver''、''OnMouseExit''、''OnMouseDown''、''OnMouseUp''、および''OnMouseDrag''イベントはAndroidでサポートされていません。 
-イベントはサポートされていません。 
 * ダック タイピングなどの動的機能はサポートされていません。 コンパイラに動的機能をエラーとして報告させる場合は、スクリプトに #pragma strict を使用します。
 * ''WWW''クラスを介したビデオ ストリーミングはサポートされていません。
