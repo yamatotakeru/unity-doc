@@ -10,7 +10,7 @@ Attach:MecanimAnimClipLoopingRed.png
 Attach:MecanimAnimClipLoopingGreen.png
 ``Loop Pose``が適切に適合してるクリップの範囲
 
-``Loop Match`` インジケータが緑であれば、（例えば）``Loop Pose`` ｄもポーズのループは画像の乱れがなくなります。
+``Loop Match`` インジケータが緑であれば、（例えば）``Loop Pose`` もポーズのループは画像の乱れがなくなります。
 
 クリップのオプションの詳細については [[class-AnimationClip|アニメーションクリップ]] を参照下さい。\\
 ([[MecanimAnimationSystem|メカニム紹介]] に戻る)
