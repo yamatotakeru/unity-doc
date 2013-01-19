@@ -13,9 +13,9 @@ Attach:HOWTO-SplashScreen1.png
 >><<
 !iOS!
 >>ios<<
-[[ MobileCustomizeSplashScreen | Customising IOS device Splash Screens]]
+[[ MobileCustomizeSplashScreen | iOS デバイス スプラッシュ画面のカスタマイズ]]
 >><<
 !Android!
 >>android<<
-[[ MobileCustomizeSplashScreen | Customising Android device Splash Screens]]
+[[ MobileCustomizeSplashScreen | Android デバイス スプラッシュ画面のカスタマイズ]]
 >><<
