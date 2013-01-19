@@ -1,6 +1,6 @@
 !サンプル: Stage をアクセス
 
-[[http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Stage.html | Flash Stage] を C#/JavaScript スクリプトから次の方法でアクセス出来ます:
+[[http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Stage.html | Flash Stage]] を C#/JavaScript スクリプトから次の方法でアクセス出来ます:
 
 [@
 ActionScript.Import("com.unity.UnityNative"); 
