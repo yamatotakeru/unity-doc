@@ -7,8 +7,7 @@
 (:table width=100%:)
 (:cellnr:)
 
-!!![[http://en.wikipedia.org/wiki/IPhone#Model_comparison | iPhone モデル
-]] 
+!!![[http://en.wikipedia.org/wiki/IPhone#Model_comparison | iPhone モデル]] 
 
 
 !!! オリジナル iPhone
@@ -215,39 +214,39 @@ iPhone/iPad グラフィックス プロセッシング ユニット (GPU) は�
 
 GPUのフレームバッファはタイルに分割され、かつレンダリングはタイルごとに行われます。最初に、フレーム全体での三角形は集積されてタイルに割り当てられます。次に表示されている三角形のフラグメントが選ばれます。最後に、選ばれた三角形フラグメントはラスタライザに渡されます（三角形フラグメントはカメラからオクルージョンされたものはこのステージで排除されます）。
 
-言い換えると、iPhone/iPad GPUは $$Hidden Surface Removal$$ （隠面消去）でコストを削減します。そのようなアーキテクチャはより少ないメモリ帯域の消費、使用電力を節約し、テクスチャ キャッシュ バッファをより良く活用します。タイルベースの Deferred Rendering によりデバイスがオクルージョンされたフラグメントを実際のラスタライゼーションの前に排除し、Overdrawを低く抑えます。
+言い換えると、iPhone/iPad GPUは $$Hidden Surface Removal$$ （隠面消去）でコストを削減します。そのようなアーキテクチャはより少ないメモリ帯域の消費、使用電力を節約し、テクスチャ キャッシュ バッファをより良く活用します。タイルベースの Deferred Rendering によりデバイスがオクルージョンされたフラグメントを実際のラスタライゼーションの前に排除し、オーバードローを低く抑えます。
 
-For more information see also:-
+詳細については次も参照して下さい:-
 * [[http://www.imgtec.com/factsheets/SDK/PowerVR%20Technology%20Overview.1.0.2e.External.pdf | POWERVR MBX Technology Overview]]
 * [[http://developer.apple.com/iphone/library/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/OpenGLESPlatforms/OpenGLESPlatforms.html#//apple_ref/doc/uid/TP40008793-CH106-SW1 | Apple Notes on iPhone/iPad GPU and OpenGL ES]]
 * [[http://developer.apple.com/library/ios/#documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Performance/Performance.html | Apple Performance Advices for OpenGL ES in General]]
 * [[http://developer.apple.com/library/ios/#documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/BestPracticesforShaders/BestPracticesforShaders.html | Apple Performance Advices for OpenGL ES Shaders]]
 
-!!! MBX series
+!!! MBX シリーズ
 
-Older devices such as the original iPhone, iPhone 3G and iPod Touch 1st and 2nd Generation are equipped with the $$MBX$$ series of GPUs. The MBX series supports only $$OpenGL ES1.1$$, the fixed function Transform/Lighting pipeline and two textures per fragment.
+オリジナル iPhone、iPhone 3GS、および iPod Touch 第1世代および第2世代 は $$MBX$$ シリーズの GPU を備えています。MBX シリーズは $$OpenGL ES1.1$$ 、固定関数 Transform/Lighting パイプライン、およびフラグメントごとに2つのテクスチャのみをサポートしています。
 
-!!! SGX series
+!!! SGX シリーズ
 
-Starting with the iPhone 3GS, newer devices are equipped with the $$SGX$$ series of GPUs. The SGX series features support for the $$OpenGL ES2.0$$ rendering API and vertex and pixel shaders. The Fixed-function pipeline is not supported natively on such GPUs, but instead is emulated by generating vertex and pixel shaders with analogous functionality on the fly.
+iPhone 3GS 以降の新しいデバイスでは $$SGX$$ シリーズのGPU を備えています。SGX  シリーズは $$OpenGL ES2.0$$ レンダリングAPI 、頂点シェーダ、およびピクセル シェーダをサポートしています。固定関数パイプラインはそのような GPU でネイティブサポートされていませんが、その代わりに 頂点シェーダおよびピクセル シェーダにより同等の機能をその場でエミュレートします。
 
-The SGX series fully supports MultiSample anti-aliasing.
-
-
-!!! Texture Compression
-
-The only texture compression format supported by iOS is $$PVRTC$$. PVRTC provides support for RGB and RGBA (color information plus an alpha channel) texture formats and can compress a single pixel to two or four bits.
-
-The PVRTC format is essential to reduce the memory footprint and to reduce consumption of memory bandwidth (ie, the rate at which data can be read from memory, which is usually very limited on mobile devices).
+SGX シリーズは完全にマルチサンプル アンチエイリアスをサポートします。
 
 
-!!! Vertex Processing Unit
-The iPhone/iPad has a dedicated unit responsible for vertex processing which runs calculations in parallel with rasterization. In order to achieve better parallelization, the iPhone/iPad processes vertices one frame ahead of the rasterizer.
+!!! テクスチャ圧縮
+
+iOS で唯一サポートされているテクスチャ圧縮は $$PVRTC$$ です。 PVRTC は RGB および RGBA （カラー情報に加えてアルファチャンネル）テクスチャ形式をサポートし、ひとつのピクセルを 2 または 4 バイトに圧縮できます。
+
+PVRTC 形式はメモリ使用量を削減すること、メモリ帯域幅（すなわち、データがメモリから読み込みできるレート。通常はモバイルデバイスで非常に制限されている）の消費を抑えることのために重要です。
 
 
-!! Unified Memory Architecture
-Both the CPU and GPU on the iPhone/iPad share the same memory. The advantage is that you don't need to worry about running out of video memory for your textures (unless, of course, you run out of main memory too). The disadvantage is that you share the same memory bandwidth for gameplay and graphics. The more memory bandwidth you dedicate to graphics, the less you will have for gameplay and physics.
+!!! 頂点処理ユニット
+iPhone/iPad には、頂点処理専用でラスタライゼーションと並行で計算を行う、のユニットがあります。より良い並行処理を得るために、iPhone/iPad はラスタライザーより 1 フレーム先に頂点処理をします。
 
 
-!! Multimedia CoProcessing Unit
-The iPhone/iPad main CPU is equipped with a powerful SIMD (Single Instruction, Multiple Data) coprocessor supporting either the $$VFP$$ or the $$NEON$$ architecture. The Unity iOS run-time takes advantage of these units for multiple tasks such as calculating skinned mesh transformations, geometry batching, audio processing and other calculation-intensive operations.
+!! 統合メモリアーキテクチャ
+ Phone/iPadCPU および GPU は同じメモリを共有します。長所はテクスチャのビデオメモリ不足を気にする必要がないことです（もちろんメインメモリを使い切らないかぎり）。短所はゲームプレイおよびグラフィックスで同じメモリ帯域幅を共有することです。メモリ帯域幅をグラフィックスで占有するほど、ゲームプレイや物理計算で使用できる量は減ります。
+
+
+!! マルチメディア コプロセッシング ユニット
+iPhone/iPad メイン CPU は強力な SIMD (Single Instruction, Multiple Data) コプロセッサを備えていて、 $$VFP$$ または $$NEON$$ アーキテクチャのいずれかを採用しています。Unity iOS ランタイムはこれらのユニットを、スキンメッシュの変換、ジオメトリ バッチング、音声処理、、およびその他計算負荷の大きい演算など、複数のタスクで活用します。
