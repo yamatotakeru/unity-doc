@@ -8,8 +8,7 @@ Unity RemoteはAppStoreから無料でダウンロード出来ます。もし自
 
 !! Unity Remoteはどうビルドするか
 
-初めにプロジェクトのソースコードを
- [[http://unity3d.com/support/resources/unity-extensions/unity-remote| ここ]] からダウンローして希望の場所に解凍します。 ZipファイルにはUnity Remoteをビルドしてデバイス上にインストールするためのXCodeプロジェクトが含まれています。
+初めにプロジェクトのソースコードを [[http://unity3d.com/support/resources/unity-extensions/unity-remote| ここ]] からダウンローして希望の場所に解凍します。 ZipファイルにはUnity Remoteをビルドしてデバイス上にインストールするためのXCodeプロジェクトが含まれています。
 
 既にプロビジョニング プロファイルを作成してiOSのビルドをデバイスにインストールしたしていれば、後はUnityRemote.xcodeprojのXcodeプロジェクトを開くだけです。一回XCodeを起動した後は "Build and Go"  をクリックしてiOSデバイスにアプリをインストールします。もしアプリケーションをビルドして実行したことがない場合、Appleのサンプルを先にビルドしてみてXCodeおよびiOSに慣れておくことを推奨します。
 
