@@ -1,7 +1,7 @@
 !Transform
 
-$$Transform$$ �͑S�Ă� $$GameObject$$ �Ō��ɂȂ� $$Component$$ �ł��B����ɂ��Q�[���I�u�W�F�N�g���ǂ��Ɉʒu���Ă��邩�A��]���ǂ��Ȃ��Ă��邩�A�傫�����ǂ��Ȃ��Ă��邩�𖾎����܂��BTransform �Ȃ��̃Q�[���I�u�W�F�N�g���쐬���邱�Ƃ͏o���܂���B�S�ẴQ�[���I�u�W�F�N�g��Transform�� $$Scene View$$ �A $$Inspector$$ �A�܂��̓X�N���v�e�B���O��ʂ��Ēl�̒��������邱�Ƃ��o���܂��B
+$$Transform$$ は全ての $$GameObject$$ で鍵になる $$Component$$ です。これによりゲームオブジェクトがどこに位置しているか、回転がどうなっているか、大きさがどうなっているかを明示します。Transform なしのゲームオブジェクトを作成することは出来ません。全てのゲームオブジェクトのTransformは $$Scene View$$ 、 $$Inspector$$ 、またはスクリプティングを通して値の調整をすることが出来ます。
 
-�c��̕��ʂ� [[class-Transform|Transform �R���|�[�l���g ���t�@�����X]] �y�[�W�ɂ�������e�ł��B
+残りの文面は [[class-Transform|Transform コンポーネント リファレンス]] ページにおける内容です。
 
 (:include class-Transform:)
