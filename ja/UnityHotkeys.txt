@@ -1,4 +1,4 @@
-このページでは、Unityのデフォルトショートカットキーの概要を説明します。PDFで一覧を確認したい場合は、[[Attach:Unity_HotKeys_Win.pdf|Windows]] and [[Attach:Unity_HotKeys_Mac.pdf|MacOSX]]からダウンロードできます。。キーの一部に”CTRL/CMD"とある場合は、WindowsではばControlキーをMacOSXならばCommandキーを使用します。
+このページでは、Unityのデフォルトショートカットキーの概要を説明します。PDFで一覧を確認したい場合は、[[Attach:Unity_HotKeys_Win.pdf|Windows]] および [[Attach:Unity_HotKeys_Mac.pdf|MacOSX]] からダウンロードできます。。キーの一部に”CTRL/CMD"とある場合は、WindowsではばControlキーをMacOSXならばCommandキーを使用します。
 
 ||width=30%
 ||__Tool__||
