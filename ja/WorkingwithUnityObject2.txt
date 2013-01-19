@@ -1,92 +1,92 @@
-!Working with UnityObject2
+!UnityObject2の働き
 
-__Please note that ``UnityObject2`` should be used in all new deployments [[WorkingwithUnityObject|UnityObject]], as UnityObject is now deprecated__.
+__``UnityObject2`` はこれからの開発に使用されるべきで [[WorkingwithUnityObject|UnityObject]] のようなUnityObjectは廃止になることに注意して下さい__.
 
-$$UnityObject2$$ is a JavaScript script that simplifies Unity content embedding into HTML and allows you to customize the install process. Having a custom install UI that matches your game and website, will create a more engaging and pleasurable experience for the end-user. It has functions to detect the Unity $$Web Player$$ plugin, initiate Web Player installation and embed Unity content. Although it's possible to deploy ``UnityObject2.js`` file on the web server alongside the HTML file it's best to load it directly from the Unity server at ``[=http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js=]``. That way you will always reference the most up to date version of UnityObject2. Please note that the ``UnityObject2.js`` file hosted on the Unity server is minified to make it smaller and save traffic. If you want to explore the source code you can find the original file in the ``Data\Resources`` folder on Windows and the ``Contents/Resources`` folder on Mac OS X.  UnityObject2 by defaults sends anonymous data to GoogleAnalytics which is used to help us identify installation type and conversion rate. UnityObject2 depends on jQuery.
+
+$$UnityObject2$$ はシンプルにUnityのコンテンツをHTMLに埋め込んだりインストルのプロセスをカスタマイズすることが出来るJavascriptです。 あなたのゲームやウェブサイトに適するインストールUIを作成することは、エンドユーザーにとって魅力的であり、楽しい経験をもたらすことでしょう。このUnity $$Web Player$$ プラグインはWeb Playerインストールの開始と埋め込まれたUnityコンテンツの検出を行う関数を持っています。 HTMLファイルと一緒に ``UnityObject2.js`` ファイルをWebサーバー上にアップロードすることも可能ですが、Unityが提供している``[=http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js=]`` から読み込ませるのが最善の方法です。そうすることで常に最新のUnityObject2を使用することができます。 Unityのサーバー上にある ``UnityObject2.js`` はトラフィックを節約するためにminifyされています。 ソースコードを見たい場合はWindowsであれば ``Data\Resources`` フォルダの中に、Mac OS Xであれば ``Contents/Resources`` フォルダの中にあります。  UnityObject2はデフォルトでインストールタイプの識別やコンバーション率などのデータをGoogleAnalyticsへ送信しています。UnityObject2 はjQueryに依存しています。
 
 
 [[#constructor]]
-!!Constructor
-You will need to create a new instance of the unityObject2 for each Unity content present on the page.
+!!コンストラクタ
+Webページ上に存在する各Unityコンテンツに対してunityObject2のインスタンスを生成する必要があります。
 
-''Parameters:''
+''パラメータ:''
 
-* ``configuration`` - A object containing the configuration for this instance. Those are the available members:
-** ``width`` - Default: 100%, Width of Unity content. Can be specified in pixel values (i.e. 600, "450") or in percentage values (i.e. "50%", "100%"). Note that percentage values are relative to the parent element.
-** ``height`` - Default: 100%, Height of Unity content. Can be specified in pixel values (i.e. 600, "450") or in percentage values (i.e. "50%", "100%"). Note that percentage values are relative to the parent element.
-** ``fullInstall`` - Default: false, Installs the full Web Player if not available. Normally only a small part of the Web Player is installed and the remaining files are automatically downloaded later.
-** ``enableJava`` - Default: true, Enables Java based installation. Some platforms doesn't support this feature.
-** ``enableClickOnce`` - Default: true, Enables ClickOnce based installation. Only works on Internet Explorer browsers.
-** ``enableUnityAnalytics`` - Default: true, Notifies Unity about Web Player installation. This doesn't do anything if the Web Player is already installed.
-** ``enableGoogleAnalytics`` -Default: true, Notifies Unity about Web Player installation using Google Analytics. This doesn't do anything if the Web Player is already installed.
-** ``params`` - Default: {}, Extra parameters to be used when embedding the Player. Those are usefull to customize the Unity experience:
-*** ``backgroundcolor`` -  Default: "FFFFFF", The background color of the web player content display region during loading, the default is white. $$Pro Only$$
-*** ``bordercolor`` - Default: "FFFFFF",  The color of the one pixel border drawn around the web player content display region during loading. $$Pro Only$$
-*** ``textcolor`` - Default: "000000", The color of error message text (when data file fails to load for example). $$Pro Only$$
-*** ``logoimage`` - Default: unity Logo, The path to a custom logo image, the logo image is drawn centered within the web player content display region during loading. $$Pro Only$$
-*** ``progressbarimage`` - The path to a custom image used as the progress bar during loading. The progress bar image's width is clipped based on the amount of file loading completed, therefore it starts with a zero pixel width and animates to its original width when the loading is complete. The progress bar is drawn beneath the logo image. $$Pro Only$$
-*** ``progressframeimage`` - The path to a custom image used to frame the progress bar during loading. $$Pro Only$$
-*** ``disableContextMenu`` - This parameter controls whether or not the Unity Web Player displays a context menu when the user right- or control-clicks on the content. Setting it to true prevents the context menu from appearing and allows content to utilize right-mouse behavior. To enable the context menu don't include this parameter.
-*** ``disableExternalCall`` - This parameter controls whether or not the Unity Web Player allows content to communicate with browser-based JavaScript. Setting it to true prevents browser communication and so content cannot call or execute JavaScript in the browser, the default is false.
-*** ``disableFullscreen`` - This parameter controls whether or not the Unity Web Player allows content to be viewed in fullscreen mode. Setting it to true prevents fullscreen viewing and removes the "Go Fullscreen" entry from the context menu, the default is false.
-** ``attributes`` - Default: {}, Object containing list of attributes. These will be added to underlying ``<object>`` or ``<embed>`` tag depending on the browser.
-** ``debugLevel`` - Default: 0, Enables/Disables logging, useful when developing to be able to see the progress on the browser console. Set it greater to 0 to enable.
+* ``configuration`` - このインスタンスは設定が含まれているオブジェクトです。 以下は利用できるメンバー:
+** ``width`` - デフォルトは100%,Unityコンテンツの幅。 ピクセル単位で指定することができます。 (i.e. 600, "450")。 またパーセント単位でも可能です。 (i.e. "50%", "100%")。 パーセント指定は親要素の影響を受けることに注意して下さい。
+** ``height`` - デフォルトは100%, Unityコンテンツの高さ。 ピクセル単位で指定することができます。 (i.e. 600, "450")またパーセント単位でも可能です。 (i.e. "50%", "100%")。 パーセント指定は親要素の影響を受けることに注意して下さい。
+** ``fullInstall`` - デフォルトはfalse。 利用できない場合は完全なWeb Playerをインストールします. 通常は起動に必要な最小のものだけインストールされ、残りは後で自動的にダウンロードされます。
+** ``enableJava`` - デフォルトはtrue。Javaベースのインストールを有効にします。一部のプラットフォームではこの機能はサポートしていません。
+** ``enableClickOnce`` - デフォルトはtrue。 ClickOnceベースのインストールを有効にします。Internet Explorerのみ動作します。
+** ``enableUnityAnalytics`` - デフォルトはtrue。 Web Playerがインストールされたことについて通知を行います。 これは既にUnity Web Playerがインストールされている場合は動作しません。
+** ``enableGoogleAnalytics`` - デフォルトはtrue。 Web PlayerがインストールされたことについてGoogle Analyticsを使用して通知を行います。 これは既にUnity Web Playerがインストールされている場合は動作しません。
+** ``params`` - デフォルトは{}。Playerを埋め込むときに使用される追加のパラメータ。 Unityの経験からカスタマイズしたら便利だと思えるものが実装されています:
+*** ``backgroundcolor`` -  デフォルトは"FFFFFF"。Web Playerコンテンツのロード中の背景を変更します。デフォルトは白です。 $$Pro Only$$
+*** ``bordercolor`` - デフォルトは"FFFFFF"。Web Playerコンテンツのロード中の枠を1ピクセル分変更します。デフォルトは白です。$$Pro Only$$
+*** ``textcolor`` - デフォルトは"000000", エラーメッセージの色を経高します (例えばデータファイルの読み込みが失敗した時). $$Pro Only$$
+*** ``logoimage`` - デフォルトはUnityのロゴ。 カスタマイズされたロゴイメージのパスを設定します。 このロゴ画像はWeb Playerコンテンツのロード中でコンテンツの中央に表示されます。 $$Pro Only$$
+*** ``progressbarimage`` - Web Playerコンテンツロード中のプログレスバーを画像を使用して描画します。カスタマイズされた画像のパスを設定します。このプログレスバーの画像はロードが完了した時の幅をベースとし切り取られて使用されます。従って初めは幅を0ピクセルから開始し、ロードが完了した時実際の画像の幅になります。 プログレスバーはロゴ画像の下に描画されます。 $$Pro Only$$
+*** ``progressframeimage`` - Web Playerコンテンツのロード中のプログレスバーのフレームをカスタマイズされた画像を使用して描画します。カスタマイズされた画像のパスを設定します。 $$Pro Only$$
+*** ``disableContextMenu`` - 右クリックやControlクリックした時のUnity Web Playerのコンテキストメニューを表示するかどうかを制御することができます。 trueにすることでコンテキストメニューは表示されず、ゲーム内で右クリックを使用することが可能になります。コンテキストメニューを有効にするにはこのパラメータを含めないようにして下さい
+*** ``disableExternalCall`` - Unity Web PlayerとブラウザベースのJavascriptとの通信を許可するかどうかを設定します。 trueにするとブラウザとの通信を防ぐのでJavascriptの実行やコンテントを呼び出すことはできません。デフォルトはfalseです。
+*** ``disableFullscreen`` - Unity Web Playerのフルスクリーンを許可するかを設定します。trueに設定するとフルスクリーンにすることは出来ず、コンテキストメニューからも"Go Fullscreen"からフルスクリーンにすることはできません。デフォルトはfalseです。
+** ``attributes`` - デフォルトは{}。 ObjectにAttributeを含ませるリストです。 これは ``<object>`` や ``<embed>`` タグの為にブラウザごとにつけることができます。
+** ``debugLevel`` - デフォルトは0。ブラウザコンソールに進捗状況を確認することが出来るようにログを出力するかどうかを有効/無効にします。これは開発の際に便利です。有効にするには0より大きな値を設定します。
 
-''Notes'':
-All color values provided must be 6-digit hexidecimal colors, (eg. FFFFFF, 020F16, etc.). The image paths provided can be either relative or absolute links and all image files must be RGB (without transparency) or RGBA (with transparency) 8-bit/channel PNG files. Finally, the progressframeimage and the progressbarimage should be the same height.
+''注意'':
+全ての色は16進数の色で指定しなければいけません。 (eg. FFFFFF, 020F16, etc.)。 画像のパスは相対パスまたは絶対パスを指定することができます。また画像のファイルはRGB(透過なし)またはRGBA(透過)の8bit/channelのPNGファイルでなければいけません。最後に、progressframeimageとprogressbarimageの高さが同じでなければいけません。
 
-!!Functions
+!!関数
 
-!!!observeProgress
-You can register a callback that will receive notifications during the plugin installation and/or initialization.
+!!!進捗の観察
+プラグインのインストール、かつ/または初期化の際に通知を受け取るコールバックを登録することができます。
 
-''Parameters:''
+''パラメータ:''
 
-* ``callback`` - Callback function that will receive information about the plugin installation/initialization. This callback will receive an ``progress`` object.
-** ``progress`` - It contains information about the current step of the plugin installation/initialization.
-*** ``pluginStatus`` - Will contain a string identifying the plugin status, can be one of those:
-**** ``unsupported``` - The current Browser/OS is not supported
-**** ``missing`` - Supported platform, but the plugin haven't be installed yet.
-**** ``installed`` - The plugin have finished installing, or was already installed.
-**** ``first`` - called after the plugin have been installed at the first frame of the game is played (This will not be called if the plugin was already installed previously)
-*** ``targetEl`` - The DOM Element serving as a container for the webplayer (This is the same element you pass to UnityObject2.initPlugin)
-*** ``bestMethod`` - If the plugin is missing will contain the best installation path for the current platform, can be one of the following strings:
-**** ``JavaInstall`` - It will use our "One Click" Java Applet to install the plugin
-**** ``ClickOnceIE`` - It will use Internet Explorer's Click Once install
-**** ``Manual`` - It will ask the user to download a file and install it manually.
-*** ``unityObj``- A reference to the previously created unityObject2 instance responsible for this callback
-*** ``ua`` - Contains some User Agent information used to decide the pluginStatus and bestMethod.
+* ``callback`` - プラグインのインストール/初期化に関する情報を得るためのコールバック関数です。このコールバックは``progress``を受け取るオブジェクトです。
+** ``progress`` - インストール/初期化の現在の進捗状況に関する情報が含まれています。
+*** ``pluginStatus`` - プラグインの状態を識別する文字列が含まれています。その文字列は以下の通りです:
+**** ``unsupported``` - 現在のBrowser/OSはサポートしていません。
+**** ``missing`` - サポートしていますが、まだプラグインがインストールされていません。
+**** ``installed`` - プラグインがインストール中、または既にインストールされています。
+**** ``first`` - プラグインがインストールされた後、ゲームの最初のフレームが再生されました。 (既にプラグインがインストールされていた場合は呼び出されません)
+*** ``targetEl`` - WebPlayerのコンテナとして機能するDOM要素 (これはUnityObject2.initPluginに渡すのと同じ要素です)
+*** ``bestMethod`` -現在のプラットフォームに最適なインストールパスが含まれています。プラグインがmissingの場合は次のいずれかの文字列を指定できます。
+**** ``JavaInstall`` - これはプラグインをインストールするためにJavaAppletの"One Click"を実行します。
+**** ``ClickOnceIE`` - これはInternet Explorer'sのClickOnceインストールを実行します。
+**** ``Manual`` - インストールをユーザーが手動で行うためにユーザーがダウンロードするのを要求します。
+*** ``unityObj``- このコールバックを呼び出す以前に生成されたUnityObject2の参照
+*** ``ua`` -  pluginStatusとbestMethodを決定するために使用されるユーザーエージェント情報が含まれています。
 
 [[#initPlugin]]
 !!!initPlugin
-This will actually try to start up your game. And call the callback you previously registered at the appropriated moments. Note that 
+実際にゲームを起動しようとします。そして、事前に登録したコールバックを呼び出します。注意して下さい。 
 
-''Parameters:''
-* ``containerElement`` - The DOM Element serving as a container for the webplayer
-* ``gameURL`` - URL to the web player data file (.unity3d). Can be relative or absolute.
+''パラメータ:''
+* ``containerElement`` - Web Playerのコンテナとして機能するDOM要素です。
+* ``gameURL`` - Web Playerのデータファイル(.unity3d)のURL。相対パスと絶対パスを利用することができます。
 
-''Notes'':
-This function should be called after the containerElement is present on the DOM, to be safe, you could wait for the DOM to load completely before calling it.
-
+''注意'':
+この関数はcontainerElementがDOMに存在した後に呼び出す必要があります。安全のために、DOMが完全にロードするまで待つことができます。
 !!!installPlugin
-Tries to install the plugin using the specified ``method``. If no method is passed, it will try to use this.getBestInstallMethod().
+指定された方法 ``method`` でプラグインをインストールします。もし方法が指定されなかった時、this.getBestInstallMethod()を呼び出して使用します。
 
-''Parameters:''
-* ``method`` - Default: this.``getBestInstallMethod``(). A string specifying which method to use for installation. It can be one of the following values: JavaInstall, ClickOnceIE, Manual.
+''パラメータ:''
+* ``method`` - デフォルトは ``getBestInstallMethod``(). インストール方法を文字列で指定します。 文字列は以下の値をサポートしています。: JavaInstall, ClickOnceIE, Manual.
 
-''Notes'':
-Not all methods are available in every platform/browser. Manual will download an exe/dmg installer and the user will need to perform a manual installation.
+''注意'':
+全てのメソッドは全てのプラットフォーム/ブラウザで利用可能なわけではありません。 Manualはexe/dmgファイルがダウンロードされユーザーが手動でインストールする必要があります。
 
 
 !!!getUnity
-This will return a reference to the player, so you can Call SendMessage from it for instance.
+これはPlayerの参照を返します。ですのでSendMessageを呼び出すことができます。
 
-''Notes'':
-Will return null if the WebPlayer has not been initialized yet.
+''注意'':
+WebPlayerがまだ初期化されていない場合はnullを返します。
 
 
-''Example:''
-This exemplifies a very simple UnityObject2 usage. If the user already has the plugin installed, the WebPlayer will load normally, otherwise it will reveal a hidden @@div.missing@@ and attach a click event to the install button. After installation is succeeded, the screen is hidden, and the webplayer is loaded normally.
+''例:''
+この例は非常に簡単なUnityObject2の使い方です。もし既にユーザーがプラグインをインストールしていたらWebPlayerが正常にロードされ、それ以外の場合は隠されていた @@div.missing@@ が表示され、インストールボタンが表示されます。 インストールが成功した後、WebPlayerは正常にロードされます。
 [@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -110,7 +110,7 @@ This exemplifies a very simple UnityObject2 usage. If the user already has the p
 					showUnsupported();
 				break;
 				case "broken":
-					alert("You will need to restart your browser after installation.");
+					alert("インストール後にブラウザを再起動する必要があります。");
 				break;
 				case "missing":
 					$missingScreen.find("a").click(function (e) {
@@ -141,7 +141,7 @@ This exemplifies a very simple UnityObject2 usage. If the user already has the p
 			<div id="unityPlayer">
 				<div class="missing">
 					<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
-						<img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+						<img alt="Unity Web Playerを今すぐインストール！" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
 					</a>
 				</div>
 			</div>
