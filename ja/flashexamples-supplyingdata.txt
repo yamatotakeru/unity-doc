@@ -1,8 +1,8 @@
-!ƒTƒ“ƒvƒ‹: ƒf[ƒ^‚ð Flash ‚©‚ç Unity ‚É’ñ‹Ÿ
+!ã‚µãƒ³ãƒ—ãƒ«: ãƒ‡ãƒ¼ã‚¿ã‚’ Flash ã‹ã‚‰ Unity ã«æä¾›
 
-Flash‚©‚çUnity‚Éƒf[ƒ^‚ð’ñ‹Ÿ‚µ‚½‚¢ê‡AŽŸ‚ÌŽí—Þ‚ªƒTƒ|[ƒg‚³‚ê‚Ü‚·B‚³‚ç‚Éƒf[ƒ^‚ð•\Œ»‚·‚éƒNƒ‰ƒX‚ðì¬‚·‚é‚±‚Æ‚ào—ˆ‚Ü‚· (ˆê’v‚·‚é C# or JavaScript ŽÀ‘•‚ð’ñ‹Ÿ‚·‚é‚±‚Æ‚É‚æ‚Á‚ÄB)
+Flashã‹ã‚‰Unityã«ãƒ‡ãƒ¼ã‚¿ã‚’æä¾›ã—ãŸã„å ´åˆã€æ¬¡ã®ç¨®é¡žãŒã‚µãƒãƒ¼ãƒˆã•ã‚Œã¾ã™ã€‚ã•ã‚‰ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¡¨ç¾ã™ã‚‹ã‚¯ãƒ©ã‚¹ã‚’ä½œæˆã™ã‚‹ã“ã¨ã‚‚å‡ºæ¥ã¾ã™ (ä¸€è‡´ã™ã‚‹ C# or JavaScript å®Ÿè£…ã‚’æä¾›ã™ã‚‹ã“ã¨ã«ã‚ˆã£ã¦ã€‚)
 
-Å‰‚ÉAƒIƒuƒWƒFƒNƒg‚ÌAction Script 3 ŽÀ‘•‚ðì¬‚µAƒvƒƒWƒFƒNƒg‚ÉƒNƒ‰ƒX‚ðŠÜ‚ß‚Ü‚· (ActionScript‚Æ–¼‘O‚ð‚Â‚¯‚½ƒtƒHƒ‹ƒ_‚É):
+æœ€åˆã«ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®Action Script 3 å®Ÿè£…ã‚’ä½œæˆã—ã€ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã«ã‚¯ãƒ©ã‚¹ã‚’å«ã‚ã¾ã™ (ActionScriptã¨åå‰ã‚’ã¤ã‘ãŸãƒ•ã‚©ãƒ«ãƒ€ã«):
 
 [@public class ExampleObject
 {
@@ -11,11 +11,11 @@ Flash‚©‚çUnity‚Éƒf[ƒ^‚ð’ñ‹Ÿ‚µ‚½‚¢ê‡AŽŸ‚ÌŽí—Þ‚ªƒTƒ|[ƒg‚³‚ê‚Ü‚·B‚³‚ç‚Éƒf[ƒ^
     public var aBool : Boolean;
 }@]
 
-ŽŸ‚ÉAction Script 3 ŽÀ‘•‚É‡‚¤C# ‚Ü‚½‚Í JavaScriptƒIƒuƒWƒFƒNƒg‚ðì¬‚µ‚Ü‚·B
+æ¬¡ã«Action Script 3 å®Ÿè£…ã«åˆã†C# ã¾ãŸã¯ JavaScriptã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã—ã¾ã™ã€‚
 
-ˆÈ‰º‚Ì [[http://unity3d.com/support/documentation/ScriptReference/NotRenamedAttribute.html | NotRenamed]] ‘®«‚Í ƒRƒ“ƒXƒgƒ‰ƒNƒ^Aƒƒ\ƒbƒhAƒtƒB[ƒ‹ƒhA‚¨‚æ‚ÑƒvƒƒpƒeƒB‚Ì name mangling ‚ð–hŽ~‚µ‚Ü‚·B
+ä»¥ä¸‹ã® [[http://unity3d.com/support/documentation/ScriptReference/NotRenamedAttribute.html | NotRenamed]] å±žæ€§ã¯ ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€ãƒ¡ã‚½ãƒƒãƒ‰ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€ãŠã‚ˆã³ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã® name mangling ã‚’é˜²æ­¢ã—ã¾ã™ã€‚
 
-[[http://unity3d.com/support/documentation/ScriptReference/NotConvertedAttribute.html | NotConverted]] ‘®«‚Íƒrƒ‹ƒh ƒpƒCƒvƒ‰ƒCƒ“‚É‚ ‚éŒ^‚Ü‚½‚Íƒƒ“ƒo‚ðƒ^[ƒQƒbƒg ƒvƒ‰ƒbƒgƒtƒH[ƒ€‚É•ÏŠ·‚µ‚È‚¢‚æ‚¤‚ÉŽwŽ¦‚µ‚Ü‚·B’ÊíFlash‚Éƒrƒ‹ƒh‚·‚é‚Æ‚«AC#/JavaScript ƒXƒNƒŠƒvƒg‚ÍActionScript (@@.as@@) ƒXƒNƒŠƒvƒg‚É•ÏŠ·‚³‚ê‚Ü‚·B [NotConverted] ‘®«‚ð’Ç‰Á‚·‚é‚±‚Æ‚ÅƒvƒƒZƒX‚ÌƒI[ƒo[ƒ‰ƒCƒh‚ªs‚í‚êAŽ©g‚ÌƒIƒŠƒWƒiƒ‹‚Ì .as ƒXƒNƒŠƒvƒg‚ðŽè“®‚Å’ñ‹Ÿo—ˆ‚Ü‚·BŽ©g‚Å’ñ‹Ÿ‚·‚éƒ_ƒ~[‚ÌC#/JavaScript‚É‚æ‚èUnity‚ÉƒNƒ‰ƒX‚ÌƒVƒOƒjƒ`ƒƒ‚ð’m‚ç‚¹(‚·‚È‚í‚¿‚Ç‚ÌƒNƒ‰ƒX‚ðƒR[ƒ‹‚ª‹–‰Â‚³‚ê‚é‚©)AŽ©g‚Ì‚Ì .as ƒXƒNƒŠƒvƒg‚»‚ê‚ç‚ÌŠÖ”‚ÌŽÀ‘•‚ð’ñ‹Ÿ‚µ‚Ü‚·BActionScript ƒo[ƒWƒ‡ƒ“‚ÍFlash‚Éƒrƒ‹ƒh‚µ‚½‚Æ‚«‚Ì‚ÝŽg—p‚³‚ê‚é‚±‚Æ‚É—¯ˆÓ‚µ‚Ä‰º‚³‚¢BƒGƒfƒBƒ^ã‚Ü‚½‚Í‘¼‚Ìƒvƒ‰ƒbƒgƒtƒH[ƒ€Œü‚¯‚Éƒrƒ‹ƒh‚·‚é‚Æ‚«Unity‚ÍC#/JavaScriptƒo[ƒWƒ‡ƒ“‚ðŽg—p‚µ‚Ü‚·B
+[[http://unity3d.com/support/documentation/ScriptReference/NotConvertedAttribute.html | NotConverted]] å±žæ€§ã¯ãƒ“ãƒ«ãƒ‰ ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³ã«ã‚ã‚‹åž‹ã¾ãŸã¯ãƒ¡ãƒ³ãƒã‚’ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ ãƒ—ãƒ©ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒ ã«å¤‰æ›ã—ãªã„ã‚ˆã†ã«æŒ‡ç¤ºã—ã¾ã™ã€‚é€šå¸¸Flashã«ãƒ“ãƒ«ãƒ‰ã™ã‚‹ã¨ãã€C#/JavaScript ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¯ActionScript (@@.as@@) ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«å¤‰æ›ã•ã‚Œã¾ã™ã€‚ [NotConverted] å±žæ€§ã‚’è¿½åŠ ã™ã‚‹ã“ã¨ã§ãƒ—ãƒ­ã‚»ã‚¹ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ãŒè¡Œã‚ã‚Œã€è‡ªèº«ã®ã‚ªãƒªã‚¸ãƒŠãƒ«ã® .as ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’æ‰‹å‹•ã§æä¾›å‡ºæ¥ã¾ã™ã€‚è‡ªèº«ã§æä¾›ã™ã‚‹ãƒ€ãƒŸãƒ¼ã®C#/JavaScriptã«ã‚ˆã‚ŠUnityã«ã‚¯ãƒ©ã‚¹ã®ã‚·ã‚°ãƒ‹ãƒãƒ£ã‚’çŸ¥ã‚‰ã›(ã™ãªã‚ã¡ã©ã®ã‚¯ãƒ©ã‚¹ã‚’ã‚³ãƒ¼ãƒ«ãŒè¨±å¯ã•ã‚Œã‚‹ã‹)ã€è‡ªèº«ã®ã® .as ã‚¹ã‚¯ãƒªãƒ—ãƒˆãã‚Œã‚‰ã®é–¢æ•°ã®å®Ÿè£…ã‚’æä¾›ã—ã¾ã™ã€‚ActionScript ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¯Flashã«ãƒ“ãƒ«ãƒ‰ã—ãŸã¨ãã®ã¿ä½¿ç”¨ã•ã‚Œã‚‹ã“ã¨ã«ç•™æ„ã—ã¦ä¸‹ã•ã„ã€‚ã‚¨ãƒ‡ã‚£ã‚¿ä¸Šã¾ãŸã¯ä»–ã®ãƒ—ãƒ©ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒ å‘ã‘ã«ãƒ“ãƒ«ãƒ‰ã™ã‚‹ã¨ãUnityã¯C#/JavaScriptãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ä½¿ç”¨ã—ã¾ã™ã€‚
 
 !!!C#
 [@[NotConverted]
@@ -49,7 +49,7 @@ class ExampleObject
 }
 @]
 
-ŽŸ‚ÉAction Script 3 ‚ÉŽ©g‚ÌƒIƒuƒWƒFƒNƒg‚ðŽæ“¾‚·‚é•û–@‚ª•K—v‚Å‚·B—á‚¦‚Î:
+æ¬¡ã«Action Script 3 ã«è‡ªèº«ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹æ–¹æ³•ãŒå¿…è¦ã§ã™ã€‚ä¾‹ãˆã°:
 
 [@public static function getExampleObject() : ExampleObject
 {
@@ -57,7 +57,7 @@ class ExampleObject
 }@]
 
 
-ŽŸ‚ÉƒIƒuƒWƒFƒNƒg‚ðŽæ“¾‚µ‚Äƒf[ƒ^‚ðƒAƒNƒZƒX‚µ‚Ü‚·:
+æ¬¡ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã—ã¦ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¢ã‚¯ã‚»ã‚¹ã—ã¾ã™:
 
 [@ExampleObject exampleObj = UnityEngine.Flash.ActionScript.Expression<ExampleObject>("MyStaticASClass.getExampleObject()");
 Debug.Log(exampleObj.someString);@]
