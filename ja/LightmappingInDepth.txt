@@ -10,8 +10,8 @@ Unity で最初のシーンにライトマップ使用している場合、こ�
 Attach:LightmappingMain.png
 
 
-!!Scene filters
-At the top of the inspector are three ''Scene Filter'' buttons that enable you to apply the operation to all objects or to restrict it to lights or renderers.
+!!シーンフィルタScene filters
+インスペクタの上には 3 つの ''シーン フィルタ'' ボタンがあり、全てのオブジェクトに処理を適用する、またはライトやレンダラに限定することが出来ます。
 
 !!オブジェクト
 ライト、メッシュ レンダラおよび地形に対するオブジェクトごとのベーク設定 - 現在の選択内容によって決まります。
@@ -45,7 +45,7 @@ __ライト:__
 
 ||PROPS
 ||``Mode``||オフラインのライトマップ ベーキングとリアルタイムのライトマップ レンダリング モードの両方をコントロールします。 Dual Lightmaps モードでは、近くおよび遠くのライトマップの両方がベークされ、遅延レンダリングパスのみ 2 重ライトマップのレンダリングをサポートします。 Single Lightmaps モードは、遠くのライトマップのみベークし、遅延レンダリング パスに対して、1 つのライトマップ モードを強制するのに使用できます。||
-||``Use in forward rendering``||(Dual lightmaps only) Enables dual lightmaps in forward rendering. Note that this will require you to create your own shaders for the purpose.||
+||``Use in forward rendering``||(デュアル ライトマップのみ) フォワードレンダリング でのデュアル ライトマップを有効化します。その目的にあった自身のシェーダを作成する必要があることに留意して下さい。||
 ||``Quality``||ベークの質を高 （見た目が良くなります） および低 （高速） に設定します。 これらは、最終集光数、コントラスト閾値、その他の最終収集およびアンチエイリアス処理設定に影響します。||
 ||``Bounces``||グローバル照明シミュレーションでのライト バウンスの数。 柔らかく、リアルな間接ライティングを得るには、1 つ以上のバウンスが必要です。 0 の場合、直接光のみ計算されます。||
 ||``Sky Light Color``||スカイ ライトは、すべての方向に空から放出サれる光をシミュレートします。屋外のシーンに最適です。||
@@ -59,14 +59,14 @@ __ライト:__
 ||``Ambient Occlusion``||ライトマップにベークされる周囲オクルージョンの量。 周囲オクルージョンはサイズ Max Distance のローカルな半球上で統合された表示関数のため、ライティング情報は考慮しません。||
 ||``Lock Atlas``||ロック アトラスが有効になると、自動アトラシングは実行されなくなり、オブジェクト上の Lightmap Index、Tiling および Offset は編集されなくなります。||
 ||``Resolution``||世界単位ごとのテクセルたんいのライトマップの解像度。50 の値と 10x10 の面の場合、ライトマップで面が 500x500 ピクセルを有する面になります。||
-||``Padding`` ||The blank space left between individual items on the atlas, given in texel units (0..1). ||
+||``Padding`` ||0 から 1 の範囲のテクセル単位で指定された、アトラス上の個別のアイテムの間の空白のスペース。||
 
 !!マップ
 すべてのライトマップの編集可能な配列。
 
 ||PROPS
 ||``Compressed``||このシーンに対するすべてのライトマップ上での圧縮を切り替えます。||
-||``Array Size``||ライトマップのサイズ (0 〜 254)。||
+||``Array Size``||ライトマップのサイズ (0 ? 254)。||
 ||``Lightmaps Array``||現在のシーンでのすべてのライトマップの編集可能な配列。 割り当てていないスロットは黒いライトマップとして扱われます。 メッシュ レンダラと地形上のライトマップ インデックス値に対応したインデックス。 ロック アトラスが有効にならない限り、この配列は、自動でリサイズさ、ライトマップのベーク時に常に投入されます。||
 
 !!ライトマップ ディスプレイ
@@ -145,10 +145,10 @@ Attach:LightmapResolution40.png\\
 
 ''注意: Beast にマテリアルをマッピングすると、Unity は、シェーダのプロパティおよび''スペキュラ''、''透明さ''、''自己発光''などのパス/名前キーワードによって  シェーダの''種類''を検出します。
 
-!!! Skinned Mesh Renderers
-Having skinned meshes that are static makes your content more flexible, since the shape of those meshes can be changed in Unity after import and can be tweaked per level. Skinned Mesh Renderers can be lightmapped in exactly the same way as Mesh Renderers and are sent to the lightmapper in their current pose.
+!!! スキン メッシュ レンダラ
+static である スキン メッシュがあることで、メッシュの形状がインポート後に Unity の中で変更できて、レベル毎の微調整が出来るために、コンテンツがより柔軟になります。スキン メッシュ レンダラはメッシュ レンダラ と全く同じ方法でライトマップすることが可能であり、現在のポーズでライトマッピング処理に渡されます。
 
-Lightmapping can also be used if the vertices of a mesh are moved at runtime a bit -- the lighting won't be completely accurate, but in a lot of cases it will match well enough.
+さらにライトマッピングはメッシュの頂点がランタイム時に多少移動されても使用出来ます -- ライティングは完全に正確とはなりませんが、多くの場合は十分にマッチします。
 
 
 !! 詳細
