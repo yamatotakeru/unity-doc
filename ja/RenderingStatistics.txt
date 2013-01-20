@@ -6,7 +6,7 @@
 :__Tags {__ "''TagName1''" = "''Value1''" "''TagName2''" = "''Value2''" __}__:  __TagName1__ to have __Value1__, __TagName2__ to have __Value2__を指定します。 タグは好きな数だけ使用できます。
 
 !! 詳細
-タグは基本的にキー値のペアです。 [[SL-SubShader|SubShader]] タグ内では、タグを使用して、レンダリング順やサブシェーダのその他のパラメータを決定します。Note that the following tags recognized by Unity '''must''' be inside SubShader section and not inside Pass!
+タグは基本的にキー値のペアです。 [[SL-SubShader|SubShader]] タグ内では、タグを使用して、レンダリング順やサブシェーダのその他のパラメータを決定します。Unity により認識される次のタグは ''必ず'' SubShader セクションに含める必要があり、Pass の中ではいけません。
 
 !!! レンダリング順 - Queue タグ
 
@@ -15,7 +15,7 @@
 事前定義された 4 つのレンダー キューがありますが、事前定義されたレンダー キューの間に更にキューを置くこともできます。 以下の事前定義されたレンダー キューがあります。
 * ``Background`` - このレンダー キューは他のどれよりも前にレンダリングされます。 これは、スカイボックスなどに使用されます。
 * ``Geometry`` ''(default)'' - これは、ほとんどのオブジェクトに使用されます。 不透明のジオメトリはこのキューを使用します。
-* ``AlphaTest`` - alpha tested geometry uses this queue. It's a separate queue from ``Geometry`` one since it's more efficient to render alpha-tested objects after all solid ones are drawn.
+* ``AlphaTest`` - アルファテストされたジオメトリはこのキューを使用します。アルファテストされたオブジェクトは全ての不透明のオブジェクトを描画した後にレンダリングするのが効率的であるため、 ``Geometry`` とは別のキューです。
 * ``Transparent`` - このレンダー キューは、''Geometry'' と  ``AlphaTest`` 後に、後前の順でレンダリングされます。 アルファ ブレンドされたもの (つまり、深さバッファに書きこまないシェーダ) は、ここに行く必要があります (草、パーティクル効果)。
 * ``Overlay`` - このレンダー キューは、オーバーレイ効果用です。 最後にレンダリングされたものはここに行きます (レンズ フレアなど)。
 
@@ -37,9 +37,9 @@ Tags { "Queue" = "Geometry+1" }
 @]
 これにより、レンダー キュー インデックスが 2001 (ジオメトリ + 1) になるため、すべての不透明なオブジェクト後で、透明のオブジェクトの前ににレンダリングされます。 これは、オブジェクトを常にその他のオブジェクト間でしたい場合に便利です。 例えば、ほとんどの場合、透明な水は、不透明オブジェクト後で、透明オブジェクト前に描画サれる必要があります。
 
-!!! RenderType tag
+!!! RenderType タグ
 
-``RenderType`` tag categorizes shaders into several predefined groups, e.g. is is an opaque shader, or an alpha-tested shader etc. This is used by [[SL-ShaderReplacement | Shader Replacement]] and in some cases used to produce [[SL-CameraDepthTexture | camera's depth texture]].
+``RenderType`` タグはシェーダをいくつかの事前定義されたグループ、すなわち不透明のシェーダであるか、あるいはアルファテストのシェーダであるか等によって、に部類します。これは [[SL-ShaderReplacement | Shader Replacement]] により使用され、いくつかのケースでは [[SL-CameraDepthTexture | カメラのデプステクスチャ]] を生成するために使用されます。
 
 
 !!! IgnoreProjector タグ
