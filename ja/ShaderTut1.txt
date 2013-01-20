@@ -6,7 +6,7 @@ Unity には、$$ShaderLab$$ と呼ばれる強力なシェーディングおよ
 
 シェーダは、各種グラフィック ハードウェア機能で対象とされる Unity の [[class-Material|Material Inspector]] に表示されるプロパティと複数のシェーダ実行 ($$SubShaders$$) を記述し、それぞれが、完全なグラフィック ハードウェア レンダリング状態、固定関数パイプライン設定、使用する頂点/断片プログラムを記述します。 頂点/断片プログラムは、高レベルの $$Cg/HLSL$$ プログラム言語で記述されます。
 
-このチュートリアルでは、固定関数およびプログラム可能なパイプラインの両方を使用したシェーダの記述法について説明します。 [[http://opengl.org/documentation/red_book|OpenGL]] または Direct3D レンダー状態およびプログラム可能なパイプラインを基本的に理解しており、[[http://developer.nvidia.com/object/cg_toolkit.html|Cg]]、[[http://msdn.microsoft.com/en-us/library/bb509561%28VS.85%29.aspx|HLSL]] または [[http://www.opengl.org/documentation/glsl | GLSL]] プログラム言語に関して、ある程度の知識のある方を想定しています。 一部のシェーダのチュートリアルおよび文書は、[[http://developer.nvidia.com/page/home.html|NVIDIA]] および [[http://developer.amd.com/GPU/Pages/default.aspx|AMD]] 開発者サイトに置かれています。
+このチュートリアルでは、固定関数およびプログラム可能なパイプラインの両方を使用したシェーダの記述法について説明します。 [[http://opengl.org/documentation/red_book|OpenGL]] または Direct3D レンダー状態およびプログラム可能なパイプラインを基本的に理解しており、[[http://developer.nvidia.com/object/cg_toolkit.html|Cg]] 、[[http://msdn.microsoft.com/en-us/library/bb509561%28VS.85%29.aspx|HLSL]] または [[http://www.opengl.org/documentation/glsl | GLSL]] プログラム言語に関して、ある程度の知識のある方を想定しています。 一部のシェーダのチュートリアルおよび文書は、[[http://developer.nvidia.com/page/home.html|NVIDIA]] および [[http://developer.amd.com/GPU/Pages/default.aspx|AMD]] 開発者サイトに置かれています。
 
 !! はじめに
 
