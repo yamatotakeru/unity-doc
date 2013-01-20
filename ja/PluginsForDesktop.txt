@@ -1,13 +1,13 @@
-! デスクトッププラットフォームのプラグインをビルドする
+! デスクトップ プラットフォームのプラグインをビルドする
 
-このページはデスクトッププラットフォーム（Windows/MacOS X/Linux）の [[Plugins | Native Code Plugins]] について記述します。これらのプラグインはセキュリティ上の理由によりwebplayerで無効になっていることに注意してください。
+このページはデスクトッププラットフォーム（Windows/MacOS X/Linux）の [[Plugins | ネイティブ コード プラグイン]] について記述します。これらのプラグインはセキュリティ上の理由によりsWebplayerで無効になっていることに注意してください。
 
 
 !! Mac OS X用のプラグインをビルドする
 
-MacOSXでは [[Plugins | plugins]] はバンドルとしてデプロイされます。バンドルプロジェクト　(bundle project）はXcodeの ^^File->NewProject...^^ を選択し、Bundle - Carbon/Cocoa Loadable Bundleを選択してください。
+MacOSXでは [[Plugins | plugins]] はバンドルとしてデプロイされます。バンドルプロジェクト (Bundle Project）はXcodeの ^^File->NewProject...^^ を選択し、Bundle - Carbon/Cocoa Loadable Bundleを選択してください。
 
-もしC++（.cpp）もしくはObjective-C（.mm）でプラグインを実装する場合、関数が [[http://en.wikipedia.org/wiki/Name_mangling | name mangling issues]]を避けるため、Cリンケージ（C linkage） で宣言されていることを確認する必要があります。
+もしC++（.cpp）もしくはObjective-C（.mm）でプラグインを実装する場合、関数が [[http://en.wikipedia.org/wiki/Name_mangling | Name Mangling の問題]] を避けるため、C のリンク で宣言されていることを確認する必要があります。
 
 [@extern "C" {
   float FooPluginFunction ();
@@ -16,7 +16,7 @@ MacOSXでは [[Plugins | plugins]] はバンドルとしてデプロイされま
 !! Windows用のプラグインをビルドする
 
 Windows用のプラグインはエクスポートされた関数を持つDLLファイルです。これは実質的に、どのような言語・開発環境でも作成できます。\\
-Mac OSXと同様、ネーム・マングル（name mangling）の問題を回避するためには、任意のC++関数はCリンケージを宣言する必要があります。
+Mac OSXと同様、ネーム・マングル（Name Mangling）の問題を回避するためには、任意のC++関数は C のリンクを宣言する必要があります。
 
 !! Linux用のプラグインをビルドする
 
@@ -44,17 +44,17 @@ private static extern float FooPluginFunction (); @]
 !! サンプル
 
 !!! 単純なプラグイン
-このプラグインプロジェクトはいくつかの非常に単純な機能を提供します（数字のプリント、文章のプリント、小数の足し算、整数の足し算）。このプロジェクトは [[Attach:SimplestPluginExample-4.0.zip | here]] で見つけることができます 。また、このプロジェクトにはWindows用、Mac用、Linux用のプロジェクトが含まれています。
+このプラグインプロジェクトはいくつかの非常に単純な機能を提供します（数字のプリント、文章のプリント、小数の足し算、整数の足し算）。このプロジェクトは [[Attach:SimplestPluginExample-4.0.zip | ここ]] で見つけることができます 。また、このプロジェクトにはWindows用、Mac用、Linux用のプロジェクトが含まれています。
 
 !!! C++のコードからレンダリング
 マルチスレッドレンダリングプラグインのマルチプラットフォーム動作例は、 [[Native Plugin Interface]] ページで見つけることができます。
 
 !!! ミディプラグイン（Midi Plugin）
-完全なプラグインサンプルインターフェースは、 [[http://unity3d.com/tutorials/midiplugin.zip|here]] で見つけることができます。
+完全なプラグインサンプルインターフェースは、 [[http://unity3d.com/tutorials/midiplugin.zip|ここ]] で見つけることができます。
 
 これは、AppleのCoreMidi APIを使用しているOS Xのための完全なMIDIプラグインです。Unityから単純なC言語のAPIにアクセスするためのC#クラスを提供します。C#クラスは高レベルなAPIが含まれており、NoteOnおよびNoteOffイベントとその速度（velocity）に簡単にアクセスすることができます。
 
 !!! テクスチャプラグイン
-直接OpenGLのテクスチャに画像を割り当てる方法の例です（UnityがOpenGLテクスチャを使用している場合のみ動作します）。この例では、XcodeやVisual Studioプロジェクトファイルの両方が含まれます。プラグインは添付のUnityプロジェクトと一緒に見つけることができます [[http://unity3d.com/support/resources/example-projects/texture-plugins|here]] 。
+直接OpenGLのテクスチャに画像を割り当てる方法の例です（UnityがOpenGLテクスチャを使用している場合のみ動作します）。この例では、XcodeやVisual Studioプロジェクトファイルの両方が含まれます。プラグインは添付のUnityプロジェクトと一緒に [[http://unity3d.com/support/resources/example-projects/texture-plugins|ここ]] で見つけることができます。
 
 
