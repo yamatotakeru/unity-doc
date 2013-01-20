@@ -1,10 +1,10 @@
-! �J���������Ray
+! カメラからのRay
 
-[[UnderstandingFrustum|Understanding the View Frustum]] �̃Z�N�V�����ł̓J�����̃r���[�̂ǂ̒n�_�ł����[���h���W�̐��ɑ������邱�Ƃ�������܂����B���̐��̐��w�I�ȕ\�����A�������邱�Ƃ��֗��ȂƂ�������܂����AUnity�͂����[[ScriptRef:Ray.html|Ray]] �Ƃ����`�Œ񋟂��Ă��܂��BRay�͂˂Ƀr���[�̓_�ɑ�������̂�Camera�N���X��[[ScriptRef:Camera.ScreenPointToRay.html|ScreenPointToRay]] ����� [[ScriptRef:Camera.ViewportPointToRay.html|ViewportPointToRay]] ��񋟂��Ă��܂��B���̓�̈Ⴂ��ScreenPointToRay���_���s�N�Z�����W��K�v�Ƃ���̂ɑ΂���ViewportPointToRay�͐��K�����ꂽ���W��0..1 �͈̔́i�r���[���0�����܂��͉��A1���E�܂��͏�j�ł��B���̊e�X�̊֐��͌��_�Ƃ�������̌�����\���x�N�g������\������܂��BRay��Camera��transform.position �ł͂Ȃ��j�A�N���b�s���O���ʂ��N�_�Ƃ��Ă��܂��B
+[[UnderstandingFrustum|Understanding the View Frustum]] のセクションではカメラのビューのどの地点でもワールド座標の線に相当することを説明しました。その線の数学的な表現を、もちいることが便利なときがありますが、Unityはこれを[[ScriptRef:Ray.html|Ray]] という形で提供しています。Rayはつねにビューの点に相当するのでCameraクラスは[[ScriptRef:Camera.ScreenPointToRay.html|ScreenPointToRay]] および [[ScriptRef:Camera.ViewportPointToRay.html|ViewportPointToRay]] を提供しています。この二つの違いはScreenPointToRayが点をピクセル座標を必要とするのに対してViewportPointToRayは正規化された座標を0..1 の範囲（ビュー上で0が左または下、1が右または上）です。この各々の関数は原点とそこからの向きを表すベクトルから構成されます。RayはCameraのtransform.position ではなくニアクリッピング平面を起点としています。
 
 !! Raycasting
 
-Ray�̍ł���ʓI�Ȏg�p���@�� [[ScriptRef:Physics.Raycast.html|raycast]] ���V�[���Ɍ������Ď��s���邱�Ƃł��Braycast�͉��z�� "���[�U�[�r�[��" ��ray�ɉ����Č��_���甭���ăV�[���̃R���C�_�ɏՓ˂���܂Ői�݂܂��B���ɃI�u�W�F�N�g�̏��ɂ���[[ScriptRef:RaycastHit.html|RaycastHit]] �̂ǂ��ɓ��������̂����Ԃ���܂��B����͉�ʏ�ŃI�u�W�F�N�g��������̂ɕ֗��ȕ��@�ł��B�Ⴆ�΁A�}�E�X�ʒu�ɂ���I�u�W�F�N�g�͎��̃R�[�h�Ŕ���o���܂�:-
+Rayの最も一般的な使用方法は [[ScriptRef:Physics.Raycast.html|raycast]] をシーンに向かって実行することです。raycastは仮想の "レーザービーム" をrayに沿って原点から発してシーンのコライダに衝突するまで進みます。次にオブジェクトの情報について[[ScriptRef:RaycastHit.html|RaycastHit]] のどこに当たったのかが返されます。これは画面上でオブジェクトを見つけるのに便利な方法です。例えば、マウス位置にあるオブジェクトは次のコードで判定出来ます:-
 
 [@var hit: RaycastHit;
 var ray: Ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -12,12 +12,12 @@ var ray: Ray = camera.ScreenPointToRay(Input.mousePosition);
 if (Physics.Raycast(ray, hit)) {
 	var objectHit: Transform = hit.transform;
 	
-	// raycast�ŏՓ˂����I�u�W�F�N�g�ɑ΂��ĉ������������s
+	// raycastで衝突したオブジェクトに対して何か処理を実行
 }@]
 
-!! Ray�ɉ������J�����̈ړ�
+!! Rayに沿ったカメラの移動
 
-��ʈʒu�ɑΉ�����ray���擾���ăJ����������ɉ����Ĉړ�������ƕ֗��ȏꍇ������܂��B�Ⴆ�΃��[�U���I�u�W�F�N�g���}�E�X�őI�����ē�����ʈʒu�� "�s���ňێ�" ���Ȃ���Y�[���C���������ꍇ�����邩������܂���i�J�����������}�b�v�����Ă��鎞�ɕ֗���������܂���j�B������s�����߂̃R�[�h�͔�r�I�e�Ղł�:-
+画面位置に対応するrayを取得してカメラをそれに沿って移動させると便利な場合があります。例えばユーザがオブジェクトをマウスで選択して同じ画面位置を "ピンで維持" しながらズームインしたい場合があるかもしれません（カメラが部分マップを見ている時に便利かもしれません）。これを行うためのコードは比較的容易です:-
 
 [@var zooming: boolean;
 var zoomSpeed: float;
