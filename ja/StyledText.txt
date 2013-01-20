@@ -115,8 +115,7 @@ __color__
 
 __material__
 
-これはパラメータにより指定されたマテリアルによって、テキストメッシュおよびテキストの一部のみレンダリングします。値はテキストメッシュのマテリアルの配列のインデックス
-This is only useful for text meshes and renders a section of text with a material specified by the parameter. The value is an index into the text mesh's array of materials as shown by the inspector.
+これはパラメータにより指定されたマテリアルによって、テキストメッシュおよびテキストの一部のみレンダリングします。インスペクタで表示されるとおり、値はテキストメッシュのマテリアルの配列のインデックスです。
 
 	We are <material=2>texturally</material> amused
 
@@ -124,9 +123,8 @@ This is only useful for text meshes and renders a section of text with a materia
 
 __quad__
 
-This is only useful for text meshes and renders an image inline with the text. It takes parameters that specify the material to use for the image, the image height in pixels, and a further four that denote a rectangular area of the image to display. Unlike the other tags, quad does not surround a piece of text and so there is no ending tag - the slash character is placed at the end of the initial tag to indicate that it is "self-closing".
+これはテキストメッシュのみに便利であり、画像をテキストとともにインラインでレンダリングします。画像のために使用するマテリアル、ピクセル単位での画像の高さ、そして 4 つほど画像を表示する四角形領域をあらわす数値を、引数としてとります。他のタグと異なり、 quad はテキストを囲わず、終了タグがありません - スラッシュ記号は最初のタグの終わりに置かれ、 "自己完結" を表現します。
 
 	<quad material=1 size=20 x=0.1 y=0.1 width=0.5 height=0.5 />
 
-This selects the material at position in the renderer's material array and sets the height of the image to 20 pixels. The rectangular area of image starts at given by the x, y, width and height values, which are all given as a fraction of the unscaled width and height of the texture.
-
+これにより、レンダラのマテリアル配列の位置のマテリアルを選択し、画像の高さを 20 ピクセルにセットします。画像の四角形領域は x 、y 、 幅、および高さの値で始まり、拡大縮小されていないテクスチャの幅および高さに対する比率として指定されます。
