@@ -14,65 +14,18 @@ To start working with a new Blend Tree, you need to:
 The Animator Window now shows a graph of the entire Blend Tree while the Inspector shows the currently selected node and its immediate children.
 
 Attach:MecanimBlendTreeStateDiagram.png
-''The Animator Window shows a graph of the entire $$Blend Tree$$. To the left is a Blend Tree with only the root Blend Node. To the right is a Blend Tree with a root Blend Node and three Animation Clips as child nodes.'' %red%TODO: Make new screenshot that shows graph before adding children. Keep the one for "after" and show them next to each other.%red%
+''The Animator Window shows a graph of the entire ``Blend Tree``. To the left is a Blend Tree with only the root Blend Node. To the right is a Blend Tree with a root Blend Node and three Animation Clips as child nodes.'' %red%TODO: Make new screenshot that shows graph before adding children. Keep the one for "after" and show them next to each other.%red%
 
 This gives a graphical display of how the animations are combined as the parameter value changes (as you drag the slider, the arrows from the tree root change their shading to show the dominant animation clip).
 
 You can select any of the nodes in the Blend Tree graph to inspect it in the Inspector. If the selected node is an Animation Clip the Inspector for that Animation Clip will be shown. The settings will be read-only if the animation is imported from a model. If the node is a Blend Node, the Inspector for Blend Nodes will be shown.
 
 Attach:MecanimBlendTreeInitial.png
-''A Blend Node shown in the $$Inspector$$ before any motions have been added.'' %red%TODO: Update screenshot%red%
+''A Blend Node shown in the ~~Inspector~~ before any motions have been added.'' %red%TODO: Update screenshot%red%
 
-The Blend Type dropdown is used to select one of the different blend types that can blend according to one or two parameters. The 1D type is used for blending according to a single parameter and is described below. The 2D types are for blending according to two parameters and they are described further down.
+The Blend Type drop-down is used to select one of the different blend types that can blend according to one or two parameters. You can read more about the different blend types and other Blend Tree options on the following pages.
 
+(:tocportion:)
 
-!!1D Blending
-
-In the Inspector, the first thing you need is to select the [[AnimationParameters|Animation Parameter]] that will control this Blend Tree. In this example, the parameter is ''direction'' which varies between -1.0 (left) and +1.0 (right), with 0.0 denoting a straight run without leaning. 
-
-Then you can add individual animations by clicking ^^+ -> Add Motion Field^^ to add an animation clip to the blend tree. When you're done, it should look something like this:
-
-Attach:MecanimBlendTree.png
-''A 1D Blend Node with three Animation Clips.'' %red%TODO: Update screenshot%red%
-
-The diagram at the top of the Inspector shows the influence of each of the child motions as the parameter varies between its minimum and maximum values. Each motion is shown as a little blue pyramid (the first and last are only shown in half), and if you click and hold down the left mouse button on one them, the corresponding motion is highlighted in the motion list below. The peak of each pyramid defines the parameter value where the motion has full influence, meaning that its animation weight is 1 and the other animations have a weight of 0. This is also called the $$threshold$$ of the motion.
-
-Attach:MecanimBlendTreeParam.png
-''The diagram at the top of the Blend Node Inspector visualizes the weights of the child motions over the extends of the parameter values.''
-
-The red vertical bar indicates the value of the $$Parameter$$. If you press ^^Play^^ in the ~~Animation Preview~~ panel and drag the red bar left and right, you can see how the value of the parameter is controlling the blending of the different motions.
-
-
-!!!Parameter Range
-
-The range of the parameter used by the Blend Node is shown below the diagram as two numbers to the left and right. Either one of them can be changed by clicking on the number and dragging left or right with the mouse. Note that the values correspond to the threshold of the first and last motion in the motion list.
-
-
-!!!Thresholds
-
-You can change the threshold value of a motion by clicking on its corresponding blue pyramid in the diagram and dragging it left or right. If the "Automate Thresholds" toggle is not enabled, you can also edit the threshold value of a motion in the motion list by typing in a number in the number field in the Threshold column.
-
-Below the motion list is the checkbox ''Automate Thresholds''. Enabling it will distribute the thresholds of the motions evenly across the parameter range. For example, if there are five clips and the parameter ranges from -90 to +90, the thresholds will be set to -90, -45, 0, +45 and +90 in order.
-
-The ''Compute Thresholds'' dropdown will set the thresholds from data of your choice obtained from the animation. Say, for example, you had a walk animation that covered 1.5 units per second, a jog at 2.3 units per second, and a run at 4 units per second, choosing the ''Speed'' option from the dropdown would set the parameter range and thresholds for the three animations based on these values. So, if you set the speed parameter to 3.0, it would blend the jog and run with a slight bias toward the jog. The ''Angular Speed (Deg)'' option performs a similar calculation but based on angular speed (degrees per second) rather than linear speed.
-
-
-!!2D Blending
-
-%red%TODO%red%
-
-
-!!!Positions
-
-%red%TODO%red%
-
-!!Time Scale
-
-You can alter the "natural" speed of the animation clips using the time scaling text boxes (the column next to the threshold values), so you could make the walk twice as fast by using a value of 2.0 as its scale. The ''Adjust Time Scale > Homogenized'' button rescales the speeds of the clips so that they correspond with the chosen minimum and maximum values of the parameter but keep the same ''relative'' speeds they initially had.
-
-
-!!Mirroring
-
-%red%TODO%red%
 
 (back to [[MecanimAnimationSystem|Mecanim introduction]])

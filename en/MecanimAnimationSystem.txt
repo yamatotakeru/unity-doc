@@ -16,11 +16,11 @@ Attach:MecanimShowcase.png
 
 Workflow in Mecanim can be split into three major stages.
 
-1. __Asset preparation and import__. This is done by artists or animators, with 3rd party tools, such as Max or Maya. This step is independent of Mecanim features. \\
-2. Character setup for Mecanim, which can be done in 2 ways:
-   a. __Humanoid character setup__. Mecanim has a special workflow for humanoid models, with extended GUI support and [[Retargeting|retargeting]]. The setup involves creating and setting up an [[$$CreatingtheAvatar|Avatar$$]] and tweaking [[$$MuscleDefinitions|Muscle definitions$$]].\\
-   b. __Generic character setup__. This is for anything like creatures, animated props, four-legged animals, etc. Retargeting is not possible here, but you can still take advantage of the rich feature set of Mecanim, including everything described below. 
-3. __Bringing characters to life__. This involves [[class-AnimationClip|setting up animation clips]], as well as interactions between them, and involves setup of [[AnimationStateMachines|State Machines]] and [[AnimationBlendTrees|Blend Trees]], exposing [[AnimationParameters|Animation Parameters]], and controlling animations from code. 
+# __Asset preparation and import__. This is done by artists or animators, with 3rd party tools, such as Max or Maya. This step is independent of Mecanim features.
+# Character setup for Mecanim, which can be done in 2 ways:
+** __Humanoid character setup__. Mecanim has a special workflow for humanoid models, with extended GUI support and [[Retargeting|retargeting]]. The setup involves creating and setting up an [[$$CreatingtheAvatar|Avatar$$]] and tweaking [[$$MuscleDefinitions|Muscle definitions$$]].
+** __Generic character setup__. This is for anything like creatures, animated props, four-legged animals, etc. Retargeting is not possible here, but you can still take advantage of the rich feature set of Mecanim, including everything described below. 
+# __Bringing characters to life__. This involves [[class-AnimationClip|setting up animation clips]], as well as interactions between them, and involves setup of [[AnimationStateMachines|State Machines]] and [[AnimationBlendTrees|Blend Trees]], exposing [[AnimationParameters|Animation Parameters]], and controlling animations from code. 
 
 Mecanim comes with a lot of new concepts and terminology. If at any point, you need to find out what something means, go to our [[AnimationGlossary|Animation Glossary]].
 
