@@ -57,6 +57,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[Asset Server]]
 *****[[Asset Cache Server]]
 *****[[Cache Server FAQ]]
+*****[[assetserver-Setup|Setting up the Asset Server]]
 ****[[Behind the Scenes]]
 ***[[Creating Gameplay]]
 ****[[Instantiating Prefabs]]

@@ -127,8 +127,8 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour { 
 
 	void Start () { 
-		JNIHelper.debug = true; 
-		using (JavaClass jc = new JavaClass("com.unity3d.player.UnityPlayer")) { 
+		AndroidJNIHelper.debug = true; 
+		using (AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer")) { 
 			jc.CallStatic("UnitySendMessage", "Main Camera", "JavaMessage", "whoowhoo"); 
 		} 
 	} 
