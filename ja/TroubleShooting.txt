@@ -130,7 +130,7 @@ __注意:__  [[iphone-InternalProfiler | 内部プロファイラ]] は .NET ス
 Attach:ObjectAlloc.png
 
 メモリ使用を低く抑えるためには:
-* iOS ストリッピング オプション（Advanced ライセンス機能）を使用することで、 アプリケーション バイナリサイズを削減し、異なる .NET ライブラリでの不要な依存関係を回避して下さい。 詳細については [[Main.class-PlayerSettings|player settings]] および [[Main.iphone-playerSizeOptimization|player size optimization]] を参照下さい。
+* iOS ストリッピング オプション（Advanced ライセンス機能）を使用することで、 アプリケーション バイナリサイズを削減し、異なる .NET ライブラリでの不要な依存関係を回避して下さい。 詳細については [[class-PlayerSettings40|player settings]] および [[Main.iphone-playerSizeOptimization|player size optimization]] を参照下さい。
 * コンテンツのサイズを削減してください。テクスチャでPVRTC圧縮を使用し、ローポリ モデルを使用して下さい。詳細については [[Main.ReducingFilesize|ファイルサイズ 削減]] を参照下さい。
 * スクリプトで必要以上にメモリ割り当てをしないで下さい。Mono ヒープサイズおよび使用状況を [[Main.iphone-InternalProfiler|内部プロファイラ]] でトラッキングして下さい。
 * __注意:__  Unity 3.0から、シーン ローディング実装が著しく変更となり、現在は全てのアセットはプリロードされています。この結果、ゲームオブジェクトをインスタンス化するときにパフォーマンスの一時的な低下が発生することがあります。ゲームでのアセットロード／アンロードについて完全に掌握する必要がある場合は [[ScriptRef:Resources.Load.html | Resources.Load]] および [[ScriptRef:Object.Destroy.html | Object.Destroy]] を使用すべきです。
@@ -150,7 +150,7 @@ function Start () {
 @]
 
 !! Type.GetProperty() / Type.GetValue() がデバイスでのクラッシュを引き起こす
-現在 ``Type.GetProperty()`` および ``Type.GetValue()`` は``.NET 2.0 Subset`` プロファイルでのみサポートされます。.NET API互換レベルは [[class-PlayerSettings|Player Settings]] で選択できます。
+現在 ``Type.GetProperty()`` および ``Type.GetValue()`` は``.NET 2.0 Subset`` プロファイルでのみサポートされます。.NET API互換レベルは [[class-PlayerSettings40|Player Settings]] で選択できます。
 
 
 __注意:__ ``Type.GetProperty()`` および ``Type.GetValue()`` はマネージド コード ストリッピングで互換性がなく、除外する必要があります（ストリッピング プロセスの再に、カスタムで非ストリッピング タイプのリストを提供して実現できます）。詳細については [[iphone-playerSizeOptimization|iOS プレーヤー サイズ最適化ガイド]] を参照下さい。
@@ -188,7 +188,7 @@ object obj = new MD5CryptoServiceProvider();
 @]
 
 !! "Ran out of trampolines of type 1/2" ランタイムエラー
-このエラーは通常、再帰的なジェネリックをたくさん使用するときに発生します。AOTコンパイラに指示をして、より多くの type 1 または type 2 のトランポリンを割り当てることが出来ます。追加の AOT コンパイラ コマンドライン オプションは [[Main.class-PlayerSettings#iOS | Player Settings]] の "Other Settings" セクションで指定できます。type 1 のトランポリンについては、 ``nrgctx-trampolines=ABCD`` 、ここではABCDは新しく必要なトランポリンの数（すなわち 4096）、を指定してください。type 2 のトランポリンについては ``nimt-trampolines=ABCD`` を指定下さい。
+このエラーは通常、再帰的なジェネリックをたくさん使用するときに発生します。AOTコンパイラに指示をして、より多くの type 1 または type 2 のトランポリンを割り当てることが出来ます。追加の AOT コンパイラ コマンドライン オプションは [[class-PlayerSettings40#iOS | Player Settings]] の "Other Settings" セクションで指定できます。type 1 のトランポリンについては、 ``nrgctx-trampolines=ABCD`` 、ここではABCDは新しく必要なトランポリンの数（すなわち 4096）、を指定してください。type 2 のトランポリンについては ``nimt-trampolines=ABCD`` を指定下さい。
 
 !! XCodewをアップグレードした後、 Unity iOS ランタイムが次のメッセージで失敗します "You are using Unity iPhone Basic. You are not allowed to remove the Unity splash screen from your game"
 最新のXcodeリリースにおいて、PNG圧縮および最適化ツールに変更がありました。これらの変更によりスプラッシュスクリーン修正でのUnity iOSランタイムチェックで 誤った警告を引き起こすかもしれません。そのような問題に出くわしたときは Unity を最新の公開バージョンにアップグレードすることを試行してください。これで直らない場合、次のような回避策が考えられます:
@@ -272,7 +272,7 @@ public class NewBehaviourScript : MonoBehaviour {
 もしエラーメッセージで、ビルドの際に "Unable to install APK, protocol failure" と表示される場合、これはデバイスが低電力USBポート（例えばキーボードやその他周辺機器向け）に接続されていることを示します。これが発生した場合、コンピュータに直付けされているUSBポートへのつなぎなおしてください。
 
 !! 起動直後にアプリケーションがクラッシュする
-# 未サポートのデバイスで [[Main.class-PlayerSettings#Android | NativeActivity]] を使用していないか再確認します
+# 未サポートのデバイスで [[class-PlayerSettings40#Android | NativeActivity]] を使用していないか再確認します
 # ネイティブのプラグインを外します
 # ストリッピングを無効化します
 # $$adb logcat$$ を使用してデバイスからクラッシュレポートを取得します

@@ -2,18 +2,18 @@
 
 !iOS!
 >>ios<<
-iOS Basic ライセンスでは、ゲームがロードするときデフォルトのスプラッシュスククリーンが表示され、向きは[[class-PlayerSettings|Player Settings]] の``Default Screen Orientation`` オプションに従います。
+iOS Basic ライセンスでは、ゲームがロードするときデフォルトのスプラッシュスククリーンが表示され、向きは[[class-PlayerSettings40|Player Settings]] の``Default Screen Orientation`` オプションに従います。
 
-iOS Pro ライセンスではプロジェクトの好きなテクスチャをスプラッシュスククリーンとして使用できます。テクスチャのサイズはターゲットデバイス（第1-3世代デバイスでは320x480、iPadでは1024x768、第4世代デバイスでは640x960）に依存、使用したテクスチャは必要に応じて拡大・縮小されます。スプラッシュスクリーンのテクスチャは[[Main.class-PlayerSettings|iOS Player Settings]] で設定します。
+iOS Pro ライセンスではプロジェクトの好きなテクスチャをスプラッシュスククリーンとして使用できます。テクスチャのサイズはターゲットデバイス（第1-3世代デバイスでは320x480、iPadでは1024x768、第4世代デバイスでは640x960）に依存、使用したテクスチャは必要に応じて拡大・縮小されます。スプラッシュスクリーンのテクスチャは[[class-PlayerSettings40|iOS Player Settings]] で設定します。
 
 >><<
 
 [[#Android]]
 !Android!
 >>android<<
-Android Basic ライセンスでは、ゲームがロードするときデフォルトのスプラッシュスククリーンが表示され、向きは[[class-PlayerSettings|Player Settings]] の``Default Screen Orientation`` オプションに従います。
+Android Basic ライセンスでは、ゲームがロードするときデフォルトのスプラッシュスククリーンが表示され、向きは[[class-PlayerSettings40|Player Settings]] の``Default Screen Orientation`` オプションに従います。
 
-Android Proライセンスではプロジェクトの好きなテクスチャをスプラッシュスククリーンとして使用できます。スプラッシュスクリーンのテクスチャはAndroidの [[Main.class-PlayerSettings|Player Settings]] で設定します。さらに``Splash Scaling`` （スプラッシュの拡大・縮小）の方法を次のオプションから選択できます:-
+Android Proライセンスではプロジェクトの好きなテクスチャをスプラッシュスククリーンとして使用できます。スプラッシュスクリーンのテクスチャはAndroidの [[class-PlayerSettings40|Player Settings]] で設定します。さらに``Splash Scaling`` （スプラッシュの拡大・縮小）の方法を次のオプションから選択できます:-
 * ``Center (only scale down)`` により画像は自然な大きさで描画され、大きすぎる場合のみ縮小して表示されます。
 * ``Scale to fit (letter-boxed)`` により画像は長辺が画面サイズにピタリと合うように描画されます。短辺の空いたスペースは黒で塗りつぶされます。
 * ``Scale to fill (cropped)`` により画像は短辺が画面サイズにピタリと合うように描画されます。長辺のはみ出た画像はカットされます。
