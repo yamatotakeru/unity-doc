@@ -34,7 +34,7 @@ Attach:ProjBrowserSearchBasic.png
 
 Attach:ProjBrowserTypeMenu.png
 
-その右は、ラベルの設定です（ラベルは、アセットの [[inspector]] 毎に設定できます）。ラベルの数は潜在的に大きくなる可能性があるので、ラベル・メニューはミニ検索フィルダボックスを持っています。
+その右は、ラベルの設定です（ラベルは、アセットの [[Inspector]] 毎に設定できます）。ラベルの数は潜在的に大きくなる可能性があるので、ラベル・メニューはミニ検索フィルダボックスを持っています。
 
 Attach:ProjBrowserLabelMenu.png
 
