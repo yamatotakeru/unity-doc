@@ -21,7 +21,7 @@ The [[ps3-gettingstarted | PS3 Guide]] addresses PS3 specific topics such as set
 
 これを読み終えると、[[Reference | Reference Manual]] と [[Path:../ScriptReference/index.html|Scripting Reference]] を読み進んでいただけると、Unityでゲームを作る上で、さらなる可能性について知ることができるでしょう。
 
-もしあなたの質問を探しても、このマニュアルに答えがなかったら [[http://answers.unity3d.com | Unity Answers]] か [[http://forum.unity3d.com | Unity Forums]] に質問してみて下さい。.そこで答えがあるかもしれません。
+もしあなたの質問を探しても、このマニュアルに答えがなかったら [[http://answers.unity3d.com | Unity Answers]] か [[http://forum.unity3d.com | Unity Forums]] に質問してみて下さい。そこで答えがあるかもしれません。
 
 それでは、楽しく読んで下さい！ \\
 ''Unity開発チームより''
