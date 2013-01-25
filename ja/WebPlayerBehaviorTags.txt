@@ -16,7 +16,7 @@ u.initPlugin(jQuery("#unityPlayer")[0], "Example.unity3d");
 @]
  上記の例では ``disableExternalCall`` や ``disableFullscreen`` が指定されていないことにあなたは気付くことでしょう。それらはデフォルト値が使用されます。
 
-さらに詳しい詳細は [[WorkingwithUnityObject2#constructor|UnityObject2]] を御覧ください。
+さらに詳しい詳細は [[Working with UnityObject#constructor|UnityObject]] を御覧ください。
 
 以下がすべての動作オブションを設定する例になります。
 [@
