@@ -57,4 +57,3 @@ private static extern float FooPluginFunction (); @]
 !!! テクスチャプラグイン
 直接OpenGLのテクスチャに画像を割り当てる方法の例です（UnityがOpenGLテクスチャを使用している場合のみ動作します）。この例では、XcodeやVisual Studioプロジェクトファイルの両方が含まれます。プラグインは添付のUnityプロジェクトと一緒に [[http://unity3d.com/support/resources/example-projects/texture-plugins|ここ]] で見つけることができます。
 
-

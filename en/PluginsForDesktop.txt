@@ -5,7 +5,7 @@ This page describes [[Plugins | Native Code Plugins]] for desktop platforms (Win
 
 !! Building a Plugin for Mac OS X
 
-On Mac OSX, [[Plugins | plugins]] are deployed as bundles. You can create the bundle project with XCode by selecting ^^File->NewProject...^^ and then selecting Bundle - Carbon/Cocoa Loadable Bundle.
+On Mac OSX, [[Plugins | plugins]] are deployed as bundles. You can create the bundle project with XCode by selecting ^^File->NewProject...^^ and then selecting ^^Bundle^^ -> ^^Carbon/Cocoa Loadable Bundle^^ (in XCode 3) or ^^OS X^^ -> ^^Framework & Library^^ -> ^^Bundle^^ (in XCode 4)
 
 If you are using C++ (.cpp) or Objective-C (.mm) to implement the plugin then you must ensure the functions are declared with C linkage to avoid [[http://en.wikipedia.org/wiki/Name_mangling | name mangling issues]].
 
@@ -58,5 +58,4 @@ This is a complete Midi plugin for OS X which uses Apple's CoreMidi API. It prov
 
 !!! Texture Plugin
 An example of how to assign image data to a texture directly in OpenGL (note that this will only work when Unity is using an OpenGL renderer). This example includes both XCode and Visual Studio project files. The plugin, along with an accompanying Unity project, can be found [[http://unity3d.com/support/resources/example-projects/texture-plugins|here]].
-
 
