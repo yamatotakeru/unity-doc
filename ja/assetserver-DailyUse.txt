@@ -1,0 +1,167 @@
+! Daily use of the Asset Server
+
+This section explains the common tasks, workflow and best practices for using the Asset Server on a day-to-day basis.
+
+
+!! Getting Started
+
+If you are joining a team that has a lot of work stored on the Asset Server already, this is the quickest way to get up and running correctly.  If you are starting your own project from scratch, you can skip down to the [[#Fundamentals | Workflow Fundamentals]] section.
+
+# Create a new empty Project with no packages imported
+# Go to ^^Edit->Project Settings->Editor^^ and select ^^Asset Server^^ as the version control mode
+# From the menubar, select ^^Window->Version^^
+# Click the ^^Connection^^ button
+# Enter your user name and password (provided by your Asset Server administrator)
+# Click ^^Show Projects^^ and select the desired project
+# Click ^^Connect^^
+# Click the ^^Update^^ tab
+# Click the ^^Update^^ button
+# If a conflict occurs, discard all local versions
+# Wait for the update to complete
+# You are ready to go
+
+
+Continue reading for detailed information on how to use the Asset Server effectively every day.
+
+[[#Fundamentals]]
+!! Workflow Fundamentals
+
+When using the Asset Server with a multi-person team, it is generally good practice to Update all changed assets from the server when you begin working, and Commit your changes at the end of the day, or whenever you're done working.  You should also commit changes when you have made significant progress on something, even if it is in the middle of the day.  Committing your changes regularly and frequently is recommended.
+
+
+!! Understanding the Server View
+
+The $$Server View$$ is your window into the Asset Server you're connected to. You can open the Server View by selecting ^^Window->Version Control^^.
+
+Attach:AssetServer-ServerView.png\\
+''The $$Overview$$ tab''
+
+
+The Server View is broken into tabs: $$Overview$$ $$Update$$, and $$Commit$$.  $$Overview$$ will show you any differences between your local project and the latest version on the server with options to quickly commit local changes or download the latest updates.  $$Update$$ will show you the latest remote changes on the server and allow you to download them to your local project.  $$Commit$$ allows you to create a $$Changeset$$ and commit it to the server for others to download.
+
+
+!!! Connecting to the server
+
+Before you can use the asset server, you must connect to it.  To do this you click the ^^Connection^^ button, which takes you to the connection screen:
+
+Attach:AssetServer-Connection.png\\
+''The Asset Server connection screen''
+
+Here you need to fill in:
+# Server address
+# Username
+# Password
+
+By clicking ^^Show projects^^ you can now see the available projects on the asset server, and choose which one to connect to by clicking ^^Connect^^.  Note that the username and password you use can be obtain from your system administrator.  Your system administrator created accounts when they installed Asset Server.
+
+
+!!! Updating from the Server
+
+To download all updates from the server, select the ^^Update^^ tab from the Overview tab and you will see a list of the latest committed Changesets. By selecting one of these you can see what was changed in the project as well as the provided commit message. Click ^^Update^^ and you will begin downloading all Changeset updates.
+
+Attach:AssetServer-UpdateTab.png\\
+''The $$Update$$ Tab''
+
+!!! Committing Changes to the Server
+
+When you have made a change to your local project and you want to store those changes on the server, you use the top ^^Commit^^ tab.
+
+
+Attach:AssetServer-UploadAssets.png\\
+''The $$Commit$$ tab''
+
+Now you will be able to see all the local changes made to the project since your last update, and will be able to select which changes you wish to upload to the server. You can add changes to the changeset either by manually dragging them into the changeset field, or by using the buttons placed below the commit message field. Remember to type in a commit message which will help you when you compare versions or revert to an earlier version later on, both of which are discussed below. 
+
+
+!!! Resolving conflicts
+
+With multiple people working on the same collection of data, conflicts will inevitably arise.  Remember, there is no need to panic! If a conflict exists, you will be presented with the $$Conflict Resolution$$ dialog when updating your project.
+
+Attach:AssetServer-ResolveConflict.png\\
+''The $$Conflict Resolution$$ screen''
+
+Here, you will be informed of each individual conflict, and be presented with different options to resolve each individual conflict. For any single conflict, you can select ^^Skip Asset^^ (which will not download that asset from the server), ^^Discard My Changes^^ (which will completely overwrite your local version of the asset)  or ^^Ignore Server Changes^^ (which will ignore the changes others made to the asset and after this update you will be able to commit your local changes over server ones) for each individual conflict. Additionally, you can select ^^Merge^^ for text assets like scripts to merge the server version with the local version.
+
+__Note:__ If you choose to discard your changes, the asset will be updated to the latest version from the server (i.e., it will incorporate other users'  changes that have been made while you were working). If you want to get the asset back as it was when you started working, you should revert to the specific version that you checked out. (See ''Browsing revision history and reverting assets'' below.)
+
+If you run into a conflict while you are committing your local changes, Unity will refuse to commit your changes and inform you that a conflict exists. To resolve the conflicts, select ^^Update^^.  Your local changes will not automatically be overwritten.  At this point you will see the $$Conflict Resolution$$ dialog, and can follow the instructions in the above paragraph.
+
+
+!!! Browsing revision history and reverting assets
+
+The Asset Server retains all uploaded versions of an asset in its database, so you can revert your local version to an earlier version at any time.  You can either select to restore the entire project or single files. To revert to an older version of an asset or a project, select the Overview tab then click $$Show History$$ listed under Asset Server Actions. You will now see a list of all commits and be able to select and restore any file or all project to an older version. 
+
+Attach:AssetServer-RevertingAsset.png\\
+''The $$History$$ dialog''
+
+Here, you can see the version number and added comments with each version of the asset or project. This is one reason why descriptive comments are helpful. Select any asset to see its history or ^^Entire Project^^ for all changes made in project. Find revision you need. You can either select whole revision or particular asset in revision. Then click ^^Download Selected File^^ to get your local asset replaced with a copy of the selected revision. ^^Revert All Project^^ will revert entire project to selected revision.
+
+Prior to reverting, if there are any differences between your local version and the selected server version, those changes will be lost when the local version is reverted.
+
+If you only want to abandon the changes made to the local copy, you don't have to revert.  You can discard those local modifications by selecting ^^Discard Changes^^ in the main asset server window.  This will immediately download the current version of the project from the server to your local Project.
+
+
+!!! Comparing asset versions
+
+If you're curious to see the differences between two particular versions you can explicitly compare them.  To do this, open ^^History^^ window, select revision and asset you want to compare and press ^^Compare to Local Version^^. If you need to compare two different revisions of an asset - right click on it, in the context menu select ^^Compare to Another Revision^^ then find revision you want to compare to and select it. 
+
+''Note'': this feature requires that you have one of supported file diff/merge tools installed. Supported tools are:
+* On Windows:
+** TortoiseMerge: part of [[http://tortoisesvn.net/|TortoiseSVN]] or a separate download from the [[http://sourceforge.net/project/showfiles.php?group_id=138498 | project site]].
+** [[http://winmerge.org/ | WinMerge]].
+** [[http://www.sourcegear.com/diffmerge/ | SourceGear Diff/Merge]].
+** [[http://www.perforce.com/perforce/products/merge.html | Perforce Merge (p4merge)]]: part of Perforce's visual client suite (P4V).
+** [[http://sourceforge.net/projects/tkdiff/ | TkDiff]].
+* On Mac OS X:
+** [[http://www.sourcegear.com/diffmerge/ | SourceGear Diff/Merge]].
+** FileMerge: part of Apple's [[http://developer.apple.com | XCode development tools]].
+** [[http://sourceforge.net/projects/tkdiff/ | TkDiff]].
+** [[http://www.perforce.com/perforce/products/merge.html | Perforce Merge (p4merge)]]: part of Perforce's visual client suite (P4V).
+
+
+!!! Recovering deleted assets
+
+Deleting a local asset and committing the delete to the server will in fact not delete an asset permanently. Just as any previous version of an asset can be restored through ^^History^^ window from the Overview tab.
+
+Attach:AssetServer-RecoverDeleted.png\\
+''The $$History$$ dialog''
+
+Expand ^^Deleted Assets^^ item, find and select assets from the list and hit ^^Recover^^, the selected assets will be downloaded and re-added to the local project. If the folder that the asset was located in before the deletion still exists, the asset will be restored to the original location, otherwise it will be added to the root of the Assets folder in the local project.
+
+
+!!! Best Practices & Common Issues
+
+This is a compilation of best practices and solutions to problems which will help you when using the Asset Server:
+
+# Backup, Backup, Backup
+** Maintain a backup of your database. It is very important to do this. In the unfortunate case that you have a hardware problem, a virus, a user error, etc you may loose all of your work. Therefore make sure you have a backup system in place. You can find lots of resources online for setting up backup systems. 
+
+# %item value=2%Stop the server before shutting the machine down
+** This can prevent "fast shutdowns" from being generated in the PostgreSQL (Asset Server) log. If this occurs the Asset Server has to do a recovery due to an improper shut down. This can take a very long time if you have a large project with many commits.
+
+# %item value=3%Resetting you password from Console
+** You can reset your password directly from a shell, console or command line using the following command:\\
+\\
+[@ psql -U unitysrv -d template1 -c"alter role admin with password 'MYPASSWORD'" @]
+
+# %item value=4%Can't connect to Asset Server
+**The password may have expired. Try resetting your password.
+**Also the username is case sensitive: "Admin" != "admin". Make sure you are using the correct case.
+**Make sure the server is actually running:
+***On OS X or Linux you can type on the terminal: ps -aux
+***On Windows you can use the Task Manager.
+**Verify that the Asset Server is not running on more than one computer in your Network. You could be connecting to the wrong one.
+
+# %item value=5%The Asset Server doesn't work in 64-bit Linux
+**The asset server can run OK on 64-bit Linux machines if you install 32-bit versions of the required packages. You can use "dpkg -i --force-architecture" to do this.
+
+# %item value=6%Use the Asset Server logs to get more information
+**Windows:
+***%ProgramFiles%\Unity\AssetServer\log
+**OS X:
+***/Library/UnityAssetServer/log
+
+
+!! Asset Server training complete
+
+You should now be equipped with the knowledge you need to start using the Asset Server effectively.  Get to it, and don't forget the good workflow fundamentals.  Commit changes often, and don't be afraid of losing anything.
