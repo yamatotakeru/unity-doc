@@ -1,0 +1,18 @@
+!Webplayer Release Channels
+
+Whenever a new major version of Unity is released, the webplayer plugin for the browser is also updated to take advantage of the latest features. The plugin checks for new releases as it starts up and will automatically upgrade itself when necessary.
+
+Although Unity does take backward compatibility very seriously, it is still possible that a new release could introduce bugs that cause problems with existing webplayers. Since the plugin updates automatically, such bugs could leave a user unable to play a web game until they are fixed and in the meantime, there may be no way to get the working version of the runtime back.
+
+To avoid problems like this, the plugin is designed to keep a number of different versions of the Unity runtime, which are called $$Release Channels$$. When an update to the runtime is released, the plugin automatically retrieves it but also retains a copy of the previous version. The latest channel is named __Release__ while the previous one is named __Stable__. By default, the plugin will use the oldest channel that supports all the features needed by a given webplayer. This enables new games to make use of new features but avoids the risk that new bugs will take down existing games.
+
+Some time after a release, when the Release channel has been thoroughly tested for stability, it will be migrated to Stable status and it will be used as the default for all players from then on.
+
+!!Selecting a channel
+Although the channel system avoids problems with upgrading, it is still useful to be able to test your game with the latest runtime. The Unity browser plugin lets you select the desired channel from the context menu (right-click on the content area in the web page).
+
+Attach:ChannelMenu.png
+
+The channels are listed in order with the most recent at the top. When you select an item from the menu, it will be used as the minimum version for running webplayer content (so if you select the Release channel, the older Stable channel will not be used). You can simply select the oldest version to restore the default channel selection. Normally, just the Release and Stable channels will be available but the system is open-ended so other channels (say for Beta testing) may appear from time to time.
+
+Additionally, the menu gives you the option to switch to Development mode, which enables [[Debugging|debugging]] and [[Profiler|profiling]] in the webplayer and also offers an error console will appear whenever the player's code throws exceptions.
