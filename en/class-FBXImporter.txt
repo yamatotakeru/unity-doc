@@ -1,10 +1,12 @@
-!Meshes
+!Models
+
+%red%TODO: Rewrite page so it's actually about imported models, not about meshes. Unity represents the imported model as many different objects, including a hierarchy of GameObjects, Meshes (can be skinned depending on import options), AnimationClips, etc. In the Project folder the main imported object is not a mesh but a Model Prefab. The page misses the point, making it sound like it's all about meshes, when meshes is just one part of what the ModelImporter does.%red%
 
 When a 3D model is imported, Unity represents it internally as a $$Mesh$$. A Mesh must be attached to a GameObject using a [[class-MeshFilter|Mesh Filter]] component. For the mesh to be visible, the GameObject must also have a [[class-MeshRenderer|Mesh Renderer]] or other suitable rendering component attached. With these components in place, the mesh will be visible at the GameObject's position with its exact appearance dependent on the Material used by the renderer.
 
 Attach:MeshExample40.png \\
 ''A [[class-MeshFilter | Mesh Filter]] together with [[class-MeshRenderer | Mesh Renderer]] makes the model appear on screen.''
 
-Unity's mesh importer provides many options for controlling the generation of the mesh and associating it with its textures and materials. These options are covered by the following pages:-
+Unity's mesh importer provides many options for controlling the generation of the mesh and associating it with its textures and materials. These options are covered by the following pages:
 
 (:tocportion:)

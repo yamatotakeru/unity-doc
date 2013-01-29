@@ -123,7 +123,7 @@ Attach:TexImporterAdvanced40.png\\
 
 
 ||``Non Power of 2`` ||If texture has non-power-of-two size, this will define a scaling behavior at import time (for more info see the [[#texturesizes|Texture Sizes]] section below):||
-||>>>``None`` ||Texture will be padded to the next larger power-of-two size for use with GUITexture component. ||
+||>>>``None`` ||Texture size will be kept as-is. ||
 ||>>>``To nearest`` ||Texture will be scaled to the nearest power-of-two size at import time. For instance 257x511 texture will become 256x512. Note that PVRTC formats require textures to be square (width equal to height), therefore final size will be upscaled to 512x512. ||
 ||>>>``To larger`` ||Texture will be scaled to the next larger power-of-two size at import time. For instance 257x511 texture will become 512x512. ||
 ||>>>``To smaller`` ||Texture will be scaled to the next smaller power-of-two size at import time. For instance 257x511 texture will become 256x256. ||
@@ -248,13 +248,11 @@ Unity can read the following file formats: PSD, TIFF, JPG, TGA, PNG, GIF, BMP, I
 [[#texturesizes]]
 !!! Texture Sizes
 
-Ideally texture sizes should be powers of two on the sides. These sizes are as follows: 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 or 2048 pixels. The textures do not have to be square, i.e. width can be different from height.
+Ideally texture sizes should be powers of two on the sides. These sizes are as follows: 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048 etc. pixels. The textures do not have to be square, i.e. width can be different from height.
 
-It is possible to use other (non power of two) texture sizes with Unity. Non power of two texture sizes work best when used on [[class-GuiTexture|GUI Textures]], however if used on anything else they will be converted to an uncompressed RGBA 32 bit format. That means they will take up more video memory (compared to PVRT(iOS)/DXT(Desktop) compressed textures), will be slower to load and slower to render (if you are on iOS mode). In general you'll use non power of two sizes only for GUI purposes.
+It is possible to use other (non power of two - "NPOT") texture sizes with Unity. Non power of two texture sizes generally take slightly more memory and might be slower to read by the GPU. If the GPU does not support NPOT texture sizes, then Unity will scale and pad the texture up to next power of two size, which will use even more memory and make loading slower. In general you'd want to use non power of two sizes only for GUI purposes.
 
-Non power of two texture assets can be scaled up at import time using the ``Non Power of 2`` option in the advanced texture type in the import settings. Unity will scale texture contents as requested, and in the game they will behave just like any other texture, so they can still be compressed and very fast to load.  
-
-One potential problem with using non power of two textures this is that Unity will convert these textures internally to power of two, and this stretching process can introduce minor visual artefacts.  
+Non power of two texture assets can be scaled up at import time using the ``Non Power of 2`` option in the advanced texture type in the import settings.
 
 !!! UV Mapping
 
