@@ -1,167 +1,167 @@
-! Daily use of the Asset Server
+! Assset Server の日次ベースの使用方法
 
-This section explains the common tasks, workflow and best practices for using the Asset Server on a day-to-day basis.
-
-
-!! Getting Started
-
-If you are joining a team that has a lot of work stored on the Asset Server already, this is the quickest way to get up and running correctly.  If you are starting your own project from scratch, you can skip down to the [[#Fundamentals | Workflow Fundamentals]] section.
-
-# Create a new empty Project with no packages imported
-# Go to ^^Edit->Project Settings->Editor^^ and select ^^Asset Server^^ as the version control mode
-# From the menubar, select ^^Window->Version^^
-# Click the ^^Connection^^ button
-# Enter your user name and password (provided by your Asset Server administrator)
-# Click ^^Show Projects^^ and select the desired project
-# Click ^^Connect^^
-# Click the ^^Update^^ tab
-# Click the ^^Update^^ button
-# If a conflict occurs, discard all local versions
-# Wait for the update to complete
-# You are ready to go
+このセクションではAsset Serverで日次ベースにおいて良くあるタスク、ワークフロー、およびベストプラクティスについて説明します。
 
 
-Continue reading for detailed information on how to use the Asset Server effectively every day.
+!! 始めるには
+
+もし Asset Server にすでに大量の作業が格納されているチームに加わる場合、次の手順により開始をして作業を正しく始めるのに最も早い方法です。もしゼロから自身のプロジェクトを開始する場合は [[#Fundamentals | ワークフローの基本]] のセクションへとジャンプして下さい。
+
+# 新規に空のプロジェクトを、パッケージは全てインポートせずに作成
+# メニューから ^^Edit->Project Settings->Editor^^ を選択して、^^Asset Server^^ を version control mode として選択
+# メニューから ^^Window->Version^^ を選択
+# ^^Connection^^ ボタンをクリック
+# ユーザ名とパスワードを入力（Asset Server 管理者により提供されたもの）
+# ^^Show Projects^^ をクリックし、希望のプロジェクトを選択
+# ^^Connect^^ をクリック
+# ^^Update^^ タブをクリック
+# ^^Update^^ ボタンをクリック
+# コンフリクト発生時は、ローカルバージョンを全て破棄
+# アップデートが完了する」のを待機
+# 準備完了
+
+
+Asset Serverを毎日効果的に使用する方法の詳細については続けてお読み下さい。
 
 [[#Fundamentals]]
-!! Workflow Fundamentals
+!! ワークフローの基本
 
-When using the Asset Server with a multi-person team, it is generally good practice to Update all changed assets from the server when you begin working, and Commit your changes at the end of the day, or whenever you're done working.  You should also commit changes when you have made significant progress on something, even if it is in the middle of the day.  Committing your changes regularly and frequently is recommended.
+Asset Server を複数人数のチームで使用するとき、一般的には、作業を始める前にサーバから全てのアセットを更新するのが良い習慣で、日の終わりまたは作業終了時には変更をコミットします。さらに、何か顕著な進捗があった場合は日の途中であっても変更をコミットすべきです。変更を定期的かつ頻繁に行うことを推奨します。
 
 
-!! Understanding the Server View
+!! サーバビューを理解する
 
-The $$Server View$$ is your window into the Asset Server you're connected to. You can open the Server View by selecting ^^Window->Version Control^^.
+$$Server View$$ はAsset Serverに接続しているウィンドウです。サーバビューを開くには ^^Window->Version Control^^ を選択します。
 
 Attach:AssetServer-ServerView.png\\
-''The $$Overview$$ tab''
+''$$Overview$$ タブ''
 
 
-The Server View is broken into tabs: $$Overview$$ $$Update$$, and $$Commit$$.  $$Overview$$ will show you any differences between your local project and the latest version on the server with options to quickly commit local changes or download the latest updates.  $$Update$$ will show you the latest remote changes on the server and allow you to download them to your local project.  $$Commit$$ allows you to create a $$Changeset$$ and commit it to the server for others to download.
+サーバビューは次のタブに分かれています：$$Overview$$ 、 $$Update$$ および $$Commit$$ 。$$Overview$$ によりローカルプロジェクトおよびサーバにある最新版の差分を表示し、ローカルの変更をクイックにコミットして、最新のアップデートをダウンロード出来ます。 $$Update$$ によりリモートのサーバでの最新の変更を表示しローカルプロジェクトにダウンロードできます。$$Commit$$ により $$Changeset$$ を作成してサーバにコミットして、他の人がダウンロードできるようにします。
 
 
-!!! Connecting to the server
+!!! サーバへの接続
 
-Before you can use the asset server, you must connect to it.  To do this you click the ^^Connection^^ button, which takes you to the connection screen:
+Asset Serverを使用する前にそこに接続する必要があります。このためには ^^Connection^^ をクリックして、接続画面を表示します:
 
 Attach:AssetServer-Connection.png\\
-''The Asset Server connection screen''
+''Asset Server 接続画面''
 
-Here you need to fill in:
-# Server address
-# Username
-# Password
+次に入力する必要があるのは:
+# サーバアドレス
+# ユーザ名
+# パスワード
 
-By clicking ^^Show projects^^ you can now see the available projects on the asset server, and choose which one to connect to by clicking ^^Connect^^.  Note that the username and password you use can be obtain from your system administrator.  Your system administrator created accounts when they installed Asset Server.
+^^Show projects^^ をクリックすることで Asset Server での利用可能なプロジェクトが表示され、どれに接続するか ^^Connect^^ をクリックして選択します。ユーザ名とパスワードはシステム管理者から入手することに留意して下さい。システム管理者が Asset Server をインストールした際にアカウントを作成しています。
 
 
-!!! Updating from the Server
+!!! サーバからのアップデート
 
-To download all updates from the server, select the ^^Update^^ tab from the Overview tab and you will see a list of the latest committed Changesets. By selecting one of these you can see what was changed in the project as well as the provided commit message. Click ^^Update^^ and you will begin downloading all Changeset updates.
+サーバから全てのアップデートをダウンロードするには、Overview タブから ^^Update^^ タブを選択しし、最新でコミットされた Changesets の一覧を表示します。これのうちひとつを選択することで、プロジェクトに何が変更されたか、コミットメッセージとともに参照することが出来ます。 ^^Update^^ をクリックすると、全ての Changeset アップデートのダウンロードが開始されます。
 
 Attach:AssetServer-UpdateTab.png\\
-''The $$Update$$ Tab''
+''$$Update$$ タブ''
 
-!!! Committing Changes to the Server
+!!! サーバに変更をコミットする
 
-When you have made a change to your local project and you want to store those changes on the server, you use the top ^^Commit^^ tab.
+ローカルプロジェクトに変更を行っ他後、サーバにその変更を格納する場合、 ^^Commit^^ タブを使用します。
 
 
 Attach:AssetServer-UploadAssets.png\\
-''The $$Commit$$ tab''
+''$$Commit$$ タブ''
 
-Now you will be able to see all the local changes made to the project since your last update, and will be able to select which changes you wish to upload to the server. You can add changes to the changeset either by manually dragging them into the changeset field, or by using the buttons placed below the commit message field. Remember to type in a commit message which will help you when you compare versions or revert to an earlier version later on, both of which are discussed below. 
+これでプロジェクトに対して、前回のアップデート以降に行われた全てのローカルの変更を参照できるようになり、どの変更をサーバにアップロードするかを選択することが出来ます。Changeset に変更を追加するには、Changeset フィールドに手動でドラッグするか、またはコミットメッセージ フィールドの下のボタンを使用するか、いずれかの方法で行います。コミットメッセージを入力することで、バージョン比較を行ったり、後ほど過去バージョンに切り戻す際に、役立つことを忘れないで下さい。両方とも以下で説明します。
 
 
-!!! Resolving conflicts
+!!! コンフリクトの解決
 
-With multiple people working on the same collection of data, conflicts will inevitably arise.  Remember, there is no need to panic! If a conflict exists, you will be presented with the $$Conflict Resolution$$ dialog when updating your project.
+複数の人が同じデータの集合で作業をする以上、コンフリクトは必然的に発生します。パニックする必要はまったくないことを頭に入れるべきです。もしコンフリクトが発生している場合、 $$Conflict Resolution$$ （コンフリクト解決）ダイアログがプロジェクト アップデート時に表示されます。
 
 Attach:AssetServer-ResolveConflict.png\\
-''The $$Conflict Resolution$$ screen''
+'' $$Conflict Resolution$$ 画面''
 
-Here, you will be informed of each individual conflict, and be presented with different options to resolve each individual conflict. For any single conflict, you can select ^^Skip Asset^^ (which will not download that asset from the server), ^^Discard My Changes^^ (which will completely overwrite your local version of the asset)  or ^^Ignore Server Changes^^ (which will ignore the changes others made to the asset and after this update you will be able to commit your local changes over server ones) for each individual conflict. Additionally, you can select ^^Merge^^ for text assets like scripts to merge the server version with the local version.
+ここで、各々のコンフリクトが通知され、各々のコンフリクトを解決するための異なるオプションが提示されます。どのコンフリクトの場合も、^^Skip Asset^^ （サーバからアセットをダウンロードしない）、^^Discard My Changes^^ （アセットのローカルバージョンを完全に上書きする）、または ^^Ignore Server Changes^^ （他の人がアセットに行った変更を無視し、更新を行えばサーバの変更を上書きする形でコミットできる）を個別のコンフリクトで選択できます。さらに、 ^^Merge^^ を選択して、スクリプトのような テキスト アセット でローカル バージョン とサーバ バージョンをマージできます。
 
-__Note:__ If you choose to discard your changes, the asset will be updated to the latest version from the server (i.e., it will incorporate other users'  changes that have been made while you were working). If you want to get the asset back as it was when you started working, you should revert to the specific version that you checked out. (See ''Browsing revision history and reverting assets'' below.)
+__注意:__ もし変更を破棄することを選択した場合、アセットはサーバの最新版に更新されます（すなわち、自分が作業をしていた際に他の人が行った変更を反映します）。もしアセットを自身の作業前の状態を取得したい場合、チェックアウトしたバージョンに切り戻すべきです。（以下の ''リビジョン履歴の参照とアセットを切り戻す方法'' を参照して下さい。）
 
-If you run into a conflict while you are committing your local changes, Unity will refuse to commit your changes and inform you that a conflict exists. To resolve the conflicts, select ^^Update^^.  Your local changes will not automatically be overwritten.  At this point you will see the $$Conflict Resolution$$ dialog, and can follow the instructions in the above paragraph.
+もしローカルへの変更をコミットする際にコンフリクトが発生した場合、Unity はコミット変更を拒否してコンフリクトが発生していることを知らせます。コンフリクトを解決するには、 ^^Update^^ を選択します。ローカルへの変更は自動的には上書きされません。この時点で $$Conflict Resolution$$ ダイアログが表示され、前述の段落の説明に従います。
 
 
-!!! Browsing revision history and reverting assets
+!!! リビジョン履歴の参照とアセットを切り戻す方法
 
-The Asset Server retains all uploaded versions of an asset in its database, so you can revert your local version to an earlier version at any time.  You can either select to restore the entire project or single files. To revert to an older version of an asset or a project, select the Overview tab then click $$Show History$$ listed under Asset Server Actions. You will now see a list of all commits and be able to select and restore any file or all project to an older version. 
+Asset Server はアセットのアップロードされた全てのバージョンをデータベースに保存しているため、いつでもローカルのバージョンを過去のバージョンに切り戻すことが出来ます。プロジェクト全体をリストアするか、単独のファイルをリストアするかいずれかを選択できます。アセットまたはプロジェクトの過去バージョンに切り戻すには、Overview タブを選択して Asset Server Actions の下に表示されている $$Show History$$ をクリックします。これで全てのコミットの一覧が表示され、いずれかのファイルまたはプロジェクト全体を過去のバージョンにリストアすることが出来ます。
 
 Attach:AssetServer-RevertingAsset.png\\
-''The $$History$$ dialog''
+'' $$History$$ ダイアログ''
 
-Here, you can see the version number and added comments with each version of the asset or project. This is one reason why descriptive comments are helpful. Select any asset to see its history or ^^Entire Project^^ for all changes made in project. Find revision you need. You can either select whole revision or particular asset in revision. Then click ^^Download Selected File^^ to get your local asset replaced with a copy of the selected revision. ^^Revert All Project^^ will revert entire project to selected revision.
+ここでは、バージョン番号および追加されたコメントを各アセットまたはプロジェクトのバージョンとともに参照できます。適切なコメント文が役立つ理由のひとつがこれです。いずれかのアセット選択してその履歴を参照するか ^^Entire Project^^ を選択してプロジェクトに対して行われた全ての変更を参照します。必要なリビジョンを探します。リビジョン全体を選択するか、リビジョンの中の特定のアセットを選択出来ます。次に ^^Download Selected File^^ をクリックして、選択したリビジョンのファイルでローカルアセットを置き換えます。 ^^Revert All Project^^ によりプロジェクト全体を選択したリビジョンに切り戻します。
 
-Prior to reverting, if there are any differences between your local version and the selected server version, those changes will be lost when the local version is reverted.
+切り戻す前に、もしローカル バージョンおよび選択したサーバー バージョンに違いがある場合、それらの変更はローカル バージョンが切り戻しされたときに失われます。
 
-If you only want to abandon the changes made to the local copy, you don't have to revert.  You can discard those local modifications by selecting ^^Discard Changes^^ in the main asset server window.  This will immediately download the current version of the project from the server to your local Project.
-
-
-!!! Comparing asset versions
-
-If you're curious to see the differences between two particular versions you can explicitly compare them.  To do this, open ^^History^^ window, select revision and asset you want to compare and press ^^Compare to Local Version^^. If you need to compare two different revisions of an asset - right click on it, in the context menu select ^^Compare to Another Revision^^ then find revision you want to compare to and select it. 
-
-''Note'': this feature requires that you have one of supported file diff/merge tools installed. Supported tools are:
-* On Windows:
-** TortoiseMerge: part of [[http://tortoisesvn.net/|TortoiseSVN]] or a separate download from the [[http://sourceforge.net/project/showfiles.php?group_id=138498 | project site]].
-** [[http://winmerge.org/ | WinMerge]].
-** [[http://www.sourcegear.com/diffmerge/ | SourceGear Diff/Merge]].
-** [[http://www.perforce.com/perforce/products/merge.html | Perforce Merge (p4merge)]]: part of Perforce's visual client suite (P4V).
-** [[http://sourceforge.net/projects/tkdiff/ | TkDiff]].
-* On Mac OS X:
-** [[http://www.sourcegear.com/diffmerge/ | SourceGear Diff/Merge]].
-** FileMerge: part of Apple's [[http://developer.apple.com | XCode development tools]].
-** [[http://sourceforge.net/projects/tkdiff/ | TkDiff]].
-** [[http://www.perforce.com/perforce/products/merge.html | Perforce Merge (p4merge)]]: part of Perforce's visual client suite (P4V).
+もしローカルのファイルに行われた変更を破棄したいだけの場合、切り戻す必要はありません。Main Asset Serverウィンドウで ^^Discard Changes^^ を選択することでローカルへの変更を破棄出来ます。これによりサーバにあるプロジェクトの最新バージョンをローカル プロジェクトに即時にダウンロードします。
 
 
-!!! Recovering deleted assets
+!!! アセット バージョンの比較
 
-Deleting a local asset and committing the delete to the server will in fact not delete an asset permanently. Just as any previous version of an asset can be restored through ^^History^^ window from the Overview tab.
+二つの特定のバージョンの違いが気になる場合、それらを明示的に比較することが出来ます。これをするためには ^^History^^ を開き、比較を行いたいリビジョンおよびアセットを選択して、 ^^Compare to Local Version^^ をクリックします。もし二つの異なるアセットのリビジョンを比較する必要がある場合、右クリックしてコンテキストメニューで ^^Compare to Another Revision^^ を選択し、次に比較したいリビジョンを探して選択します。
+
+''注意'': この機能を実行するためにはサポートされている diff/merge ツールがインストールされている必要があります。サポートされているツールは:
+* Windows:
+** TortoiseMerge:  [[http://tortoisesvn.net/|TortoiseSVN]] のひとつまたは、 [[http://sourceforge.net/project/showfiles.php?group_id=138498 | プロジェクトのサイト]] から別にダウンロード
+** [[http://winmerge.org/ | WinMerge]] 
+** [[http://www.sourcegear.com/diffmerge/ | SourceGear Diff/Merge]] 
+** [[http://www.perforce.com/perforce/products/merge.html | Perforce Merge (p4merge)]]: Perforce のビジュアル クライアント スイート（P4V）のひとつ。
+** [[http://sourceforge.net/projects/tkdiff/ | TkDiff]] 
+* Mac OS X:
+** [[http://www.sourcegear.com/diffmerge/ | SourceGear Diff/Merge]] 
+** FileMerge: Appleの [[http://developer.apple.com | XCode 開発ツール]] のひとつ.
+** [[http://sourceforge.net/projects/tkdiff/ | TkDiff]] 
+** [[http://www.perforce.com/perforce/products/merge.html | Perforce Merge (p4merge)]]: Perforce のビジュアル クライアント スイート（P4V）のひとつ。
+
+
+!!! 削除したアセットの回復
+
+ローカル アセットを削除してサーバに削除をコミットしてもアセットは永続的に削除されません。アセットの過去バージョンのいずれであっても Overview タブの ^^History^^ ウィンドウを通してリストア出来ます。
 
 Attach:AssetServer-RecoverDeleted.png\\
-''The $$History$$ dialog''
+'' $$History$$ ダイアログ''
 
-Expand ^^Deleted Assets^^ item, find and select assets from the list and hit ^^Recover^^, the selected assets will be downloaded and re-added to the local project. If the folder that the asset was located in before the deletion still exists, the asset will be restored to the original location, otherwise it will be added to the root of the Assets folder in the local project.
+^^Deleted Assets^^ アイテムを展開して、アセットを一覧から選択し、 ^^Recover^^ を押すと、選択されたセットはダウンロードされ、ローカルプロジェクトに再び追加されます。もし削除が行われたアセットが配置されたフォルダがまだ存在する場合、アセットは元の場所に配置され、そうでない場合はローカルプロジェクトのルートの Assets フォルダに追加されます。
 
 
-!!! Best Practices & Common Issues
+!!! ベストプラクティスおよび良くある問題
 
-This is a compilation of best practices and solutions to problems which will help you when using the Asset Server:
+Asset Server を使用するにあたって役立つ、ベストプラクティスおよび良くある問題を集めてみました:
 
-# Backup, Backup, Backup
-** Maintain a backup of your database. It is very important to do this. In the unfortunate case that you have a hardware problem, a virus, a user error, etc you may loose all of your work. Therefore make sure you have a backup system in place. You can find lots of resources online for setting up backup systems. 
+# とにかくバックアップ
+** データベースのバックアップを保持して下さい。これを行うことは非常に重要です。残念なケースでハードウェアの問題、ウィルス、ユーザエラー、等々といった場合に作業を全て失う可能性があります。このためバックアップシステムを用意して下さい。バックアップシステムをセットするためのウェブ上の情報はたくさんあります。
 
-# %item value=2%Stop the server before shutting the machine down
-** This can prevent "fast shutdowns" from being generated in the PostgreSQL (Asset Server) log. If this occurs the Asset Server has to do a recovery due to an improper shut down. This can take a very long time if you have a large project with many commits.
+# %item value=2% マシンのシャットダウン前にサーバを停止する
+** これにより PostgreSQL (Asset Server) のログで "早いシャットダウン" が生成されることを回避できます。もしこれが発生した場合 Asset Server は不適切なシャットダウンに伴うリカバリを行う必要があります。これは大規模プロジェクトでコミットがたくさんある場合、長い時間かかる可能性があります。
 
-# %item value=3%Resetting you password from Console
-** You can reset your password directly from a shell, console or command line using the following command:\\
+# %item value=3% コンソールからパスワードをリセットする
+** シェル、コンソール、またはコマンドラインから次のコマンドにより直接パスワードをリセット出来ます:\\
 \\
 [@ psql -U unitysrv -d template1 -c"alter role admin with password 'MYPASSWORD'" @]
 
-# %item value=4%Can't connect to Asset Server
-**The password may have expired. Try resetting your password.
-**Also the username is case sensitive: "Admin" != "admin". Make sure you are using the correct case.
-**Make sure the server is actually running:
-***On OS X or Linux you can type on the terminal: ps -aux
-***On Windows you can use the Task Manager.
-**Verify that the Asset Server is not running on more than one computer in your Network. You could be connecting to the wrong one.
+# %item value=4% Asset Server に接続できない
+**パスワードの有効期限が切れたかもしれません。パスワードをリセットしてみて下さい。
+**さらにユーザ名は大文字小文字を区別します: "Admin" != "admin" 。大文字または小文字が正しいことを確認して下さい。
+**サーバが実行中であることを確認して下さい:
+***OS X または Linux ではターミナル上で次のように入力出来ます: ps -aux
+***Windows ではタスクマネージャを使用出来ます。
+**Asset Server がネットワーク上でひとつ以上のコンピュータないかを確認します。間違った方に接続している可能性があります。
 
-# %item value=5%The Asset Server doesn't work in 64-bit Linux
-**The asset server can run OK on 64-bit Linux machines if you install 32-bit versions of the required packages. You can use "dpkg -i --force-architecture" to do this.
+# %item value=5% Asset Server が 64ビット Linux で動作しない
+**Asset Server は必要パッケージの 32 ビット版をインストールすれば 64 ビット Linux が正しく動作します。これを行うには "dpkg -i --force-architecture" を使用します。
 
-# %item value=6%Use the Asset Server logs to get more information
+# %item value=6% Asset Server ログを使用してより多くの情報を取得します
 **Windows:
 ***%ProgramFiles%\Unity\AssetServer\log
 **OS X:
 ***/Library/UnityAssetServer/log
 
 
-!! Asset Server training complete
+!! Asset Server のトレーニングはこれで完了
 
-You should now be equipped with the knowledge you need to start using the Asset Server effectively.  Get to it, and don't forget the good workflow fundamentals.  Commit changes often, and don't be afraid of losing anything.
+Asset Server を効果的に使用するために十分な知識が身についたはずです。自身の作業に取り掛かって、良いワークフローの基本を忘れないで下さい。変更は頻繁にコミットして、何か失うことを怖れる必要はありません。
