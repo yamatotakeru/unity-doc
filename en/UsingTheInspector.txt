@@ -11,7 +11,7 @@ When you create a $$script$$ yourself, which works as a custom Component type, t
 
 Furthermore, the Inspector is used for showing import options of assets such as textures, 3D models, and fonts when selected. Some scene and project-wide settings are also viewed in the $$Inspector$$, such as all the [[comp-ManagerGroup| Settings Managers]].
 
-Any property that is displayed in the Inspector can be directly modified. There are two main types of Properties: $$Values$$ and $$References$$.
+Any property that is displayed in the Inspector can be directly modified. There are two main types of Properties: $$Values$$ and $$References$$. Values might be the color of a light, or a vector.  References are links to other objects such as textures or other game objects.
 
 (:tocportion:)
 

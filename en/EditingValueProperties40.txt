@@ -56,3 +56,13 @@ Attach:GradientDiagram.png
 The upward-pointing arrows along the bottom of the gradient bar denote the stops. You can select a stop by clicking on it; its value will be shown in the Color box which will open the standard colour picker when clicked. A new stop can be created by clicking just underneath the gradient bar. The position of any of the stops can be changed simply by clicking and dragging and a stop can be removed with ^^ctrl/cmd + delete^^.
 
 The downward-pointing arrows above the gradient bar are also stops but they correspond to the alpha (transparency) of the gradient at that point. By default, there are two stops set to 100% alpha (ie, fully opaque) but any number of stops can be added and edited in much the same way as the colour stops.
+
+!!Arrays
+
+Scripts that you write can expose native .Net arrays to the Inspector.  When the Inspector encounters an array it will allow you to edit the length of the array.  The length defaults to zero.  When the size is set above zero the Inspector creates slots where you can enter values for the elements of the array.  If your Array stores data of a type that Unity knows it will insert the appropriate value editor.  For example:
+
+(:code:)
+var pickupColors : Color32[];
+(:codeend:)
+
+would result in an color picker editor for each element in the array.

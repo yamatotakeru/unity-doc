@@ -1,51 +1,53 @@
-! サーフェイスシェーダでのカスタム ライティング モデル
+! Custom Lighting models in Surface Shaders
 
-[[SL-SurfaceShaders | Surface Shaders]] を記述する際、表面のプロパティ (アルベド、色、法線など) を記述します。ライティングの相互作用は、$$Lighting Model$$ によって計算されます。 組み込みライティング モデルは、$$Lambert$$ (デフューズ ライティング) と $$BlinnPhong$$ (スペキュラ ライティング) です。
+When writing [[SL-SurfaceShaders | Surface Shaders]], you're describing properties of a surface (albedo color, normal, ...) and the lighting interaction is computed by a $$Lighting Model$$. Built-in lighting models are $$Lambert$$ (diffuse lighting) and $$BlinnPhong$$ (specular lighting).
 
-カスタムのライティング モデルを使用したい場合があると思いますが、これは、サーフェイスシェーダで行うことができます。 ライティング モデルは、慣例に一致する幾つかの Cg/HLSL 関数にすぎません。 組み込み @@Lambert@@ and @@BlinnPhong@@ モデルは、Unity 内の @@Lighting.cginc@@ ファイルで定義されます (Windows の場合、^^{unity install path}/Data/CGIncludes/Lighting.cginc^^、Mac の場合、^^/Applications/Unity/Unity.app/Contents/CGIncludes/Lighting.cginc^^)。
+Sometimes you might want to use a custom lighting model, and it is possible to do that in Surface Shaders. Lighting model is nothing more than a couple of Cg/HLSL functions that match some conventions. The built-in @@Lambert@@ and @@BlinnPhong@@ models are defined in @@Lighting.cginc@@ file inside Unity (^^{unity install path}/Data/CGIncludes/Lighting.cginc^^ on Windows, ^^/Applications/Unity/Unity.app/Contents/CGIncludes/Lighting.cginc^^ on Mac).
 
 
-!! ライティング モデルの宣言
+!! Lighting Model declaration
 
-ライティング モデルは、@@Lighting@@ で始まる名前のある通常の関数です。 これらは、シェーダ ファイルまたは含まれているファイルのいずれかの任意の場所で宣言できます。 以下の関数があります。
+Lighting model is a couple of regular functions with names starting with @@Lighting@@. They can be declared anywhere in your shader file or one of included files. The functions are:
 # @@half4 Lighting__Name__ (SurfaceOutput s, half3 lightDir, half atten);@@
-  これは、ビュー方向に依存して''いない''ライト モデルのフォワード レンダリング パスで使用されます (例: デフューズ)。
+  This is used in forward rendering path for light models that ''are not'' view direction dependent (e.g. diffuse).
 # @@half4 Lighting__Name__ (SurfaceOutput s, half3 lightDir, half3 viewDir, half atten);@@
-  これは、ビュー方向に依存しているライト モデルのフォワード レンダリング パスで使用されます (例: デフューズ)。
+  This is used in forward rendering path for light models that are view direction dependent.
 # @@half4 Lighting__Name___PrePass (SurfaceOutput s, half4 light);@@
-  これは、遅延ライティング パスに使用されます。
+  This is used in deferred lighting path.
 
-すべての関数を宣言する必要はありません。 ライティング モデルは、ビュー方向を使用するか、しないかのいずれかです。 同様に、ライティング モデルが遅延ライティングで機能しない場合、@@_PrePass@@ 関数を宣言せず、それを使用するすべてのシェーダは、フォワード レンダリングに対してのみコンパイルを行います。
+Note that you don't need to declare all functions. A lighting model either uses view direction or it does not. Similarly, if the lighting model will not work in deferred lighting, you just do not declare @@_PrePass@@ function, and all shaders that use it will compile to forward rendering only.
 
 
-!! ライトマップのデコード
+>>u42<<
+!! Decoding Lightmaps
 
-ライトマップのデコードは Forward および Deferred Lighting のライティング関数と同様にしてカスタマイズが出来ます。自身のライティングモデルがビュー方向依存であるかどうかによって以下のいずれかの関数を使用して下さい。標準的な Unity ライトマップ テクスチャ データ (@@color@@, @@totalColor@@, @@indirectOnlyColor@@, および @@scale@@ での引数で渡される) をデコードするには、ビルトインの $$DecodeLightmap$$ 関数を使用して下さい。
+Decoding lightmap data can be customized in a similar fashion as the lighting function for forward and deferred lighting. Use one of the functions below depending on whether your light model is view direction dependent or not. To decode standard Unity lightmap texture data (passed in @@color@@, @@totalColor@@, @@indirectOnlyColor@@ and @@scale@@ arguments) use built-in $$DecodeLightmap$$ function.
 
-カスタムのライトマップ デコード関数は Forward および Deferred Lighting パスを自動的にハンドリングします。しかし Deferred の場合 @@Lighting__Name___PrePass@@ 関数がライトマップデコードの__後に__ コールされ、そして @@light@@ 引数 はリアルタイム ライティング と ライトマップ の合計を保有します。もし必要であれば Forward および Deferred Lighting パスを区別するためにビルトインの $$UNITY_PASS_PREPASSFINAL$$ マクロを使用できます。
+Custom lightmap decoding functions handle forward and deferred lighting rendering paths automatically. However you must be aware that in deferred case @@Lighting__Name___PrePass@@ function will be called __after__ lightmap decoding and @@light@@ argument will contain sum of realtime lighting and lightmaps. If necessary you can distinguish forward and deferred paths by using built-in $$UNITY_PASS_PREPASSFINAL$$ macro.
 
-__単一の__ ライトマップのデコードをカスタマイズする関数は:
+Functions to customize decoding of __Single__ lightmaps are:
 
 # @@half4 Lighting__Name___SingleLightmap (SurfaceOutput s, fixed4 color);@@
-  これはビュー方向依存でないライトモデルで使用されます（例えば 拡散）
+  This is used for light models that are not view direction dependent (e.g. diffuse).
 # @@half4 Lighting__Name___SingleLightmap (SurfaceOutput s, fixed4 color, half3 viewDir);@@
-  これはビュー方向依存であるライトモデルで使用されます
+  This is used for light models that are view direction dependent.
 
-__デュアルの__ ライトマップのデコードをカスタマイズする関数は:
+Functions to customize decoding of __Dual__ lightmaps are:
 
 # @@half4 Lighting__Name___DualLightmap  (SurfaceOutput s, fixed4 totalColor, fixed4 indirectOnlyColor, half indirectFade);@@
-  これはビュー方向依存でないライトモデルで使用されます（例えば 拡散）
+  This is used for light models that are not view direction dependent (e.g. diffuse).
 # @@half4 Lighting__Name___DualLightmap (SurfaceOutput s,  fixed4 totalColor, fixed4 indirectOnlyColor, half indirectFade, half3 viewDir);@@
-  これはビュー方向依存であるライトモデルで使用されます
+  This is used for light models that are view direction dependent.
 
 Functions to customize decoding of __Directional__ lightmaps are:
 
 # @@half4 Lighting__Name___DirLightmap (SurfaceOutput s, fixed4 color, fixed4 scale, bool surfFuncWritesNormal);@@
-  これはビュー方向依存でないライトモデルで使用されます（例えば 拡散）
+  This is used for light models that are not view direction dependent (e.g. diffuse).
 # @@half4 Lighting__Name___DirLightmap (SurfaceOutput s, fixed4 color, fixed4 scale, half3 viewDir, bool surfFuncWritesNormal, out half3 specColor);@@
-  これはビュー方向依存であるライトモデルで使用されます
+  This is used for light models that are view direction dependent.
 
+>><<
 
-!! 例
+!! Examples
 
 __[[SL-SurfaceShaderLightingExamples | Surface Shader Lighting Examples]]__

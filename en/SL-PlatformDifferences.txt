@@ -73,4 +73,4 @@ Unity implements built-in parameters for you exactly in the same way as OpenGL d
 
 !! iPad2 and MSAA and alpha-blended geometry
 
-There is a bug in apple driver resulting in artifacts when MSAA is enabled and alpha-blended geometry is drawn with non RGBA colorMask. To prevent artifacts we force RGBA colorMask when this configuration is encountered, though it will render built-in Glow FX unusable (as it needs DST_ALPHA for intensity value). Also, please update your shaders if you wrote them yourself (see "Render Setup -> ColorMask" in [[ScriptRef:Main.SL-Pass | Pass Docs]]).
+There is a bug in apple driver resulting in artifacts when MSAA is enabled and alpha-blended geometry is drawn with non RGBA colorMask. To prevent artifacts we force RGBA colorMask when this configuration is encountered, though it will render built-in Glow FX unusable (as it needs DST_ALPHA for intensity value). Also, please update your shaders if you wrote them yourself (see "Render Setup -> ColorMask" in [[SL-Pass | Pass Docs]]).

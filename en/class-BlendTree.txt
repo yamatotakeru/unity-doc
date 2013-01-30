@@ -21,7 +21,7 @@ This gives a graphical display of how the animations are combined as the paramet
 You can select any of the nodes in the Blend Tree graph to inspect it in the Inspector. If the selected node is an Animation Clip the Inspector for that Animation Clip will be shown. The settings will be read-only if the animation is imported from a model. If the node is a Blend Node, the Inspector for Blend Nodes will be shown.
 
 Attach:MecanimBlendTreeInitial.png
-''A Blend Node shown in the ~~Inspector~~ before any motions have been added.'' %red%TODO: Update screenshot%red%
+''A Blend Node shown in the ~~Inspector~~ before any motions have been added.''
 
 The Blend Type drop-down is used to select one of the different blend types that can blend according to one or two parameters. You can read more about the different blend types and other Blend Tree options on the following pages.
 

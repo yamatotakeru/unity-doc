@@ -37,6 +37,9 @@ If the first two steps were done properly, then the ''Build AssetBundle From Sel
 # A save dialog will be shown, enter the desired asset bundle file name. An __.assetbundle__ extension will be added automatically. The Unity iOS runtime accepts only asset bundles built with the same version of the Unity editor as the final application. Read [[ScriptRef:BuildPipeline.BuildAssetBundle.html | BuildPipeline.BuildAssetBundle]] for details.
 
 !! Downloading your assets on iOS
+
+__Note:__ Apple may change the folder locations where you are permitted to write data.  Always check Apple documentation to be sure your application will be compliant.  The following was correct advice in early 2013.
+
 # Asset bundles can be downloaded and loaded by using the [[ScriptRef:WWW-assetBundle.html|WWW class]] and instantiating a main asset. Code sample:\\
 [@
 	var download : WWW;
@@ -61,28 +64,32 @@ If the first two steps were done properly, then the ''Build AssetBundle From Sel
 		Debug.Log("Couldnt load resource");	
 	}
 @]
-# You can save required files to a Documents folder next to your game's Data folder.\\
+# You can save required files to a Library folder next to your game's Data folder.\\
 [@
+        // c# example
         public static string GetiPhoneDocumentsPath () { 
-                // Your game has read+write access to /var/mobile/Applications/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/Documents 
+                // Your game has read+write access to /var/mobile/Applications/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/Library 
                 // Application.dataPath returns              
-                // /var/mobile/Applications/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/myappname.app/Data 
+                //   /var/mobile/Applications/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/myappname.app/Data 
+
                 // Strip "/Data" from path 
                 string path = Application.dataPath.Substring (0, Application.dataPath.Length - 5); 
+
                 // Strip application name 
                 path = path.Substring(0, path.LastIndexOf('/'));  
-                return path + "/Documents"; 
+
+                return path + "/Library"; 
         }
 @]
 
-# Cache a downloaded asset bundle using the .NET file API and for reuse it in the future by loading it via [[ScriptRef:WWW.html|WWW class]] and __file:///pathtoyourapplication/Documents/savedassetbundle.assetbundle__. Sample code for caching:\\
+# Cache a downloaded asset bundle using the .NET file API and for reuse it in the future by loading it via [[ScriptRef:WWW.html|WWW class]] and __file:///pathtoyourapplication/Library/savedassetbundle.assetbundle__. Sample code for caching:\\
 [@
 	// Code designed for caching on iPhone, cachedAssetBundle path must be different when running in Editor
-	// See code snippet above for getting the path to your Documents folder
-	private var cachedAssetBundle : String = "path to your Documents folder" + "/savedassetbundle.assetbundle"; 
+	// See code snippet above for getting the path to your Library folder
+	private var cachedAssetBundle : String = "path to your Library folder" + "/savedassetbundle.assetbundle"; 
 	var cache = new System.IO.FileStream(cachedAssetBundle, System.IO.FileMode.Create);
 	cache.Write(download.bytes, 0, download.bytes.Length);
 	cache.Close();
 	Debug.Log("Cache saved: " + cachedAssetBundle);
 @]
-->__Note:__ You can test reading files from the Documents folder if you enable file sharing.  Setting ``UIFileSharingEnabled`` to true in your ``Info.plist`` allows you to access the Documents folder from iTunes.
+->__Note:__ You can test reading files from the Documents folder if you enable file sharing.  Setting ``UIFileSharingEnabled`` to true in your ``Info.plist`` allows you to access the Documents folder from iTunes.  Note that the contents of Documents is cached to iCloud, so is not a location to store asset bundles in a shipping title.  See [[http://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/FileSystemProgrammingGUide/FileSystemOverview/FileSystemOverview.html | File System Basics]].

@@ -1,17 +1,17 @@
-! サーフェイスシェーダ ライティングの例
+! Surface Shader Lighting Examples
 
-以下は [[SL-Surface Shaders | Surface Shaders]] の  [[SL-SurfaceShaderLighting | $$custom lighting models$$]] のサンプルです。 一般的なサーフェイスシェーダの例は、[[SL-SurfaceShaderExamples | this page]] にあります。
+Here are some examples of [[SL-SurfaceShaderLighting | $$custom lighting models$$]] in [[SL-Surface Shaders | Surface Shaders]]. General Surface Shader examples are in [[SL-SurfaceShaderExamples | this page]].
 
-遅延ライティングは、カスタムのマテリアルごとのライティング モデルによってはうまく機能しないため、以下のほとんどの例では、シェーダにはフォワード レンダリングにのみコンパイルさせます。
+Because Deferred Lighting does not play well with some custom per-material lighting models, in most examples below we make the shaders compile to Forward Rendering only.
 
 
-!! 拡散
+!! Diffuse
 
-組み込みランバート ライティング モデルを使用するシェーダから始めましょう。
+We'll start with a shader that uses built-in Lambert lighting model:
 
   Shader "Example/Diffuse Texture" {
     Properties {
-      _MainTex ("Texture", 2D) = "white" { }
+      _MainTex ("Texture", 2D) = "white" {}
     }
     SubShader {
       Tags { "RenderType" = "Opaque" }
@@ -29,11 +29,11 @@
     Fallback "Diffuse"
   }
 
-以下は、テクスチャがある場合と、実際のテクスチャがない場合にどのように見えるかの例です (1 つのディレクショナル ライトがシーンにあります)。 \\
+Here's how it looks like with a texture and without an actual texture (one directional light is in the scene): \\
 Attach:SurfaceShaderDiffuseTexture.png Attach:SurfaceShaderDiffuseNoTex.png
 
 
-まったく同じ事をしますが、組み込みのランバート ライティング モデルを使用する代わりに、''自身のライティング モデル''を記述します。 [[SL-SurfaceShaderLighting | Surface Shader Lighting Models]] は、記述する必要のある関数です。 以下は簡単なランバート ライティング モデルです。 ''シェーダ部分''自体は変わりませんでした (グレーアウトサれています):
+Now, let's do exactly the same, but write out ''our own lighting model'' instead of using built-in Lambert one. [[SL-SurfaceShaderLighting | Surface Shader Lighting Models]] are just some functions that we need to write. Here's a simple Lambert one. Note that the "shader part" itself did not change at all (grayed out):
 
   %gray%Shader "Example/Diffuse Texture" {
   %gray%  Properties {
@@ -58,18 +58,18 @@ Attach:SurfaceShaderDiffuseTexture.png Attach:SurfaceShaderDiffuseNoTex.png
   %gray%    sampler2D _MainTex;
   %gray%    void surf (Input IN, inout SurfaceOutput o) {
   %gray%        o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
-  %gray%  }
+  %gray%    }
   %gray%    ENDCG
   %gray%  }
   %gray%  Fallback "Diffuse"
-  %gray%  }
+  %gray%}
 
-そのため、ここでの簡単なデフューズ ライティング モデルは、@@LightingSimpleLambert@@ 関数です。 表面法線と光方向間のドット積を行うことでライティングを計算し、光の軽減および色を適用します。
+So our simple Diffuse lighting model is @@LightingSimpleLambert@@ function. It computes lighting by doing a dot product between surface normal and light direction, and then applies light attenuation and color.
 
 
-!! デフューズ ラップ
+!! Diffuse Wrap
 
-以下はラップされたデフューズ、デフューズ ライティングの変形で、照明がオブジェクトの端を''ラップ''します。 サブ表面散乱効果のフェークに便利です。 改めて言いますが、サーフェイスシェーダ自体はまったく変わっていません。別のライティング関数を使用しているだけです。
+Here's Wrapped Diffuse - a modification of Diffuse lighting, where illumination "wraps around" the edges of objects. It's useful for faking subsurface scattering effect. Again, the surface shader itself did not change at all, we're just using different lighting function.
 
   %gray%Shader "Example/Diffuse Wrapped" {
   %gray%  Properties {
@@ -95,19 +95,19 @@ Attach:SurfaceShaderDiffuseTexture.png Attach:SurfaceShaderDiffuseNoTex.png
   %gray%    sampler2D _MainTex;
   %gray%    void surf (Input IN, inout SurfaceOutput o) {
   %gray%        o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
-  %gray%  }
+  %gray%    }
   %gray%    ENDCG
   %gray%  }
   %gray%  Fallback "Diffuse"
-  %gray%  }
+  %gray%}
 
 
 Attach:SurfaceShaderDiffuseWrap.png Attach:SurfaceShaderDiffuseWrapNoTex.png
 
 
-!! トゥーン ランプ
+!! Toon Ramp
 
-以下は、表面が光と法線間の角度にどのように対応するかを定義するためにテクスチャを使用する''Ramp''ライティング モデルです。 これは、トゥーン ライティングなどの各種効果に使用できます。
+Here's a "Ramp" lighting model that uses a texture ramp to define how surface responds to angle between light and the normal. This can be used for variety of effects, including Toon lighting.
 
   %gray%Shader "Example/Toon Ramp" {
   %gray%  Properties {
@@ -137,11 +137,11 @@ Attach:SurfaceShaderDiffuseWrap.png Attach:SurfaceShaderDiffuseWrapNoTex.png
   %gray%    sampler2D _MainTex;
   %gray%    void surf (Input IN, inout SurfaceOutput o) {
   %gray%        o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
-  %gray%  }
+  %gray%    }
   %gray%    ENDCG
   %gray%  }
   %gray%  Fallback "Diffuse"
-  %gray%  }
+  %gray%}
 
 
 Attach:SurfaceShaderToonRamp.png Attach:SurfaceShaderToonRampNoTex.png
@@ -149,9 +149,9 @@ Attach:SurfaceShaderToonRamp.png Attach:SurfaceShaderToonRampNoTex.png
 Attach:SurfaceShaderToonRampItself.png
 
 
-!! 簡単なスペキュラ
+!! Simple Specular
 
-以下は簡単なスペキュラ ライティング モデルです。 組み込みの BlinnPhong が実際に行うことを非常に簡単に行えます。ここでは、どのように行われるかを例示するためにこれを挿入します。
+Here's a simple specular lighting model. It's quite simple to what built-in BlinnPhong actually does; we just put it here to illustrate how it's done.
 
   %gray%Shader "Example/Simple Specular" {
   %gray%  Properties {
@@ -182,12 +182,136 @@ Attach:SurfaceShaderToonRampItself.png
   %gray%    sampler2D _MainTex;
   %gray%    void surf (Input IN, inout SurfaceOutput o) {
   %gray%        o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
-  %gray%  }
+  %gray%    }
   %gray%    ENDCG
   %gray%  }
   %gray%  Fallback "Diffuse"
-  %gray%  }
+  %gray%}
 
 
 Attach:SurfaceShaderSimpleSpecular.png Attach:SurfaceShaderSimpleSpecularNoTex.png
 
+
+>>u42<<
+!! Decoding Lightmaps
+
+We'll start with a shader that mimics built-in lightmap decoding and uses Unity built-in function $$DecodeLightmap$$ to decode information from data stored in lightmap textures and built-in $$UNITY_DIRBASIS$$ macro defining basis vectors for Directional lightmaps:
+
+
+  %gray%Shader "Example/Standard Lightmap Decoding" {
+  %gray%  Properties {
+  %gray%    _MainTex ("Texture", 2D) = "white" {}
+  %gray%  }
+  %gray%  SubShader {
+  %gray%    Tags { "RenderType" = "Opaque" }
+  %gray%    CGPROGRAM
+
+      #pragma surface surf __Standard__
+
+  %gray%    half4 LightingStandard (SurfaceOutput s, half3 lightDir, half atten) {
+  %gray%        half NdotL = dot (s.Normal, lightDir);
+  %gray%        half4 c; c.rgb = s.Albedo * _LightColor0.rgb * (NdotL * atten * 2); c.a = s.Alpha;
+  %gray%        return c;
+  %gray%    }
+      
+      inline fixed4 LightingStandard_SingleLightmap (SurfaceOutput s, fixed4 color) {
+          half3 lm = DecodeLightmap (color);
+          return fixed4(lm, 0);
+      }
+
+      inline fixed4 LightingStandard_DualLightmap (SurfaceOutput s, fixed4 totalColor, fixed4 indirectOnlyColor, half indirectFade) {
+          half3 lm = lerp (DecodeLightmap (indirectOnlyColor), DecodeLightmap (totalColor), indirectFade);
+          return fixed4(lm, 0);
+      }
+
+      inline fixed4 LightingStandard_StandardLightmap (SurfaceOutput s, fixed4 color, fixed4 scale, bool surfFuncWritesNormal) {
+          UNITY_DIRBASIS
+
+          half3 lm = DecodeLightmap (color);
+          half3 scalePerBasisVector = DecodeLightmap (scale);
+          if (surfFuncWritesNormal)
+          {
+              half3 normalInRnmBasis = saturate (mul (unity_DirBasis, s.Normal));
+              lm *= dot (normalInRnmBasis, scalePerBasisVector);
+          }
+          return fixed4(lm, 0);
+      }
+      
+  %gray%    struct Input {
+  %gray%        float2 uv_MainTex;
+  %gray%    };
+  %gray%    sampler2D _MainTex;
+  %gray%    void surf (Input IN, inout SurfaceOutput o) {
+  %gray%        o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
+  %gray%    }
+  %gray%    ENDCG
+  %gray%  }
+  %gray%  Fallback "Diffuse"
+  %gray%}
+
+
+Now, let's add some tone mapping for light stored in lightmaps:
+
+  %gray%Shader "Example/Tonemapped Lightmap Decoding" {
+  %gray%  Properties {
+  %gray%    _MainTex ("Texture", 2D) = "white" {}
+      _Gain ("Lightmap tone-mapping Gain", Float) = 1
+      _Knee ("Lightmap tone-mapping Knee", Float) = 0.5
+      _Compress ("Lightmap tone-mapping Compress", Float) = 0.33
+  %gray%  }
+  %gray%  SubShader {
+  %gray%    Tags { "RenderType" = "Opaque" }
+  %gray%    CGPROGRAM
+
+      #pragma surface surf __Tonemapped__
+
+  %gray%    half4 LightingTonemapped (SurfaceOutput s, half3 lightDir, half atten) {
+  %gray%        half NdotL = dot (s.Normal, lightDir);
+  %gray%        half4 c; c.rgb = s.Albedo * _LightColor0.rgb * (NdotL * atten * 2); c.a = s.Alpha;
+  %gray%        return c;
+  %gray%    }
+      
+      half _Gain;
+      half _Knee;
+      half _Compress;
+      inline half3 TonemapLight (half3 i) {
+          __i *= _Gain;__
+          __return (i > _Knee)? (((i - _Knee)*_Compress)+_Knee): i;__
+      }
+
+      inline fixed4 LightingTonemapped_SingleLightmap (SurfaceOutput s, fixed4 color) {
+          half3 lm = __TonemapLight__(DecodeLightmap (color));
+          return fixed4(lm, 0);
+      }
+
+      inline fixed4 LightingTonemapped_DualLightmap (SurfaceOutput s, fixed4 totalColor, fixed4 indirectOnlyColor, half indirectFade) {
+          half3 lm = __TonemapLight__(lerp (DecodeLightmap (indirectOnlyColor), DecodeLightmap (totalColor), indirectFade));
+          return fixed4(lm, 0);
+      }
+
+      inline fixed4 LightingTonemapped_StandardLightmap (SurfaceOutput s, fixed4 color, fixed4 scale, bool surfFuncWritesNormal) {
+          UNITY_DIRBASIS
+
+          half3 lm = __TonemapLight__(DecodeLightmap (color));
+          half3 scalePerBasisVector = DecodeLightmap (scale);
+          if (surfFuncWritesNormal)
+          {
+              half3 normalInRnmBasis = saturate (mul (unity_DirBasis, s.Normal));
+              lm *= dot (normalInRnmBasis, scalePerBasisVector);
+          }
+          return fixed4(lm, 0);
+      }
+
+  %gray%    struct Input {
+  %gray%        float2 uv_MainTex;
+  %gray%    };
+  %gray%    sampler2D _MainTex;
+  %gray%    void surf (Input IN, inout SurfaceOutput o) {
+  %gray%        o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
+  %gray%    }
+  %gray%    ENDCG
+  %gray%  }
+  %gray%  Fallback "Diffuse"
+  %gray%}
+
+>><<

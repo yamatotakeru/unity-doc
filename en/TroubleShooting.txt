@@ -184,8 +184,8 @@ You might consider advice listed above or can work around this problem by adding
 object obj = new MD5CryptoServiceProvider();
 @]
 
-!! "Ran out of trampolines of type 1/2" runtime error
-This error usually happens if you use lots of recursive generics. You can hint to the AOT compiler to allocate more trampolines of type 1 or type 2. Additional AOT compiler command line options can be specified in the "Other Settings" section of the [[Main.class-PlayerSettings#iOS | Player Settings]]. For type 1 trampolines, specify ``nrgctx-trampolines=ABCD``, where ABCD is the number of new trampolines required (i.e. 4096). For type 2 trampolines specify ``nimt-trampolines=ABCD``.
+!! "Ran out of trampolines of type 0/1/2" runtime error
+This error usually happens if you use lots of recursive generics. You can hint to the AOT compiler to allocate more trampolines of type 0, type 1 or type 2. Additional AOT compiler command line options can be specified in the "Other Settings" section of the [[Main.class-PlayerSettings#iOS | Player Settings]]. For type 1 trampolines, specify ``nrgctx-trampolines=ABCD``, where ABCD is the number of new trampolines required (i.e. 4096). For type 2 trampolines specify ``nimt-trampolines=ABCD`` and for type 0 trampolines specify ``ntrampolines=ABCD``.
 
 !! After upgrading Xcode Unity iOS runtime fails with message "You are using Unity iPhone Basic. You are not allowed to remove the Unity splash screen from your game"
 With some latest Xcode releases there were changes introduced in PNG compression and optimization tool. These changes might cause false positives in Unity iOS runtime checks for splash screen modifications. If you encounter such problems try upgrading Unity to the latest publicly available version. If it does not help you might consider following workaround:
