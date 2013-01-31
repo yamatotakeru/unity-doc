@@ -18,7 +18,7 @@ Lighting model is a couple of regular functions with names starting with @@Light
 Note that you don't need to declare all functions. A lighting model either uses view direction or it does not. Similarly, if the lighting model will not work in deferred lighting, you just do not declare @@_PrePass@@ function, and all shaders that use it will compile to forward rendering only.
 
 
->>u42<<
+>>nextrelease<<
 !! Decoding Lightmaps
 
 Decoding lightmap data can be customized in a similar fashion as the lighting function for forward and deferred lighting. Use one of the functions below depending on whether your light model is view direction dependent or not. To decode standard Unity lightmap texture data (passed in @@color@@, @@totalColor@@, @@indirectOnlyColor@@ and @@scale@@ arguments) use built-in $$DecodeLightmap$$ function.

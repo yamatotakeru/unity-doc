@@ -13,3 +13,5 @@ Note that the ^^Adjust Time Scale^^ drop-down is only available if all the motio
 !!Mirroring
 
 You can mirror any humanoid Animation Clip in the motions list by enabling the mirror toggle at the far right. This feature enables you to use the same animation in its original form and in a mirrored version without needing twice the memory and space.
+
+(back to [[class-BlendTree|Blend Trees]])

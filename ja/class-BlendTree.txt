@@ -4,7 +4,7 @@ A common task in game animation is to blend between two or more similar motions.
 
 (:include AnimationTransitionsVersusBlendTrees:)
 
-Examples of similar motions could be various walk and run animations. In order for the blend to work well, the movements in the clips must take place at the same points in normalized time. For example, walking and running animations can be aligned so that the individual footfalls take place at the same points in normalized time (e.g. the left foot hits at 0.0 and the right foot at 0.5). Since normalized time is used, it doesn't matter if the clips are of different length.
+Examples of similar motions could be various walk and run animations. In order for the blend to work well, the movements in the clips must take place at the same points in normalized time. For example, walking and running animations can be aligned so that the moments of contact of foot to the floor take place at the same points in normalized time (e.g. the left foot hits at 0.0 and the right foot at 0.5). Since normalized time is used, it doesn't matter if the clips are of different length.
 
 To start working with a new Blend Tree, you need to:
 # Right-click on empty space on the ~~Animator Controller Window~~
@@ -13,10 +13,10 @@ To start working with a new Blend Tree, you need to:
 
 The Animator Window now shows a graph of the entire Blend Tree while the Inspector shows the currently selected node and its immediate children.
 
-Attach:MecanimBlendTreeStateDiagramInitial.png Attach:MecanimBlendTreeStateDiagram.png
+Attach:MecanimBlendTreeStateDiagramCombined.png
 ''The Animator Window shows a graph of the entire ``Blend Tree``. To the left is a Blend Tree with only the root Blend Node. To the right is a Blend Tree with a root Blend Node and three Animation Clips as child nodes.''
 
-This gives a graphical display of how the animations are combined as the parameter value changes (as you drag the slider, the arrows from the tree root change their shading to show the dominant animation clip).
+This gives a graphical visualization of how the animations are combined as the parameter value changes (as you drag the slider, the arrows from the tree root change their shading to show the dominant animation clip).
 
 You can select any of the nodes in the Blend Tree graph to inspect it in the Inspector. If the selected node is an Animation Clip the Inspector for that Animation Clip will be shown. The settings will be read-only if the animation is imported from a model. If the node is a Blend Node, the Inspector for Blend Nodes will be shown.
 

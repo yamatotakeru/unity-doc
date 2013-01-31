@@ -6,13 +6,15 @@ After setting the Blend Type, the first thing you need is to select the [[Animat
 
 Then you can add individual animations by clicking ^^+ -> Add Motion Field^^ to add an Animation Clip to the blend tree. When you're done, it should look something like this:
 
-Attach:MecanimBlendTree.png
-''A 1D Blend Node with three Animation Clips.'' %red%TODO: Update screenshot%red%
+Attach:MecanimBlendTree1D.png
+''A 1D Blend Node with three Animation Clips.''
 
+(:comment The word "pyramid" is not ideal. However, "triangle", "wedge" etc are worse since the center motion could be perceived as consisting of two triangles, and we want to use a word that describes a single shape for a motion. The word should convey a shape with a peak in the middle and a slope on *both* sides. :)
 The diagram at the top of the Inspector shows the influence of each of the child motions as the parameter varies between its minimum and maximum values. Each motion is shown as a little blue pyramid (the first and last are only shown in half), and if you click and hold down the left mouse button on one them, the corresponding motion is highlighted in the motion list below. The peak of each pyramid defines the parameter value where the motion has full influence, meaning that its animation weight is 1 and the other animations have a weight of 0. This is also called the $$threshold$$ of the motion.
 
 Attach:MecanimBlendTreeParam.png
-''The diagram at the top of the Blend Node Inspector visualizes the weights of the child motions over the extends of the parameter values.''
+(:comment source: MecanimBlendTreeParam.psd :)
+''The diagram at the top of the Blend Node Inspector visualizes the weights of the child motions over the range of the parameter values.''
 
 The red vertical bar indicates the value of the ``Parameter``. If you press ^^Play^^ in the ~~Preview~~ at the bottom of the ~~Inspector~~ and drag the red bar in the diagram left and right, you can see how the value of the parameter is controlling the blending of the different motions.
 
@@ -39,3 +41,5 @@ The ^^Compute Thresholds^^ drop-down will set the thresholds from data of your c
 ||``Angular Speed (Deg)`` ||Sets the threshold of each motion according to its angular speed in degrees per second.||
 
 Say, for example, you had a walk animation that covered 1.5 units per second, a jog at 2.3 units per second, and a run at 4 units per second, choosing the ^^Speed^^ option from the drop-down would set the parameter range and thresholds for the three animations based on these values. So, if you set the speed parameter to 3.0, it would blend the jog and run with a slight bias toward the jog.
+
+(back to [[class-BlendTree|Blend Trees]])

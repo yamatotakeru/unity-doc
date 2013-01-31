@@ -4,13 +4,13 @@ The first option in the ~~Inspector~~ of a ``Blend Node`` is the The ``Blend Typ
 
 The different 2D Blend Types have different uses that they are suitable for. They differ in how the influence of each motion is calculated.
 
-:``2D Simple Directional``:   Suitable to use when your motions represent different directions, such as "walk forward", "walk backward", "walk left", and "walk right", or "aim up", "aim down", "aim left", and "aim right". Optionally a single motion at position (0, 0) can be included, such as "idle" or "aim straight". In the Simple Directional type there should ''not'' be multiple motions in the same direction, such as "walk forward" and "run forward".
+:``2D Simple Directional``:   Best used when your motions represent different directions, such as "walk forward", "walk backward", "walk left", and "walk right", or "aim up", "aim down", "aim left", and "aim right". Optionally a single motion at position (0, 0) can be included, such as "idle" or "aim straight". In the Simple Directional type there should ''not'' be multiple motions in the same direction, such as "walk forward" and "run forward".
 
-:``2D Freeform Directional``: Suitable to use when your motions represent different directions, such as "walk forward", "walk backward", "walk left", and "walk right". The set of motions should include a single motion at position (0, 0), such as "idle". The Freeform Directional type supports multiple motions in the same directions, such as "walk forward" and "run forward".
+:``2D Freeform Directional``: This blend type is also used when your motions represent different directions, however you can have multiple motions in the same direction, for example "walk forward" and "run forward". In the Freeform Directional type the set of motions should always include a single motion at position (0, 0), such as "idle".
 
-:``2D Freeform Cartesian``:   Suitable to use when your motions don't represent different directions. With Freeform Cartesian your X parameter and Y parameter can represent different concepts, such as angular speed and speed. An example would be motions such as "walk forward no turn", "run forward no turn", "walk forward turn right", "run forward turn right" etc.
+:``2D Freeform Cartesian``:   Best used when your motions do not represent different directions. With Freeform Cartesian your X parameter and Y parameter can represent different concepts, such as angular speed and linear speed. An example would be motions such as "walk forward no turn", "run forward no turn", "walk forward turn right", "run forward turn right" etc.
 
-After setting the Blend Type, the first thing you need is to select the two [[AnimationParameters|Animation Parameters]] that will control this Blend Tree. In this example, the parameters are ''velocityX'' (strafing) and ''velocityZ'' (forward speed).
+After setting the Blend Type, the first thing you need is to select the two [[AnimationParameters|Animation Parameters]] that will control this [[class-BlendTree|Blend Tree]]. In this example, the parameters are ''velocityX'' (strafing) and ''velocityZ'' (forward speed).
 
 Then you can add individual animations by clicking ^^+ -> Add Motion Field^^ to add an Animation Clip to the blend tree. When you're done, it should look something like this:
 
@@ -54,3 +54,5 @@ Furthermore you can mix and match by choosing ^^Compute Position -> X Position F
 ||``Angular Speed (Deg)`` ||Sets the Pos X or Pos Y of each motion according to its angular speed in degrees per second.||
 
 Say, for example, that your parameters correspond to sideways velocity and forward velocity, and that you have an idle animation with an average velocity (0, 0, 0), a walk animation with (0, 0, 1.5), and two strafe animations with velocities of (-1.5, 0, 0) and (1.5, 0, 0) respectively. Choosing the ''Velocity XZ'' option from the drop-down would set the positions of the motions according to the X and Z coordinates of those velocities.
+
+(back to [[class-BlendTree|Blend Trees]])
