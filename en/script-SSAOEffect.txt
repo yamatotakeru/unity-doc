@@ -1,6 +1,6 @@
-! Screen Space Ambient Occlusion (SSAO) image effect
+! Screen Space Ambient Occlusion (SSAO)
 
-$$Screen Space Ambient Occlusion (SSAO)$$ approximates [[http://en.wikipedia.org/wiki/Ambient_occlusion | Ambient Occlusion]] in realtime, as an image post-processing effect. It darkens creases, holes and surfaces that are close to each other. In real life, such areas tend to block out or ``occlude`` ambient light, hence they appear darker.
+The $$Screen Space Ambient Occlusion (SSAO)$$ image effect approximates [[http://en.wikipedia.org/wiki/Ambient_occlusion | Ambient Occlusion]] in realtime, as an image post-processing effect. It darkens creases, holes and surfaces that are close to each other. In real life, such areas tend to block out or ``occlude`` ambient light, hence they appear darker.
 
 As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
 

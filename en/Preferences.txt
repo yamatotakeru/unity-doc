@@ -14,7 +14,6 @@ Attach:PrefsGeneral40.png
 ||``Show Asset Store search hits`` ||Should the number of free/paid assets from the store be shown in the Project Browser? ||
 ||``Verify Saving Assets``||Should Unity verify which assets to save individually on quitting?||
 ||``Skin (Pro Only)``||Which color scheme should Unity use for the editor? Pro users have the option of dark grey in addition to the default light grey.||
-||``Graphics Device``||This is set to Automatic on the Mac but has options for Direct3D 9, Direct3D 11 and OpenGL on Windows.||
 
 !!External Tools
 

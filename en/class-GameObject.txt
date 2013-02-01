@@ -22,8 +22,8 @@ Tags are used to quickly find objects, utilizing the Tag name. Layers can be use
 
 
 !! Static Checkbox
-In Unity, there is a new checkbox in the GameObject called ``Static``. This checkbox is used for:
-* preparing static geometry for automatic batching
+In Unity, there is a checkbox in the GameObject called ``Static``. This checkbox is used for:
+* preparing static geometry for automatic [[DrawCallBatching | batching]]
 * calculating [[OcclusionCulling | Occlusion Culling]]
 
 Attach:StaticTagInspector.png\\

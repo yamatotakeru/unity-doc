@@ -1,4 +1,4 @@
-! Vortex image effect
+! Vortex
 
 The $$Vortex$$ image effect distorts the rendered image within a circular region. Pixels in the image are displaced around a central circular area by a specified angle; the amount of displacement reduces with distance from the centre, diminishing to zero at the circle's edge. Vortex is similar to another image effect called [[script-TwirlEffect|Twirl]], although Twirl distorts the image around a point rather than a circle.
 

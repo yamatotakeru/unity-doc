@@ -1,4 +1,4 @@
-! Contrast Stretch image effect
+! Contrast Stretch
 
 $$Contrast Stretch$$ dynamically adjusts the contrast of the image according to the range of brightness levels it contains. The adjustment takes place gradually over a period of time, so the player can be briefly dazzled by bright outdoor light when emerging from a dark tunnel, say. Equally, when moving from a bright scene to a dark one, the "eye" takes some time to adapt.
 

@@ -260,6 +260,13 @@ public class NewBehaviourScript : MonoBehaviour {
 }
 @]
 
+!! Xcode throws compilation error: "ld : unable to insert branch island. No insertion point available. for architecture armv7", "clang: error: linker command failed with exit code 1 (use -v to see invocation)"
+That error usually means there is just too much code in single module. Typically it is caused by having lots of script code or having big external .NET assemblies included into build. And enabling script debugging might make things worse, because it adds quite few additional instructions to each function, so it is easier to hit that limit.
+
+Enabling managed code stripping in [[Main.class-PlayerSettings|player settings]] might help with this problem, especially if big external .NET assemblies are involved. But if the issue persists then the best solution is to split user script code into multiple assemblies. The easiest way to this is move some code to ``Plugins`` folder. Code at this location is put to different assembly. Also check these script compilation guidelines:
+
+[[ScriptRef:index.Script_compilation_28Advanced29.html|Script Compilation]]
+
 >><<
 [[#AndroidTroubleShooting]]
 !Android!

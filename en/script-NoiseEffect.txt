@@ -1,6 +1,6 @@
-!Noise image effect
+!Noise
 
-$$Noise$$ is an image postprocessing effect that can simulate both TV and VCR noise.
+The $$Noise$$ image effect can simulate TV/VCR noise.
 
 As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
 

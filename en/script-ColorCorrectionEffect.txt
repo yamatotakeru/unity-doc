@@ -1,4 +1,4 @@
-! Color Correction image effect
+! Color Correction
 
 $$Color Correction$$ allows you apply arbitrary color correction to your scene as a postprocessing effect (just like the Curves tool in Photoshop or Gimp). This page explains how to setup color correction in Photoshop and then apply ''exactly'' the same color correction at runtime in Unity.
 

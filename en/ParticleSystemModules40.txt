@@ -1,6 +1,7 @@
 !Particle System Modules (Shuriken)
 
-This page is dedicated to individual modules and their properties. For introduction to modules see [[ParticleSystemModulesIntro|this page]]
+The Particle System (Shuriken) uses modules to describe the behaviour of particles over time.  The modules are documented in detail here.   For an introduction to modules see [[ParticleSystemModulesIntro|this page]].
+
 
 !!Initial Module 
 Attach:ShurikenInitialModule.png
@@ -148,7 +149,7 @@ Set up collisions for the particles of this Particle System. World and planar co
 ||>>>``Grid``           ||Rendered as gizmos and is useful for quick indication of position and orientation in the world.||
 ||>>>``Solid``          ||Renders a plane in the scene which is useful for exact positioning of a plane.||
 ||``Scale Plane``      ||Resizes the visualization planes.||
-||``Particle Radius``  ||The assumed radius of the particle for collision purposes.||
+||``Particle Radius``  ||The assumed radius of the particle for collision purposes.  (So particles are treated as spheres.)||
 
 
 !!!Properties available only in the ``World`` Mode

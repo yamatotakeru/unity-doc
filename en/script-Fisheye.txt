@@ -1,4 +1,4 @@
-! Fisheye image effect
+! Fisheye
 
 The $$Fisheye$$ image effect creates distorts the image as if viewed through a fisheye lens (although any lens will distort the image to some extent).
 

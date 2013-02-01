@@ -1,4 +1,4 @@
-! Blur image effect
+! Blur
 
 The $$Blur$$ image effect blurs the rendered image in real-time.
 

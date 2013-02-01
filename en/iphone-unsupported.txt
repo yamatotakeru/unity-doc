@@ -4,7 +4,6 @@
 * DXT texture compression is not supported; use PVRTC formats instead. Please see the [[class-Texture2D | Texture2D Component page]] for more information.
 * Rectangular textures can not be compressed to PVRTC formats.
 * Movie Textures are not supported; use a full-screen streaming playback instead. Please see the [[Main.VideoFiles | Movie playback page]] for more information.
-* Open GL ES2.0 is not supported on iPhone, iPhone 3G, iPod Touch 1st and iPod Touch 2nd Generation hardware.
 
 
 !! Audio

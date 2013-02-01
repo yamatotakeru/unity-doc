@@ -1,6 +1,6 @@
-!Grayscale image effect
+!Grayscale
 
-$$Grayscale$$ is a simple image effect that changes colors to grayscale by default. It can also use a ``Texture Ramp`` texture to remap luminance to arbitrary colors.
+The $$Grayscale$$ image effect changes colors to grayscale. It can also use a ``Texture Ramp`` texture to remap luminance to arbitrary colors.
 
 Like all [[comp-ImageEffects|image effects]], Grayscale is available in Unity Pro only. Make sure to have the [[HOWTO-InstallStandardAssets|Pro Standard Assets installed]].
 

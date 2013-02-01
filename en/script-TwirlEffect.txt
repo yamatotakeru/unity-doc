@@ -1,4 +1,4 @@
-! Twirl image effect
+! Twirl
 
 The $$Twirl$$ image effect distorts the rendered image within a circular region. The pixels at the centre of the circle are rotated by a specified angle; the rotation for other pixels in the circle decreases with distance from the centre, diminishing to zero at the circle's edge.
 

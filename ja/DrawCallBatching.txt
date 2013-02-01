@@ -42,3 +42,15 @@ Attach:StaticTagInspector.png
 
 スタティックバッチングはUnity Pro専用で、どのプラットフォームでも利用可能です。
 
+
+!! Other batching tips
+
+Currently, only [[class-MeshRenderer | Mesh Renderers]] and [[Particle Systems]] are batched. This means that skinned meshes, cloth, trail renderers and other types of rendering components are __not__ batched.
+
+Semitransparent shaders most often require objects to be rendered in back-to-front order for transparency to work. Unity first orders objects in this order, and then tries to batch them - but because the order must be strictly satisfied, this often means less batching can be achieved than with opaque objects.
+
+Some parts of Unity's rendering do not have batching implemented yet; for example rendering shadow casters, camera's depth textures or GUI will not do batching.
+
+
+
+

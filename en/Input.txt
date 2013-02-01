@@ -2,8 +2,6 @@
 !Desktop!
 >>desktop<<
 
-__Note:__ Keyboard, joystick and gamepad input work on the desktop versions of Unity (including webplayer and Flash) but not on mobiles.
-
 Unity supports keyboard, joystick and gamepad input.
 
 Virtual axes and buttons can be created in the $$Input Manager$$, and end users can configure Keyboard input in a nice screen configuration dialog.

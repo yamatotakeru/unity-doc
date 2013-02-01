@@ -7,7 +7,7 @@ Attach:GameViewStats.png\\
 
 The Statistics window contains the following information:-
 ||``Time per frame and FPS`` ||The amount of time taken to process and render one game frame (and its reciprocal, frames per second). Note that this number only includes the time taken to do the frame update and render the game view; it does not include the time taken in the editor to draw the scene view, inspector and other editor-only processing. ||
-||``Draw Calls`` ||The total number of meshes drawn after batching was applied. Note that where objects are rendered multiple times (for example, objects illuminated by pixel lights), each rendering results in a separate draw call.||
+||``Draw Calls`` ||The total number of meshes drawn after [[DrawCallBatching | batching]] was applied. Note that where objects are rendered multiple times (for example, objects illuminated by pixel lights), each rendering results in a separate draw call.||
 ||``Batched (Draw Calls)`` ||The number of initially separate draw calls that were added to batches. "Batching" is where the engine attempts to combine the rendering of multiple objects into one draw call in order to reduce CPU overhead. To ensure good batching, you should share materials between different objects as often as possible. ||
 ||``Tris`` and ``Verts`` ||The number of triangles and vertices drawn. This is mostly important when [[OptimizeForIntegratedCards|optimizing for low-end hardware]] ||
 ||``Used Textures`` ||The number of textures used to draw this frame and their memory usage. ||

@@ -1,6 +1,6 @@
-! Sepia Tone image effect
+! Sepia Tone
 
-$$Sepia Tone$$ is a simple image effect that tints an image to resemble an old photograph.
+The $$Sepia Tone$$ image effect tints an image to resemble an old photograph.
 
 As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
 
@@ -8,4 +8,3 @@ Attach:FxSepia.png\\
 ''Sepia Tone image effect applied to the scene''
 
 (:include imagefx-SM2:)
-

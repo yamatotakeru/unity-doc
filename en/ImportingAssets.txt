@@ -36,7 +36,7 @@ We'll discuss the details of importing each of these file types and how they are
 
 Whichever 3D package you are using, Unity will import the meshes and animations from each file.  For a list of applications that are supported by Unity, please see [[HOWTO-importObject|this page]].
 
-Your mesh file does not need to have an animation to be imported.  If you do use animations, you have your choice of importing all animations from a single file, or importing separate files, each with one animation.  For more information about importing animations, please see page about [[Animations | Animation Import]].
+Your mesh file does not need to have an animation to be imported.  If you do use animations, you have your choice of importing all animations from a single file, or importing separate files, each with one animation.  For more information about importing animations, please see the [[Animations40 | Legacy animation system]] page.
 
 Once your mesh is imported into Unity, you can drag it to the $$Scene$$ or $$Hierarchy$$ to create an instance of it.  You can also add $$Components$$ to the instance, which will not be attached to mesh file itself.
 

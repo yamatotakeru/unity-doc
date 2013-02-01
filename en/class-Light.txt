@@ -33,7 +33,7 @@ Lights can also cast $$Shadows$$.  Shadows are a Pro-only feature.  Shadow prope
 ||>>>``Bias`` ||Offset used when comparing the pixel position in light space with the value from the shadow map. See ''Shadow Mapping and the Bias Property'' below ||
 ||>>>``Softness`` ||Scales the penumbra region (the offset of blur samples). ``Directional`` light only. ||
 ||>>>``Softness Fade`` ||Shadow softness fade based on the distance from the camera. ``Directional`` light only. ||
-||``Draw Halo`` ||If checked, a spherical halo of light will be drawn with a radius equal to ``Range``. ||
+||``Draw Halo`` ||If checked, a spherical halo of light will be drawn with a radius equal to ``Range``.  See also the [[class-Halo|Halo]] documentation and the [[class-RenderSettings|Render Settings]] documentation for more details. ||
 ||``Flare`` ||Optional reference to the [[class-Flare|Flare]] that will be rendered at the light's position. ||
 ||``Render Mode`` ||Importance of this light. This can affect lighting fidelity and performance, see ''Performance Considerations'' below. Options include:
 ||>>>``Auto`` ||The rendering method is determined at runtime depending on the brightness of nearby lights and current [[class-QualitySettings|Quality Settings]] for desktop build target. ||

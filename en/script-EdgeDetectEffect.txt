@@ -1,4 +1,4 @@
-! Edge Detection image effect
+! Edge Detection
 
 $$Edge Detect$$ image effect adds black edges to the image wherever color differences exceed some threshold.
 
