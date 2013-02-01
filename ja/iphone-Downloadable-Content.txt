@@ -1,46 +1,46 @@
-! Preparing your application for "In App Purchases"
+! アプリケーションでの"アプリ内課金" の準備
 
-This chapter does __not__ aim to cover how to integrate your game with Apple's "StoreKit" API. It is assumed that you already have integration with "StoreKit" via a [[Main.Plugins|native code plugin]].
+本項ではAppleの"StoreKit" APIをゲームと連動させる方法についてはカバー __していません__ 。ここでは [[Main.Plugins|ネイティブ コード プラグイン]] を通して"StoreKit" と連動が出来ていることが前提となっています。
 
-Apple's "StoreKit" documentation defines four kinds of __Products__ that could be sold via the "In App Purchase" process: 
-* Content
-* Functionality
-* Services
-* Subscriptions
+Appleの "StoreKit" ドキュメントにより四つの __製品__ を"アプリ内課金" で販売することが出来ます:
+* コンテンツ
+* 機能
+* サービス
+* 購読
+本項では最初のケースのみをカバーしていてダウンロード可能なコンテンツの考え方に、フォーカスします。
+[[ScriptRef:AssetBundle.html | AssetBundle]] はダウンロード可能なコンテンツとして理想的で、二つのシナリオをカバーします:
+* アセットバンドルをiOSで使用するためにどのようにしてエクスポートするか
+* iOSからどのようにしてダウンロードしてキャッシュするか
 
-This chapter covers the first case only and focuses mainly on the downloadable content concept. [[ScriptRef:AssetBundle.html | AssetBundles]] are ideal candidates for use as downloadable content, and two scenarios will be covered:
-* How to export asset bundles for use on iOS
-* How download and cache them on iOS
+!! iOSで使用するためにエクスポートする
 
-!! Exporting your assets for use on iOS
-Having separate projects for downloadable content can be a good idea, allowing better separation between content that comes with your main application and content that is downloaded later.
+ ダウンロード可能コンテンツのためにプロジェクトを分けることは良いアイデアでメインアプリケーションと後からダウンロードするコンテンツを適切に分けられます。
 
-Please note: Any game scripts included in downloadable content must also be present in the main executable.
+注意: ダウンロード可能コンテンツに含まれるゲーム スクリプトはメインの実行ファイルはメインの実行ファイルにも含まれる必要があります。
 
-# Create an ``Editor`` folder inside the Project View.
-# Create an ``ExportBundle.js`` script there and place the following code inside:\\
+# プロジェクトビューで ``Editor`` フォルダを作成します。
+#  ``ExportBundle.js`` スクリプトを作成して次のコードを含めます。inside:\\
 [@
 @MenuItem ("Assets/Build AssetBundle From Selection - Track dependencies")
 static function ExportBundle(){
         
-        var str : String = EditorUtility.SaveFilePanel("Save Bundle...", Application.dataPath, Selection.activeObject.name, "assetbundle");
+        var str : String = EditorUtility.SaveFilePanel("バンドルを保存します...", Application.dataPath, Selection.activeObject.name, "assetbundle");
         if (str.Length != 0){
              BuildPipeline.BuildAssetBundle(Selection.activeObject, Selection.objects, str, BuildAssetBundleOptions.CompleteAssets, BuildTarget.iPhone);
         }
 }
 @]
-# Design your objects that need to be downloadable as prefabs
-# Select a prefab that needs to be exported and mouse right click\\
-Attach:iPhoneAssetBundleExport.png\\
-If the first two steps were done properly, then the ''Build AssetBundle From Selection - Track dependencies'' context menu item should be visible.
-# Select it if you want to include everything that this asset uses.
-# A save dialog will be shown, enter the desired asset bundle file name. An __.assetbundle__ extension will be added automatically. The Unity iOS runtime accepts only asset bundles built with the same version of the Unity editor as the final application. Read [[ScriptRef:BuildPipeline.BuildAssetBundle.html | BuildPipeline.BuildAssetBundle]] for details.
+# ダウンロード可能とするオブジェクトをプレハブとして設計します
+# エクスポートが必要なプレハブを選択してマウス右クリック ``ExportBundle.js``\\
+Attach:iPhoneAssetBundleExport.png\
+\
+最初の二つのステップが正しく手順どおりであると、'Build AssetBundle From Selection - Track dependencies'' コンテキストメニューは見られます。
 
-!! Downloading your assets on iOS
+# アセットが使用する全てを含めたい場合は選択します。
+# 保存ダイアログが表示されろので、希望するアセットバンドルのファイルめいを入力します。__.assetbundle__ 拡張子が自動的に付加されます。Unity iOSのランタイムは同じバージョンのUnityエディタでビルドされたアセットバンドルのみ許可します。詳細については [[ScriptRef:BuildPipeline.BuildAssetBundle.html | BuildPipeline.BuildAssetBundle]] を参照下さい。
 
-__Note:__ Apple may change the folder locations where you are permitted to write data.  Always check Apple documentation to be sure your application will be compliant.  The following was correct advice in early 2013.
-
-# Asset bundles can be downloaded and loaded by using the [[ScriptRef:WWW-assetBundle.html|WWW class]] and instantiating a main asset. Code sample:\\
+!! iOSでアセットをダウンロードする
+# [[ScriptRef:WWW-assetBundle.html|WWW クラス]] の使用およびメインアセットをインスタンス化により、アセットバンドルをダウンロードおよびロード出来ます。コードでのサンプルは:\\
 [@
 	var download : WWW;
 	
@@ -53,7 +53,8 @@ __Note:__ Apple may change the folder locations where you are permitted to write
 	assetBundle = download.assetBundle;
 
 	if (assetBundle != null) {
-		// Alternatively you can also load an asset by name (assetBundle.Load("my asset name"))
+		// 他の方法として名前によりアセットをロード出来ます
+(assetBundle.Load("my asset name"))
 		var go : Object = assetBundle.mainAsset;
 			
 		if (go != null)
@@ -64,32 +65,28 @@ __Note:__ Apple may change the folder locations where you are permitted to write
 		Debug.Log("Couldnt load resource");	
 	}
 @]
-# You can save required files to a Library folder next to your game's Data folder.\\
+# 必要なファイルをゲームのDataフォルダの隣にあるDocumentsフォルダに必要なファイルを保存出来ます。\\
 [@
-        // c# example
         public static string GetiPhoneDocumentsPath () { 
-                // Your game has read+write access to /var/mobile/Applications/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/Library 
-                // Application.dataPath returns              
-                //   /var/mobile/Applications/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/myappname.app/Data 
-
-                // Strip "/Data" from path 
+                // ゲームは次のパスに読み取り/書き込み権限があります: /var/mobile/Applications/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/Documents 
+                // Application.dataPathの戻り値は              
+                // /var/mobile/Applications/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/myappname.app/Data 
+                // パスから"/Data" を除きます
                 string path = Application.dataPath.Substring (0, Application.dataPath.Length - 5); 
-
-                // Strip application name 
+                // アプリケーション名を除きます 
                 path = path.Substring(0, path.LastIndexOf('/'));  
-
-                return path + "/Library"; 
+                return path + "/Documents"; 
         }
 @]
 
-# Cache a downloaded asset bundle using the .NET file API and for reuse it in the future by loading it via [[ScriptRef:WWW.html|WWW class]] and __file:///pathtoyourapplication/Library/savedassetbundle.assetbundle__. Sample code for caching:\\
+# .NETファイルAPIを使用してダウンロードされたアセットバンドルをキャッシュして、将来ロードするときは [[ScriptRef:WWW.html|WWW クラス]] および __file:///pathtoyourapplication/Documents/savedassetbundle.assetbundle__ を使用します。コードでのキャッシュのサンプルは:\\
 [@
-	// Code designed for caching on iPhone, cachedAssetBundle path must be different when running in Editor
-	// See code snippet above for getting the path to your Library folder
-	private var cachedAssetBundle : String = "path to your Library folder" + "/savedassetbundle.assetbundle"; 
+	// コードはiPhoneでのキャッシュとして設計されていて、エディタ実行時はcachedAssetBundleパスは異なるものにする必要があります。
+	// Documentsフォルダへのパス取得については上記の短いコードで確認出来ます
+	private var cachedAssetBundle : String = "Documents フォルダへのパス" + "/savedassetbundle.assetbundle"; 
 	var cache = new System.IO.FileStream(cachedAssetBundle, System.IO.FileMode.Create);
 	cache.Write(download.bytes, 0, download.bytes.Length);
 	cache.Close();
-	Debug.Log("Cache saved: " + cachedAssetBundle);
+	Debug.Log("キャッシュはセーブされました: " + cachedAssetBundle);
 @]
-->__Note:__ You can test reading files from the Documents folder if you enable file sharing.  Setting ``UIFileSharingEnabled`` to true in your ``Info.plist`` allows you to access the Documents folder from iTunes.  Note that the contents of Documents is cached to iCloud, so is not a location to store asset bundles in a shipping title.  See [[http://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/FileSystemProgrammingGUide/FileSystemOverview/FileSystemOverview.html | File System Basics]].
+->__注意:__ Documentsフォルダからファイル読込みのテストはファイル共有を行えば出来ます。``Info.plist`` で ``UIFileSharingEnabled`` をtrue にすることでiTunesからDocumentsフォルダにアクセス出来ます。

@@ -1,84 +1,85 @@
-!Trouble Shooting
-This section addresses common problems that can arise when using Unity. Each platform is dealt with separately below.
+! トラブルシューティング
+本項ではUnityを使用する際に良くある問題を解決する方法を説明します。以下で各プラットフォームごとに取りあげていきます。
 
 [[#DesktopTroubleShooting]]
 !Desktop!
 >>desktop<<
-!!In MonoDevelop, the Debug button is greyed out!
-* This means that MonoDevelop was unable to find the Unity executable. In the MonoDevelop preferences, go to the Unity/Debugger section and then browse to where your Unity executable is located.
+!! MonoDevelopでDebugボタンがグレーアウトされる
+* Unity.exe をMonoDevelopが見つけられないという意味です。MonoDevelopのPreferencesで Unity -> Debugger へとセクションを移動して、 Unity.exe のパスを指定して下さい。
 
-!!Is there a way to get rid of the welcome page in MonoDevelop?
-* Yes. In the MonoDevelop preferences, go to the Visual Style section, and uncheck "Load welcome page on startup".
+!! MonoDevelop の Welcome ページを除く方法はある？
+* はい。。MonoDevelopのPreferencesで  Visual Style セクションへと移動して "Show welcome page on startup" のチェックを外します。
 
-!!Geforce 7300GT on OSX 10.6.4
-* Deferred rendering is disabled because materials are not displayed correctly for Geforce 7300GT on OX 10.6.4; This happens because of buggy video drivers.
+!! OSX 10.6.4でのGeforce 7300GT
+* OSX 10.6.4でのGeforce 7300GTでマテリアルが正しく表示されないため Deferred Rendering が無効化されています。原因はビデオドライバーにバグがあるためです。
 
-!!On Windows x64, Unity crashes when my script throws a NullReferenceException
-* Please apply [[http://support.microsoft.com/kb/976038 | Windows Hotfix #976038]].
+!! Windows x64 のスクリプトで NullReferenceException のときに Unity がクラッシュする
+* [[http://support.microsoft.com/kb/976038 | Windows Hotfix #976038]] を適用します。
 
 [[#DesktopShadowTroubleShooting]]
-!! Graphics
-!!! Slow framerate and/or visual artifacts.
-* This may occur if your video card drivers are not up to date. Make sure you have the latest official drivers from your card vendor.
+!! グラフィックス
+!!! フレームレートが遅い かつ／または 画像の乱れがある
+* ビデオカードドライバが最新でない場合に発生することがあります。ビデオカード製造元の最新の公式ドライバを入手してください。
 
 
 
 
-!! Shadows
-!!! I see no shadows at all!
+!! シャドウ
+!!! シャドウが全く見えない
 
-* Shadows are a $$Unity Pro$$ only feature, so without Unity Pro you won't get shadows. Simpler shadow methods, like using a [[class-Projector | Projector]], are still possible, of course.
-* Shadows also require certain graphics hardware support. See [[Shadows]] page for details.
-* Check if shadows are not completely disabled in [[class-QualitySettings | Quality Settings]].
-* __Shadows are currently not supported for Android and iOS mobile platforms.__
+* シャドウは $$Unity Pro$$ のみの機能であるため、 Unity Pro がない場合はシャドウが得られません。当然、より簡単な [[class-Projector | Projector]] を使ったシャドウであれば可能です。
+* シャドウは特定のグラフィックス ハードウェアでのみサポートされています。詳細については [[Shadows]] を参照下さい。
+* シャドウが完全に無効化されていないか [[class-QualitySettings | Quality Settings]] を確認して下さい。
+* __シャドウは現在AndroidおよびiOSモバイルプラットフォームではサポートされていません。 __
 
-!!! Some of my objects do not cast or receive shadows
+!!! オブジェクトの一部でシャドウ 投影しない／されない
 
-An object's [[class-MeshRenderer | Renderer]] must have ``Receive Shadows`` enabled for shadows to be rendered onto it. Also, an object must have ``Cast Shadows`` enabled in order to cast shadows on other objects (both are on by default).
+シャドウをレンダリングされるためには、オブジェクトの [[class-MeshRenderer | Renderer]] は ``Receive Shadows`` を有効にする必要があります。さらにシャドウを投影するためには ``Cast Shadows`` が他のオブジェクトで有効にする必要があります（両方ともデフォルトでは有効）。
 
-Only opaque objects cast and receive shadows. This means that objects using the built-in [[shader-TransparentFamily | Transparent]] or Particle shaders will not cast shadows. In most cases it is possible to use [[shader-TransparentCutoutFamily | Transparent Cutout]] shaders for objects like fences, vegetation, etc. If you use custom written [[Shaders]], they have to be pixel-lit and use the [[SL-SubshaderTags | Geometry render queue]]. Objects using ``VertexLit`` shaders do not receive shadows but are able to cast them.
-
-Only $$Pixel lights$$ cast shadows. If you want to make sure that a light always casts shadows no matter how many other lights are in the scene, then you can set it to ``Force Pixel`` render mode (see the [[class-Light | Light]] reference page).
+不透明なオブジェクトのみシャドウが投影します／されます。つまり内蔵 [[shader-TransparentFamily | 透明]] シェーダまたはパーティクルシェーダを使用しているオブジェクトはシャドウを投影しません。 [[shader-TransparentCutoutFamily | 透明カットアウト]] シェーダによりフェンス、植生、その他に利用することがほとんどの場合に可能です。カスタムで記述した [[Shaders]] を使用する場合、ピクセルライティングを使用して [[SL-SubshaderTags | Geometry Render Queue]] を使用する必要があります。``頂点ライティング`` を使用したシェーダはシャドウを投影されませんが、投影することは出来ます。
+ 
+$$Pixel Light$$ のみがシャドウを投影します。もしシーンに他のいくつかライトがあるにも関わらず、ライトがつねにシャドウを投影するようにしたい場合、 ``Force Pixel`` レンダリングモードをセットしてください。（詳細は [[class-Light | Light]] を参照下さい）。
 
 
 >><<
 [[#iPhoneTroubleShooting]]
 !iOS!
 >>ios<<
-! Troubleshooting on iOS devices
+! iOSデバイスでのトラブルシューティング
 
-There are some situations with iOS where your game can work perfectly in the Unity editor but then doesn't work or maybe doesn't even start on the actual device.
-The problems are often related to code or content quality. This section describes the most common scenarios.
+iOSの場合、Unityエディタでは完全に正しく動作するけれども、実際のデバイスでは正しく動作しないか起動すらしない状況があります。
+これらの問題は通常コードまたはコンテンツ品質に関係しています。このセクションでは良くあるケースについて説明します。
 
-!! The game stops responding after a while. Xcode shows "interrupted" in the status bar.
-There are a number of reasons why this may happen. Typical causes include:
-# Scripting errors such as using uninitialized variables, etc.
-# Using 3rd party Thumb compiled native libraries. Such libraries trigger a known problem in the iOS SDK linker and might cause random crashes.
-# Using generic types with value types as parameters (eg, List<int>, List<SomeStruct>, List<SomeEnum>, etc) for serializable script properties.
-# Using reflection when managed code stripping is enabled.
-# Errors in the native plugin interface (the managed code method signature does not match the native code function signature).
-Information from the XCode Debugger console can often help detect these problems (Xcode menu: ``View > Debug Area > Activate Console``).
+!! ゲームがしばらくすると反応しない。Xcode のステータスバーで "interrupted" と表示される
+これが起こる要因は複数あります。典型的な原因としては:
+# 初期化されていない変数、等によるスクリプティングエラー。
+# サードパーティ製Thumbによりコンパイルされたネイティブライブラリ。そのようなライブラリはiOS SDKリンカでよく知られた問題を引き起こし、ランダムなクラッシュの原因となるかもしれません。
+# 変数型を引数とするジェネリック型（例えば List<int>、 List<SomeStruct>、 List<SomeEnum>、その他）をseriazableスクリプトプロパティで使用している場合
+# マネージド コード ストリッピング が有効であるときに Reflection を使用している場合
+# ネイティブ プラグイン インタフェースでのエラー（マネージド コード メソッド シグニチャ が ネイティブコード関数のシグニチャと一致しない場合）
+XCodeデバッガコンソールからの情報により問題を特定しやすくなります（XCodeメニュー:  ``View > Debug Area > Activate Console``）。
 
-!! The Xcode console shows "Program received signal:  &#8220;SIGBUS&#8221; or EXC_BAD_ACCESS error.
-This message typically appears on iOS devices when your application receives a NullReferenceException. There two ways to figure out where the fault happened: 
-!!!! Managed stack traces
-Since version 3.4 Unity includes software-based handling of the NullReferenceException. The AOT compiler includes quick checks for null references each time a method or variable is accessed on an object. This feature affects script performance which is why it is enabled only for development builds (for basic license users it is enough to enable the "development build" option in the Build Settings dialog, while iOS pro license users additionally need to enable the "script debugging" option).
-If everything was done right and the fault actually is occurring in .NET code then you won't see EXC_BAD_ACCESS anymore. Instead, the .NET exception text will be printed in the Xcode console (or else your code will just handle it in a "catch" statement). Typical output might be:
+!! Xcode コンソールが "Program received signal:  &#8220;SIGBUS&#8221; " または "EXC_BAD_ACCESS" エラーを表示する
+このメッセージは通常NullReferenceExceptionを受け取ったiOSデバイスで表示されます。どこで問題が発生したかを判断する方法は二つあります:
+
+!!!! マネージされたスタックトレース
+バージョン3.4以降、UnityはNullReferenceException でのソフトウェアによるハンドリングを含みます。AOTコンパイラは、オブジェクトでメソッドまたは変数がアクセスされるたびに、Null Referenceをクイックにチェックします。この機能はスクリプト パフォーマンスに影響するため開発ビルドでのみ有効化されています（ベーシック ライセンスのユーザにとっては Build Settings ダイアログで"Development Build" オプションを有効化するので十分ですが、iOS Proライセンス ユーザは追加で "Script Debugging" を有効化する必要あります）。
+もし全てが正しく行われていて、不具合の原因が .NETコードで発生している場合、 EXC_BAD_ACCESS が出なくなります。その代わりに .NET例外メッセージがXCode コンソールで出力されます（そうでなければコードは "catch" ステートメントでハンドリングします）。典型的な出力内容としては：
 [@
 Unhandled Exception: System.NullReferenceException: A null value was found where an object instance was required.
   at DayController+$handleTimeOfDay$121+$.MoveNext () [0x0035a] in DayController.js:122 
 @]
 
-This indicates that the fault happened in the handleTimeOfDay method of the DayController class, which works as a coroutine. Also if it is script code then you will generally be told the exact line number (eg, "DayController.js:122"). The offending line might be something like the following:
+この場合、不具合が DayController クラスの 、コルーチンとして動作するhandleTimeOfDay メソッドで発生したことを示しています。さらにスクリプトのコードである場合、通常は行番号まで出力されます （例えば "DayController.js:122" ）。問題のある行は次のような内容かもしれません:
 
 [@
  Instantiate(_imgwww.assetBundle.mainAsset);
 @]
 
-This might happen if, say, the script accesses an asset bundle without first checking that it was downloaded correctly.
+例えば、アセットバンドルが正しくダウンロードされたかチェックせずに、スクリプトによりアクセスされる場合などで発生するかもしれません。
 
-!!!! Native stack traces
-Native stack traces are a much more powerful tool for fault investigation but using them requires some expertise. Also, you generally can't continue after these native (hardware memory access) faults happen. To get a native stack trace, type ``bt all`` into the Xcode Debugger Console. Carefully inspect the printed stack traces - they may contain hints about where the error occurred. You might see something like:
+!!!! ネイティブ スタックトレース
+ネイティブ スタックトレースは、エラー調査においてより強力なツールですが、専門的な知識を必要とします。さらに、一般的にはネイティブ （物理メモリ アクセス）エラーが発生した後は継続することが出来ません。ネイティブ スタックトレースを取得するためには、XCodeデバッガ コンソールで ``bt all`` と入力して下さい。出力されたスタックトレースを注意深くみると、エラーがどこで起きたかのヒントが含まれます。次のような出力をみるかもしれません：
 [@
 ...
 Thread 1 (thread 11523): 
@@ -88,59 +89,59 @@ Thread 1 (thread 11523):
 #3 0x0088481c in MonoBehaviour::InvokeMethodOrCoroutineChecked ()
 ...
 @]
-First of all you should find the stack trace for __"Thread 1"__, which is the main thread. The very first lines of the stack trace will point to the place where the error occurred. In this example, the trace indicates that the NullReferenceException happened inside the ''"OptionsMenu"'' script's ''"Start"'' method. Looking carefully at this method implementation would reveal the cause of the problem. Typically, NullReferenceExceptions happen inside the ``Start`` method when incorrect assumptions are made about initialization order.
-In some cases only a partial stack trace is seen on the Debugger Console:
-[@
+最初に、 __"Thread 1"__ のスタックトレースがめにつきますが、これがメインスレッドです。スタックトレースの一番初めの行がエラーの発生した場所を指しています。この例では、トレースは NullReferenceException が ''"OptionsMenu"'' スクリプトの ''"Start"'' メソッドで発生したことを示しています。注意深くこのメソッドの実装を眺めることで、この問題の原因が明らかになります。通常、NullReferenceException は ``Start`` メソッドのなかで、初期化の順番について間違った前提で設計をした場合などに発生します。
+いくつかのケースでは部分的なスタックトレースのみがデバッガコンソールで表示いされます：
+[@ 
 Thread 1 (thread 11523): 
 #0 0x0062564c in start ()
 @]
-This indicates that native symbols were stripped during the Release build of the application. The full stack trace can be obtained with the following procedure:
-* Remove application from device.
-* Clean all targets.
-* Build and run. 
-* Get stack traces again as described above. 
+これはネイティブのシンボルがアプリケーションの Release ビルドで取り除かれたことを示します。完全なスタックトレースは次の手順により取得できます:
+* デバイスからアプリケーションを削除します
+* 全てのターゲットをクリーンアップします
+* ビルドおよび実行します
+* スタックトレースを上記の手順どおりに取得します
 
-!! EXC_BAD_ACCESS starts occurring when an external library is linked to the Unity iOS application.
-This usually happens when an external library is compiled with the ARM Thumb instruction set. Currently such libraries are not compatible with Unity. The problem can be solved easily by recompiling the library without Thumb instructions. You can do this for the library's Xcode project with the following steps:
-* in Xcode, select ''"View"'' > ''"Navigators"'' > ''"Show Project Navigator"'' from the menu
-* select the ''"Unity-iPhone"'' project, activate ''"Build Settings"'' tab
-* in the search field enter : ''"Other C Flags"'' 
-* add ''-mno-thumb'' flag there and rebuild the library.
+!! 外部ライブラリがUnity iOS アプリケーションにリンクしたら EXC_BAD_ACCESS が発生する
 
-If the library source is not available you should ask the supplier for a non-thumb version of the library.
+これは外部ライブラリが ARM Thumb ライブラリ インストラクションつきでコンパイルされた場合に良く発生します。現時点では Unity はそういったライブラリと互換性がありません。Thumb  インストラクションを取り除いてリコンパイルすることで容易に解決できます。Xcodeプロジェクトでは次のステップで行います:
+* Xcode でメニューから ''"View"'' > ''"Navigators"'' > ''"Show Project Navigator"'' を選択
+*  ''"Unity-iPhone"'' プロジェクトを選択し、 ''"Build Settings"'' タブを有効化
+* 検索フィールドで入力:  ''"Other C Flags"'' 
+* そこに ''-mno-thumb'' フラグを追加、ライブラリをリビルド
 
-!! The Xcode console shows "WARNING -> applicationDidReceiveMemoryWarning()" and the application crashes immediately afterwards
-(Sometimes you might see a message like ''Program received signal:  �0�''.)
-This warning message is often not fatal and merely indicates that iOS is low on memory and is asking applications to free up some memory. Typically, background processes like Mail will free some memory and your application can continue to run. However, if your application continues to use memory or ask for more, the OS will eventually start killing applications and yours could be one of them. Apple does not document what memory usage is safe, but empirical observations show that applications using less than 50% MB of all device RAM (like ~200-256 MB for 2nd generation ipad) do not have major memory usage problems.
-The main metric you should rely on is how much RAM your application uses. Your application memory usage consists of three major components:
-* application code (the OS needs to load and keep your application code in RAM, but some of it might be discarded if really needed)
-* native heap (used by the engine to store its state, your assets, etc. in RAM)
-* managed heap (used by your Mono runtime to keep C# or JavaScript objects)
-* GLES driver memory pools: textures, framebuffers, compiled shaders, etc.
-Your application memory usage can be tracked by two Xcode Instruments tools: ``Activity Monitor``, ``Object Allocations`` and ``VM Tracker``. You can start from the Xcode Run menu: ``Product > Profile`` and then select specific tool. ``Activity Monitor`` tool shows all process statistics including ``Real memory`` which can be regarded as the total amount of RAM used by your application. __Note:__ OS and device HW version combination might noticeably affect memory usage numbers, so you should be careful when comparing numbers obtained on different devices.
+もしライブラリ ソースが利用可能でない場合、サプライヤに Thumb なしバージョンを依頼すべきです。
+
+!! Xcode コンソールで "WARNING -> applicationDidReceiveMemoryWarning()" が表示され、アプリケーションがすぐにクラッシュする
+（ときどき ''Program received signal:  ・・' といったメッセージが表示されます）
+このワーニング メッセージはしばしば致命的でなく、単に iOS のメモリが少なくなっていて、アプリケーションにメモリを解放するように求めています。一般的にメールのようなバックグラウンド プロセスがメモリを解放して、自身のアプリケーションの実行を継続できます。しかし、アプリケーションが引き続きメモリ使用し、さらにメモリを求める場合は OS が最終的にアプリケーションの強制終了を始めて、自身のアプリもその対象となるかmおしれません。Appleはどういうメモリ使用法が安全であるかドキュメントに記載していませんが、経験的な観測結果によればデバイスのRAM（例えば第2世代目のiPadでは 200-256MB）の50%以下の消費で抑えるアプリケーションはメモリ使用での大きな問題はありません。
+もっとも注視すべき指標はアプリケーションが使用するRAMです。アプリケーションのメモリ使用は次の3つの要素からなります:
+* アプリケーションのコード（OSはアプリケーションコードをロードし保持する必要がありますが、本当に必要な場合は破棄されるかもしれません）
+* ネイティブヒープ（ステート、アセット、その他をRAMに格納されるのにエンジンから使用されます）
+* マネージド ヒープ（Mono ランタイムにより C# またJavaScriptを保持するのに使用されます）
+* GLES ドライバメモリ プール: テクスチャ、フレームバッファ、コンパイルド シェーダ、その他
+アプリケーションメモリ使用はXCode Instrumentsツールによりトラッキングできます: ``Activity Monitor`` 、 ``Object Allocations`` 、および``VM Tracker``。XcodeのRunメニューから開始できます:  ``Product > Profile`` から各ツールを選択します。 ``Activity Monitor`` ツールにより、アプリケーションが使用したRAMの総容量として捉えることのできる ``Real memory`` など、全てのプロセス統計が表示されます。 __注意:__ OS およびデバイス ハードウェアバージョンの組み合わせによりメモリ使用の数字が大きく影響を受けるかもしれないため、異なるデバイスで取得した数字を比較するときは注意すべきです。
 
 Attach:ActivityMonitor.png 
 
-__Note:__ The [[iphone-InternalProfiler | internal profiler]] shows only the heap allocated by .NET scripts. Total memory usage can be determined via Xcode Instruments as shown above. This figure includes parts of the application binary, some standard framework buffers, Unity engine internal state buffers, the .NET runtime heap (number printed by internal profiler), GLES driver heap and some other miscellaneous stuff.\\
+__注意:__  [[iphone-InternalProfiler | 内部プロファイラ]] は .NET スクリプトにより割り当てされたヒープのみを表示します。メモリの総使用量は 前述のとおりXcode Instruments により判断できます。この指標にはアプリケーションの倍なるの一部、標準フレームワークバッファ、Unityエンジン内部のステートバッファ、.NETランタイム ヒープ（内部プロファイラにより出力される数字）、GLESドライバ ヒープ、およびその他様々なものを含みます。
 
-
-The other tool displays all allocations made by your application and includes both native heap and managed heap statistics (don't forget to check the ``Created and still living`` box to get the current state of the application). The important statistic is the ``Net bytes`` value.
+その他のツールはアプリケーションにより割り当てされた全てを表示し、ネイティブヒープおよびマネージドヒープの両方の統計を含みます（ ``Created and still living`` を忘れずにチェックして、アプリケーションの現在の状態を取得して下さい）。重要な統計は ``Net bytes`` の値です。
 
 Attach:ObjectAlloc.png
 
-To keep memory usage low:
-* Reduce the application binary size by using the strongest iOS stripping options (Advanced license feature), and avoid unnecessary dependencies on different .NET libraries. See the [[Main.class-PlayerSettings|player settings]] and [[Main.iphone-playerSizeOptimization|player size optimization]] manual pages for further details.
-* Reduce the size of your content. Use PVRTC compression for textures and use low poly models. See the manual page about [[Main.ReducingFilesize|reducing file size]] for more information.
-* Don't allocate more memory than necessary in your scripts. Track mono heap size and usage with the [[Main.iphone-InternalProfiler|internal profiler]]
-* __Note:__ with Unity 3.0, the scene loading implementation has changed significantly and now all scene assets are preloaded. This results in fewer hiccups when instantiating game objects. If you need more fine-grained control of asset loading and unloading during gameplay, you should use [[ScriptRef:Resources.Load.html | Resources.Load]] and [[ScriptRef:Object.Destroy.html | Object.Destroy]].
+メモリ使用を低く抑えるためには:
+* iOS ストリッピング オプション（Advanced ライセンス機能）を使用することで、 アプリケーション バイナリサイズを削減し、異なる .NET ライブラリでの不要な依存関係を回避して下さい。 詳細については [[class-PlayerSettings40|player settings]] および [[Main.iphone-playerSizeOptimization|player size optimization]] を参照下さい。
+* コンテンツのサイズを削減してください。テクスチャでPVRTC圧縮を使用し、ローポリ モデルを使用して下さい。詳細については [[Main.ReducingFilesize|ファイルサイズ 削減]] を参照下さい。
+* スクリプトで必要以上にメモリ割り当てをしないで下さい。Mono ヒープサイズおよび使用状況を [[Main.iphone-InternalProfiler|内部プロファイラ]] でトラッキングして下さい。
+* __注意:__  Unity 3.0から、シーン ローディング実装が著しく変更となり、現在は全てのアセットはプリロードされています。この結果、ゲームオブジェクトをインスタンス化するときにパフォーマンスの一時的な低下が発生することがあります。ゲームでのアセットロード／アンロードについて完全に掌握する必要がある場合は [[ScriptRef:Resources.Load.html | Resources.Load]] および [[ScriptRef:Object.Destroy.html | Object.Destroy]] を使用すべきです。
 
-Querying the OS about the amount of free memory may seem like a good idea to evaluate how well your application is performing. However, the free memory statistic is likely to be unreliable since the OS uses a lot of dynamic buffers and caches. The only reliable approach is to keep track of memory consumption for your application and use that as the main metric. Pay attention to how the graphs from the tools described above change over time, especially after loading new levels.
+OS に空きメモリについてクエリをかけるのはアプリケーションのパフォーマンスを評価するのに良い考えと思えるかもしれません。しかし、空きメモリ統計は信頼に足らないことが多く、それはOSが多くの動的バッファやキャッシュを使用するためです。唯一信用できるアプローチはアプリケーションのメモリ消費をトラッキングして、それを主要な指標とすることです。ツールでみたグラフが時間とともにどう変化するか、特に新しいレベルをロードするときは、注意を払って下さい
 
-!! The game runs correctly when launched from Xcode but crashes while loading the first level when launched manually on the device.
-There could be several reasons for this. You need to inspect the device logs to get more details. Connect the device to your Mac, launch Xcode and select ``Window > Organizer`` from the menu. Select your device in the Organizer's left toolbar, then click on the "Console" tab and review the latest messages carefully. Additionally, you may need to investigate crash reports. You can find out how to obtain crash reports here: [[http://developer.apple.com/iphone/library/technotes/tn2008/tn2151.html]].
+!! ゲームをXcodeから起動した場合は正しく動作するが、デバイスで手動により起動した場合は最初のレベルロードでクラッシュする
+いくつか考えられる理由があります。デバイスログを点検して詳細を確認する必要があります。デバイスを Mac に接続して、Xcodeを起動してメニューから ``Window > Organizer`` を選択します。デバイスを Organizer の左ツールバーから選択し、"Console" タブをクリックし、最後のメッセージを注意深く確認します。さらに、クラッシュレポートを調べる必要があるかもしれません。クラッシュレポートの取得方法については次のリンクで確認下さい:  [[http://developer.apple.com/iphone/library/technotes/tn2008/tn2151.html]].
 
-!! The Xcode Organizer console contains the message "killed by SpringBoard".
-There is a poorly-documented time limit for an iOS application to render its first frames and process input. If your application exceeds this limit, it will be killed by SpringBoard. This may happen in an application with a first scene which is too large, for example. To avoid this problem, it is advisable to create a small initial scene which just displays a splash screen, waits a frame or two with $$yield$$ and then starts loading the real scene. This can be done with code as simple as the following:
+!! Xcode Organizer コンソールのメッセージに "killed by SpringBoard" が含まれている
+ほとんどドキュメントにかかれてませんが、 iOS アプリケーションが最初のフレームをレンダリングして入力を処理するのに時間制限があります。もしアプリケーションがこの制限を越えると、 SpringBoard により強制終了されます。これは例えば最初のシーンが大きすぎる場合に発生するかもしれません。推奨として、スプラッシュスクリーンだけの小さい初期シーンを作成して、 $$yield$$ により１、２フレーム wait してから実際のシーンをロードさせます。これは次のような簡単なコードで実現できます:
 [@ 
 function Start () {
     yield;
@@ -148,25 +149,27 @@ function Start () {
 }
 @]
 
-!! Type.GetProperty() / Type.GetValue() cause crashes on the device
-Currently ``Type.GetProperty()`` and ``Type.GetValue()`` are supported only for the ``.NET 2.0 Subset`` profile. You can select the .NET API compatibility level in the [[class-PlayerSettings|Player Settings]]. 
+!! Type.GetProperty() / Type.GetValue() がデバイスでのクラッシュを引き起こす
+現在 ``Type.GetProperty()`` および ``Type.GetValue()`` は``.NET 2.0 Subset`` プロファイルでのみサポートされます。.NET API互換レベルは [[class-PlayerSettings40|Player Settings]] で選択できます。
 
-__Note:__ ``Type.GetProperty()`` and ``Type.GetValue()`` might be incompatible with managed code stripping and might need to be excluded (you can supply a custom non-strippable type list during the stripping process to accomplish this). For further details, see the [[iphone-playerSizeOptimization|iOS player size optimization guide]].
 
-!! The game crashes with the error message "ExecutionEngineException: Attempting to JIT compile method 'SometType`1<SomeValueType>:.ctor ()' while running with --aot-only."
-The Mono .NET implementation for iOS is based on AOT (ahead of time compilation to native code) technology, which has its limitations. It compiles only those generic type methods (where a value type is used as a generic parameter) which are explicitly used by other code. When such methods are used only via reflection or from native code (ie, the serialization system) then they get skipped during AOT compilation. The AOT compiler can be hinted to include code by adding a dummy method somewhere in the script code. This can refer to the missing methods and so get them compiled ahead of time.
+__注意:__ ``Type.GetProperty()`` および ``Type.GetValue()`` はマネージド コード ストリッピングで互換性がなく、除外する必要があります（ストリッピング プロセスの再に、カスタムで非ストリッピング タイプのリストを提供して実現できます）。詳細については [[iphone-playerSizeOptimization|iOS プレーヤー サイズ最適化ガイド]] を参照下さい。
+
+!! ゲームが次のエラーメッセージとともにクラッシュする "ExecutionEngineException: Attempting to JIT compile method 'SometType`1<SomeValueType>:.ctor ()' while running with --aot-only."
+
+iOS 向けの Mono .NET 実装はAOT (ネイティブコードへの Ahead Of Time コンパイル) テクノロジーにもとづいていて、いくつか制約があります。これはジェネリック型のメソッド（値型変数がジェネリック変数として使用される場合）において、別のコードにより明示的に使用されている必要があるという制約です。もしそのようなメソッドが reflection またはネイティブコードのみ経由で使用されている場合（すなわち serialization システム）、AOTコンパイルの際にスキップされます。AOT コンパイラはスクリプトコードのどこかにダミーのメソッドを追加することでコードを include するよう指示させることができます。これは不足しているメソッドを参照させることが出来るので、Ahead Of Timeでのコンパイルが実現されます。
 [@
 void _unusedMethod()
 {
     var tmp = new SomeType<SomeValueType>();
 }
 @]
-__Note:__ value types are basic types, enums and structs.
+__注意:__ 値型は基本的な enum や strucの型tです。
 
-!! Various crashes occur on the device when a combination of System.Security.Cryptography and managed code stripping is used
-.NET Cryptography services rely heavily on reflection and so are not compatible with managed code stripping since this involves static code analysis. Sometimes the easiest solution to the crashes is to exclude the whole ``System.Security.Crypography`` namespace from the stripping process.
+!!  System.Security.Cryptography および マネージド コード ストリッピングが使用されているときに様々なクラッシュがデバイス上で発生する
+.NET Cryptography サービスは Reflectionに深く依存していて、このために静的なコード分析が絡むマネージド コード ストリッピングとは互換性がありません。クラッシュに関する最も簡単な解決策はしばしば、 ``System.Security.Crypography`` 名前空間の全体をストリッピング プロセスから取り除くことです。
 
-The stripping process can be customized by adding a custom ``link.xml`` file to the ``Assets`` folder of your Unity project. This specifies which types and namespaces should be excluded from stripping. Further details can be found in the [[iphone-playerSizeOptimization|iOS player size optimization guide]].
+カスタムの ``link.xml`` ファイルを ``Assets`` フォルダに追加することで ストリッピング プロセスはカスタマイズできます。これによりストリッピングから除外すべき型や名前空間を指定できます。詳細については [[iphone-playerSizeOptimization|iOS プレーヤー サイズ最適化ガイド]] を参照下さい。
 
 !!! link.xml
 [@
@@ -178,50 +181,51 @@ The stripping process can be customized by adding a custom ``link.xml`` file to 
 
 @]
 
-!!! Application crashes when using System.Security.Cryptography.MD5 with managed code stripping
-You might consider advice listed above or can work around this problem by adding extra reference to specific class to your script code:
+!!! アプリケーションは System.Security.Cryptography.MD5 を マネージド コード ストリッピング とともに使用するときにクラッシュする
+前述で記載したアドバイスに従うか、スクリプトコードに追加のリファレンスを特定のクラスに追加してして問題を回避できます:
 [@
 object obj = new MD5CryptoServiceProvider();
 @]
 
-!! "Ran out of trampolines of type 0/1/2" runtime error
-This error usually happens if you use lots of recursive generics. You can hint to the AOT compiler to allocate more trampolines of type 0, type 1 or type 2. Additional AOT compiler command line options can be specified in the "Other Settings" section of the [[Main.class-PlayerSettings#iOS | Player Settings]]. For type 1 trampolines, specify ``nrgctx-trampolines=ABCD``, where ABCD is the number of new trampolines required (i.e. 4096). For type 2 trampolines specify ``nimt-trampolines=ABCD`` and for type 0 trampolines specify ``ntrampolines=ABCD``.
+!! "Ran out of trampolines of type 1/2" ランタイムエラー
+このエラーは通常、再帰的なジェネリックをたくさん使用するときに発生します。AOTコンパイラに指示をして、より多くの type 1 または type 2 のトランポリンを割り当てることが出来ます。追加の AOT コンパイラ コマンドライン オプションは [[class-PlayerSettings40#iOS | Player Settings]] の "Other Settings" セクションで指定できます。type 1 のトランポリンについては、 ``nrgctx-trampolines=ABCD`` 、ここではABCDは新しく必要なトランポリンの数（すなわち 4096）、を指定してください。type 2 のトランポリンについては ``nimt-trampolines=ABCD`` を指定下さい。
 
-!! After upgrading Xcode Unity iOS runtime fails with message "You are using Unity iPhone Basic. You are not allowed to remove the Unity splash screen from your game"
-With some latest Xcode releases there were changes introduced in PNG compression and optimization tool. These changes might cause false positives in Unity iOS runtime checks for splash screen modifications. If you encounter such problems try upgrading Unity to the latest publicly available version. If it does not help you might consider following workaround:
-* Replace your Xcode project from scratch when building from Unity (instead of appending it)
-* Delete already installed project from device
-* Clean project in Xcode (''Product''->''Clean'')
-* Clear Xcode's Derived Data folders (''Xcode''->''Preferences''->''Locations'')
-If this still does not help try disabling PNG re-compression in Xcode:
-* Open your Xcode project
-* Select "Unity-iPhone" project there
-* Select "Build Settings" tab there
-* Look for "Compress PNG files" option and set it to NO
+!! XCodewをアップグレードした後、 Unity iOS ランタイムが次のメッセージで失敗します "You are using Unity iPhone Basic. You are not allowed to remove the Unity splash screen from your game"
+最新のXcodeリリースにおいて、PNG圧縮および最適化ツールに変更がありました。これらの変更によりスプラッシュスクリーン修正でのUnity iOSランタイムチェックで 誤った警告を引き起こすかもしれません。そのような問題に出くわしたときは Unity を最新の公開バージョンにアップグレードすることを試行してください。これで直らない場合、次のような回避策が考えられます:
+* Xcode プロジェクトをUnityからビルドする際に（appendするのではなく）スクラッチから作り直します
+* すでにデバイスでインストールされたプロジェクトを削除します
+* Xcodeでプロジェクトをクリーンします (''Product''->''Clean'')
+* Xcodeの Derived Data フォルダをクリアします (''Xcode''->''Preferences''->''Locations'')
+これでもまだ直らない場合、XCode で PNG 再圧縮を無効化します:
+* Xcodeプロジェクトを開きます
+* そこで "Unity-iPhone" プロジェクトを選択します
+* そこで "Build Settings" を選択
+* "Compress PNG files" オプションを見つけて無効に設定します
 
 
-!! App Store submission fails with "iPhone/iPod Touch: application executable is missing a required architecture. At least one of the following architecture(s) must be present: armv6" message
-You might get such message when updating already existing application, which previously was submitted with armv6 support. Unity 4.x and Xcode 4.5 does not support armv6 platform anymore. To solve submission problem just set ``Target OS Version`` in Unity ``Player Settings`` to ``4.3`` or higher.
+!! App Store 提出が次のメッセージで失敗する:"iPhone/iPod Touch: application executable is missing a required architecture. At least one of the following architecture(s) must be present: armv6"
+armv6サポートで提出された既存のアプリケーションを更新するときにそのようなメッセージがあるかもしれません。Unity 4.x および Xcode 4.5 は armv6 プラットフォームをもうサポートしていません。提出の問題を解決するには Unityの ``Player Settings`` で ``Target OS Version`` を ``4.3`` 以上に設定します。
 
-!! WWW downloads are working fine in Unity Editor and on Android, but not on iOS
-Most common mistake is to assume that WWW downloads are always happening on separate thread. On some platforms this might be true, but you should not take it for granted. Best way to track WWW status is either to use ''yield'' statement or check status in ''Update'' method. You should __not__ use busy ''while'' loops for that.
+!! WWWダウンロードがUnity EditorやAndoroidでは正しく動作するが、iOSでは失敗する
+もっとも良くある間違いはWWWダウンロードが常に別スレッドで行われると仮定することです。いくつかのプラットフォームではこれは正しいですが、前提としてはいけません。WWWステータスをトラッキングするベストの方法は ''yield'' ステートメントをしようするか、 ''Update'' メソッドでステータスのチェックを行うことです。この場合に ''while'' ループはビジーとなるため使用しては__いけません__。
 
-!! "PlayerLoop called recursively!" error occurs when using Cocoa via a native function called from a script
-Some operations with the UI will result in iOS redrawing the window immediately (the most common example is adding a UIView with a UIViewController to the main UIWindow). If you call a native function from a script, it will happen inside Unity's PlayerLoop, resulting in PlayerLoop being called recursively. In such cases, you should consider using the [[http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSObject_Class/Reference/Reference.html#//apple_ref/occ/instm/NSObject/performSelectorOnMainThread:withObject:waitUntilDone: | performSelectorOnMainThread]] method with waitUntilDone set to false. It will inform iOS to schedule the operation to run between Unity's PlayerLoop calls.
+!! "PlayerLoop called recursively!" がスクリプトからのネイティブ関数コールを用いて Cocoa を使用した場合に発生する
+UI でのいくつかの処理によって iOS がウィンドウを直ちに再描画することにつながります（最も良くあるケースはメインの UIWindow に UIViewController のある UIView を追加する場合です）。もしスクリプトからネイティブ関数コールを行うと UnityのPlayerLoop の中で行われ、結果的に PlayerLoop が再帰的に呼び出しされます。その場合、 [[http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSObject_Class/Reference/Reference.html#//apple_ref/occ/instm/NSObject/performSelectorOnMainThread:withObject:waitUntilDone: | performSelectorOnMainThread]] メソッドを使用して、あわせて waitUntilDone をfalseにしておくことを検討すべきです。これにより Unity の PlayerLoopコール の間に処理実行されるようなスケジューリングをiOSに伝達されます。
 
-!! Profiler or Debugger unable to see game running on iOS device
-* Check that you have built a Development build, and ticked the "Enable Script Debugging" and "Autoconnect profiler" boxes (as appropriate).
-* The application running on the device will make a multicast broadcast to 225.0.0.222 on UDP port 54997.  Check that your network settings allow this traffic.  Then, the profiler will make a connection to the remote device on a port in the range 55000 - 55511 to fetch profiler data from the device.  These ports will need to be open for UDP access.
+!! プロファイラまたはデバッガにより iOSデバイスで実行されているゲームをみることが出来ない
+* Developmentビルドを作成していること、 "Enable Script Debugging"  および "Autoconnect profiler" が適切に設定されていることを確認します
+* デバイスで実行されているアプリケーションは 225.0.0.222 の UDP ポート番号 54997 に対するマルチキャスト ブロードキャストを行います。ネットワーク設定によりこの通信が許可されていることをチェックします。次に、プロファイラがリモートデバイスのポート番号 55000 - 55511 の範囲で接続を行いデバイスからプロファイラ データをフェッチします。これらのポートは UDP アクセスのためにオープンである必要があります
 
-!! Missing DLLs
-If your application runs ok in editor but you get errors in your iOS project this may be caused by missing DLLs (e.g. I18N.dll, I19N.West.dll). In this case, try copying those dlls from within the Unity.app to your project's Assets/Plugins folder. The location of the DLLs within the unity app is:
+!! DLLが見つからない
+もしアプリケーションがエディタでは動作するが iOS プロジェクトでエラーが出る場合、DLLが見つからないことが原因かもしれません（例えば I18N.dll、 I19N.West.dll）。この場合、これらのDLLを Unity.app から プロジェクトの Assets/Plugins フォルダへコピーしてみて下さい。Unityアプリケーションの中でのDLL の場所は:
  Unity.app/Contents/Frameworks/Mono/lib/mono/unity 
-You should then also check the stripping level of your project to ensure the classes in the DLLs aren't being removed when the build is optimised. Refer to the [[iphone-playerSizeOptimization | iOS Optimisation Page ]] for more information on iOS Stripping Levels.
+さらにプロジェクトのストリッピングレベルをチェックして、ビルドが最適化されたときに DLL のクラスが取り除かれないことを保証すべきです。iOS ストリッピング レベルの詳細については [[iphone-playerSizeOptimization | iOS 最適化ページ ]] を参照下さい。
 
-!! Xcode Debugger console reports: ExecutionEngineException: Attempting to JIT compile method '(wrapper native-to-managed) Test:TestFunc (int)' while running with --aot-only
-Typically such message is received when managed function delegate is passed to the native function, but required wrapper code wasn't generated when building application. You can help AOT compiler by hinting which methods will be passed as delegates to the native code. This can be done by adding "MonoPInvokeCallbackAttribute" custom attribute. Currently only static methods can be passed as delegates to the native code.
+!! Xcode デバッガ コンソール出力が:ExecutionEngineException: Attempting to JIT compile method '(wrapper native-to-managed) Test:TestFunc (int)' while running with --aot-only
 
-Sample code:
+通常、このようなメッセージは、マネージド関数デリゲートがネイティブ関数に渡したが、必要なラッパーコードがアプリケーションをビルドした際に生成されなかった場合に発生します。どのメッセージがデリゲートとしてネイティブ関数に渡されるか、AOT コンパイラに指示をすることが出来ます。これはカスタム属性として  "MonoPInvokeCallbackAttribute" を追加することで実現できます。現在静的メソッドのみをデリゲートとしてネイティブ関数に渡すことが出来ます。
+
+サンプル コード:
 [@
 using UnityEngine;
 using System.Collections;
@@ -249,7 +253,7 @@ public class NewBehaviourScript : MonoBehaviour {
 		Debug.Log (string.Format ("Hello from StringParamCallback {0}", str));
 	}
 
-	// Use this for initialization
+	// 初期化
 	void Start () {
 		DoSomething(NoParamCallback, StringParamCallback);
 	}
@@ -260,21 +264,21 @@ public class NewBehaviourScript : MonoBehaviour {
 [[#AndroidTroubleShooting]]
 !Android!
 >>android<<
-! Troubleshooting Android development
-!! Unity fails to install your application to your device
-# Verify that your computer can actually see and communicate with the device. See the [[Main.PublishingBuilds | Publishing Builds]] page for further details.
-# Check the error message in the Unity console. This will often help diagnose the problem.
+! Android 開発トラブルシューティング
+!! Unity がデバイスへのアプリケーション インストールに失敗する
+# コンピュータから実際にデバイスがみれて通信できることをチェックして下さい。詳細については [[Main.PublishingBuilds | ビルドのパブリッシュ]] を参照下さい。
+# Unityコンソールでのエラーメッセージをチェックして下さい。通常、これにより問題の診断がしやすくなります。
 
-If you get an error saying "Unable to install APK, protocol failure" during a build then this indicates that the device is connected to a low-power USB port (perhaps a port on a keyboard or other peripheral). If this happens, try connecting the device to a USB port on the computer itself.
+もしエラーメッセージで、ビルドの際に "Unable to install APK, protocol failure" と表示される場合、これはデバイスが低電力USBポート（例えばキーボードやその他周辺機器向け）に接続されていることを示します。これが発生した場合、コンピュータに直付けされているUSBポートへのつなぎなおしてください。
 
-!! Your application crashes immediately after launch.
-# Ensure that you are not trying to use [[Main.class-PlayerSettings#Android | NativeActivity]] with devices that do not support it.
-# Try removing any native plugins you have.
-# Try disabling stripping.
-# Use $$adb logcat$$ to get the crash report from your device.
+!! 起動直後にアプリケーションがクラッシュする
+# 未サポートのデバイスで [[class-PlayerSettings40#Android | NativeActivity]] を使用していないか再確認します
+# ネイティブのプラグインを外します
+# ストリッピングを無効化します
+# $$adb logcat$$ を使用してデバイスからクラッシュレポートを取得します
 
-!! Building DEX Failed
-This an error which will produce a message like the following:-
+!! Building DEX で失敗
+次のようなエラーメッセージが表示されることがあります:-
 [@
 Building DEX Failed!
 G:\Unity\JavaPluginSample\Temp/StagingArea> java -Xmx1024M 
@@ -286,15 +290,15 @@ Could not reserve enough space for object heap
 Could not create the Java virtual machine.
 @]
 
-This is usually caused by having the wrong version of Java installed on your machine. Updating your Java installation to the latest version will generally solve this issue.
+これは通常、マシンに間違った Java バージョンにより引き起こされます。Javaインストールを最新バージョンにすることで一般的にはこの問題は解決されます。
 
-!! The game crashes after a couple of seconds when playing video
-Make sure @@Settings->Developer Options->Don't keep activities@@ isn't enabled on the phone. The video player is its own activity and therefore the regular game activity will be destroyed if the video player is activated.
+!! ビデオ再生の際に数秒後にクラッシュする
+@Settings->Developer Options->Don't keep activities@@ が電話上で有効化されてないことを確認します。ビデオプレーヤーはそのものがアクティビティであり、したがって、通常のゲームアクティビティは、ビデオプレーヤーが有効であると破棄されます。
 
-!! My game quits when I press the sleep button
-Change the @@<activity>@@ tag in the @@AndroidManifest.xml@@ to contain @@<android:configChanges>@@ tag as described [[http://developer.android.com/guide/topics/manifest/activity-element.html#config | here]].
+!! スリープ ボタンを押したときにゲームが終了する
+@@AndroidManifest.xml@@ で @@<activity>@@ タグを変更して @@<android:configChanges>@@ を含むようにします。詳細は [[http://developer.android.com/guide/topics/manifest/activity-element.html#config | ここ]] を参照下さい
 
-An example activity tag might look something like this:-
+サンプルのアクティビティ タグは次のようなものです:-
 
 [@
 <activity android:name=".AdMobTestActivity"
