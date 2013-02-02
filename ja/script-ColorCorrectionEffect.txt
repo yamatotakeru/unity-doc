@@ -1,11 +1,11 @@
-! カラー コレクション エフェクト
+! カラー コレクション
 
-$$Color Correction$$（カラー コレクション）を使用すると、シーンに任意のカラーコレクションエフェクト（PhotoshopやGimpのカーブツールのような）を適用することができます。このページでは、Photoshopでカラーコレクションを設定してから正確にUnity実行時に「完全に同じ」カラーコレクションを適用する方法を説明します。
+$$Color Correction$$ を使用すると、シーンに任意のカラーコレクションエフェクト（PhotoshopやGimpのカーブツールのような）を適用することができます。このページでは、Photoshopでカラーコレクションを設定してから正確にUnity実行時に「完全に同じ」カラーコレクションを適用する方法を説明します。
 
-その他の [[comp-ImageEffects|image effects]] 同様、カラー コレクションは Unity Pro 専用です。必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
+その他の [[comp-ImageEffects|Image Effect]] 同様、カラー コレクションは Unity Pro 専用です。必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FxColorCorr.png\\
-シーンにカラー補正を適用。使用したカラーランプ（拡大図）が右側に表示されています。
+シーンにカラー コレクションを適用。使用したカラーランプ（拡大図）が右側に表示されています。
 
 Attach:ImageEffects./FxColorRamp.png\\
 上記のイメージに使用されるカラーランプ。
