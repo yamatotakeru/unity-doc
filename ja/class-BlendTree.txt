@@ -1,31 +1,31 @@
-!Blend Trees
+! ブレンドツリー
 
-A common task in game animation is to blend between two or more similar motions. Perhaps the best known example is the blending of walking and running animations according to the character's speed. Another example is a character leaning to the left or right as he turns during a run.
+ゲーム アニメーションでの良くあるタスクは二つかそれ以上のモーション間でブレンドを行うことです。最も良く知られたケースはキャラクターの速度に基づいた歩行と走行アニメーションのブレンディングです。もうひとつの事例は走っているときに左右に体を傾けるようなケースです。
 
 (:include AnimationTransitionsVersusBlendTrees:)
 
-Examples of similar motions could be various walk and run animations. In order for the blend to work well, the movements in the clips must take place at the same points in normalized time. For example, walking and running animations can be aligned so that the moments of contact of foot to the floor take place at the same points in normalized time (e.g. the left foot hits at 0.0 and the right foot at 0.5). Since normalized time is used, it doesn't matter if the clips are of different length.
+同様のモーションの事例は様々な歩行や走行のアニメーションで見られます。ブレンドが適切に動作するためにはクリップの動きは正規化された時間で同期して行われる必要があります。例えば、歩行および走行アニメーションは足が地面に着地する同じ正規化された時間に起きるように同期させることご出来る(例えば左足が0.0で着地、右足が0.5で着地など)。正規化された時間が使用されるため、クリップが異なる長さであるかは影響しない。
 
-To start working with a new Blend Tree, you need to:
-# Right-click on empty space on the ~~Animator Controller Window~~
-# Select ^^Create State > From New Blend Tree^^ from the context menu that appears.
-# Double-click on the Blend Tree to enter the Blend Tree Graph.
+新規のブレンドツリーで作業するためには:
+# ~~Animator Controller Window~~ 上の空いたスペースで右クリック
+# 右クリックで表示されるコンテキストメニューから^^Create State > From New Blend Tree^^ を選択
+# Blend Tree ダブルクリックして Blend Tree Graph に入ります。
 
-The Animator Window now shows a graph of the entire Blend Tree while the Inspector shows the currently selected node and its immediate children.
+これで Animator Window に ブレンドツリー全体のグラフを表示し、インスペクタでは現在選択されているノードおよびその直接の子ノードを表示します。
 
-Attach:MecanimBlendTreeStateDiagramCombined.png
-''The Animator Window shows a graph of the entire ``Blend Tree``. To the left is a Blend Tree with only the root Blend Node. To the right is a Blend Tree with a root Blend Node and three Animation Clips as child nodes.''
+Attach:MecanimBlendTreeStateDiagramInitial.png Attach:MecanimBlendTreeStateDiagram.png
+''Animator Window は ``Blend Tree`` 全体のグラフを表示します。その左にあるのはルートのブレンド ノードを持ったブレンドツリーがあり、子ノードとして3つのアニメーション クリップを保有しています。''
 
-This gives a graphical visualization of how the animations are combined as the parameter value changes (as you drag the slider, the arrows from the tree root change their shading to show the dominant animation clip).
+これにより、パラメータの変化に伴ってアニメーションがどのように組み合わされるかを表示します(スライダーをドラッグすると、ツリーのルートからの矢印が変化して、現在優位となっているアニメーションクリップを表示します)。
 
-You can select any of the nodes in the Blend Tree graph to inspect it in the Inspector. If the selected node is an Animation Clip the Inspector for that Animation Clip will be shown. The settings will be read-only if the animation is imported from a model. If the node is a Blend Node, the Inspector for Blend Nodes will be shown.
+ブレンドツリー グラフの任意のノードを選択してインスペクタで表示することが可能です。もし選択されたノードがアニメーション クリップである場合は、インスペクタ上でらそのアニメーション クリップが表示されます。アニメーションごモデルからインポートされた場合、設定は読み取り専用となります。もしノードがブレンド ノードである場合、インスペクタ上でブレンド ノードが表示されます。
 
 Attach:MecanimBlendTreeInitial.png
-''A Blend Node shown in the ~~Inspector~~ before any motions have been added.''
+'' ~~Inspector~~ 上でモーションを追加する前のブレンド ノードを表示''
 
-The Blend Type drop-down is used to select one of the different blend types that can blend according to one or two parameters. You can read more about the different blend types and other Blend Tree options on the following pages.
+Blend Typeドロップダウンは、ひとつか二つのパラメータに基づいてブレンドすることが出来る複数の Blend Type からひとつを選択するのに使用します。全てのBlend Type および他のブレンドツリーのオプションの一覧および詳細については次のページを参照して下さい。
 
 (:tocportion:)
 
 
-(back to [[MecanimAnimationSystem|Mecanim introduction]])
+([[MecanimAnimationSystem|メカニム紹介]] に戻る)
