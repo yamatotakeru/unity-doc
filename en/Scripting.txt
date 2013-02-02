@@ -69,7 +69,7 @@ With all this in mind, we can read this code as "every frame, rotate this GameOb
 
 You can access lots of different Components the same way as we accessed ``transform`` already.  You have to add Components to the GameObject using the ^^Component^^ menu.  All the Components you can access directly are listed under $$Variables$$ on the [[Path:../ScriptReference/GameObject.html|GameObject Scripting Reference Page]].
 
-For more information about the relationship between GameObjects, Scripts, and Components, please jump ahead to the [[GameObjects]] page or [[Using Components]] page of this manual.
+For more information about the relationship between GameObjects, Scripts, and Components, please jump ahead to the [[GameObjects]] page or [[UsingComponents40|Using Components]] page of this manual.
 
 
 !! The Power of Variables

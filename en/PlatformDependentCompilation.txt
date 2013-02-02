@@ -35,6 +35,8 @@ Also you can compile code selectively depending on the version of the engine you
 ||``UNITY_3_4`` ||Platform define for major version of Unity 3.4.||
 ||``UNITY_3_5`` ||Platform define for major version of Unity 3.5.||
 ||``UNITY_4_0`` ||Platform define for major version of Unity 4.0.||
+||``UNITY_4_0_1`` ||Platform define for major version of Unity 4.0.1.||
+||``UNITY_4_1`` ||Platform define for major version of Unity 4.1.||
 
 __Note:__ For versions before 2.6.0 there are no platform defines as this feature was first introduced in that version.
 

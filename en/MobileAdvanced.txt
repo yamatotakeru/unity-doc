@@ -4,21 +4,9 @@
 >>ios<<
 !Advanced iOS scripting
 !! Determining Device Generation
-Different device generations support different functionality and have widely varying performance. You should query the device's generation and decide which functionality should be disabled to compensate for slower devices.
+Different device generations support different functionality and have widely varying performance. You should query the device's generation and decide which functionality should be disabled to compensate for slower devices. You can find the device generation from the [[ScriptRef:iPhone-generation.html | iPhone.generation]] property. 
 
-You can find the device generation from the [[ScriptRef:iPhone-generation.html | iPhone.generation]] property. The reported generation can be one of the following:
-* ``iPhone``
-* ``iPhone3G``
-* ``iPhone3GS``
-* ``iPhone4``
-* ``iPodTouch1Gen``
-* ``iPodTouch2Gen``
-* ``iPodTouch3Gen``
-* ``iPodTouch4Gen``
-* ``iPad1Gen``
-
-
-You can find more information about different device generations, performance and supported functionality in our [[Main.iphone-Hardware | iPhone Hardware Guide]].
+More information about different device generations, performance and supported functionality can be found in our [[Main.iphone-Hardware | iPhone Hardware Guide]].
 
 
 !! Device Properties
