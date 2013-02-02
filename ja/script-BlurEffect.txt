@@ -1,8 +1,8 @@
-! ブラー エフェクト
+! ブラー
 
-$$Blur$$ （ブラー）エフェクトは、レンダリングされた画像をリアルタイムでぼやけさせます。
+$$Blur$$ エフェクトは、レンダリングされた画像をリアルタイムでブラーをかけます。
 
-その他の [[comp-ImageEffects|image effects]] 同様、このエフェクトは Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
+その他の [[comp-ImageEffects|Image Effect]] 同様、このエフェクトは Unity Pro 専用です。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FxBlur.png\\
 ''シーンに適用された ブラーエフェクト''
