@@ -1,8 +1,8 @@
-! グレースケール エフェクト
+! グレースケール
 
-$$Grayscale$$ は、デフォルトで色をグレースケールに変えるシンプルな画像効果です。 また、''Texture Ramp''テクスチャを使用して、照明を任意の色に再マッピングできます。
+$$Grayscale$$ エフェクトは、色をグレースケールに変えます。 また、''Texture Ramp''テクスチャを使用して、照明を任意の色に再マッピングできます。
 
-すべての [[comp-ImageEffects|image effects]] のように、グレースケール は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
+すべての [[comp-ImageEffects|Image Effect]] のように、グレースケール は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FxGrayscale.png
 ''シーンに適用された Grayscale 効果''
