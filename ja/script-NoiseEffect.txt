@@ -1,6 +1,6 @@
-! ノイズエフェクト
+! ノイズ
 
-$$Noise$$ はイメージ後処理効果のひとつで、TV、VCRの2種類をシミュレーション出来ます。
+$$Noise$$ エフェクトはイメージ後処理効果のひとつで、TV、VCRの2種類をシミュレーション出来ます。
 
 他のイメージエフェクト[[comp-ImageEffects|(image effects)]] 同様、Unity Proのみで提供されるエフェクトはUnity Proのみで、利用可能とするためにはプロスタンダードアセット（[[HOWTO-InstallStandardAssets|Pro Standard Assets]] ）をあらかじめインポートする必要があります。
 
