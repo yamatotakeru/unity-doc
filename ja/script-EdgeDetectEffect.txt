@@ -1,10 +1,10 @@
-! エッジ検出エフェクト
+! エッジ検出
 
-$$Edge Detect$$ 画像効果は、色の差が閾値を越えるすべての箇所に黒いエッジを画像に追加します。
+$$Edge Detect$$ エフェクトは、色の差が閾値を越えるすべての箇所に黒いエッジを画像に追加します。
 
 より洗練されたジオメトリベースのEdge Detectが必要な場合に関しては、Standard Assetsは [[script-EdgeDetectEffectNormals | normals and depth-based edge detection]] 効果も提供しています。
 
-その他の [[comp-ImageEffects|image effects]] は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
+他の [[comp-ImageEffects|Image Effect]] 同様、 Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FxEdge.png\\
 ''シーンに適用された エッジ検出エフェクト 効果''
