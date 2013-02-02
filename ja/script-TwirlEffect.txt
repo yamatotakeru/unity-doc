@@ -1,17 +1,1 @@
-! Twirl エフェクト
-
-$$Twirl$$ エフェクトは、レンダリングされた画像を歪めます。中心付近のピクセルが特別な角度で回転します。つまりサークル内の他の画素の回転は、円の端でゼロに減少し、中心部からの距離に伴って減少します。
-
-Twirl はもう一つの [[script-VortexEffect|Vortex]] と呼ばれる画像効果に似てるけど, vortex distorts は一点というよりも中心円の周りの効果になっています。
-
-すべての [[comp-ImageEffects|image effects]] のように、Twirl は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
-
-Attach:FxTwirl.png\\
-''Twirl エフェクトが適用されたシーン''
-
-||PROPS
-||``Radius`` ||スクリーン座標で規格化されたねじれの半径 (例えば0.5ならばスクリーンの半分の大きさ). ||
-||``Angle``  ||中心の回転角度||
-||``Center`` ||ねじれが起こる中心位置||
-
-(:include imagefx-SM2:)
+! Twirl$$Twirl$$ エフェクトは、レンダリングされた画像を歪めます。中心付近のピクセルが特別な角度で回転します。つまりサークル内の他の画素の回転は、円の端でゼロに減少し、中心部からの距離に伴って減少します。Twirl はもう一つの [[script-VortexEffect|Vortex]] と呼ばれる画像効果に似てるけど, vortex distorts は一点というよりも中心円の周りの効果になっています。すべての [[comp-ImageEffects|image effects]] のように、Twirl は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。Attach:FxTwirl.png\\''Twirl エフェクトが適用されたシーン''||PROPS||``Radius`` ||スクリーン座標で規格化されたねじれの半径 (例えば0.5ならばスクリーンの半分の大きさ). ||||``Angle``  ||中心の回転角度||||``Center`` ||ねじれが起こる中心位置||(:include imagefx-SM2:)
