@@ -1,9 +1,9 @@
-! モーションブラー エフェクト
+! モーションブラー
 
-$$Motion Blur$$ 画像効果は、前にレンダリングしたフレームの''モーション トレイル''を残すことで、高速で移動するシーンを強化します。
+$$Motion Blur$$ エフェクトは、前にレンダリングしたフレームの''モーション トレイル''を残すことで、高速で移動するシーンを強化します。
 より最新のモーションブラーの実装は、新しい [[script-CameraMotionBlur|カメラモーションブラーエフェクト]] を参照して下さい。
 
-すべての [[comp-ImageEffects|image effects]] のようにモーションブラー は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
+すべての [[comp-ImageEffects|Image Effect]] のようにモーションブラー は Unity Pro でのみ使用できます。 必ず、[[HOWTO-InstallStandardAssets|Pro Standard Assets]] をインストールしてください。
 
 Attach:FxMotionBlur.png\\
 ''回転するシーンに適用される Motion Blur 効果''
@@ -18,5 +18,5 @@ Attach:FxMotionBlur.png\\
 
 !!!ハードウェア サポート
 
-モーションブラー 効果はテクスチャへのレンダリングをサポートするすべてのグラフィック カードを機能させます。GeForce2、Radeon 7000 以降など。 すべての画像効果は、エンドユーザーのグラフィック カードで実行できないため、自動的に無効になります。
+モーションブラー エフェクトはテクスチャへのレンダリングをサポートするすべてのグラフィック カードを機能させます。GeForce2、Radeon 7000 以降など。 すべての画像効果は、エンドユーザーのグラフィック カードで実行できないため、自動的に無効になります。
 
