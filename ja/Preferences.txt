@@ -14,7 +14,6 @@ Attach:PrefsGeneral40.png
 ||``Show Asset Store search hits`` ||プロジェクトブラウザ中にストアの無料/有料アセットの数を表示する||
 ||``Verify Saving Assets``||終了時にアセットが個々にセーブされたか確認する||
 ||``Skin (Pro Only)``||エディタで使用するカラースキームを選択する。Proユーザーはデフォルトのライトグレーの他、ダークグレーのオプションを利用できる||
-||``Graphics Device``||このオプションはMacでは自動で設定されるが、Windowsでは、Direct3D 9、Direct3D 11およびOpenGLのオプションがある||
 
 !!外部ツール（External Tools）
 
