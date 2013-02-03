@@ -1,6 +1,6 @@
 ! ゲームオブジェクト
 
-$$GameObject$$ は、その他すべての [[Components]] を格納する容器です。 ゲーム内のすべてのオブジェクトはすべて本質的に、GameObject になります。
+$$GameObject$$ は、その他すべての [[Components]] を格納するコンテナです。 ゲーム内のすべてのオブジェクトはすべて本質的に、GameObject になります。
 
 Attach:Inspector-GameObject.png\\
 ''空の GameObject''
@@ -8,35 +8,35 @@ Attach:Inspector-GameObject.png\\
 
 !! GameObject の作成
 
-GameObject は、自身でゲームに特性を追加しません。  むしろ、実際の機能を実行するコンポーネントを格納する容器として機能します。 例えば、[[class-Light|Light]] は、GameObject に追加されるコンポーネントです。 
+GameObject は、自身でゲームに特性を追加しません。  むしろ、実際の機能を実行するコンポーネントを格納するコンテナとして機能します。 例えば、[[class-Light|Light]] は、GameObject に追加されるコンポーネントです。 
 
-スクリプトからコンポーネントを作成したい場合、 空の GameObject を作成し、''gameObject.AddComponent(''ClassName'')''関数を使って、必要なコンポーネントを追加します。 コンポーネントを作成し、オブジェクトからそれを参照することはできません。
+スクリプトからコンポーネントを作成したい場合、 空の GameObject を作成し、''gameObject.AddComponent(''ClassName'')'' 関数を使って、必要なコンポーネントを追加します。 コンポーネントを作成し、オブジェクトからそれを参照することはできません。
 
-スクリプトから、メッセージの送信または''GetComponent(''TypeName'')''関数により、コンポーネントは互いに簡単に通信することができます。 これにより、複数の GameObject に追加し、別の目的に再利用できる小さい、再利用可能なスクリプトを記述できます。
+スクリプトから、メッセージの送信または ''GetComponent(''TypeName'')'' 関数により、コンポーネントは互いに簡単に通信することができます。 これにより、複数の GameObject に追加し、別の目的に再利用できる小さい、再利用可能なスクリプトを記述できます。
 
 !! 詳細
 
-コンポーネントを格納する容器としての機能とは別に、GameObject は、$$Tag$$、$$Layer$$ および $$Name$$ を含みます。
+コンポーネントを格納するコンテナとしての機能とは別に、GameObject は、$$Tag$$、$$Layer$$ および $$Name$$ を含みます。
 
 タグ名を使用して、オブジェクトを素早く検索するためにタグが使用されます。 レイヤーを使用して、オブジェクトの特定のグループにのみ、光線を投射し、光をレンダリングまたは適用できます。 タグとレイヤーは、^^Edit->Project Settings->Tags^^ にある [[class-TagManager|Tag Manager]] で設定できます。
 
 
 !! Static チェックボックス
-Unity ''Static''と呼ばれる GameObject に新しいチェックボックスがあります。 このチェックボックスは次の目的に使用されます。
-* 自動バッチ処理のためのスタティック ジオメトリの作成
+UnityではGameObject に ''Static'' と呼ばれるチェックボックスがあります。 このチェックボックスは次の目的に使用されます:
+* 自動 [[DrawCallBatching |バッチング]] のためのスタティック ジオメトリの作成
 * [[OcclusionCulling | Occlusion Culling]] の計算
 
 Attach:StaticTagInspector.png\\
 ''Static チェックボックスは、オクルージョン データの生成時に使用されます''
 
-オクルージョン データを生成すると、GameObject に''Static''と表示され、Static オブジェクトの裏で見えないメッシュ オブジェクトを間引く （または無効にする）ことができるようになります。  そのため、シーンで動かない環境オブジェクトには、Static __と表示される__ はずです。
+オクルージョン データを生成すると、GameObject に ''Static'' と表示され、Static オブジェクトの裏で見えないメッシュ オブジェクトを間引く （または無効にする）ことができるようになります。  そのため、シーンで動かない環境オブジェクトには、Static __とマーキングすべき__ です。
 
 Unity でのオクルージョン カリングの機能の詳細については、[[Occlusion Culling]] ページを参照してください。
 
 
 !!ヒント
 
-* 詳細については、[[ScriptRef:GameObject.html| GameObject scripting reference page]] を参照してください。
-* レイヤーの使用法については、[[Layers|here]] を参照してください。
-* タグの使用法については、[[Tags|here]] を参照してください。
+* 詳細については、[[ScriptRef:GameObject.html| GameObject スクリプティング リファレンスのページ]] を参照してください。
+* レイヤーの使用法については、[[Layers|ここ]] を参照してください。
+* タグの使用法については、[[Tags|ここ]] を参照してください。
 
