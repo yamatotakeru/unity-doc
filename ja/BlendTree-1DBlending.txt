@@ -1,45 +1,43 @@
-!1D Blending
+!1D ブレンディング
 
-The first option in the ~~Inspector~~ of a ``Blend Node`` is the The ``Blend Type``. This drop-down is used to select one of the different blend types that can blend according to one or two parameters. 1D Blending blends the child motions according to a single parameter.
+~~Inspector~~ 上の ``Blend Node`` の最初のオプションは ``Blend Type`` です。このドロップダウンを使用して、ひとつか二つのパラメータに基づいてブレンドすることご出来る複数のブレンドタイプの中からひとつのブレンドタイプを選択します。1D ブレンディングはひとつのパラメータに基づいて子のモーションをブレンドします。
 
-After setting the Blend Type, the first thing you need is to select the [[AnimationParameters|Animation Parameter]] that will control this Blend Tree. In this example, the parameter is ''direction'' which varies between -1.0 (left) and +1.0 (right), with 0.0 denoting a straight run without leaning.
+ブレンド タイプをセットした後に最初にやるべきことはこのブレンド ツリーを制御する [[AnimationParameters|アニメーション パラメータ]] を選択することです。この例ではパラメータは、''direction'' であり、-1.0 (左) および +1.0 (右) の間で変化し、0.0 の場合は左右どちらにも傾かずに、真っ直ぐ走ることを意味します。
 
-Then you can add individual animations by clicking ^^+ -> Add Motion Field^^ to add an Animation Clip to the blend tree. When you're done, it should look something like this:
+次に個別のアニメーションを追加するには^^+ -> Add Motion Field^^  をクリックしてブレンドツリーにアニメーション クリップを追加します。それが終わった後は次のようになるはずです:
 
 Attach:MecanimBlendTree1D.png
-''A 1D Blend Node with three Animation Clips.''
+''3つのアニメーション クリップのついた1D ブレンドノード''
 
-(:comment The word "pyramid" is not ideal. However, "triangle", "wedge" etc are worse since the center motion could be perceived as consisting of two triangles, and we want to use a word that describes a single shape for a motion. The word should convey a shape with a peak in the middle and a slope on *both* sides. :)
-The diagram at the top of the Inspector shows the influence of each of the child motions as the parameter varies between its minimum and maximum values. Each motion is shown as a little blue pyramid (the first and last are only shown in half), and if you click and hold down the left mouse button on one them, the corresponding motion is highlighted in the motion list below. The peak of each pyramid defines the parameter value where the motion has full influence, meaning that its animation weight is 1 and the other animations have a weight of 0. This is also called the $$threshold$$ of the motion.
+インスペクタの上部にあるダイアグラムでは、パラメータが最小値から最大値まで変化するにつれ、各々の子モーションへの影響がどうなるかを表示します。各々のモーションは小さな青いピラミッドの記号として表示され(最初および最後は半分だけ表示)、そしてその記号のどれかの上で左クリックしてマウスの左ボタンを押し続けると、その下に表示されているモーション リストの対応するモーションがハイライトされます。各々のピラミッドのピークはモーションが完全な影響力をもつ位置、すなわちアニメーションの重み付けの値が1となり、他方のアニメーションの重み付けは0です。この位置はモーションの $$threshold$$ (しきい値) とも呼ばれます。
 
 Attach:MecanimBlendTreeParam.png
-(:comment source: MecanimBlendTreeParam.psd :)
-''The diagram at the top of the Blend Node Inspector visualizes the weights of the child motions over the range of the parameter values.''
+''Blend Node インスペクタの上部のダイアグラムはパラメータ値の変化に伴って子モーションの重み付けの変化を図示します。''
 
-The red vertical bar indicates the value of the ``Parameter``. If you press ^^Play^^ in the ~~Preview~~ at the bottom of the ~~Inspector~~ and drag the red bar in the diagram left and right, you can see how the value of the parameter is controlling the blending of the different motions.
-
-
-!!Parameter Range
-
-The range of the parameter used by the Blend Node is shown below the diagram as two numbers to the left and right. Either one of them can be changed by clicking on the number and dragging left or right with the mouse. Note that the values correspond to the threshold of the first and last motion in the motion list.
+赤い垂直バーは  ``Parameter`` の値を表します。もし ~~Inspector~~ の下部のthe ~~Preview~~ で ^^Play^^ を押して、ダイアグラムの赤いバーを左右にドラッグするとパラメータの値が、各々のモーションのブレンディングをどう制御しているかが分かります。
 
 
-!!Thresholds
+!! パラメータの範囲
 
-You can change the threshold value of a motion by clicking on its corresponding blue pyramid in the diagram and dragging it left or right. If the "Automate Thresholds" toggle is not enabled, you can also edit the threshold value of a motion in the motion list by typing in a number in the number field in the Threshold column.
+ブレンドパラメータの範囲は左右にある二つの数字として表示されます。いずれの数字も変更したい場合は、数字をクリックしてマウスを左右にドラッグすることで変更出来ます。値はモーション リストの最初と最後のモーションの Threshold (しきい値) に対応することに留意して下さい。
 
-Below the motion list is the checkbox ''Automate Thresholds''. Enabling it will distribute the thresholds of the motions evenly across the parameter range. For example, if there are five clips and the parameter ranges from -90 to +90, the thresholds will be set to -90, -45, 0, +45 and +90 in order.
 
-The ^^Compute Thresholds^^ drop-down will set the thresholds from data of your choice obtained from the root motions in the Animation Clips. The data that is available to choose from is speed, velocity x, y, or x, and angular speed in degrees or radians. If your ^^parameter^^ corresponds to one of these properties, you can compute the thresholds using the Compute Thresholds drop-down.
+!! Threshold
+
+モーションの Threshold (しきい値) を変更するには対応する青いピラミッドをクリックして左右にドラッグします。もし "Automate Thresholds" が有効でない場合、モーション リストにある モーション の Threshold の値を編集するために、 Threshold 列の数字フィールドに値を入力します。
+
+モーション リスト の下には ''Automate Thresholds'' のチェックボックスがあります。これを有効にするとパラメータの値の範囲に渡って均等に複数の threshold (しきい値) を配置します。例えば、もし5つのクリップがあって、パラメータが -90 から +90 までの範囲に渡る場合、 thresholdは -90、 -45、 0、 +45、 +90 の順にセットされます。
+
+^^Compute Thresholds^^ ドロップダウンにより threshold を、アニメーションクリップのルートモーションから取得させることで、好きな順番にセットすることが出来ます。選択することが可能であるデータは speed、velocity、x、y、および 角度またはラジアン単位の Angular Speed です。もし ^^parameter^^ がこれらのプロパティのひとつに対応する場合、 Compute Thresholds ドロップダウンを使用して threshold を計算できます。
 
 ||PROPS
-||``Speed``               ||Sets the threshold of each motion according to its speed (the magnitude of the velocity).||
-||``Velocity X``          ||Sets the threshold of each motion according to its velocity.x.||
-||``Velocity Y``          ||Sets the threshold of each motion according to its velocity.y.||
-||``Velocity Z``          ||Sets the threshold of each motion according to its velocity.z.||
-||``Angular Speed (Rad)`` ||Sets the threshold of each motion according to its angular speed in radians per second.||
-||``Angular Speed (Deg)`` ||Sets the threshold of each motion according to its angular speed in degrees per second.||
+||``Speed``               ||各々のモーションを speed （速度の大きさ）に応じて Threshold をセットします。||
+||``Velocity X``          ||各々のモーションを velocity.xに応じて Threshold をセットします。||
+||``Velocity Y``          ||各々のモーションを velocity.yに応じて Threshold をセットします。||
+||``Velocity Z``          ||各々のモーションを velocity.zに応じて Threshold をセットします。||
+||``Angular Speed (Rad)`` ||各々のモーションを ラジアン/毎秒単位の Angular Speed （角速度）に応じて Threshold をセットします。||
+||``Angular Speed (Deg)`` ||各々のモーションを 角度/毎秒単位の Angular Speed （角速度）に応じて Threshold をセットします。||
 
-Say, for example, you had a walk animation that covered 1.5 units per second, a jog at 2.3 units per second, and a run at 4 units per second, choosing the ^^Speed^^ option from the drop-down would set the parameter range and thresholds for the three animations based on these values. So, if you set the speed parameter to 3.0, it would blend the jog and run with a slight bias toward the jog.
+例えば、1.5 単位/毎秒の歩行、2.3 単位/毎秒のジョギング、4.0 単位/毎秒の走行、で移動するアニメーションがあったとして、ドロップダウンメニューから ^^Speed^^ を選択することで 3 つのアニメーションに対するパラメータ範囲および Threshold を、この値に対してセットします。このため、もし Speed パラメータを 3.0 にセットした場合、ジョギングおよび走行アニメーションを、ややジョギングに重みを付けた形で、ブレンドします。
 
-(back to [[class-BlendTree|Blend Trees]])
+( [[class-BlendTree|ブレンドツリー]] に戻る)
