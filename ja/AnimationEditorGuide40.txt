@@ -39,4 +39,3 @@ Unityの $$Animation View$$ により $$Animation Clips$$ をUnityで直接作�
 [[animeditor-AnimationEvents| Attach:AnimationEditorEventTooltip.png]]
 
 このセクションは $$Animation Clip$$ に $$Animation Events$$ を追加する方法を説明します。アニメーションイベントによりアニメーションのタイムラインの特定の時点にスクリプトの関数をコールすることが出来ます。
-
