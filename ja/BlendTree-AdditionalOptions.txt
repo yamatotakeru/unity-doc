@@ -1,17 +1,17 @@
-!Additional Blend Tree Options
+!ブレンドツリー向けの追加オプション
 
-The options below are common to both 1D and 2D blending.
+以下のオプションは 1D および 2D ブレンディングに共通のオプションです。
 
 
 !!Time Scale
 
-You can alter the "natural" speed of the animation clips using the animation speed number fields (the columns with a clock icon at the top), so you could make the walk twice as fast by using a value of 2.0 as its speed. The ^^Adjust Time Scale > Homogeneous Speed^^ button rescales the speeds of the clips so that they correspond with the chosen minimum and maximum values of the parameter but keep the same ''relative'' speeds they initially had.
+アニメーション クリップ の "自然な" スピードをアニメーション スピード の数字フィールド（時計アイコンが最上部にある列）を変更することが出来るため、スピード に 2.0 の値を使用することで 二倍のスピードで歩かせることが出来ます。^^Adjust Time Scale > Homogeneous Speed^^ ボタンによりクリップのスピードをスケールしなおし、選ばれた最小および最大のパラメータの値と対応するようにし、それでいて初期に設定された ''相対的な'' スピードを保持します。
 
-Note that the ^^Adjust Time Scale^^ drop-down is only available if all the motions are Animation Clips and not child Blend Trees.
+^^Adjust Time Scale^^ ドロップダウンは、全てのモーションがアニメーションクリップであり子ブレンドツリーでない場合にのみ利用可能であることに留意して下さい。
 
 
-!!Mirroring
+!!ミラーリング
 
-You can mirror any humanoid Animation Clip in the motions list by enabling the mirror toggle at the far right. This feature enables you to use the same animation in its original form and in a mirrored version without needing twice the memory and space.
+モーションリストにある全てのヒューマノイド アニメーションクリップは、右端の Mirror を有効に設定することで、ミラーリングさせることが出来ます。この機能により二倍のメモリおよびディスクサイズを必要とせず、同じアニメーションを元の形で使用することが可能となります。
 
-(back to [[class-BlendTree|Blend Trees]])
+( [[class-BlendTree|ブレンドツリー]] に戻る)
