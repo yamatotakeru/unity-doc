@@ -1,58 +1,58 @@
-!2D Blending
+!2D ブレンディング
 
-The first option in the ~~Inspector~~ of a ``Blend Node`` is the The ``Blend Type``. This drop-down is used to select one of the different blend types that can blend according to one or two parameters. The 2D blending types blends the child motions according to two parameters.
+~~Inspector~~ 上の ``Blend Node`` の最初のオプションは ``Blend Type`` です。このドロップダウンを使用して、ひとつか二つのパラメータに基づいてブレンドすることご出来る複数のブレンドタイプの中からひとつのブレンドタイプを選択します。2D ブレンディングは二つのパラメータに基づいて子のモーションをブレンドします。
 
-The different 2D Blend Types have different uses that they are suitable for. They differ in how the influence of each motion is calculated.
+各々の用途に応じた2D Blend Type があります。それぞれどちらを選ぶかにより、モーションがどのように影響されるか異なってきます。
 
-:``2D Simple Directional``:   Best used when your motions represent different directions, such as "walk forward", "walk backward", "walk left", and "walk right", or "aim up", "aim down", "aim left", and "aim right". Optionally a single motion at position (0, 0) can be included, such as "idle" or "aim straight". In the Simple Directional type there should ''not'' be multiple motions in the same direction, such as "walk forward" and "run forward".
+:``2D Simple Directional``:   モーションが異なる向きを表す場合に最適、例えば "walk forward", "walk backward", "walk left", おやび "walk right", または "aim up", "aim down", "aim left", および "aim right" 。オプションとして位置 (0, 0) で、"idle" または "aim straight" などひとつのモーションを含めることが出来ます。Simple Directional Typeでは同じ向きのモーションは複数あるべきでなく、例えば "walk forward" および "run forward" とすべきではありません。
 
-:``2D Freeform Directional``: This blend type is also used when your motions represent different directions, however you can have multiple motions in the same direction, for example "walk forward" and "run forward". In the Freeform Directional type the set of motions should always include a single motion at position (0, 0), such as "idle".
+:``2D Freeform Directional``: モーションが異なる向きを表す場合に最適、例えば "walk forward", "walk backward", "walk left", おやび "walk right" 。モーションのセットには位置 (0, 0) で、"idle" などひとつのモーションを含めるベキです。Freeform Directional type は同じ向きの複数モーション、例えば "walk forward" および "run forward、をサポートしています。
 
-:``2D Freeform Cartesian``:   Best used when your motions do not represent different directions. With Freeform Cartesian your X parameter and Y parameter can represent different concepts, such as angular speed and linear speed. An example would be motions such as "walk forward no turn", "run forward no turn", "walk forward turn right", "run forward turn right" etc.
+:``2D Freeform Cartesian``:   モーションが異なる向きを表さない場合に最適です。Freeform Cartesian ではX および Y パラメータに異なる意味、例えばangular speed および speed、を持たせることぁ出来ます。例としては "walk forward no turn", "run forward no turn", "walk forward turn right", "run forward turn right" 等になります。
 
-After setting the Blend Type, the first thing you need is to select the two [[AnimationParameters|Animation Parameters]] that will control this [[class-BlendTree|Blend Tree]]. In this example, the parameters are ''velocityX'' (strafing) and ''velocityZ'' (forward speed).
+Blend Type をセットした後、最初にやるべきことはこのブレンドツリーを制御する二つ [[AnimationParameters|アニメーション パラメータ]] を選択することです。この例ではパラメータは ''velocityX'' (strafing) および ''velocityZ'' (forward speed) です。
 
-Then you can add individual animations by clicking ^^+ -> Add Motion Field^^ to add an Animation Clip to the blend tree. When you're done, it should look something like this:
+次に個別のアニメーションを追加するには^^+ -> Add Motion Field^^ をクリックしてアニメーションクリップをブレンドツリーに追加出来ます。 完了すると、次のようになるはずです:
 
 Attach:MecanimBlendTree2D.png
-''A 2D Blend Node with five Animation Clips.''
+''5つのアニメーションクリップを保有する2D ブレンドノード''
 
-The positions in 2D blending are like the thresholds in 1D blending, except that there are two values instead of one, corresponding to each of the two parameters. Their positions along the horizontal X axis correspond to the first parameter, and their positions along the vertical Y axis correspond to the second parameter. A walking forward animation might have a velocityX of 0 and a velocityZ of 1.5, so those values should be typed into the Pos X and Pos Y number fields for the motion.
+2Dブレンディングの Position は 1DブレンディングのThresholdに相当し、違いは値がひとつではなく、二つのパラメータに対応して値が二つあるということです。水平方向のX軸のPositionは最初のパラメータに対応し、垂直のY軸のPositionは二つめのパラメータに対応しています。前方への歩行アニメーションでvelocityX が 0 および velocityZ が 1.5 であったとすると、それらの値はPos X および Pos Y の数字フィールドに入力すべきです。
 
 
-!!The 2D Blending Diagram
+!!2D ブレンディング ダイアグラム
 
-The diagram at the top of the Inspector shows the positions of the child motions in the 2D blend space. The motions are shown as blue dots. Motions with no Animation Clip or Blend Tree assigned have no influence on the blend and are shown as gray dots. You can select a motion by clicking on its dot in the diagram. Once selected, the influence of that motion for each point in the blending space is visualized as a blue field. The field is strongest right under the position of the motion, where the motion has full influence, meaning that its animation weight is 1 and the other animations have a weight of 0. Further away the influence decreases as the influence of other motions take over.
+インスペクタ上部のダイアグラムは2Dブレンド空間での子モーションのPositionを表します。モーションは青い点で表されます。アニメーションクリップまたはブレンドツリーのないモーションはブレンドに影響がなく灰色の点として表されます。モーションを選択するにはダイアグラムの点線をクリックします。一回選択したあとはブレンディング空間の各点の影響は青いフィールドで表現されます。フィールドはモーションの位置の真下が最も影響が強く、すなわちアニメーションの重み付けが1となり、他方のアニメーションの重み付けは0となります。その位置から離れていくと影響は弱まり、他方のモーションの影響が強くなります。
 
 Attach:MecanimBlendTree2DDiagram.png
 (:comment image source MecanimBlendTree2DDiagram.psd :)
-''The diagram at the top of the Blend Node Inspector visualizes the weights of the child motions over the extends of the parameter values.''
+''ブレンドノードの最上部にあるダイアグラムにより、パラメータ値の変化に伴って子モーションの重み付けぎ変化する様子を視覚化します。''
 
-The red dot indicates the values of the two ``Parameters``. If you press ^^Play^^ in the ~~Preview~~ at the bottom of the ~~Inspector~~ and drag the red dot in the diagram around, you can see how the values of the parameters are controlling the blending of the different motions. In the diagram you can also see the influence of each motion represented as circles around each motion. You will see that if you move the red dot on top of one of the blue dots representing a motion, the circle for that motion gains its maximum radius and the circles for all other motions shrink down to nothing. At positions that are in between several motions, multiple of the nearby motions will have an influence on the blend. If you select one of the motions in order to see the blue influence field of that motion, you can see that as you move the red dot around, the circle size of the motion corresponds exactly with how strong the influence field is at various positions.
+赤い点は二つの``Parameter`` の値を表します。もし ~~Inspector~~ の下部のthe ~~Preview~~ で ^^Play^^ を押して、ダイアグラムの赤い点をダイアグラム上でドラッグするとパラメータの値が、各々のモーションのブレンディングをどう制御しているかが分かります。さらにダイアグラム上で各モーションよ影響を各モーションの周りの円として表示されます。青い点の上に赤い点を重ねると、モーションの半径は最大となり、他の全てのモーションはゼロになることを確認出来ます。いくつかのモーションの間にあるpositionについては、近くにある複数のモーションがブレンドに影響します。もしモーションのひとつを選択してそのモーションの影響するフィールドを確認すると、赤い点を動かすと様々なpositionにおいて、影響するフィールドの具体的な大きさはモーションの円のサイズと連動することが確認出来ます。
 
-When no motion is selected, the diagram shows a mix of all the influence fields that is more blue where a single motion dominates and less blue where many motions contribute to the blend.
+もしモーションがひとつも選択されていない場合、ダイアグラムは全ての影響フィールドの組み合わせとなり、ひとつのモーションが支配的な場合は青が強くなり、より影響が小さい場合は青が弱くなります。
 
 
-!!Positions
+!!Position
 
-You can change the positions of a motion by clicking on its corresponding blue dot in the diagram and dragging it around. You can also edit position coordinates of a motion in the motion list by typing in numbers in the number fields in the Pos X and Pos Y columns.
+モーションのPositionを変更するには対応する青の点をクリックして周りでドラッグします。さらにモーションリストのモーションのPosition座標を変更するには、Pos X および Pos Y 列の数字フィールドに値を入力することも出来ます。
 
-The ^^Compute Positions^^ drop-down will set the positions from data of your choice obtained from the root motions in the Animation Clips. The data that is available to choose from is speed, velocity x, y, or x, and angular speed in degrees or radians. If one or both of your ^^parameters^^ correspond to one of these properties, you can compute the Pos X and/or Pos Y using the Compute Positions drop-down.
-
-||PROPS
-||``Velocity XZ``             ||Sets the Pos X of each motion according to its velocity.x and the Pos Y according to its velocity.z.||
-||``Speed And Angular Speed`` ||Sets the Pos X of each motion according to its angular speed (in radians per second) and the Pos Y according to its speed.||
-
-Furthermore you can mix and match by choosing ^^Compute Position -> X Position From^^ and/or ^^Compute Position -> Y Position From^^ to only auto-compute one of them at a time, leaving the other unchanged.
+^^Compute Thresholds^^ ドロップダウンにより threshold を、アニメーションクリップのルートモーションから取得させることで、好きな順番にセットすることが出来ます。選択することが可能であるデータは speed、velocity、x、y、および 角度またはラジアン単位の Angular Speed です。もし ^^parameter^^ のひとつまたは両方がこれらのプロパティに対応する場合、Compute Positionsドロップダウンを使用してPos X および/または Pos Y を計算出来ます。
 
 ||PROPS
-||``Speed``               ||Sets the Pos X or Pos Y of each motion according to its speed  (the magnitude of the velocity).||
-||``Velocity X``          ||Sets the Pos X or Pos Y of each motion according to its velocity.x.||
-||``Velocity Y``          ||Sets the Pos X or Pos Y of each motion according to its velocity.y.||
-||``Velocity Z``          ||Sets the Pos X or Pos Y of each motion according to its velocity.z.||
-||``Angular Speed (Rad)`` ||Sets the Pos X or Pos Y of each motion according to its angular speed in radians per second.||
-||``Angular Speed (Deg)`` ||Sets the Pos X or Pos Y of each motion according to its angular speed in degrees per second.||
+||``Velocity XZ``             ||各々のモーションのPos X を自身の velocity.x 、 Pos Y を自身の velocity.z に基づいてセットします。||
+||``Speed And Angular Speed`` ||各々のモーションのPos X を角速度 (ラジアン毎秒単位)により、Pos Y を自身のスピードによりセットします。
 
-Say, for example, that your parameters correspond to sideways velocity and forward velocity, and that you have an idle animation with an average velocity (0, 0, 0), a walk animation with (0, 0, 1.5), and two strafe animations with velocities of (-1.5, 0, 0) and (1.5, 0, 0) respectively. Choosing the ''Velocity XZ'' option from the drop-down would set the positions of the motions according to the X and Z coordinates of those velocities.
+さらに ^^Compute Position -> X Position From^^ および/または ^^Compute Position -> Y Position From^^ を選択することで組み合わせまたはマッチングして、ひとつのみを自動計算して、もう一方は変更させないことが出来ます。
 
-(back to [[class-BlendTree|Blend Trees]])
+||PROPS
+||``Speed``               ||各々のモーションのPos X または Pos Yを speed （速度の大きさ）に応じてセットします。||
+||``Velocity X``          ||各々のモーションのPos X または Pos Yを velocity.xに応じてセットします。||
+||``Velocity Y``          ||各々のモーションのPos X または Pos Yを velocity.yに応じてセットします。||
+||``Velocity Z``          ||各々のモーションのPos X または Pos Yを velocity.zに応じてセットします。||
+||``Angular Speed (Rad)`` ||各々のモーションのPos X または Pos Yを ラジアン/毎秒単位の Angular Speed （角速度）に応じてセットします。||
+||``Angular Speed (Deg)`` ||各々のモーションのPos X または Pos Yを 角度/毎秒単位の Angular Speed （角速度）に応じてセットします。||
+
+例えば、パラメータが横と正面の向きのvelocityに対応していたとして、さらにidleアニメーションが (0, 0, 0)のvelocity 、歩行アニメーションが(0, 0, 1.5)、さらに横移動のアニメーションが それぞれ (-1.5, 0, 0) および (1.5, 0, 0) だとします。ドロップダウンから ''Velocity XZ''  を選択することでモーションのpositionが、各々 X および Z 座標のvelocityに対応してセットされます。
+
+( [[class-BlendTree|ブレンドツリー]] に戻る)
