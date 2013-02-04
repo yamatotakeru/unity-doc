@@ -4,17 +4,18 @@ This section addresses common problems that can arise when using Unity. Each pla
 [[#DesktopTroubleShooting]]
 !Desktop!
 >>desktop<<
-!!In MonoDevelop, the Debug button is greyed out!
-* This means that MonoDevelop was unable to find the Unity executable. In the MonoDevelop preferences, go to the Unity/Debugger section and then browse to where your Unity executable is located.
-
-!!Is there a way to get rid of the welcome page in MonoDevelop?
-* Yes. In the MonoDevelop preferences, go to the Visual Style section, and uncheck "Load welcome page on startup".
-
 !!Geforce 7300GT on OSX 10.6.4
 * Deferred rendering is disabled because materials are not displayed correctly for Geforce 7300GT on OX 10.6.4; This happens because of buggy video drivers.
 
 !!On Windows x64, Unity crashes when my script throws a NullReferenceException
 * Please apply [[http://support.microsoft.com/kb/976038 | Windows Hotfix #976038]].
+
+!!Script Editing
+!!!Is there a way to get rid of the welcome page in MonoDevelop?
+* Yes. In the MonoDevelop preferences, go to the Visual Style section, and uncheck "Load welcome page on startup".
+
+!!!Why does my script open in MonoDevelop when I have selected Visual Studio as my script editor?
+* This happens when VS reports that it failed to open your script. The most common cause for this is an external plugin (e.g. Resharper) popping up a dialog at startup, requesting input from the user - this will cause VS to report that it failed to open.
 
 [[#DesktopShadowTroubleShooting]]
 !! Graphics

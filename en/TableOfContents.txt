@@ -156,6 +156,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 >>metro<<
 **[[metro-gettingstarted]]
 ***[[metro-debugging]]
+***[[metro-commandlinearguments]]
 ***[[metro-plugins]]
 ***[[metro-projecttypes]]
 ***[[metro-faq]]
@@ -378,7 +379,6 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[Using Web Player templates]]
 ****[[Web Player Streaming]]
 ****[[WebPlayerChannels]]
-
 >><<
 
 

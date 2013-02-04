@@ -318,7 +318,6 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[Using Web Player templates]]
 ****[[Web Player Streaming]]
 ****[[WebPlayerChannels]]
-
 >><<
 
 

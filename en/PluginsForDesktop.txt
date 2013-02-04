@@ -23,12 +23,20 @@ As with Mac OSX, you should declare any C++ functions with C linkage to avoid na
 Plugins on Linux are @@.so@@ files with exported functions.  These libraries are typically written in C or C++, but any language can be used.\\
 As with the other platforms, you should declare any C++ functions with C linkage in order to avoid name mangling issues.
 
-!!! 32-bit and 64-bit libraries
-Currently, plugins for 32-bit and 64-bit players need to be managed manually, e.g, before building a 64-bit player, you need to copy the 64-bit library into the @@Assets/Plugins@@ folder, and before building a 32-bit player, you need to copy the 32-bit library into the @@Assets/Plugins@@ folder.
+!! 32-bit and 64-bit libraries
+The issue of needing 32-bit and/or 64-bit plugins is handled differently depending on the platform.
+
+!!! Windows and Linux
+On Windows and Linux, plugins can be managed manually (e.g, before building a 64-bit player, you copy the 64-bit library into the @@Assets/Plugins@@ folder, and before building a 32-bit player, you copy the 32-bit library into the @@Assets/Plugins@@ folder) OR you can place the 32-bit version of the plugin in @@Assets/Plugins/x86@@ and the 64-bit version of the plugin in @@Assets/Plugins/x86_64@@.  By default the editor will look in the architecture-specific sub-directory first, and if that directory does not exist, it will copy plugins from the root @@Assets/Plugins@@ folder instead.
+
+Note that for the Universal Linux build, you are required to use the architecture-specific sub-directories (when building a Universal Linux build, the Editor will not copy any plugins from the root @@Assets/Plugins@@ folder).
+
+!!! Mac OS X
+For Mac OS X, you should build your plugin as a universal binary that contains both 32-bit and 64-bit architectures.
 
 !! Using your plugin from C#
 
-Once built, the bundle should be placed in the ^^Assets->Plugins^^ folder in the Unity project. Unity will then find it by name when you define a function like this in the C# script:-
+Once built, the bundle should be placed in the ^^Assets->Plugins^^ folder (or the appropriate architecture-specific sub-directory) in the Unity project. Unity will then find it by name when you define a function like this in the C# script:-
 
 [@[DllImport ("PluginName")]
 private static extern float FooPluginFunction (); @]

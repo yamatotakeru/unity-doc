@@ -23,10 +23,6 @@ Attach:spherecollider.png
 (:include comp-ColliderDetails:)
 
 
-!!Compound Colliders
-(:include comp-ColliderCompound:)
-
-
 !!Hints
 (:include comp-ColliderHints:)
 * If you make an explosion, it can be very effective to add a rigidbody with lots of drag and a sphere collider to it in order to push it out a bit from the wall it hits.
