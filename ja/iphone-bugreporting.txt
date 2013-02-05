@@ -1,4 +1,3 @@
-! Reporting crash bugs on iOS
 !iOSでのクラッシュ時バグレポート方法
 
 バグレポートを送信する前に、[[TroubleShooting#iPhoneTroubleShooting | iOS トラブルシューティング]] のページをチェックして、一般的なクラッシュおよびその他の問題に対する解決方法を確認して下さい。 
