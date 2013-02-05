@@ -113,10 +113,10 @@ Attach:ShurikenSizeBySpeedModule.png
 Attach:ShurikenRotationOverLifetime.png
 Specify values in degrees.
 ||PROPS
-||``Angular Velocity``         ||Controls the rotational speed of each particle during its lifetime. Use constant rotational speed, animate it using a curve or specify a random rotational speed using two curves。 [[ParticleSystemCurveEditor|MinMaxCurve]] を参照下さい。||
+||``Angular Velocity``         ||各パーティクルの生存期間を通じた回転速度を制御し、カーブによりアニメーションか、2つのカーブ間でのランダムな値により指定。 [[ParticleSystemCurveEditor|MinMaxCurve]] を参照下さい。||
 
 
-!!Rotation By Speed Module
+!!Rotation By Speed モジュール
 Attach:ShurikenRotationBySpeedModule.png
 ||PROPS
 ||``Angular Velocity``          ||パーティクルの速度の再マッピングに使用される回転速度。回転速度に幅を持たせるにはグラデーションを使用。 [[ParticleSystemCurveEditor|MinMaxCurve]] を参照下さい。||
