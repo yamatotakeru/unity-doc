@@ -1,4 +1,4 @@
-! GUI テクスチャ / GUI Texture
+! GUI テクスチャ
 
 $$GUI Texture$$ は、2D での平坦画像として表示されます。 特に、ユーザー インターフェースの要素、ボタンまたはデコレーション向けです。  その配置や拡大縮小はX および Y 軸に沿って実行され、$$World Coordinates$$ よりも、$$Screen Coordinates$$ で測定されます。
 

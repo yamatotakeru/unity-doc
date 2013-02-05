@@ -1,4 +1,4 @@
-! インスペクターを使う（Using the Inspector） / Using the Inspector
+! インスペクターを使う（Using the Inspector）
 
 $$Inspector$$ を使って、多くの様々なタイプの $$Properties$$ を見たり編集したりすることができます。
 

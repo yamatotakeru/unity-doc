@@ -1,4 +1,4 @@
-!オフメッシュリンク（Unity Proのみ） / Off-mesh links (Pro only)
+!オフメッシュリンク（Unity Proのみ）
 
 本項では主に手動のOff-mesh link（オフメッシュリンク）に関する記載であり、''オフメッシュ''（Offmesh）コンポーネントを用いて手動でセットアップしたケースについて説明します。自動的に生成されるOff-mesh links（Off-mesh Link）については[[NavmeshandPathfinding|ナビメッシュ入門]] を併せて参照のこと。
 

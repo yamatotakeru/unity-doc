@@ -1,4 +1,4 @@
-! ShaderLab文法：プロパティ / ShaderLab syntax: Properties
+! ShaderLab文法：プロパティ
 
 シェーダにより、Unityの[[Materials|material inspector]] 上で、アーティストがセットできるパラメータの一覧を定義できます。シェーダでのPropertiesブロックで定義します。
 

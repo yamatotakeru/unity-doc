@@ -1,4 +1,4 @@
-! ネットワークのインスタンス化 / Network Instantiate
+! ネットワークのインスタンス化
 
 [[ScriptRef:Network.Instantiate.html | Network.Instantiate]] 関数により、[[ScriptRef:Object.Instantiate.html|Object.Instantiate]] でひとつのクライアント上でするのと直感的に同じ方法で、プレハブを全てのクライアントでインスタンス化できます。インスタンス化するクライアントはオブジェクトをコントロールするもの（すなわちInputクラスはクライアントインスタンスのスクリプトからのみアクセス出来ます）ですが、変更はネットワーク上に反映されます。
 

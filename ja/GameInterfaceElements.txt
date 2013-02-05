@@ -1,4 +1,4 @@
-! ゲームインターフェースの構成要素 / Game Interface Elements
+! Game Interface Elements
 
 Unity はいくつものゲーム制作のためのグラフィックユーザーインターフェース(GUI)を提供します。 
  [[class-GuiText | GUI Text]] と [[class-GuiTexture | GUI Texture]] オブジェクトを使用するか、$$UnityGUI$$ を使ったスクリプトからインターフェースを生成することで利用出来ます。

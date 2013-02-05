@@ -1,4 +1,4 @@
-! Forward Renderingパスの詳細 / Forward Rendering Path Details
+! Forward Renderingパスの詳細
 
 このページでは $$Forward$$ [[RenderingPaths | Rendering Path]] の詳細について説明します。
 

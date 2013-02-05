@@ -1,4 +1,4 @@
-!! Transparent Cutoutプロパティ / Transparent Cutout Properties
+!! Transparent Cutoutプロパティ
 
 Cutout（切り抜き）シェーダは透明オブジェクトを表現する別の手法です。Cutoutと通常の[[shader-TransparentFamily|Transparent]] シェーダの違いは：
 * このシェーダは部分的に透過の領域を持つことが出来ません。完全に不透明であるか、完全に透過であるかしかありません。

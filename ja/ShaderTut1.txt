@@ -1,4 +1,4 @@
-! シェーダ: ShaderLab と固定関数シェーダ / Shaders: ShaderLab & Fixed Function shaders
+! シェーダ: ShaderLab と固定関数シェーダ
 
 このチュートリアルでは、自身のシェーダの作成法とゲームの見た目をよくする方法を学びます。
 

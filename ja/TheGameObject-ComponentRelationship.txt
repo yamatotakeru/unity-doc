@@ -1,4 +1,4 @@
-! ゲームオブジェクトとコンポーネント間の関係（The GameObject-Component Relationship） / The GameObject-Component Relationship
+! ゲームオブジェクトとコンポーネント間の関係（The GameObject-Component Relationship）
 
 すでに [[GameObjects]] の項で説明しているとおり、あるゲームオブジェクトには、複数のコンポーネントが含まれています。 ゲームオブジェクトとその最も一般的なコンポーネント -- ``Transform`` コンポーネントを例にとりつつ、この関係について詳しく見ていきましょう。 適当なUnityのシーンを開き、新しいゲームオブジェクトを作成します（Windowsなら ^^Shift-Control-N^^ 、Macなら ^^Shift-Command-N^^ で作成してください）。次に作成したゲームオブジェクトを選択して、 $$Inspector$$ で見てみます。
 

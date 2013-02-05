@@ -1,4 +1,4 @@
-! 透明カットアウト頂点ライティング / Transparent Cutout Vertex-Lit
+! 透明カットアウト頂点ライティング
 
 Attach:Shaders./Shader-TransCutoutVertex.png
 

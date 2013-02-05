@@ -1,4 +1,4 @@
-! ツリー - Wind Zone / Tree - Wind Zones
+! ツリー - Wind Zone
 
 $$Wind Zone$$ は、風が吹いた場合に、枝や葉を揺らすことで、よりリアルな描写を追加します。
 

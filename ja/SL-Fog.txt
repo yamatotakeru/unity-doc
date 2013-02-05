@@ -1,4 +1,4 @@
-! ShaderLab文法： Fog / ShaderLab syntax: Fog
+! ShaderLab文法： Fog
 
 フォグのパラメータはFogコマンドで制御します。
 

@@ -1,4 +1,4 @@
-! トランスフォーム / Transform
+! トランスフォーム
 
 $$Transform$$ $$Component$$は、シーン内のすべてのオブジェクトの実際の「Position」、「Rotation」および「Scale」を決定します。 オブジェクトはそれぞれトランスフォームを持ちます。
 

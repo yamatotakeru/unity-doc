@@ -1,4 +1,4 @@
-!経路探索（Pathfinding） / Pathfinding
+!経路探索（Pathfinding）
 
 本項ではUnityの経路探索の機能をカバーし、二つの地点間で障害物をさけて最適な経路を移動するプロセスを説明します。
 

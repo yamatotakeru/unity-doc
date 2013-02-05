@@ -1,4 +1,4 @@
-! ShaderLab文法： Pass / ShaderLab syntax: Pass
+! ShaderLab文法： Pass
 Passブロックはオブジェクト形状を一回のみレンダリングするようにします。
 
 !!文法

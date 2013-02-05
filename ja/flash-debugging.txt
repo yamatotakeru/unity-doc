@@ -1,4 +1,4 @@
-!Flash: デバッグ / Flash: Debugging
+!Flash: デバッグ
 
 !! Flash Playerログファイルはどこか
 

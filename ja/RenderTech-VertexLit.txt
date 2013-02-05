@@ -1,4 +1,4 @@
-! Vertex Litレンダリングパス詳細 / Vertex Lit Rendering Path Details
+! Vertex Litレンダリングパス詳細
 
 このページは $$Vertex Lit$$ [[RenderingPaths | Rendering Path]] (レンダリングパス)について説明します。
 

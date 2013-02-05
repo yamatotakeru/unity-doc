@@ -1,4 +1,4 @@
-! Unity 4 での DirectX 11使用 / Using DirectX 11 in Unity 4
+! Unity 4 での DirectX 11使用
 
 Unity 4 により DirectX 11 グラフィックス API 、すなわち期待の大きい優れた機能であるコンピュートシェーダ、テッセレーションシェーダ、シェーダモデル5.0、等々を使用することが出来ます。
 

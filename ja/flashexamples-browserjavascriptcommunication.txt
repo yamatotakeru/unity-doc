@@ -1,4 +1,4 @@
-!サンプル: ブラウザ JavaScript 通信 / Example: Browser JavaScript Communication
+!サンプル: ブラウザ JavaScript 通信
 
 このサンプルで Action Script 3 コードによりブラウザのJavaScriptと通信する方法を示します。このサンプルはActionScriptクラスの [[http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html |ExternalInterface]] を活用します。
 

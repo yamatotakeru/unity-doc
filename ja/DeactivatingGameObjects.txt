@@ -1,4 +1,4 @@
-!ゲームオブジェクトを非アクティブにする（Deactivating GameObjects） / Deactivating GameObjects
+!ゲームオブジェクトを非アクティブにする（Deactivating GameObjects）
 
 非アクティブにマーキングすることで、あるゲームオブジェクトをシーンから一時的に取り除くことができます。 実行するには、スクリプトから非アクティブ化したいゲームオブジェクトの [[ScriptRef:GameObject-activeSelf.html|activeSelf]] プロパティをチェックするか、インスペクターのアクティベーションチェックボックスをチェックします。
 

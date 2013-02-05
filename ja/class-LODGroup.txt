@@ -1,4 +1,4 @@
-!LOD（Unity Proのみ） / Level of Detail (Pro Only)
+!LOD（Unity Proのみ）
 
 シーンが大きくなるにつれて、パフォーマンスは大きな問題になります。これを管理するための方法の一つは、カメラが被写体からどれだけ離れているかに応じて、さまざまな詳細レベル（Level of Detail）でメッシュを持つことです。
 これは$$Level of Detail$$（略語：$$LOD$$）と呼ばれます。

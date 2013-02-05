@@ -1,4 +1,4 @@
-!ベクトル演算の理解 / Understanding Vector Arithmetic
+!ベクトル演算の理解
 Understanding Vector Arithmetic
 
 ベクトル演算は3Dグラフィックス、物理演算およびアニメーションにとって基本であり、さらに深く理解することでUnityを最大限活用するのに役立ちます。以下で主要な演算および活用できる多くの場面に関しての提案をまとめます。

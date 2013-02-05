@@ -1,3 +1,3 @@
-! マネージャー設定 / Settings Managers
+! マネージャー設定
 
 (:tocportion:)

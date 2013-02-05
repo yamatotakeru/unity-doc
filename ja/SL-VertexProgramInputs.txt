@@ -1,4 +1,4 @@
-! 頂点プログラムへ頂点データの流し込み / Providing vertex data to vertex programs
+! 頂点プログラムへ頂点データの流し込み
 
 Cg/HLSL [[SL-ShaderPrograms | vertex programs]] に対して、頂点データを構造として渡す必要があります。 幾つかのよく使用される頂点構造は、[[SL-BuiltinIncludes | $$UnityCG.cginc$$ include file]] で定義され、ほとんどの場合、使用するだけなら十分です。 構造は以下のようになります。
 * $$appdata_base$$: 頂点は、位置、法線および 1 つのテクスチャ座標で構成されます。

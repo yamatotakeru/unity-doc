@@ -1,4 +1,4 @@
-! Assset Server の日次ベースの使用方法 / Daily use of the Asset Server
+! Assset Server の日次ベースの使用方法
 
 このセクションではAsset Serverで日次ベースにおいて良くあるタスク、ワークフロー、およびベストプラクティスについて説明します。
 

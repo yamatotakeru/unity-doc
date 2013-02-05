@@ -1,4 +1,4 @@
-! レンダリングパス / Rendering Paths
+! Rendering Paths
 
 Unityは異なる $$Rendering Paths$$ に対応しています。 どれを選択すべきかは、ゲームの内容やターゲット／ハードウェアに依存します。異なるRendering Pathsは異なる特徴やパフォーマンスを持ちます。（おおかたライトや影が影響するのですが）
 

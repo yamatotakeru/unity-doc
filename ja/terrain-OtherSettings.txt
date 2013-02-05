@@ -1,4 +1,4 @@
-! その他の設定 / Other Settings
+! その他の設定
 
 Terrainインスペクタでは^^Terrain Settings^^ボタンの下に、Attach:terrain-TerrainSettings.png いくつかのオプションが有ります。
 

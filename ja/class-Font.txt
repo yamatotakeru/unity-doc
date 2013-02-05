@@ -1,4 +1,4 @@
-!フォント / Font
+!フォント
 
 $$Font$$ [[class-GuiText|GUI Text]] または [[class-TextMesh|Text Mesh]] $$Component$$ のいずれかで使用するするに、作成またはインポートできます。
 

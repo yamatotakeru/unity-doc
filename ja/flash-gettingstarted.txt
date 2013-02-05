@@ -1,4 +1,4 @@
-! 初めてのFlash開発 / Getting Started with Flash Development
+! 初めてのFlash開発
 
 !! Unity Flashとは何か
 FlashビルドオプションによりUnityでSWFファイル（ShockWave Flash）をパブリッシュできます。これらのSWFファイルはブラウザにインストールされたFlashプラグインにより再生することが出来ます。世界のほとんどのコンポユー他はFlash Playerがインストールされているか、あるいはAdobe Flashウェブサイトでインストールすることが出来ます。WebPlayerビルドにより3Dアセット、オーディオ、物理挙動、およびスクリプトのファイルを作成するのと同様に、UnityはSWFファイルをビルド出来ます。ゲームの全てのスクリプトは自動的にActionScript、すなわちFlash Playerが動作するスクリプティング言語、に変換されます。

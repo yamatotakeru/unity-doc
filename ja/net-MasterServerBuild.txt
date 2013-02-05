@@ -1,4 +1,4 @@
-! Unityネットワーキングサーバのカスタム構築 / Building the Unity Networking Servers on your own
+! Unityネットワーキングサーバのカスタム構築
 
 個別のネットワーキングサーバのソースコードは[[http://www.unity3d.com/master-server/index.html|Unity website]] にあります。Connection tester、Facilitator、マスターサーバ、プロキシサーバも含まれます。
 

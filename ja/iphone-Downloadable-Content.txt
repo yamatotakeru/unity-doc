@@ -1,4 +1,4 @@
-! アプリケーションでの"アプリ内課金" の準備 / Preparing your application for "In App Purchases"
+! アプリケーションでの"アプリ内課金" の準備
 
 本項ではAppleの"StoreKit" APIをゲームと連動させる方法についてはカバー __していません__ 。ここでは [[Main.Plugins|ネイティブ コード プラグイン]] を通して"StoreKit" と連動が出来ていることが前提となっています。
 

@@ -1,4 +1,4 @@
-! GameObject / The GameObject
+! GameObject
 
 $$GameObject$$ は、その他すべての [[Components]] を格納する容器です。 ゲーム内のすべてのオブジェクトはすべて異なるコンポーネントを含む GameObject になります。 技術的には、GameObject なしでコンポーネントを作成できますが、GameObject に追加するまでは使用できません。  
 

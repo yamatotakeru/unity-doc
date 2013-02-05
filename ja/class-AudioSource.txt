@@ -1,4 +1,4 @@
-! オーディオ ソース / Audio Source
+! オーディオ ソース
 
 $$Audio Source$$ は、シーンで [[class-AudioClip | Audio Clip]] を再生します。 オーディオ クリップが 3D クリップの場合、ソースは、所定の位置で再生され、距離が離れると弱まります。 オーディオはスピーカー間で広がり （ステレオ - 7.1）(「スプレッド」)、3D と 2D 間で変わります (「パン レベル」)。 これは、フォールオフ曲線で長距離で制御できます。 また、[[ class-AudioListener | listener]] が 1 時間以内または、複数の [[ class-AudioReverbZone | Reverb Zones]] である場合、反響がソースに適用されます。 (PRO のみ) より鮮やかなオーディオを得るのに、個々のフィルターを各オーディオ ソースに適用できます。 詳細については、[[ class-AudioEffect | Audio Effects]] を参照してください。
 

@@ -1,4 +1,4 @@
-! Unityで外部のバージョン管理システムを使用 / Using External Version Control Systems with Unity
+! Unityで外部のバージョン管理システムを使用
 
 Unityはアドオン製品として [[Asset Server]] を提供し、プロジェクトの統合バージョン管理を容易にします。何らかの理由で Unity Asset Server を使用できない場合も、 Subversion 、 Perforce 、または Bazaar といった外部のバージョン管理システムにプロジェクトを格納することができます。これはプロジェクトでの手動による初期セットアップが必要です。
 

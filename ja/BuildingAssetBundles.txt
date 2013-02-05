@@ -1,4 +1,4 @@
-! アセットバンドルのビルド / Building AssetBundles
+! アセットバンドルのビルド
 
 アセットバンドルのビルドに使用できるクラスメソッドは3つあります:
 * [[ScriptRef:BuildPipeline.BuildAssetBundle.html|BuildPipeline.BuildAssetBundle]] により、どんな種類のアセットでもアセットバンドルをビルドできます。

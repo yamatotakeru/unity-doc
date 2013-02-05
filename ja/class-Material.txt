@@ -1,4 +1,4 @@
-! マテリアル / Material
+! マテリアル
 
 マテリアルは、$$GameObject$$ に追加された [[class-MeshRenderer|Mesh]] または [[class-ParticleRenderer|Particle Renderers]] と併せて使用できます。  マテリアルは、オブジェクトの表示のされ方を定義する上で重要な役割を担っています。  マテリアルには、$$Mesh$$ または $$Particles$$のレンダリングに使用される $$Shader$$ への参照が含まれているため、これらのコンポーネントは、一部のマテリアルなしでは表示できない場合があります。
 

@@ -1,4 +1,4 @@
-!Web Player テンプレートの使用 / Using web player templates
+!Web Player テンプレートの使用
 
 Web Player プロジェクトをビルドするとき、 Unity は HTMLページにプレイヤーを埋め込み、ブラウザで再生できるようにします。デフォルトのページは非常にシンプルで、ただの白い背景と最小限のテキストのみです。実際にはこのページに3種類のバリエーションがあり、Player Settings インスペクタにより選択できます（メニューから: Edit > Project Settings > Player）。
 

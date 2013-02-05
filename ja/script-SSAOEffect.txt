@@ -1,4 +1,4 @@
-! スクリーンスペース アンビエントオクルージョン（SSAO） / Screen Space Ambient Occlusion (SSAO)
+! スクリーンスペース アンビエントオクルージョン（SSAO）
 
 $$Screen Space Ambient Occlusion (SSAO)$$ エフェクトは[[http://en.wikipedia.org/wiki/Ambient_occlusion | アンビエントオクルージョン(Ambient Occlusion)]] をリアルタイムで擬似的に後処理イメージ効果として再現するものです。互いに接近している折り目、穴、地表を暗くする効果があります。現実世界においては、環境光（Ambient light）を遮られ光効果を''オクルージョン''(無視)するため暗く見えます。
 

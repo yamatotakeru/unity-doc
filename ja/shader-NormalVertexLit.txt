@@ -1,4 +1,4 @@
-! 頂点ライティング / Vertex-Lit
+! 頂点ライティング
 
 Attach:Shaders./Shader-NormalVertex.png
 

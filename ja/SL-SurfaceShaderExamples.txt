@@ -1,4 +1,4 @@
-! サーフェイスシェーダの例 / Surface Shader Examples
+! サーフェイスシェーダの例
 
 [[SL-SurfaceShaders | $$Surface Shaders$$]] の例です。 以下の例は、組み込みライティング モデルの使用に集中しています。カスタムのライティング モデルの実装方法については、[[SL-SurfaceShaderLightingExamples | Surface Shader Lighting Examples]] にあります。
 

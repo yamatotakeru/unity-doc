@@ -1,4 +1,4 @@
-! Android SDK セットアップ / Android SDK Setup
+! Android SDK セットアップ
 Androidデバイスでコードをビルドして実行する前にいくつか従うべきステップがあります。このことはUnityを使用するのか、いちからAndroidアプリケーションを書くのかに関わらず当てはまります。
 
 !! 1. Android SDKをダウンロードする

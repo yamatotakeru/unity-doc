@@ -1,4 +1,4 @@
-! 枝のプロパティ（Branch Group Properties） / Branch Group Properties
+! 枝のプロパティ（Branch Group Properties）
 
 Branch Group Nodeは枝や葉を生成する役割があります。枝、葉や枝+葉ノードを選択した場合、そのプロパティが表示されます。
 

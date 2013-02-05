@@ -1,4 +1,4 @@
-! Scene Viewを使う / Using the Scene View
+! Scene Viewを使う
 
  $$Scene View$$ は対話型のサンドボックスです。あなたはScene Viewで位置や環境の設定をる事になります。例えばプレイヤー、カメラ、敵、その他全ての $$GameObjects$$ 等。Scene Viewのオブジェクト操作はUnityを操作する上で最も重要な操作の一つなので、この作業を素早く行う事はとても重要です。
 

@@ -1,4 +1,4 @@
-! iOS用のプラグインをビルド / Building Plugins for iOS
+! iOS用のプラグインをビルド
 
 このページは [[Plugins | Native Code Plugins]] のiOSプラットフォーム版について説明します。
 

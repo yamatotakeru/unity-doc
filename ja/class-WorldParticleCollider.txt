@@ -1,4 +1,4 @@
-! パーティクルコライダ（旧パーティクルシステム） / World Particle Collider (Legacy)
+! パーティクルコライダ（旧パーティクルシステム）
 
 $$World Particle Collider$$ は、シーン内のその他の $$Collider$$ にパーティクルを衝突させるのに使用されます。
 

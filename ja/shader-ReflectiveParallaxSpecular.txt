@@ -1,4 +1,4 @@
-! 反射視差鏡面 / Reflective Parallax Specular
+! 反射視差鏡面
 
 Attach:Shaders./Shader-ReflParallaxBumpSpec.png
 

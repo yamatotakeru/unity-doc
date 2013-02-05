@@ -1,4 +1,4 @@
-! 詳細テクスチャをどのように使用しますか? / How do I use Detail Textures?
+! 詳細テクスチャをどのように使用しますか?
 
 $$Detail texture$$ は、表面に近づくに連れ、フェードインする小さい、微細パターンで、木目や石の不完全さ、地形における地表の細かい部分などです。  このテクスチャは、明示的に [[shader-NormalDiffuseDetail | Diffuse Detail shader]] と併用されます。
 

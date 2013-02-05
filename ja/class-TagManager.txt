@@ -1,4 +1,4 @@
-!タグ マネージャ / Tag Manager
+!タグ マネージャ
 
 $$Tag Manager$$ により、$$Layer$$ と $$Tag$$ を設定できます。 これを表示するには、^^Edit->Project Settings->Tags^^ を選択します。
 

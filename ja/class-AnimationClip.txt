@@ -1,4 +1,4 @@
-! アニメーションクリップ / Animation Clip
+! アニメーションクリップ
 Attach:animation_clip_inspector.png\\
 インポートしたアニメーションを$$Project View$$に表示
 

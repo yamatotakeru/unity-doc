@@ -1,4 +1,4 @@
-! フレア レイヤー / Flare Layer
+! フレア レイヤー
 
 $$Flare Layer$$ コンポーネントを [[class-Camera | Cameras]] に追加して、画像に [[class-LensFlare | Lens Flares]] を表示させることができます。 デフォルトでは、カメラにはすでにフレア レイヤーが追加されています。
 

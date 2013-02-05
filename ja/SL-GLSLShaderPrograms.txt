@@ -1,4 +1,4 @@
-! GLSLシェーダプログラム / GLSL Shader Programs
+! GLSLシェーダプログラム
 
 [[SL-ShaderPrograms | Cg/HSL shader programs]] の使用に加えて、OpenGLシェーダ言語（GLSL）のシェーダも直接記述することが出来ます。
 

@@ -1,4 +1,4 @@
-! ShaderLab文法: BindChannels / ShaderLab syntax: BindChannels
+! ShaderLab文法: BindChannels
 
 $$BindChannels$$ コマンドにより、頂点データがグラフィック ハードウェアにどのようにマッピングされるかを指定できます。
 

@@ -1,4 +1,4 @@
-! アニメーションビューの活用（旧バージョン） / Using the Animation View (Legacy)
+! アニメーションビューの活用（旧バージョン）
 
 $$Animation View$$を使って、 Unityの$$Game Objects$$のアニメーションするために$$Animation Clips$$のプレビューと編集ができます。$$Animation View$$はメニューから^^Window->Animation^^を選択して開きます。
 

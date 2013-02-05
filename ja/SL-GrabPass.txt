@@ -1,4 +1,4 @@
-! ShaderLab文法： GrabPass / ShaderLab syntax: GrabPass
+! ShaderLab文法： GrabPass
 GrabPassは特別のパスタイプで、描画されるときの画面のコンテンツを、テクスチャ内に掴みとります。このテクスチャは後続プロセスで高度な画像ベースのエフェクトに使用できます。
 
 

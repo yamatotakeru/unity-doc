@@ -1,4 +1,4 @@
-! オーディオ ローパスフィルター（Unity Proのみ） / Audio Low Pass Filter (PRO only)
+! オーディオ ローパスフィルター（Unity Proのみ）
 
 $$Audio Low Pass Filter$$ フィルタは、[[class-AudioSource|AudioSource]] の低周波または [[class-AudioListener|AudioListener]] に達しているすべての音声を渡し、「Cutoff Frequency」よりも高い周波数をカットします。\\
 「Lowpass resonance Q」（別名: ローパス共鳴品質係数）は、フィルタの自己共鳴が抑制される度合いを決定します。 

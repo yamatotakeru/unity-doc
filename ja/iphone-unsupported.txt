@@ -1,4 +1,4 @@
-! Unity iOS が現在サポートしていない機能 / Features currently not supported by Unity iOS
+! Unity iOS が現在サポートしていない機能
 
 !! グラフィックス
 * DXT テクスチャ圧縮はサポートされていません。代わりに、PVRTC 形式を使用します。 詳細については、[[class-Texture2D|Texture2D Component page]] を参照してください。

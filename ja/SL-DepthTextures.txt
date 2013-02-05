@@ -1,4 +1,4 @@
-! Depth Textureの使用 / Using Depth Textures
+! Depth Textureの使用
 
 各ピクセルが高い精度の"Depth" 値を持つ[[class-RenderTexture | Render Textures]] を作成することが出来ます（[[ScriptRef:RenderTextureFormat.Depth.html|RenderTextureFormat.Depth]] ）。主に使用されるのはエフェクトでシーンのデプスが使用可能であることが必要な場合です（例えば、ソフト　パーティクル、スクリーン空間環境光オクルージョン（Screen Space Ambient Occlusion）、透過はすべてシーンのデプスが必要です）。
 

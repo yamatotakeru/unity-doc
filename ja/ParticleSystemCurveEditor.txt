@@ -1,4 +1,4 @@
-!パーティクルシステムCurve Editor / Particle System Curve Editor
+!パーティクルシステムCurve Editor
 !!MinMax Curve
 
 パーティクルシステム　モジュールのプロパティの多くは時間の経過とともに値が変化します。そういう変更は $$MinMax Curves$$（最大最小カーブ）を通じて表現できます。

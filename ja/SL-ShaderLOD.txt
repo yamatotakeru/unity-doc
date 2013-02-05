@@ -1,4 +1,4 @@
-! シェーダ LOD / Shader Level of Detail
+! シェーダ LOD
 
 シェーダ Level of Detail (LOD) は、LOD値が決められたしきい値以下の場合に、シェーダあるいはサブシェーダを使用します。
 

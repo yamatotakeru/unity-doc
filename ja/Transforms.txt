@@ -1,4 +1,4 @@
-!Transform / Transforms
+!Transform
 
 $$Transform$$ は全ての $$GameObject$$ で鍵になる $$Component$$ です。これによりゲームオブジェクトがどこに位置しているか、回転がどうなっているか、大きさがどうなっているかを明示します。Transform なしのゲームオブジェクトを作成することは出来ません。全てのゲームオブジェクトのTransformは $$Scene View$$ 、 $$Inspector$$ 、またはスクリプティングを通して値の調整をすることが出来ます。
 

@@ -1,4 +1,4 @@
-! Androidでの開発を始める / Getting Started with Android Development
+! Androidでの開発を始める
 
 Android OS が実行されているデバイス向けのゲームを開発することは iOS 開発の場合と似たアプローチが必要です。しかし、全てのデバイスに渡って、ハードウェアが標準化されておらず、そしてそのための iOS開発では発生しない問題が出てきます。iOS バージョン同様に UnityのAndroidバージョンには機能的な違いがあります。
 

@@ -1,4 +1,4 @@
-! Unity Web Playerとブラウザの通信 / Unity Web Player and browser communication
+! Unity Web Playerとブラウザの通信
 
  $$Unity Web Player$$ のコンテンツを含むHTMLページは、Unity Web Playerからブラウザへ通信することが可能です。またその逆も可能となっています。基本的に2つの通信方法があります。
 

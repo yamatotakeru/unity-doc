@@ -1,4 +1,4 @@
-! Deferred Lightingレンダリングパス / Deferred Lighting Rendering Path
+! Deferred Lightingレンダリングパス
 
 このページでは $$Deferred Lighting$$ の [[RenderingPaths | Rendering Path]] の詳細を説明します。Deferred Lightingの技術的な概要については [[http://www.realtimerendering.com/blog/deferred-lighting-approaches/ |この記事]] を参照下さい。
 

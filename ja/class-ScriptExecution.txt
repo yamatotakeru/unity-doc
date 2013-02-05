@@ -1,4 +1,4 @@
-!スクリプト実行順設定 / Script Execution Order Settings
+!スクリプト実行順設定
 
 通常、異なるスクリプトのAwake、OnEnable、Update関数はロード順に処理されてしまいます（すなわちランダム）。そこで$$Script Execution Order$$ (スクリプト実行順)設定により明示的に順序を変更できます。
 

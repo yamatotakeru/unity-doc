@@ -1,4 +1,4 @@
-!サンプル: データを Flash から Unity に提供 / Example: Supplying Data from Flash to Unity
+!サンプル: データを Flash から Unity に提供
 
 FlashからUnityにデータを提供したい場合、次の種類がサポートされます。さらにデータを表現するクラスを作成することも出来ます (一致する C# or JavaScript 実装を提供することによって。)
 

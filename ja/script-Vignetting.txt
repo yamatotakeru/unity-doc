@@ -1,4 +1,4 @@
-! ビネット (および Chromatic Aberration) / Vignetting (and Chromatic Aberration)
+! ビネット (および Chromatic Aberration)
 
 $$Vignetting$$（ビネット）画像効果により暗くしたりブラーしたり、およびChromatic Aberration（色収差の補正）を画像の四隅に対して行います。これはカメラレンズを覗き込んだような効果を再現しますが、抽象的なエフェクトとしても使用できます。
 Attach:ImageEffects./VignetteExample.png\\

@@ -1,4 +1,4 @@
-! Unity Web Playerの動作カスタマイズ / Customizing the Unity Web Player's Behavior
+! Unity Web Playerの動作カスタマイズ
 
 Unity $$Web Player$$ は開発者が動作を簡単に制御するためのパラメーターが複数あります。
 

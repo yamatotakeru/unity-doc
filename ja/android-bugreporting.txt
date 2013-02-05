@@ -1,4 +1,4 @@
-! Androidでクラッシュ時バグレポート方法 / Reporting crash bugs under Android
+! Androidでクラッシュ時バグレポート方法
 
 バグレポートに「クラッシュしました」とだけ送信する前に、 [[TroubleShooting#AndroidTroubleShooting |Androidトラブルシューティング]] に目を通して下さい。 
 

@@ -1,4 +1,4 @@
-! エディタの拡張 / Extending the Editor
+! エディタの拡張
 
 !! はじめに
 

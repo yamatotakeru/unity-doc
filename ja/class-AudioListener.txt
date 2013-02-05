@@ -1,4 +1,4 @@
-! オーディオ リスナー / Audio Listener
+! オーディオ リスナー
 
 $$Audio Listener$$ は、マイクのような機器として機能します。 これは、シーン内で所定の  [[class-AudioSource|Audio Source]] 空の入力を受信し、コンピュータのスピーカーを通じて音声を再生します。 ほとんどのアプリケーションで、メインの [[class-Camera|Camera]] にリスナーを追加するのは最も有用です。 オーディオ リスナーが [[ class-AudioReverbZone | Reverb Zone]] の境界内にある場合、シーン内のすべての可聴音声に反響が適用されます。 (PRO のみ) さらに、[[class-AudioEffect | Audio Effects]] をリスナーに適用でき、シーン内のすべての可聴音声に適用されます。   
 

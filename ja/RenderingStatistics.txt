@@ -1,4 +1,4 @@
-! ShaderLab文法: サブシェーダ タグ / Rendering Statistics Window
+! ShaderLab文法: サブシェーダ タグ
 
 サブシェーダは、タグを使用して、レンダリング エンジンに対して、タグをいつ、どのようにレンダリングするかを指示します。
 

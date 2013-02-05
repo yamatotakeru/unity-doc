@@ -1,4 +1,4 @@
-! キャラクタ コントローラ / Character Controller
+! キャラクタ コントローラ
 
 $$Character Controller$$ は、$$Rigidbody$$ 物理特性を使用しない 3 人称または 1 人称のプレイヤー制御も主に使用されます。
 

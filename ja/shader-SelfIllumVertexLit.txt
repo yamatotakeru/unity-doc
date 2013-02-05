@@ -1,4 +1,4 @@
-! 自己発光頂点ライティング / Self-Illuminated Vertex-Lit
+! 自己発光頂点ライティング
 
 Attach:Shaders./Shader-IllumVertex.png
 

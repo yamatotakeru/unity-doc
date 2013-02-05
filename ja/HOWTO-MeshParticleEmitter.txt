@@ -1,4 +1,4 @@
-! メッシュパーティクルエミッタはどのように作成しますか? (旧パーティクルシステム) / How do I make a Mesh Particle Emitter? (Legacy Particle System)
+! メッシュパーティクルエミッタはどのように作成しますか? (旧パーティクルシステム)
 
 $$Mesh Particle Emitters$$ は一般に、パーティクルを放出する場所に対する高いコントロールが必要な場合に使用されます。
 

@@ -1,4 +1,4 @@
-! 葉のプロパティ（Leaf Group Properties） / Leaf Group Properties
+! 葉のプロパティ（Leaf Group Properties）
 
 Leaf Groupは、葉の形状を生成します。プリミティブから、ユーザ定義されたメッシュのいずれかから生成します。
 

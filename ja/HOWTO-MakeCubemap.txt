@@ -1,4 +1,4 @@
-! キューブマップ テクスチャはどのように作成しますか? / How do I Make a Cubemap Texture?
+! キューブマップ テクスチャはどのように作成しますか?
 
 $$Cubemaps$$ は、[[shader-ReflectiveFamily | Reflective built-in shaders]] で使用されます。 これを作成するには、6 つの 2D テクスチャを作成し、キューブマップ アセットを新規作成するか、1 つの正方形テクスチャからキューブマップを作成します。 詳細については、[[class-Cubemap|Cubemap Texture]] 文書ページを参照してください。
 

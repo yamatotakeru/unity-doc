@@ -1,4 +1,4 @@
-! サーフェイス シェーダとDX11テッセレーション / Surface Shaders with DX11 Tessellation
+! サーフェイス シェーダとDX11テッセレーション
 
 [[SL-SurfaceShaders | Surface Shaders]] はDirectX 11 GPUテッセレーションを一部サポートします。要は：
 * テッセレーションは@@tessellate:FunctionName@@ 修飾子により指定されます。この関数は三角形の辺とテッセレーション要素の内部を計算します。

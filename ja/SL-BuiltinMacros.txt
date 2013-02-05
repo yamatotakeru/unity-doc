@@ -1,4 +1,4 @@
-! 定義済みシェーダ　プリプロセッサマクロ / Predefined shader preprocessor macros
+! 定義済みシェーダ　プリプロセッサマクロ
 
 [[SL-ShaderPrograms | shader programs]] （シェーダプログラム）をコンパイルするとき、Unityはいくつかのプリプロセッサマクロを定義します。
 

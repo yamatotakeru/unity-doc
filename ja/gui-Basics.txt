@@ -1,4 +1,4 @@
-! GUI の基本 / GUI Basics
+! GUI の基本
 
 このセクションでは、$$UnityGUI$$で$$Controls$$ のスクリプティングの基本について説明します。
 

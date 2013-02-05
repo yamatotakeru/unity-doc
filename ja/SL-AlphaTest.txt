@@ -1,4 +1,4 @@
-! ShaderLab文法: AlphaTest / ShaderLab syntax: Alpha testing
+! ShaderLab文法: AlphaTest
 
 アルファテストは、ピクセルが画面に描画されることを拒否する最後の機会です。
 

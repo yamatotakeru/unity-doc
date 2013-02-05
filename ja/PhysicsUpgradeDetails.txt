@@ -1,4 +1,4 @@
-! 物理特性アップグレード詳細 / Physics upgrade details
+! 物理特性アップグレード詳細
 Unity 3.0 向けに、NVIDIA PhysX ライブラリをバージョン 2.6 から 2.8.3 にアップグレードしており、多くの新しい機能を利用できます。 一般に、既存のプロジェクトの場合、動作はほぼ Unity 2.x と同じですが、物理特性シミュレーションの結果に僅かな違いがあるため、内容が正確な動作または物理特性イベントの連鎖に依存している場合、Unity 3.x で期待されるように、設定を最調整する必要がある場合があります。
 
 [[class-ConfigurableJoint | Configurable Joints]] を使用している場合、JointDrive.mode が JointDriveMode.Position の場合、JointDrive.maximumForce プロパティも考慮に入れる必要がある。 この値をデフォルトの 0 に設定した場合、ジョイントは力を加えません。 JointDrive.mode が JointDriveMode.Position の場合、古いバージョンからインポートされた JointDrive プロパティをすべてを自動的に変更しますが、コードからジョイントを設定する時に、これを手動で変更する必要がある場合があります。 また、JointDrive.maximumForce のデフォルト値を無限に変更しています。

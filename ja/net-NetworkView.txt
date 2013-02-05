@@ -1,4 +1,4 @@
-! ネットワークビュー（Network Views） / Network Views
+! ネットワークビュー（Network Views）
 
 ネットワークビューはネットワーク上でデータを共有するための主要コンポーネントです。二種類のネットワーク通信があり、状態同期（$$State Synchronization$$）とリモートプロシージャコール（$$Remote Procedure Calls$$）と呼ばれます。
 

@@ -1,4 +1,4 @@
-!!パーティクルシステム Inspector (Shuriken) / The Particle System Inspector (Shuriken)
+!!パーティクルシステム Inspector (Shuriken)
 ^^Particle System Inspector^^ は一つづつ（現在選択している）パーティクルシステムを次のように表示します：
 Attach:ParticleSystemInspector.png
 

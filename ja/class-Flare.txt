@@ -1,4 +1,4 @@
-! フレア / Flare
+! フレア
 
 $$Flare$$ オブジェクトは、[[class-LensFlare | Lens Flare Components]] によって使用されるソース アセットです。 フレア自体は、テクスチャ ファイルと、フレアの動作を決定する特定の情報の組み合わせです。  そのため、$$Scene$$でフレアを使用したい場合は、$$GameObject$$ に追加された $$LensFlare$$ $$Component$$ 内から特定のフレアを参照します。
 

@@ -1,4 +1,4 @@
-! 反射視差拡散 / Reflective Parallax Diffuse
+! 反射視差拡散
 
 Attach:Shaders./Shader-ReflParallaxBump.png
 

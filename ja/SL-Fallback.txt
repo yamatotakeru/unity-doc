@@ -1,4 +1,4 @@
-! ShaderLab文法: Fallback / ShaderLab syntax: Fallback
+! ShaderLab文法: Fallback
 
 全てのSubshaderの試行後、Fallbackを定義することが出来ます。基本的な意味としては"このハードウェアで実行できるサブシェーダがない場合、別のシェーダから試す"です。
 

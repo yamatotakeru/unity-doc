@@ -1,4 +1,4 @@
-! ShaderLab文法: UsePass / ShaderLab syntax: UsePass
+! ShaderLab文法: UsePass
 UsePass コマンドは、別のシェーダからの名前付きパスを使用します。
 
 !!構文

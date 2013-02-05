@@ -1,4 +1,4 @@
-! 透明カットアウトバンプ鏡面 / Transparent Cutout Bumped Specular
+! 透明カットアウトバンプ鏡面
 
 Attach:Shaders./Shader-TransCutoutBumpSpec.png
 

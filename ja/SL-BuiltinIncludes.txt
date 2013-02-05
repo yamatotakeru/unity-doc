@@ -1,4 +1,4 @@
-! 内蔵シェーダ includeファイル / Built-in shader include files
+! 内蔵シェーダ includeファイル
 
 Unityは自身の[[SL-ShaderPrograms | shader programs]] で、定義済み変数やヘルパー関数を利用できる、いくつかのファイルを持たせることが出来ます。これは標準的な@@#include@@ ディレクティブで実現できます、例えば：
 
