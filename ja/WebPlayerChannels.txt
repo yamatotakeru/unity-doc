@@ -1,18 +1,18 @@
-!Webplayer Release Channels
+!Webplayer リリースチャネル
 
-Whenever a new major version of Unity is released, the webplayer plugin for the browser is also updated to take advantage of the latest features. The plugin checks for new releases as it starts up and will automatically upgrade itself when necessary.
+Unityのメジャーバージョンがリリースされるといつも、ブラウザの Webplayer プラグインもまた更新され最新の機能を使用出来るようにします。プラグインは起動時に新しいバージョンがあるかをチェックして必要な場合は自動的にアップグレードします。
 
-Although Unity does take backward compatibility very seriously, it is still possible that a new release could introduce bugs that cause problems with existing webplayers. Since the plugin updates automatically, such bugs could leave a user unable to play a web game until they are fixed and in the meantime, there may be no way to get the working version of the runtime back.
+Unityは下位互換を重視していますが、それでも新しいバージョンにより既存のWebplayerでバグが発生する可能性はあります。プラグインは自動的にアップデートするため、そのように発生したバグが修正されるまでユーザーがウェブゲームをプレイ出来ない場合があり、その時に正しく動作していたランタイム版を入手する方法ごない場合があります。
 
-To avoid problems like this, the plugin is designed to keep a number of different versions of the Unity runtime, which are called $$Release Channels$$. When an update to the runtime is released, the plugin automatically retrieves it but also retains a copy of the previous version. The latest channel is named __Release__ while the previous one is named __Stable__. By default, the plugin will use the oldest channel that supports all the features needed by a given webplayer. This enables new games to make use of new features but avoids the risk that new bugs will take down existing games.
+このような問題を回避するため、プラグインはUnityランタイムの複数バージョンを保持するように設計されていて $$Release Channels$$ と呼ばれます。ランタイムへのアップデートがリリースされるとき、プラグインは自動的に取得されますが、前回バージョンのコピーを保持します。最新のチャネルは __Release__ と名付けられ、前回分は __Stable__ と名付けられます。デフォルトでプラグインは、特定のwebplayerにより必要な機能のすべてをサポートする最も古いチャネルを使用します。これにより新しいゲームで新機能を活用しつつ、既存ゲームをダウンさせる新しいバグを回避することご出来ます。
 
-Some time after a release, when the Release channel has been thoroughly tested for stability, it will be migrated to Stable status and it will be used as the default for all players from then on.
+リリースのあとにしばらく時間がたってから、Release チャネルが十分に安定性がテストされた後、Stable ステータスに移行され、それ以降は全てのプレイヤーのデフォルトとして使用されます。
 
-!!Selecting a channel
-Although the channel system avoids problems with upgrading, it is still useful to be able to test your game with the latest runtime. The Unity browser plugin lets you select the desired channel from the context menu (right-click on the content area in the web page).
+!!チャネルの選択
+チャネル システムによりアップグレードの問題は回避されるとはいえ最新のランタイムでテスト出来ることは役立ちます。Unity ブラウザ プラグインによりコンテキスト メニューから希望のチャネルを選択することご出来ます(ウェブ ページのコンテンツ領域で右クリック)。
 
 Attach:ChannelMenu.png
 
-The channels are listed in order with the most recent at the top. When you select an item from the menu, it will be used as the minimum version for running webplayer content (so if you select the Release channel, the older Stable channel will not be used). You can simply select the oldest version to restore the default channel selection. Normally, just the Release and Stable channels will be available but the system is open-ended so other channels (say for Beta testing) may appear from time to time.
+チャネルは上から順に、より最新のチャネルが並んでいます。アイテムをメニューから選択するとwebplayerコンテンツを実行するために最低限必要なバージョンとして使用されます(もしRelease チャネルを選択すると古い Stable チャネルは使用されなくなります)。最も古いバージョンを選択することでデフォルトのチャネル選択に戻すことが出来ます。通常は Release および Stable チャネルが利用可能ですがシステムはオープンエンドなので時によっては他のチャネル (例えばベータテストとして) が表示される場合があります。
 
-Additionally, the menu gives you the option to switch to Development mode, which enables [[Debugging|debugging]] and [[Profiler|profiling]] in the webplayer and also offers an error console will appear whenever the player's code throws exceptions.
+さらに、メニューで開発モード (Development) に切り替えるオプションがあり、webplayerで [[Debugging|デバッグ]] および [[Profiler|プロファイリング]] を有効化し、さらにプレイヤーのコードで例外を投げた場合にいつでもエラーコンソールが表示される機能があります。

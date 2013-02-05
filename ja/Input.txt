@@ -112,16 +112,16 @@ Phase は次のうちのいずれかの値をとります:
 ||``Ended`` ||指がスクリーン上から離れました。これはタッチの最終フェーズです。
 ||``Canceled`` ||システムがタッチのトラッキングをキャンセルしていて、(例えば) ユーザがデバイスを顔全体につけたとおか、同時に5タッチ以上が同時に発生した、等です。これはタッチの最終フェーズです。
 
-次に、ユーザが画面でタップしたときに光線を発射するサンプルスクリプトを示します:
+次に、ユーザが画面でタップしたときにRaycast するサンプルスクリプトを示します:
 [@
 var particle : GameObject;
 function Update () {
 	for (var touch : Touch in Input.touches) {
 		if (touch.phase == TouchPhase.Began) {
-			// 現在のタッチ位置から光線を構築
+			// 現在のタッチ位置からRaycast
 			var ray = Camera.main.ScreenPointToRay (touch.position);
 			if (Physics.Raycast (ray)) {
-				// 当たった場合はパーティクルを作成
+				// ヒットした場合はパーティクルを作成
 				Instantiate (particle, transform.position, transform.rotation);
 			}
 		}
