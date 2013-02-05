@@ -6,7 +6,7 @@
 !! デバイス世代の判断
 様々なデバイス世代により異なった機能がサポートされ、パフォーマンスも幅広く違いがあります。デバイス世代のクエリをかけて、遅いデバイスについてどの機能を無効するか判断すべきです。
 
-デバイス世代については [[ScriptRef:iPhone-generation.html | iPhone.generation]] プロパティンにより見つけられます。返されるデバイス世代の情報は次のいずれかです:
+デバイス世代については [[ScriptRef:iPhone-generation.html | iPhone.generation]] プロパティにより見つけられます。返されるデバイス世代の情報は次のいずれかです:
 
 * ``iPhone``
 * ``iPhone3G``
@@ -34,7 +34,7 @@
 !! 海賊版チェック
 海賊行為をする者は、ときにアプリケーションをAppStoreからハッキングして（Apple DRMプロテクション）を外して、フリーで再配布します。Unity iOS により海賊版チェックがあり、AppStoreに提出した __後に__ アプリケーションが変更されたか判断できます。
 
-もしアプリケーションが純正である（ハッキングされていない）かを [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティンでチェックできます。もしこのプロパティが $$false$$ である場合、ユーザにアプリケーションがハッキングされたものであると通知するか、またはアプリケーションの一部の機能へのアクセスを無効化できます。
+もしアプリケーションが純正である（ハッキングされていない）かを [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティでチェックできます。もしこのプロパティが $$false$$ である場合、ユーザにアプリケーションがハッキングされたものであると通知するか、またはアプリケーションの一部の機能へのアクセスを無効化できます。
 
 __注意:__  [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティを参照することはやや高価な処理であり、フレーム Update や処理時間がクリティカルであるコードでは使用すべきではありません。
 
@@ -70,7 +70,7 @@ __注意:__ Androidマーケットプレイスにより追加の互換性フィ�
 海賊行為をする者は、ときにアプリケーションをAppStoreからハッキングして（Apple DRMプロテクション）を外して、フリーで再配布します。Unity Android により海賊版チェックがあり、AppStoreに提出した __後に__ アプリケーションが変更されたか判断できます。
 
 
-もしアプリケーションが純正である（ハッキングされていない）かを [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティンでチェックできます。もしこのプロパティが $$false$$ である場合、ユーザにアプリケーションがハッキングされたものであると通知するか、またはアプリケーションの一部の機能へのアクセスを無効化できます。
+もしアプリケーションが純正である（ハッキングされていない）かを [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティでチェックできます。もしこのプロパティが $$false$$ である場合、ユーザにアプリケーションがハッキングされたものであると通知するか、またはアプリケーションの一部の機能へのアクセスを無効化できます。
 
 __注意:__ [[ScriptRef:Application-genuineCheckAvailable.html | Application.genuineCheckAvailable]] は $$Application.genuine$$ とともに使用しないと、アプリケーションが純正であるか確認が出来ません。 [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティを参照することはやや高価な処理であり、フレーム Update や処理時間がクリティカルであるコードでは使用すべきではありません。
 
