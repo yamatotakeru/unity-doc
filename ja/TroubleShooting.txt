@@ -187,8 +187,8 @@ __注意:__ 値型は基本的な enum や strucの型tです。
 object obj = new MD5CryptoServiceProvider();
 @]
 
-!! "Ran out of trampolines of type 1/2" ランタイムエラー
-このエラーは通常、再帰的なジェネリックをたくさん使用するときに発生します。AOTコンパイラに指示をして、より多くの type 1 または type 2 のトランポリンを割り当てることが出来ます。追加の AOT コンパイラ コマンドライン オプションは [[class-PlayerSettings40#iOS | Player Settings]] の "Other Settings" セクションで指定できます。type 1 のトランポリンについては、 ``nrgctx-trampolines=ABCD`` 、ここではABCDは新しく必要なトランポリンの数（すなわち 4096）、を指定してください。type 2 のトランポリンについては ``nimt-trampolines=ABCD`` を指定下さい。
+!! "Ran out of trampolines of type 0/1/2" ランタイムエラー
+このエラーは通常、再帰的なジェネリックをたくさん使用するときに発生します。AOTコンパイラに指示をして、より多くのtype0, type 1 または type 2 のトランポリンを割り当てることが出来ます。追加の AOT コンパイラ コマンドライン オプションは [[class-PlayerSettings40#iOS | Player Settings]] の "Other Settings" セクションで指定できます。type 1 のトランポリンについては、 ``nrgctx-trampolines=ABCD`` 、ここではABCDは新しく必要なトランポリンの数（すなわち 4096）、を指定してください。type 2 のトランポリンについては ``nimt-trampolines=ABCD`` を指定してください。type 0 のトランポリンについては、 ``ntrampolines=ABCD`` を指定してください。。
 
 !! XCodewをアップグレードした後、 Unity iOS ランタイムが次のメッセージで失敗します "You are using Unity iPhone Basic. You are not allowed to remove the Unity splash screen from your game"
 最新のXcodeリリースにおいて、PNG圧縮および最適化ツールに変更がありました。これらの変更によりスプラッシュスクリーン修正でのUnity iOSランタイムチェックで 誤った警告を引き起こすかもしれません。そのような問題に出くわしたときは Unity を最新の公開バージョンにアップグレードすることを試行してください。これで直らない場合、次のような回避策が考えられます:
@@ -261,9 +261,9 @@ public class NewBehaviourScript : MonoBehaviour {
 @]
 
 !! Xcode throws compilation error: "ld : unable to insert branch island. No insertion point available. for architecture armv7", "clang: error: linker command failed with exit code 1 (use -v to see invocation)"
-That error usually means there is just too much code in single module. Typically it is caused by having lots of script code or having big external .NET assemblies included into build. And enabling script debugging might make things worse, because it adds quite few additional instructions to each function, so it is easier to hit that limit.
+このエラーは通常、ひとつのモジュールにコードが多すぎることを意味します。典型的には多くのスクリプトコードがあること、または大きな .NET アセンブリがビルドに含まれることに起因します。そしてスクリプト デバッギング を有効化することで状況はさらに悪化するかもしれず、いくつかの追加指示を各々の関数に加えるため、より多くに制限にヒットするようになります。
 
-Enabling managed code stripping in [[Main.class-PlayerSettings|player settings]] might help with this problem, especially if big external .NET assemblies are involved. But if the issue persists then the best solution is to split user script code into multiple assemblies. The easiest way to this is move some code to ``Plugins`` folder. Code at this location is put to different assembly. Also check these script compilation guidelines:
+この問題の解決にはマネージド コード ストリッピングを有効化することで役立つ場合があり、特に おおきな.NET アセンブリがカラム場合です。しかし、もしこの問題が継続的に発生する場合、もっとも良い解決策はユーザのスクリプトのコードを複数のアセンブリに分割することです。その最も簡単な方法はコードを ``Plugins`` フォルダに移動することです。この場所にあるコードは別のアセンブリに含まれます。さらにこれらのスクリプト コンパイル ガイドラインもチェックして下さい：
 
 [[ScriptRef:index.Script_compilation_28Advanced29.html|Script Compilation]]
 
