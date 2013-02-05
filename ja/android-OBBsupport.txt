@@ -1,4 +1,4 @@
-!! 分割アプリケーションバイナリ (.OBB) のサポート
+!! 分割アプリケーションバイナリ (.OBB) のサポート / Support for Split Application Binary (.OBB)
 
 ここではUnity4.0 および全般での .apks および .obb を扱います。 
 

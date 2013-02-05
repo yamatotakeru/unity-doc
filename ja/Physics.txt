@@ -1,4 +1,4 @@
-! 物理挙動
+! 物理挙動 / Physics
 
 (:include PhysicsBase:)
 

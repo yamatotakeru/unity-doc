@@ -1,4 +1,4 @@
-! 法線バンプ鏡面
+! 法線バンプ鏡面 / Bumped Specular
 
 Attach:Shaders./Shader-NormalBumpSpec.png
 

@@ -1,4 +1,4 @@
-! バンプ拡散
+! バンプ拡散 / Bumped Diffuse
 
 Attach:Shaders./Shader-NormalBump.png
 

@@ -1,4 +1,4 @@
-! 反射バンプ鏡面
+! 反射バンプ鏡面 / Reflective Bumped Specular
 
 Attach:Shaders./Shader-ReflBumpSpec.png
 

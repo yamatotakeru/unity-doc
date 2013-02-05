@@ -1,4 +1,4 @@
-!FBXインポータ Animationsタブ
+!FBXインポータ Animationsタブ / FBX Importer - Animations Tab
 
 Attach:MecanimImporterAnimationsTab.png
 

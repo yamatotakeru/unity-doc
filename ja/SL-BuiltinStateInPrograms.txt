@@ -1,4 +1,4 @@
-! シェーダ プログラム内の組み込み状態変数
+! シェーダ プログラム内の組み込み状態変数 / Built-in state variables in shader programs
 
 [[SL-ShaderPrograms | shader programs]] ではよくありますが、現在の model*view*projection マトリクスや現在の周囲色などの一部のグローバル状態にアクセスする必要があります。 組み込みの状態に対して、これらの変数を宣言する必要はありません。ただシェーダ プログラムで使用できます。
 

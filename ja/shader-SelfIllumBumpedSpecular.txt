@@ -1,4 +1,4 @@
-! 自己発光法線マップ鏡面
+! 自己発光法線マップ鏡面 / Self-Illuminated Normal mapped Specular
 
 Attach:Shaders./Shader-IllumBumpSpec.png
 

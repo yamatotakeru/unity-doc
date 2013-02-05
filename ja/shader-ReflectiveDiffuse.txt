@@ -1,4 +1,4 @@
-! 反射拡散
+! 反射拡散 / Reflective Diffuse
 
 Attach:Shaders./Shader-ReflDiffuse.png
 

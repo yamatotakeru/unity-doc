@@ -1,4 +1,4 @@
-! 3D Studio Max からのオブジェクトのインポート
+! 3D Studio Max からのオブジェクトのインポート / Importing Objects From 3D Studio Max
 
 3dsMax で 3D オブジェクトを作成するには、$$Project$$ に直接 .max ファイルを保存するか、__Autodesk .FBX__ か一般的なフォーマットを使用して、Unity にこれらをエクスポートできます。 
 

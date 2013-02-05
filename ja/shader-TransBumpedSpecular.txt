@@ -1,4 +1,4 @@
-! 透明バンプ鏡面
+! 透明バンプ鏡面 / Transparent Bumped Specular
 
 Attach:Shaders./Shader-TransBumpSpec.png
 

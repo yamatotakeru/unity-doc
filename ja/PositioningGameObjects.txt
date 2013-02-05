@@ -1,4 +1,4 @@
-! GameObjects の配置
+! GameObjects の配置 / Positioning GameObjects
 
 ゲーム作成時に、ゲームの世界に各種オブジェクトを置くことになるでしょう。
 

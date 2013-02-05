@@ -1,4 +1,4 @@
-! Asset Server (Unity Pro のみ)
+! Asset Server (Unity Pro のみ) / Asset Server (Pro Only)
 
 !! Unity Asset Server 概要
 

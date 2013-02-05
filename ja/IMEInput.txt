@@ -1,4 +1,4 @@
-!Unity でのIME
+!Unity でのIME / IME in Unity
 
 !!インプット メソッド エディター (IME) とは?
 

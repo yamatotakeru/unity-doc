@@ -1,4 +1,4 @@
-! カメラのDepth Texture
+! カメラのDepth Texture / Camera's Depth Texture
 
 Unityではカメラは、デプスあるいはデプス＋法線のテクスチャを、生成することが出来ます。これは最小限のG-buffer（グラフィックス バッファ）テクスチャで、ポストプロセッシングエフェクトあるいはカスタムのライティングモデル（例えばライトPre-Pass）で使用することが出来ます。カメラは実際に[[SL-ShaderReplacement | Shader Replacement]] 機能を使用してデプステクスチャをビルドするため、別のグラフィックス バッファ設定が必要である場合は自らこれを行うことは出来ます。
 

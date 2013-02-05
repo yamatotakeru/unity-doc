@@ -1,4 +1,4 @@
-! 透明頂点ライティング
+! 透明頂点ライティング / Transparent Vertex-Lit
 
 Attach:Shaders./Shader-TransVertex.png
 

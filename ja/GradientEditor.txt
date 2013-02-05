@@ -1,4 +1,4 @@
-!グラデーション エディタ
+!グラデーション エディタ / Gradient Editor
 
 Attach:GradientEditor.png
 ->グラデーション エディタ（Gradient Editor）

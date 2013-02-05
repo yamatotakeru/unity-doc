@@ -1,4 +1,4 @@
-!アニメータコンポーネントとアニメータコントローラ
+!アニメータコンポーネントとアニメータコントローラ / Animator Component and Animator Controller
 
 (:include class-Animator:)
 

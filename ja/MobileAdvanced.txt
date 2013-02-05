@@ -1,4 +1,4 @@
-! Unity モバイル スクリプティング発展
+! Unity モバイル スクリプティング発展 / Advanced Unity Mobile Scripting
 [[#iOS]]
 !iOS!
 >>ios<<

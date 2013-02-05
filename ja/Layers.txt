@@ -1,4 +1,4 @@
-!Layers
+!レイヤー / Layers
 
 $$Layers$$ は$$Cameras$$ によりシーンの一部のみレンダリングするため、また$$Lights$$ によりシーンの一部のみ照らすため、などに最も頻繁に使用されます。一方で選択的に、Colliderを無視するあるいは[[LayerBasedCollision | Collisions]] を発生させるためにも使用することが出来ます。
 

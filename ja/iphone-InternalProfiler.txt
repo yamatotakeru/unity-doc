@@ -1,4 +1,4 @@
-! 内蔵プロファイラでのパフォーマンス測定
+! 内蔵プロファイラでのパフォーマンス測定 / Measuring Performance with the Built-in Profiler
 
 !iOS!
 >> ios<<

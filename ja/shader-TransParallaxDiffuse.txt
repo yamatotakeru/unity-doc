@@ -1,4 +1,4 @@
-! 透明視差拡散
+! 透明視差拡散 / Transparent Parallax Diffuse
 
 Attach:Shaders./Shader-TransParallaxBump.png
 

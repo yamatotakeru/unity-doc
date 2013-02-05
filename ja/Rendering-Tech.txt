@@ -1,4 +1,4 @@
-! シーン上の裏で動いている Unity のレンダリング
+! シーン上の裏で動いている Unity のレンダリング / Unity's Rendering behind the scenes
 
 本項では、Unity のレンダリング エンジンの様々な側面の裏にある技術的詳細について説明します。
 

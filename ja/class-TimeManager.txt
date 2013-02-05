@@ -1,4 +1,4 @@
-! タイム マネージャ
+! タイム マネージャ / Time Manager
 
 Attach:TimeSet.png\\
 ''タイム マネージャ''

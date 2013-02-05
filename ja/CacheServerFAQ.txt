@@ -1,4 +1,4 @@
-! Cache Server Q&A
+! Cache Server Q&A / Cache Server FAQ
 
 !!! Cache ServerのDBサイズはインポートしたりリソースを保存したりするたびに無限にどんどん大きくなってしまうのでしょうか？
 Cache Server は自動的に一定周期に使われなくなったアセットを削除します（もちろん再度必要になれば、次に使われる間に再び作られるでしょう）。

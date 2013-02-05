@@ -1,4 +1,4 @@
-!ムービー テクスチャ
+!ムービー テクスチャ / Movie Texture
 __注意：__　__Unity Pro/ Advancedのみ__
 !Desktop!
 >>desktop<<
