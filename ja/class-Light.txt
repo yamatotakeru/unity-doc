@@ -103,6 +103,8 @@ Attach:Light-DirectCookie.png\\
 
 Cookie は、大型の屋外のシーンに素早く詳細を加えるのに便利です。 シーン上で、ライトをゆっくりとスライドさせることで、動く雲の様子を付加することができます。
 
+Note that shadows are disabled by default for directional lights with cookies when forward rendering is used. It is, however, possible to write custom shaders to enable shadows using the __fullforwardshadows__ tag - see [[SL-SurfaceShaders|this page]] for further details.
+
 
 !!エリアライト
 

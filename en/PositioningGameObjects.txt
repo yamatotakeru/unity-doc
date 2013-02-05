@@ -75,6 +75,3 @@ Using vertex snapping in Unity is simple. Just follow these steps:
 * Release your mouse button and the ^^V^^ key when you are happy with the results.
 * ^^Shift-V^^ acts as a toggle of this functionality.
 * You can snap vertex to vertex, vertex to surface and pivot to vertex.
-
-A video on how to use vertex snapping can be found [[http://vimeo.com/10945727 | here]].
-

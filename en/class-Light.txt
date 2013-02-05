@@ -103,6 +103,8 @@ Attach:Light-DirectCookie.png\\
 
 A cookie is a great way to add some quick detail to large outdoor scenes. You can even slide the light slowly over the scene to give the impression of moving clouds.
 
+Note that shadows are disabled by default for directional lights with cookies when forward rendering is used. It is, however, possible to write custom shaders to enable shadows using the __fullforwardshadows__ tag - see [[SL-SurfaceShaders|this page]] for further details.
+
 
 !!Area Lights
 
