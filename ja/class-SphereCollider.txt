@@ -23,10 +23,6 @@ Attach:spherecollider.png
 (:include comp-ColliderDetails:)
 
 
-!!合成物コライダ
-(:include comp-ColliderCompound:)
-
-
 !!ヒント
 (:include comp-ColliderHints:)
 * 爆発を作成したい場合、リジッドボディが衝突する壁から若干押し出すためには、何度もドラッグして、リジッドボディと球体コライダをそこに追加すると非常に有効な場合があります。
