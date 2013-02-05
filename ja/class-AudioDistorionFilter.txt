@@ -1,4 +1,4 @@
-! オーディオ 歪みフィルタ（Unity Proのみ） / Audio Distortion Filter (PRO only)
+! オーディオ 歪みフィルタ（Unity Proのみ）
 
 $$Audio Distortion Filter$$ は、[[class-AudioSource|AudioSource]] からの音声または [[class-AudioListener|AudioListener]] に達した音声を歪曲させます。
 

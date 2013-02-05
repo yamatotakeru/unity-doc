@@ -1,4 +1,4 @@
-! Directional シャドウ詳細 / Directional Shadow Details
+! Directional シャドウ詳細
 
 このページでは$$Directional$$ ライトによる [[Shadows|shadows]] について詳しく説明します。
 

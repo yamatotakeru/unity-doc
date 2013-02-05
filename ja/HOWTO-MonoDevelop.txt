@@ -1,4 +1,4 @@
-! Mono Develop を始める / Getting started with Mono Develop
+! Mono Develop を始める
 Mono Develop は Unity 3.x に同梱されており、この IDE　は、ゲームのスクリプティング部分およびそのデバッグを行うのを手伝います。
 
 ! Mono Develop の設定

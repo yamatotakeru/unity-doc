@@ -1,4 +1,4 @@
-! GUI スクリプティング ガイド / GUI Scripting Guide
+! GUI スクリプティング ガイド
 
 
 !! 概要

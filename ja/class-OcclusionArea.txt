@@ -1,4 +1,4 @@
-!オクルージョン エリア（Unity Proのみ） / Occlusion Area (Pro Only)
+!オクルージョン エリア（Unity Proのみ）
 
 オクルージョンカリングを適用するためには$$Occlusion Area$$を作成し移動オブジェクトが配置される場所となるようサイズを修正する必要があります（当然、移動するオブジェクトをStaticとすることはできません）Occlusion Areaを作成するためには、空のゲームオブジェクトにOcclusion Area　コンポーネントを追加します。(メニューで^^Component->Rendering->Occlusion Area^^ を選択)
 

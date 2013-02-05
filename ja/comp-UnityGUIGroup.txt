@@ -1,4 +1,4 @@
-! UnityGUI グループ / UnityGUI Group
+! UnityGUI グループ
 
 $$UnityGUI$$ は、Unity に組み込まれた GUI 作成システムです。  異なる $$Control$$ の作成およびこれら制御の内容と概観で構成されます。
 

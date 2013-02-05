@@ -1,4 +1,4 @@
-! メカニムのアニメーションカーブでの作業(Unity Proのみ) / Working with Animation Curves in Mecanim (Pro only)
+! メカニムのアニメーションカーブでの作業(Unity Proのみ)
 
 ^^Animation Import Settings^^ のAnimationsタブでアニメーションカーブはアニメーションクリップにアタッチすることが出来ます。
 

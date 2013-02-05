@@ -1,4 +1,4 @@
-! パーティクルレンダラ（旧パーティクルシステム） / Particle Renderer (Legacy)
+! パーティクルレンダラ（旧パーティクルシステム）
 
 $$Particle Renderer$$ は、画面上の $$Particle System$$ をレンダリングします。
 

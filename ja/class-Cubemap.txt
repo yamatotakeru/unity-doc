@@ -1,4 +1,4 @@
-! キューブマップ テクスチャ / Cubemap Texture
+! キューブマップ テクスチャ
 
 $$Cubemap Texture$$ は、仮想的な立方体の 6 つの各面に貼られる正方形テクスチャの集合です。 このテクスチャは、[[class-Skybox|Skybox]] が背景の遠くの風景を表示するのと同様、オブジェクトへの無限に遠くの反射を表示するのに使用されます。 Unity の[[shader-ReflectiveFamily | Reflective]] 内蔵シェーダーは、Cubemap を使用して、反射を表示します。
 

@@ -1,4 +1,4 @@
-! オーディオ リバーブ フィルタ(Unity Proのみ) / Audio Reverb Filter (PRO only)
+! オーディオ リバーブ フィルタ(Unity Proのみ)
 
 $$Audio Reverb Filter$$ は、[[class-AudioClip | Audio Clip]] を取り、個人に合わせてカスタマイズされたリバーブ効果を作成するよう歪曲化します。
 

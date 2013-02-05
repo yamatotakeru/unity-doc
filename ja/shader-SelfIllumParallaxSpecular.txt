@@ -1,4 +1,4 @@
-! 自己発光視差鏡面 / Self-Illuminated Parallax Specular
+! 自己発光視差鏡面
 
 Attach:Shaders./Shader-IllumParallaxBumpSpec.png
 

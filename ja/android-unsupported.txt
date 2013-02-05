@@ -1,4 +1,4 @@
-! Unity Android が現在サポートしていない機能 / Features currently not supported by Unity Android
+! Unity Android が現在サポートしていない機能
 
 !! グラフィックス
 * 非正方形テクスチャは、ETC 形式によりサポートされていません。

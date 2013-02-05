@@ -1,4 +1,4 @@
-! ShaderLab文法：Culling & Depth Testing / ShaderLab syntax: Culling & Depth Testing
+! ShaderLab文法：Culling & Depth Testing
 
 Attach:SL./PipelineCullDepth.png
 

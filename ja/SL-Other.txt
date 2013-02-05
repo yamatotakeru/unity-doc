@@ -1,4 +1,4 @@
-! ShaderLab文法: その他のコマンド / ShaderLab syntax: other commands
+! ShaderLab文法: その他のコマンド
 
 !! カテゴリ
 

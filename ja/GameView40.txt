@@ -1,4 +1,4 @@
-!ゲームビュー / Game View
+!Game View
 
 
 Attach:GameView40.png\\

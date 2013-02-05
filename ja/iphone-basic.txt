@@ -1,4 +1,4 @@
-! Unity iOS の基本 / Unity iOS Basics
+! Unity iOS の基本
 
 このセクションで、iOSで作業するうえで、最も頻繁に聞かれる重要な質問についてカバーします。
 

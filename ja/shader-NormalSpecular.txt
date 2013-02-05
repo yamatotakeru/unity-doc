@@ -1,4 +1,4 @@
-! 鏡面 / Specular
+! 鏡面
 
 Attach:Shaders./Shader-NormalSpec.png
 

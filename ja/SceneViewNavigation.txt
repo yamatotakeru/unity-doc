@@ -1,4 +1,4 @@
-! シーンビューのナビゲーション（Scene View Navigation） / Scene View Navigation
+! シーンビューのナビゲーション（Scene View Navigation）
 
 シーンビューには、ナビゲーション用のコントロールセットがあります。 これらを使って素早く効率的に動き回ることが可能です。
 

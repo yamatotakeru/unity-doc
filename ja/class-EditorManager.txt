@@ -1,4 +1,4 @@
-!エディタ設定 / Editor settings
+!エディタ設定
 
 Attach:EditorSettings.png
 

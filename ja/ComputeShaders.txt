@@ -1,4 +1,4 @@
-! コンピュート シェーダ / Compute Shaders
+! コンピュート シェーダ
 
 コンピュート シェーダ は、通常のレンダリング パイプラインと異なって、グラフィックス カード上で動作するプログラムです。これは超並列 GPGPU アルゴリズム、またはゲームレンダリングの一部を加速させるために使用できます。効果的に使用するためには、しばしば GPU アーキテクチャおよび並列アルゴリズム、さらには [[http://msdn.microsoft.com/en-us/library/windows/desktop/ff476331.aspx | DirectCompute]] 、 [[http://en.wikipedia.org/wiki/OpenCL | OpenCL]] 、または [[http://en.wikipedia.org/wiki/CUDA | CUDA]] に関する深い知識が必要です。
 

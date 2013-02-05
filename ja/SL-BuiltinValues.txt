@@ -1,4 +1,4 @@
-!ShaderLab 定義済みの値 / ShaderLab builtin values
+!ShaderLab 定義済みの値
 
 Unityはたくさんの定義済みの値をシェーダで用意しています。例えば、現在のオブジェクトの変換行列、時間、等。
 

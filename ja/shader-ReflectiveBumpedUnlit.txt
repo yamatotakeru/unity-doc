@@ -1,4 +1,4 @@
-! 反射法線マップ ライトなし / Reflective Normal Mapped Unlit
+! 反射法線マップ ライトなし
 
 Attach:Shaders./Shader-ReflBumpUnlit.png
 

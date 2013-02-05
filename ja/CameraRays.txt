@@ -1,4 +1,4 @@
-! カメラからのRay / Rays from the Camera
+! カメラからのRay
 
 [[UnderstandingFrustum|Understanding the View Frustum]] のセクションではカメラのビューのどの地点でもワールド座標の線に相当することを説明しました。その線の数学的な表現を、もちいることが便利なときがありますが、Unityはこれを[[ScriptRef:Ray.html|Ray]] という形で提供しています。Rayはつねにビューの点に相当するのでCameraクラスは[[ScriptRef:Camera.ScreenPointToRay.html|ScreenPointToRay]] および [[ScriptRef:Camera.ViewportPointToRay.html|ViewportPointToRay]] を提供しています。この二つの違いはScreenPointToRayが点をピクセル座標を必要とするのに対してViewportPointToRayは正規化された座標を0..1 の範囲（ビュー上で0が左または下、1が右または上）です。この各々の関数は原点とそこからの向きを表すベクトルから構成されます。RayはCameraのtransform.position ではなくニアクリッピング平面を起点としています。
 

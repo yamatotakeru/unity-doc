@@ -1,4 +1,4 @@
-! サーフェイスシェーダでのカスタム ライティング モデル / Custom Lighting models in Surface Shaders
+! サーフェイスシェーダでのカスタム ライティング モデル
 
 [[SL-SurfaceShaders | Surface Shaders]] を記述する際、表面のプロパティ (アルベド、色、法線など) を記述します。ライティングの相互作用は、$$Lighting Model$$ によって計算されます。 組み込みライティング モデルは、$$Lambert$$ (デフューズ ライティング) と $$BlinnPhong$$ (スペキュラ ライティング) です。
 

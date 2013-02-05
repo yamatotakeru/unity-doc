@@ -1,4 +1,4 @@
-! スポット ライト Cookieはどのように作成しますか? / How do I make a Spot Light Cookie?
+! スポット ライト Cookieはどのように作成しますか?
 
 Unity は、[[HOWTO-InstallStandardAssets|Standard Assets]] にいくつかの $$Light Cookies$$ を同梱しています。 プロジェクトに標準アセットをプロジェクトにインポートする場合、^^Standard Assets->Light Cookies^^ にあります。 このページには、自身で作成する方法が記載されています。
 

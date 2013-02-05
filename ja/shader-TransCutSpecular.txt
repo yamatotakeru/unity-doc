@@ -1,4 +1,4 @@
-! 透明カットアウト鏡面 / Transparent Cutout Specular
+! 透明カットアウト鏡面
 
 Attach:Shaders./Shader-TransCutoutSpec.png
 

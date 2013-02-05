@@ -1,4 +1,4 @@
-! 透明バンプ拡散 / Transparent Bumped Diffuse
+! 透明バンプ拡散
 
 Attach:Shaders./Shader-TransBump.png
 

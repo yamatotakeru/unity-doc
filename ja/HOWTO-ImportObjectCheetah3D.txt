@@ -1,4 +1,4 @@
-! Cheetah3D からのオブジェクトのインポート / Importing Objects From Cheetah3D
+! Cheetah3D からのオブジェクトのインポート
 
 Unity はネイティブで Cheetah3D ファイルをインポートします。 始めるには、プロジェクトの Assets フォルダ内に__.jas __ファイルを置くだけです。
 Unity に戻ると、シーンが自動的にインポートされ、$$Project View$$ に表示されます。

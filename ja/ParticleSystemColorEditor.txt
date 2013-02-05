@@ -1,4 +1,4 @@
-!パーティクルシステムの色およびグラデーション（Shuriken） / Colors and Gradients in the Particle System (Shuriken)
+!パーティクルシステムの色およびグラデーション（Shuriken）
 
 Attach:ShurikenColorProperty.png
 色を扱うプロパティについて、 ``Particle System``は $$Color and Gradient Editor$$``を使用しています。

@@ -1,4 +1,4 @@
-!モバイルアプリケーションのスプラッシュスクリーンのカスタマイズ / Customizing the Splash screen of Your Mobile Application
+!モバイルアプリケーションのスプラッシュスクリーンのカスタマイズ
 
 !iOS!
 >>ios<<

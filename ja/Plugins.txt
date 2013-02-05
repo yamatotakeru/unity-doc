@@ -1,4 +1,4 @@
-! プラグイン (Pro/モバイル専用) / Plugins (Pro/Mobile-Only Feature)
+! プラグイン (Pro/モバイル専用)
 
 UnityはC、C++、Objective-C等で記述されたライブラリを $$Plugins$$ でサポートしています。プラグインはゲームのコード（JavaScriptやC#、Booで記述されている）からライブラリの関数を呼び出すことができます。この機能はUnityをミドルウェアライブラリや既存のC/C++コードと統合することができます。
 

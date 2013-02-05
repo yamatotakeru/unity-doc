@@ -1,4 +1,4 @@
-!アニメーションビューの手引き（Animation View Guide） / Animation View Guide
+!アニメーションビューの手引き（Animation View Guide）
 
 Unityの$$Animation View$$により、Unityの中で直接
 $$Animation Clips$$を作成、編集できます。強力かつ直感的であるうえ、外部の3Dアニメーションソフトの代替として機能するよう設計されています。動きのアニメーションに加えて、エディタで、マテリアルやコンポーネントの変数をアニメーションし、アニメーションクリップに、タイムライン上の指定されたポイントで呼び出される関数である$$Animation Event$$を追加します。

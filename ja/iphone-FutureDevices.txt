@@ -1,4 +1,4 @@
-! モバイル（最先端、ハイエンドデバイス）の最適化実用ガイド / Practical Guide to Optimization for Mobiles - Future & High End Devices
+! モバイル（最先端、ハイエンドデバイス）の最適化実用ガイド
 
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:310px;":)
 Attach:unwritten.jpg

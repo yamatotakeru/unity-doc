@@ -1,4 +1,4 @@
-! Cinema 4D からのオブジェクトのインポート / Importing Objects From Cinema 4D
+! Cinema 4D からのオブジェクトのインポート
 
 Unity はネイティブで Cinema 4D ファイルをインポートします。 始めるには、プロジェクトの Assets フォルダ内に__.c4d__ファイルを置くだけです。
 Unity に戻ると、シーンが自動的にインポートされ、$$Project View$$ に表示されます。

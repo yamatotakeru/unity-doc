@@ -1,4 +1,4 @@
-!携帯機器でのネットワーク機能 / Networking on Mobile devices.
+!携帯機器でのネットワーク機能
 
 !iOS と Android
 

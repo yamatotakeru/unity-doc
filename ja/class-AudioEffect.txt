@@ -1,4 +1,4 @@
-! オーディオ フィルタ（Unity Proのみ） / Audio Filters (PRO only)
+! オーディオ フィルタ（Unity Proのみ）
 
 [[class-AudioSource | AudioSources]] または [[class-AudioListener | AudioListener]] がアタッチされているのと同じゲームオブジェクトにフィルタコンポーネントを追加することによってフィルタコンポーネントを適用することができます。フィルタ効果は次のようなコンポーネントの順序で実行さます：
 

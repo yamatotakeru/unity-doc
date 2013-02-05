@@ -1,4 +1,4 @@
-! 反射法線マップ 頂点ライティング / Reflective Normal mapped Vertex-lit
+! 反射法線マップ 頂点ライティング
 
 Attach:Shaders./Shader-ReflBumpVertex.png
 

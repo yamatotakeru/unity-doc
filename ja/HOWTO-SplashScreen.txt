@@ -1,4 +1,4 @@
-! スプラッシュ画面はどのように作成しますか? / How do I make a Splash Screen?
+! スプラッシュ画面はどのように作成しますか?
 
 !Desktop!
 >>desktop<<

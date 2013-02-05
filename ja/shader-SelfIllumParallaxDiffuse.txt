@@ -1,4 +1,4 @@
-! 自己発光視差拡散 / Self-Illuminated Parallax Diffuse
+! 自己発光視差拡散
 
 Attach:Shaders./Shader-IllumParallaxBump.png
 

@@ -1,4 +1,4 @@
-! オーディオ　エコーフィルター（Unity Proのみ） / Audio Echo Filter (PRO only)
+! オーディオ　エコーフィルター（Unity Proのみ）
 
 $$Audio Echo Filter$$ は、所定の「Delay」後に音声を繰り返し、「Decay Ratio」に基づいて、繰り返しを減衰します。\\
 「Wet Mix」はフィルタリングされた信号の振幅を決定しますが、「Dry Mix」は、フィルタリングされていない音声出力の振幅を決定します。

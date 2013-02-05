@@ -1,4 +1,4 @@
-! 初めてのTree作成 / Building Your First Tree
+! 初めてのTree作成
 
 UnityのTree　クリエーターの使用手順を追って説明します。最初に、プロジェクトにTree　クリエータ　パッケージが含まれていることを確認してください。なかった場合、メニューから^^Assets->Import Package...^^と選択し、Unityのインストールフォルダに移動し、Standard Packagesフォルダを開きます。プロジェクトに必要なアセットを追加するためにTree  Creator.unityPackageパッケージを選択します。
 

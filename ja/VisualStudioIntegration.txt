@@ -1,4 +1,4 @@
-!Visual Studio C# 統合 / Visual Studio C# Integration
+!Visual Studio C# 統合
 
 !!この機能で何が得られますか?
 より高度な C# 開発環境。\\

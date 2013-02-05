@@ -1,4 +1,4 @@
-! シェーダ: 頂点およびフラグメント プログラム / Shaders: Vertex and Fragment Programs
+! シェーダ: 頂点およびフラグメント プログラム
 
 このチュートリアルでは自身でUnity シェーダで頂点およびフラグメント プログラムを書く方法を学びます。 $$ShaderLab$$ の基本の紹介については [[ShaderTut1|初心者向けのチュートリアル]] を参照下さい。もしライティングに作用するシェーダを書く場合は代わりに __[[SL-SurfaceShaders | Surface Shaders]]__ について読んで下さい。
 

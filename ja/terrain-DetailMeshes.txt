@@ -1,4 +1,4 @@
-! 詳細メッシュ / Detail Meshes
+! 詳細メッシュ
 
 TreeやGrassでない、地形の装飾は $$Detail Mesh$$ (詳細メッシュ)として作成されるべきです。岩や3Dの茂み、その他の静的な物に最適です。 追加するには$$Paint Foliage$$ボタンを使用します。Attach:TerrainGuide-PaintFoliageButton.png 次に^^Edit Details button->Add Detail Mesh^^を選択します。$$Add Detail Mesh$$（詳細メッシュの追加）ダイアログが表示されます。
 

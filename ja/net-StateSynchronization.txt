@@ -1,4 +1,4 @@
-! 状態同期の詳細 / State Synchronization Details
+! 状態同期の詳細
 
 特定のNetwork Viewで状態同期を有効にするには、``State Synchronization``のドロップダウンで``Reliable Delta Compressed``か``Unreliable``を選択します。次に同期するデータの種類を''Observed''プロパティとして設定します。
 

@@ -1,4 +1,4 @@
-! iOSのスクリプト / iOS Scripting
+! iOSのスクリプト
 
 iOSデバイスの大半の機能は [[ScriptRef:Input.html | Input]] や [[ScriptRef:Handheld.html | Handheld]] クラスを介して公開されています。クロスプラットフォームプロジェクトでは $$UNITY_IPHONE$$ はiOS独自のC＃コードを条件的にコンパイルするために定義されます。
 

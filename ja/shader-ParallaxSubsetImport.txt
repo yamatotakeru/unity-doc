@@ -1,4 +1,4 @@
-!! Parallax Normal mapped プロパティ / Parallax Normal mapped Properties
+!! Parallax Normal mapped プロパティ
 
 $$Parallax Normal mapped$$（視差法線マップ）は通常の$$Normal mapped$$と同じであるが、デプスをより良くシミュレーションしています。この追加のデプス効果は$$Height Map$$（高低マップ）を使用して得られます。Height Mapはノーマルマップのアルファチャネルに含まれます。アルファにおいて、黒はデプスがゼロで、白はデプスが最大値です。これは煉瓦や石で主に使用され間のクラックをより良く表現します。
 

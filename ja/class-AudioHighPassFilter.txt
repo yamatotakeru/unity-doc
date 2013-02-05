@@ -1,4 +1,4 @@
-! オーディオ ハイパス フィルタ（Unity Proのみ） / Audio High Pass Filter (PRO only)
+! オーディオ ハイパス フィルタ（Unity Proのみ）
 
 $$Audio High Pass Filter$$ は、オーディオ ソースの高周波数を渡し、''Cutoff Frequency'' よりも低い周波数の信号をカットオフします。\\
 ''Highpass resonance Q''（別名: ハイパス共鳴品質係数）は、フィルタの自己共鳴が抑制される度合いを決定します。 ''Highpass resonance Q''が高いということは、エネルギー損失率が下がる、つまり、共振の消滅がより遅くなるということです。

@@ -1,4 +1,4 @@
-!オブジェクトの取り扱い / Working with UnityObject2
+!オブジェクトの取り扱い
 
 $$UnityObject$$ は、HTML への Unity コンテンツの組み込みを簡素化する JavaScript です。 これには、$$Unity Web Player$$ プラグインを検出し、ウェブ プレイヤーのインストールを開始し、Unity のコンテンツを組み込む機能があります。 HTML ファイルと共に、「UnityObject.js」ファイルをウェブ サーバー上に配備しますが、「[=http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js=]」で直接 Unity からロードするのがベストです。 そのようにして、UnityObject のほとんどの最新版を常に参照します。 Unity サーバーがホストになっている「UnityObject.js」ファイルは、より小さくして、トラフィックを保存するために小さくされます。 ソース コードを探したい場合、Windows の「Data\Resources」フォルダおよびMac OS X の「Contents/Resources」フォルダに元のファイルがあります。UnityObject はデフォルトでは、匿名のデータをインストールのタイプと変換率を特定するのに便利な GoogleAnalytics に送信します。
 

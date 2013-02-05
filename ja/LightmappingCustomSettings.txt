@@ -1,4 +1,4 @@
-! カスタムの Beast 設定 / Custom Beast Settings
+! カスタムの Beast 設定
 
 もしUnityが使用しているものと別の焼き込み設定が必要な場合、カスタムの Beast 設定を使用することで指定できます。
 

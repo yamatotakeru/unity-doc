@@ -1,4 +1,4 @@
-!パーティクルシステム（Shuriken） / Particle System (Shuriken)
+!パーティクルシステム（Shuriken）
 
 Unityの中のパーティクルシステムは、大量の煙、蒸気、炎やその他の大気圏エフェクトを作るために使用されます。
 

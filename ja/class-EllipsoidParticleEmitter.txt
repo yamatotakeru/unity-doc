@@ -1,4 +1,4 @@
-! 楕円パーティクル エミッタ（旧パーティクルシステム） / Ellipsoid Particle Emitter (Legacy)
+! 楕円パーティクル エミッタ（旧パーティクルシステム）
 
 $$Ellipsoid Particle Emitter$$ は、球体内にパーティクルを発生させます。 下の''Ellipsoid''プロパティを使用して、球体を拡大縮小および延長させます。
 

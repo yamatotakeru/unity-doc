@@ -1,4 +1,4 @@
-!Unity入門（Unity Basics） / Unity Basics
+!Unity入門（Unity Basics）
 
 Unityをはじめようと思い立った時、このセクションが役に立つことでしょう。ここでは、Unityのインタフェース、メニュー項目、アセットの使い方、シーンの作り方、そしてビルドの公開の仕方について説明します。
 

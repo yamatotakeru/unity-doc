@@ -1,4 +1,4 @@
-! Web Playerの配置 / Web Player Deployment
+! Web Playerの配置
 
  $$Web Player$$ でビルドをする時, 自動的にHTMLファイルが同じ階層に生成されます。
  そのHTMLの中にはビルドしたWebPlayerデータをロードするコードが含まれています。

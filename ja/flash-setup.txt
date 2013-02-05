@@ -1,4 +1,4 @@
-! Flash:セットアップ / Flash: Setup
+! Flash:セットアップ
 
 !! Unity for Flashのインストール
 Unityが作成するSWFファイルを参照するには、ウェブブラウザにAdobe Flash Player 11.2より新しい必要があり、http://get.adobe.com/flashplayer/ からダウンロードできます。もしFlash Playerがすでにインストールされている場合、http://kb2.adobe.com/cps/155/tn_15507.html を参照して、最低でも11.2のバージョンであることを確認して下さい。Adobe Flash Player 11 はUnityが3Dレンダリングで必要とするStage 3D ハードウェアアクセラレーションされたグラフィックス レンダリング機能を導入しています。

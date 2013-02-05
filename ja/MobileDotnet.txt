@@ -1,4 +1,4 @@
-! .NET API 2.0 互換性レベルの使用 / Using .NET API 2.0 compatibility level
+! .NET API 2.0 互換性レベルの使用
 [[#iOS]]
 !iOS!
 >>ios<<

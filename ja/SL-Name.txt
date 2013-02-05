@@ -1,4 +1,4 @@
-! ShaderLab文法: Name / ShaderLab syntax: Name
+! ShaderLab文法: Name
 
 !! 文法
 :__Name__ "''PassName''": 現在のパスに''PassName''の名を与えます。

@@ -1,4 +1,4 @@
-!Avatar作成 / Creating the Avatar
+!Avatar作成
 
 モデルファイル（FBX、Collada、その他）をインポートした後、~~FBX importerオプション~~ の ~~Rig~~ タブでリグの指定をすることができます。
 

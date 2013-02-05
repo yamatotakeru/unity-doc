@@ -1,4 +1,4 @@
-! 自己発光鏡面 / Self-Illuminated Specular
+! 自己発光鏡面
 
 Attach:Shaders./Shader-IllumSpec.png
 

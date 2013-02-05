@@ -1,4 +1,4 @@
-!サンプル: ActionScript 関数を Unity からコールする / Example: Calling ActionScript Functions from Unity
+!サンプル: ActionScript 関数を Unity からコールする
 
 このサンプルでは異なるAction Script 3 (以下、AS3) 関数を Unity からコールする方法を示します。3つのスクリプトを見ていただきます:
 * 異なる関数の例を含むAS3 クラス (ExampleClass.as)。作成する全ての AS3 クラスはプロジェクトの "ActionScript" フォルダに格納する必要があります。

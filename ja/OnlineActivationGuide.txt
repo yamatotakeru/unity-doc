@@ -1,4 +1,4 @@
-! Unity 4.0 のオンライン アクティベーション手順 ガイド / Step-by-Step Guide to Online Activation of Unity 4.0
+! Unity 4.0 のオンライン アクティベーション手順 ガイド
 
 オンライン アクティベーション はUnityを始めるにあたってもっとも簡単で早い方法です。Unity をオンラインでアクティベーションする手順を以下で説明します。
 

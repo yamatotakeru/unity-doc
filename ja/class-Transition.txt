@@ -1,4 +1,4 @@
-!アニメーション遷移 / Animation Transitions
+!アニメーション遷移
 
 $$Animation Transition$$ は、ある $$Animation State$$ から別のものに切り替えたときに何が起こるかを定義する。任意の時点でアクティブなAnimation Transitionはひとつのみです。
 

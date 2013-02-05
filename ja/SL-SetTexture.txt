@@ -1,4 +1,4 @@
-! ShaderLab文法： Texture Combiners / ShaderLab syntax: Texture Combiners
+! ShaderLab文法： Texture Combiners
 
 基本的な頂点ライティングが計算された後、テクスチャが適用されます。ShaderLabでは__SetTexture__ コマンドを使用して実行します。
 

@@ -1,4 +1,4 @@
-! RPC詳細 / RPC Details
+! RPC詳細
 
 $$Remote Procedure Calls$$ (RPC)はリモートマシンの関数呼び出しを可能にします。RPC実行は通常の関数の呼び出しと似て簡単ですが、理解すべき重要な違いがいくつかあります。
 

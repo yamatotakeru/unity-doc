@@ -1,4 +1,4 @@
-!Unityシェーダのパフォーマンス / Performance of Unity shaders
+!Unityシェーダのパフォーマンス
 
 ゲームの全体的なパフォーマンスに影響する要素はたくさんあります。このページは[[Built-inShaderGuide | Built-in Shaders]] に絞ってパフォーマンスの考慮事項を説明します。シェーダのパフォーマンスは主に2つのことに大きく影響を受けます：シェーダ自体と、プロジェクトあるいは特定のカメラにより使用される[[RenderingPaths | Rendering Path]] です。自分でシェーダを記述する際のパフォーマンスの秘訣については[[SL-ShaderPerformance | ShaderLab Shader Performance]] のページを参照下さい。
 

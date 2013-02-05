@@ -1,4 +1,4 @@
-! スクリプトの使用 / Using Scripts
+! スクリプトの使用
 
 この短い紹介文の中でプロジェクトでスクリプトを作成および使用する方法を説明します。スクリプティングAPI についての詳細については [[Path:../ScriptReference/index.html|Scripting Reference]] を参照下さい。スクリプティングを通じたゲームプレイの作成の詳細についてはこのマニュアルの [[Creating Gameplay]] を参照下さい。
 

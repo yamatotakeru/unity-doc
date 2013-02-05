@@ -1,4 +1,4 @@
-! ShaderLab文法： SubShaderタグ / ShaderLab syntax: SubShader Tags
+! ShaderLab文法： SubShaderタグ
 
 Subshaderはタグを使用して、いつどのようにしてレンダリングエンジンでレンダリングするか示します。
 

@@ -1,4 +1,4 @@
-! Lightwave からのオブジェクトのインポート / Importing Objects From Lightwave
+! Lightwave からのオブジェクトのインポート
 
 Lightwave 向けの FBX プラグインを使用して、Lightwave からメッシュやアニメーションをインポートできます。
 

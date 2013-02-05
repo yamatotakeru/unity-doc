@@ -1,4 +1,4 @@
-! アニメーション / Animation
+! アニメーション
 
 Attach:AnimationInspector35.png\\
 ''The Animation $$Inspector$$''

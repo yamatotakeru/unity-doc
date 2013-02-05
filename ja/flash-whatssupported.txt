@@ -1,4 +1,4 @@
-!Flash: サポートされている／いない内容 / Flash: What is and is not supported
+!Flash: サポートされている／いない内容
 
 !!サポートされている内容
 

@@ -1,4 +1,4 @@
-! レンダー設定 / Render Settings
+! レンダー設定
 
 $$Render Settings$$ には、 $$Light$$ や $$Skybox$$ のような、各種視覚要素のデフォルトの値をシーンに含めます。
 

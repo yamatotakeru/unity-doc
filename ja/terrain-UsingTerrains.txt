@@ -1,4 +1,4 @@
-! Terrainの使用 / Using Terrains
+! Terrainの使用
 
 !! 新しいTerrain（地形）の作成
 

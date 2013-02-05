@@ -1,4 +1,4 @@
-! Cgでのシェーダプロパティ参照 / Accessing shader properties in Cg
+! Cgでのシェーダプロパティ参照
 
 Shaderはマテリアルプロパティを[[SL-Properties | Properties]] ブロックで宣言します。もし[[SL-ShaderPrograms | shader program]] でアクセスしたい場合、 Cg/HLSL変数を同じ名前とマッチングするタイプで宣言する必要があります。例については[[ShaderTut2 | Shader Tutorial: Vertex and Fragment Programs]] を参照下さい。
 

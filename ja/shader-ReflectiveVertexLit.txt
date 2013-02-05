@@ -1,4 +1,4 @@
-! 反射頂点ライティング / Reflective Vertex-Lit
+! 反射頂点ライティング
 
 Attach:Shaders./Shader-ReflVertex.png
 

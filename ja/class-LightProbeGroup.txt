@@ -1,4 +1,4 @@
-!ライトプローブ グループ / Light Probe Group
+!ライトプローブ グループ
 
 $$Light Probe Group$$ (ライトプローブ グループ)によりシーンに１つ以上の[[LightProbes|ライトプローブ]] が追加される。
 

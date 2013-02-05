@@ -1,4 +1,4 @@
-! ゲーム コードに関する質問 / Game Code Questions
+! ゲーム コードに関する質問
 
 (:tocportion:)
 

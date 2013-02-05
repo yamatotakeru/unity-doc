@@ -1,4 +1,4 @@
-! Unity のグラフィック機能のハードウェア要件 / Hardware Requirements for Unity's Graphics Features
+! Unity のグラフィック機能のハードウェア要件
 
 !! 要約
 

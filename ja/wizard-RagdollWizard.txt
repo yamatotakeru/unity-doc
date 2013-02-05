@@ -1,4 +1,4 @@
-! Ragdollウィザード / Ragdoll Wizard
+! Ragdollウィザード
 
 Unityでは特別なウィザードがあり、Ragdollをクイックに作成することが出来ます。それぞれ異なる手足パーツをウィザード上の対応するプロパティの上にドラッグするのみです。次に、Createボタンを押してUnityはRagdollを構成し、$$Colliders$$、 $$Rigidbodies$$および$$Joints$$を自動作成します。
 

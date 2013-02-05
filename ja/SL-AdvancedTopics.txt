@@ -1,4 +1,4 @@
-! 詳細な ShaderLab トピック / Advanced ShaderLab topics
+! 詳細な ShaderLab トピック
 
 ShaderLab を学びたい場合はお読みください。
 

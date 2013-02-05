@@ -1,4 +1,4 @@
-! Unity3.5から4.0へのアップグレードガイド / Upgrade Guide from Unity 3.5 to 4.0
+! Unity3.5から4.0へのアップグレードガイド
 
 
 !! GameObjectのactiveの状態

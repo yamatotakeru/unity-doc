@@ -1,4 +1,4 @@
-! iOS 特有の最適化 / iOS Specific Optimizations
+! iOS 特有の最適化
 
 このページではiOSデプロイに特有の最適化を説明します。モバイルデバイス向けの最適化については [[Main.iphone-PracticalGuide | Practical Guide to Optimization for Mobiles]] を参照下さい。
 

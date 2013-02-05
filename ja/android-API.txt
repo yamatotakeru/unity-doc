@@ -1,4 +1,4 @@
-! Android スクリプティング / Android Scripting
+! Android スクリプティング
 
 Unity Androidは、iOS APIと統合されてハンドヘルド デバイス機能にアクセスする、複数のスクリプティングAPIを提供します。クロスプラットフォーム プロジェクトでは、UNITY_ANDROIDはAndroid特有のC#コードを条件つきコンパイルするために定義されてます。次のスクリプティングクラスはAndroid関連の変更を含みます（いくつかのAPIがAndroidとiOSで共有されてます）：
 ||[[ScriptRef:Input.html | Input]] ||マルチタッチスクリーン、加速度センサー、デバイスの向きへのアクセス。

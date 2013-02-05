@@ -1,4 +1,4 @@
-! 起動時エディタスクリプト実行 / Running Editor Script Code on Launch
+! 起動時エディタスクリプト実行
 
 Unity起動の直後に、ユーザのアクションなしでプロジェクトのエディタスクリプト コードを実行することが役立つことがしばしばあります。これは $$InitializeOnLoad$$ 属性を __static constructor__ （スタティック コンストラクタ）のあるクラスに適用することで実現できます。スタティック コンストラクタはクラスと同じ名前の関数で静的に宣言された関数であり、戻り値や引数がありません（詳細は [[http://docs.go-mono.com/index.aspx?link=ecmaspec%3a17.11|ここ]] を確認下さい）:-
 

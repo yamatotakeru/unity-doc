@@ -1,4 +1,4 @@
-! ビルドされるiOSプレイヤーのサイズ最適化 / Optimizing the Size of the Built iOS Player
+! ビルドされるiOSプレイヤーのサイズ最適化
 
 プレイヤーのサイズを削減するふたつの主な方法は、Xcodeの $$Active Build Configuration$$ と、 Unityの $$Stripping Level$$ を変更する方法です。
 

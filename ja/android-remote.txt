@@ -1,4 +1,4 @@
-! Android リモート / Android Remote
+! Android リモート
 
 Android Remote（リモート）はUnityでデバイスがプロジェクトのリモコンのように機能するAndroidアプリケーションです。各変更ごとにコンパイルしてプロジェクトをデバイスにデプロイすることをさけたい素早い開発で役に立ちます。
 

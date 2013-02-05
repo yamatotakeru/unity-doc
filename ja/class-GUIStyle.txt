@@ -1,4 +1,4 @@
-! GUI スタイル / GUI Style
+! GUI スタイル
 
 $$GUI Style$$ は、$$UnityGUI$$ で使用するためのカスタムの属性の集合です。  1 つのGUI スタイルは、UnityGUI $$Control$$ の外観を定義します。
 

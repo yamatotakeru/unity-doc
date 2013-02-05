@@ -1,4 +1,4 @@
-! 自己発光拡散 / Self-Illuminated Diffuse
+! 自己発光拡散
 
 Attach:Shaders./Shader-IllumDiffuse.png
 

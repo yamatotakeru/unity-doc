@@ -1,4 +1,4 @@
-!Flash: 規模の大きなプロジェクトでUnity により生成された Flash コンテンツを埋め込む / Flash: Embedding Unity Generated Flash Content in Larger Flash Projects
+!Flash: 規模の大きなプロジェクトでUnity により生成された Flash コンテンツを埋め込む
 
 !!embeddingapi.swc
 

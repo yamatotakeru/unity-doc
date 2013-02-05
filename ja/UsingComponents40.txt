@@ -1,4 +1,4 @@
-! コンポーネントを使う（Using Components） / Using Components
+! コンポーネントを使う（Using Components）
 
 $$Components$$ は、ゲームにおけるオブジェクトおよび動作の根本であり、あらゆる $$GameObject$$ で実際に動作している部分です。 もしコンポーネントとゲームオブジェクトの間の関係をまだ理解していない場合には、この先を読み進める前に [[GameObjects]] のページを読んでください。
 

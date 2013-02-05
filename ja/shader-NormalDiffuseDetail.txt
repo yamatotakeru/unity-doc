@@ -1,4 +1,4 @@
-! 拡散の詳細 / Diffuse Detail
+! 拡散の詳細
 
 Attach:Shaders./Shader-NormalDiffuseDetail.png
 

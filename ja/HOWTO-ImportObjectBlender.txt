@@ -1,4 +1,4 @@
-! Blender からのオブジェクトのインポート / Importing Objects From Blender
+! Blender からのオブジェクトのインポート
 
 Unity はネイティブで Blender ファイルをインポートします。 これは、バージョン 2.45 の Blender に追加された、 Blender FBX エクスポータを使用して、フードの下で機能します。  このため、Blender 2.45 以降を更新する必要があります (ただし、下記要件を参照)。
 

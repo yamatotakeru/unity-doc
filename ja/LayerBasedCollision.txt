@@ -1,4 +1,4 @@
-!レイヤーベースの衝突検出 / Layer-Based Collision Detection.
+!レイヤーベースの衝突検出
 Unity 3.x では、レイヤー ベースの衝突検出を導入しています。これにより、$$Game Object$$ を特定のレイヤーに連結された別の $$Game Object$$ に衝突させることができます。
 
 Attach:LayerBasedCollision.png\\

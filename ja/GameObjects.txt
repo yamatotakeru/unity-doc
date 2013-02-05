@@ -1,4 +1,4 @@
-! GameObject / GameObjects
+! GameObject
 
 $$GameObjects$$ は、Unity で最も重要なオブジェクトです。  GameObject とは何か、どのように使用できるかを理解することが非常に重要です。  このページでは、そのすべてについて説明します。
 

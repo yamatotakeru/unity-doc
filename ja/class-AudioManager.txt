@@ -1,4 +1,4 @@
-! オーディオマネージャー / Audio Manager
+! オーディオマネージャー
 
 $$Audio Manager$$ では、シーンで再生されているすべての音声の最大音量を微調整できます。
 これを表示するには、^^Edit->Project Settings->Audio^^ を選択します。

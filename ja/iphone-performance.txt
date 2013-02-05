@@ -1,4 +1,4 @@
-! iOS のパフォーマンスの最適化 / Optimizing Performance in iOS.
+! iOS のパフォーマンスの最適化
 
 ここではiOSデバイスに特化した最適化に関して記述されます。より詳細のモバイルでバイスの情報は [[Main.iphone-PracticalGuide | Practical Guide to Optimization for Mobiles]] をご覧ください。
 

@@ -1,4 +1,4 @@
-! 透明拡散 / Transparent Diffuse
+! 透明拡散
 
 Attach:Shaders./Shader-TransDiffuse.png
 

@@ -1,4 +1,4 @@
-! 拡散 / Diffuse
+! 拡散
 
 Attach:Shaders./Shader-NormalDiffuse.png
 

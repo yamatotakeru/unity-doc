@@ -1,4 +1,4 @@
-! Terrain Engineガイド / Terrain Engine Guide
+! Terrain Engineガイド
 
 このセクションでは$$Terrain Engine$$（地形エンジン）の使用方法について説明します。作成の方法、技術的な詳細、その他の考慮事項をカバーします。次のセクションに分かれています：
 

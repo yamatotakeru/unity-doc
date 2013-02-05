@@ -1,4 +1,4 @@
-! Unity ウェブ プレイヤー ロード画面 / Customizing the Unity Web Player loading screen
+! Unity ウェブ プレイヤー ロード画面
 
 デフォルトで、Unity $$Web Player$$ は、小さい Unity ロゴとウェブ プレイヤーの内容を表示する進捗バーを表示します。 ロゴと進捗バーの両方を含むロード画面の外観をカスタマイズできます。
 

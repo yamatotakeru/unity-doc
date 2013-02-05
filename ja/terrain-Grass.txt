@@ -1,4 +1,4 @@
-! 草 / Grass
+! 草
 
 $$Paint Foliage$$ button Attach:TerrainGuide-PaintFoliageButton.png により、草や岩、または地形周辺のその他の黄色をペイントできます。  草をペイントするには、^^Edit Details button->Add Grass Texture^^ を選択します。  草にメッシュを作成する必要はありません。ただのテクスチャです。
 

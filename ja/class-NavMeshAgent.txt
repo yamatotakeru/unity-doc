@@ -1,4 +1,4 @@
-!ナビメッシュエージェント （Unity Proのみ） / NavMesh Agent (Pro Only)
+!ナビメッシュエージェント （Unity Proのみ）
 
 ''ナビメッシュエージェント''（NavMesh Agent）コンポーネントは経路探索（Pathfinding）と連動して使用し、このエージェントが[[NavmeshandPathfinding | ナビメッシュ]] を移動する際の変数を定義する。使用の際はメニューの^^Component→Navigation→NavMesh Agent^^を選択します。
 
