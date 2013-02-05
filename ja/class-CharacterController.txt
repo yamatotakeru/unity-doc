@@ -46,7 +46,7 @@ Attach:Inspector-CharacterController.png\\
 
 ''Min Move Distance''は 0 にしておくことをお勧めします。
 
-キャラクター コントローラのスクリプト リファレンス [[ScriptRef:CharacterController.html | here]] を参照してください。
+キャラクター コントローラのスクリプト リファレンス の [[ScriptRef:CharacterController.html | リンク]] を参照してください。
 
 当社ウェブサイトの [[http://www.unity3d.com/support/resources | Resources]] エリアから、事前設定されたアニメート化および移動するキャラクター コントローラを示すプロジェクトのサンプルをダウンロードできます。
 

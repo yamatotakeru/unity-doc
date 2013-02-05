@@ -250,15 +250,15 @@ UnityPlayerNativeActivityは、UnityPlayerActivityのサブクラスではなく
 
 
 !!! ネイティブプラグインのサンプル
-ネイティブプラグインの簡単な例は、 [[Attach:AndroidNativePlugin.zip | here]] を参照してください。
+ネイティブプラグインの簡単な例は、 [[Attach:AndroidNativePlugin.zip | ここ]] を参照してください。
 
 このサンプルでは、C言語のコードをUnity Androidアプリケーションから呼び出す方法についてです。パッケージにはネイティブプラグインが計算した２つの値の合計を表示するシーンが含まれています。プラグインをコンパイルするには [[http://developer.android.com/sdk/ndk/index.html|Android NDK]] が必要なことに注意してください。
 
 !!! Java プラグインのサンプル
-Javaコードの使用例は [[Attach:AndroidJavaPlugin.zip | here]] を参照してください。
+Javaコードの使用例は [[Attach:AndroidJavaPlugin.zip | ここ]] を参照してください。
 
 このサンプルでは、JavaコードとAndroidOSの連動方法や、C++からC#・Java間のブリッジを作成する方法を示します。
 パッケージ内のシーンは、ボタンを押すとAndroidが定義しているアプリケーションのキャッシュディレクトリを取得する方法についてです。
 プラグインをコンパイルするには、 [[http://developer.android.com/sdk/ndk/index.html|Android NDK]] が必要な事に注意してください。
 
-[[Attach:AndroidJavaPluginProject.zip | Here]] にあるよく似たサンプルは、JNIライブラリをベースに、以前作成したネイティブコードをC#向けにラップしたものです。
+[[Attach:AndroidJavaPluginProject.zip | ここ]] にあるよく似たサンプルは、JNIライブラリをベースに、以前作成したネイティブコードをC#向けにラップしたものです。

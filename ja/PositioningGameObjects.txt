@@ -76,5 +76,5 @@ Unityでの Vertex Snapping の使用は非常に簡単です。 次の手順に
 * ^^Shift-V^^ で、この機能のオンオフを切り替えることができます。
 * 頂点から頂点、頂点から表面、ピボットから頂点へとスナップできます。
 
-Vertex snapping の使用法を映したビデオは、[[http://vimeo.com/10945727 | here]] にあります。
+Vertex snapping の使用法を映したビデオは、[[http://vimeo.com/10945727 | ここ]] にあります。
 

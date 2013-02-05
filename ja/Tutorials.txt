@@ -6,7 +6,7 @@ __注意:__ これらのチュートリアルは、Unity のデスクトップ�
 
 [[http://unity3d.com/support/documentation/tutorials/|Attach: onlineresources.jpg]] [[Attach:GUI Essentials.pdf|Attach:guiessentials.jpg]] [[Attach:Scripting Tutorial.pdf|Attach: scriptingessentials.jpg]]
 
-また、Unity 向けのプレゼンテーション、アーティクル、アセットまたは拡張などのその他のリソースをお探しの場合は、[[ http://unity3d.com/support/resources/|here]] から。
+また、Unity 向けのプレゼンテーション、アーティクル、アセットまたは拡張などのその他のリソースをお探しの場合は、[[ http://unity3d.com/support/resources/|ここ]] から。
 
 また、 [[http://unity3d.com/support/resources/tutorials | Unity3D Tutorial's Home Page]] をクリックすることで、チュートリアルの最新の追加内容を確認できます。
 

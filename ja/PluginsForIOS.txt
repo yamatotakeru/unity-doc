@@ -8,7 +8,7 @@
 [@[DllImport ("__Internal")]
 private static extern float FooPluginFunction ();@]
 # iOSのビルドターゲットにエディタを設定する
-# 生成されたXcodeプロジェクトの "Classes"フォルダにあなたのネイティブコードのソースファイルを追加します（このフォルダには、プロジェクトが更新されたときに上書きされませんが、あなたのネイティブコードをバックアップすることを忘れないでください）​​。
+# 生成されたXcodeプロジェクトの "Classes"フォルダにあなたのネイティブコードのソースファイルを追加します（このフォルダには、プロジェクトが更新されたときに上書きされませんが、あなたのネイティブコードをバックアップすることを忘れないでください）。
 
 もしC++（.cpp）もしくはObjective-C（.mm）を使用してプラグインを実装している場合、 [[http://en.wikipedia.org/wiki/Name_mangling | name mangling issues]] 問題を避けるため、Cリンケージ（C linkage）で宣言されている事を確認する必要があります。
 
@@ -46,7 +46,7 @@ __Note:__ サブフォルダは現在サポートされていません
 
 
 !!! Bonjour Browserのサンプル
-ネイティブコードプラグインの簡単な使用例は、 [[Attach:iPhoneNativeCodeSample.zip|here]] を探してください。
+ネイティブコードプラグインの簡単な使用例は、 [[Attach:iPhoneNativeCodeSample.zip|ここ]] を探してください。
 
 このサンプルでは、UnityのiOSアプリケーションからObjective-Cのコードを呼び出す方法を示します。このアプリケーションは非常に簡単なBonjourのクライアントを実装しています。
 アプリケーションは、Unity iOSのプロジェクト及びネイティブコードで構成されています。それはビルドしたXCodeプロジェクトに追加する必要があります。
