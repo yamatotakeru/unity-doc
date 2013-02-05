@@ -1,18 +1,18 @@
-! ShaderLab syntax: CustomEditor
+! ShaderLab 文法: CustomEditor
 
-A CustomEditor can be defined for your shader. When you do this Unity will look for a class that extends MaterialEditor with this name. If one is found any material that uses this Shader will use. this material inspector. See [[SL-CustomMaterialEditors| Custom Material Editors]] for examples.
+シェーダに対して CustomEditor を定義することが出来ます。Unityはこのときにこの名前で MaterialEditor を拡張したクラスを探します。もし見つかった場合、このシェーダを使用する全てのマテリアルがこのマテリアル インスペクタを使用します。サンプルについては [[SL-CustomMaterialEditors| カスタム マテリアル エディタ]] を参照して下さい。
 
-!! Syntax
-:__CustomEditor__ "name": Use the material editor with a given ''name''.
+!! 文法
+:__CustomEditor__ "名前": 特定の ''名前''のマテリアル エディタを使用します。
 
-!! Details
+!! 詳細
 
-A CustomEditor statement effects all materials that use this Shader
+CustomEditor ステートメントはこのシェーダを使用する全てのマテリアルに影響します。
 
-!! Example
+!! 例
 
 [@Shader "example" {
-    // properties and subshaders here...
+    // ここにプロパティおよびサブシェーダを記述...
     CustomEditor "MyCustomEditor"
 } @]
 
