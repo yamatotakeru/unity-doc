@@ -220,7 +220,7 @@ if (period > 0)
 return acc;
 @]
 
-!! さらなる発展
+!! 上級者向け
 
 Unity モバイル 入力 API はもともと Apple の API に基づいています。ネイティブAPIについて学ぶことで Unity の入力 API についてより良く理解できます。
 Apple 入力 API ドキュメントは次の場所で見つけられます:

@@ -6,6 +6,6 @@ Unity Androidは、iOS APIと統合されてハンドヘルド デバイス機�
 ||[[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]] ||ネイティブのオンスクリーン キーボードのサポート。
 ||[[ScriptRef:iPhoneUtils.html | iPhoneUtils]] ||ムービープレイバック、海賊版対策、バイブレーションに便利な機能。
 
-!!発展
+!!上級者向け
 (:tocportion:)
 

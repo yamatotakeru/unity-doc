@@ -33,5 +33,5 @@ Unity Androidは DXT/PVRTC/ATC テクスチャをサポートするとはいえ�
 !!! ムービー プレイバック
 ムービー テクスチャはAndroidがサポートされていませんが、フルスクリーン でのストリーミング プレイバックはスクリプティング関数により提供されます。サポートされるファイル形式およびスクリプティングAPI の詳細については [[Main.VideoFiles | ムービーのページ]] または [[ http://developer.android.com/guide/appendix/media-formats.html | Android がサポートするメディア形式のページ]] を参照下さい。
 
-!!! 発展
+!!!上級者向け
 (:tocportion:)
