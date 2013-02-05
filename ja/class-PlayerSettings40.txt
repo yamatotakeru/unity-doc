@@ -35,7 +35,7 @@ Attach:PlayerSetWebResPres.png
 
 Attach:PlayerSetWebIcon4b7.png
 
-アイコンはWebPlayerビルドでは無効（Player Settingsの各ネイティブ　クライアント　ビルドのセクションでアイコンを設定できます）
+アイコンはWebPlayerビルドでは無効（Player Settingsの各ネイティブ クライアント ビルドのセクションでアイコンを設定できます）
 
 !!!!''Other Settings''
 
@@ -57,7 +57,7 @@ Attach:PlayerSetWebOther4b7.png
 ||__''Streaming''__               ||||
 ||``First Streamed Level``     ||Streamed Web Playerを公開する場合、Resources.Loadアセットにアクセスできる最初のレベルのインデックス||
 ||__''Configuration''__||||
-||``Scripting Define Symbols``||カスタム　コンパイル　フラグ（詳細は[[PlatformDependentCompilation|platform dependent compilationのページ]] を参照）。||
+||``Scripting Define Symbols``||カスタム コンパイル フラグ（詳細は[[PlatformDependentCompilation|platform dependent compilationのページ]] を参照）。||
 ||__''Optimization''__||||
 ||``Optimize Mesh Data``||メッシュについて、それが適用されたマテリアルが必要としていないデータを全て取り除く（接線、法線、色、UV）||
 !!Standalone（スタンドアロン）
@@ -67,7 +67,7 @@ Attach:PlayerSetPCResPres4b7.png
 
 ||PROPS
 ||__''Resolution''__              ||||
-||``Default Screen Width``     ||スタンドアロン　ゲームがデフォルトで使用するスクリーン幅。||
+||``Default Screen Width``     ||スタンドアロン ゲームがデフォルトで使用するスクリーン幅。||
 ||``Default Screen Height``    ||Playerががデフォルトで使用するスクリーンの高さ。||
 ||``Run in background``        ||フォーカスを失った場合もゲームの実行を止めたくない場合にチェック。||
 ||__''Standalone Player Options''__||||
@@ -155,7 +155,7 @@ Attach:PlayerSetiOSResPres.png
 ||>>>``Default``                  ||||
 ||>>>``Black Translucent``        ||||
 ||>>>``Black Opaque``             ||||
-||``Use 32-bit Display Buffer``        ||32ビットカラー値を保持するためにディスプレイバッファを作成するよう指定（デフォルトでは16ビット）。使用するのは、バンディングが見られる場合や、ImageEffects（画像効果）でアルファを必要とする場合であり、理由はディスプレイバッファと同じ形式にRTを作成するためです。||
+||``Use 32-bit Display Buffer``        ||32ビットカラー値を保持するためにディスプレイバッファを作成するよう指定（デフォルトでは16ビット）。使用するのは、バンディングが見られる場合や、Image Effects（イメージエフェクト）でアルファを必要とする場合であり、理由はディスプレイバッファと同じ形式にRTを作成するためです。||
 ||``Show Loading Indicator``||ローディング　インジケータのオプション||
 ||>>>``Don't Show``||インジケータなし。||
 ||>>>``White Large``||白色で大きいインジケータを表示。||
@@ -252,7 +252,7 @@ Attach:PlayerSetAndroidResPres4b7.png\\
 ||>>>``Portrait Upside Down``     ||デバイスはPortraitモードで逆さま、持ち方は縦向きでホームボタンが上。||
 ||>>>``Landscape Right``     ||デバイスはLandscapeモード、持ち方は横向きでホームボタンが__左__。||
 ||>>>``Landscape Left``                 ||デバイスはLandscapeモード、持ち方は横向きでホームボタンが__右__。||
-||``Use 32-bit Display Buffer``        ||ディスプレイバッファが32ビットカラー値（デフォルトでは16ビット）を保持するために作成するかを指定。。使用するのは、バンディングが見られる場合や、ImageEffects（画像効果）でアルファを必要とする場合であり、理由はディスプレイバッファと同じ形式にRTを作成するためです。Gingerbread以前のOSではサポートされてません（強制的に16ビットになります）。||
+||``Use 32-bit Display Buffer``        ||ディスプレイバッファが32ビットカラー値（デフォルトでは16ビット）を保持するために作成するかを指定。。使用するのは、バンディングが見られる場合や、Image Effects（イメージエフェクト）でアルファを必要とする場合であり、理由はディスプレイバッファと同じ形式にRTを作成するためです。Gingerbread以前のOSではサポートされてません（強制的に16ビットになります）。||
 ||``Use 24-bit Depth Buffer``        ||（少なくとも）24ビットカラー値を保持するためディスプレイバッファを作成するよう指定。パフォーマンスに影響を及ぼす可能性があるので、'z-fighting'やその他の画像の乱れがある場合のみ使用して下さい。||
 ||!                               ||!||
 ||                                ||||
@@ -284,7 +284,7 @@ Attach:PlayerSetAndroidOther4b7.png
 ||``Minimum API Level``||ビルドをサポートするのに最低限必要なAPIの最小バージョン。||
 ||__''Configuration''__           ||
 ||``Graphics Level``              ||ES 1.1（ "固定機能"）またはES 2.0（ 'シェーダベース'）のOpen GLバージョンのいずれかを選択します。AVD（エミュレータ）を使用する場合はES 1.xのみサポートされています。||
-||``Install Location``            ||アプリケーションをデバイス上にインストールするロケーションを指定（詳細については、http://developer.android.com/guide/appendix/install-location.htmlを参照）。||
+||``Install Location``            ||アプリケーションをデバイス上にインストールするロケーションを指定（詳細については、http://developer.android.com/guide/appendix/install-location.html を参照）。||
 ||>>>``Automatic``       ||OSで自動判断。ユーザーが後からアプリを相互に移動することができます。||
 ||>>>``Prefer External`` ||可能であれば外部ストレージ（SDカード）にアプリをインストールします。OSでは保証されないため、出来ない場合はアプリは内部メモリにインストールされます。||
 ||>>>``Force Internal``  ||強制的に内部メモリにアプリをインストールします。ユーザーはアプリを外部ストレージに移動することができません。||
