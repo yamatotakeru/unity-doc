@@ -11,7 +11,7 @@ Attach:Inspector-Rigidbody.png\\
 ||PROPS
 ||``Mass`` ||The mass of the object (arbitrary units). It is recommended to make masses not more or less than 100 times that of other Rigidbodies. ||
 ||``Drag`` ||How much air resistance affects the object when moving from forces. 0 means no air resistance, and infinity makes the object stop moving immediately. ||
-||``Angular Drag`` ||How much air resistance affects the object when rotating from torque. 0 means no air resistance, and infinity makes the object stop rotating immediately. ||
+||``Angular Drag`` ||How much air resistance affects the object when rotating from torque. 0 means no air resistance.  Note that setting it to infinity will not make the object stop rotating immediately. ||
 ||``Use Gravity`` ||If enabled, the object is affected by gravity. ||
 ||``Is Kinematic`` ||If enabled, the object will not be driven by the physics engine, and can only be manipulated by its $$Transform$$. This is useful for moving platforms or if you want to animate a Rigidbody that has a $$HingeJoint$$ attached. ||
 ||``Interpolate`` ||Try one of the options only if you are seeing jerkiness in your Rigidbody's movement. ||

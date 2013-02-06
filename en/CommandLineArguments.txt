@@ -18,7 +18,7 @@ Standalone Unity games can be launched in a similar way.
 !!Command Line Arguments
 As mentioned above, the editor and also built games can optionally be supplied with additional commands and information on startup. This is done using the following command line arguments:-
 
-:``-batchmode``:Run Unity in batch mode. This should always be used in conjunction with the other command line arguments as it ensures no pop up windows appear and eliminates the need for any human intervention. When an exception occurs during execution of script code, asset server updates fail or other operations fail Unity will immediately exit with return code 1. Note that in batch mode, Unity will send a minimal version of its log output to the console. However, the [[Log Files]] still contain the full log information.
+:``-batchmode``:Run Unity in batch mode. This should always be used in conjunction with the other command line arguments as it ensures no pop up windows appear and eliminates the need for any human intervention. When an exception occurs during execution of script code, asset server updates fail or other operations fail Unity will immediately exit with return code 1. Note that in batch mode, Unity will send a minimal version of its log output to the console. However, the [[Log Files]] still contain the full log information.  Note that opening a project in batch mode whilst the Editor has the same project open is not supported.  Only a single instance of Unity can run at a time.
 
 
 :``-quit``:Quit the Unity editor after other commands have finished executing.  Note that this can cause error messages to be hidden (but they will show up in the Editor.log file).

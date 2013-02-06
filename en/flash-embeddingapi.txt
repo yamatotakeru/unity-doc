@@ -94,48 +94,50 @@ function UnityLoaderParams(scaleToStage : Boolean = false, width : int = 640, he
 
 The following example shows how to load Unity published Flash content into a host SWF. It shows how to supply custom ``UnityLoaderParams`` and track progress of the file load. Once the Unity content has been added to the host, a function in the Unity content is called using the ``sendMessage`` function.
 
-\\
+!!!ActionScript 3
 [@
-public class MyLoader extends Sprite implements IUnityContentHost
+package
 {
-  private var unityContentLoader:UnityContentLoader;
-
-  public function MyLoader()
-  {
-      var params:UnityLoaderParams = new UnityLoaderParams(false,720,400,false);
-      unityContentLoader = new UnityContentLoader("UnityContent.swf", this, params, false);
-      unityContentLoader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, onUnityContentLoaderProgress);
-      unityContentLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onUnityContentLoaderComplete);
-      unityContentLoader.loadUnity();
-  }
-
-  private function onUnityContentLoaderProgress(event:ProgressEvent):void
-  {
-      //Respond to load progress
-  }
-		
-  private function onUnityContentLoaderComplete(event:Event):void
-  {
-     addChild(unityContentLoader);
-     unityContentLoader.unityContent.setContentHost(this);
-  }
-
-  //unityInitStart has to be implemented by whatever implements IUnityContenthost
-  //This is called when the content is loaded and the initialization of the unity engine is started.
-  public function unityInitStart():void
-  {
-    //Unity engine started	
-  }
+	public class MyLoader extends Sprite implements IUnityContentHost
+	{
+	  private var unityContentLoader:UnityContentLoader;
 	
-  //unityInitComplete has to be implemented by whatever implements IUnityContenthost
-  //This is called when the unity engine is done initializing and the first level is loaded.
-  public function unityInitComplete():void
-  {
-     unityContentLoader.unityContent.sendMessage("Main Camera","SetResponder",{responder:this});
-  }
-
-  ...
-  
+	  public function MyLoader()
+	  {
+		  var params:UnityLoaderParams = new UnityLoaderParams(false,720,400,false);
+		  unityContentLoader = new UnityContentLoader("UnityContent.swf", this, params, false);
+		  unityContentLoader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, onUnityContentLoaderProgress);
+		  unityContentLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onUnityContentLoaderComplete);
+		  unityContentLoader.loadUnity();
+	  }
+	
+	  private function onUnityContentLoaderProgress(event:ProgressEvent):void
+	  {
+		  //Respond to load progress
+	  }
+			
+	  private function onUnityContentLoaderComplete(event:Event):void
+	  {
+		 addChild(unityContentLoader);
+		 unityContentLoader.unityContent.setContentHost(this);
+	  }
+	
+	  //unityInitStart has to be implemented by whatever implements IUnityContenthost
+	  //This is called when the content is loaded and the initialization of the unity engine is started.
+	  public function unityInitStart():void
+	  {
+		//Unity engine started	
+	  }
+		
+	  //unityInitComplete has to be implemented by whatever implements IUnityContenthost
+	  //This is called when the unity engine is done initializing and the first level is loaded.
+	  public function unityInitComplete():void
+	  {
+		 unityContentLoader.unityContent.sendMessage("Main Camera","SetResponder",{responder:this});
+	  }
+	
+	  ...
+	  
+	}
 }
-
 @]

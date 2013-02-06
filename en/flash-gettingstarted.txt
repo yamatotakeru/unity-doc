@@ -13,10 +13,11 @@ We do not currently have direct comparisons of Unity webplayer content vs Flash 
 
 
 !!Other Examples:
-* Forums post - [[http://forum.unity3d.com/threads/128057-Flash-Simple-AS3-Bridge-Demo-Loading-textures-from-web.?p=864642&viewfull=1#post864642 | Loading Textures from Web (in AS3)]]
+* [[http://forum.unity3d.com/threads/145294-Flash-Custom-Splash-Screen-Single-SWF | Custom Splash Screen in a Single SWF (Unity Forums)]]
+* [[http://forum.unity3d.com/threads/128057-Flash-Simple-AS3-Bridge-Demo-Loading-textures-from-web.?p=864642&viewfull=1#post864642 | Loading Textures from Web (Unity Forums)]]
 
 !!Useful Resources:
 * [[http://unity3d.com/support/documentation/ScriptReference/ActionScript.html | Scripting Reference: ActionScript]]
-* [[http://forum.unity3d.com/forums/36-Flash-Development | Flash Development section on the Unity forums]] 
-* [[http://answers.unity3d.com/questions/topics/flash.html | Flash questions on Unity Answers]]
+* [[http://forum.unity3d.com/forums/36-Flash-Development | Flash Development section (Unity Forums)]] 
+* [[http://answers.unity3d.com/questions/topics/flash.html | Flash questions (Unity Answers)]]
 

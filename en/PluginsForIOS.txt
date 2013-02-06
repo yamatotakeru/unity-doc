@@ -10,11 +10,13 @@ private static extern float FooPluginFunction ();@]
 # Set the editor to the iOS build target
 # Add your native code source files to the generated XCode project's "Classes" folder (this folder is not overwritten when the project is updated, but don't forget to backup your native code).
 
-If you are using C++ (.cpp) or Objective-C (.mm) to implement the plugin you must ensure the functions are declared with C linkage to avoid [[http://en.wikipedia.org/wiki/Name_mangling | name mangling issues]].
+If you are using C++ (.cpp) or Objective-C++ (.mm) to implement the plugin you must ensure the functions are declared with C linkage to avoid [[http://en.wikipedia.org/wiki/Name_mangling | name mangling issues]]. 
 
 [@extern "C" {
   float FooPluginFunction ();
 } @]
+
+Plugins written in C or Objective-C do not need this since these languages do not use name-mangling.
 
 !! Using Your Plugin from C#
 
@@ -52,4 +54,3 @@ This sample demonstrates how objective-C code can be invoked
 from a Unity iOS application. This application implements a very simple Bonjour client.
 The application consists of a Unity iOS project (Plugins/Bonjour.cs is the C# interface to the native code, while BonjourTest.js is the JS script that implements the application logic) and native code (Assets/Code) 
 that should be added to the built XCode project.
-

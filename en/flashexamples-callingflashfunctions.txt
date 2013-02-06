@@ -9,33 +9,33 @@ When built to Flash, the AS3 implementation of ExampleClass is used. When run in
 
 By creating an ActionScript version of your classes, this will enable you to use native AS3 libraries when building for Flash Player. This is particularly useful when you need to work around a .net library which isn't yet supported for Flash export.
 
-\\
-
-!!ExampleClass.as
-
+!!!ActionScript 3 (ExampleClass.as)
 [@
-public class ExampleClass
+package
 {
-  public static function aStaticFunction() : void
-  {
-    trace("aStaticFunction - AS3 Implementation");
-  }
-
-  public static function aStaticFunctionWithParams(a : int) : void
-  {
-    trace("aStaticFunctionWithParams - AS3 Implementation");
-  }
-
-  public static function aStaticFunctionWithReturnType() : int
-  {
-    trace("aStaticFunctionWithReturnType - AS3 Implementation");
-    return 1;
-  }
-
-  public function aFunction() : void
-  {
-    trace("aFunction - AS3 Implementation");
-  }
+	public class ExampleClass
+	{
+		public static function aStaticFunction() : void
+		{
+			trace("aStaticFunction - AS3 Implementation");
+		}
+	
+		public static function aStaticFunctionWithParams(a : int) : void
+		{
+			trace("aStaticFunctionWithParams - AS3 Implementation");
+		}
+	
+		public static function aStaticFunctionWithReturnType() : int
+		{
+			trace("aStaticFunctionWithReturnType - AS3 Implementation");
+			return 1;
+		}
+	
+		public function aFunction() : void
+		{
+			trace("aFunction - AS3 Implementation");
+		}
+	}
 }
 @]
 
@@ -45,7 +45,7 @@ public class ExampleClass
 
 You can create the class to mimic the AS3 implementation in either C# or JavaScript. The implementations are very similar. Both examples are provided below.
 
-!!!C# Implementation (ExampleClass.cs)
+!!!C# (ExampleClass.cs)
 [@
 using UnityEngine;
 
@@ -81,7 +81,7 @@ public class ExampleClass
 @]
 
 
-!!!JavaScript Implementation (ExampleClass.js)
+!!!JavaScript (ExampleClass.js)
 [@
 @NotConverted
 @NotRenamed

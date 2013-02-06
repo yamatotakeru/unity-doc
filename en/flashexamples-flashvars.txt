@@ -4,7 +4,7 @@ If you wish to obtain parameters from FlashVars, you have to create a LoaderInfo
 
 Create a folder inside Assets called "ActionScript". Now create an empty textfile called "FlashVars.as" inside this folder, and insert the following code.
 
-!!!Actionscript 3
+!!!ActionScript 3
 [@package {
 	import com.unity.UnityNative; 
 	import flash.display.LoaderInfo;

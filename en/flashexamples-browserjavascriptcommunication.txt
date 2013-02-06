@@ -9,6 +9,7 @@ When run, the BrowserCommunicator.TestCommunication() function will register a c
 !!Required JavaScript
 The following JavaScript needs to be added to the html page that serves the Unity published SWF. It creates the function which will be called from ActionScript: 
 
+!!!JavaScript
 [@
 <script type="text/javascript">
 
@@ -30,6 +31,7 @@ function calledFromActionScript()
 
 !!BrowserCommunicator.as (and matching C# class)
 
+!!!ActionScript 3
 [@
 package
 {
@@ -73,9 +75,9 @@ package
 }
 @]
 
-
 C# dummy implementation of the class:
 
+!!!C#
 [@
 [NotConverted]
 [NotRenamed]

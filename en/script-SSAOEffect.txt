@@ -2,6 +2,8 @@
 
 The $$Screen Space Ambient Occlusion (SSAO)$$ image effect approximates [[http://en.wikipedia.org/wiki/Ambient_occlusion | Ambient Occlusion]] in realtime, as an image post-processing effect. It darkens creases, holes and surfaces that are close to each other. In real life, such areas tend to block out or ``occlude`` ambient light, hence they appear darker.
 
+For a modern implementation of real-time ambient occlusion, have a look at the newer [[script-AmbientObscurance|Screenspace Ambient Obscurance]] effect.
+
 As with the other [[comp-ImageEffects|image effects]], this effect is only available in Unity Pro and you must have the [[HOWTO-InstallStandardAssets|Pro Standard Assets]] installed before it becomes available.
 
 Attach:FxSSAO.png\\
@@ -28,6 +30,4 @@ SSAO approximates ambient occlusion using an image processing effect. Its cost d
 Note that SSAO is quite expensive in terms of processing time and generally should only be used on high-end graphics cards. Using SSAO will cause Unity to render the depth+normals texture of the camera which increases the number of draw calls and has a CPU processing overhead. However, the depth+normals texture then can be used for other effects as well (eg, Depth of Field). Once the texture is generated, the remainder of the SSAO effect is performed on the graphics card.
 
 
-!! Hardware support
-
-SSAO works on graphics cards with Shader Model 3.0 support (eg, GeForce 6 and later, Radeon X1300 and later).  All image effects automatically disable themselves when they can not run on a particular graphics card. Due to the complexity of the effect, SSAO is not supported on mobile devices.
+(:include imagefx-SM3Depth:)

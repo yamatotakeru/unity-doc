@@ -457,8 +457,14 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 *** [[comp-ImageEffects]]
 **** [[script-AntialiasingAsPostEffect]]
 **** [[script-Bloom]]
+>>nextrelease<<
+**** [[script-FastBloom]]
+>><<
 **** [[script-BloomAndLensFlares]]
 **** [[script-BlurEffect]]
+>>nextrelease<<
+**** [[script-Blur]]
+>><<
 **** [[script-CameraMotionBlur]]
 **** [[script-ColorCorrectionCurves]]
 **** [[script-ColorCorrectionEffect]]
@@ -480,7 +486,13 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 **** [[script-ScreenOverlay]]
 **** [[script-SepiaToneEffect]]
 **** [[script-SunShafts]]
+>>nextrelease<<
+**** [[script-AmbientObscurance]]
+>><<
 **** [[script-SSAOEffect]]
+>>nextrelease<<
+**** [[script-TiltShiftHdr]]
+>><<
 **** [[script-TiltShift]]
 **** [[script-Tonemapping]]
 **** [[script-TwirlEffect]]

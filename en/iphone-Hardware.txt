@@ -13,10 +13,7 @@ The following table summarizes iOS hardware available in devices of various gene
 !!! Original iPhone
 * Screen: 320x480 pixels, LCD at 163ppi
 * ARM11, 412 Mhz CPU
-(:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:310px;":)
-%thumb width=280px float=right padding=5px%Attach:skiSafari.jpg
-Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
-(:divend:)
+
 * PowerVR MBX Lite 3D graphics processor
 ** Slow
 * 128MB of memory
@@ -30,6 +27,9 @@ Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
 * 128MB of memory
 * 2 megapixel camera
 * GPS support
+
+Attach:skiSafari.jpg\\
+iPhone 3G: Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
 
 (:cellnr:)
 
@@ -47,13 +47,12 @@ Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
 (:divend:)
 * 256MB of memory
 * 3 megapixel camera with video capture capability
-(:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:310px;":)
-%thumb width=300px float=right padding=5px%Attach:shadowgun2.jpg
-Shader-capable hardware, per-pixel-lighting (bumpmaps) can only be on small portions of the screen at once.
-Requires scripting optimization for complex games. This is the average hardware of the app market as of July 2012
-(:divend:)
 * GPS support
 * Compass support
+
+Attach:shadowgun2.jpg\\
+iPhone 3GS: Shader-capable hardware, per-pixel-lighting (bumpmaps) can only be on small portions of the screen at once.
+Requires scripting optimization for complex games. This is the average hardware of the app market as of July 2012
 
 !!! iPhone 4
 * Screen: 960x640 pixels, LCD at 326 ppi, 800:1 contrast ratio.
@@ -75,11 +74,6 @@ Requires scripting optimization for complex games. This is the average hardware 
 * GPS support
 * Compass Support
 
-(:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:250px;":)
-%thumb width=240px float=right padding=5px%Attach:csrCar.jpg
-The iPhone 4S, with the new A5 chip, is capable of rendering complex shaders throughout the entire screen. Even image effects may be possible. However, optimizing your shaders is still crucial. But if your game isn't trying to push limits of the device, optimizing scripting and gameplay is probably as much of a waste of time on this generation of devices as it is on PC.
-(:divend:)
-
 !!! iPhone 4S
 * Screen: 960x640 pixels, LCD at 326 ppi, 800:1 contrast ratio.
 * Apple A5
@@ -100,14 +94,13 @@ The iPhone 4S, with the new A5 chip, is capable of rendering complex shaders thr
 * GPS support
 * Compass Support
 
+Attach:csrCar.jpg\\
+The iPhone 4S, with the new A5 chip, is capable of rendering complex shaders throughout the entire screen. Even image effects may be possible. However, optimizing your shaders is still crucial. But if your game isn't trying to push limits of the device, optimizing scripting and gameplay is probably as much of a waste of time on this generation of devices as it is on PC.
+
+
 !!![[http://en.wikipedia.org/wiki/IPod_Touch#Specifications| iPod Touch Models]] 
 
 (:cellnr:)
-
-(:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:212px;":)
-%thumb width=200px float=right padding=5px%Attach:tripletown.jpg
-Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
-(:divend:)
 
 !!! iPod Touch 1st generation
 * Screen: 320x480 pixels, LCD at 163ppi
@@ -115,6 +108,9 @@ Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
 * PowerVR MBX Lite 3D graphics processor
 ** Slow
 * 128MB of memory
+
+Attach:tripletown.jpg\\
+iPod Touch: Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
 
 !!! iPod Touch 2nd generation
 * Screen: 320x480 pixels, LCD at 163ppi
@@ -126,14 +122,14 @@ Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
 
 (:cellnr:)
 
-(:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:242px;":)
-%thumb width=230px float=right padding=5px%Attach:csrRacing.jpg
-Shader-capable hardware, per-pixel-lighting (bumpmaps) can only be on small portions of the screen at once.
-Requires scripting optimization for complex games. This is the average hardware of the app market as of July 2012
-(:divend:)
+
 
 !!! iPod Touch 3rd generation
 * Comparable to iPhone 3GS
+
+Attach:csrRacing.jpg\\
+iPod Touch 3rd gen: Shader-capable hardware, per-pixel-lighting (bumpmaps) can only be on small portions of the screen at once.
+Requires scripting optimization for complex games. This is the average hardware of the app market as of July 2012
 
 !!! iPod Touch 4th generation
 * Comparable to iPhone 4
@@ -141,11 +137,6 @@ Requires scripting optimization for complex games. This is the average hardware 
 (:cellnr:)
 
 !!![[http://en.wikipedia.org/wiki/IPad#Technical_specifications | iPad Models]] 
-
-(:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:250px;":)
-%thumb width=240px float=right padding=5px%Attach:airmail.jpg
-Similar to iPod Touch 4th Generation and iPhone 4.
-(:divend:)
 
 !!! iPad
 * Screen: 1024x768 pixels, LCD at 132 ppi, LED-backlit.
@@ -164,12 +155,11 @@ Similar to iPod Touch 4th Generation and iPhone 4.
 * Accelerometer, ambient light sensor, magnetometer (for digital compass)
 * Mechanical keys: Home, sleep, screen rotation lock, volume.
 
-(:cellnr:)
-(:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:250px;":)
-%thumb width=240px float=right padding=5px%Attach:deadtrigger.jpg
-The A5 can do full screen bumpmapping, assuming the shader is simple enough. However, it is likely that your game will perform best with bumpmapping only on crucial objects. Full screen image effects still out of reach. Scripting optimization less important.
-(:divend:)
+Attach:airmail.jpg\\
+iPad: Similar to iPod Touch 4th Generation and iPhone 4.
 
+
+(:cellnr:)
 !!! iPad 2
 * Screen: 1024x768 pixels, LCD at 132 ppi, LED-backlit.
 * Apple A5
@@ -185,12 +175,11 @@ The A5 can do full screen bumpmapping, assuming the shader is simple enough. How
 (:divend:)
 * Same as Previous
 
-(:cellnr:)
+Attach:deadtrigger.jpg\\
+iPad2: The A5 can do full screen bumpmapping, assuming the shader is simple enough. However, it is likely that your game will perform best with bumpmapping only on crucial objects. Full screen image effects still out of reach. Scripting optimization less important.
 
-(:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:250px;":)
-%thumb width=240px float=right padding=5px%Attach:bladeslinger.jpg
-The iPad 3 has been shown to be capable of render-to-texture effects such as reflective water and fullscreen image effects. However, optimized shaders are still crucial. But if your game isn't trying to push limits of the device, optimizing scripting and gameplay is probably as much of a waste of time on this generation of devices as it is on PC.
-(:divend:)
+
+(:cellnr:)
 
 !!! iPad 3
 * Screen: 2048 × 1536 pixels, LCD at 264 ppi, LED-backlit.
@@ -205,6 +194,9 @@ The iPad 3 has been shown to be capable of render-to-texture effects such as ref
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:200px%Attach:bar.png
 (:divend:)
+
+Attach:bladeslinger.jpg\\
+The iPad 3 has been shown to be capable of render-to-texture effects such as reflective water and fullscreen image effects. However, optimized shaders are still crucial. But if your game isn't trying to push limits of the device, optimizing scripting and gameplay is probably as much of a waste of time on this generation of devices as it is on PC.
 
 
 (:tableend:)

@@ -31,6 +31,9 @@
 * 2 メガピクセル カメラ
 * GPS 対応
 
+Attach:skiSafari.jpg\\
+iPhone 3G: Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
+
 (:cellnr:)
 
 !!! iPhone 3GS
@@ -115,6 +118,9 @@ iPhone 4S、新しい A5 チップ、スクリーン全体を通して複雑な�
 * PowerVR MBX Lite 3D グラフィックス プロセッサ
 ** 遅い
 * 128MBのメモリ容量
+
+Attach:tripletown.jpg\\
+iPod Touch: Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
 
 !!! iPod Touch 2nd generation
 * 画面: 320x480 ピクセル、 LCD 163ppi
@@ -205,6 +211,9 @@ iPad 3 はReflective Waterおよびフルスクリーンのイメージエフェ
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:200px%Attach:bar.png
 (:divend:)
+
+Attach:bladeslinger.jpg\\
+The iPad 3 has been shown to be capable of render-to-texture effects such as reflective water and fullscreen image effects. However, optimized shaders are still crucial. But if your game isn't trying to push limits of the device, optimizing scripting and gameplay is probably as much of a waste of time on this generation of devices as it is on PC.
 
 
 (:tableend:)

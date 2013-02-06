@@ -5,7 +5,7 @@ $$Motion Blur$$ is a common postprocessing effect simulating the fact that for m
 Attach:MbReconstructionBlurExample.png\\
 ''Example of a standard camera motion blur when the camera is moving sideways. Also, notice how the background areas blur less than the foreground ones which is a typical side effect of motion blur.''
 
-The current Motion Blur implementation only supports blur due to camera motion with the option to exclude certain layers (useful for excluding characters and/or dynamic objects, especially when those are following the camera movement). It can however be extended to support dynamic objects if an additional script keeps track of each objects model matrix and updates the velocity buffer.
+The current Motion Blur implementation only supports blur due to camera motion with the option to exclude certain layers (useful for excluding characters and/or dynamic objects, especially when those are following the camera movement). It can however be extended to support dynamic objects if an additional script keeps track of each objects model matrix and updates the already generated velocity buffer.
 
 Attach:MotionBlurExamplePassion.png\\
 ''Example showing Camera Motion Blur with dynamic objects (canisters, bus) being excluded''
@@ -24,7 +24,7 @@ As with the other [[comp-ImageEffects|image effects]], this effect is only avail
 ||``Camera Rotation`` ||Scales strength of blurs due to camera rotations. ||
 ||``Camera Movement`` ||Scales strength of blurs due to camera translations. ||
 
-||``Local Blur``, ``Reconstruction`` and ``ReconstructionDX11`` specific:||
+||``Local Blur``, ``Reconstruction``, ``ReconstructionDX11`` and ``ReconstructionDisc`` specific:||
 
 ||``Exclude layers`` ||Objects in this layer will remain unaffected. ||
 ||``Velocity downsample`` ||Lower resolution velocity buffers might help performance but will heavily degrade blur quality. Might still be a valid option for simple scenes. ||
@@ -44,7 +44,9 @@ $$Reconstruction$$ filters can produce more realistic blur results. The name Rec
 
 It is based on the paper ''A Reconstruction Filter for Plausible Motion Blur'' (http://graphics.cs.williams.edu/papers/MotionBlurI3D12/). The algorithm chops the image into tiles of the size ``Velocity Max`` and uses the maximum velocity in the area to simulate a blurry pixel scattering onto neighbouring areas. Artifacts can arise if the velocity is highly varying while the mentioned tile size is large. 
 
-The [[DirectX11]] exclusive filter ``ReconstructionDX11`` allows arbitrary blur distances (aka tile size or ``Velocity Max``) and a flexible number of samples.
+The [[DirectX11]] exclusive filter ``ReconstructionDX11`` allows arbitrary blur distances (aka tile size or ``Velocity Max``) and creates nicer blurs by using more samples.
+
+The ``ReconstructionDisc`` variation uses a different sampling pattern to generate a softer look compared to the standard Reconstruction filters. However, as more samples are taken (it scales automatically to DirectX11), the resulting cost can be higher.
 
 Attach:ReconstructionExample2.png\\
 ''Example using the ``Reconstruction`` technique while the camera is translating sideways. Notice that this time, the mentioned artifacts are less severe as the Reconstruction filter tries to solve those cases (cubes overlapping when background is excluded (bottom) or excluded cubes not smearing onto blurred background (top)).''

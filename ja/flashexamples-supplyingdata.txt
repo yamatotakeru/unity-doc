@@ -4,18 +4,26 @@ FlashからUnityにデータを提供したい場合、次の種類がサポー�
 
 最初に、オブジェクトのAction Script 3 実装を作成し、プロジェクトにクラスを含めます (ActionScriptと名前をつけたフォルダに):
 
-[@public class ExampleObject
+!!!ActionScript 3
+[@
+package
 {
-    public var anInt : int;
-    public var someString : String;
-    public var aBool : Boolean;
-}@]
+	public class ExampleObject
+	{
+		public var anInt : int;
+		public var someString : String;
+		public var aBool : Boolean;
+	}
+}
+@]
 
 次にAction Script 3 実装に合うC# または JavaScriptオブジェクトを作成します。
 
 以下の [[http://unity3d.com/support/documentation/ScriptReference/NotRenamedAttribute.html | NotRenamed]] 属性は コンストラクタ、メソッド、フィールド、およびプロパティの name mangling を防止します。
 
 [[http://unity3d.com/support/documentation/ScriptReference/NotConvertedAttribute.html | NotConverted]] 属性はビルド パイプラインにある型またはメンバをターゲット プラットフォームに変換しないように指示します。通常Flashにビルドするとき、C#/JavaScript スクリプトはActionScript (@@.as@@) スクリプトに変換されます。 [NotConverted] 属性を追加することでプロセスのオーバーライドが行われ、自身のオリジナルの .as スクリプトを手動で提供出来ます。自身で提供するダミーのC#/JavaScriptによりUnityにクラスのシグニチャを知らせ(すなわちどのクラスをコールが許可されるか)、自身のの .as スクリプトそれらの関数の実装を提供します。ActionScript バージョンはFlashにビルドしたときのみ使用されることに留意して下さい。エディタ上または他のプラットフォーム向けにビルドするときUnityはC#/JavaScriptバージョンを使用します。
+
+The [[http://unity3d.com/support/documentation/ScriptReference/NotFlashValidatedAttribute.html | NotFlashValidated]] attribute explicitly tells the Flash validator to skip the type or member, that way it can be implemented.
 
 !!!C#
 [@[NotConverted]
@@ -51,6 +59,7 @@ class ExampleObject
 
 次にAction Script 3 に自身のオブジェクトを取得する方法が必要です。例えば:
 
+!!!ActionScript 3
 [@public static function getExampleObject() : ExampleObject
 {
     return new ExampleObject();

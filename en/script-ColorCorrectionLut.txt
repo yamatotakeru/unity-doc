@@ -26,7 +26,7 @@ The following image shows an example of such an unwrapped texture which effectiv
 Attach:3DUnwrappedContrastEnhance.png
 ''The image shows a texture of the dimension 256x16, yielding a 16x16x16 color lookup texture (lut). If the resulting quality is too low, a 1024x32 texture  might yield better results (at the cost of memory).''
 
-Texture importer requirements include enabling Read/Write support and disabling texture compression. Otherwise, unwanted image artifcats will likely occur.
+Texture importer requirements include enabling Read/Write support and disabling texture compression. Otherwise, unwanted image artifacts will likely occur.
 
 !!Example Workflow
 

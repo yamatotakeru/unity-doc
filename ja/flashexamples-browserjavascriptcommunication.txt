@@ -9,6 +9,7 @@
 !!必要なJavaScript
 次のJavaScriptをHTMLページに追加してUnityによりパブリッシュされたSWFを供給します。これがActionScriptからコールされる関数を作成します: 
 
+!!!JavaScript
 [@
 <script type="text/javascript">
 
@@ -30,6 +31,7 @@ function calledFromActionScript()
 
 !!BrowserCommunicator.as (およびマッチングする C# クラス)
 
+!!!ActionScript 3
 [@
 package
 {
