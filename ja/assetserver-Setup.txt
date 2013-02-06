@@ -1,58 +1,58 @@
-! Setting up the Asset Server
+! Asset Server のセットアップ
 
-!! Server-side Installation
+!! サーバ サイドのインストール
 
-The Asset Server is designed to be a simple one-time installation on a server machine.  Interacting with the Asset Server is done through Unity.  Unity can be installed on the server machine, but it does not need to be. It must be administrated from a Client machine, where Projects and Users can be added. Each additional client must be configured to synchronize with a Project, using a specific User credential.
+Asset Server はサーバ機へのシンプルなワンタイム インストールとして設計されています。Asset Serverとの連携はUnityを通して行われます。Unityはサーバ機にインストール出来ますが、必ずしもそうする必要はありません。クライアント機から管理を行い、プロジェクトやユーザを追加出来ます。各々の追加クライアントは、特定のユーザ認証を通してプロジェクトと同期するように設定する必要があります。
 
-You can install the Asset Server on Mac OS X 10.4 or later, Windows XP, Windows Vista and various Linux distributions including CentOS, Ubuntu and Suse Linux.
-[[http://www.unity3d.com/asset-server | Download Unity Asset Server]] from here.
+Asset ServerはMac OS X 10.4 以降, Windows XP, Windows Vista および様々な Linux デイストリビューション、すなわち CentOS, Ubuntu および Suse Linux を含めてインストール出来ます。
+[[http://www.unity3d.com/asset-server | Unity Asset Server]] をリンクからダウンロードして下さい。
 
-The installer will install all necessary files, setup a database and launch the Asset Server. At the end of the process you will be asked to create an $$Admin password$$. This password is required to administer the Asset Server from within Unity.  You must connect to the Asset Server as the administrator before you can create any projects or users.
+インストーラにより全ての必要なファイルはインストールされ、データベースをセットアップし、Asset Server を起動します。フローの最後に $$Admin password$$ を入力するように求められます。このパスワードはUnityからAsset Serverを管理するのに必要です。プロジェクトやユーザの作成前に、Asset Serverに管理者として接続する必要があります。
 
 
-!! Administrating the Asset Server
+!! Asset Server の管理
 
-The Asset Server allows any number of $$Users$$ to connect to a $$Project$$.  The Administrator must first connect to the Server with Unity as a client and create new Projects and Users.
+Asset Server により任意の数の $$User$$ が $$Project$$ に接続出来ます。管理者はサーバに最初にクライアントとして接続して、新しいプロジェクトやユーザを作成する必要があります。
 
-To access the Administrator controls, launch Unity and select ^^Window->Asset Server^^, then click the ^^Administration^^ button.
+管理者ツール にアクセスふるには Unity を起動し、^^Window->Asset Server^^ を選択し、 ^^Administration^^ ボタンをクリックします。
 
 Attach:AssetServer-AdministrateDialog.png\\
-''The $$Administration$$ tab''
+''$$Administration$$ タブ''
 
-In the ``Server Address`` field, enter either the $$ip address$$ or $$host name$$ of the computer running the Asset Server that you want to administer.  If the Asset Server is installed on your local machine, you can use "localhost" as the ``Server Address``. Next, provide the administrator name and password. The administrator name is always "admin", and the password is what was entered when installing the Asset Server. Finally, hit the ^^Connect^^ button.  You're now connected to the Asset Server, and can perform the initial setup.
+``Server Address`` フィールドにて管理したいAsset Serverの$$IP address$$ または $$host name$$ を入力します。もしローカルマシンに Asset Server がインストールされていれば ``Server Address`` に "localhost" を使用出来ます。次に管理者のユーザ名とパスワードを入力します。管理者のユーザ名はつねに "admin" であり、パスワードは Asset Server をインストールしたときに入力した内容です。最後に ^^Connect^^ ボタンをクリックします。これで Asset Server に接続され、初期セットアップを実行出来ます。
 
 
-!!! Managing Projects and Users
+!!! プロジェクトおよびユーザの管理
 
-Each Server can contain several Projects, and each User can have permission to one or more Projects.  Projects are generally orthogonal, and unique in asset collections.  It is best to think "one Project equals one game".
+各々のサーバは複数のプロジェクトを含み、そして各々のユーザは一つ以上のプロジェクトに対するパーミションをつけることが出来ます。プロジェクトは通常 orthogonal (直交) であり、アセット コレクションに対して一意です。"プロジェクトとゲームは1:1" と考えるのがベストです。
 
-New Projects can be created by clicking on the ^^Create^^ button in the $$Server Administration$$ tab. 
+新規のプロジェクトの作成は $$Server Administration$$ タブの ^^Create^^ ボタンをクリックすることで作成出来ます。
 
 Attach:AssetServer-NewProject.png\\
-''Click Create, then enter a name for the new project''
+''Create をクリックし、新規プロジェクトの名前を入力します。''
 
-New users can be created by first selecting an existing project and then clicking on the ^^New User^^ button. 
+新規のユーザを作成するには、まず既存プロジェクトを選択して ^^New User^^ ボタンをクリックします。
 
 Attach:AssetServer-NewUser.png\\
-''Creating a new user''
+''新規ユーザの作成''
 
-After a user has been created in one Project, the user can be added to another project by enabling the checkbox on the left of the user name in the users list.
+一つのプロジェクトでユーザが作成された後、ユーザリストの左のチェックボックスを有効にすることで、ユーザを別のプロジェクトに追加出来ます。
 
-You can enable or disable user access for individual projects. 
-To completely remove a project or user from the server use the ^^Delete Project^^ and ^^Delete User^^ buttons.
-
-!!! Firewall settings
-
-The Unity Asset Server uses TCP port $$10733$$. You might need to enable connections to this port in your firewall and/or router.
+個別プロジェクトへのユーザ アクセスを有効/無効にすることが出来ます。
+サーバ上のプロジェクトまたはユーザを完全に削除するには ^^Delete Project^^ および ^^Delete User^^ ボタンを使用します。
 
 
-!! Advanced
 
-The Asset Server is built using a modified version of PostgreSQL.  Accessing the SQL database directly requires a bit of technical knowledge about SQL and Unix/Linux command lines.  User discretion is advised.
+Unity Asset Server はTCP ポート番号 $$10733$$ を使用します。ファイアウォールおよび/またはルーターで接続を有効にすることが必要な場合があります。
 
-!!! Backing up
 
-We have provided a command line tool to back up an asset server. The tool should be run from an administrator account on the machine running the asset server. Replace BACKUP_LOCATION with the path name you want the backup tool to place the backups:
+!! 上級者向け
+
+Asset Server は PostgreSQL の修正バージョンで作成されています。SQL データベースを直接アクセスするには SQL および Unix/Linux コマンドラインに関するかなりの技術的な知識ご求められます。ユーザ自身で使用するかどうか判断することを推奨します。
+
+!!! バックアップの取得
+
+Asset Server にはバックアップのためのコマンドライン ツールが用意されています。このツールにより Asset Server を実行しているマシンの管理者アカウントで実行すべきです。バックアップ先の場所はBACKUP_LOCATION の値を置き換えて指定して下さい:
 
 Mac OS X\\
 @@sudo /Library/UnityAssetServer/bin/as_backup @@ BACKUP_LOCATION
@@ -63,13 +63,13 @@ Linux\\
 Windows\\
 @@"%ProgramFiles%\Unity\AssetServer\bin\as_backup.cmd" @@ BACKUP_LOCATION
 
-as_backup will create a directory at BACKUP_LOCATION containing one or more files per project plus files containing information about each project and a backup of all users and their passwords.
+as_backup によりBACKUP_LOCATION の場所に、プロジェクト毎に一つ以上のファイルに加えて、各プロジェクトについての情報および全てのユーザおよびパスワード含むファイルのバックアップが含まれたディレクトリが作成されます。
 
-!!! Restoring a Backup
+!!! バックアップのリストア
 
-To restore an Asset Server backup produced with as_backup, first perform a clean installation of the Asset Server without any projects created. (The restore procedure will refuse to overwrite already existing projects with the same name.) 
+ as_backupを使用してAsset Serverのバックアップをリストアするには最初にプロジェクトの作成されてないAsset Server のクリーン インストールを実行します。(同一名の既存プロジェクトがある場合、リストア 処理は上書き出来ないと返す仕様になっています)。
 
-Then run the provided backup restoration tool, @@as_restore@@ pointing it to the location of a backup created with as_backup:
+次に、提供されているバックアップ リストア ツールを実行し、as_backup でバックアップを作成した場所 を@@as_restore@@ で指定します:
 
 Mac OS X\\
 @@sudo /Library/UnityAssetServer/bin/as_restore @@ BACKUP_LOCATION
@@ -80,11 +80,11 @@ Linux\\
 Windows\\
 @@"%ProgramFiles%\Unity\AssetServer\bin\as_restore.cmd" @@ BACKUP_LOCATION
 
-Note that you can also use as_backup and as_restore to move an asset server installation from one machine to another by performing the backup on the source machine, moving the backup directory to the destination machine (or mount it through a network file share,) and then running as_restore to insert the data into the newly installed Asset Server instance. This will even work when the source and destination Asset Servers have different versions or are running on different operating systems.
+as_backup および as_restore を使用してインストールされた Asset Server を一つのマシンから別のマシンへ移動するには、ソースのマシンでバックアップ実行して、バックアップ ディレクトリを移動先のマシンに移動して(またはネットワーク ファイル共有でマウントして) 、as_restoreをを実行してデータを新たにインストールしてAsset Server インスタンスにデータを挿入する手順でも、対応が出来ることに留意して下さい。
 
-!!! Locating the database name of an Asset Server Project
+!!! Asset Server プロジェクトでデータベース名を見つける
 
-To view the tables in a Project database, first you need to figure out the name of the actual database. Run this command line command on the machine hosting the Asset Server:
+プロジェクト データベース でテーブルを参照するには実際のデータベース名を知る必要が次のコマンドライン コマンドをAsset Serverをホストしているマシンで実行します:
 
 Mac OS X\\
 @@/Library/UnityAssetServer/bin/psql -U admin -h localhost -d postgres -c 'select * from all_databases__view'@@
@@ -95,7 +95,7 @@ Linux\\
 Windows\\
 @@"%ProgramFiles%\Unity\AssetServer\bin\psql.exe" -U admin -h localhost -d postgres -c "select * from all_databases__view"@@
 
-This and other commands will prompt you for a password.  Every time this happens, enter the admin password for the database, which was set during the installation.  The result will be a table that follows this basic layout:
+これおよび他のコマンドでパスワード入力を求められます。その都度、インストールの時にセットした次の基本レイアウトに従った表のレコードとなります:
 
 [@
     databasename    |    projectname     |       description        | version 
@@ -106,13 +106,13 @@ This and other commands will prompt you for a password.  Every time this happens
 (3 rows)
 @]
 
-Now you need to identify the "databasename" of the Project you want to back up. When creating a database, the default "databasename" is same as the "projectname" as shown inside Unity, but in lowercase and spaces replaced with underscores.
+次にバックアップしたいプロジェクトの "databasename" を識別する必要があります。データベースを作成するとき、デフォルトの "databasename" はUnityで表示される "projectname" と同じですが、大文字はに、スペースはアンダースコアに置換されます。
 
-Note that if your server hosts multiple PostgreSQL databases on different ports you nay need to explicitly provide the port used to connect to the Asset Server database.  In this case add -p 10733 to the commands given (assuming you have used the default port of 10733 for your instance.)  For example:
+もしサーバが複数のPostgreSQLデータベースを異なるポートでホストした場合、Asset Server データベースに接続するポートを明示する必要があることに留意して下さい。
 
 Linux\\
 @@/opt/unity_asset_server/bin/psql -U admin -h localhost -d postgres -c 'select * from all_databases__view' -p 10733@@
 
-!!! Additional SQL Functions
+!!! 追加のSQL関数
 
-These and all other commands use tools from the PostgreSQL distribution. You can read more about these tools here: http://www.postgresql.org/docs/8.3/interactive/reference-client.html
+これらおよび他の全てのコマンドは PostgreSQL ディストリビューションからのツールを使用します。これらのツールについての詳細は次を参照して下さい: http://www.postgresql.org/docs/8.3/interactive/reference-client.html
