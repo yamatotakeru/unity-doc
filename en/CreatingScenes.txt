@@ -18,7 +18,7 @@ Once your GameObject is in the scene, you can use the $$Transform Tools$$ to pos
 
 !!Working with Cameras
 
-$$Cameras$$ are the eyes of your game.  Everything the player will see when playing is through one or more cameras.  You can position, rotate, and parent cameras just like any other GameObject.  A camera is just a GameObject with a Camera Component attached to it.  Therefore it can do anything a regular GameObject can do, and then some camera-specific functions too.  There are also some helpful Camera scripts that are installed with the standard assets package when you create a new project.  You can find them in ^^Components->Camera-Control^^ from the menu.  There are some additional aspects to cameras which will be good to understand.  To read about cameras, view the [[class-Camera|Camera component page]].
+$$Cameras$$ are the eyes of your game.  Everything the player will see while playing is through one or more cameras.  You can position, rotate, and parent cameras just like any other GameObject.  A camera is just a GameObject with a Camera Component attached to it.  Therefore it can do anything a regular GameObject can do, and then some camera-specific functions too.  There are also some helpful Camera scripts that are installed with the Scripts package.  The Scripts package can be included when you create a new project, or you can use the ^^Assets->Import Package...^^ menu.  The scripts that you import can be found in ^^Components->Camera-Control^^ from the menu.  There are some additional aspects to cameras which will be good to understand.  To read about cameras, view the [[class-Camera|Camera component page]].
 
 !!Lights
 

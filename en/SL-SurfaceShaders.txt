@@ -87,6 +87,11 @@ Additional values that can be put into Input structure:
 * @@float3 worldNormal; INTERNAL_DATA@@ - will contain world normal vector ''if surface shader writes to o.Normal''. To get the normal vector based on per-pixel normal map, use @@WorldNormalVector (IN, o.Normal)@@.
 
 
+!! Surface shaders and DirectX 11
+
+Currently some parts of surface shader compilation pipeline do not understand [[DirectX 11]]-specific HLSL syntax, so if you're HLSL features like StructuredBuffers, RWTextures and other non-DX9 syntax, you have to wrap it into a DX11-only preprocessor macro. See [[SL-PlatformDifferences | Platform Specific Differences]] page for details.
+
+
 !! Further Documentation
 
 (:tocportion:)

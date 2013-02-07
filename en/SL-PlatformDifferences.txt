@@ -49,6 +49,19 @@ Most common places where you'd run into this:
 * Partially initialized values, e.g. a function returning float4, but the code only sets .xyz values of it. Make sure to set all values, or change to float3 if you only need those.
 
 
+!! DirectX 11 HLSL syntax and Surface Shaders
+
+Currently some parts of [[SL-SurfaceShaders | surface shader]] compilation pipeline do not understand DX11-specific HLSL syntax. If you're HLSL features like StructuredBuffers, RWTextures and other non-DX9 syntax, you have to wrap it into a DX11-only preprocessor macro:
+
+    #ifdef SHADER_API_D3D11
+    // DX11-specific code, e.g.
+    StructuredBuffer<float4> myColors;
+    RWTexture2D<float4> myRandomWriteTexture;
+    #endif
+
+
+
+
 !! Using OpenGL Shading Language (GLSL) shaders with OpenGL ES 2.0
 
 OpenGL ES 2.0 provides only limited native support for OpenGL Shading Language (GLSL), for instance OpenGL ES 2.0 layer provides no built-in parameters to the shader.
