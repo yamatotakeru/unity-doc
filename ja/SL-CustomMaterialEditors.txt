@@ -1,10 +1,10 @@
-! Custom Material Editors
+! カスタム マテリアルエディタ
 
-Sometimes you have a shader with some interesting data types that can not be nicely represented using the built in Unity material editor. Unity provides a way to override the default material inspector so that you can define your own. You can use this feature to define custom controls and data range validation.
+シェーダを使用する場合に、興味深いデータタイプがあり、Unity 内蔵シェーダで綺麗に再現できる場合があります。Unityにはデフォルトのマテリアル インスペクタを自身で定義できるようにオーバライドできる方法が用意されています。この機能を用いてカスタムのコントロールおよびデータ範囲のバリデーションをを定義できます。
 
-The fist part to writing a custom material editor is defining a shader that requires a [[SL-CustomEditor|Custom Editor]]. The name you use for the custom editor is the class that will be looked up by Unity for the material editor.
+カスタムのマテリアル エディタを記述する最初の部分は、 [[SL-CustomEditor|カスタム エディタ]] を必要とするシェーダを定義することです。カスタム エディタで使用する名前は Unity でマテリアルエディタをルックアップするときのクラス名です。
 
-To define a custom editor you extend from the MaterialEditor class and place the script below an Editor folder in the assets directory.
+カスタム エディタを定義するには、MaterialEditor クラスを拡張し、スクリプトを Assets ディレクトリの中の Editor フォルダにスクリプトを配置します。
 
 (:code:)
 using UnityEditor;
@@ -16,10 +16,10 @@ public class CustomMaterialInspector : MaterialEditor {
 }
 (:codeend:)
 
-Any shader that has a custom editor defined (__CustomEditor "CustomMaterialInspector"__) will find the editor listed above and execute the associated code. 
+カスタム エディタを定義した全てのシェーダ(__CustomEditor "CustomMaterialInspector"__) はエディタを上でリストされているのを見つけて、紐づくコードを実行します。
 
-!! A real example
-So we have a situation where we have a shader that can work in two modes; it renders standard diffuse lighting or it only renders the red components of the source texture. This is achieved using shader multi compilation.
+!! 実際のサンプル
+シェーダが二つのモードで動作するような状況があると仮定します。標準の拡散ライティングでレンダリングするか、ソース テクスチャの赤コンポーネントのみをレンダリングするとします。これはシェーダのマルチコンパイルにより実現できます。
 
 (:code:)
 Shader "Custom/Redify" {
@@ -56,7 +56,7 @@ Shader "Custom/Redify" {
 }
 (:codeend:)
 
-As you can see the shader has two Keywords available for setting: REDIFY_ON and REDIFY_OFF. These can be changed be set on a per material basis by using the shaderKeywords property of the material. below is an editor that does this.
+見て分かるようにシェーダは二つのキーワードが設定で利用可能です: REDIFY_ON および REDIFY_OFF です。これらはマテリアル ベースに変更するにはマテリアルの shaderKeywords プロパティを使用出来ます。以下でこれを行うエディタを示します。
 
 (:code:)
 using System.Collections.Generic;
@@ -68,24 +68,24 @@ public class CustomMaterialInspector : MaterialEditor {
 
 	public override void OnInspectorGUI ()
 	{
-		// render the default inspector
+		// デフォルト インスペクタをレンダリング
 		base.OnInspectorGUI ();
 
-		// if we are not visible... return
+		// 非表示の場合は return
 		if (!isVisible)
 			return;
 
-		// get the current keywords from the material
+		// マテリアルの現在のキーワードを取得
 		Material targetMat = target as Material;
 		string[] keyWords = targetMat.shaderKeywords;
 
-		// see if redify is set, then show a checkbox
+		// redify がセットされているか確認し、チェックボックスを表示
 		bool redify = keyWords.Contains ("REDIFY_ON");
 		EditorGUI.BeginChangeCheck();
 		redify = EditorGUILayout.Toggle ("Redify material", redify);
 		if (EditorGUI.EndChangeCheck())
 		{
-			// if the checkbox is changed, reset the shader keywords
+			// もしチェックボックスが変更されていればシェーダキーワードをリセット
 			var keywords = new List<string> { redify ? "REDIFY_ON" : "REDIFY_OFF"};
 			targetMat.shaderKeywords = keywords.ToArray ();
 			EditorUtility.SetDirty (targetMat);
@@ -95,18 +95,18 @@ public class CustomMaterialInspector : MaterialEditor {
 (:codeend:)
 
 !!API
-The API for writing custom editors is mostly inherited from the base material editor class. Some important API points are as follows:
+カスタムエディタを記述する API は大部分がベースのマテリアルエディタ クラスから継承されます。APIのいくつかの重要なポイントは次のとおりです:
 
 !!! void SetShader(Shader shader, bool registerUndo)
-Use this to change the shader that the material is pointing to. This handles rebuilding the material editor and dirtying the material properly.
+これを使用してマテリアルが指しているシェーダを変更します。これはマテリアルエディタの再構築およびマテリアルを適切に汚すハンドリングを行います。
 
 !!! bool isVisible
-Use this to check if the material editor is expanded. The Unity material editor does not normally render if it is not expanded.
+これを使用してマテリアル エディタが展開されているかチェックするのに使用します。 Unity マテリアル エディタが展開されてない場合は通常レンダリングを行いません。
 
 !!! void ShaderProperty(Shader shader, int propertyIndex)
-Draw the property of Shader shader at index propertyIndex into the Material editor.
+shader シェーダのプロパティを propertyIndex インデックスをマテリアルエディタに描画します。
 
-!!! Use the following for getting / setting values of a material.
+!!! マテリアルの値のGetter/Setterに次を使用
 float GetFloat (string propertyName, out bool hasMixedValue)\\
 void SetFloat (string propertyName, float value)\\
 Color GetColor (string propertyName, out bool hasMixedValue)\\
@@ -120,7 +120,7 @@ Vector2 GetTextureOffset(string propertyName, out bool hasMixedValueX, out bool 
 void SetTextureScale(string propertyName, Vector2 value, int coord)\\
 void SetTextureOffset(string propertyName, Vector2 value, int coord)\\
 
-!!! Use the following to draw a property in the inspector
+!!! インスペクタでプロパティを描画するのに次を使用
 float RangeProperty(string propertyName, string label, float v2, float v3)\\
 float FloatProperty(string propertyName, string label)\\
 Color ColorProperty(string propertyName, string label)\\
@@ -128,12 +128,12 @@ Vector4 VectorProperty(string propertyName, string label)\\
 Texture TextureProperty(string propertyName, string label, ShaderUtil.ShaderPropertyTexDim texDim)\\
 Texture TextureProperty(string propertyName, string label, ShaderUtil.ShaderPropertyTexDim texDim, bool scaleOffset)\\
 
-!!! Render the standard material properties
+!!! 標準のマテリアル プロパティをレンダリング
 bool PropertiesGUI()\\
 
 
-!!How the default material editor works
-The default Unity editor renders all the properties that exist in a shader to the the material editor. Below is a custom material editor that behaves similar to the Unity material editor. Use this example if you wish to manually render the default fields.
+!! デフォルトのマテリアル エディタが動作する方法
+デフォルトの Unity エディタはシェーダに存在する全てのプロパティをマテリアル エディタにレンダリングします。以下のカスタムマテリアル エディタは Unity マテリアルエディタと同様の動作をします。手動でデフォルトのフィールドをレンダリングしたい場合は次のサンプルを使用します。
 
 (:code:)
 using System.Collections.Generic;
@@ -143,8 +143,8 @@ using System.Linq;
 
 public class CustomMatInspector : MaterialEditor {
 
-	// this is the same as the ShaderProperty function, show here so 
-	// you can see how it works
+	// これは ShaderProperty 関数と同様、ここでどのようにthis is the same as the ShaderProperty function, show here so 
+	// 動作するか確認できるように表示
 	private void ShaderPropertyImpl(Shader shader, int propertyIndex)
 	{
 		int i = propertyIndex;
