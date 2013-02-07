@@ -1,10 +1,10 @@
-!Example: Flash Vars
+!サンプル: Flash Vars
 
-If you wish to obtain parameters from FlashVars, you have to create a LoaderInfo object in Actionscript and access its property "parameters", which is an object that contains name-value pairs representing the parameters provided to the loaded SWF file.
+FlashVars からパラメータを取得したい場合、Actionscript で LoaderInfo オブジェクトを作成する必要があり、"parameters" プロパティにアクセスする必要があります。これはロードされたSWFファイルに提供するパラメータを表す name-value ペアを含んだオブジェクトです。
 
-Create a folder inside Assets called "ActionScript". Now create an empty textfile called "FlashVars.as" inside this folder, and insert the following code.
+Assets フォルダの中に "ActionScript" というフォルダを作成します。次にフォルダの中に空の "FlashVars.as" テキストファイルを作成して、次のコードを挿入します。
 
-!!!ActionScript 3
+!!!Actionscript 3
 [@package {
 	import com.unity.UnityNative; 
 	import flash.display.LoaderInfo;
@@ -20,7 +20,7 @@ Create a folder inside Assets called "ActionScript". Now create an empty textfil
 	}
 }@]
 
-This Actionscript function will obtain the FlashVars and concatenate the name-value pairs into a string that can be passed to Unity. Call the function and parse the returned list of parameters in a table.
+Actionscript 関数は FlashVars を取得してname-value ペアを連結して Unity に渡すことが出来る文字列にします。関数をコールして戻されたパラメータのリストをパースして表データにします。
 
 !!!C#
 [@string parameters;
@@ -36,7 +36,7 @@ foreach (string parameter in list) {
 	paramTable.Add(key, val);
 }@]
 
-The parameters string and parameters table are defined first. The table is a dictionary of string keys and values that will contain the FlashVars. Then the Actionscript function is called, and the name-value pairs are extracted from parameters and added to the table. Now you can read the parameters in you application. In the following example some values are shown and a given scene will be loaded as defined in FlashVars.
+パラメータ文字列および表データは最初に定義されます。表データは FlashVars を含む文字列のキーとバリューのディクショナリです。次に Actionscript 関数がコールされて、name-value ペアはパラメータから抽出されてテーブルに追加されます。これで自身のアプリケーションからパラメータを読み込むことご出来ます。次のサンプルでは、いくつかの値が表示され、FlashVarsで定義された特定のシーンぎロードされます。
 
 !!!C#
 [@void OnGUI () {
@@ -48,11 +48,11 @@ The parameters string and parameters table are defined first. The table is a dic
 		Application.LoadLevel(paramTable["scene"]);
 }@]
 
-Build the project for the first time to generate an HTML file, and edit its FlashVars for IE and other browsers (two different lines).
+最初にプロジェクトのビルドを行ってHTMLファイルを生成し、IEおよび他のブラウザ向けにFlashVarsを編集します(二つの異なる行)。
 
 !!!HTML
 [@<param name="flashvars" value="unitydebug=false&amp;deeptrace=false&amp;scene=Scene1" />@]
 
-Finally open the HTML file in a browser to run the project.
+最後にブラウザでHTMLファイルを開きプロジェクトを実行します。
 
 .
