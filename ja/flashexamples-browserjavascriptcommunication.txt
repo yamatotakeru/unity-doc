@@ -78,6 +78,7 @@ package
 
 クラスのC#ダミー実装 :
 
+!!!C#
 [@
 [NotConverted]
 [NotRenamed]
