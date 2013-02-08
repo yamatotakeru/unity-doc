@@ -88,38 +88,6 @@ return half4(lm, 1);
 
 // 2 texture reads, very few instructions
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 fixed4 c = tex2D (_MainTex, i.uv.xy);	
 			
 c.xyz += texCUBE(_EnvTex,i.refl) * _ReflectionColor * c.a;
@@ -131,28 +99,24 @@ return c;
 
 (:table border=0:)
 (:cellnr:)
-(:div style="float:right; text-align:right; padding-right:20px;":)
 
-Reflective Bumped Specular
+Attach:bumpStatue.gif\\
+Reflective Bumped Specular\\
+Attach:statuetex2.jpg
 
-%thumb width=180px float=left padding=5px%Attach:statuetex2.jpg %thumb width=150px float=right padding=5px%Attach:bumpStatue.gif
-(:divend:)
-(:cell:)
-(:div style="float:left; text-align:left; padding-left:20px;":)
-
-Baked Light with Reflection
-
-%thumb width=150px  padding=5px%Attach:bakedStatue.gif %thumb width=180px float=right padding=5px%Attach:statuetex1.jpg
-
-(:divend:)
 (:cellnr:)
+
+Attach:bakedStatue.gif\\
+Baked Light with Reflection\\
+Attach:statuetex1.jpg
+
 (:tableend:)
 
 !!! Render to Texel
 
 The real-time light is definitely higher quality, but the performance gain from the baked version is massive. So how was this done? An editor tool called [[http://u3d.as/content/forest-johnson/render-to-texel-baker/3fD | Render to Texel]] was created for this purpose. It bakes the light into the texture through the following process: 
 
-* Transform the tangent space normal map to world space via script. %thumb width=300px float=right padding=5px%Attach:statueBake.jpg
+* Transform the tangent space normal map to world space via script.
 
 * Create a world space position map via script.
 
@@ -161,6 +125,8 @@ The real-time light is definitely higher quality, but the performance gain from 
 * Average results from several different vantage points to yield something which looks plausible all around, or at least from common viewing angles in your game. 
 
 This is how the best graphics optimizations work. They sidestep tons of calculations by preforming them in the editor or before the game runs. In general, this is what you want to do:
+
+%Attach:statueBake.jpg
 
 * Create something that looks great, don't worry about performance.
 
@@ -411,7 +377,6 @@ If targeting a specific graphics architecture, such as the Nvidia Tegra or Qualc
 * Bake lighting on your model.
 * Run the High Pass filter on the result in Photoshop.
 * Edit the "Mobile/Cubemapped" shader, included in the Render to Texel package, so that the missing low-frequency light details are replaced by vertex light.
-
 
 
 

@@ -10,7 +10,7 @@ to
 
 [@#define ENABLE_INTERNAL_PROFILER 1@]
 
-Select ^^Run->Console^^ in the XCode menu to display the output console (GDB) and then run your project. Unity will output statistics to the console window every thirty frames.
+Select ^^View > Debug Area > Activate Console^^ in the XCode menu to display the output console (GDB) and then run your project. Unity will output statistics to the console window every thirty frames.
 >><<
 
 !Android!
