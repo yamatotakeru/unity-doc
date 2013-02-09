@@ -117,8 +117,7 @@ Play をクリックして ``speed`` 値を変更してください。キュー�
 
 ``scriptA = GetComponent("ScriptA");``
 
-``GetComponent()`` を使用するうえでの詳細については [[ScriptRef:GameObject.GetComponent.html | GetComponent() Script Reference page]].
-For more help with using ``GetComponent()``, take a look at the [[ScriptRef:GameObject.GetComponent.html | スクリプティング リファレンスの GetComponent() ページ]] を参照して下さい。
+``GetComponent()`` を使用するうえでの詳細についてはスクリプティング リファレンスの [[ScriptRef:GameObject.GetComponent.html | GetComponent()]]  ページを参照して下さい。
 
 
 !! 他のスクリプト コンポーネント変数へのアクセス
