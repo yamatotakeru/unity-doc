@@ -14,6 +14,10 @@
 
 もし全てのシェーダが、例えば、"RenderType" タグの値に "Opaque" 、"Transparent" 、"Background" 、"Overlay"があった場合、不透明なオブジェクトのみレンダリングするReplacement Shaderを、RenderType=Solid [[SL-SubshaderTags|tag]] であるひとつのサブシェーダを使用して、記述することが出来ます。他のタグのタイプはReplacement Shaderで見つからないため、オブジェクトはレンダリングされません。あるいは複数のサブシェーダを、異なる"RenderType" のタグの値のために、記述することが出来ます。偶然に、全てのUnity内蔵シェーダは"RenderType" タグのセットを持っています。
 
+!! Lit Shader Replacement
+
+Shader Replacement を使用するとき、シーンはカメラで設定されたレンダリングパスを使用してレンダリングされます。つまり Replacement に使用されるシェーダは シャドウ および ライティングパス を含めることが出来るということです（サーフェイス シェーダ を Shader Replacement に使用できます）。これは特殊エフェクトのレンダリング および シーンのデバッグに便利です。
+
 !! Unity内蔵シェーダでのReplacement Shaderタグ
 
 全てのUnity内蔵シェーダは"$$RenderType$$" タグのセットを持ち、Replaced Shaderで使用することが出来ます。タグの値は次の通りです：
