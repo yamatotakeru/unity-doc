@@ -4,3 +4,5 @@
 
 
 (:tocportion:)
+
+See the [[class-EditorManager | Editor Settings]] page for how to enable this feature.

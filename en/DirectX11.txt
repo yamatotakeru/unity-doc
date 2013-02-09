@@ -28,6 +28,11 @@ Surface shaders have support for simple tessellation & displacement, see [[SL-Su
 When manually writing [[SL-ShaderPrograms | shader programs]], you can use full set of DX11 shader model 5.0 features, including geometry, hull & domain shaders.
 
 
+!! Surface shaders and DX11
+
+Currently some parts of [[SL-SurfaceShaders | surface shader]] compilation pipeline do not understand DX11-specific HLSL syntax, so if you're HLSL features like StructuredBuffers, RWTextures and other non-DX9 syntax, you have to wrap it into a DX11-only preprocessor macro. See [[SL-PlatformDifferences | Platform Specific Differences]] page for details.
+
+
 !! DirectX 11 Examples
 
 The following screenshots show examples of what becomes possible with DirectX 11.

@@ -117,7 +117,7 @@ Pretend you are writing ''Script B'' and you want to make a reference to ''Scrip
 
 ``scriptA = GetComponent("ScriptA");``
 
-For more help with using ``GetComponent()``, take a look at the [[ScriptRef:GameObject.GetComponent.html | GetComponent() Script Reference page]].
+For more help with using ``GetComponent()``, take a look at the [[ScriptRef:GameObject.GetComponent.html | GetComponent()]] Script Reference page.
 
 
 !! Accessing variables in other script Components

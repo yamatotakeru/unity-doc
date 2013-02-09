@@ -89,38 +89,6 @@ return half4(lm, 1);
 
 // テクスチャ読み込み 2 回、極めて少ない命令
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 fixed4 c = tex2D (_MainTex, i.uv.xy);	
 			
 c.xyz += texCUBE(_EnvTex,i.refl) * _ReflectionColor * c.a;
@@ -412,7 +380,6 @@ OpenGL ES 2.0をサポートする全てのAndroidデバイスは [[Main.class-T
 * モデルにライティングを焼き込みます。
 * 出力結果にPhotoshop上でさらにハイパスフィルタをかけます。
 *  Render to Texel パッケージに含まれる "Mobile/Cubemapped" シェーダの中身を、低周波のライト詳細が頂点ライトで置き換えられるように、編集します。
-
 
 
 
