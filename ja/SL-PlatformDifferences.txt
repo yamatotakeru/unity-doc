@@ -49,6 +49,19 @@ Direct3D 9やOpenGLはNVIDIAのCgを使用してシェーダをコンパイル�
 * 部分的に初期化された値、例えばfloat4を戻す関数があるけれど、コードが.xyzしか戻さない場合。全ての値を戻すか、float3で良いのならばそのように変更します。
 
 
+!! DirectX 11 HLSL 文法および サーフェイス シェーダ
+
+現在 [[SL-SurfaceShaders | サーフェイス シェーダ]] の一部のコンパイル パイプラインでは DirectX 11 特有の HLSL 文法が解釈されません。もし StructuredBuffers, RWTextures およびその他の 非 DirectX 9 文法の HLSL 機能を使用する場合、DirectX 11 専用のプリプロセッサ マクロにラッピングする必要があります:
+
+    #ifdef SHADER_API_D3D11
+    // DirectX 11特有コードの例
+    StructuredBuffer<float4> myColors;
+    RWTexture2D<float4> myRandomWriteTexture;
+    #endif
+
+
+
+
 !! OpenGL ES 2.0でOpenGLシェーダ言語(GLSL)のシェーダを使用する
 
 OpenGL ES 2.0は、OpenGLシェーダ言語(GLSL)についてネイティブサポートが限定されていて、例えばOpenGL ES 2.0のレイヤーはシェーダに対して、内蔵パラメータを提供していません。
