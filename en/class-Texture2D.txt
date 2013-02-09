@@ -248,7 +248,7 @@ Unity can read the following file formats: PSD, TIFF, JPG, TGA, PNG, GIF, BMP, I
 [[#texturesizes]]
 !!! Texture Sizes
 
-Ideally texture sizes should be powers of two on the sides. These sizes are as follows: 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048 etc. pixels. The textures do not have to be square, i.e. width can be different from height.
+Ideally texture sizes should be powers of two on the sides. These sizes are as follows: 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048 etc. pixels. The textures do not have to be square, i.e. width can be different from height.  Note that each platform may impose maximum texture sizes.
 
 It is possible to use other (non power of two - "NPOT") texture sizes with Unity. Non power of two texture sizes generally take slightly more memory and might be slower to read by the GPU. If the GPU does not support NPOT texture sizes, then Unity will scale and pad the texture up to next power of two size, which will use even more memory and make loading slower. In general you'd want to use non power of two sizes only for GUI purposes.
 
