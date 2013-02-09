@@ -10,11 +10,14 @@ private static extern float FooPluginFunction ();@]
 # iOSのビルドターゲットにエディタを設定する
 # 生成されたXcodeプロジェクトの "Classes"フォルダにあなたのネイティブコードのソースファイルを追加します（このフォルダには、プロジェクトが更新されたときに上書きされませんが、あなたのネイティブコードをバックアップすることを忘れないでください）。
 
-もしC++（.cpp）もしくはObjective-C（.mm）を使用してプラグインを実装している場合、 [[http://en.wikipedia.org/wiki/Name_mangling | name mangling issues]] 問題を避けるため、Cリンケージ（C linkage）で宣言されている事を確認する必要があります。
+もしC++（.cpp）もしくはObjective-C++（.mm）を使用してプラグインを実装している場合、 [[http://en.wikipedia.org/wiki/Name_mangling | Name Mangling]] の問題を避けるため、Cリンケージ（C linkage）で宣言されている事を確認する必要があります。
 
 [@extern "C" {
   float FooPluginFunction ();
 } @]
+
+C または Objective-C で書かれたプラグインは、言語で Name Mangling を使用しないため、これを使用する必要がありません。
+
 
 !! C#からプラグインを利用する
 
