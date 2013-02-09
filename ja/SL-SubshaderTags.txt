@@ -45,6 +45,10 @@ Tags { "Queue" = "Geometry+1" }
 
 
 
+!!! ForceNoShadowCasting タグ
+
+もし``ForceNoShadowCasting`` が使用されていて、値が"True" である場合、このサブシェーダを使用するオブジェクトはシャドウを投影しません。これは、透過オブジェクトに Shader Replacement を使用している場合や、別のサブシェーダからシャドウ パスを継承したくない場合にもっとも便利です。
+
 !!! IgnoreProjectorタグ
 
 もし``IgnoreProjector`` が使用されていて、値が"True" である場合、このシェーダを使用するオブジェクトは[[class-Projector | Projectors]] により影響されません。これは、Projectorsが影響するための良い方法がないため、部分的に透過であるオブジェクトで便利です。
