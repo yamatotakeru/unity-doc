@@ -1,4 +1,4 @@
-! メッシュ レンダラ
+! メッシュ レンダラ / Mesh Renderer
 
 $$Mesh Renderer$$ は、[[class-MeshFilter|Mesh Filter]] からのジオメトリを使い、オブジェクトの [[class-Transform|Transform]] コンポーネントで定義された位置でレンダリングします。
 

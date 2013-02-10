@@ -1,4 +1,4 @@
-! Unity マニュアル
+! Unity マニュアル / Unity Manual
 
 Unityの世界へようこそ！
 

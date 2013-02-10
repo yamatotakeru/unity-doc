@@ -1,4 +1,4 @@
-!シーンビュー （Scene View）
+!シーンビュー （Scene View） / Scene View
 
 Attach:Editor-Scene.png\\
 ''The $$Scene View$$''

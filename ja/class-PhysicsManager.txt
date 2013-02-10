@@ -1,4 +1,4 @@
-! 物理特性マネージャ
+! 物理特性マネージャ / Physics Manager
 
 $$Physics Manager$$ にアクセスするには、メニューバーから ^^Edit->Project Settings->Physics^^ を選択します。
 

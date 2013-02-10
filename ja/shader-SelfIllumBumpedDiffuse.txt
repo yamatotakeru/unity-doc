@@ -1,4 +1,4 @@
-! 自己発光法線マップ拡散
+! 自己発光法線マップ拡散 / Self-Illuminated Normal mapped Diffuse
 
 Attach:Shaders./Shader-IllumBump.png
 

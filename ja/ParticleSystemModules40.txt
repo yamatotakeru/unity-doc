@@ -1,4 +1,4 @@
-! パーティクルシステム モジュール (Shuriken)
+! パーティクルシステム モジュール (Shuriken) / Particle System Modules (Shuriken)
 
 このページは個別のモジュールおよびそのプロパティに特化しています。モジュールの紹介については [[ParticleSystemModulesIntro|このページ]] を参照下さい。
 

@@ -1,4 +1,4 @@
-! ShaderLab文法：Blending
+! ShaderLab文法：Blending / ShaderLab syntax: Blending
 
 Blendingは透過のカラー作成に使用します。
 

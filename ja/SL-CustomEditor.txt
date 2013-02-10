@@ -1,4 +1,4 @@
-! ShaderLab 文法: CustomEditor
+! ShaderLab 文法: CustomEditor / ShaderLab syntax: CustomEditor
 
 シェーダに対して CustomEditor を定義することが出来ます。Unityはこのときにこの名前で MaterialEditor を拡張したクラスを探します。もし見つかった場合、このシェーダを使用する全てのマテリアルがこのマテリアル インスペクタを使用します。サンプルについては [[SL-CustomMaterialEditors| カスタム マテリアル エディタ]] を参照して下さい。
 

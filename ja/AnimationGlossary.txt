@@ -1,4 +1,4 @@
-!アニメーションおよびメカニム用語
+!アニメーションおよびメカニム用語 / A Glossary of Animation and Mecanim terms
 
 || border=1
 ||! アイコン||! 用語 ||! 説明 ||! 概念の種類||! 使用方法／コメント ||

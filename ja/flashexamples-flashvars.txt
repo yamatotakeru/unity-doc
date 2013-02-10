@@ -1,4 +1,4 @@
-!サンプル: Flash Vars
+!サンプル: Flash Vars / Example: Flash Vars
 
 FlashVars からパラメータを取得したい場合、Actionscript で LoaderInfo オブジェクトを作成する必要があり、"parameters" プロパティにアクセスする必要があります。これはロードされたSWFファイルに提供するパラメータを表す name-value ペアを含んだオブジェクトです。
 

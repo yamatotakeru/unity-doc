@@ -1,4 +1,4 @@
-! スキン クロス
+! スキン クロス / Skinned Cloth
 
 Attach:SkinnedCloth.png\\
 「シーン ビューとインスペクタでのスキン クロス」

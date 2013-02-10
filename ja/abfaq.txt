@@ -1,4 +1,4 @@
-! アセットバンドル FAQ
+! アセットバンドル FAQ / AssetBundles FAQ
 
 #[[#whatare|アセットバンドルとは何ですか？]]
 #[[#whatfor|何に使用しますか？]]

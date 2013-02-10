@@ -1,4 +1,4 @@
-! 透明鏡面
+! 透明鏡面 / Transparent Specular
 
 Attach:Shaders./Shader-TransSpec.png
 

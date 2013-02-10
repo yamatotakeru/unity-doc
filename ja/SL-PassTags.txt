@@ -1,4 +1,4 @@
-! ShaderLab文法：Passタグ
+! ShaderLab文法：Passタグ / ShaderLab syntax: Pass Tags
 
 Passはタグを使用していつどのようにしてレンダリングエンジンによりレンダリングすべきかを指定します。
 

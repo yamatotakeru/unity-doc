@@ -1,4 +1,4 @@
-! Asset Server のセットアップ
+! Asset Server のセットアップ / Setting up the Asset Server
 
 !! サーバ サイドのインストール
 

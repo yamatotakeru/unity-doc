@@ -1,4 +1,4 @@
-! メッシュ フィルタ
+! メッシュ フィルタ / Mesh Filter
 
 $$Mesh Filter$$ はアセットからメッシュを取り、画面上でのレンダリングのために、[[class-MeshRenderer|Mesh Renderer]] に渡します。
 

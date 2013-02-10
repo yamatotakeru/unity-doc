@@ -1,4 +1,4 @@
-!球体コライダ
+!球体コライダ / Sphere Collider
 $$Sphere Collider$$ は、基本的な球体形状の衝突プリミティブです。
 
 Attach:Inspector-SphereCollider.png\\

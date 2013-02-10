@@ -1,4 +1,4 @@
-! Androidのプラグインをビルドする
+! Androidのプラグインをビルドする / Building Plugins for Android
 
 このページはAndroidの [[Plugins | Native Code Plugins]] について記述します。
 

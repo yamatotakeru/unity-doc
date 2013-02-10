@@ -1,4 +1,4 @@
-! デカール
+! デカール / Decal
 
 Attach:Shaders./Shader-NormalDecal.png
 

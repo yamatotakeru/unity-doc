@@ -1,4 +1,4 @@
-! シェーダを書く場合のパフォーマンスのヒント
+! シェーダを書く場合のパフォーマンスのヒント / Performance Tips when Writing Shaders
 
 !! 常識を使う ;)
 

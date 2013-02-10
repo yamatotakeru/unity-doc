@@ -1,4 +1,4 @@
-! 物理コンポーネント
+! 物理コンポーネント / Physics Components
 
 (:include PhysicsBase:)
 

@@ -1,4 +1,4 @@
-! ShaderLab文法: Color、Material、Lighting
+! ShaderLab文法: Color、Material、Lighting / ShaderLab syntax: Color, Material, Lighting
 
 materiaとlightingパラメータは内蔵の頂点ライティングを制御するのに使用します。頂点ライティングは各頂点で計算する標準的なDirect3D／OpenGLライティングモデルです。``Lighting on``により有効化されます。は$$Material$$ ブロック、$$ColorMaterial$$ および$$SeparateSpecular$$ コマンドによライティングり影響を受けます。
 
