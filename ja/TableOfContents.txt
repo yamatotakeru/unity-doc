@@ -393,6 +393,9 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[class-WheelCollider]]
 ***[[comp-GameObjectGroup]]
 ****[[class-GameObject]]
+>>nextrelease<<
+****[[class-ScriptableObject]]
+>><<
 *** [[comp-ImageEffects]]
 **** [[script-AntialiasingAsPostEffect]]
 **** [[script-Bloom]]
