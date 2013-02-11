@@ -60,7 +60,7 @@ public class ScriptBatch : MonoBehaviour
         string path = EditorUtility.SaveFolderPanel("Choose Location of Built Game", "", "");
  
         // プレイヤーをビルド
-        BuildPipeline.BuildPlayer(levels, path + "BuiltGame.exe", BuildTarget.StandaloneWindows, BuildOptions.None);
+        BuildPipeline.BuildPlayer(levels, path + "/BuiltGame.exe", BuildTarget.StandaloneWindows, BuildOptions.None);
 
         // ファイルをプロジェクトフォルダからビルドフォルダへビルドしたゲームと一緒にコピー
         FileUtil.CopyFileOrDirectory("Assets/WebPlayerTemplates/Readme.txt", path + "Readme.txt");
