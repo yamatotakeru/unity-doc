@@ -1,18 +1,18 @@
-! ShaderLab •¶–@: CustomEditor / ShaderLab syntax: CustomEditor
+! ShaderLab æ–‡æ³•: CustomEditor / ShaderLab syntax: CustomEditor
 
-ƒVƒF[ƒ_‚É‘Î‚µ‚Ä CustomEditor ‚ð’è‹`‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·BUnity‚Í‚±‚Ì‚Æ‚«‚É‚±‚Ì–¼‘O‚Å MaterialEditor ‚ðŠg’£‚µ‚½ƒNƒ‰ƒX‚ð’T‚µ‚Ü‚·B‚à‚µŒ©‚Â‚©‚Á‚½ê‡A‚±‚ÌƒVƒF[ƒ_‚ðŽg—p‚·‚é‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚ª‚±‚Ìƒ}ƒeƒŠƒAƒ‹ ƒCƒ“ƒXƒyƒNƒ^‚ðŽg—p‚µ‚Ü‚·BƒTƒ“ƒvƒ‹‚É‚Â‚¢‚Ä‚Í [[SL-CustomMaterialEditors| ƒJƒXƒ^ƒ€ ƒ}ƒeƒŠƒAƒ‹ ƒGƒfƒBƒ^]] ‚ðŽQÆ‚µ‚Ä‰º‚³‚¢B
+ã‚·ã‚§ãƒ¼ãƒ€ã«å¯¾ã—ã¦ CustomEditor ã‚’å®šç¾©ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚Unityã¯ã“ã®ã¨ãã«ã“ã®åå‰ã§ MaterialEditor ã‚’æ‹¡å¼µã—ãŸã‚¯ãƒ©ã‚¹ã‚’æŽ¢ã—ã¾ã™ã€‚ã‚‚ã—è¦‹ã¤ã‹ã£ãŸå ´åˆã€ã“ã®ã‚·ã‚§ãƒ¼ãƒ€ã‚’ä½¿ç”¨ã™ã‚‹å…¨ã¦ã®ãƒžãƒ†ãƒªã‚¢ãƒ«ãŒã“ã®ãƒžãƒ†ãƒªã‚¢ãƒ« ã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ã‚’ä½¿ç”¨ã—ã¾ã™ã€‚ã‚µãƒ³ãƒ—ãƒ«ã«ã¤ã„ã¦ã¯ [[SL-CustomMaterialEditors| ã‚«ã‚¹ã‚¿ãƒ  ãƒžãƒ†ãƒªã‚¢ãƒ« ã‚¨ãƒ‡ã‚£ã‚¿]] ã‚’å‚ç…§ã—ã¦ä¸‹ã•ã„ã€‚
 
-!! •¶–@
-:__CustomEditor__ "–¼‘O": “Á’è‚Ì ''–¼‘O''‚Ìƒ}ƒeƒŠƒAƒ‹ ƒGƒfƒBƒ^‚ðŽg—p‚µ‚Ü‚·B
+!! æ–‡æ³•
+:__CustomEditor__ "åå‰": ç‰¹å®šã® ''åå‰''ã®ãƒžãƒ†ãƒªã‚¢ãƒ« ã‚¨ãƒ‡ã‚£ã‚¿ã‚’ä½¿ç”¨ã—ã¾ã™ã€‚
 
-!! Ú×
+!! è©³ç´°
 
-CustomEditor ƒXƒe[ƒgƒƒ“ƒg‚Í‚±‚ÌƒVƒF[ƒ_‚ðŽg—p‚·‚é‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚É‰e‹¿‚µ‚Ü‚·B
+CustomEditor ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã¯ã“ã®ã‚·ã‚§ãƒ¼ãƒ€ã‚’ä½¿ç”¨ã™ã‚‹å…¨ã¦ã®ãƒžãƒ†ãƒªã‚¢ãƒ«ã«å½±éŸ¿ã—ã¾ã™ã€‚
 
-!! —á
+!! ä¾‹
 
 [@Shader "example" {
-    // ‚±‚±‚ÉƒvƒƒpƒeƒB‚¨‚æ‚ÑƒTƒuƒVƒF[ƒ_‚ð‹Lq...
+    // ã“ã“ã«ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãŠã‚ˆã³ã‚µãƒ–ã‚·ã‚§ãƒ¼ãƒ€ã‚’è¨˜è¿°...
     CustomEditor "MyCustomEditor"
 } @]
 
