@@ -1,4 +1,4 @@
-! コンソール（Console） / Console
+! コンソール / Console
 
 ステータスバーをダブルクリックするか、 ^^Window->Console^^ を選択すると $$Console$$ が開きます。
 
