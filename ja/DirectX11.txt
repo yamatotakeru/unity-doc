@@ -29,6 +29,11 @@ DirectX 11 は Windows Vista 以降が必要であり、少なくととも Direc
 手動で [[SL-ShaderPrograms | シェーダプログラム]] を書く場合、DirectX 11 シェーダ モデル 5.0 機能、すなわちジオメトリ、 Hull、ドメイン シェーダ を含めて、を完全に使用できます。
 
 
+!! サーフェイスシェーダ および DirectX 11
+
+現在 [[SL-SurfaceShaders |サーフェイスシェーダ]] コンパイル パイプラインの一部は DirectX 特有の HLSL 文法を解釈できないため、HLSL 機能である StructuredBuffers, RWTextures およびその他の非 DirectX 9 文法を使用する場合、 DirectX 11 のみのプリプロセッサ マクロ でラッピングする必要があります。詳細については [[SL-PlatformDifferences |プラットフォーム特有の違い]]  を参照して下さい。
+
+
 !! DirectX 11 サンプル
 
 次の スクリーンショット によりDirectX 11 で出来ることのサンプルを示します。
