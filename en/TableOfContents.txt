@@ -262,6 +262,9 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[HOWTO-ImportObjectModo]]
 ****[[HOWTO-importObjectLightwave]]
 ****[[HOWTO-ImportObjectBlender]]
+>>nextrelease<<
+****[[BlenderAndRigify]]
+>><<
 ***[[Workflow]]
 ****[[HOWTO-MonoDevelop]]
 ****[[HOWTO-exportpackage]]
@@ -301,6 +304,13 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ***[[AssetDatabase]]
 ***[[BuildPlayerPipeline]]
 ***[[Profiler]]
+****[[ProfilerWindow]]
+*****[[ProfilerCPU]]
+*****[[ProfilerRendering]]
+*****[[ProfilerMemory]]
+*****[[ProfilerAudio]]
+*****[[ProfilerPhysics]]
+*****[[ProfilerGPU]]
 ***[[Lightmapping]]
 ****[[LightmappingInDepth]]
 ****[[LightmappingCustomSettings]]
