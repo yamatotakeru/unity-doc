@@ -55,9 +55,11 @@ The WWW class is supported in NaCl, but follows different security policies then
 
 !! Communicating with browser javascript in NaCl
 
-Interacting with the web page using JavaScript is supported, and is very similar to [[Unity Web Player and browser communication|using the Unity Web Player]], with one exception: The syntax for sending messages to Unity from html javascript is different, because it has to go through the NaCl module. When you are using the default Unity-generated html, then this code will work:
+Interacting with the web page using JavaScript is supported, and is very similar to [[Unity Web Player and browser communication|using the Unity Web Player]]. The syntax for sending messages to Unity from html javascript is different, because it has to go through the NaCl module. When you are using the default Unity-generated html, then this code will work:
 
 @@document.getElementById('UnityEmbed').postMessage("GameObject.Message(parameter)");@@
+
+To call browser JavaScript code from NaCl, you can call Application.ExternalCall or Application.ExternalEval. However, Google has removed support for Eval functionality for Chrome Apps, so this will not work when publishing to the Chrome Web Store. To work around this, you can either use Application.ExternalEval to send a string, which you then intercept in your moduleMessage method in unity_nacl.js, or set up your app to Sandbox your content, as described [[http://developer.chrome.com/apps/sandboxingEval.html|here]]. 
 
 !! Logging
 

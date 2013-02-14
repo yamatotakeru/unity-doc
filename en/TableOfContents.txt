@@ -106,6 +106,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 *******[[Target Matching]]
 *******[[Root Motion]]
 ********[[Scripting Root Motion]]
+*****[[Mecanim FAQ]]
 ****[[Animations40|Legacy Animation system]]
 *****[[AnimationEditorGuide40|Animation Editor Guide (Legacy)]]
 *****[[Animation Scripting 40|Animation Scripting (Legacy)]]

@@ -40,11 +40,13 @@ __Note:__ The Android device and host computer (running the Unity Editor) must b
 
 For ADB profiling, follow these steps:
 * Attach your device to your Mac/PC via cable and make sure ADB recognizes the device (i.e. it shows in ''adb devices'' list).
-* Open a Terminal window / CMD prompt and enter
-->@@adb forward tcp:54999 localabstract:Unity-<insert bundle identifier here>@@
 * Check the "Development Build" checkbox in Unity's build settings dialog, and hit "Build & Run".
 * When the app launches on the device, open the profiler window in Unity Editor (Window->Profiler)
 * Select the ''AndroidProfiler(ADB@127.0.0.1:54999)'' from the Profiler Window ``Active Profiler`` drop down menu.
+__Note:__ The Unity editor will automatically create an adb tunnel for your application when you press "Build & Run".
+If you want to profile another application or you restart the adb server you have to setup this tunnel manually. To do this, open a Terminal window / CMD prompt and enter
+->@@adb forward tcp:54999 localabstract:Unity-<insert bundle identifier here>@@
+
 __Note:__ The entry in the drop down menu is only visible when the selected target is Android.
 
 If you are using a firewall, you need to make sure that ports 54998 to 55511 are open in the firewall's outbound rules - these are the ports used by Unity for remote profiling.
