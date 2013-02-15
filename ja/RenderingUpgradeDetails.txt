@@ -35,9 +35,9 @@ Unity 2.x はひとつのレンダリングパスのみであり、Unity 3では
 * ShaderLab の Polygon offset は変数を参照できなくなりました ( @@Offset [_Var1] 、 [_Var2]@@ のように)。
 * @@TRANSFER_EYEDEPTH/OUTPUT_EYEDEPTH@@ を @@UNITY_TRANSFER_DEPTH/UNITY_OUTPUT_DEPTH@@ にリネーム。Unity 3では floatで動作します。
 * 特別なシェーダパス型:R2TPass, OffscreenPass を削除。
-* 内蔵シェーダ マトリクス @@_Light2World0@@, @@_World2Light0@@ を削除
-* 内蔵シェーダ ベクトル_SceneAmbient, _MultiModelAmbient, _MultiAmbient, _ModelAmbient, _MultiplyFog, _LightHackedDiffuse0, _ObjectCenterModelLightColor0 を削除
-* 内蔵シェーダ float である @@_FirstPass@@ を削除。
+* ビルトイン シェーダ マトリクス @@_Light2World0@@, @@_World2Light0@@ を削除
+* ビルトイン シェーダ ベクトル_SceneAmbient, _MultiModelAmbient, _MultiAmbient, _ModelAmbient, _MultiplyFog, _LightHackedDiffuse0, _ObjectCenterModelLightColor0 を削除
+* ビルトイン シェーダ float である @@_FirstPass@@ を削除。
 * シェーダファイルのフォグモードは変数をもとにすることが出来ません(@@Fog { Mode [_MyFogMode] }@@ のように)。グローバル フォグ モードを使用するには @@Fog { Mode Global }@@ と記述してください。
 * ShaderLabから @@BlendColor@@ カラーを削除。
 * シェーダプロパティで、テクスチャマトリクスを変数ごとに宣言するサポートを終了。
