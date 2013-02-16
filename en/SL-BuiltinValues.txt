@@ -10,7 +10,9 @@ Using them in [[SL-ShaderPrograms | programmable shaders]] requires including [[
 
 : ``float4x4 UNITY_MATRIX_MVP`` : Current model*view*projection matrix
 : ``float4x4 UNITY_MATRIX_MV`` : Current model*view matrix
+: ``float4x4 UNITY_MATRIX_V`` : Current view matrix.
 : ``float4x4 UNITY_MATRIX_P`` : Current projection matrix
+: ``float4x4 UNITY_MATRIX_VP`` : Current view*projection matrix
 : ``float4x4 UNITY_MATRIX_T_MV`` : Transpose of model*view matrix
 : ``float4x4 UNITY_MATRIX_IT_MV`` : Inverse transpose of model*view matrix
 : ``float4x4 UNITY_MATRIX_TEXTURE0`` to ``UNITY_MATRIX_TEXTURE3`` : Texture transformation matrices
@@ -36,6 +38,7 @@ In plain ShaderLab, you access the following properties by appending zero at the
 * ``float4 _Time`` : Time (t/20, t, t*2, t*3), use to animate things inside the shaders
 * ``float4 _SinTime`` : Sine of time: (t/8, t/4, t/2, t)
 * ``float4 _CosTime`` : Cosine of time: (t/8, t/4, t/2, t)
+* ``float4 unity_DeltaTime`` : Delta time: (dt, 1/dt, smoothDt, 1/smoothDt)
 * ``float4 _ProjectionParams`` : \\
   @@x@@ is 1.0 or -1.0, negative if currently rendering with a flipped projection matrix \\
   @@y@@ is camera's near plane \\

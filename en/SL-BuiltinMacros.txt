@@ -17,6 +17,7 @@ Additionally, @@SHADER_TARGET_GLSL@@ is defined when the target shading language
 
 @@SHADER_API_MOBILE@@ is defined for @@SHADER_API_GLES@@ when compiling for "mobile" platform (iOS/Android); and not defined when compiling for "desktop" (NativeClient).
 
+
 !! Platform difference helpers
 
 Direct use of these platform macros is discouraged, since it's not very future proof. For example, if you're writing a shader that checks for D3D9, then maybe in the future the check should be extended to include D3D11. Instead, Unity defines several helper macros (in [[SL-BuiltinIncludes | @@HLSLSupport.cginc@@]]) to help with that.
@@ -30,6 +31,16 @@ Direct use of these platform macros is discouraged, since it's not very future p
 * @@UNITY_COMPILER_CG@@, @@UNITY_COMPILER_HLSL@@ or @@UNITY_COMPILER_HLSL2GLSL@@ determine which underlying shader compiler is used; use in case of subtle syntax differences force you to write different shader code.
 * @@UNITY_CAN_COMPILE_TESSELLATION@@ - defined when the shader compiler "understands" tessellation shader HLSL syntax (currently only D3D11).
 * @@UNITY_INITIALIZE_OUTPUT(type,name)@@ - initialize variable ''name'' of given ''type'' to zero.
+* @@UNITY_COMPILER_HLSL@@, @@UNITY_COMPILER_HLSL2GLSL@@, @@UNITY_COMPILER_CG@@ - indicates which shader compiler is being used to compile shaders. Respectively, Microsoft's HLSL (used for DX11, Xbox360, WinRT), HLSL to GLSL translator (used or iOS/Android and desktop OpenGL when #pragma glsl), and NVIDIA's Cg (used for D3D9 and non-GLSL desktop OpenGL targets). Use this if you run into very specific corner case shader syntax handling differences between the compilers, and want to write different code for each compiler.
+
+
+!! Shadow mapping macros
+
+Declaring and sampling shadow maps can be very different depending on the platform, so Unity has several macros to help with that:
+* @@UNITY_DECLARE_SHADOWMAP(tex)@@ - declares a shadowmap texture variable with name "tex".
+* @@UNITY_SAMPLE_SHADOW(tex,uv)@@ - samples shadowmap texture "tex" at given "uv" coordinate (XY components are texture location, Z component is depth to compare with). Returns single float value with the shadow term in 0..1 range.
+* @@ UNITY_SAMPLE_SHADOW_PROJ(tex,uv)@@ - similar to above, but does a projective shadowmap read. "uv" is a float4, all other components are divided by .w for doing the lookup.
+
 
 !! Constant buffer macros
 
@@ -51,4 +62,3 @@ When [[SL-SurfaceShaders | Surface Shaders]] are compiled, they end up generatin
 * @@UNITY_PASS_PREPASSFINAL@@ - deferred lighting final pass (applies lighting & textures).
 * @@UNITY_PASS_SHADOWCASTER@@ - shadow caster rendering pass.
 * @@UNITY_PASS_SHADOWCOLLECTOR@@ - shadow "gathering" pass for directional light shadows.
-

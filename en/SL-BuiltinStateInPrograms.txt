@@ -8,7 +8,9 @@ Matrices (float4x4) supported:
 
 : ``UNITY_MATRIX_MVP`` : Current model*view*projection matrix
 : ``UNITY_MATRIX_MV`` : Current model*view matrix
+: ``UNITY_MATRIX_V`` : Current view matrix.
 : ``UNITY_MATRIX_P`` : Current projection matrix
+: ``UNITY_MATRIX_VP`` : Current view*projection matrix
 : ``UNITY_MATRIX_T_MV`` : Transpose of model*view matrix
 : ``UNITY_MATRIX_IT_MV`` : Inverse transpose of model*view matrix
 : ``UNITY_MATRIX_TEXTURE0`` to ``UNITY_MATRIX_TEXTURE3`` : Texture transformation matrices
