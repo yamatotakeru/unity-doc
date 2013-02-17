@@ -10,7 +10,9 @@ Unityはたくさんの定義済みの値をシェーダで用意しています
 
 : ``float4x4 UNITY_MATRIX_MVP`` : 現在のモデルビュー行列×射影行列（model*view*projection）
 : ``float4x4 UNITY_MATRIX_MV`` : 現在のモデルビュー行列
+: ``float4x4 UNITY_MATRIX_V`` : 現在のビュー行列
 : ``float4x4 UNITY_MATRIX_P`` : 現在の投影行列
+: ``float4x4 UNITY_MATRIX_VP`` : 現在のビュー行列×射影行列
 : ``float4x4 UNITY_MATRIX_T_MV`` : モデルビュー行列の転置行列
 : ``float4x4 UNITY_MATRIX_IT_MV`` : モデルビュー行列の逆行列の転置行列
 : ``float4x4 UNITY_MATRIX_TEXTURE0`` to ``UNITY_MATRIX_TEXTURE3`` : テクスチャの転置行列
@@ -36,6 +38,7 @@ Unityはたくさんの定義済みの値をシェーダで用意しています
 * ``float4 _Time`` : 時間 (t/20、t、t×2、t×3)、シェーダの中でアニメーションするのに使用。
 * ``float4 _SinTime`` : 時間のサイン関数: (t/8、t/4、t/2、t)
 * ``float4 _CosTime`` : 時間のコサイン関数: (t/8、t/4、t/2、t)
+* ``float4 unity_DeltaTime`` : デルタ時間: (dt、1/dt、smoothDt、1/smoothDt)
 * ``float4 _ProjectionParams`` : \\
   @@x@@ は 1.0 または -1.0、反転した射影行列で現在レンダリングしている場合は負の値。
   @@y@@ は カメラのNear Plane \\
@@ -46,3 +49,4 @@ Unityはたくさんの定義済みの値をシェーダで用意しています
   @@y@@ は 現在のレンダリングターゲットのピクセル高さ \\
   @@z@@ は 1.0 + 1.0/幅 \\
   @@w@@ は 1.0 + 1.0/高さ
+  
