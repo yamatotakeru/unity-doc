@@ -11,9 +11,6 @@
 
 !!! 手動でのキーボード ハンドリングManual Keyboard Handling
 ``iPhoneKeyboard.Open`` 関数を使用してキーボードを開きます。この関数が使用する引数については [[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]] スクリプティング リファレンスを参照下さい。
-scripting
-Use the ``iPhoneKeyboard.Open`` function to open the keybo
-ard. Please see the [[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]] scripting reference for the parameters that this function takes.
 
 !! キーボード 種類のまとめ
 キーボードは次の種類をサポートします。
