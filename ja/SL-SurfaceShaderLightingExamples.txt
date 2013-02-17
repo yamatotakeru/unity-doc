@@ -191,3 +191,126 @@ Attach:SurfaceShaderToonRampItself.png
 
 Attach:SurfaceShaderSimpleSpecular.png Attach:SurfaceShaderSimpleSpecularNoTex.png
 
+>>u42<<
+!! ライトマップのデコード
+
+ビルトイン ライトマップのデコードして Unity ビルトイン 関数 $$DecodeLightmap$$ を使用してライトマップテクスチャおよびビルトイン $$UNITY_DIRBASIS$$ マクロを使用して方向性ライトマップの基本ベクトルを定義に格納されたデータのデコード、を再現するシェーダを始めてみます：
+
+
+  %gray%Shader "Example/Standard Lightmap Decoding" {
+  %gray%  Properties {
+  %gray%    _MainTex ("Texture", 2D) = "white" {}
+  %gray%  }
+  %gray%  SubShader {
+  %gray%    Tags { "RenderType" = "Opaque" }
+  %gray%    CGPROGRAM
+
+      #pragma surface surf __Standard__
+
+  %gray%    half4 LightingStandard (SurfaceOutput s, half3 lightDir, half atten) {
+  %gray%        half NdotL = dot (s.Normal, lightDir);
+  %gray%        half4 c; c.rgb = s.Albedo * _LightColor0.rgb * (NdotL * atten * 2); c.a = s.Alpha;
+  %gray%        return c;
+  %gray%    }
+      
+      inline fixed4 LightingStandard_SingleLightmap (SurfaceOutput s, fixed4 color) {
+          half3 lm = DecodeLightmap (color);
+          return fixed4(lm, 0);
+      }
+
+      inline fixed4 LightingStandard_DualLightmap (SurfaceOutput s, fixed4 totalColor, fixed4 indirectOnlyColor, half indirectFade) {
+          half3 lm = lerp (DecodeLightmap (indirectOnlyColor), DecodeLightmap (totalColor), indirectFade);
+          return fixed4(lm, 0);
+      }
+
+      inline fixed4 LightingStandard_StandardLightmap (SurfaceOutput s, fixed4 color, fixed4 scale, bool surfFuncWritesNormal) {
+          UNITY_DIRBASIS
+
+          half3 lm = DecodeLightmap (color);
+          half3 scalePerBasisVector = DecodeLightmap (scale);
+          if (surfFuncWritesNormal)
+          {
+              half3 normalInRnmBasis = saturate (mul (unity_DirBasis, s.Normal));
+              lm *= dot (normalInRnmBasis, scalePerBasisVector);
+          }
+          return fixed4(lm, 0);
+      }
+      
+  %gray%    struct Input {
+  %gray%        float2 uv_MainTex;
+  %gray%    };
+  %gray%    sampler2D _MainTex;
+  %gray%    void surf (Input IN, inout SurfaceOutput o) {
+  %gray%        o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
+  %gray%    }
+  %gray%    ENDCG
+  %gray%  }
+  %gray%  Fallback "Diffuse"
+  %gray%}
+
+
+次に、ライトマップに格納されたトーンマッピングを追加してみます：
+
+  %gray%Shader "Example/Tonemapped Lightmap Decoding" {
+  %gray%  Properties {
+  %gray%    _MainTex ("Texture", 2D) = "white" {}
+      _Gain ("Lightmap tone-mapping Gain", Float) = 1
+      _Knee ("Lightmap tone-mapping Knee", Float) = 0.5
+      _Compress ("Lightmap tone-mapping Compress", Float) = 0.33
+  %gray%  }
+  %gray%  SubShader {
+  %gray%    Tags { "RenderType" = "Opaque" }
+  %gray%    CGPROGRAM
+
+      #pragma surface surf __Tonemapped__
+
+  %gray%    half4 LightingTonemapped (SurfaceOutput s, half3 lightDir, half atten) {
+  %gray%        half NdotL = dot (s.Normal, lightDir);
+  %gray%        half4 c; c.rgb = s.Albedo * _LightColor0.rgb * (NdotL * atten * 2); c.a = s.Alpha;
+  %gray%        return c;
+  %gray%    }
+      
+      half _Gain;
+      half _Knee;
+      half _Compress;
+      inline half3 TonemapLight (half3 i) {
+          __i *= _Gain;__
+          __return (i > _Knee)? (((i - _Knee)*_Compress)+_Knee): i;__
+      }
+
+      inline fixed4 LightingTonemapped_SingleLightmap (SurfaceOutput s, fixed4 color) {
+          half3 lm = __TonemapLight__(DecodeLightmap (color));
+          return fixed4(lm, 0);
+      }
+
+      inline fixed4 LightingTonemapped_DualLightmap (SurfaceOutput s, fixed4 totalColor, fixed4 indirectOnlyColor, half indirectFade) {
+          half3 lm = __TonemapLight__(lerp (DecodeLightmap (indirectOnlyColor), DecodeLightmap (totalColor), indirectFade));
+          return fixed4(lm, 0);
+      }
+
+      inline fixed4 LightingTonemapped_StandardLightmap (SurfaceOutput s, fixed4 color, fixed4 scale, bool surfFuncWritesNormal) {
+          UNITY_DIRBASIS
+
+          half3 lm = __TonemapLight__(DecodeLightmap (color));
+          half3 scalePerBasisVector = DecodeLightmap (scale);
+          if (surfFuncWritesNormal)
+          {
+              half3 normalInRnmBasis = saturate (mul (unity_DirBasis, s.Normal));
+              lm *= dot (normalInRnmBasis, scalePerBasisVector);
+          }
+          return fixed4(lm, 0);
+      }
+
+  %gray%    struct Input {
+  %gray%        float2 uv_MainTex;
+  %gray%    };
+  %gray%    sampler2D _MainTex;
+  %gray%    void surf (Input IN, inout SurfaceOutput o) {
+  %gray%        o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
+  %gray%    }
+  %gray%    ENDCG
+  %gray%  }
+  %gray%  Fallback "Diffuse"
+  %gray%}
+
+>><<
