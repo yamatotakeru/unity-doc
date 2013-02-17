@@ -1,6 +1,6 @@
 ! パーティクルシステム モジュール (Shuriken) / Particle System Modules (Shuriken)
 
-このページは個別のモジュールおよびそのプロパティに特化しています。モジュールの紹介については [[ParticleSystemModulesIntro|このページ]] を参照下さい。
+このページは個別のモジュールおよびそのプロパティに特化しています。モジュールの詳細についてここで記述します。モジュールの基本的な紹介については [[ParticleSystemModulesIntro|このページ]] を参照下さい。
 
 !!初期モジュール
 Attach:ShurikenInitialModule.png
@@ -148,7 +148,7 @@ Attach:ShurikenCollisionModule40.png
 ||>>>``Grid``           ||Gizmo としてレンダリングされ、ワールド座標における位置および向きを素早く指定するのに便利。||
 ||>>>``Solid``          ||シーンの平面をレンダリングし、平面の正確な位置調整に便利。||
 ||``Scale Plane``      ||表示される平面をリサイズ。||
-||``Particle Radius``  ||衝突のときに用いるパーティクルの半径。||
+||``Particle Radius``  ||衝突のときに用いるパーティクルの半径（つまりパーティクルは球として扱われます）。||
 
 
 !!!``World`` モードのみで利用可能なプロパティ
