@@ -6,8 +6,6 @@ It works in a similar way to the [[ParticleSystemCurveEditor |Curve Editor]].
 
 The color-based properties will have a pull down menu on the right hand side, where you can choose between: 
 
-Attach:ShurikenColorDropdown.png
-
 ``Gradient``: The gradient (RGBA) will vary throughout time, edited in the [[GradientEditor|Gradient Editor]]
 
 ``Random Between Two Gradients``: The gradient (RGBA) varies with time and is chosen at random between two values specified [[GradientEditor|Gradient Editor]]

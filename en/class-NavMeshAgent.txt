@@ -15,6 +15,7 @@ Attach:NavMeshAgent.png
 ||``Height``||The height of the agent (used in debug graphics).
 ||``Base offset`` ||Vertical offset of the collision geometry relative to the actual geometry.
 ||``Obstacle Avoidance Type`` ||The level of quality of avoidance.
+||``Avoidance Priority`` ||Agents of lower priority will be ignored by this agent when performing avoidance. The value should be in the range 0..99 where lower numbers indicate higher priority. ||
 ||``NavMesh Walkable`` ||Specifies the types of [[class-NavMeshLayers|Navmesh layers]] that the agent can traverse.
 
 (back to [[NavmeshandPathfinding|Navigation and Pathfinding]])
