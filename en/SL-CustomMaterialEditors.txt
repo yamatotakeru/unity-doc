@@ -94,43 +94,6 @@ public class CustomMaterialInspector : MaterialEditor {
 }
 (:codeend:)
 
-!!API
-The API for writing custom editors is mostly inherited from the base material editor class. Some important API points are as follows:
-
-!!! void SetShader(Shader shader, bool registerUndo)
-Use this to change the shader that the material is pointing to. This handles rebuilding the material editor and dirtying the material properly.
-
-!!! bool isVisible
-Use this to check if the material editor is expanded. The Unity material editor does not normally render if it is not expanded.
-
-!!! void ShaderProperty(Shader shader, int propertyIndex)
-Draw the property of Shader shader at index propertyIndex into the Material editor.
-
-!!! Use the following for getting / setting values of a material.
-float GetFloat (string propertyName, out bool hasMixedValue)\\
-void SetFloat (string propertyName, float value)\\
-Color GetColor (string propertyName, out bool hasMixedValue)\\
-void SetColor (string propertyName, Color value)\\
-Vector4 GetVector(string propertyName, out bool hasMixedValue)\\
-void SetVector(string propertyName, Vector4 value)\\
-Texture GetTexture(string propertyName, out bool hasMixedValue)\\
-void SetTexture(string propertyName, Texture value)\\
-Vector2 GetTextureScale(string propertyName, out bool hasMixedValueX, out bool hasMixedValueY)\\
-Vector2 GetTextureOffset(string propertyName, out bool hasMixedValueX, out bool hasMixedValueY)\\
-void SetTextureScale(string propertyName, Vector2 value, int coord)\\
-void SetTextureOffset(string propertyName, Vector2 value, int coord)\\
-
-!!! Use the following to draw a property in the inspector
-float RangeProperty(string propertyName, string label, float v2, float v3)\\
-float FloatProperty(string propertyName, string label)\\
-Color ColorProperty(string propertyName, string label)\\
-Vector4 VectorProperty(string propertyName, string label)\\
-Texture TextureProperty(string propertyName, string label, ShaderUtil.ShaderPropertyTexDim texDim)\\
-Texture TextureProperty(string propertyName, string label, ShaderUtil.ShaderPropertyTexDim texDim, bool scaleOffset)\\
-
-!!! Render the standard material properties
-bool PropertiesGUI()\\
-
 
 !!How the default material editor works
 The default Unity editor renders all the properties that exist in a shader to the the material editor. Below is a custom material editor that behaves similar to the Unity material editor. Use this example if you wish to manually render the default fields.
