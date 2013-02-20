@@ -4,19 +4,7 @@
 >>ios<<
 ! iOS スクリプティング上級者向け
 !! デバイス世代の判断
-様々なデバイス世代により異なった機能がサポートされ、パフォーマンスも幅広く違いがあります。デバイス世代のクエリをかけて、遅いデバイスについてどの機能を無効するか判断すべきです。
-
-デバイス世代については [[ScriptRef:iPhone-generation.html | iPhone.generation]] プロパティにより見つけられます。返されるデバイス世代の情報は次のいずれかです:
-
-* ``iPhone``
-* ``iPhone3G``
-* ``iPhone3GS``
-* ``iPhone4``
-* ``iPodTouch1Gen``
-* ``iPodTouch2Gen``
-* ``iPodTouch3Gen``
-* ``iPodTouch4Gen``
-* ``iPad1Gen``
+様々なデバイス世代により異なった機能がサポートされ、パフォーマンスも幅広く違いがあります。デバイス世代のクエリをかけて、遅いデバイスについてどの機能を無効するか判断すべきです。デバイス世代については [[ScriptRef:iPhone-generation.html | iPhone.generation]] プロパティにより見つけられます。
 
 異なったデバイス世代の情報、パフォーマンス、およびサポートされている機能については [[Main.iphone-Hardware | iPhone ハードウェア ガイド]] を参照下さい。
 
