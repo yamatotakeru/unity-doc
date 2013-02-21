@@ -100,28 +100,24 @@ return c;
 
 (:table border=0:)
 (:cellnr:)
-(:div style="float:right; text-align:right; padding-right:20px;":)
 
-鏡面反射バンプ
-
-%thumb width=180px float=left padding=5px%Attach:statuetex2.jpg %thumb width=150px float=right padding=5px%Attach:bumpStatue.gif
-(:divend:)
-(:cell:)
-(:div style="float:left; text-align:left; padding-left:20px;":)
-
-反射によるライトの焼き込み
-
-%thumb width=150px  padding=5px%Attach:bakedStatue.gif %thumb width=180px float=right padding=5px%Attach:statuetex1.jpg
-
-(:divend:)
+Attach:bumpStatue.gif\\
+Reflective Bumped Specular\\
+Attach:statuetex2.jpg
+  
 (:cellnr:)
+  
+Attach:bakedStatue.gif\\
+Baked Light with Reflection\\
+Attach:statuetex1.jpg
+
 (:tableend:)
 
 !!! テクセルへのレンダリング
 
 リアルタイムライトは間違いなく品質が上がりますが、焼き込みによるパフォーマンスの改善は著しいものです。ではどうやってこれを達成したのか？ [[http://u3d.as/content/forest-johnson/render-to-texel-baker/3fD | Render to Texel]] と呼ばれるエディタ ツールがこの目的で作成されました。テクスチャへのライトの焼き込みを次のプロセスで行っています:
 
-* 接空間法線マップをスクリプト経由でワールド座標に変換。 %thumb width=300px float=right padding=5px%Attach:statueBake.jpg
+* 接空間法線マップをスクリプト経由でワールド座標に変換。
 
 * ワールド座標の位地マップをスクリプト経由で作成
 
@@ -130,6 +126,8 @@ return c;
 * いくつかの見晴らしの良い点から平均的な結果が得られるように、全体的に満足な仕上がりにするか、せめてゲームで最も良く使われるビューアングルで良い仕上がりにする。
 
 これがベストのグラフィックス最適化を行う方法です。大量の計算を飛ばすためにあらかじめエディタまたはゲームの実行前に行っておきます。一般的には行うべきことは次の通りです:
+
+%Attach:statueBake.jpg
 
 * パフォーマンスは気にせず見栄えが最高のものを作成
 
