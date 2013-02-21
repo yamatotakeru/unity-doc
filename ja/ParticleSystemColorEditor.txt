@@ -6,9 +6,7 @@ Attach:ShurikenColorProperty.png
 
 カラーベースのプロパティは右側にプルダウンメニューがあり、好きな方法を選択することが出来ます。
 
-Attach:ShurikenColorDropdown.png
-
-``Gradient``: グラデーション（RGBA）は[[GradientEditor|Gradient Editor]] で編集したとおりに、時間とともに変化します。
+``Gradient``: グラデーション（RGBA）は[[GradientEditor|グラデーション エディタ]] で編集したとおりに、時間とともに変化します。
 
 
-``Random Between Two Gradients``: グラデーション（RGBA）は[[GradientEditor|Gradient Editor]] で指定した二つの値の間でランダムに選択され、時間とともに変化します。
+``Random Between Two Gradients``: グラデーション（RGBA）は[[GradientEditor|グラデーション エディタ]] で指定した二つの値の間でランダムに選択され、時間とともに変化します。
