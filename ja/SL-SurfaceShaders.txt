@@ -85,6 +85,10 @@ struct SurfaceOutput {
 * @@float3 worldRefl; INTERNAL_DATA@@ -  ''Surface Shadersが o.Normal に書き込む場合''の世界反射ベクトルを含みます。 ピクセルごとの法線マップに基づいて、反射ベクトルを取得するには、@@WorldReflectionVector (IN, o.Normal)@@ を使用します。 例については、反射 - バンプ型 シェーダを参照。
 * @@float3 worldNormal; INTERNAL_DATA@@ - ''Surface Shadersが o.Normal に書き込む場合''の世界反射ベクトルを含みます。 ピクセルごとの法線マップに基づいて、法線ベクトルを取得するには、@@WorldNormalVector (IN, o.Normal)@@ を使用します。
 
+!! サーフェイスシェーダおよび DirectX 11
+
+現在サーフェイスシェーダの一部のコンパイルパイプラインは [[DirectX 11]] 特有のHLSL 文法を解釈できないため、もし StructuredBuffers, RWTextures およびその他の 非 DX9 文法といった HLSL 機能を使用する場合は、 DX11 のみのプリプロセッサマクロでラッピングする必要があります。詳細については [[SL-PlatformDifferences | プラットフォーム固有の違い]] を参照して下さい。
+
 
 !! 参考文献
 
