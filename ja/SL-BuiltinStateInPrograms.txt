@@ -1,16 +1,18 @@
 ! シェーダ プログラム内の組み込み状態変数 / Built-in state variables in shader programs
 
-[[SL-ShaderPrograms | shader programs]] ではよくありますが、現在の model*view*projection マトリクスや現在の周囲色などの一部のグローバル状態にアクセスする必要があります。 組み込みの状態に対して、これらの変数を宣言する必要はありません。ただシェーダ プログラムで使用できます。
+[[SL-ShaderPrograms | shader programs]] ではよくありますが、現在のモデル×ビュー×投影マトリクスや現在の周囲色などの一部のグローバル状態にアクセスする必要があります。 組み込みの状態に対して、これらの変数を宣言する必要はありません。ただシェーダ プログラムで使用できます。
 
 !! 組み込みマトリクス
 
 以下のマトリクス (float4x4) がサポートされています。
 
-: ``UNITY_MATRIX_MVP`` : 現在のモデル *view* 投影マトリクス
-: ``UNITY_MATRIX_MV`` : 現在のモデル *view* マトリクス
+: ``UNITY_MATRIX_MVP`` : 現在のモデル×ビュー×投影マトリクス
+: ``UNITY_MATRIX_MV`` : 現在のモデル×ビュー×マトリクス
+: ``UNITY_MATRIX_V`` : 現在のビュー マトリクス
 : ``UNITY_MATRIX_P`` : 現在の投影マトリクス
-: ``UNITY_MATRIX_T_MV`` : モデル *view* マトリクスの転置行列
-: ``UNITY_MATRIX_IT_MV`` : モデル *view* マトリクスの逆転値
+: ``UNITY_MATRIX_VP`` : ビュー 投影マトリクス
+: ``UNITY_MATRIX_T_MV`` : モデル×ビュー×マトリクスの転置行列
+: ``UNITY_MATRIX_IT_MV`` : モデル×ビュー×マトリクスの逆転値
 : ``UNITY_MATRIX_TEXTURE0`` - ``UNITY_MATRIX_TEXTURE3`` : テクスチャ変形マトリクス
 
 !! 組み込みベクトル
