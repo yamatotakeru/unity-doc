@@ -94,43 +94,6 @@ public class CustomMaterialInspector : MaterialEditor {
 }
 (:codeend:)
 
-!!API
-カスタムエディタを記述する API は大部分がベースのマテリアルエディタ クラスから継承されます。APIのいくつかの重要なポイントは次のとおりです:
-
-!!! void SetShader(Shader shader, bool registerUndo)
-これを使用してマテリアルが指しているシェーダを変更します。これはマテリアルエディタの再構築およびマテリアルを適切に汚すハンドリングを行います。
-
-!!! bool isVisible
-これを使用してマテリアル エディタが展開されているかチェックするのに使用します。 Unity マテリアル エディタが展開されてない場合は通常レンダリングを行いません。
-
-!!! void ShaderProperty(Shader shader, int propertyIndex)
-shader シェーダのプロパティを propertyIndex インデックスをマテリアルエディタに描画します。
-
-!!! マテリアルの値のGetter/Setterに次を使用
-float GetFloat (string propertyName, out bool hasMixedValue)\\
-void SetFloat (string propertyName, float value)\\
-Color GetColor (string propertyName, out bool hasMixedValue)\\
-void SetColor (string propertyName, Color value)\\
-Vector4 GetVector(string propertyName, out bool hasMixedValue)\\
-void SetVector(string propertyName, Vector4 value)\\
-Texture GetTexture(string propertyName, out bool hasMixedValue)\\
-void SetTexture(string propertyName, Texture value)\\
-Vector2 GetTextureScale(string propertyName, out bool hasMixedValueX, out bool hasMixedValueY)\\
-Vector2 GetTextureOffset(string propertyName, out bool hasMixedValueX, out bool hasMixedValueY)\\
-void SetTextureScale(string propertyName, Vector2 value, int coord)\\
-void SetTextureOffset(string propertyName, Vector2 value, int coord)\\
-
-!!! インスペクタでプロパティを描画するのに次を使用
-float RangeProperty(string propertyName, string label, float v2, float v3)\\
-float FloatProperty(string propertyName, string label)\\
-Color ColorProperty(string propertyName, string label)\\
-Vector4 VectorProperty(string propertyName, string label)\\
-Texture TextureProperty(string propertyName, string label, ShaderUtil.ShaderPropertyTexDim texDim)\\
-Texture TextureProperty(string propertyName, string label, ShaderUtil.ShaderPropertyTexDim texDim, bool scaleOffset)\\
-
-!!! 標準のマテリアル プロパティをレンダリング
-bool PropertiesGUI()\\
-
 
 !! デフォルトのマテリアル エディタが動作する方法
 デフォルトの Unity エディタはシェーダに存在する全てのプロパティをマテリアル エディタにレンダリングします。以下のカスタムマテリアル エディタは Unity マテリアルエディタと同様の動作をします。手動でデフォルトのフィールドをレンダリングしたい場合は次のサンプルを使用します。
