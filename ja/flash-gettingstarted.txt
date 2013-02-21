@@ -14,10 +14,11 @@ Unity FlashビルドオプションにSWFファイルをエクスポートして
 
 
 !!他の例:
-* フォーラム投稿 - [[http://forum.unity3d.com/threads/128057-Flash-Simple-AS3-Bridge-Demo-Loading-textures-from-web.?p=864642&viewfull=1#post864642 | ウェブからテクスチャをロードする（Action Script 3）]] 
+* [[http://forum.unity3d.com/threads/145294-Flash-Custom-Splash-Screen-Single-SWF | ひとつのSWFでのカスタム スプラッシュ スクリーン（Unity フォーラム）]]
+* [[http://forum.unity3d.com/threads/128057-Flash-Simple-AS3-Bridge-Demo-Loading-textures-from-web.?p=864642&viewfull=1#post864642 |ウェブからテクスチャをロードする（Unityフォーラム）]]
 
 !! 便利なリソース:
 * [[http://unity3d.com/support/documentation/ScriptReference/ActionScript.html | スクリプティングリファレンス：ActionScript]] 
-* [[http://forum.unity3d.com/forums/36-Flash-Development | UnityフォーラムでのFlash開発セクション]]  
-* [[http://answers.unity3d.com/questions/topics/flash.html | Unity AnswersでのFlash質問]] 
+* [[http://forum.unity3d.com/forums/36-Flash-Development | Flash開発セクション（Unity フォーラム）]]  
+* [[http://answers.unity3d.com/questions/topics/flash.html | Flash質問（Unity Answers）]] 
 
