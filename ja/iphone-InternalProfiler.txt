@@ -4,21 +4,19 @@
 >> ios<<
 iOSではデフォルトで無効化されているので、有効化するにはUnityで生成されたXCodeプロジェクトを開く必要があり、@@iPhone_Profiler.h@@ を選択して行の内容を変更する必要があります。
 
-
 [@#define ENABLE_INTERNAL_PROFILER 0@]
 
 の行の内容を次に変更します。
 
 [@#define ENABLE_INTERNAL_PROFILER 1@]
 
-XCodeメニューから^^Run->Console^^ を選択してコンソール出力(GDB) を表示してからプロジェクトを実行します。Unityひコンソール ウィンドウに30フレームごとに統計結果を出力します。
-
->> <<
+XCodeメニューから ^^View > Debug Area > Activate Console^^ を選択してコンソール出力(GDB) を表示してからプロジェクトを実行します。Unityひコンソール ウィンドウに30フレームごとに統計結果を出力します。
+>><<
 
 !Android!
->> android<<
+>>android<<
 Androidではデフォルトで友好化されてます。Player settingsでビルド時にDevelopment Buildを有効にしておけばlogcatがデバイス実行時に表示されます。logcatを表示するには``@@adb@@`` すなわちAndroid Debug Bridge が必要です。準備が出来ていればあとは、シェルコマンド ``@@adb logcat@@`` を実行するだけです。
->> <<
+>><<
 
 内蔵プロファイラの出力例は次のとおりです。.
 
