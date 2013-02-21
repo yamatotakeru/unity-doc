@@ -2,6 +2,8 @@
 
 $$Screen Space Ambient Occlusion (SSAO)$$ エフェクトは[[http://en.wikipedia.org/wiki/Ambient_occlusion | アンビエントオクルージョン(Ambient Occlusion)]] をリアルタイムで擬似的に後処理イメージ効果として再現するものです。互いに接近している折り目、穴、地表を暗くする効果があります。現実世界においては、環境光（Ambient light）を遮られ光効果を''オクルージョン''(無視)するため暗く見えます。
 
+リアルタイム アンビエント オクルージョンのより最新の実装については、新しい  [[script-AmbientObscurance|スクリーンスペース アンビエント オブクランス]] エフェクトを参照して下さい。
+
 他のイメージエフェクト同様、エフェクト機能[[comp-ImageEffects|(image effects)]] はUnity Proのみであり利用可能とするためにはプロスタンダードアセット（[[HOWTO-InstallStandardAssets|Pro Standard Assets]] ）をあらかじめインポートする必要があります
 
 Attach:FxSSAO.png\\
@@ -30,4 +32,5 @@ SSAOは処理時間を相当に浪費しやすく、一般的にハイエンド�
 
 !! ハードウェア要件
 
-SSAO works on graphics cards with Shader Model 3.0 support (eg, GeForce 6 and later, Radeon X1300 and later).  All image effects automatically disable themselves when they can not run on a particular graphics card. Due to the complexity of the effect, SSAO is not supported on mobile devices.
+ (:include imagefx-SM3Depth:)
+ 
