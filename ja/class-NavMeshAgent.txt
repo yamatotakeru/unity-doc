@@ -5,7 +5,7 @@
 Attach:NavMeshAgent.png
 
 ||PROPS
-||``Radius``||エージェントの半径（経路探索の目的のみで使用され、実際のオブジェクトの半径と一致せずやや大きくなります）. ||
+||``Radius``||エージェントの半径（経路探索の目的のみで使用され、実際のオブジェクトの半径と一致せずやや大きくなります）||
 ||``Speed`` ||エージェントが目的地まで移動する速度の最大値||
 ||``Acceleration`` ||加速度の最大値||
 ||``Angular Speed`` ||回転速度（角度/秒）の最大値||
@@ -14,6 +14,7 @@ Attach:NavMeshAgent.png
 ||``Height``||エージェントの高さ（デバッグ時の描画で使用）
 ||``Base offset`` ||縦方向において、実際のオブジェクトとコライダ（Collider）の差分の距離
 ||``Obstacle Avoidance Type`` ||回避動作の品質レベル
+||``Avoidance Priority`` ||低優先度のエージェントの場合はこのエージェントにより回避動作が無視されます。この値は、0 - 99 の範囲にあり低い数字がより高い優先度を表します||
 ||``NavMesh Walkable`` ||エージョントがその上を移動できる[[class-NavMeshLayers|ナビメッシュレイヤ]] のタイプ
 
 ([[NavmeshandPathfinding| ナビゲーションと経路探索]] に戻る)
