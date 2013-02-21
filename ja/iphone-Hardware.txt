@@ -13,10 +13,6 @@
 !!! オリジナル iPhone
 * 画面: 320x480 ピクセル、 LCD 163ppi
 * ARM11, 412 Mhz CPU
-(:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:310px;":)
-%thumb width=280px float=right padding=5px%Attach:skiSafari.jpg
-固定関数グラフィックス (高度なシェーダなし)、 非常に遅いCPUおよびGPU。
-(:divend:)
 * PowerVR MBX Lite 3D グラフィックス プロセッサ
 ** 遅い
 * 128MBのメモリ容量
@@ -32,7 +28,7 @@
 * GPS 対応
 
 Attach:skiSafari.jpg\\
-iPhone 3G: Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
+iPhone 3G: 固定関数グラフィックス（高度なシェーダなし）、非常に遅いCPUおよびGPU。
 
 (:cellnr:)
 
@@ -50,13 +46,12 @@ iPhone 3G: Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
 (:divend:)
 * 256MBのメモリ容量
 * 3 メガピクセル カメラ with video capture capability
-(:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:310px;":)
-%thumb width=300px float=right padding=5px%Attach:shadowgun2.jpg
-シェーダ対応したハードウェア、 ピクセル ライティング (バンプマップ) は同時には画面の限られた領域のみ対応。
-複雑なゲームでスクリプティングの最適化が必要。2012年7月時点でのアプリマーケットの平均的なハードウェア。
-(:divend:)
 * GPS 対応
 * コンパスに対応
+
+Attach:shadowgun2.jpg\\
+iPhone 3GS: シェーダ対応したハードウェア、 ピクセル ライティング (バンプマップ) は同時には画面の限られた領域のみ対応。
+複雑なゲームでスクリプティングの最適化が必要。2012年7月時点でのアプリマーケットの平均的なハードウェア。
 
 !!! iPhone 4
 * 画面: 960x640 ピクセル、 LCD 326 ppi, 800:1 コントラスト比。
@@ -78,10 +73,6 @@ iPhone 3G: Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
 * GPS 対応
 * コンパスに対応
 
-(:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:250px;":)
-%thumb width=240px float=right padding=5px%Attach:csrCar.jpg
-iPhone 4S、新しい A5 チップ、スクリーン全体を通して複雑なシェーダをレンダリングすることが可能。イメージエフェクトでさえも可能。ただしシェーダ最適化は依然として決定的に重要。しかしゲームがデバイス性能を限界まで使用していない場合、PCと同様にこの世代のデバイスでは、スクリプティングおよびゲームプレイの最適化は時間の無駄になります。
-(:divend:)
 
 !!! iPhone 4S
 * 画面: 960x640 ピクセル、 LCD 326 ppi, 800:1 コントラスト比。
@@ -103,7 +94,11 @@ iPhone 4S、新しい A5 チップ、スクリーン全体を通して複雑な�
 * GPS 対応
 * コンパスに対応
 
-!!![[http://en.wikipedia.org/wiki/IPod_Touch#Specifications| iPod Touch Models]] 
+Attach:csrCar.jpg\\
+iPhone 4S は 新しい A5 チップにより、複雑なシェーダをスクリーン全体にレンダリングすることが出来ます。イメージエフェクトであっても実現可能です。しかし、シェーダ最適化は依然として決定的に重要。しかしゲームがデバイス性能を限界まで使用していない場合、PCと同様にこの世代のデバイスでは、スクリプティングおよびゲームプレイの最適化は時間の無駄になります。
+
+
+!!![[http://en.wikipedia.org/wiki/IPod_Touch#Specifications| iPod Touch モデル]] 
 
 (:cellnr:)
 
@@ -112,7 +107,7 @@ iPhone 4S、新しい A5 チップ、スクリーン全体を通して複雑な�
 固定関数グラフィックス (高度なシェーダなし)、 非常に遅いCPUおよびGPU。
 (:divend:)
 
-!!! iPod Touch 1st generation
+!!! 第 1 世代 iPod Touch
 * 画面: 320x480 ピクセル、 LCD 163ppi
 * ARM11, 412 Mhz CPU
 * PowerVR MBX Lite 3D グラフィックス プロセッサ
@@ -120,9 +115,9 @@ iPhone 4S、新しい A5 チップ、スクリーン全体を通して複雑な�
 * 128MBのメモリ容量
 
 Attach:tripletown.jpg\\
-iPod Touch: Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
+iPod Touch: 固定関数グラフィックス（高度なシェーダなし）、非常に遅いCPUおよびGPU。
 
-!!! iPod Touch 2nd generation
+!!! 第 2 世代iPod Touch
 * 画面: 320x480 ピクセル、 LCD 163ppi
 * ARM11, 533 Mhz CPU
 * PowerVR MBX Lite 3D グラフィックス プロセッサ
@@ -138,10 +133,13 @@ iPod Touch: Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
 複雑なゲームでスクリプティングの最適化が必要。2012年7月時点でのアプリマーケットの平均的なハードウェア。
 (:divend:)
 
-!!! iPod Touch 3rd generation
+!!! 第 3 世代 iPod Touch
 * iPhone 3GS と同等レベル
 
-!!! iPod Touch 4th generation
+Attach:csrRacing.jpg\\
+第 3 世代iPod Touch 3rd: シェーダ対応のハードウェア、ピクセルライティング（バンプマップ）は同時にはスクリーンのわずかな一部でのみ実現。複雑なゲームではスクリプト最適化が必要。2012年7月時点においてアプリ マーケット の標準的なハードウェア。
+
+!!! 第 4 世代 iPod Touch
 * iPhone 4 と同等レベル
 
 (:cellnr:)
@@ -150,11 +148,11 @@ iPod Touch: Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
 
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:250px;":)
 %thumb width=240px float=right padding=5px%Attach:airmail.jpg
-第4世代iPod TouchおよびiPhone4 と同等レベル
+第 4 世代iPod TouchおよびiPhone4 と同等レベル
 (:divend:)
 
 !!! iPad
-* 画面: 1024x768 ピクセル、 LCD 132 ppi, LED-backlit.
+* 画面: 1024x768 ピクセル、 LCD 132 ppi, LEDバックライト
 * Apple A4 
 ** 1Ghz MHz ARM Cortex-A8 CPU
 ** PowerVR SGX535 GPU
@@ -166,9 +164,13 @@ iPod Touch: Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:23px%Attach:bar.png
 (:divend:)
-* Wifi + Blueooth + (3G Cellular HSDPA, 2G cellular EDGE on the 3G version)
+* Wifi + Blueooth + (3G セルラー HSDPA, 3G バージョンでの 2G セルラー EDGE)
 * 加速度計、環境ライティングセンサー、磁力計（デジタルコンパス向け）
-* 物理キー: ホーム、スリープ、画面回転ロック、ボリューム。
+* ボタン入力装置: ホーム、スリープ、画面回転ロック、ボリューム。
+
+Attach:airmail.jpg\\
+iPad: 第 4 世代iPod Touch および iPhone 4 と同様
+
 
 (:cellnr:)
 (:div style="float:right; padding:5px; color:#BBBBBB; font-size:10px; width:250px;":)
@@ -177,7 +179,7 @@ A5では、十分に簡単なシェーダであれば、フルスクリーン �
 (:divend:)
 
 !!! iPad 2
-* 画面: 1024x768 ピクセル、 LCD 132 ppi, LED-backlit.
+* 画面: 1024x768 ピクセル、 LCD 132 ppi, LEDバックライト
 * Apple A5
 ** デュアルコア 1Ghz ARM Cortex-A9 MPCore CPU
 ** デュアルコア PowerVR SGX543MP2 GPU
@@ -189,7 +191,11 @@ A5では、十分に簡単なシェーダであれば、フルスクリーン �
 (:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
 %thumb width:200px padding-left:125px%Attach:bar.png
 (:divend:)
+
 * 前述と同様
+Attach:deadtrigger.jpg\\
+iPad2: A5 では、シェーダが十分にシンプルなものであればフルクリーン バンプマップが実現出来ます。しかし、ゲームが重要なオブジェクトでのみバンプマップされていることでベストのパフォーマンスを発揮する傾向があります。フルスクリーンのイメージエフェクトはまだ手が届かないところです。スクリプト最適化の重要性はやや劣ります。
+
 
 (:cellnr:)
 
@@ -199,7 +205,7 @@ iPad 3 はReflective Waterおよびフルスクリーンのイメージエフェ
 (:divend:)
 
 !!! iPad 3
-* 画面: 2048 x 1536 ピクセル、 LCD 264 ppi, LED-backlit.
+* 画面: 2048 x 1536 ピクセル、 LCD 264 ppi, LEDバックライト
 * Apple A5X
 ** デュアルコア 1Ghz ARM Cortex-A9 MPCore CPU
 ** Quad-Core PowerVR SGX543MP4 GPU
@@ -213,7 +219,7 @@ iPad 3 はReflective Waterおよびフルスクリーンのイメージエフェ
 (:divend:)
 
 Attach:bladeslinger.jpg\\
-The iPad 3 has been shown to be capable of render-to-texture effects such as reflective water and fullscreen image effects. However, optimized shaders are still crucial. But if your game isn't trying to push limits of the device, optimizing scripting and gameplay is probably as much of a waste of time on this generation of devices as it is on PC.
+iPad 3 では Reflective Water および フルスクリーンのイメージエフェクトといったRender-To-Texture エフェクトを実現できます。しかし、シェーダ最適化は依然として決定的に重要です。もしゲームがデバイスをハードウェア性能の限界まで使用していない場合、スクリプトおよびゲームプレイの最適化はこの世代のデバイスにおいて、 PC デバイス同様に時間の無駄です。
 
 
 (:tableend:)
@@ -254,7 +260,7 @@ iPhone/iPad には、頂点処理専用でラスタライゼーションと並�
 
 
 !! 統合メモリアーキテクチャ
- Phone/iPadCPU および GPU は同じメモリを共有します。長所はテクスチャのビデオメモリ不足を気にする必要がないことです（もちろんメインメモリを使い切らないかぎり）。短所はゲームプレイおよびグラフィックスで同じメモリ帯域幅を共有することです。メモリ帯域幅をグラフィックスで占有するほど、ゲームプレイや物理計算で使用できる量は減ります。
+iPhone/iPadの CPU および GPU 双方ともは同じメモリを共有します。長所はテクスチャのビデオメモリ不足を気にする必要がないことです（もちろんメインメモリを使い切らないかぎり）。短所はゲームプレイおよびグラフィックスで同じメモリ帯域幅を共有することです。メモリ帯域幅をグラフィックスで占有するほど、ゲームプレイや物理計算で使用できる量は減ります。
 
 
 !! マルチメディア コプロセッシング ユニット
