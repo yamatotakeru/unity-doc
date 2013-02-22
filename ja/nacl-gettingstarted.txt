@@ -55,9 +55,11 @@ WWW クラスは NaCl でサポートされていますが、Unity Web Playerと
 
 !! NaCl でブラウザ Javascript と通信する
 
-JavaScriptを使ってウェブページと通信することはサポートされていて、 [[Unity Web Player and browser communication|Unity Web Player を使用する]] 場合と非常ににていますが、ひとつだけ例外があります: NaCl モジュールを通過する必要があるため Unity から HTML Javascript へのメッセージ送信の構文が異なります。デフォルトの Unity により生成された HTML を使用しちえる場合、次のコードが動作します:
-
-@@document.getElementById('UnityEmbed').postMessage("GameObject.Message(parameter)");@@
+JavaScriptを使ってウェブページと通信することはサポートされていて、 [[Unity Web Player and browser communication|Unity Web Player を使用する]] 場合と非常に似ています。 NaCl モジュールを通過する必要があるため Unity から HTML Javascript へのメッセージ送信の構文が異なります。デフォルトの Unity により生成された HTML を使用している場合、次のコードが動作します:
+  
+  @@document.getElementById('UnityEmbed').postMessage("GameObject.Message(parameter)");@@
+  
+ブラウザ Javascript コードをNacl から呼び出しするためには、Application.ExternalCall または Application.ExternalEval を コール出来ます。しかし、 Google は Chrom アプリの Eval 機能のサポートをやめており、このため Chrome Web ストアにパブリッシュする際に正しく動作しません。これを回避するためには、Application.ExternalEval を使用して文字列を送信して、 unity_nacl.js の moduleMessage メソッドで 取得するか、または [[http://developer.chrome.com/apps/sandboxingEval.html|ここ]] で説明されているようにコンテンツのサンドボックス設定をセットアップするか、のいずれかの方法をとることが出来ます。
 
 !! ロギング
 
