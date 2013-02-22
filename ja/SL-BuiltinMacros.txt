@@ -2,7 +2,7 @@
 
 [[SL-ShaderPrograms | shader programs]] （シェーダプログラム）をコンパイルするとき、Unityはいくつかのプリプロセッサマクロを定義します。
 
-!! ターゲット　プラットフォーム
+!! ターゲット プラットフォーム
 
 * @@SHADER_API_OPENGL@@ - デスクトップ向けOpenGL
 * @@SHADER_API_D3D9@@ - Direct3D 9
@@ -15,7 +15,8 @@
 
 追加で、シェーダ言語のターゲットがGLSLの場合に、@@SHADER_TARGET_GLSL@@ を定義します。（@@SHADER_API_GLES@@ が定義されている場合は常にtrue、@@#pragma glsl@@が使用されている場合@@SHADER_API_OPENGL@@ はtrue）
 
-@@SHADER_API_GLES@@　で"モバイル" プラットフォーム向けのときは@@SHADER_API_MOBILE@@ を定義（iOS/Android）し、"デスクトップ" （ネイティブクライアント）向けの場合は定義しません。
+@@SHADER_API_GLES@@ で"モバイル" プラットフォーム向けのときは@@SHADER_API_MOBILE@@ を定義（iOS/Android）し、"デスクトップ" （ネイティブクライアント）向けの場合は定義しません。
+
 
 !! プラットフォーム差異のヘルパー
 
@@ -30,7 +31,16 @@
 * @@UNITY_COMPILER_CG@@ 、@@UNITY_COMPILER_HLSL@@ 、または@@UNITY_COMPILER_HLSL2GLSL@@ は内在するシェーダコンパイラが使用されているかを判定します、わずかな文法の違いで別のシェーダコードを記述せざるを得ない場合にしようします。
 * @@UNITY_CAN_COMPILE_TESSELLATION@@ - シェーダコンパイラが、テッセレーションシェーダのHLSL文法を、"理解できる" 場合に定義されます（現時点ではD3D11のみ）
 * @@UNITY_INITIALIZE_OUTPUT(type,name)@@ - 指定された''type''の''name''変数をゼロに初期化。
++ * @@UNITY_COMPILER_HLSL@@, @@UNITY_COMPILER_HLSL2GLSL@@, @@UNITY_COMPILER_CG@@ - indicates which shader compiler is being used to compile shaders. Respectively, Microsoft's HLSL (used for DX11, Xbox360, WinRT), HLSL to GLSL translator (used or iOS/Android and desktop OpenGL when #pragma glsl), and NVIDIA's Cg (used for D3D9 and non-GLSL desktop OpenGL targets). Use this if you run into very specific corner case shader syntax handling differences between the compilers, and want to write different code for each compiler.
 
+
+!! シャドウ マッピング マクロ
+
+シャドウ マップの宣言およびサンプリングはプラットフォームにより大きくことなる場合があるため、Unity にはこれをサポートするマクロが複数あります:
+* @@UNITY_DECLARE_SHADOWMAP(tex)@@ - "tex" という名前のシャドウ マップ テクスチャ変数を宣言します。
++ * @@UNITY_SAMPLE_SHADOW(tex,uv)@@ - "tex" という名前のシャドウ マップ テクスチャを特定の "uv" 座標にサンプリングします（XY コンポーネントはテクスチャの場所、Zコンポーネントは相対的なデプス）。0 - 1 の範囲で シャドウとしてひとつの float 変数を戻します。
+* @@ UNITY_SAMPLE_SHADOW_PROJ(tex,uv)@@ - 上記と同様であるが、プロジェクティブなシャドウマップ読み込みを行います。 "uv" は float4 であり、他の全てのコンポーネント は ルックアップをするために .w で除算します。
+ 
 !! 定数バッファマクロ（Constant buffer macros）
 
 Direct3D 11は全てのシェーダ変数を"constant buffer" （定数バッファ）にグループ分けします。Unity内蔵の変数のほとんどはすでにグループ分けされてますが、自身で作成するシェーダの変数については、予想される更新頻度に応じて、別のconstant bufferに格納することが最適です。
@@ -41,7 +51,7 @@ Direct3D 11は全てのシェーダ変数を"constant buffer" （定数バッフ
 
 
 
-!! サーフェイスシェーダ　パスインジケータ
+!! サーフェイスシェーダ パスインジケータ
 
 [[SL-SurfaceShaders | Surface Shaders]] がコンパイルされるとき、ライティングをするために、様々なパス向けに大量のコードを生成することになります。各々のパスをコンパイルするとき、次のうちのいずれかのマクロが定義されます：
 * @@UNITY_PASS_FORWARDBASE@@ - Forward Renderingのベースパス（メインの指向性ライト、ライトマップ、SH）
@@ -50,4 +60,3 @@ Direct3D 11は全てのシェーダ変数を"constant buffer" （定数バッフ
 * @@UNITY_PASS_PREPASSFINAL@@ - Deferred Lightingの最終パス（ライティングおよびテクスチャを適用））
 * @@UNITY_PASS_SHADOWCASTER@@ - Shadow Casterのレンダリングパス
 * @@UNITY_PASS_SHADOWCOLLECTOR@@ - 指向性ライトのシャドウの、シャドウの "収集" パス
-
