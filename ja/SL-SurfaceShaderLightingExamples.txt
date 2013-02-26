@@ -191,7 +191,7 @@ Attach:SurfaceShaderToonRampItself.png
 
 Attach:SurfaceShaderSimpleSpecular.png Attach:SurfaceShaderSimpleSpecularNoTex.png
 
->>u42<<
+>>nextrelease<<
 !! ライトマップのデコード
 
 ビルトイン ライトマップのデコードして Unity ビルトイン 関数 $$DecodeLightmap$$ を使用してライトマップテクスチャおよびビルトイン $$UNITY_DIRBASIS$$ マクロを使用して方向性ライトマップの基本ベクトルを定義に格納されたデータのデコード、を再現するシェーダを始めてみます：

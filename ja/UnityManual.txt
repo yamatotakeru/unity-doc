@@ -12,6 +12,9 @@ Unityは 最高のインタラクティブなエンターテイメントやマ�
 >>android<<
 [[android-GettingStarted | Android ガイド]] は、Android SDKの設定、一般的な開発の質問等のAndroidに特化したトピックが書かれています。
 >><<
+>>xbox360<<
+The [[xbox360-gettingstarted | Xbox 360 Guide]] addresses Xbox 360 specific topics such as setting up the development environment, Xbox 360 specific scripting API, optimizations and general platform development questions.
+>><<
 >>ps3<<
 The [[ps3-gettingstarted | PS3 Guide]] addresses PS3 specific topics such as setting up the development environment, PS3 specific scripting API, optimizations and general platform development questions.
 >><<

@@ -61,3 +61,6 @@ SkinnedMeshをRagdollで上手に機能させるために、Unityは、ルート
 ** Cheetah 3D
 ** XSI
 ** FBXフォーマットをサポートしている他のあらゆるツール
+
+>>mobile<<
+モバイルでは hand-codedされたNEON/VFP命令でCPUがスキニングをします。注意： 法線とタンジェントは規格化__されません__ので、自分で書いたシェーダーであれば、自分で規格化はしてください。もし、[[SL-SurfaceShaders | surface shaders]] をお使いであれば、規格化は自動的に生成されます。
