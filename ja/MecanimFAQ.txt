@@ -1,51 +1,51 @@
-!Mecanim FAQ
+! メカニムFAQ / Mecanim FAQ
 
-!!General questions
+!!全般的な質問
 
-__We are using the animation Legacy System for the player animations, do you advise us to use Mecanim instead?__
+__旧アニメーション システムを使用してプレイヤーのアニメーションを行っています。新たにメカニムをすることが推奨でしょうか？__
 
-Mecanim is the current animation tech that we are developing, and it will improve continuously. The legacy system is "as is"
-To check out the features and cool stuff you can do with Mecanim check here: [[http://unity3d.com/unity/mecanim/]]
+メカニムは現在開発をしているアニメーション技術であり、継続的に改善します。旧アニメーションはそのままで変更していきません。メカニムで実現出来る機能および優れた内容についての詳細はここで確認して下さい:
+[[http://unity3d.com/unity/mecanim/]]
 
-__how can I access Mecanim functions via script?__
+__スクリプトを通してメカニム関数にアクセスするにはどうすれば良いでしょうか?__
 
-Most functions in Mecanim can be controlled by script, but We are exposing the entire API in increments over the 4.x
+メカニムの殆どの関数はスクリプトにより制御出来ますが、4.x の中でAPI全体を公開している段階です。
 
-__How can I create new animations for humanoid characters?__
+__ヒューマノイド キャラクターに新しいアニメーションを作成するにはどうすれば良いでしょうか？__
 
-You can animate in any of the 3D animation packages listed here http://docs.unity3d.com/Documentation/Manual/HOWTO-importObject.html and import them into unity
+次で一覧にあがっている3Dアニメーション パッケージのどれでもアニメーションの作成が出来ます。 http://docs.unity3d.com/Documentation/Manual/HOWTO-importObject.html and import them into unity
 
-__In Mecanim, How can I change the motion of an Animation State?__
+__メカニムでアニメーション ステートのモーションを変更するにはどうすれば良いでしょうか？__
 
-You can use a write a controller script (or use one from our demos) to interact with the State Machine which plays the animations. Here ares some links:
+コントローラ スクリプト を記述して (あるいはデモのスクリプトを活用して) アニメーション再生を行うステートマシンと連係出来ます。次にいくつかの関連リンクを示します:
 
 
-!!Specific Questions
+!!個別の質問
 
-__If you attach elements to the bones of the player character (like weapons) , can this generate framerates issues, if we have lots of elements?__
+__もしプレイヤー キャラクターのボーンに要素をアタッチした場合(武器など)、これにより、要素がたくさんある場合など、フレームレートの問題が発生することはありますか？__
 
-When you have no animations playing on the additional bones, the cost should be negligible. Otherwise, you could expect to have a relative cost for each additional bones ( ie 15 additional bones on a rig that already has 30 bones, should be 50% longer to solve), in Generic mode. - ''Note that you can have additional bones in Generic and in Humanoid mode''
+追加したボーンにアニメーション再生がない場合であればコストは無視出来ます。そうでない場合は、ジェネリック モードにて、追加のボーンに比例してコスト増加を見込むべきです(例えばすでに30 個のボーンを保有するリグに15個のボーンを追加する場合50%だけ処理が延びます)。- ''ジェネリックおよびヒューマノイド モードどちらも追加のボーンがあることに留意して下さい。''
 
-__Is there any way to get a variable value from the controller without the name in text format?__
+__コントローラから変数の値を名前がテキスト以外の形式で取得する方法はありますか？__
 
-You can use integers to identify the states and parameters. Use the Animator::StringToHash to get the int identifiers.  For example:
+整数型を使用してステートおよびパラメータを識別することが出来ます。Animator::StringToHash を使用して整数型の識別子を取得して下さい。例えば:
 
 runState = Animator.StringToHash("Base Layer.Run");
 animator.SetBool (oneOffRun, false);
 
-__How can I optmised my Mecanim scene?__
+__メカニムつきのシーンの最適化はどうすれば良いですか?__
 
-There are many optimisations that can be made, some usefull tips include:
+最適化出来る事項はたくさんあり、いくつかの便利なテクニックとしては:
 
-Use hashes instead of strings to query the Animator
-Implement a small AI layer to control the Animator ( like we did with David G). And make it provide simple callbacks for OnStateChange, OnTransitionBegin etc...
+アニメータにクエリをかけるときに文字列型でなくハッシュを使用する
+小規模のAIレイヤーを実装してアニメータを制御する(われわれは同様のことをDavid Gで行いました)。そして OnStateChange, OnTransitionBegin など、シンプルなコールバックを提供するようにします。
 
-Use 'State Tags' to easily match your AI StateMachine to the Mecanim StateMachine
-Use additional curves to simulate Events
-Use additional curves to markup your animations (for example in conjunction with MatchTarget : http://docs.unity3d.com/Documentation/Manual/TargetMatching.html)
+'ステートタグ' を使用して自身のAI ステートマシンとメカニムのステートマシンをマッチング
+イベントを再現する追加のカーブを使用する
+アニメーションのマークアップするための追加のカーブを使用する(例えばMatchTargetに関しては: http://docs.unity3d.com/Documentation/Manual/TargetMatching.html )
 
-__How do animations with Curves blend with animations without?__
+__カーブつきのアニメーションはアニメーションなしの分とどのようにブレンド出来ますか？__
 
-When you have an animation with a curve and another animation without a curve, Unity will use the default value of the parameter connected to the curve to do blending. 
-You can set default values for your Parameters, so when blending occurs between a State that has the a �Curve� Parameter and one that does not have one, it will blend between curve value and default parameter.
-To set a default value for a Parameter, simply set its value in the Animator Tool window while not in LiveLink.
+カーブつきのアニメーションと、カーブなしのアニメーションがある場合、Unity はカーブに接続はれたパラメータのデフォルト値を使用してブレンドを行います。
+パラメータのデフォルト値をセットすることが出来るのでカーブパラメータのあるステートと、ないものとブレンドした場合、カーブ値とデフォルト値の間をブレンドします。
+パラメータの値をセットするには LiveLinkに入ってない場合、Animator Tool ウィンドウの中で値をセットします。
