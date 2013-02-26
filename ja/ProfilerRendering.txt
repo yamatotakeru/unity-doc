@@ -1,0 +1,6 @@
+! Rendering Area
+
+Attach:RenderProfiler35.png
+
+The Rendering area displays rendering statistics. The Number of Draw Calls, Triangles and Vertices rendered is displayed graphical in the timeline. The Lower pane displays more rendering statistics and these more closely match the ones shown in the GameView [[RenderingStatistics | Rendering Statistics]] window.
+

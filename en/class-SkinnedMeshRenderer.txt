@@ -61,3 +61,6 @@ So if you can't attach all SkinnedMeshRenderers to the root bone or a child and 
 ** Cheetah 3D
 ** XSI
 ** Any other tool that supports the FBX format
+
+>>mobile<<
+On mobiles, we do skinning on cpu with hand-coded neon/vfp assembly. The caveat: we __do not__ normalize normals/tangents, so if you are writing your own shaders, you should take care of it. If you are using [[SL-SurfaceShaders | surface shaders]] the normalization is generated automatically.

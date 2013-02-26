@@ -1,0 +1,15 @@
+! Audio Area
+
+Attach:AudioProfiler35.png
+
+The Audio area displays audio statistics:
+* ``Playing Sources`` is the total playing sources in the scene at a specific frame. Monitor this to see if audio is overloaded. 
+* ``Paused Sources`` is the total paused sources in the scene at a specific frame.
+* ``Audio Voice`` is the actually number of audio (FMOD channels) voices used. PlayOneShot is using voices not shown in Playing Sources. 
+* ``Audio Memory`` is the total RAM used by the audio engine.
+
+CPU usage can be seen in the bottom. Monitor this to see if Audio alone is taking up too much CPU.
+
+__Note:__ When an audio asset in Ogg Vorbis format is imported with the Compressed In Memory option, the memory usage reported by the profiler may be unexpectedly low. This happens for platforms that use FMOD audio - FMOD doesn't support Ogg Vorbis with the Compressed In Memory option, so the import setting is silently changed to Stream From Disk (which has much lower memory overheads).
+
+

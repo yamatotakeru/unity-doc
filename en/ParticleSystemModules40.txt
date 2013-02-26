@@ -196,8 +196,8 @@ The renderer module exposes the ``ParticleSystemRenderer`` component's propertie
 ||>>>``-  Camera Scale``      ||How much the camera speed is factored in when determining particle stretching||
 ||>>>``-  Speed Scale``       ||Defines the length of the particle compared to its speed||
 ||>>>``-  Length Scale``      ||Defines the length of the particle compared to its width||
-||>>>``Horizontal Billboard`` ||Makes the particles align with the Y axis||
-||>>>``Vertical Billboard``   ||Makes the particles align with the XZ plane while facing the camera||
+||>>>``Horizontal Billboard`` ||Makes the particles align with the XZ plane. ||
+||>>>``Vertical Billboard``   ||Makes the particles align with the Y axis while facing the camera||
 ||>>>``Mesh``                 ||Particles are rendered using a mesh instead of a quad||
 ||>>>``-  Mesh``              ||The reference to the mesh used for rendering particles||
 ||``Normal Direction``        ||Value from 0 to 1 that determines how much normals point toward the camera (0) and how much sideways toward the centre of the view (1).||

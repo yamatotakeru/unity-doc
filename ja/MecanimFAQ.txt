@@ -1,0 +1,51 @@
+!Mecanim FAQ
+
+!!General questions
+
+__We are using the animation Legacy System for the player animations, do you advise us to use Mecanim instead?__
+
+Mecanim is the current animation tech that we are developing, and it will improve continuously. The legacy system is "as is"
+To check out the features and cool stuff you can do with Mecanim check here: [[http://unity3d.com/unity/mecanim/]]
+
+__how can I access Mecanim functions via script?__
+
+Most functions in Mecanim can be controlled by script, but We are exposing the entire API in increments over the 4.x
+
+__How can I create new animations for humanoid characters?__
+
+You can animate in any of the 3D animation packages listed here http://docs.unity3d.com/Documentation/Manual/HOWTO-importObject.html and import them into unity
+
+__In Mecanim, How can I change the motion of an Animation State?__
+
+You can use a write a controller script (or use one from our demos) to interact with the State Machine which plays the animations. Here ares some links:
+
+
+!!Specific Questions
+
+__If you attach elements to the bones of the player character (like weapons) , can this generate framerates issues, if we have lots of elements?__
+
+When you have no animations playing on the additional bones, the cost should be negligible. Otherwise, you could expect to have a relative cost for each additional bones ( ie 15 additional bones on a rig that already has 30 bones, should be 50% longer to solve), in Generic mode. - ''Note that you can have additional bones in Generic and in Humanoid mode''
+
+__Is there any way to get a variable value from the controller without the name in text format?__
+
+You can use integers to identify the states and parameters. Use the Animator::StringToHash to get the int identifiers.  For example:
+
+runState = Animator.StringToHash("Base Layer.Run");
+animator.SetBool (oneOffRun, false);
+
+__How can I optmised my Mecanim scene?__
+
+There are many optimisations that can be made, some usefull tips include:
+
+Use hashes instead of strings to query the Animator
+Implement a small AI layer to control the Animator ( like we did with David G). And make it provide simple callbacks for OnStateChange, OnTransitionBegin etc...
+
+Use 'State Tags' to easily match your AI StateMachine to the Mecanim StateMachine
+Use additional curves to simulate Events
+Use additional curves to markup your animations (for example in conjunction with MatchTarget : http://docs.unity3d.com/Documentation/Manual/TargetMatching.html)
+
+__How do animations with Curves blend with animations without?__
+
+When you have an animation with a curve and another animation without a curve, Unity will use the default value of the parameter connected to the curve to do blending. 
+You can set default values for your Parameters, so when blending occurs between a State that has the a “Curve” Parameter and one that does not have one, it will blend between curve value and default parameter.
+To set a default value for a Parameter, simply set its value in the Animator Tool window while not in LiveLink.

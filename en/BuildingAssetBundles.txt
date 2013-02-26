@@ -34,6 +34,78 @@ Attach:AssetBundlesCube.png
 At this point you can move the AssetBundle ``Cube.unity3d`` elsewhere on your local storage, or upload it to a server of your choice.
 
 
+!! An example of how to change the properties of the assets when building an Asset Bundle
+
+You can use [[ScriptRef:AssetDatabase.ImportAsset.html|AssetDatabase.ImportAsset]] to force reimporting the asset right before calling [[ScriptRef:BuildPipeline.BuildAssetBundle.html|BuildPipeline.BuildAssetBundle]], and then use [[ScriptRef:AssetPostprocessor.OnPreprocessTexture.html|AssetPostprocessor.OnPreprocessTexture]] to set the required properties. The following example will show you how to set different texture compressions when building the Asset Bundle.
+
+!!!C#
+[@
+// Builds an asset bundle from the selected objects in the project view,
+// and changes the texture format using an AssetPostprocessor.
+
+using UnityEngine;
+using UnityEditor;
+
+public class ExportAssetBundles {
+    
+    // Store current texture format for the TextureProcessor.
+    public static TextureImporterFormat textureFormat;
+	
+    [MenuItem("Assets/Build AssetBundle From Selection - PVRTC_RGB2")]
+    static void ExportResourceRGB2 () {
+	textureFormat = TextureImporterFormat.PVRTC_RGB2;
+	ExportResource();		
+    }	
+    
+    [MenuItem("Assets/Build AssetBundle From Selection - PVRTC_RGB4")]
+    static void ExportResourceRGB4 () {
+	textureFormat = TextureImporterFormat.PVRTC_RGB4;
+	ExportResource();
+    }
+	
+    static void ExportResource () {
+        // Bring up save panel.
+        string path = EditorUtility.SaveFilePanel ("Save Resource", "", "New Resource", "unity3d");
+		
+        if (path.Length != 0) {
+            // Build the resource file from the active selection.
+            Object[] selection = Selection.GetFiltered(typeof(Object), SelectionMode.DeepAssets);
+			
+			foreach (object asset in selection)
+			{
+				string assetPath = AssetDatabase.GetAssetPath((UnityEngine.Object) asset);
+				if (asset is Texture2D) {
+					// Force reimport thru TextureProcessor.
+					AssetDatabase.ImportAsset(assetPath);
+				}
+			}
+            
+			BuildPipeline.BuildAssetBundle(Selection.activeObject, selection, path, BuildAssetBundleOptions.CollectDependencies | BuildAssetBundleOptions.CompleteAssets);
+            Selection.objects = selection;
+        }
+    }
+}
+@]
+
+!!!C#
+[@
+// Changes the texture format when building the Asset Bundle.
+
+using UnityEngine;
+using UnityEditor;
+
+public class TextureProcessor : AssetPostprocessor
+{   
+    void OnPreprocessTexture() {
+        TextureImporter importer = assetImporter as TextureImporter;
+        importer.textureFormat = ExportAssetBundles.textureFormat;
+    }
+}
+@]
+
+You can also control how the asset is imported and updated from the Cache Server with [[ScriptRef:AssetDatabase.ImportAsset.html|AssetDatabase.ImportAsset]].
+
+
 !! Building AssetBundles in a production enviroment
 
 When first using AssetBundles it may seem enough to manually build them as seen in the previous example. But as a project grows in size and the number of Assets increases doing this process by hand is not efficient. A better approach is to write a function that builds all of the AssetBundles for a project. You can for example use a text file that maps Asset files to AssetBundle files.

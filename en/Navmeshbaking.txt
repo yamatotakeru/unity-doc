@@ -22,4 +22,17 @@ Here are the properties that affect Navmesh baking:
 
 Note that the baked navmesh is part of the scene and agents will be able to traverse it. To remove the navmesh, click on ^^Clear^^ when you're in the ^^Bake^^ tab.
 
+!! Implementation Details
+When the Navmesh is baked, it is mapped into square tiles in the XZ-plane. Tile borders are seen as bright blue axis-aligned lines on the Navmesh when you are visualising it. Unity supports up to 1024 tiles in a single scene, each tile represented by 1000x1000 "voxels".  Please pay attention to the size of your Navmesh and consequently tile count, if you are planning to have agents navigate over large areas. 
+
+Attach:NavMeshTiles.png
+
+The default setting for ``Radius`` is 0.5 and the default setting for ``Width Inaccuracy`` is 0.16666667 (16.666667%). The tile side length for the default settings can be calculated as: 
+
+@@1000 * (2*Radius) * Width Inaccuracy = 1000 * (2*0.5) * 0.16666667 = 166.66667@@. 
+
+Increasing ``Width Inaccuracy`` allows for larger areas but reduces Navmesh precision.
+
+For example, if you have a grid of 32 x 32 tiles, you have 1024 tiles. This means that if you had a really large terrain that you wanted to use with the Navmesh, the terrain should not be larger than 5.333 by 5.333 km with the default settings (@@32 * 166.66667m@@)
+
 (back to [[NavmeshandPathfinding|Navigation and Pathfinding]])

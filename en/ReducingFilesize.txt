@@ -16,8 +16,8 @@ The amount of assets in your project folder does __not__ influence the size of y
 After Unity has completed building a player, it prints an overview of what type of asset took up the most file size, and it prints which assets were included in the build. To see it just open the editor console log: ^^Open Editor Log^^ button in the Console window (^^Window -> Console^^).
 
 Attach:FileSizeOptimization.png
-''An overview of what took up space''
 
+It is important to note that file headers represents the amount of data that is kept to maintain references and settings for the assets, such as resource assets. In other words, it is the amount of extra data apart from the raw data contents in a file. This is usually a small percentage, but if you have a large value check whether you have assets in the Resources folder. In such case try moving some or all files out of this folder and see if that reduces the file headers.
 
 !! Optimizing texture size
 
@@ -99,4 +99,3 @@ Attach:FileSizeMonoDependency.png \\
 ''As you can see, Unity is including System.Xml.dll and System.dll, when building a player''
 
 Unity includes the following DLLs with the players distribution $$mscorlib.dll$$, $$Boo.Lang.dll$$, $$UnityScript.Lang.dll$$ and $$UnityEngine.dll$$.
-

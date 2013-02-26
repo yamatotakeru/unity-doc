@@ -27,14 +27,6 @@ The Keyboard supports the following types:
 !!Text Preview
 By default, an edit box will be created and placed on top of the keyboard after it appears. This works as preview of the text that user is typing, so the text is always visible for the user. However, you can disable text preview by setting ``iPhoneKeyboard.hideInput`` to true. Note that this works only for certain keyboard types and input modes. For example, it will not work for phone keypads and multi-line text input. In such cases, the edit box will always appear. ``iPhoneKeyboard.hideInput`` is a global variable and will affect all keyboards.
 
-!!Keyboard Orientation
-By default, the keyboard automatically follows the device orientation. To disable or enable rotation to a certain orientation, use the following properties available in [[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]]:
-||PROPS
-||``autorotateToPortrait`` ||Enable or disable autorotation to portrait orientation (button at the bottom).||
-||``autorotateToPortraitUpsideDown`` ||Enable or disable autorotation to portrait orientation (button at top).||
-||``autorotateToLandscapeLeft`` ||Enable or disable autorotation to landscape left orientation (button on the right).||
-||``autorotateToLandscapeRight`` ||Enable or disable autorotation to landscape right orientation (button on the left).||
-
 !!Visibility and Keyboard Size
 There are three keyboard properties in [[ScriptRef:iPhoneKeyboard.html | iPhoneKeyboard]] that determine keyboard visibility status and size on the screen.
 ||PROPS

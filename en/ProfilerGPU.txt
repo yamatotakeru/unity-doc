@@ -1,0 +1,8 @@
+!GPU Area
+
+Attach:GPUProfiler.png
+
+The GPU profiler is similar to the CPU profiler with the various contributions to rendering time shown as a hierarchy in the bottom panel. Selecting an item from the hierarchy will show a breakdown in the panel to the right.
+
+Please note that on the Mac, GPU profiling is only available under OSX 10.7 Lion and later versions.
+

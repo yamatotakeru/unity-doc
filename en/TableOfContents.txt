@@ -154,6 +154,10 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 *** [[PluginsForAndroid | Android-Plugins]]
 *** [[MobileCustomizeSplashScreen#Android | Android Splash Screen]]
 >><<
+>>bb10<<
+**[[bb10-gettingstarted]]
+*** [[bb10-sdksetup]]
+>><<
 >>metro<<
 **[[metro-gettingstarted]]
 ***[[metro-debugging]]
@@ -340,6 +344,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 **** [[iphone-OptimizedScriptingMethods]]
 **** [[iphone-PracticalRenderingOptimizations]]
 **** [[iphone-PracticalScriptingOptimizations]]
+***[[StructureOfXcodeProject]]
 ***[[Optimizing Graphics Performance]]
 **** [[Draw Call Batching]]
 **** [[Modeling Optimized Characters]]
@@ -683,6 +688,9 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ******[[SL-PassTags]]
 ******[[SL-Name]]
 ******[[SL-BindChannels]]
+>>nextrelease<<
+******[[SL-Stencil]]
+>><<
 *****[[SL-UsePass]]
 *****[[SL-GrabPass]]
 *****[[SL-SubshaderTags]]

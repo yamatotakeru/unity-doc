@@ -129,18 +129,6 @@ function Update () {
 !!! Mouse Simulation
 On top of native touch support Unity iOS/Android provides a mouse simulation. You can use mouse functionality from the standard [[ScriptRef:Input.html | Input]] class.
 
-!! Device Orientation
-Unity iOS/Android allows you to get discrete description of the device physical orientation in three-dimensional space. Detecting a change in orientation can be useful if you want to create game behaviors depending on how the user is holding the device.
-
-You can retrieve device orientation by accessing the  [[ScriptRef:Input-deviceOrientation.html | Input.deviceOrientation]] property. Orientation can be one of the following:
-||``Unknown`` ||The orientation of the device cannot be determined. For example when device is rotate diagonally.
-||``Portrait`` ||The device is in portrait mode, with the device held upright and the home button at the bottom.
-||``PortraitUpsideDown`` ||The device is in portrait mode but upside down, with the device held upright and the home button at the top.
-||``LandscapeLeft`` ||The device is in landscape mode, with the device held upright and the home button on the right side.
-||``LandscapeRight`` ||The device is in landscape mode, with the device held upright and the home button on the left side.
-||``FaceUp`` ||The device is held parallel to the ground with the screen facing upwards.
-||``FaceDown`` ||The device is held parallel to the ground with the screen facing downwards.
-
 !! Accelerometer
 As the mobile device moves, a built-in accelerometer reports linear acceleration
 changes along the three primary axes in three-dimensional space. Acceleration
