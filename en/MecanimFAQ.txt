@@ -9,7 +9,7 @@ To check out the features and cool stuff you can do with Mecanim check here: [[h
 
 __how can I access Mecanim functions via script?__
 
-Most functions in Mecanim can be controlled by script, but We are exposing the entire API in increments over the 4.x
+Most functions in Mecanim can be controlled by script, but We are exposing the entire API in increments over the 4.x development cycle
 
 __How can I create new animations for humanoid characters?__
 
@@ -38,11 +38,11 @@ __How can I optmised my Mecanim scene?__
 There are many optimisations that can be made, some usefull tips include:
 
 Use hashes instead of strings to query the Animator
-Implement a small AI layer to control the Animator ( like we did with David G). And make it provide simple callbacks for OnStateChange, OnTransitionBegin etc...
 
-Use 'State Tags' to easily match your AI StateMachine to the Mecanim StateMachine
-Use additional curves to simulate Events
-Use additional curves to markup your animations (for example in conjunction with MatchTarget : http://docs.unity3d.com/Documentation/Manual/TargetMatching.html)
+* Implement a small AI layer to control the Animato. You can make it provide simple callbacks for OnStateChange, OnTransitionBegin etc...
+* Use 'State Tags' to easily match your AI StateMachine to the Mecanim StateMachine
+* Use additional curves to simulate Events
+* Use additional curves to markup your animations (for example in conjunction with MatchTarget : http://docs.unity3d.com/Documentation/Manual/TargetMatching.html)
 
 __How do animations with Curves blend with animations without?__
 

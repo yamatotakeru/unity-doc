@@ -47,6 +47,7 @@ Most common places where you'd run into this:
         // ...
       }
 * Partially initialized values, e.g. a function returning float4, but the code only sets .xyz values of it. Make sure to set all values, or change to float3 if you only need those.
+* Using @@tex2D@@ in the vertex shader. This is not valid since UV derivatives don't exist in the vertex shader; you need to sample an explicit mip level instead, e.g. use @@tex2Dlod (tex, float4(uv,0,0))@@. You'll need to add @@#pragma glsl@@ as well to make this work on OpenGL.
 
 
 !! DirectX 11 HLSL syntax and Surface Shaders
