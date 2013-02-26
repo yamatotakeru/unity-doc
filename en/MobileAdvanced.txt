@@ -1,43 +1,4 @@
 ! Advanced Unity Mobile Scripting
-
-!! Device Properties
-There are a number of device-specific properties that you can access:-
-||PROPS
-||``[[ScriptRef:SystemInfo-deviceUniqueIdentifier.html | SystemInfo.deviceUniqueIdentifier]]`` ||Unique device identifier.
-||``[[ScriptRef:SystemInfo-deviceName.html |SystemInfo.deviceName]]`` ||User specified name for device.
-||``[[ScriptRef:SystemInfo-deviceModel.html | SystemInfo.deviceModel]]`` ||Device Model.
-||``[[ScriptRef:SystemInfo-operatingSystem.html | SystemInfo.operatingSystem]]`` ||Operating system name and version.
-||END
-
-!! Anti-Piracy Check
-Pirates will often hack an application (by removing AppStore DRM protection) and then redistribute it for free. Unity comes with an anti-piracy check which allows you to determine if your application was altered __after__ it was submitted to the AppStore.
-
-You can check if your application is genuine (not-hacked) with the [[ScriptRef:Application-genuine.html | Application.genuine]] property. If this property returns $$false$$ then you might notify user that he is using a hacked application or maybe disable access to some functions of your application.
-
-__Note:__ [[ScriptRef:Application-genuineCheckAvailable.html | Application.genuineCheckAvailable]] should be used along with $$Application.genuine$$ to verify that application integrity can actually be confirmed. Accessing the [[ScriptRef:Application-genuine.html | Application.genuine]] property is a fairly expensive operation and so you shouldn't do it during frame updates or other time-critical code.
-
-!! Vibration Support
-You can trigger a vibration by calling [[ScriptRef:Handheld.Vibrate.html | Handheld.Vibrate]]. However, devices lacking vibration hardware will just ignore this call.
-
-!! Activity Indicator
-Mobile OSes have builtin activity indicators, that you can use during slow operations. Please check [[ScriptRef:Handheld.StartActivityIndicator.html | Handheld.StartActivityIndicator docs]] for usage sample.
-
-!! Screen Orientation
-Unity iOS/Android allows you to control current screen orientation. Detecting a change in orientation or forcing some specific orientation can be useful if you want to create game behaviors depending on how the user is holding the device.
-
-You can retrieve device orientation by accessing the  [[ScriptRef:Screen-orientation.html | Screen.orientation]] property. Orientation can be one of the following:
-||``Portrait`` ||The device is in portrait mode, with the device held upright and the home button at the bottom.
-||``PortraitUpsideDown`` ||The device is in portrait mode but upside down, with the device held upright and the home button at the top.
-||``LandscapeLeft`` ||The device is in landscape mode, with the device held upright and the home button on the right side.
-||``LandscapeRight`` ||The device is in landscape mode, with the device held upright and the home button on the left side.
-You can control screen orientation by setting [[ScriptRef:Screen-orientation.html | Screen.orientation]] to one of those, or to [[ScriptRef:ScreenOrientation.AutoRotation.html | ScreenOrientation.AutoRotation]].
-When you want auto-rotation, you can disable some orientation on case by case basis
-||PROPS
-||``[[ScriptRef:Screen-autorotateToPortrait.html | Screen.autorotateToPortrait ]]`` ||Allow portrait orientation.
-||``[[ScriptRef:Screen-autorotateToPortraitUpsideDown.html | Screen.autorotateToPortraitUpsideDown ]]`` ||Allow portrait upside-down orientation.
-||``[[ScriptRef:Screen-autorotateToLandscapeLeft.html | Screen.autorotateToLandscapeLeft ]]`` ||Allow landscape left orientation.
-||``[[ScriptRef:Screen-autorotateToLandscapeRight.html | Screen.autorotateToLandscapeRight ]]`` ||Allow landscape right orientation.
-
 [[#iOS]]
 !iOS!
 >>ios<<
@@ -46,6 +7,28 @@ When you want auto-rotation, you can disable some orientation on case by case ba
 Different device generations support different functionality and have widely varying performance. You should query the device's generation and decide which functionality should be disabled to compensate for slower devices. You can find the device generation from the [[ScriptRef:iPhone-generation.html | iPhone.generation]] property. 
 
 More information about different device generations, performance and supported functionality can be found in our [[Main.iphone-Hardware | iPhone Hardware Guide]].
+
+
+!! Device Properties
+There are a number of device-specific properties that you can access:-
+||PROPS
+||``[[ScriptRef:SystemInfo-deviceUniqueIdentifier.html | SystemInfo.deviceUniqueIdentifier]]`` ||Unique device identifier.
+||``[[ScriptRef:SystemInfo-deviceName.html |SystemInfo.deviceName]]`` ||User specified name for device.
+||``[[ScriptRef:SystemInfo-deviceModel.html | SystemInfo.deviceModel]]`` ||Is it iPhone or iPod Touch?
+||``[[ScriptRef:SystemInfo-operatingSystem.html | SystemInfo.operatingSystem]]`` ||Operating system name and version.
+||END
+
+
+!! Anti-Piracy Check
+Pirates will often hack an application from the AppStore (by removing Apple DRM protection) and then redistribute it for free. Unity iOS comes with an anti-piracy check which allows you to determine if your application was altered __after__ it was submitted to the AppStore.
+
+You can check if your application is genuine (not-hacked) with the [[ScriptRef:Application-genuine.html | Application.genuine]] property. If this property returns $$false$$ then you might notify the user that he is using a hacked application or maybe disable access to some functions of your application.
+
+__Note:__ accessing the [[ScriptRef:Application-genuine.html | Application.genuine]] property is a fairly expensive operation and so you shouldn't do it during frame updates or other time-critical code. 
+
+
+!! Vibration Support
+You can trigger a vibration by calling [[ScriptRef:Handheld.Vibrate.html | Handheld.Vibrate]]. Note that iPod Touch devices lack vibration hardware and will just ignore this call.
 
 (:include UpdateOrder:)
 
@@ -59,5 +42,25 @@ More information about different device generations, performance and supported f
 Different Android devices support different functionality and have widely varying performance. You should target specific devices or device families and decide which functionality should be disabled to compensate for slower devices. There are a number of device specific properties that you can access to which device is being used.
 
 __Note:__ Android Marketplace does some additional compatibility filtering, so you should not be concerned if an ARMv7-only app optimised for OGLES2 is offered to some old slow devices.
- 
+
+!! Device Properties
+||PROPS
+||``[[ScriptRef:SystemInfo-deviceUniqueIdentifier.html | SystemInfo.deviceUniqueIdentifier]]`` ||Unique device identifier.
+||``[[ScriptRef:SystemInfo-deviceName.html |SystemInfo.deviceName]]`` ||User specified name for device.
+||``[[ScriptRef:SystemInfo-deviceModel.html | SystemInfo.deviceModel]]`` ||Is it iPhone or iPod Touch?
+||``[[ScriptRef:SystemInfo-operatingSystem.html | SystemInfo.operatingSystem]]`` ||Operating system name and version.
+||END
+
+
+!! Anti-Piracy Check
+Pirates will often hack an application (by removing Apple DRM protection) and then redistribute it for free. Unity Android comes with an anti-piracy check which allows you to determine if your application was altered __after__ it was submitted to the AppStore.
+
+You can check if your application is genuine (not-hacked) with the [[ScriptRef:Application-genuine.html | Application.genuine]] property. If this property returns $$false$$ then you might notify user that he is using a hacked application or maybe disable access to some functions of your application.
+
+__Note:__ [[ScriptRef:Application-genuineCheckAvailable.html | Application.genuineCheckAvailable]] should be used along with $$Application.genuine$$ to verify that application integrity can actually be confirmed. Accessing the [[ScriptRef:Application-genuine.html | Application.genuine]] property is a fairly expensive operation and so you shouldn't do it during frame updates or other time-critical code. 
+
+
+!! Vibration Support
+You can trigger a vibration by calling [[ScriptRef:Handheld.Vibrate.html | Handheld.Vibrate]]. However, devices lacking vibration hardware will just ignore this call.
+
 >><<
