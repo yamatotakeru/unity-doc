@@ -7,6 +7,7 @@ __We are using the animation Legacy System for the player animations, do you adv
 Mecanim is the current animation tech that we are developing, and it will improve continuously. The legacy system is "as is"
 To check out the features and cool stuff you can do with Mecanim check here: [[http://unity3d.com/unity/mecanim/]]
 
+
 __how can I access Mecanim functions via script?__
 
 Most functions in Mecanim can be controlled by script, but We are exposing the entire API in increments over the 4.x development cycle
@@ -20,18 +21,23 @@ __In Mecanim, How can I change the motion of an Animation State?__
 You can use a write a controller script (or use one from our demos) to interact with the State Machine which plays the animations. Here ares some links:
 
 
-!!Specific Questions
+!!Performance
 
 __If you attach elements to the bones of the player character (like weapons) , can this generate framerates issues, if we have lots of elements?__
 
 When you have no animations playing on the additional bones, the cost should be negligible. Otherwise, you could expect to have a relative cost for each additional bones ( ie 15 additional bones on a rig that already has 30 bones, should be 50% longer to solve), in Generic mode. - ''Note that you can have additional bones in Generic and in Humanoid mode''
 
-__Is there any way to get a variable value from the controller without the name in text format?__
+__How expensive is another layer in the animator? (synced/not synced)__
 
-You can use integers to identify the states and parameters. Use the Animator::StringToHash to get the int identifiers.  For example:
+Most of the time in Mecanim is evaluating animations. We kept the overhead for layer/stateMachine very minimal. So it really depends on what animations/blendTrees are played by the layer.
 
-runState = Animator.StringToHash("Base Layer.Run");
-animator.SetBool (oneOffRun, false);
+__Does the layer cost when the weight of it is 0?__
+
+Unity does not skip all computations, but does skip the most expensive ones
+
+__Does the animator use cpu even if a controller is not set to it?__
+
+No, From version 4.1 onwards
 
 __How can I optmised my Mecanim scene?__
 
@@ -43,6 +49,58 @@ Use hashes instead of strings to query the Animator
 * Use 'State Tags' to easily match your AI StateMachine to the Mecanim StateMachine
 * Use additional curves to simulate Events
 * Use additional curves to markup your animations (for example in conjunction with MatchTarget : http://docs.unity3d.com/Documentation/Manual/TargetMatching.html)
+
+
+!!Import
+
+__Why is an animator added automatically to every mesh that's imported?__
+	
+Currently there are no methods by which to set import defaults, but if you set the Rig to ‘None’ in the import settings, then the Animator component will not be added - you can do this with multiple files at once
+
+
+!!Layers
+
+__Does it matter in what order the layers are in?__
+
+Yes. Layers are evaluated from the top one to the bottom one. Layers set to “override” will always override the previous layers  (based on their mask, if they have mask)
+
+__Is there a built in way to fade between layers?__
+
+There is no “automatic” mode for layer weights. Using your own fade in/out can be good approach *
+
+__Is the base layer weight always supposed to be one or should the weight be set to zero when another synced layer is run?__
+
+The base layer weight is always 1, however setting layers to *override* will completely override the base layer.
+
+__What happens if a synced layer has a different length to the corresponding state in the base layer?__
+
+If layers would have different lengths, the synced layers would become unsynced. 
+
+
+__Is there any way to get a variable value from the controller without the name in text format?__
+
+You can use integers to identify the states and parameters. Use the Animator::StringToHash to get the int identifiers.  For example:
+
+runState = Animator.StringToHash("Base Layer.Run");
+animator.SetBool (oneOffRun, false);
+
+
+!!Avatars and body Masks
+
+__Is there a way to define what bones should be part of a body mask?__
+
+Body mask are tightly bound to the humanoid re-targeting solver, so currently it is not possible.
+
+__Is there a way to create more AvatarIKGoals than LeftFoot, RightFoot, LeftHand, RightHand?__
+
+We have this on our roadmap
+
+
+!!Animations curves and events
+
+__Can you add animation events to Mecanim?__
+
+This is on our high priority roadmap. We suggest using Additional animation curves on animation to “simulate” events. Its not exactly the same, but many of our users have had success with this!
 
 __How do animations with Curves blend with animations without?__
 

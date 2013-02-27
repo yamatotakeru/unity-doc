@@ -7,6 +7,9 @@ Before you can run Unity iOS games on the actual device, you will need to have y
 
 __Note__: We recommend that you set up your Apple Developer account before proceeding because you will need it to use Unity to its full potential with iOS.
 
+!! The Unity XCode Project
+When you build the Unity iOS game an XCode project is generated. This project is required to sign, compile and prepare your game for distribution. See the [[StructureOfXcodeProject | Unity XCode project]] manual page for further information.
+
 !! Accessing iOS Functionality
 Unity provides a number of scripting APIs to access the multi-touch screen, accelerometer, device geographical location system and much more. You can find out more about the script classes on the [[Main.iphone-API | iOS scripting page]].
 
@@ -44,4 +47,3 @@ MovieTextures are not supported on iOS.  Instead, full-screen streaming playback
 
 !! Further Reading
 (:tocportion:)
-

@@ -8,7 +8,7 @@ Attach:ShurikenParticleEditor.png
 
 You can toggle between ^^Show: All^^ and ^^Show: Selected^^ in this Editor. ^^Show: All^^ will render the entire particle effect. ^^Show: Selected^^ will only render the selected particle systems. What is selected will be highlighted with a blue frame in the Particle Editor and also shown in blue in the Hierarchy view. You can also change the selection both from the Hierarchy View and the Particle Editor, by clicking the icon in the top-left corner of the Particle System. To do a multiselect, use Ctrl+click on windows and Command+click on the Mac. 
 
-You can explicitly control rendering order of grouped particles (or otherwise spatially close particle emitters) by tweaking ``Sorting Fudge`` property in the [[ParticleSystemModules#RendererModule|``Renderer`` module]]. 
+You can explicitly control rendering order of grouped particles (or otherwise spatially close particle emitters) by tweaking ``Sorting Fudge`` property in the [[ParticleSystemModules40#RendererModule|``Renderer`` module]]. 
 
 
 Attach:ShurikenOverviewHierarchy.png

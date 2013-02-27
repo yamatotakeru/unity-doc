@@ -1,55 +1,39 @@
 !Structure of an Unity XCode Project
 
-*__[TODO]__ Introduction
+When you build a project for the iOS platform Unity will create a folder that contains an XCode project. This project is required to compile and sign your app before deploying on devices, and it allows preparing and bundling your game for distribution on App Store.
+
+Attach:Unity-iPhone-Project-Folder.png
+
+Before building the iOS project make sure that you set the ^^Bundle Identifier^^ in ^^Player Settings^^. You may also choose the ^^SDK version^^ to run the game on the device or simulator.
 
 !!Classes folder
 
-*__[TODO]__ Contains code that integrates the Unity Runtime and Objective-C
-*__[TODO]__ main.mm / AppController.mm is the entry point for the application
-*__[TODO]__ iPhone_Profiler.h enables the Internal Profiler
-*__[TODO]__ [@#define ENABLE_INTERNAL_PROFILER 1@]
-*__[TODO]__ Fast and unintrusive
-*__[TODO]__ Feeds basic information: which subsystem is taking most of the frame time, .NET heap size, GC event count/duration
-*__[TODO]__ Custom classes can be placed here
-*__[TODO]__ Folder for code that don’t change often
-*__[TODO]__ Changes to this folder are preserved between builds (if append mode is selected)
+Contains code that integrates the Unity Runtime and Objective-C. The contained files @@main.mm@@ and @@AppController.mm@@ are the entry point of the application. Also the @@iPhone_Profiler.h@@ file defines a compiler conditional to enable the Internal Profiler. This is a folder for code that don't change often, and you can place your custom classes here. The changes to this folder are preserved between builds when the append mode is selected.
+
+The Internal Profiler is fast and unintrusive, and feeds basic information: which subsystem is taking most of the frame time, .NET heap size, GC event count/duration. See the [[iphone-InternalProfiler | built-in profiler]] manual page for further information.
 
 !!Data folder
 
-*__[TODO]__ Contains the serialized game assets: mainData / *.assets / resources
-*__[TODO]__ Contains the .NET assemblies: *.dll
-**Full code, or...
-**Just metadata if stripping is on
-*__[TODO]__ machine.config is the setup for various .NET services
-**security
-**WebRequest
-**etc.
-*__[TODO]__ Content of this folder is refreshed with each build
-*__[TODO]__ This folder should not be modified by user
+Contains the serialized game assets, and .NET assemblies (@@dll@@ files) as full code or metadata if stripping is on. The @@machine.config@@ file is the setup for various .NET services such as security, WebRequest, and more. The content of this folder is refreshed with each build, and you should not modify it.
 
 !!Libraries folder
 
-*__[TODO]__ Contains the .NET assemblies translated to ARM assembler: *.s
-*__[TODO]__ libiPhone-lib.a is the Unity Runtime static library
-*__[TODO]__ RegisterMonoModules.cpp binds Unity native code with .NET
-*__[TODO]__ Content of this folder is refreshed with each build
-*__[TODO]__ This folder should not be modified by user
+Contains the .NET assemblies translated to ARM assembler (@@s@@ files). The @@libiPhone-lib.a@@ file is the Unity Runtime static library, and @@RegisterMonoModules.cpp@@ binds Unity native code with .NET. The content of this folder is refreshed with each build, and you should not modify it.
 
 !!Other newly created custom folders
 
-*__[TODO]__ Custom files can be placed here
+Your custom files can be placed here.
 
 !!Graphic files
 
-*__[TODO]__ Icons and splash screens: *.png. These files are automatically managed by Unity. You can setup them in Player Settings.
+These are icons and splash screens (@@png@@ files). These files are automatically managed by Unity. You can setup them in ^^Player Settings^^.
 
 !!Property List file
 
-*__[TODO]__ info.plist is managed via Player Settings in Unity
-*__[TODO]__ With Unity 4.1 this file is updated, instead of being replaced
-*__[TODO]__ Should not be modified unless really needed
+The @@info.plist@@ is managed via Player Settings in Unity. With Unity 4.1 this file is updated, instead of being replaced. You should not modify it unless it is really needed.
 
 !!Other files
 
-*__[TODO]__ XCode Project file: *.xcodeproj
-*__[TODO]__ Framework links (only shown in the Project Navigator): *.framework
+These include the XCode Project file (@@xcodeproj@@ file), and framework links that are only shown in the ^^Project Navigator^^.
+
+Attach:Unity-iPhone-Project.png

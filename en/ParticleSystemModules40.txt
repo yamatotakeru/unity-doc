@@ -5,14 +5,14 @@ The Particle System (Shuriken) uses modules to describe the behaviour of particl
 
 !!Initial Module 
 Attach:ShurikenInitialModule.png
-This module is always present, cannot be removed or disabled.
+This module is always present, it cannot be removed or disabled.
 ||PROPS
 ||``Duration``           ||The duration the Particle System will be emitting particles.||
 ||``Looping``            ||Is the Particle System looping.||
 ||``Prewarm``            ||Only looping systems can be prewarmed which means that the Particle System will have emitted particles at start as if it had already emitted particles one cycle. ||
 ||``Start Delay``        ||Delay in seconds that this Particle System will wait before emitting particles. Note prewarmed looping systems cannot use a start delay.||
 ||``Start Lifetime``           ||The lifetime of particles in seconds. (See [[ParticleSystemCurveEditor|MinMaxCurve]]). ||
-||``Start Speed``              ||The speed of particles when emitted.(See [[ParticleSystemCurveEditor|MinMaxCurve]]).||
+||``Start Speed``              ||The speed of particles when emitted. (See [[ParticleSystemCurveEditor|MinMaxCurve]]).||
 ||``Start Size``               ||The size of particles when emitted. (See [[ParticleSystemCurveEditor|MinMaxCurve]]).||
 ||``Start Rotation``       ||The rotation of particles when emitted. (See [[ParticleSystemCurveEditor|MinMaxCurve]]).||
 ||``Start Color``              ||The color of particles when emitted. (See [[ParticleSystemColorEditor|MinMaxGradient]]).||
@@ -29,7 +29,7 @@ Attach:ShurikenEmissionModule.png
 Controls the rate of particles being emitted and allows spawning large groups of particles at certain moments (over Particle System duration time). Useful for explosions when a bunch of particles need to be created at once.
 ||PROPS
 ||``Rate``               ||Amount of particles emitted over Time (per second) or Distance (per meter). (See [[ParticleSystemCurveEditor|MinMaxCurve]]).||
-||``Bursts`` (Time option only)  ||Add bursts of particles that occur within the duration of the Particle System
+||``Bursts`` (Time option only)  ||Add bursts of particles that occur within the duration of the Particle System.
 ||>>>``Time and Number of Particles`` ||Specify time (in seconds within duration) that a specified amount of particles should be emitted. Use the + and - for adjusting number of bursts.||
 
 !!Shape Module
@@ -40,33 +40,33 @@ Defines the shape of the emitter: Sphere, Hemishpere, Cone, Box and Mesh. Can ap
 ||``Sphere``             || ||
 ||>>>``Radius``          ||Radius of the sphere. (Can also be manipulated by handles in the Scene View).||
 ||>>>``Emit from Shell`` ||Emit from shell of the sphere. If disabled, particles will be emitted from the volume of the sphere.||
-||>>>``Random Direction``||Should particles have have a random direction when emitted or a direction along the surface normal of the sphere||
+||>>>``Random Direction``||Should particles have a random direction when emitted or a direction along the surface normal of the sphere?||
 ||``Hemisphere``         || ||
 ||>>>``Radius``          ||Radius of the hemisphere. (Can also be manipulated by handles in the Scene View).||
 ||>>>``Emit from Shell`` ||Emit from shell of the hemisphere. If disabled particles will be emitted from the volume of the hemisphere.||
-||>>>``Random Direction``||Should particles have have a random direction when emitted or a direction along the surface normal of the hemisphere.||
+||>>>``Random Direction``||Should particles have a random direction when emitted or a direction along the surface normal of the hemisphere?||
 ||``Cone``               || ||
 ||>>>``Angle``           ||Angle of the cone. If angle is 0 then particles will be emitted in one direction. (Can also be manipulated by handles in the Scene View).||
-||>>>``Radius``          ||A value larger than 0 when basically create a capped cone, using this will change emission from a point to a disc. (Can also be manipulated by handles in the Scene View).||
+||>>>``Radius``          ||The radius at the point of emission. If the value is near zero emission will be from a point. A larger value  basically creates a capped cone, emission coming from a disc rather than a point. (Can also be manipulated by handles in the Scene View).||
 ||>>>``Length``          ||Length of the emission volume. Only available when emitting from a Volume or Volume Shell. (Can also be manipulated by handles in the Scene View).
 ||>>>``Emit From``       ||Determines where emission originates from. Possible values are Base, Base Shell, Volume and Volume Shell.
-||>>>``Random Direction``||Should particles have have a random direction when emitted or a direction along the cone.||
+||>>>``Random Direction``||Should particles have a random direction when emitted or a direction along the cone?||
 ||``Box``                || ||
 ||>>>``Box X``          ||Scale of box in X. (Can also be manipulated by handles in the Scene View).||
 ||>>>``Box Y``          ||Scale of box in Y. (Can also be manipulated by handles in the Scene View).||
 ||>>>``Box Z``          ||Scale of box in Z. (Can also be manipulated by handles in the Scene View).||
-||>>>``Random Direction``||Should particles have have a random direction when emitted or a direction along the Z-axis of the box||
+||>>>``Random Direction``||Should particles have a random direction when emitted or a direction along the Z-axis of the box?||
 ||``Mesh``               || ||
-||>>>``Type``            ||Particles can be emitted from either Vertex, Edge or Triangle||
-||>>>``Mesh``            ||Select Mesh that should be used as emission shape||
-||>>>``Random Direction``||Should particles have have a random direction when emitted or a direction along the surface of the mesh||
+||>>>``Type``            ||Particles can be emitted from either Vertex, Edge or Triangle.||
+||>>>``Mesh``            ||Select Mesh that should be used as emission shape.||
+||>>>``Random Direction``||Should particles have a random direction when emitted or a direction along the surface of the mesh?||
 
 !!Velocity Over Lifetime Module
 Attach:ShurikenVelocityOverLifetimeModule.png
 Directly animates velocity of the particle. Mostly useful for particles which has complex physical, but simple visual behavior (like smoke with turbulence and temperature loss) and has little interaction with physical world.
 ||PROPS
 ||``XYZ``               ||Use either constant values for curves or random between curves for controlling the movement of the particles. See [[ParticleSystemCurveEditor|MinMaxCurve]].||
-||``Space``       ||Local / World: Are the velocity values in local space or world space ||
+||``Space``       ||Local / World: Are the velocity values in local space or world space? ||
 
 
 !!Limit Velocity Over Lifetime Module
@@ -75,7 +75,7 @@ Basically can be used to simulate drag. Dampens or clamps velocity, if it is ove
 ||PROPS
 ||``Separate Axis``         ||Use for setting per axis control.||
 ||>>>``Speed``          ||Specify magnitude as constant or by curve that will limit all axes of velocity. See [[ParticleSystemCurveEditor|MinMaxCurve]].||
-||``Dampen``                ||(0-1) value that controls how much the exceeding velocity should be dampened. For example, a value of 0.5 will dampen exceeding velocity by 50%||
+||``Dampen``                ||(0-1) value that controls how much the exceeding velocity should be dampened. For example, a value of 0.5 will dampen exceeding velocity by 50%.||
 
 
 !!Force Over Lifetime Module
@@ -83,7 +83,7 @@ Attach:ShurikenForceOverLifetimeModule.png
 ||PROPS
 ||``XYZ``               ||Use either constant values for curves or random between curves for controlling the force applied to the particles. See [[ParticleSystemCurveEditor|MinMaxCurve]].||
 ||``Space``             ||Local / World: Are the velocity values in local space or world space ||
-||``Randomize``         ||Randomize the force applied to the particles every frame ||
+||``Randomize``         ||Randomize the force applied to the particles every frame. ||
 
 !!Color Over Lifetime Module
 Attach:ShurikenColorOverLifetimeModule.png
@@ -166,9 +166,9 @@ Set up collisions for the particles of this Particle System. World and planar co
 Attach:ShurikenSubEmitter.png
 This is a powerful module that enables spawning of other Particle Systems at the follwing particle events: birth, death or collision of a particle.
 ||PROPS
-||``Birth``         ||Spawn another Particle System at birth of each particle in this Particle System||
-||``Death``         ||Spawn another Particle System at death of each particle in this Particle System||
-||``Collision``     ||Spawn another Particle System at collision of each particle in this Particle System. IMPORTANT: Collision needs to be set up using the Collision Module. See Collision Module||
+||``Birth``         ||Spawn another Particle System at birth of each particle in this Particle System.||
+||``Death``         ||Spawn another Particle System at death of each particle in this Particle System.||
+||``Collision``     ||Spawn another Particle System at collision of each particle in this Particle System. IMPORTANT: Collision needs to be set up using the Collision Module. See Collision Module.||
 
 !!Texture Sheet Animation Module 
 Attach:ShurikenTextureSheetModule.png
@@ -177,33 +177,33 @@ IMPORTANT: The texture used for animation is the one used by the material found 
 ||PROPS
 ||``Tiles``             ||Define the tiling of the texture.||
 ||``Animation``         ||Specify the animation type: Whole Sheet or Single Row.||
-||>>>``Whole Sheet``    ||Uses the whole sheet for uv animation||
+||>>>``Whole Sheet``    ||Uses the whole sheet for uv animation.||
 ||>>>``- Frame over Time``   ||Controls the uv animation frame of each particle during its lifetime over the whole sheet. Use constant, animate it using a curve or specify a random frame using two curves. See [[ParticleSystemCurveEditor|MinMaxCurve]].||
-||>>>``Single Row``     ||Uses a single row of the texture sheet for uv animation||
-||>>>``- Random Row``     ||If checked the start row will be random and if unchecked the row index can be specified (first row is 0).||
+||>>>``Single Row``     ||Uses a single row of the texture sheet for uv animation.||
+||>>>``- Random Row``     ||If checked, the start row will be random, and if unchecked, the row index can be specified (first row is 0).||
 ||>>>``- Frame over Time``   ||Controls the uv animation frame of each particle during its lifetime within the specified row. Use constant, animate it using a curve or specify a random frame using two curves. See [[ParticleSystemCurveEditor|MinMaxCurve]].||
 ||>>>``- Cycles``        ||Specify speed of animation.||
 
 [[#RendererModule]]
 !!Renderer Module
 Attach:ShurikenRendererModule40.png
-The renderer module exposes the ``ParticleSystemRenderer`` component's properties. Note that even though a GameObject has a ``ParticleSystemRenderer`` component, its properties are only exposed here, when this module is removed/added. It is actually the ``ParticleSystemRenderer`` component that is added or removed.
+The renderer module exposes the ``ParticleSystemRenderer`` component's properties. Note that even though a GameObject has a ``ParticleSystemRenderer`` component, its properties are only exposed here. When this module is removed/added, it is actually the ``ParticleSystemRenderer`` component that is added or removed.
 
 ||PROPS
-||``Render Mode``             ||Select one of the following particle render modes||
-||>>>``Billboard``            ||Makes the particles always face the camera||
-||>>>``Stretched Billboard``            ||Particles are stretched using the following parameters||
-||>>>``-  Camera Scale``      ||How much the camera speed is factored in when determining particle stretching||
-||>>>``-  Speed Scale``       ||Defines the length of the particle compared to its speed||
-||>>>``-  Length Scale``      ||Defines the length of the particle compared to its width||
+||``Render Mode``             ||Select one of the following particle render modes.||
+||>>>``Billboard``            ||Makes the particles always face the camera.||
+||>>>``Stretched Billboard``            ||Particles are stretched using the following parameters.||
+||>>>``-  Camera Scale``      ||How much the camera speed is factored in when determining particle stretching.||
+||>>>``-  Speed Scale``       ||Defines the length of the particle compared to its speed.||
+||>>>``-  Length Scale``      ||Defines the length of the particle compared to its width.||
 ||>>>``Horizontal Billboard`` ||Makes the particles align with the XZ plane. ||
-||>>>``Vertical Billboard``   ||Makes the particles align with the Y axis while facing the camera||
-||>>>``Mesh``                 ||Particles are rendered using a mesh instead of a quad||
-||>>>``-  Mesh``              ||The reference to the mesh used for rendering particles||
+||>>>``Vertical Billboard``   ||Makes the particles align with the Y axis while facing the camera.||
+||>>>``Mesh``                 ||Particles are rendered using a mesh instead of a quad.||
+||>>>``-  Mesh``              ||The reference to the mesh used for rendering particles.||
 ||``Normal Direction``        ||Value from 0 to 1 that determines how much normals point toward the camera (0) and how much sideways toward the centre of the view (1).||
 ||``Material``                ||Material used by billboarded or mesh particles.||
 ||``Sort Mode``               ||The draw order of particles can be sorted by distance, youngest first, or oldest first.||
 ||``Sorting Fudge``           ||Use this to affect the draw order. Particle systems with ''lower'' sorting fudge numbers are more likely to be drawn last, and thus appear in front of other transparent objects, including other particles.||
-||``Cast Shadows``            ||Should particles cast shadows? May or may not be possible depending on the material||
-||``Receive Shadows``         ||Should particles receive shadows? May or may not be possible depending on the material||
-||``Max Particle Size``       ||Set max relative viewport size. Valid values: 0-1 ||
+||``Cast Shadows``            ||Should particles cast shadows? May or may not be possible depending on the material.||
+||``Receive Shadows``         ||Should particles receive shadows? May or may not be possible depending on the material.||
+||``Max Particle Size``       ||Set max relative viewport size. Valid values: 0-1. ||

@@ -17,7 +17,7 @@ After Unity has completed building a player, it prints an overview of what type 
 
 Attach:FileSizeOptimization.png
 
-It is important to note that file headers represents the amount of data that is kept to maintain references and settings for the assets, such as resource assets. In other words, it is the amount of extra data apart from the raw data contents in a file. This is usually a small percentage, but if you have a large value check whether you have assets in the Resources folder. In such case try moving some or all files out of this folder and see if that reduces the file headers.
+File Headers are not assets but represent the data that is kept to maintain references and settings for the asset, such as resource assets. In other words, it is the extra data apart from the raw data contents in a file. This should normally a small percentage, but if you have a large value check whether you have assets in the Resources folder. If so try moving some or all files out of this folder. You could switch to using [[AssetBundlesIntro | AssetBundles]] to load assets dynamically. 
 
 !! Optimizing texture size
 

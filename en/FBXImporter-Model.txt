@@ -6,7 +6,7 @@ Although defaults can suffice initially, it is worth studying the settings gloss
 
 Some general adjustments to be made for example might be:
 
-* Scale - this scale factor is used for compensating difference in units between Unity and 3d modeling tool - it rescales whole file. If you do not care about units you can simply set it to 1.
+* Scale - this scale factor is used for compensating difference in units between Unity and 3d modeling tool - it rescales whole file. Normally you can simply set it to 1. Note that Unity's Physics Engine is scaled as 1 unit equals 1 metre. It is important that if you want to have correct physical behaviour you should have the model correctly scaled in the original modeling application. If this cannot be done, or you do not have control over the modification of the mesh, the scale of the model can be adjusted here.
 * Generate colliders - this will generate a collison mesh to allow your model to collide with other objects - see notes below.
 * Material Naming and Search - this will help you automatically setup your materials and locate textures
 

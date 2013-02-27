@@ -1,6 +1,54 @@
 !Trouble Shooting
 This section addresses common problems that can arise when using Unity. Each platform is dealt with separately below.
 
+[[#EditorTroubleShooting]]
+!!Editor
+
+user permissions
+system requirements
+backups
+__[TODO]__
+
+!!!Multiple Installations
+
+You can install different versions of the editor in different folders. However, make sure that you backup your projects as these might be upgraded by a newer version when you open them. See the manual page on [[InstallingMultipleVersionsofUnity | installing multiple versions]] for further information.
+
+!!!Add-On Licenses
+
+Licenses of add-ons are valid only for the Unity versions that share the same major number, for example 3.x and 4.x. If you upgrade a minor version Unity, for example 4.0 to 4.1, it will keep the add-ons.
+
+!!!Internet and Manual Activation
+
+__[TODO]__
+
+!!!Startup Crash
+
+__[TODO]__
+
+!!!Disk Write Errors
+
+__[TODO]__
+
+!!!Performance
+
+__[TODO]__
+
+!!!Crashes while Building
+
+__[TODO]__
+
+!!!Project Loss
+
+__[TODO]__
+
+[[#WebPlayerTroubleShooting]]
+!!Web Player
+
+__[TODO]__
+
+
+!Platform Trouble Shooting
+
 [[#DesktopTroubleShooting]]
 !Desktop!
 >>desktop<<
