@@ -155,7 +155,7 @@ Attach:gsg-TextFieldExample.png\\
 
 !!! [[ScriptRef:GUI.TextArea.html | TextArea]]
 
-''TextField''コントロールは、テキスト文字列を含む、インタラクティブで、編集可能な複数行のエリアです。
+''TextArea''コントロールは、テキスト文字列を含む、インタラクティブで、編集可能な複数行のエリアです。
 
 !!!! 基本的な使用
 TextArea は、常に文字列を表示します。  TextArea に表示する文字列を渡す必要があります。  文字列に編集を行うと、TextArea 関数は編集した文字列を返します。
