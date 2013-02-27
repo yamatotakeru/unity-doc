@@ -17,6 +17,6 @@ Attach:MecanimSoloMuteGraph.png
 既知の不具合:
 コントローラ グラフは必ずしもエンジンの内部のミュートステートを反映しません。
 
-([[AnimationStateMachines|ステートマシン紹介]] に戻る)
+([[AnimationStateMachines|ステートマシン入門]] に戻る)
 
-([[MecanimAnimationSystem|メカニム紹介]] に戻る)
+([[MecanimAnimationSystem|メカニム入門]] に戻る)

@@ -15,4 +15,4 @@ Body Maskは、[[Animation Layers]] を指定する際に[[AnimationStateMachine
 
 Body Maskを使用することの利点は、これらはアクティブではないボディパーツがそれに関連付けられたアニメーションカーブを必要としないため、メモリのオーバーヘッドを減少させやすい、ということです。さらに、未使用のアニメーションカーブは再生中に計算する必要がないためアニメーションによるCPUオーバーヘッドを削減しやすくなります。
 
-([[MecanimAnimationSystem|メカニム紹介]] に戻る)
+([[MecanimAnimationSystem|メカニム入門]] に戻る)

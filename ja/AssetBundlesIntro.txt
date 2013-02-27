@@ -25,12 +25,12 @@
 
 
 関連項目:
-* [[abfaq|Frequently Asked Questions]]
-* [[BuildingAssetBundles|Building AssetBundles]]
-* [[DownloadingAssetBundles|Downloading Asset Bundles]]
-* [[LoadingAssetBundles|Loading Asset Bundles]]
-* [[keepingtrackofloadedassetbundles|Keeping track of loaded AssetBundles]]
-* [[binarydata|Storing and loading binary data]]
-* [[protectingcontent|Protecting content]]
-* [[managingassetdependencies|Managing Asset Dependencies]]
-* [[scriptsinassetbundles|Including scripts in AssetBundles]]
+* [[abfaq|アセットバンドル FAQ]]
+* [[BuildingAssetBundles|アセットバンドルのビルド]]
+* [[DownloadingAssetBundles|アセットバンドルのダウンロード]]
+* [[LoadingAssetBundles|アセットバンドルからのオブジェクトをロード、アンロード]]
+* [[keepingtrackofloadedassetbundles|ロードされたアセットバンドルのトラッキング方法]]
+* [[binarydata|アセットバンドルでのバイナリデータの格納とロード]]
+* [[protectingcontent|コンテンツの保護]]
+* [[managingassetdependencies|アセット依存関係の管理]]
+* [[scriptsinassetbundles|アセットバンドルへのスクリプトを含める]]

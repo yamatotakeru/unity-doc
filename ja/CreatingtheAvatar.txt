@@ -24,4 +24,4 @@ MecanimがAvatarを作成することができなかった場合は、^^Configur
 
 ([[Avatar Creation and Setup|Avatar作成およびセットアップ]] に戻る)
 
-([[MecanimAnimationSystem|Mecanim紹介]] に戻る)
+([[MecanimAnimationSystem|メカニム入門]] に戻る)

@@ -19,4 +19,4 @@ Attach:MecanimBodyMask.png
 
 ([[Avatar Creation and Setup|アバターの作成とセットアップ]] に戻る)
 
-([[MecanimAnimationSystem|メカニム紹介]] に戻る)
+([[MecanimAnimationSystem|メカニム入門]] に戻る)

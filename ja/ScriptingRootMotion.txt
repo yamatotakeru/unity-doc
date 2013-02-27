@@ -52,4 +52,4 @@ public class RootMotionScript : MonoBehaviour {
 Attach:MecanimRootMotionDude.png
 * これでキャラクターが指定した速度で移動することが見えます。
 
-([[MecanimAnimationSystem|メカニム紹介]] に戻る)
+([[MecanimAnimationSystem|メカニム入門]] に戻る)

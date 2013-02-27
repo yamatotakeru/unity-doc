@@ -9,4 +9,4 @@
 もし依存関係のつながりの一部分であるアセットバンドルの再ビルドが必要であると考えた場合、 [[ScriptRef:BuildAssetBundleOptions.DeterministicAssetBundle.html|BuildAssetBundleOptions.DeterministicAssetBundle]] のオプションを有効化してビルドする必要があることに留意して下さい。これによりアセットを識別する内部IDの値は、バンドルが再ビルドされるたびに同じであることを保証します。
 
 
-[[AssetBundlesIntro|アセットバンドル イントロに戻る]]
+[[AssetBundlesIntro|アセットバンドル入門]] に戻る

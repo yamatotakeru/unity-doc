@@ -81,4 +81,4 @@ IEnumerator Start () {
 }@]
 
 
-[[AssetBundlesIntro|アセットバンドル イントロに戻る]]
+[[AssetBundlesIntro|アセットバンドル入門]] に戻る

@@ -4,4 +4,4 @@
 
 (:include class-AnimatorController:)
 
-([[MecanimAnimationSystem|メカニム紹介]] に戻る)
+([[MecanimAnimationSystem|メカニム入門]] に戻る)

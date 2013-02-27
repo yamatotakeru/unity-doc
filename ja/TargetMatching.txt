@@ -41,4 +41,4 @@ Attach:MecanimMatchTargetInspector.png
 スクリプトはキャラクターを、現在の位置からジャンプして、ターゲットに左足から着地するように、移動します。MatchTargetの結果は一般にゲームプレイにおいて適切なタイミングでコールされないかぎり意味をなさないことに留意下さい。
 
 
-([[MecanimAnimationSystem|メカニム紹介]] に戻る)
+([[MecanimAnimationSystem|メカニム入門]] に戻る)

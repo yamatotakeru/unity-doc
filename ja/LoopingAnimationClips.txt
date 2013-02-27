@@ -13,4 +13,4 @@ Attach:MecanimAnimClipLoopingGreen.png
 ``Loop Match`` インジケータが緑であれば、（例えば）``Loop Pose`` もポーズのループは画像の乱れがなくなります。
 
 クリップのオプションの詳細については [[class-AnimationClip|アニメーションクリップ]] を参照下さい。\\
-([[MecanimAnimationSystem|メカニム紹介]] に戻る)
+([[MecanimAnimationSystem|メカニム入門]] に戻る)

@@ -221,5 +221,4 @@ public class ExampleLoadingBundle : MonoBehaviour {
 [[ScriptRef:AssetBundle.LoadAll.html|AssetBundle.LoadAll]] を使用してアセットバンドルに含まれるすべてのオブジェクトを含む配列を取得することが出来ます。識別子の一覧を直接に取得することは出来ません。良くある回避策は、別のTextAssetを保持して、アセットバンドルのアセットの名前を保持することです。
 
 
-[[AssetBundlesIntro|アセットバンドル イントロに戻る]]
-
+[[AssetBundlesIntro|アセットバンドル入門]] に戻る

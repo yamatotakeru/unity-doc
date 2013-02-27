@@ -1,4 +1,4 @@
-! AssetBundleでのバイナリデータの格納とロード / Storing and loading binary data in an AssetBundle
+! アセットバンドルでのバイナリデータの格納とロード / Storing and loading binary data in an AssetBundle
 
 最初のステップはバイナリデータを".bytes" 拡張子で保存することです。Unityは [[ScriptRef:TextAsset.html|TextAsset]] （テキストアセット）としてファイルを取り扱います。テキストアセットの場合、ファイルはAssetBundle（アセットバンドル）をビルドするときにincludeすることが出来ます。アセットバンドルをアプリケーションにダウンロードして、テキストアセット オブジェクトをロードした後、テキストアセットの.bytes プロパティを使用してバイナリデータを取得することが出来ます。
 
@@ -21,4 +21,4 @@ IEnumerator Start () {
 }@]
 
 
-[[AssetBundlesIntro|アセットバンドル紹介に戻る]]
+[[AssetBundlesIntro|アセットバンドル入門に戻る]]

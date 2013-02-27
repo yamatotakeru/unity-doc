@@ -40,4 +40,4 @@
 
 ->Attach:MecanimRetargetingManga.png
 
-(back to [[MecanimAnimationSystem|メカニム紹介]])
+(back to [[MecanimAnimationSystem|メカニム入門]])

@@ -35,4 +35,4 @@ Unityはいくつかの汎用的、ネイティブの3Dファイル形式をイ�
 次のページによりアニメーションアセットの準備およびインポートするステージを掘り下げて確認できます。
 (:tocportion:)
 
-([[MecanimAnimationSystem|メカニム紹介]] に戻る)
+([[MecanimAnimationSystem|メカニム入門]] に戻る)
