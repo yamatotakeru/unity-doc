@@ -1,6 +1,6 @@
 !Structure of an Unity XCode Project
 
-When you build a project for the iOS platform Unity will create a folder that contains an XCode project. This project is required to compile and sign your app before deploying on devices, and it allows preparing and bundling your game for distribution on App Store.
+When you build a project for the iOS platform Unity will create a folder that contains an XCode project. This project is required to compile and sign your app before deploying on devices, and it allows preparing and bundling your game for distribution on the App Store.
 
 Attach:Unity-iPhone-Project-Folder.png
 
@@ -8,17 +8,17 @@ Before building the iOS project make sure that you set the ^^Bundle Identifier^^
 
 !!Classes folder
 
-Contains code that integrates the Unity Runtime and Objective-C. The contained files @@main.mm@@ and @@AppController.mm@@ are the entry point of the application. Also the @@iPhone_Profiler.h@@ file defines a compiler conditional to enable the Internal Profiler. This is a folder for code that don't change often, and you can place your custom classes here. The changes to this folder are preserved between builds when the append mode is selected.
+This contains code that integrates the Unity Runtime and Objective-C. The contained files @@main.mm@@ and @@AppController.mm@@ are the entry point of the application. Also the @@iPhone_Profiler.h@@ file defines a compiler conditional to enable the Internal Profiler. This is a folder for code that doesn't change often, and you can place your custom classes here. The changes to this folder are preserved between builds when the append mode is selected.
 
-The Internal Profiler is fast and unintrusive, and feeds basic information: which subsystem is taking most of the frame time, .NET heap size, GC event count/duration. See the [[iphone-InternalProfiler | built-in profiler]] manual page for further information.
+The Internal Profiler is fast and unintrusive, and feeds basic information: which subsystem is taking most of the frame time, .NET heap size, GC event count/duration. See [[iphone-InternalProfiler | built-in profiler]] for further information.
 
 !!Data folder
 
-Contains the serialized game assets, and .NET assemblies (@@dll@@ files) as full code or metadata if stripping is on. The @@machine.config@@ file is the setup for various .NET services such as security, WebRequest, and more. The content of this folder is refreshed with each build, and you should not modify it.
+This contains the serialized game assets, and .NET assemblies (@@dll@@ files) as full code or metadata if stripping is on. The @@machine.config@@ file is the setup for various .NET services such as security, WebRequest, and more. The content of this folder is refreshed with each build, and you should not modify it.
 
 !!Libraries folder
 
-Contains the .NET assemblies translated to ARM assembler (@@s@@ files). The @@libiPhone-lib.a@@ file is the Unity Runtime static library, and @@RegisterMonoModules.cpp@@ binds Unity native code with .NET. The content of this folder is refreshed with each build, and you should not modify it.
+This contains the .NET assemblies translated into ARM assembler (@@s@@ files). The @@libiPhone-lib.a@@ file is the Unity Runtime static library, and @@RegisterMonoModules.cpp@@ binds Unity native code with .NET. The content of this folder is refreshed with each build, and you should not modify it.
 
 !!Other newly created custom folders
 
