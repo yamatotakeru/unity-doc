@@ -4,21 +4,15 @@ This section addresses common problems that can arise when using Unity. Each pla
 [[#EditorTroubleShooting]]
 !!Editor
 
-In general to avoid problems with the editor make sure your computer meets all the system requirements, it's up to date, and you have the required user permissions. Also make backups regularly to protect your projects.
+The following sections explain how to troubleshoot and prevent problems with the Unity editor in different situations. In general, make sure your computer meets all the [[http://unity3d.com/unity/system-requirements | system requirements]], it's up-to-date, and you have the required user permissions in your system. Also make backups regularly to protect your projects.
 
-!!!Multiple Installations
+!!!Versions
 
-You can install different versions of the editor in different folders. However, make sure to backup your projects as these might be upgraded by a newer version, and you won't be able to open them in an older version of Unity. See the manual page on [[InstallingMultipleVersionsofUnity | installing multiple versions]] for further information.
+You can install different versions of the editor in different folders. However, make sure you backup your projects as these might be upgraded by a newer version, and you won't be able to open them in an older version of Unity. See the manual page on [[InstallingMultipleVersionsofUnity | installing multiple versions]] for further information.
 
-!!!Add-On Licenses
+Licenses of add-ons are valid only for the Unity versions that share the same major number, for example 3.x and 4.x. If you upgrade to a minor version of Unity, for example 4.0 to 4.1, the add-ons will be kept.
 
-Licenses of add-ons are valid only for the Unity versions that share the same major number, for example 3.x and 4.x. If you upgrade a minor version of Unity, for example 4.0 to 4.1, it will keep the add-ons.
-
-!!!Account Information
-
-If you have problems to register or use your user account please contact [[mailto:support@unity3d.com | support@unity3d.com]].
-
-!!!Manual Activation
+!!!Activation
 
 Internet Activation is the preferred method to generate your license of Unity. But if you are having problems follow these steps:
 
@@ -28,25 +22,27 @@ Internet Activation is the preferred method to generate your license of Unity. B
 
 #Click on Save License Request.
 
-#Choose a known save location, like the Downloads folder.
+#Choose a known save location, for example the Downloads folder.
 
 #Reconnect to the network and open https://license.unity3d.com/
 
 #In the file field click Browse, and select the license request file.
 
-#Choose the required version of Unity and fill out the information.
+#Choose the required license for Unity and fill out the information requested.
 
 #Click Download License and save the file.
 
-#Go back to Unity and select Manual Activation.
+#Go back to Unity and select Manual Activation if required.
 
 #Click on Read License and then select the downloaded license file.
 
+If you still have problems with registering or logging in to your user account please contact [[mailto:support@unity3d.com | support@unity3d.com]].
+
 !!!Failure to Start
 
-If Unity is crashing when starting, check the following:
+If Unity crashes when starting, check the following:
 
-*Check if your computer meets the minimal [[http://unity3d.com/unity/system-requirements | system requirements]]. Also update to the latest graphic and sound drivers.
+*Make sure that your computer meets the minimal [[http://unity3d.com/unity/system-requirements | system requirements]]. Also update to the latest graphic and sound drivers.
 
 *If you get disk write errors check your user account restrictions. When in MacOS, note the "root user" is not recommended and Unity hasn't been tested in this mode. Unity should always have write permissions for its folders, but if you are granting them manually check these folders:
 
@@ -59,7 +55,7 @@ If Unity is crashing when starting, check the following:
 
 **MacOS:
 ***Package contents of Unity.app
-***HD/Library/Application Support/PACE Anti-Piracy/License Files
+***HD/Library/Application Support/PACE Anti-Piracy
 ***~/Library/Logs/Unity
 
 *Some users have experienced difficulties when using hard disks formated with non-native partitions, and using certain software to translate data between storage devices.
@@ -78,27 +74,28 @@ If Unity is crashing when starting, check the following:
 ###Open the "File" menu and choose "Validate Fonts", problematic fonts will be shown as invalid.
 ###Delete corrupt fonts and reinstall them.
 
-*The system might be have resources constrained, for example in a virtual machine. Use the Task Manager to find processes consuming lots of memory.
+*The system might have resources constrained, for example running in a virtual machine. Use the Task Manager to find processes consuming lots of memory.
 
-*Unity could try to open a project that is corrupt, this might include the default sample project. In such case rename or move the folder of that project, after Unity starts you can restore the folder.
+*Unity could try to open a project that is corrupt, this might include the default sample project. In such case rename or move the folder of the project. After Unity starts correctly you can restore the project's folder if wished.
 
-*In case of a corrupt installation reinstall Unity, see the instructions below.
+*In case of a corrupt installation reinstall Unity, see the [[TroubleShooting#EditorReinstallationTroubleShooting | instructions below]].
 
-*When in Windows, there could be several problems like installation errors, registry corruption, conflicts, etc. In example, error 0xC0000005 means the program has attempted to access memory that it shouldn't. If you added new hardware or drivers recently, remove and replace the hardware to determine if it's causing the problem. Run diagnostics software and check information on debugging.
+*In Windows, there could be problems like installation errors, registry corruption, conflicts, etc. For example, error 0xC0000005 means the program has attempted to access memory that it shouldn't. If you added new hardware or drivers recently, remove and replace the hardware to determine if it's causing the problem. Run diagnostics software and check information on trouble-shooting the operating system.
 
 !!!Performance and Crashes
 
-If the editor runs slowly or crashes, specially on builds, this might be caused by all of the available memory being consumed. Make sure to close all the other applications when you build the project. Use the Task Manager (Windows) or Activity Monitor (MacOS) to find out if there are processes using lots of memory.
+If the editor runs slowly or crashes, particularly on builds, this might be caused by all of the available system resources being consumed. Close all other applications when you build the project. Clean up the system using its utilities, and consult the Task Manager (Windows) or Activity Monitor (MacOS) to find out if there are processes using lots of resources, for example memory.
 
 !!!Project Loss
 
-Unfortunately there are many factors that can destroy a project, and we can only recommend you to constantly backup your projects. When in MacOS, activate TimeMachine using an external hard disk reserved for this purpose. Apart from that you can try any of the file recovery utilities that exist.
+There are many factors that can destroy a project, you should __constantly backup your projects__ to prevent unfortunate accidents. When in MacOS, activate the TimeMachine using an external hard disk reserved for this sole purpose. After a loss you can try any of the file recovery utilities that exist, but sometimes this is irreversible.
 
+[[#EditorReinstallationTroubleShooting]]
 !!!Re-installation
 
 Follow these steps to reinstall the editor:
 
-#Uninstall Unity. When in MacOS, drag Unity app to trash.
+#Uninstall Unity. When in MacOS, drag the Unity app to trash.
 
 #Delete these files if present:
 
@@ -152,9 +149,9 @@ Support for a given game will be handled by the developer or publisher. If you h
 
 ##Run the webplayer installer.
 
-Once the installer had finished, test our demos at: http://unity3d.com/gallery/demos/live-demos
+Once the installer has finished, test with the demos at: http://unity3d.com/gallery/demos/live-demos
 
-If the webplayer has installed correctly, and your machine is capable of playing Unity content, then you should see our demos running in your browser, and other games should run also. If you do not see our demos running, please [[mailto:support@unity3d.com | send us an email]] telling in as much detail as possible what happens at each of the steps above.
+If the webplayer has installed correctly, and your machine is capable of playing Unity content, then you should see the demos running in your browser, and other games should run also. If you do not see the demos running, please send us an email to [[mailto:support@unity3d.com | support@unity3d.com]], telling in as much detail as possible what happens at each of the steps above.
 
 !Platform Trouble Shooting
 

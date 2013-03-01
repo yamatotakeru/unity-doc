@@ -38,13 +38,9 @@ iPhone 3G: Fixed-function graphics (no fancy shaders), very slow CPU and GPU.
 * ARM Cortex A8, 600 MHz CPU
 * PowerVR SGX535 graphics processor
 ** Shader perfomance at native resolution, compared to iPad2: 
-(:div style="margin-left:80px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
-%thumb width:200px padding-left:84px%Attach:bar.png
-(:divend:)
+   Attach:Bar1.png
 ** Raw shader perfomance, compared to iPad3: 
-(:div style="margin-left:80px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
-%thumb width:200px padding-left:23px%Attach:bar.png
-(:divend:)
+   Attach:Bar2.png
 * 256MB of memory
 * 3 megapixel camera with video capture capability
 * GPS support
@@ -60,13 +56,9 @@ Requires scripting optimization for complex games. This is the average hardware 
 ** 1Ghz ARM Cortex-A8 CPU
 ** PowerVR SGX535 GPU
 *** Shader perfomance at native resolution, compared to iPad2: 
-(:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
-%thumb width:200px padding-left:36px%Attach:bar.png
-(:divend:)
+    Attach:Bar3.png
 *** Raw shader perfomance, compared to iPad3: 
-(:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
-%thumb width:200px padding-left:23px%Attach:bar.png
-(:divend:)
+    Attach:Bar4.png
 * 512MB of memory
 * Cameras
 ** Rear 5.0 MP backside illuminated CMOS image sensor with 720p HD video at 30 fps and LED flash
@@ -80,13 +72,9 @@ Requires scripting optimization for complex games. This is the average hardware 
 ** Dual-Core 1Ghz ARM Cortex-A9 MPCore CPU
 ** Dual-Core PowerVR SGX543MP2 GPU
 *** Shader perfomance at native resolution, compared to iPad2: 
-(:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
-%thumb width:200px padding-left:196px%Attach:bar.png
-(:divend:)
+    Attach:Bar5.png
 *** Raw shader perfomance, compared to iPad3: 
-(:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
-%thumb width:200px padding-left:105px%Attach:bar.png
-(:divend:)
+    Attach:Bar6.png
 * 512MB of memory
 * Cameras
 ** Rear 5.0 MP backside illuminated CMOS image sensor with 720p HD video at 30 fps and LED flash
@@ -144,13 +132,9 @@ Requires scripting optimization for complex games. This is the average hardware 
 ** 1Ghz MHz ARM Cortex-A8 CPU
 ** PowerVR SGX535 GPU
 *** Shader perfomance at native resolution, compared to iPad2: 
-(:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
-%thumb width:200px padding-left:30px%Attach:bar.png
-(:divend:)
+    Attach:Bar7.png
 *** Raw shader perfomance, compared to iPad3: 
-(:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
-%thumb width:200px padding-left:23px%Attach:bar.png
-(:divend:)
+    Attach:Bar8.png
 * Wifi + Blueooth + (3G Cellular HSDPA, 2G cellular EDGE on the 3G version)
 * Accelerometer, ambient light sensor, magnetometer (for digital compass)
 * Mechanical keys: Home, sleep, screen rotation lock, volume.
@@ -166,13 +150,9 @@ iPad: Similar to iPod Touch 4th Generation and iPhone 4.
 ** Dual-Core 1Ghz ARM Cortex-A9 MPCore CPU
 ** Dual-Core PowerVR SGX543MP2 GPU
 *** Shader perfomance at native resolution, compared to iPad2: 
-(:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
-%thumb width:200px padding-left:200px%Attach:bar.png
-(:divend:)
+    Attach:Bar9.png
 *** Raw shader perfomance, compared to iPad3: 
-(:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
-%thumb width:200px padding-left:125px%Attach:bar.png
-(:divend:)
+    Attach:Bar10.png
 * Same as Previous
 
 Attach:deadtrigger.jpg\\
@@ -187,13 +167,9 @@ iPad2: The A5 can do full screen bumpmapping, assuming the shader is simple enou
 ** Dual-Core 1Ghz ARM Cortex-A9 MPCore CPU
 ** Quad-Core PowerVR SGX543MP4 GPU
 *** Shader perfomance at native resolution, compared to iPad2: 
-(:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
-%thumb width:200px padding-left:174px%Attach:bar.png
-(:divend:)
+    Attach:Bar11.png
 *** Raw shader perfomance, compared to iPad3: 
-(:div style="margin-left:120px; padding:0px; background: #7bc94d; width:200px; height:12px; overflow:hidden; display:inline-block;":)
-%thumb width:200px padding-left:200px%Attach:bar.png
-(:divend:)
+    Attach:Bar12.png
 
 Attach:bladeslinger.jpg\\
 The iPad 3 has been shown to be capable of render-to-texture effects such as reflective water and fullscreen image effects. However, optimized shaders are still crucial. But if your game isn't trying to push limits of the device, optimizing scripting and gameplay is probably as much of a waste of time on this generation of devices as it is on PC.

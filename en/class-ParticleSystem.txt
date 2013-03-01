@@ -13,7 +13,7 @@ When creating and editing Particle Systems, you either work with the ^^Inspector
 
 Attach:ShurikenPreviewPanel.png
 
-Scrubbing play back time can be performed by dragging on the label ''Playback Time''. All Playback controls have shortcut keys which can be customized in the [[Preferences|Preferences window]]
+Scrubbing play back time can be performed by dragging on the label ''Playback Time''. All Playback controls have shortcut keys which can be customized in the [[Preferences|Preferences window]].
 
 (:include ParticleSystemCurveEditor:) 
 (:include ParticleSystemColorEditor:)

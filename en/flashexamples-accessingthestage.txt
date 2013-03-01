@@ -10,7 +10,7 @@ ActionScript.Statement("trace(UnityNative.stage);");
 
 As an example, the following C# code will output the flashvars supplied to a SWF:
 [@
-ActionScript.Import("flash.display.LoaderInfo"); 	
+ActionScript.Import("com.unity.UnityNative"); 
 ActionScript.Statement(
     "var params:Object = LoaderInfo(UnityNative.stage.loaderInfo).parameters;" +
     "var key:String;" +

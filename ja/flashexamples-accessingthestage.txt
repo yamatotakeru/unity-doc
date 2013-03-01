@@ -10,7 +10,7 @@ ActionScript.Statement("trace(UnityNative.stage);");
 
 サンプルとして、次の C# コードにより SWF に供給された Flash 変数を出力します:
 [@
-ActionScript.Import("flash.display.LoaderInfo"); 	
+ActionScript.Import("com.unity.UnityNative"); 
 ActionScript.Statement(
     "var params:Object = LoaderInfo(UnityNative.stage.loaderInfo).parameters;" +
     "var key:String;" +

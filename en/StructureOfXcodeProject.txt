@@ -30,7 +30,7 @@ These are icons and splash screens (@@png@@ files). These files are automaticall
 
 !!Property List file
 
-The @@info.plist@@ is managed via Player Settings in Unity. With Unity 4.1 this file is updated, instead of being replaced. You should not modify it unless it is really needed.
+The @@info.plist@@ is managed via ^^Player Settings^^ in Unity. With Unity 4.1 this file is updated, instead of being replaced. You should not modify it unless it is really needed.
 
 !!Other files
 
