@@ -1,4 +1,4 @@
-! CPU 使用率 エリア
+! CPU 使用率 エリア / CPU Usage Area
 
 Attach:ProfilerCPU.png
 

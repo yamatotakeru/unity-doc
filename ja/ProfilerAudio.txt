@@ -1,15 +1,16 @@
-! Audio Area
+! オーディオ エリア / Audio Area
 
 Attach:AudioProfiler35.png
 
-The Audio area displays audio statistics:
-* ``Playing Sources`` is the total playing sources in the scene at a specific frame. Monitor this to see if audio is overloaded. 
-* ``Paused Sources`` is the total paused sources in the scene at a specific frame.
-* ``Audio Voice`` is the actually number of audio (FMOD channels) voices used. PlayOneShot is using voices not shown in Playing Sources. 
-* ``Audio Memory`` is the total RAM used by the audio engine.
 
-CPU usage can be seen in the bottom. Monitor this to see if Audio alone is taking up too much CPU.
+オーディオ エリアは音声に関する統計を表示します:
+* ``Playing Sources`` はシーンにある再生されたオーディオ ソースの特定フレームにおける合計です。もし音声がオーバーロードされている場合にはモニタリングして下さい。
+* ``Paused Sources`` はシーンにあるポーズされたオーディオ ソースの特定フレームにおける合計です。
+* ``Audio Voice`` はオーディオ（FMODチャネル）ボイスの実際の数です。PlayOneShot は  Playing Sources で表示されないボイスを使用します。
+* ``Audio Memory`` はオーディオ エンジンにより使用される RAM 容量の合計です。
 
-__Note:__ When an audio asset in Ogg Vorbis format is imported with the Compressed In Memory option, the memory usage reported by the profiler may be unexpectedly low. This happens for platforms that use FMOD audio - FMOD doesn't support Ogg Vorbis with the Compressed In Memory option, so the import setting is silently changed to Stream From Disk (which has much lower memory overheads).
+CPU 使用率は下部でみることが出来ます。オーディオ単独でCPUを使用しすぎていないか確認するためモニタリングして下さい。
+
+__注意:__ Ogg Vorbis 形式のオーディオ アセットがCompressed In Memory を使用してインポートされると、プロファイラーにより報告されるメモリ使用が予想外に小さくなります。これは FMOD オーディオを使用するプラットフォームで発生します - FMOD は  Compressed In Memory を使用した Ogg Vorbis をサポートしないため、import setting は （遥かにメモリオーバーヘッドの少ない）Compressed In Memory に無条件で書き換えられます。。
 
 
