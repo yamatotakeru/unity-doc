@@ -1,18 +1,19 @@
-! CPU Usage Area
+! CPU 使用率 エリア
 
 Attach:ProfilerCPU.png
 
-The CPU Usage area displays where time is spent in your game. When it is selected, the lower pane displays hierarchical time data for the selected frame.
+CPU 使用率 エリアはゲームで使用された時間を表示します。選択したとき、下側のパネルは選択されたフレームの階層データを表示します。
 
-* __Hierarchy mode:__ Displays hierarchical time data.
-* __Group Hierarchy mode:__ Groups time data into logical groups (Rendering, Physics, Scripts etc.). Because children of any group can be in different group (e.g. some script might call rendering functions), the percentages of group times often add up to more than 100%.  (This is not a bug.)
+* __Hierarchy mode:__ 階層により時間データを表示。
+* __Group Hierarchy mode:__ データを論理グループ (Rendering, Physics, Scripts その他) に分けますグループのあらゆる子が別のグループに存在出来るため (例えば スクリプトがレンダリングを呼ぶ、等)、グループの時間は100%を超えることがしばしばあります (バグではありません) 。
 
-The way the CPU chart is stacked can be reordered by simply dragging chart labels up & down.
+CPUチャートの縦の並び順はチャートラベルを上下にドラッグするだけで並び替えできます。
 
-When an item is selected in the lower pane, it's contribution to the CPU chart is highlighted (and the rest are dimmed). Clicking on an item again de-selects it.
+低いペインでアイテムが選択されたとき、CPUチャートに占める割合がハイライトされます (それ以外は暗くなります)。再度クリックすることで選択範囲から除きます。
 
 Attach:ProfilerCPUSelected.png\\
-''Shader.SetPass is selected and it's contribution is highlighted in the chart.''
+''Shader.SetPass は選択されていてそれが全体に占める割合はチャートでハイライトされます。''
 
-In the hierarchical time data the self time refers to the amount of time spent in a particular function not including the time spent calling sub-functions.  In the screenshot above, for example 51.2% of time is spent in the Camera.Render function.  This function does a lot of work and calls the various drawing and culling functions.  Excluding all these functions only 0.8% of time is spent actually in the Camera.Render function.
+階層タイムデータの中で self time は特定の関数についてサブ関数を呼ぶ時間を除いた時間を示します。上記のスクリーンショットでは例えば時間の 51.2% がCamera.Render関数に時間を要しています。この関数は多くの作業を行って様々な描画およびカリングの関数をコールします。これらの関数を取り除くとCamera.Render関数に要した時間は0.8%のみです。
+
 
