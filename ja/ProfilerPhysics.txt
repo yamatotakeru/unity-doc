@@ -1,11 +1,11 @@
-!!Physics Area
+!! 物理計算 エリア / Physics Area
 
 Attach:PhysicsProfiler.png
 
-The Physics area shows the following statistics about the physics in the scene:-
-* ``Active Rigidbodies`` is the number of rigidbodies that are not currently sleeping (ie, they are moving or just coming to rest).
-* ``Sleeping Rigidbodies`` is the number of rigidbodies that are completely at rest and therefore don't need to be updated actively by the physics engine (see [[Rigidbody Sleeping]] for further details).
-* ``Number of Contacts`` is the total number of points of contact between all colliders in the scene.
-* ``Static Colliders`` is the number of colliders attached to non-rigidbody objects (ie, objects which never move under physics).
-* ``Dynamic Colliders`` is the number of colliders attached to rigidbody objects (ie, objects which do move under physics).
+物理計算 エリアによりシーンの物理計算に関する次の統計を表示します:-
+* ``Active Rigidbodies`` は現在スリープしていない Rigidbody の数です（すなわち移動しているか、ちょうどスリープに入る前か）。
+* ``Sleeping Rigidbodies`` は完全にスリープに入っている Rigidbody の数、すなわち物理エンジンによりアクティブに更新する必要がないものの数です（詳細については [[Rigidbody Sleeping]] を参照して下さい）。
+* ``Number of Contacts`` はシーンにおける全てのコライダーの接触している数の合計です。
+* ``Static Colliders`` は非 Rigidbody オブジェクトにアタッチされたコライダの数です（すなわち物理挙動を示すことがないオブジェクト）。
+* ``Dynamic Colliders`` はRigidbody オブジェクトにアタッチされたコライダの数です（すなわち物理挙動を示すオブジェクト）。
 
