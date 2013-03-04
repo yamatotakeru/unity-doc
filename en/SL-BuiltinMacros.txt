@@ -31,7 +31,7 @@ Direct use of these platform macros is discouraged, since it's not very future p
 * @@UNITY_COMPILER_CG@@, @@UNITY_COMPILER_HLSL@@ or @@UNITY_COMPILER_HLSL2GLSL@@ determine which underlying shader compiler is used; use in case of subtle syntax differences force you to write different shader code.
 * @@UNITY_CAN_COMPILE_TESSELLATION@@ - defined when the shader compiler "understands" tessellation shader HLSL syntax (currently only D3D11).
 * @@UNITY_INITIALIZE_OUTPUT(type,name)@@ - initialize variable ''name'' of given ''type'' to zero.
-* @@UNITY_COMPILER_HLSL@@, @@UNITY_COMPILER_HLSL2GLSL@@, @@UNITY_COMPILER_CG@@ - indicates which shader compiler is being used to compile shaders. Respectively, Microsoft's HLSL (used for DX11, Xbox360, WinRT), HLSL to GLSL translator (used or iOS/Android and desktop OpenGL when #pragma glsl), and NVIDIA's Cg (used for D3D9 and non-GLSL desktop OpenGL targets). Use this if you run into very specific corner case shader syntax handling differences between the compilers, and want to write different code for each compiler.
+* @@UNITY_COMPILER_HLSL@@, @@UNITY_COMPILER_HLSL2GLSL@@, @@UNITY_COMPILER_CG@@ - indicates which shader compiler is being used to compile shaders. Respectively, Microsoft's HLSL (used for DX11, Xbox360, WinRT), HLSL to GLSL translator (used for iOS/Android and desktop OpenGL when #pragma glsl), and NVIDIA's Cg (used for D3D9 and non-GLSL desktop OpenGL targets). Use this if you run into very specific corner case shader syntax handling differences between the compilers, and want to write different code for each compiler.
 
 
 !! Shadow mapping macros

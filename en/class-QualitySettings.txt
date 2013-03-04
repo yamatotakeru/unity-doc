@@ -33,8 +33,12 @@ The quality options you can choose for a quality level are as follows:-
 ||``Blend Weights``||The number of bones that can affect a given vertex during an animation. The available options are one, two or four bones.||
 ||``VSync Count``||Rendering can be synchronised with the refresh rate of the display device to avoid "tearing" artifacts (see below). You can choose to synchronise with every vertical blank (VBlank), every second vertical blank or not to synchronise at all.||
 ||``LOD Bias``||LOD levels are chosen based on the onscreen size of an object. When the size is between two LOD levels, the choice can be biased toward the less detailed or more detailed of the two models available. This is set as a fraction from 0 to 1 - the closer it is to zero, the more the bias is toward the less detailed model.||
-||``Maximum LOD Level``||The highest LOD that will be used by the game. Models which have a LOD above this level will not be used and omitted from the build (which will save storage and memory space).||
+||``Maximum LOD Level``||The highest LOD that will be used by the game. See note below for more Information.||
 ||``Particle Raycast Budget``||The maximum number of raycasts to use for approximate particle system collisions (those with ``Medium`` or ``Low`` quality). See [[ParticleSystemModules40|Particle System Collision Module]].||
+
+!!MaximumLOD level
+
+Models which have a LOD above the MaximumLOD level will not be used and omitted from the build (which will save storage and memory space). Unity will use the highest LOD from all quality settings for the target platform. If LOD level 0 is used in any quality setting then it will be included in the build and loaded at runtime. As an example, if a LOD level is included then models from that LODGroup will be included in the build and always loaded at runtime for that LODGroup, regardless of the quality setting being used. If you remove an LOD using the Max LOD option, then the models from that LOD won't be included (unless they are used somewhere else in the scene)
 
 !!Tearing
 
