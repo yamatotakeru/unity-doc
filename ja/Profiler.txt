@@ -70,10 +70,35 @@ Attach:RenderProfiler35.png
 
 Attach:ProfilerMemory.png
 
-メモリ エリア はいくつかのメモリ使用に関するデータを表示します:
-* ``Total Allocated`` はアプリケーションにより使用されたRAM 容量の合計です。Unityエディタではこのメモリはエディタで全て使用され、ゲームビルドでは遥かに少なく使用されます。
-* ``Texture Memory`` 現在のフレームで使用されるビデオメモリの量。
-* ``Object Count`` 作成されたオブジェクトの総数です。もしこの数値が時間経過とともに増える場合、ゲームが破棄されないオブジェクトを作成しているということです。
+There are 2 modes in which you can inspect memory usage of your application. This is selected in the dropdown in the top of the bottom panel.
+The simple mode shows how memory is used through out unity on a higher level in realtime on a per frame basis.
+Unity reserves memory pools for allocations in order to avoid asking the os for memory too often. This is displayed as a reserved amount and how much is used.
+The areas covered by this is:
+* __Unity__ The amount of memory tracked by allocations in native unity code
+* __Mono__ The Total heap size and used heap size used by Managed Code - this memory is garbagecollected
+* __GfxDriver__ The estimated amount of memory the driver is using on Textures, Rendertargets, shaders and Meshdata
+* __FMOD__ The Audio drivers estimated memory usage
+* __Profiler__ Memory used for the profilerdata
+The numbers that are displayed are not going to show the same amount as the Task Manager or Activity Monitor, because there are some usage that is untracked by the memory profiler. This includes memory used by some drivers and memory used for Executable code.
+
+Memory stats are shown for some of the most common asset/object types and include the count and the used memory (main and video memory)
+* __Textures__
+* __Meshes__
+* __Materials__
+* __Animations__
+* __Audio__
+* __Object Count__ is the total number of Objects that are created. If this number rises over time then it means your game is creating some objects that are never destroyed.
+
+The Detailed View, will let you take a snapshot of the current state. This will display individual asset and game object memory usage. It will also display a reason for an object to be in memory. The reasons can be of the following:
+* __Referenced from native code__
+* __Scene object__
+* __Builtin Resources__
+* __Marked as don't save__
+
+When in the editor, clicking on an object in the list, will take you to the object in either the project or the scene view.
+
+When profiling in the editor, all numbers displayed by the memory profiler are the usage by the editor. These will be somewhat larger than when running in a player, because of editor overhead. For more precise numbers and memory usage for your app, use the profiler connection to connect to the running player. This will give the actual usage on the device.
+
 [[#Audio]]
 !! オーディオ エリア
 
