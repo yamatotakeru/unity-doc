@@ -1,0 +1,41 @@
+!Troubleshooting Webplayer
+
+Support for a given game will be handled by the developer or publisher. If you have a general problem using the Unity webplayer plugin follow these steps:
+
+*Windows:
+
+##Close all browsers.
+##Use Control Panel to uninstall the Unity Web Player.
+##Reboot your machine.
+##Download a new copy of the latest webplayer plugin from: http://unity3d.com/webplayer/
+##Again close all browsers.
+##Run the webplayer installer.
+
+*MacOS
+
+##Log onto MacOS with a user account that has admin privileges.
+##Close all web browsers.
+##Delete the file: /Library/Internet Plug-Ins/Unity Web Player.plugin
+##Empty the trash.
+##Reboot and log in with an admin account.
+##Download a new copy of the latest webplayer plugin from: http://unity3d.com/webplayer/
+##Again close all browsers.
+##Run the webplayer installer.
+
+Once the installer has finished, test with the demos at: http://unity3d.com/gallery/demos/live-demos
+
+If the webplayer has installed correctly, and your machine is capable of playing Unity content, then you should see the demos running in your browser, and other games should run also. If you do not see the demos running, please send us an email to [[mailto:support@unity3d.com | support@unity3d.com]], telling in as much detail as possible what happens at each of the steps above.
+
+!! Javascript errors
+Many Unity webplayer games make use of Javascript hosting scripts called @@UnityObject.js@@ or @@UnityObject2.js@@.  These scripts are responsible for checking whether the webplayer is installed, and placing it into the webpage.  If any scripting errors happen in any other Javascript on the page (perhaps analytics or tracking scripts) this can prevent Javascript from running.  In turn, this can leave a message displayed saying the webplayer is not installed. This message comes from the @@<div class="missing">@@ HTML element.  If @@UnityObject.js@@ or @@UnityObject2.js@@ runs correctly and the gamer has the webplayer installed, then this @@div@@ is hidden.
+
+!! Player, Plugin, Mono
+The webplayer is built from 3 components, the plugin, the player, and Mono.  The Player is the Unity runtime that executes your game, and loads assets for you.  It's the same runtime (more or less) as the one that is created if you make a standalone.  This runtime needs Mono to run correctly. (Since your game will use Javascript, C# or Boo scripts that depend on Mono.)  Finally, the Plugin is the glue that connects the web browser to the runtime.  The Plugin is either an ActiveX control (@@OCX@@) on Windows if you are using Internet Explorer, or a NPAPI-style DLL for other Windows browsers, or a @@.plugin@@ on a Mac.
+
+!!! PC WebPlayer Installer
+On a PC, the webplayer installer installs only the Plugin component.  The Player and Mono components are fetched on demand when the Plugin is first asked to play content.  So, installing the web player plugin and disconnecting from the internet will leave the plugin unable to fetch these two critical components.  This can result in a failure message.  Visiting the [[http://unity3d.com/webplayer/ | webplayer page]] should show which versions of these components are installed.  Note that @@Unity Engine@@ means the player.  These components are installed by default to @@c:\Users\{you}\AppData\LocalLow\Unity\WebPlayer@@ where @@{you}@@ means your username.  If you look at this location you will see three folders, with the contents of @@loader@@ being the plugin itself. If your plugin has not downloaded Mono and Player then you will miss folders called @@mono@@ and @@player@@.
+
+__Note:__ The webplayer can be installed into @@c:\Program Files\@@ if the installer is run from a command prompt and given the @@/AllUsers@@ flag.  You need to be an @@Admin@@ user to perform this task.
+
+!!! Mac WebPlayer Installer
+On a Mac, the installer will install all 3 components, so the web player is ready to play content immediately after the install finishes.  The plugin can be found at @@/Library/Internet Plug-Ins/Unity Web Player.plugin@@, and Mono and the Player will be in the @@/Library/Internet Plug-Ins/Unity Web Player.plugin/Contents/Frameworks@@ folder.
