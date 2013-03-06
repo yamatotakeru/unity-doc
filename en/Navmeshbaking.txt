@@ -26,6 +26,7 @@ Note that the baked navmesh is part of the scene and agents will be able to trav
 When the Navmesh is baked, it is mapped into square tiles in the XZ-plane. Tile borders are seen as bright blue axis-aligned lines on the Navmesh when you are visualising it. Unity supports up to 1024 tiles in a single scene, each tile represented by 1000x1000 "voxels".  Please pay attention to the size of your Navmesh and consequently tile count, if you are planning to have agents navigate over large areas. 
 
 Attach:NavMeshTiles.png
+''Navigation mesh with bright blue axis-aligned lines showing the tile divisions''
 
 The default setting for ``Radius`` is 0.5 and the default setting for ``Width Inaccuracy`` is 0.16666667 (16.666667%). The tile side length for the default settings can be calculated as: 
 

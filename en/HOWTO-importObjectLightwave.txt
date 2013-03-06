@@ -1,6 +1,9 @@
 ! Importing Objects From Lightwave
 
-You can import meshes and animations from Lightwave using the FBX plugin for Lightwave.
+You can import meshes and animations from Lightwave in two different ways:
+
+* Using the FBX plugin for Lightwave
+* Importing lightwave scene files using the Lightwave App Link
 
 !! Unity currently imports
 
@@ -10,21 +13,10 @@ You can import meshes and animations from Lightwave using the FBX plugin for Lig
 # Animations.
 # Bone-based animations.
 
-!! Installation
-
-Download the latest Lightwave FBX exporter from:
-
-* [[http://unity3d.com/lightwave_plugins/mbr_FBX200508_LW82_MACOS.pkg.sit | OS X lighwave 8.2 and 9.0 plugin]]
-* [[http://unity3d.com/lightwave_plugins/mbr_FBX200508_LW80_MACOS.pkg.sit | OS X Lighwave 8.0 plugin]]
-* [[http://unity3d.com/lightwave_plugins/mbr_FBX200508_LW82_WIN.zip | Windows Lighwave 8.2 and 9.0 plugin]]
-* [[http://unity3d.com/lightwave_plugins/mbr_FBX200508_LW80_WIN.zip | Windows Lighwave 8.0 plugin]]
-
-By downloading these plugins you automatically agree to [[http://unity3d.com/lightwave_plugins/License.txt|this licence]].
 
 
-There are two versions of the plugin, one for LightWave 8.0 and one for LightWave 8.2 through 9.0. Make sure you install the correct version.
 
-The plugin for Mac comes in an OS X package. If you double-click the package to install it, the installer will try to put it in the correct folder. If it can't find your LightWave plugin folder, it will create its own LightWave folder in your ^^Applications^^ folder and dump it there. If the latter occurs you should move it to your LightWave plugin folder (or any sub-folder). Once there you have to add the plugin to LightWave via the "Edit Plugins" panel (^^Option-F11^^) -  see the LightWave manual for more details on how to add plugins.
+
 
 Attach:Lightwave./LWexpEditPlugs.jpg
 

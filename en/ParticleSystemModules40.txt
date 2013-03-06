@@ -11,11 +11,11 @@ This module is always present, it cannot be removed or disabled.
 ||``Looping``            ||Is the Particle System looping.||
 ||``Prewarm``            ||Only looping systems can be prewarmed which means that the Particle System will have emitted particles at start as if it had already emitted particles one cycle. ||
 ||``Start Delay``        ||Delay in seconds that this Particle System will wait before emitting particles. Note prewarmed looping systems cannot use a start delay.||
-||``Start Lifetime``           ||The lifetime of particles in seconds. (See [[ParticleSystemCurveEditor|MinMaxCurve]]). ||
-||``Start Speed``              ||The speed of particles when emitted. (See [[ParticleSystemCurveEditor|MinMaxCurve]]).||
-||``Start Size``               ||The size of particles when emitted. (See [[ParticleSystemCurveEditor|MinMaxCurve]]).||
-||``Start Rotation``       ||The rotation of particles when emitted. (See [[ParticleSystemCurveEditor|MinMaxCurve]]).||
-||``Start Color``              ||The color of particles when emitted. (See [[ParticleSystemColorEditor|MinMaxGradient]]).||
+||``Start Lifetime``           ||The lifetime of particles in seconds (see [[ParticleSystemCurveEditor|MinMaxCurve]]). ||
+||``Start Speed``              ||The speed of particles when emitted (see [[ParticleSystemCurveEditor|MinMaxCurve]]).||
+||``Start Size``               ||The size of particles when emitted (see [[ParticleSystemCurveEditor|MinMaxCurve]]).||
+||``Start Rotation``       ||The rotation of particles when emitted (see [[ParticleSystemCurveEditor|MinMaxCurve]]).||
+||``Start Color``              ||The color of particles when emitted (see [[ParticleSystemColorEditor|MinMaxGradient]]).||
 ||``Gravity Modifier``            ||The amount of gravity that will affect particles during their lifetime.||
 ||``Inherit Velocity``   ||Factor for controlling the amount of velocity the particles should inherit of the transform of the Particle System (for moving Particle Systems).||
 ||``Simulation Space``  ||Simulate the Particle System in local space or world space.||
@@ -28,7 +28,7 @@ This module is always present, it cannot be removed or disabled.
 Attach:ShurikenEmissionModule.png
 Controls the rate of particles being emitted and allows spawning large groups of particles at certain moments (over Particle System duration time). Useful for explosions when a bunch of particles need to be created at once.
 ||PROPS
-||``Rate``               ||Amount of particles emitted over Time (per second) or Distance (per meter). (See [[ParticleSystemCurveEditor|MinMaxCurve]]).||
+||``Rate``               ||Amount of particles emitted over Time (per second) or Distance (per meter) (see [[ParticleSystemCurveEditor|MinMaxCurve]]).||
 ||``Bursts`` (Time option only)  ||Add bursts of particles that occur within the duration of the Particle System.
 ||>>>``Time and Number of Particles`` ||Specify time (in seconds within duration) that a specified amount of particles should be emitted. Use the + and - for adjusting number of bursts.||
 

@@ -38,7 +38,7 @@ The quality options you can choose for a quality level are as follows:-
 
 !!MaximumLOD level
 
-Models which have a LOD above the MaximumLOD level will not be used and omitted from the build (which will save storage and memory space). Unity will use the highest LOD from all quality settings for the target platform. If LOD level 0 is used in any quality setting then it will be included in the build and loaded at runtime. As an example, if a LOD level is included then models from that LODGroup will be included in the build and always loaded at runtime for that LODGroup, regardless of the quality setting being used. If you remove an LOD using the Max LOD option, then the models from that LOD won't be included (unless they are used somewhere else in the scene)
+Models which have a LOD below the MaximumLOD level will not be used and omitted from the build (which will save storage and memory space). Unity will use the smallest LOD value from all the MaximumLOD values linked with the quality settings for the target platform. If an LOD level is included then models from that LODGroup will be included in the build and always loaded at runtime for that LODGroup, regardless of the quality setting being used. As an example, if LOD level 0 is used in any quality setting then all the LOD levels will be included in the build and all the referenced models loaded at runtime. 
 
 !!Tearing
 
@@ -72,3 +72,4 @@ Attach:SoftParticlesOff.png \\
 
 Attach:SoftParticlesOn.png \\
 ''With Soft Particles - intersections fade out smoothly.''
+

@@ -51,12 +51,14 @@ If you simply start the Cache Server by double clicking the script, it will crea
 
 @@--path@@ lets you specify a cache location, and @@--size@@ lets you specify the maximum cache size in bytes.
 
-!!Recommendations for the machine hosting the Cache Server
+!!Requirements for the machine hosting the Cache Server
 
-We recommend equipping the machine with a lot of RAM. For best performance there is enough RAM to hold an entire imported project folder. In addition, it is best to have a machine with a fast hard drive and fast Ethernet connection. The hard drive should also have sufficient free space. On the other hand, the Cache Server has very low CPU usage.
+For best performance there must be enough RAM to hold an entire imported project folder. In addition, it is best to have a machine with a fast hard drive and fast Ethernet connection. The hard drive should also have sufficient free space. On the other hand, the Cache Server has very low CPU usage.
 
-One of the main distinctions between the Cache Server and version control is that its cached data can always be rebuilt locally. It is simply a tool for improving performance. For this reason it doesn't make sense to use a Cache Server over the Internet. If you have a distributed team, we recommend that you place a separate cache server in each location.
+One of the main distinctions between the Cache Server and version control is that its cached data can always be rebuilt locally. It is simply a tool for improving performance. For this reason it doesn't make sense to use a Cache Server over the Internet. If you have a distributed team, you should place a separate cache server in each location.
 
-We recommend that you run the cache server on a Linux or Mac OS X machine. The Windows file system is not particularly well optimized for how the Asset Cache Server stores data and problems with file locking on Windows can cause issues that don't occur on Linux or Mac OS X.
+The cache server should run on a Linux or Mac OS X machine. The Windows file system is not particularly well optimized for how the Asset Cache Server stores data and problems with file locking on Windows can cause issues that don't occur on Linux or Mac OS X.
+
+See also [[CacheServerFAQ | Cache Server FAQ]].
 
 
