@@ -22,16 +22,16 @@
 
 プラットフォームマクロを直接使用することは、将来性を十分考慮してないため、推奨しません。例えば、D3D9をチェックするシェーダを記述した場合、将来的にはD3D11をチェックする必要があるかもしれません。代わりの方法としてUnityでは複数のヘルパーマクロを[[SL-BuiltinIncludes | @@HLSLSupport.cginc@@]] にて定義をして手助けをします。 
 
-* @@UNITY_ATTEN_CHANNEL@@ - light attenuation（ライト減衰）テクスチャの、どのチャネルがデータを保有しているか、ピクセルごとのライティング　コードで使用されます。'r' または'a' として定義されます。
-* @@UNITY_HALF_TEXEL_OFFSET@@ - texel（テクセル）をピクセルにマッピングするために、半分のテクセルのオフセットが、必要なプラットフォームで定義（すなわち Direct3D 9）。
-* @@UNITY_UV_STARTS_AT_TOP@@ - 常に1または0で定義。1の値は"テクスチャの一番上で" テクスチャのV座標が0であるプラットフォームで使用します。Direct3Dのようなプラットフォームでは1を使用し、Open-GLのようなプラットフォームでは0を使用します。
+* @@UNITY_ATTEN_CHANNEL@@ - Light Attenuation（ライト減衰）テクスチャの、どのチャネルがデータを保有しているか、ピクセルごとのライティング コードで使用されます。'r' または'a' として定義されます。
+* @@UNITY_HALF_TEXEL_OFFSET@@ - Texel（テクセル）をピクセルにマッピングするために、半分のテクセルのオフセットが、必要なプラットフォームで定義（すなわち Direct3D 9）。
+* @@UNITY_UV_STARTS_AT_TOP@@ - 常に1または0で定義。1の値は"テクスチャの一番上で" テクスチャのV座標が0であるプラットフォームで使用します。Direct3Dのようなプラットフォームでは1を使用し、Open-GLのようなプラットフォームでは 0 を使用します。
 * @@UNITY_MIGHT_NOT_HAVE_DEPTH_TEXTURE@@ - プラットフォームが、テクスチャに手動でデプスをレンダリングすることにより、シャドウマップまたはデプステクスチャをエミュレートする場合定義します。
 * @@UNITY_PROJ_COORD(a)@@ - 4成分ベクトルを渡すと、投影されたテクスチャ読み込みに適切なテクスチャ座標を戻します。殆どのプラットフォームでは渡された値そのものを戻します。
-* @@UNITY_NEAR_CLIP_VALUE@@ - ニアクリッピングプレーンの値として定義、Direct3Dのようなプラットフォームでは0.0が使用され、OpenGLのようなプラットフォームでは-1.0を使用します。
-* @@UNITY_COMPILER_CG@@ 、@@UNITY_COMPILER_HLSL@@ 、または@@UNITY_COMPILER_HLSL2GLSL@@ は内在するシェーダコンパイラが使用されているかを判定します、わずかな文法の違いで別のシェーダコードを記述せざるを得ない場合にしようします。
-* @@UNITY_CAN_COMPILE_TESSELLATION@@ - シェーダコンパイラが、テッセレーションシェーダのHLSL文法を、"理解できる" 場合に定義されます（現時点ではD3D11のみ）
-* @@UNITY_INITIALIZE_OUTPUT(type,name)@@ - 指定された''type''の''name''変数をゼロに初期化。
-+ * @@UNITY_COMPILER_HLSL@@, @@UNITY_COMPILER_HLSL2GLSL@@, @@UNITY_COMPILER_CG@@ - indicates which shader compiler is being used to compile shaders. Respectively, Microsoft's HLSL (used for DX11, Xbox360, WinRT), HLSL to GLSL translator (used or iOS/Android and desktop OpenGL when #pragma glsl), and NVIDIA's Cg (used for D3D9 and non-GLSL desktop OpenGL targets). Use this if you run into very specific corner case shader syntax handling differences between the compilers, and want to write different code for each compiler.
+* @@UNITY_NEAR_CLIP_VALUE@@ - ニアクリッピングプレーンの値として定義、Direct3Dのようなプラットフォームでは0.0が使用され、OpenGLのようなプラットフォームでは -1.0 を使用します。
+* @@UNITY_COMPILER_CG@@ 、@@UNITY_COMPILER_HLSL@@ 、または@@UNITY_COMPILER_HLSL2GLSL@@ は内在するシェーダコンパイラが使用されているかを判定します、わずかな文法の違いで別のシェーダコードを記述せざるを得ない場合に使用します。
+* @@UNITY_CAN_COMPILE_TESSELLATION@@ - シェーダコンパイラが、テッセレーションシェーダのHLSL文法を、"理解できる" 場合に定義されます（現時点ではD3D11のみ）。
+* @@UNITY_INITIALIZE_OUTPUT(type,name)@@ - 指定された''type''の''name''変数をゼロに初期化します。
+* @@UNITY_COMPILER_HLSL@@, @@UNITY_COMPILER_HLSL2GLSL@@, @@UNITY_COMPILER_CG@@ - シェーダのコンパイルに使用されるシェーダを指定します。それぞれのマクロは、Microsoft の HLSL (DX11, Xbox360, WinRT で使用)、 HLSL から GLSL への変換 (#pragma glsl の時に iOS/Android およびデスクトップ OpenGL で使用)、 および NVIDIA の Cg (D3D9 および 非 GLSL デスクトップ OpenGL ターゲット) に対応しています。コンパイラ特有のシェーダ文法でのハンドリング差異が出る微妙なケースに遭遇して、それぞれに別のコードを記述したい場合にこれを使用します
 
 
 !! シャドウ マッピング マクロ
@@ -41,9 +41,9 @@
 + * @@UNITY_SAMPLE_SHADOW(tex,uv)@@ - "tex" という名前のシャドウ マップ テクスチャを特定の "uv" 座標にサンプリングします（XY コンポーネントはテクスチャの場所、Zコンポーネントは相対的なデプス）。0 - 1 の範囲で シャドウとしてひとつの float 変数を戻します。
 * @@ UNITY_SAMPLE_SHADOW_PROJ(tex,uv)@@ - 上記と同様であるが、プロジェクティブなシャドウマップ読み込みを行います。 "uv" は float4 であり、他の全てのコンポーネント は ルックアップをするために .w で除算します。
  
-!! 定数バッファマクロ（Constant buffer macros）
+!! 定数バッファマクロ / Constant Buffer Macro
 
-Direct3D 11は全てのシェーダ変数を"constant buffer" （定数バッファ）にグループ分けします。Unity内蔵の変数のほとんどはすでにグループ分けされてますが、自身で作成するシェーダの変数については、予想される更新頻度に応じて、別のconstant bufferに格納することが最適です。
+Direct3D 11は全てのシェーダ変数を "constant buffer" （定数バッファ）にグループ分けします。Unity ビルトインの変数のほとんどはすでにグループ分けされてますが、自身で作成するシェーダの変数については、予想される更新頻度に応じて、別のconstant bufferに格納することが最適です。
 
 @@CBUFFER_START(name)@@ と@@CBUFFER_END@@ マクロをその場合に使用します：
     CBUFFER_START(MyRarelyUpdatedVariables)    float4 _SomeGlobalValue;
