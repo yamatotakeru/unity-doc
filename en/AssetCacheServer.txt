@@ -28,7 +28,8 @@ If you are hosting the Cache Server on your local machine, specify ''localhost''
 Admins need to set up the $$Cache Server$$ machine that will host the cached assets. 
 
 You need to:
-*Download the Cache Server [[http://unity3d.com/unity/team/cacheserver/|here]]
+*Purchase Cache Server (as part of the Team License) in the [[https://store.unity3d.com|Online Store]].
+*Download the Cache Server. Go to the [[http://unity3d.com/unity/team/cacheserver/|Unity Team License]] page and click on the button to Download the Cache Server.
 *Unzip the file, after which you should see something like this:
 ->Attach:CacheServerZipCropped.png
 
@@ -36,7 +37,7 @@ You need to:
 *You will see a terminal window, indicating that the Cache Server is running in the background
 ->Attach:CacheServerTerminal.png
 
-The $$Cache Server$$ needs to be on a reliable machine with very large storage (much larger than the size of the project itself, as there will likely be multiple versions of imported resources stored). If the hard disk becomes full the $$Cache Server$$ could perform slowly.
+The $$Cache Server$$ needs to be on a reliable machine with very large storage (much larger than the size of the project itself, as there will be multiple versions of imported resources stored). If the hard disk becomes full the $$Cache Server$$ could perform slowly.
 
 !! Installing the Cache Server as a service
 
@@ -60,5 +61,3 @@ One of the main distinctions between the Cache Server and version control is tha
 The cache server should run on a Linux or Mac OS X machine. The Windows file system is not particularly well optimized for how the Asset Cache Server stores data and problems with file locking on Windows can cause issues that don't occur on Linux or Mac OS X.
 
 See also [[CacheServerFAQ | Cache Server FAQ]].
-
-

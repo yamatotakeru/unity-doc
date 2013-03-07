@@ -53,7 +53,7 @@ In order to do __any__ rendering from the plugin, you should call [[ScriptRef:GL
 
 !! Example
 
-An example of a low-level rendering plugin __[[Attach:RenderingPluginExample40.zip|can be downloaded here]]__. It demonstrates two things:
+An example of a low-level rendering plugin __[[Attach:RenderingPluginExample42.zip|can be downloaded here]]__. It demonstrates two things:
 * Renders a rotating triangle from C++ code after all regular rendering is done.
 * Fills a procedural texture from C++ code, using Texture.GetNativeTexturePtr to access it.
 

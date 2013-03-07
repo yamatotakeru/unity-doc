@@ -55,9 +55,10 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[Scripting]]
 ****[[Asset Store]]
 ****[[Asset Server]]
+*****[[Setting up the Asset Server]]
+****[[Cache Server]]
 *****[[Asset Cache Server]]
 *****[[Cache Server FAQ]]
-*****[[Setting up the Asset Server]]
 ****[[Behind the Scenes]]
 ***[[Creating Gameplay]]
 ****[[Instantiating Prefabs]]
@@ -334,7 +335,9 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[Web Player Streaming]]
 ****[[WebPlayerChannels]]
 >><<
-
+>>nextrelease<<
+***[[Using the Web Player Chain-of-Trust system]]
+>><<
 
 ----
 

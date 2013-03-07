@@ -13,12 +13,32 @@ You can import meshes and animations from Lightwave in two different ways:
 # Animations.
 # Bone-based animations.
 
+!! FBX Export
 
+From Lightwave version 11 onwards the FBX 2012 exporter is now included:
 
+Attach:LW_Export.png
 
+Attach:LW_FBX.png
 
+__FBX Filename__ : This file can contain multiple objects, Choose a filename and save to your \assets directory
 
-Attach:Lightwave./LWexpEditPlugs.jpg
+__Anim Layer__ :
+
+__Type__ : Choose Binary to reduce filesize or ASCII for a text editable FBX
+
+__FBX Version__ Select 201200 from the drop down to ensure version 2012.1
+
+__Export :__ Select all the elements you wish to include - not cameras and lights are not read into Unity
+
+__Mesh type__ Choose Cage Subdivision if * otherwise choose subdivided to *
+
+__Bake Motion Envelopes__
+
+__Start frame / End frame__
+
+__Scale Scene__ Set a scale for your scene applicable to match Unity
+
 
 Once added to LightWave, the plugin is acessible via the Generics menu (on the Utiliies) tab.  If the Generic menu is not present you will have to add it using the Config Menus panel. In the latter panel it can be found in the Plug-ins category and is called "Generic Plugins". Add it to any convenient menu (see the LightWave manual for more details on how to do this).
 
@@ -27,22 +47,6 @@ More information about installation can also be found in the release notes that 
 !! Exporting
 
 All objects and animations have to be exported from Layout (there is no Modeler FBX exporter).
-
-
-!!!1. Select Export to FBX from the Generics menu
-
-Attach:Lightwave./LWexpGenerics2.jpg Attach:Lightwave./LWexpExportToFBX.jpg
-
-
-!!!2. Select the appropriate settings in the fbx export dialog
-
-* Select the fbx file name. Make sure to save the exported fbx file in the Assets folder of your current Unity project.
-* In the FBX dialogue panel you MUST select ``Embed Textures`` otherwise the exported object will have no UVs. This is a bug in the Lightwave fbx exporter and will be fixed in a future version according to Autodesk.
-* If you want to export animations into Unity you must have "Animations" checked. You also need to have "Lights" or "Cameras" checked.
-* To change the name of the exported animation clip in Unity, change the name from "LW Take 001" to your liking.
-
-Attach:Lightwave./fbxtex602b.jpg
-
 
 !!!3. Switch to Unity.
 

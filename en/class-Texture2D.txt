@@ -3,7 +3,7 @@
 $$Textures$$ bring your $$Meshes$$, $$Particles$$, and interfaces to life! They are image or movie files that you lay over or wrap around your objects. As they are so important, they have a lot of properties. If you are reading this for the first time, jump down to [[#details | Details]], and return to the actual settings when you need a reference.
 
 
-The shaders you use for your objects put specific requirements on which textures you need, but the basic principle is that you can put any image file inside your project. If it meets the size requirements (specified below), it will get imported and optimized for game use.  This extends to multi-layer Photoshop or TIFF files - they are flattened on import, so there is no size penalty for your game.
+The shaders you use for your objects put specific requirements on which textures you need, but the basic principle is that you can put any image file inside your project. If it meets the size requirements (specified below), it will get imported and optimized for game use.  This extends to multi-layer Photoshop or TIFF files - they are flattened on import, so there is no size penalty for your game.  Note that this flattening happens internally to Unity, and is optional, so you can continue to save and import your PSD files with layers intact.  The PSD file is not flattened, in other words.
 
 
 !! Properties

@@ -80,7 +80,7 @@ If Unity crashes when starting, check the following:
 
 !!Performance and Crashes
 
-If the editor runs slowly or crashes, particularly on builds, this might be caused by all of the available system resources being consumed. Close all other applications when you build the project. Clean up the system using its utilities, and consult the Task Manager (Windows) or Activity Monitor (MacOS) to find out if there are processes using lots of resources, for example memory.
+If the editor runs slowly or crashes, particularly on builds, this might be caused by all of the available system resources being consumed. Close all other applications when you build the project. Clean up the system using its utilities, and consult the Task Manager (Windows) or Activity Monitor (MacOS) to find out if there are processes using lots of resources, for example memory. Sometimes virus protection software can slow down or even block the file system with its scanning process.
 
 !!Project Loss
 

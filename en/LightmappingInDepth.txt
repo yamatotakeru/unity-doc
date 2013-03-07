@@ -9,11 +9,13 @@ In this page you will find a more in-depth description of all the attributes tha
 
 Attach:LightmappingMain.png
 
-!!Scene filters
+
 At the top of the inspector are three ''Scene Filter'' buttons that enable you to apply the operation to all objects or to restrict it to lights or renderers.
 
 !!Object
 Per-object bake settings for lights, mesh renderers and terrains - depending on the current selection.
+
+Use the ''Scene Filter'' buttons to easily view only the lights, renderers or terrains in the $$Hierarchy$$.
 
 __Mesh Renderers and Terrains:__
 
@@ -49,7 +51,7 @@ Global bake settings.
 ||``Bounces``||The number of light bounces in the Global Illumination simulation. At least one bounce is needed to give a soft, realistic indirect lighting. 0 means only direct light will be computed.||
 ||``Sky Light Color``||Sky light simulates light emitted from the sky from all the directions - great for outdoor scenes.||
 ||``Sky Light Intensity``||The intensity of the sky light - a value of 0 disables the sky light.||
-||``Bounce Boost``||Boosts indirect light, can be used to increase the amount of bounced light within the scene without burning out the render too quickly.||
+||``Bounce Boost``||Allows to exaggerate light bouncing in dark scenes. If a scene is authored with dark materials, it's easy to compensate with strong direct lighting. Indirect lighting will be very subtle though, as the bounced light will fade out quickly. Setting bounce boost to a value larger than 1 will compensate for this by pushing the albedo color towards 1 for GI computations. Note that values between 0 and 1 will decrease the light bounce. The actual computation taking place is a per component @@pow(colorComponent, (1.0/bounceBoost))@@.||
 ||``Bounce Intensity``||A multiplier to the intensity of the indirect light.||
 ||``Final Gather Rays``||The number of rays shot from every final gather point - higher values give better quality.||
 ||``Contrast Threshold``||Color contrast threshold, above which new final gather points will be created by the adaptive sampling algorithm. Higher values make Beast be more tolerant about illumination changes on the surface, thus producing smoother but less-detailed lightmaps. Lower numbers of final gather rays might need higher contrast threshold values not to force additional final gather points to be created.||

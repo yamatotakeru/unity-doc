@@ -198,9 +198,9 @@ Attach:PlayerSetiOSOther355.png
 ||>>>``Universal armv6+armv7 (OpenGL ES1.1+2.0)``||Application supports both armv6 and armv7 chipsets. ''Note: increases application distribution size''||
 ||>>>``armv7``     ||Application is optimized for armv7 chipsets. 1st-2nd gen. devices are not supported. There might be additional requirements for this build target imposed by Apple App Store. Defaults to OpenGL ES 2.0.||
 ||``Target Resolution``           ||Resolution you want to use on your deployed device.(This setting will not have any effect on devices with maximum resolution of 480x320)||
-||>>>``Native(Default Device Resolution)``||Will use the device native resolution.||
-||>>>``Standard(Medium or Low Resolution)``||Use the lowest resolution possible (480x320).||
-||>>>``HD(Highest available resolution)``||Use the maximum resolution allowed on the device (960x640).||
+||>>>``Native (Default Device Resolution)``||Will use the device's native resolution (that is the physical pixels on the screen).||
+||>>>``Standard (Medium or Low Resolution)``||Use the lowest resolution possible (e.g. 480x320 on an iPhone 4).||
+||>>>``HD (Highest available resolution)``||Use the maximum resolution allowed on the device (e.g. 960x640 on an iPhone 4).||
 ||``Accelerometer Frequency``||How often the accelerometer is sampled||
 ||>>>``Disabled``||Accelerometer is not sampled||
 ||>>>``15Hz``||15 samples per second||
