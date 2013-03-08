@@ -8,10 +8,16 @@ You can import meshes and animations from Lightwave in two different ways:
 !! Unity currently imports
 
 # All nodes with position, rotation and scale. Pivot points and Names are also imported.
-# Meshes with UVs and normals.
+# Meshes with up to 2 UV Channels
+# Normals 
 # Materials with Texture and diffuse color. Multiple materials per mesh.
 # Animations.
 # Bone-based animations.
+
+Note:
+
+* Lightwave specific materials need to be baked as textures for Unity to read them - use the Node system in Lightwave for a non-destructive pipeline
+* Unity only understands polygon meshes so convert to polygons before saving/exporting 
 
 !! FBX Export
 
@@ -23,7 +29,7 @@ Attach:LW_FBX.png
 
 __FBX Filename__ : This file can contain multiple objects, Choose a filename and save to your \assets directory
 
-__Anim Layer__ :
+__Anim Layer__ : TBC
 
 __Type__ : Choose Binary to reduce filesize or ASCII for a text editable FBX
 
@@ -33,28 +39,34 @@ __Export :__ Select all the elements you wish to include - not cameras and light
 
 __Mesh type__ Choose Cage Subdivision if * otherwise choose subdivided to *
 
-__Bake Motion Envelopes__
+__Bake Motion Envelopes__TBC
 
 __Start frame / End frame__
 
 __Scale Scene__ Set a scale for your scene applicable to match Unity
 
 
-Once added to LightWave, the plugin is acessible via the Generics menu (on the Utiliies) tab.  If the Generic menu is not present you will have to add it using the Config Menus panel. In the latter panel it can be found in the Plug-ins category and is called "Generic Plugins". Add it to any convenient menu (see the LightWave manual for more details on how to do this).
+!Importing LIghtwave scenes with AppLink
 
-More information about installation can also be found in the release notes that can downloaded with the installer.
+To read a lightwave scene you must use the Applink package provided with your Lightwave installation from version 11 onwards only
 
-!! Exporting
+!!Setup
 
-All objects and animations have to be exported from Layout (there is no Modeler FBX exporter).
+* Browse to the  \support\3rdparty_support\Unity3D folder in your LightWave3D installation
+* Copy LightWaveAppLink.unitypackage into \Unity installation folder within \Editor\Standard Packages folder
 
-!!!3. Switch to Unity.
+E.g. Windows C:\Program Files (x86)\Unity\Editor\Standard Packages (for machines running a 64-bit version of Windows)
+or Mac: Applications/Unity/Standard Packages.
 
-* Unity will automatically import the fbx file and generate materials for the textures.
-* Drag the imported fbx file from the Project view into the Scene view.
+!!Open Lightwave scene
 
-!!Important notes
+* Create a new project in Unity and add LightwaveAppLink.unity package and any others that you require
+* Set your content directory to match the new unity project
+* Save your LWS file in the \assets folder
 
-*  You must select ``Embed Textures`` in the FBX panel when exporting or no UVs are exported
-*  If you want to export animations you must enable ``Animations`` and either ``Camera`` or ``Lights``.
-*  It is strongly recommended to always place your textures in a folder called "Textures" next to the fbx file. This will guarantee that Unity can always find the Texture and automatically connect the texture to the material.
+Unity will then convert the Lightwave scene to an FBX
+
+* Select the FBX of the scene and set your scale to 1.0 and Apply
+* Update any Unity materials to set shader types to try and match equivalent Lightwave shaders
+
+Any changes to the FBX (lightwave scene assets) will only be stored in Unity, so this is a Uni-directional pipeline.

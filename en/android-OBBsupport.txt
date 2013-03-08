@@ -22,4 +22,4 @@ The ''Split Application Binary'' option is not the only way to split an .apk int
 * The asset store has a plugin (adapted from the Google Apk Expansion examples) which does this for you. It will download the .obb and put it in the right place on the sdcard. See http://u3d.as/content/unity-technologies/google-play-obb-downloader/2Qq
 * When using the asset store plugin you __need__ to call that plugin from the first scene (because of the reasons explained above).
 * The asset store plugin can also be used to download .obb's created in some other way (single data file, a zip of asset bundles, etc) - it's agnostic to how the .obb was created.
-
+* To test the obb downloader, the android device needs to be logged in as correct google account (tester account).
