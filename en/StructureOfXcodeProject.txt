@@ -8,7 +8,7 @@ Before building the iOS project make sure that you set the ^^Bundle Identifier^^
 
 !!Classes folder
 
-This contains code that integrates the Unity Runtime and Objective-C. The contained files @@main.mm@@ and @@AppController.mm@@ are the entry point of the application. Also the @@iPhone_Profiler.h@@ file defines a compiler conditional to enable the Internal Profiler. This is a folder for code that doesn't change often, and you can place your custom classes here. The changes to this folder are preserved between builds when the append mode is selected.
+This contains code that integrates the Unity Runtime and Objective-C. The contained files @@main.mm@@ and @@AppController.mm@@ are the entry point of the application. Also the @@iPhone_Profiler.h@@ file defines a compiler conditional to enable the Internal Profiler. This is a folder for code that doesn't change often, and you can place your custom classes here. The changes to this folder are preserved between builds when the append mode is selected, but this function doesn't support multiple build targets and requires a fixed structure of the @@Libraries@@ folder.
 
 The Internal Profiler is fast and unintrusive, and feeds basic information: which subsystem is taking most of the frame time, .NET heap size, GC event count/duration. See [[iphone-InternalProfiler | built-in profiler]] for further information.
 
