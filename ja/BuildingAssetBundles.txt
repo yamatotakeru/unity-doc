@@ -22,7 +22,7 @@ Attach:ExportAssetBundlesScript.png
 Attach:AssetBundleMenuOptions.png
 # ^^Build AssetBundle From Selection - Track dependencies^^ 。 （選択範囲からからビルド - 依存関係をトラッキング）。これにより現在のオブジェクトからアセットバンドルをビルドし、全ての依存関係が含まれます。例えば、プレハブがいくつかの階層レイヤーから構成される場合、再帰的に全ての子オブジェクトとコンポーネントを追加します。
 
-# ^^Build AssetBundle From Selection - No dependency tracking^^ 。（選択範囲からからビルド - 依存関係をトラッキングしない）。これは前述の反対のオプションであり、選択範囲のアセットのみを単独で含みます。
+# ^^Build AssetBundle From Selection - No dependency tracking^^ 。（選択範囲からからビルド - 依存関係をトラッキングしない）。これは前述手法の反対のオプションであり、選択範囲のアセットのみを単独で含みます。
 
 この例では、新規のプレハブを作成すべきです。最初に新規のキューブを作成するために ^^GameObject -> Create Other -> Cube^^ を選択すると、階層ビューに新規のキューブが作成されます。次にキューブを階層ビューからプロジェクトビューにドラッグ＆ドロップして、オブジェクトのプレハブが作成されます。
 
@@ -34,6 +34,75 @@ Attach:AssetBundlesCube.png
 
 この時点で、アセットバンドルの ``Cube.unity3d``をローカルのストレージまたは好きなサーバにアップロードすることが出来ます。
 
+!! アセットバンドルをビルドする時にアセットのプロパティを変更するサンプル
+
+[[ScriptRef:AssetDatabase.ImportAsset.html|AssetDatabase.ImportAsset]] を使用して [[ScriptRef:BuildPipeline.BuildAssetBundle.html|BuildPipeline.BuildAssetBundle]] の直前に強制的にアセットの再インポートを行い、そして [[ScriptRef:AssetPostprocessor.OnPreprocessTexture.html|AssetPostprocessor.OnPreprocessTexture]] を使用して必要なプロパティをセットできます。次のサンプルにより、アセットバンドルをビルドするときに異なるテクスチャ圧縮をセットする方法を示します。
+
+!!!C#
+[@
+// プロジェクトビューの選択されたオブジェクトからアセットバンドルをビルドし、
+// AssetPostprocessor を使用してテクスチャ フォーマット を変更
+
+using UnityEngine;
+using UnityEditor;
+
+public class ExportAssetBundles {
+    
+	// TextureProcessor に現在のテクスチャ フォーマットを格納
+	public static TextureImporterFormat textureFormat;
+	
+	[MenuItem("Assets/Build AssetBundle From Selection - PVRTC_RGB2")]
+	static void ExportResourceRGB2 () {
+		textureFormat = TextureImporterFormat.PVRTC_RGB2;
+		ExportResource();		
+	}	
+    
+	[MenuItem("Assets/Build AssetBundle From Selection - PVRTC_RGB4")]
+	static void ExportResourceRGB4 () {
+		textureFormat = TextureImporterFormat.PVRTC_RGB4;
+		ExportResource();
+	}
+	
+	static void ExportResource () {
+		// セーブ パネルを表示
+		string path = EditorUtility.SaveFilePanel ("Save Resource", "", "New Resource", "unity3d");
+		
+		if (path.Length != 0) {
+			// アクティブな Selection からリソースファイルをビルド
+			Object[] selection = Selection.GetFiltered(typeof(Object), SelectionMode.DeepAssets);
+			
+			foreach (object asset in selection) {
+				string assetPath = AssetDatabase.GetAssetPath((UnityEngine.Object) asset);
+				if (asset is Texture2D) {
+					// TextureProcessor を通して強制的に再インポート
+					AssetDatabase.ImportAsset(assetPath);
+				}
+			}
+            
+			BuildPipeline.BuildAssetBundle(Selection.activeObject, selection, path, BuildAssetBundleOptions.CollectDependencies | BuildAssetBundleOptions.CompleteAssets);
+			Selection.objects = selection;
+		}
+	}
+}
+@]
+
+!!!C#
+[@
+// アセットバンドルをビルドする時のテクスチャフォーマットを変更
+
+using UnityEngine;
+using UnityEditor;
+
+public class TextureProcessor : AssetPostprocessor
+{   
+	void OnPreprocessTexture() {
+		TextureImporter importer = assetImporter as TextureImporter;
+		importer.textureFormat = ExportAssetBundles.textureFormat;
+	}
+}
+@]
+
+アセットがインポートされる方法を制御するために [[ScriptRef:AssetDatabase.ImportAssetOptions.html|AssetDatabase.ImportAssetOptions]] を使用することも出来ます。
 
 !! アセットバンドルを本番環境でビルドする
 
