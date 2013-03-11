@@ -37,7 +37,7 @@ Attach:QualitySettingsBottom.png
 ||``Particle Raycast Budget``||パーティクルシステムの衝突のために使用するraycastsの最大数（Medium,Low品質）。[[ParticleSystemModules40|パーティクル衝突モジュール]] を参照のこと。||
 
 !!Maximum LOD level
-これより高い LOD を持つモデルは、使用されずビルド対象から外れます（ストレージとメモリ容量を節約）。Unity はターゲットプラットフォームに対して、全ての Quality Setting の中からもっとも高い LOD を使用します。もしLOD Level 0 がいずれかの Quality Setting で使用されている場合、ビルドに含まれてランタイムにロードされます。多々追えば、もし LOD level が 含まれている場合、対応する LODGroup はビルドに含まれ、どの Quality Setting が使用されているかに関わらず、その LODGroup は必ず実行時にロードされる。もしMax LOD オプションを使用して いずれかの LOD を外すとその LOD のモデルは含まれません（シーンの別の箇所で使用されていないかぎり）。
+これより高い LOD を持つモデルは、使用されずビルド対象から外れます（ストレージとメモリ容量を節約）。Unity はターゲットプラットフォームに対して、全ての Quality Setting の中からもっとも高い LOD を使用します。もしLOD Level 0 がいずれかの Quality Setting で使用されている場合、ビルドに含まれてランタイムにロードされます。例えば、もし LOD level が 含まれている場合、対応する LODGroup はビルドに含まれ、どの Quality Setting が使用されているかに関わらず、その LODGroup は必ず実行時にロードされる。もしMax LOD オプションを使用して いずれかの LOD を外すとその LOD のモデルは含まれません（シーンの別の箇所で使用されていないかぎり）。
 
 !!ティアリング
 
@@ -71,3 +71,4 @@ Attach:SoftParticlesOff.png \\
 
 Attach:SoftParticlesOn.png \\
 ソフトパーティクルを使用するとシーンに交点がスムーズに描画されます。
+
