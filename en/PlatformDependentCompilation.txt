@@ -136,3 +136,12 @@ In addition to the basic ''#if'' compiler directive, you can also use a multiway
 #endif@]
 
 However, Boo currently supports only the ''ifdef'' directive.
+
+!!Custom defines
+
+It is also possible to add to the built-in selection of defines by supplying your own. In the $$Other Settings$$ panel of the [[class-PlayerSettings|Player Settings]], you will see the Scripting Define Symbols textbox.
+
+Attach:ScriptDefines.png
+
+Here, you can enter the names of the symbols you want to define for that particular platform, separated by semicolons. These symbols can then be used as the conditions for ''#if'' directives just like the built-in ones.
+

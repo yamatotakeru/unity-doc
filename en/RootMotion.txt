@@ -2,9 +2,9 @@
 
 !!Body Transform
 
-The body transform must be set to be the same for all humanoid characters (from a retargeting standpoint). The body mass center should be used as the body position as this will nearly follow a straight line in most circumstances. The body orientation is an average of the lower and upper body orientation. Do not use the hips to store the world-space position and orientation of the animation as this can lead to unpredictable results.  The body orientation is at identity for the Avatar T-Pose.
+The Body Transform is the mass center of the character.  It is used in Mecanim's retargeting engine and provides the most stable displacement model.  The Body Orientation is an average of the lower and upper body orientation relative to the Avatar T-Pose.
 
-The body position and orientation are stored in the $$Animation Clip$$ (using the [[MuscleDefinitions|Muscle definitions]] set up in the Avatar). They are the only world-space curves stored in the $$Animation Clip$$. Everything else: muscle curves and IK goals (Hands and Feet) are stored relative to the body transform. 
+The Body Transform and Orientation are stored in the $$Animation Clip$$ (using the [[MuscleDefinitions|Muscle definitions]] set up in the Avatar). They are the only world-space curves stored in the $$Animation Clip$$. Everything else: muscle curves and IK goals (Hands and Feet) are stored relative to the body transform. 
 
 !!Root Transform
 
