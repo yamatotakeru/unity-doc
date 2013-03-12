@@ -21,7 +21,7 @@ Unityのシェーダincludeファイルは@@.cginc@@ 拡張子がつけられて
 
 !! HLSLSupport.cginc
 
-このファイルはシェーダをコンパイルする差異に''自動でインクルード''されます。マルチプラットフォームのシェーダ開発を手助けするため、様々な[[SL-BuiltinMacros | preprocessor macros]] を定義します。
+このファイルはシェーダをコンパイルする際に''自動でインクルード''されます。マルチプラットフォームのシェーダ開発を手助けするため、様々な[[SL-BuiltinMacros | preprocessor macros]] を定義します。
 
 
 !! UnityCG.cginc
