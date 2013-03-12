@@ -1,4 +1,43 @@
 ! Unity モバイル スクリプティング上級者向け / Advanced Unity Mobile Scripting
+
+!! デバイス プロパティ
+参照できるデバイス固有のプロパティがいくつかあります:
+||PROPS
+||``[[ScriptRef:SystemInfo-deviceUniqueIdentifier.html | SystemInfo.deviceUniqueIdentifier]]`` ||一意のデバイス識別子
+||``[[ScriptRef:SystemInfo-deviceName.html |SystemInfo.deviceName]]`` ||ユーザが指定したデバイス名
+||``[[ScriptRef:SystemInfo-deviceModel.html | SystemInfo.deviceModel]]`` ||デバイスモデル
+||``[[ScriptRef:SystemInfo-operatingSystem.html | SystemInfo.operatingSystem]]`` ||オペレーティングシステムの名前とバージョン
+||END
+
+!! 海賊版チェック
+海賊行為をする者は、ときにアプリケーションをハッキングして（AppStore DRMプロテクションを外して）、フリーで再配布します。Unity により海賊版チェックがあり、AppStoreに提出した __後に__ アプリケーションが変更されたか判断できます。
+
+もしアプリケーションが純正である（ハッキングされていない）かを [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティでチェックできます。もしこのプロパティが $$false$$ である場合、ユーザにアプリケーションがハッキングされたものであると通知するか、またはアプリケーションの一部の機能へのアクセスを無効化できます。
+
+__注意:__  [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティを参照することはやや高価な処理であり、フレーム Update や処理時間がクリティカルであるコードでは使用すべきではありません。
+
+!! バイブレーション 対応
+バイブレーション をトリガーするには [[ScriptRef:Handheld.Vibrate.html | Handheld.Vibrate]] をコールします。物理的にバイブレーションできないデバイスでは、このコールが無視されることに留意して下さい。
+
+!! アクティブティ インジケータ
+モバイル OS にはビルトインのアクティブティ インジケータがあり、これは処理が遅い時に活用できます。使用サンプルについては [[ScriptRef:Handheld.StartActivityIndicator.html | Handheld.StartActivityIndicator のドキュメント]] を参照して下さい。
+
+!! 画面の向き
+Unity iOS/Android により現在の画面の向きを制御できます。画面の向きが変更されたことの検知、または強制的に画面の向きを変えられることは、ユーザのデバイスの持ち方に応じて異なるゲーム動作を作成する場合に便利です。
+
+デバイスの画面の向きを取得するには [[ScriptRef:Screen-orientation.html | Screen.orientation]] プロパティをアクセスします。画面の向きは次のいずれかとなります:
+||``Portrait`` ||デバイスはPortraitモード、持ち方は縦向きでホームボタンが下。
+||``PortraitUpsideDown`` ||デバイスはPortraitモードで逆さま、持ち方は縦向きでホームボタンが上。
+||``LandscapeLeft`` ||デバイスはLandscapeモード、持ち方は横向きでホームボタンが右。
+||``LandscapeRight`` ||デバイスはLandscapeモード、持ち方は横向きでホームボタンが左。
+画面の向きを制御するには [[ScriptRef:Screen-orientation.html | Screen.orientation]] をこれのいずれかにセットするか、 [[ScriptRef:ScreenOrientation.AutoRotation.html | ScreenOrientation.AutoRotation]] にセットします。
+Auto Rotation としたい場合は、さらにケースごとにいくつかの画面の向きを無効化できます。
+||PROPS
+||``[[ScriptRef:Screen-autorotateToPortrait.html | Screen.autorotateToPortrait ]]`` ||Portraitモード を許可
+||``[[ScriptRef:Screen-autorotateToPortraitUpsideDown.html | Screen.autorotateToPortraitUpsideDown ]]`` ||Portraitモードで逆さまを許可
+||``[[ScriptRef:Screen-autorotateToLandscapeLeft.html | Screen.autorotateToLandscapeLeft ]]`` ||Landscape Leftモードを許可
+||``[[ScriptRef:Screen-autorotateToLandscapeRight.html | Screen.autorotateToLandscapeRight ]]`` ||Landscape Rightモードを許可
+
 [[#iOS]]
 !iOS!
 >>ios<<
@@ -7,28 +46,6 @@
 様々なデバイス世代により異なった機能がサポートされ、パフォーマンスも幅広く違いがあります。デバイス世代のクエリをかけて、遅いデバイスについてどの機能を無効するか判断すべきです。デバイス世代については [[ScriptRef:iPhone-generation.html | iPhone.generation]] プロパティにより見つけられます。
 
 異なったデバイス世代の情報、パフォーマンス、およびサポートされている機能については [[Main.iphone-Hardware | iPhone ハードウェア ガイド]] を参照下さい。
-
-
-!! デバイス プロパティ
-参照できるデバイス固有のプロパティがいくつかあります:
-||PROPS
-||``[[ScriptRef:SystemInfo-deviceUniqueIdentifier.html | SystemInfo.deviceUniqueIdentifier]]`` ||一意のデバイス識別子
-||``[[ScriptRef:SystemInfo-deviceName.html |SystemInfo.deviceName]]`` ||ユーザが指定したデバイス名
-||``[[ScriptRef:SystemInfo-deviceModel.html | SystemInfo.deviceModel]]`` ||iPhone または iPod Touchのいずれか
-||``[[ScriptRef:SystemInfo-operatingSystem.html | SystemInfo.operatingSystem]]`` ||オペレーティングシステムの名前とバージョン
-||END
-
-
-!! 海賊版チェック
-海賊行為をする者は、ときにアプリケーションをAppStoreからハッキングして（Apple DRMプロテクション）を外して、フリーで再配布します。Unity iOS により海賊版チェックがあり、AppStoreに提出した __後に__ アプリケーションが変更されたか判断できます。
-
-もしアプリケーションが純正である（ハッキングされていない）かを [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティでチェックできます。もしこのプロパティが $$false$$ である場合、ユーザにアプリケーションがハッキングされたものであると通知するか、またはアプリケーションの一部の機能へのアクセスを無効化できます。
-
-__注意:__  [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティを参照することはやや高価な処理であり、フレーム Update や処理時間がクリティカルであるコードでは使用すべきではありません。
-
-
-!! バイブレーション 対応
-バイブレーション をトリガーするには [[ScriptRef:Handheld.Vibrate.html | Handheld.Vibrate]] をコールします。iPod Touch デバイスは物理的にバイブレーションできず、このコールを無視することに留意下さい。
 
 (:include UpdateOrder:)
 
@@ -39,31 +56,8 @@ __注意:__  [[ScriptRef:Application-genuine.html | Application.genuine]] プロ
 >>android<<
 ! Android スクリプティング上級者向け
 !! デバイス世代の判断
-
 様々なデバイス世代により異なった機能がサポートされ、パフォーマンスも幅広く違いがあります。特定のデバイスやデバイス ファミリをターゲットとして、遅いデバイスについてどの機能を無効するか判断すべきです。参照できるデバイス固有のプロパティがいくつかあり、どのデバイスが使用されているか判断することも出来ます。
 
 __注意:__ Androidマーケットプレイスにより追加の互換性フィルタリングが行われているため、OpenGL ES2.0 に向け最適化されている ARMv7 オンリーのアプリが遅いデバイスに対して提供されているか心配する必要はありません。
-
-!! デバイス プロパティ
-||PROPS
-||``[[ScriptRef:SystemInfo-deviceUniqueIdentifier.html | SystemInfo.deviceUniqueIdentifier]]`` |||一意のデバイス識別子
-||``[[ScriptRef:SystemInfo-deviceName.html |SystemInfo.deviceName]]`` ||ユーザが指定したデバイス名
-||``[[ScriptRef:SystemInfo-deviceModel.html | SystemInfo.deviceModel]]`` ||iPhone または iPod Touchのいずれか
-||``[[ScriptRef:SystemInfo-operatingSystem.html | SystemInfo.operatingSystem]]`` ||オペレーティングシステムの名前とバージョン
-||END
-
-
-!! 海賊版チェック
-
-海賊行為をする者は、ときにアプリケーションをAppStoreからハッキングして（Apple DRMプロテクション）を外して、フリーで再配布します。Unity Android により海賊版チェックがあり、AppStoreに提出した __後に__ アプリケーションが変更されたか判断できます。
-
-
-もしアプリケーションが純正である（ハッキングされていない）かを [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティでチェックできます。もしこのプロパティが $$false$$ である場合、ユーザにアプリケーションがハッキングされたものであると通知するか、またはアプリケーションの一部の機能へのアクセスを無効化できます。
-
-__注意:__ [[ScriptRef:Application-genuineCheckAvailable.html | Application.genuineCheckAvailable]] は $$Application.genuine$$ とともに使用しないと、アプリケーションが純正であるか確認が出来ません。 [[ScriptRef:Application-genuine.html | Application.genuine]] プロパティを参照することはやや高価な処理であり、フレーム Update や処理時間がクリティカルであるコードでは使用すべきではありません。
-
-
-!! バイブレーション 対応
-バイブレーション をトリガーするには [[ScriptRef:Handheld.Vibrate.html | Handheld.Vibrate]] をコールします。物理的にバイブレーションできないデバイスでは、このコールを無視することに留意下さい。
 
 >><<
