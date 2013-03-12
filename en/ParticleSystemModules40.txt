@@ -141,6 +141,7 @@ Set up collisions for the particles of this Particle System. World and planar co
 ||``Bounce``                ||(0-1) When the particle collides, it will keep this fraction of the component of the velocity, which is normal to the plane of collision.||
 ||``Lifetime Loss``         ||(0-1) The fraction of Start Lifetime lost on each collision. When lifetime reaches 0, the particle dies. For example if a particle should die on first collision, set this to 1.0.||
 ||``Min Kill Speed``        ||The minimum speed of a particle before it is killed.||
+||``Send Collision Messages`` ||Whether to send collision messages and thus trigger [[ScriptRef:MonoBehaviour.OnParticleCollision.html|OnParticleCollision]] callbacks on GameObjects and ParticleSystems.||
 
 !!!Properties available only in the ``Planes`` Mode
 ||PROPS
