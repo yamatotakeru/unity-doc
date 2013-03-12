@@ -4,40 +4,37 @@ Attach:MecanimRootMotionPreview.png
 
 !!Body Transform
 
-最初に、全てのヒューマノイドキャラクターBody Transformを算出します(リターゲティングの観点から)。ボディの重心をボディ位置とします。ボディの向きは下半身と上半身のボディの向きの平均を使います。アバターのTポーズにおいて、ボディの向きはIdentityとなります。
+キャラクターの重心が Body Transform に該当します。これはメカニムのリターゲティングエンジンに使用され、もっとも安定した Displacement モデルを提供します。ボディの向きはアバターのTポーズに対して相対的に、下半身と上半身のボディの向きの平均を使います。
 
-ボディの位置と向きは $$Animation Clip$$ に格納されます（(アバターでセットアップした [[MuscleDefinitions|マッスル定義]] を使用します)）。これらだけは、ワールド座標系として $$Animation Clip$$ に格納されます。それ以外の全ては、すなわちマッスルカーブやIKのゴール（手および足）はボディのTransformに対して相対的に格納されます。
-
-例えば、一般にヒップ（あるいは骨盤、その他）はワールド座標でのアニメーションの位置や向きを格納します。真っ直ぐ歩く、または走るアニメーションではヒップはスイングして、左右、上下にひねりますが、重心だけはほぼ真っ直ぐな直線で動きます。下半身や上半身のボディの向きの平均もまた安定していて、ほぼ一定の値です。ヒップの位置は、どのようにモデリングされたかによりスケルトンごとに異なります（ときどき左右のヒップの真ん中、時々後ろまたは上にずれた位置に）。向きは同様にほとんど任意の値です。リターゲティングとして使用するのにワールド座標系とすることはすべきではありません。Body Transformがタル越えジャンプでヒップが完全におかしくなるのをみることになります。
-
+Body Transform および ボディの向きは $$Animation Clip$$ に格納されます。(アバターでセットアップした [[MuscleDefinitions|マッスル定義]] を使用します)。これらは $$Animation Clip$$ に格納される唯一のワールド座標系のカーブです。これら以外は：マッスル カーブ および IK ゴール （手および足）は Body Transform に対して相対位置で格納されます。
 
 !!Root Transform
 
-Root TransformはBody TransformのY平面への投影であり、実行時に算出されます。アニメータのUpdateごとに、差分のRoot Transformが現在のdelta timeにもとづいて算出されます。次に差分のTransformをゲームオブジェクトに適用することで移動させます。
+Root Transform は Body Transform の Y 平面への投影であり、実行時に算出されます。アニメータのUpdateごとに、差分の Root Transform が現在の delta time にもとづいて算出されます。次に差分の Transform をゲームオブジェクトに適用することで移動させます。
 
-アニメーション クリップ エディタ設定 ($$Root Transform Rotation$$  、$$Root Transform Position (Y)$$ 、および $$Root Transform Position (XZ)$$) によりBody Transformからの投影であるRoot Transformを制御します。これらの設定によって、Body TransformのいくつかはRoot Transformに転送されます。例えば動作のY位置をRoot Motion（軌道）の一部とするか、ポーズの一部（Body Transform）とするか（~~Baked into Pose~~ と呼びます）、自由に決められます。
+アニメーション クリップ エディタ設定 ($$Root Transform Rotation$$  、$$Root Transform Position (Y)$$ 、および $$Root Transform Position (XZ)$$) により Body Transform からの投影である Root Transform を制御します。これらの設定によって、Body Transform のいくつかは Root Transform に転送されます。例えば動作のY位置をRoot Motion（軌道）の一部とするか、ポーズの一部（Body Transform）とするか（~~Baked into Pose~~ と呼びます）、自由に決められます。
 
 Attach:MecanimRootMotion.png
 
 !!Root Transform Rotation
 
-~~Bake into Pose:（ポーズ焼き込み）~~ 向きはBody Transform（またはポーズ）に従います。Rootの向きは一定値となり、差分の向きはIdentityとなります。つまり、$$Animation Clip$$ によりゲームオブジェクトは一切回転されません。
+~~Bake into Pose:（ポーズ焼き込み）~~ 向きは Body Transform（またはポーズ）に従います。Root の向きは一定値となり、差分の向きは Identity となります。つまり、$$Animation Clip$$ によりゲームオブジェクトは一切回転されません。
 
 似た開始および終了のルート向きをもったアニメーションクリップのみでこのオプションを使用すべきです。UI上の緑のライトによって、$$Animation Clip$$ が良い候補であるか分かります。適する候補は真っ直ぐの歩きや走りなどです。
 
-~~Based Upon~~: これによりクリップの向きをセットできます。 ^^Body Orientation^^ を使用して、クリップはボディのForwardベクトルに従います。このデフォルト設定は、ほとんどのモーションキャプチャ（Mocap）データ、すなわち歩く、走る、およびジャンプでは正しく機能しますが、機銃掃射のようにボディのForwadベクトルに対して直角の場合は正しく機能しません。これらの場合では、 ^^Offset^^ 設定により手動で向きを調整できます。最後に ^^Original^^ により、インポートされたクリップに書かれているオフセットの値が自動的に反映されます。これらは通常、アーティストにより設定されたキーフレームつきのデータを尊重して使用されます。
+~~Based Upon~~: これによりクリップの向きをセットできます。 ^^Body Orientation^^ を使用して、クリップはボディの Forward ベクトルに従います。このデフォルト設定は、ほとんどのモーションキャプチャ（Mocap）データ、すなわち歩く、走る、およびジャンプでは正しく機能しますが、機銃掃射のようにボディの Forward ベクトルに対して直角の場合は正しく機能しません。これらの場合では、 ^^Offset^^ 設定により手動で向きを調整できます。最後に ^^Original^^ により、インポートされたクリップに書かれているオフセットの値が自動的に反映されます。これらは通常、アーティストにより設定されたキーフレームつきのデータを尊重して使用されます。
 
 ~~Offset~~: ~~Based Upon~~ によりオプションが有効となっている場合、オフセットを入力します。
 
 !!Root Transform Position (Y)
 
-これはRoot Transform Rotationの説明と同じ考え方を使用します。
+これは Root Transform Rotation の説明と同じ考え方を使用します。
 
-~~Bake Into Pose~~（ポーズ焼き込み）: モーションのYコンポーネントはBody Transform（ポーズ）に従います。Root TransformのYコンポーネントは一定値となり差分のRoot Position Yはゼロになります。すなわち、このクリップはゲームオブジェクトの高さを変更しません。再びUI上の緑のライトによって、ポーズにYモーションを焼きこむのに適するか表示されます。
+~~Bake Into Pose~~（ポーズ焼き込み）: モーションのYコンポーネントは Body Transform（ポーズ）に従います。Root Transform のYコンポーネントは一定値となり差分の Root Position Yはゼロになります。すなわち、このクリップはゲームオブジェクトの高さを変更しません。再びUI上の緑のライトによって、ポーズにYモーションを焼きこむのに適するか表示されます。
 
 ほとんどの $$AnimationClip$$ ではこの設定を有効化します。 $$GameObject$$ の高さを変更するクリップのみ、例えば真上や真下にジャンプする場合などにのみ、これを無効化すべきです。
 
-注意: @@Animator.gravityWeight@@ はBake Into PoseのY位置により決定さます。有効化した場合、@@gravityWeight = 1@@ 、また @@disable = 0@@ となります。$$gravityWeight$$ はステート間を移動する場合のみブレンドされます。
+注意: @@Animator.gravityWeight@@ は Bake Into Pose のY位置により決定さます。有効化した場合、@@gravityWeight = 1@@ 、また @@disable = 0@@ となります。$$gravityWeight$$ はステート間を移動する場合のみブレンドされます。
 
 ~~Based Upon:~~ $$Root Transform Rotation$$ と同様に、^^Original^^ または ^^Mass Center (Body)^^ から選択できます。さらに ^^Feet^^ オプションにより、高さを変える $$Animation Clip$$ では便利です（~~Bake Into Pose~~ が無効化されているとき）。 ^^Feet^^ を使用するとき Root Transform Position Y は全てのフレームでもっとも低い足のYと一致します。したがってブレンドされる場所は足の付近にあり、ブレンディングや遷移のときに浮いてしまう問題は回避できます。
 
@@ -47,12 +44,12 @@ Attach:MecanimRootMotion.png
 
 再び、$$Root Transform Rotation$$ または $$Root Motion Position (Y)$$ と同じ考え方が適用できます。
 
-~~Bake Into Pose~~ （ポーズ焼き込み）は一般にアイドルのときに、差分のPosition (XZ)を0にしたい場合に使用されます小さな差分が何度も評価された場合に値がドリフトすることを防止します。さらに~~Based Upon~~ ^^Original^^ となっているキーフレームつきのクリップで、アーティストが設定した位置を強制的に設定するのにも使用できます。
+~~Bake Into Pose~~ （ポーズ焼き込み）は一般にアイドルのときに、差分のPosition (XZ) を 0 にしたい場合に使用されます小さな差分が何度も評価された場合に値がドリフトすることを防止します。さらに~~Based Upon~~ ^^Original^^ となっているキーフレームつきのクリップで、アーティストが設定した位置を強制的に設定するのにも使用できます。
 
 !!Loop Pose
 
-Loop Poseは (ブレンドツリーまたは遷移の際のポーズのブレンドのように）、Root Transformにもとづいています。Root Transformを算出すると、Poseは相対的に動作します。相対的なPoseの開始や終了フレームの差分は、開始と終了のフレームは算出され、Clip範囲の0-100%に渡って分配されます。
+Loop Pose は (ブレンドツリーまたは遷移の際のポーズのブレンドのように）、Root Transform にもとづいています。Root Transform を算出すると、Pose は相対的に動作します。相対的な Pose の開始や終了フレームの差分は、開始と終了のフレームは算出され、Clip範囲の0-100%に渡って分配されます。
 
 !! ジェネリック Root Motion および Loop Pose
 
-これは本質的に ヒューマノイド ルート モーションと同様の働きをしますが、Root Transformを算出／投影するためにBody Transformを使用するのではなく、$$Root Node$$ に設定されているTransformが用いられます。ポーズ（ルートモーションより下にTransformがある全てのボーン）はRoot Transformに対して相対的となります。
+これは本質的に ヒューマノイド ルート モーションと同様の働きをしますが、Root Transform を算出／投影するためにBody Transform を使用するのではなく、$$Root Node$$ に設定されている Transform が用いられます。ポーズ（ルートモーションより下に Transform がある全てのボーン）は Root Transform に対して相対的となります。
