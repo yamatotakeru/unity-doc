@@ -140,6 +140,7 @@ Attach:ShurikenCollisionModule40.png
 ||``Bounce``                ||(0-1) の範囲。パーティクルが衝突するとき、衝突した平面と垂直な速度の方向について、この割合を保持します。||
 ||``Lifetime Loss``         ||(0-1) の範囲。衝突ごとにStart Lifetime が減少する割合。Lifetime が 0 になると、パーティクルは消滅。例えばパーティクルが最初の衝突により消滅させたい場合は1.0に設定。||
 ||``Min Kill Speed``        ||パーティクルを消滅させる直前の最低速度。||
+||``Send Collision Messages`` ||コリジョン メッセージを送信するかどうか、かつ、それに伴いゲームオブジェクトおよびパーティクルシステムに対して [[ScriptRef:MonoBehaviour.OnParticleCollision.html|OnParticleCollision]] コールバックをトリガーするかどうか。
 
 !!!``Planes`` モードのみで利用可能なプロパティ
 ||PROPS
