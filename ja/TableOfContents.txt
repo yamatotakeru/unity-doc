@@ -54,6 +54,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 *****[[TrackerModules]]
 ****[[Scripting]]
 ****[[Asset Store]]
+*****[[Asset Store Publisher Administration]]
 ****[[Asset Server]]
 *****[[Setting up the Asset Server]]
 ****[[Cache Server]]

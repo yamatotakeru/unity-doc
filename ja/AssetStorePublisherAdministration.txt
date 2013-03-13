@@ -1,0 +1,60 @@
+!Asset Store Publisher Administration
+
+!! Setting up a Publisher account
+
+#Open up the Asset Store and download the latest version of “Asset Store Tools” from the Asset Store (you’ll need to sign in, if you haven’t done so already).
+
+#Once downloaded and imported to your project, you should see the “Asset Store Tools” menu appear in your Toolbar. Scroll down and click the Package Manager button.
+
+#Now you have the Package Manager open, you can click the link in the top right-hand corner that reads “Publisher account”. 
+
+#This will bring up a window that prompts you to create your Publisher Account. You’ll need to fill out your Publisher name, Publisher URL, Publisher description (including an email Support address for your packages) and Key images.
+
+#Once you’re done, hit Save. Viola, all finished!
+
+
+!!Publisher Administration
+
+Once you have your Publisher Account for the Asset Store setup, you’ll be able to log into the Publisher Administration portal, here: https://publisher.assetstore.unity3d.com/
+
+You’ll see a number of tabs. Below is a summary of each of these:
+
+*The “Sales” tab allows you to track all purchases made by customers, organised by Package name. Quantity of Sales and Gross Revenue will be shown here, as well as any refunds (if applicable).
+
+*“Free Downloads” allows you track all packages you have published on the Asset Store, for free, much the same as the Sales tab.
+
+*The “Revenue” shows your revenue for any given month since you started selling on the Asset Store. Credits, debits, your balance and recent payouts will be shown here.
+
+*The “Pending” tab will show any outstanding packages you have submitted, that are pending approval from our Vetting Team, before being accepted for sale on the Asset Store.
+
+*If and when a customer needs Support for your package, you can verify they have indeed purchased your package using the “Verify Invoice” tab.
+
+*You can add a number of administrative users (teammates, employees, colleagues) to your master account via the “Users” tab.
+
+*In the “Payout” tab, you will specify how you would like to receive your earnings. You can amend your payout details for the Asset Store at any point. There are three options when receiving payouts from the Asset Store.\\
+
+#Paypal - Free transactions. No minimum transfer. Monthly transfers.\\
+
+#Wire - $20 Transaction fee. Minimum transfer of $250. Quarterly transfers.\\
+
+#Check (US only) - $15 Transaction fee. Minimum transfer of $250. Quarterly transfers.\\
+
+Simply check the box and fill out your details.
+
+
+!!Q&A
+
+[=Q:=] What date will I receive my monthly or quarterly transfer?\\
+[=A:=] All payouts are scheduled for the 15th of each month
+
+[=Q:=] Why haven’t I received my payout?\\
+[=A:=] Check your details are correct in the “Payout” tab in your Publisher Administration account. If everything looks correct and you still haven’t received your funds, please contact: assetstore@unity3d.com
+
+[=Q:=] My package has shown as Pending for a while now, what should I do?\\
+[=A:=] Our Vetting Team receive a huge amount of submissions per week, please be patient when waiting for acceptance. If you feel there may be an issue with your submission, please contact assetstore@unity3d.com stating your Publisher and Package details.
+
+[=Q:=] Can I merge my account with my co workers/additional account/pets’ account?\\
+[=A:=] Unfortunately not, once an account has been created and purchases have been made, we cannot swap, merge or edit these purchases to appear in another account.
+
+[=Q:=] Your Q&A sections sucks! Can I speak to a human about my issue?\\
+[=A:=] Of course you can, drop us an email at assetstore@unity3d.com, we aim to respond within 24 hours.

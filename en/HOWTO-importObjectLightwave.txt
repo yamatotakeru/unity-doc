@@ -2,10 +2,10 @@
 
 You can import meshes and animations from Lightwave in two different ways:
 
-* Using the FBX plugin for Lightwave
-* Importing lightwave scene files using the Lightwave App Link
+* Using the FBX plugin for Lightwave - Included from version 9.0
+* Importing lightwave scene files using the Lightwave App Link - Included from version 11.0 
 
-!! Unity currently imports
+Unity currently imports:
 
 # All nodes with position, rotation and scale. Pivot points and Names are also imported.
 # Meshes with up to 2 UV Channels
@@ -13,6 +13,8 @@ You can import meshes and animations from Lightwave in two different ways:
 # Materials with Texture and diffuse color. Multiple materials per mesh.
 # Animations.
 # Bone-based animations.
+
+Detailed documentation for this from Lightwave is not available on-line but comes in the PDF manual included with your download
 
 Note:
 
@@ -46,7 +48,7 @@ __Start frame / End frame__
 __Scale Scene__ Set a scale for your scene applicable to match Unity
 
 
-!Importing LIghtwave scenes with AppLink
+!!Importing LIghtwave scenes with AppLink
 
 To read a lightwave scene you must use the Applink package provided with your Lightwave installation from version 11 onwards only
 
@@ -58,15 +60,29 @@ To read a lightwave scene you must use the Applink package provided with your Li
 E.g. Windows C:\Program Files (x86)\Unity\Editor\Standard Packages (for machines running a 64-bit version of Windows)
 or Mac: Applications/Unity/Standard Packages.
 
-!!Open Lightwave scene
+!!Create Unity Project for you lightwave scene
 
-* Create a new project in Unity and add LightwaveAppLink.unity package and any others that you require
-* Set your content directory to match the new unity project
-* Save your LWS file in the \assets folder
+* In Unity create a project e.g. UnityProject_name and check the LightWave AppLink package and any others you require for your project
+* Close Unity
+* Copy or Move your LightWave_Content folder and it's directory structure into your UnityProject_name\AssetsSave your LWS file in the \assets folder
+* In lightwave make sure your scene file is has it's content directory set to the new location in the unity project
 
-Unity will then convert the Lightwave scene to an FBX
+Your folder structure should look like this:
+
+Unity_Project
+   Assets
+        LightWave_Content
+            Images
+            Objects
+            Scenes
+
+* Save your LWS scene
+* Open your Unity project
+
+Unity will then convert the LightWave scene to an FBX
 
 * Select the FBX of the scene and set your scale to 1.0 and Apply
-* Update any Unity materials to set shader types to try and match equivalent Lightwave shaders
+* Add converted FBX scene to your scene hierarchy
+* Update any Unity materials to set textures and shader types to try and match equivalent Lightwave shaders
 
-Any changes to the FBX (lightwave scene assets) will only be stored in Unity, so this is a Uni-directional pipeline.
+Any changes to the FBX (lightwave scene assets) will only be stored in Unity, so this is a Uni-directional pipeline, but Unity will remember any material assignments and properties applied to the FBX scene even if you update from LightWave
