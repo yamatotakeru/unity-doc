@@ -10,10 +10,10 @@ Attach:ShurikenInitialModule.png
 ||``Looping``            ||パーティクルシステム がループするかどうか||
 ||``Prewarm``            ||ループしている場合のみ事前発光が出来る、すなわち パーティクルシステム はあらかじめ 1サイクルのパーティクルの発光を行ったかのように、スタート時に発光されたパーティクルが存在。 ||
 ||``Start Delay``        ||パーティクルシステム がパーティクル発光前に待機する秒単位での遅延時間。Prewarm が有効でループしている場合は Start Delayは使用できないことに留意して下さい。||
-||``Start Lifetime``           ||パーティクル生存期間を秒単位で指定（ [[ParticleSystemCurveEditor|MinMaxCurve]] を参照下さい）。||
-||``Start Speed``              ||パーティクルが発光される初期速度。（ [[ParticleSystemCurveEditor|MinMaxCurve]] を参照下さい）。||
-||``Start Size``               ||パーティクルが発光される初期サイズ。（ [[ParticleSystemCurveEditor|MinMaxCurve]] を参照下さい）。||
-||``Start Rotation``       ||パーティクルが発光される初期の回転。 （ [[ParticleSystemCurveEditor|MinMaxCurve]] を参照下さい）。||
+||``Start Lifetime``           ||パーティクル生存期間を秒単位で指定。（ [[ParticleSystemCurveEditor|MinMaxCurve]] を参照して下さい）。||
+||``Start Speed``              ||パーティクルが発光される初期速度。（ [[ParticleSystemCurveEditor|MinMaxCurve]] を参照して下さい）。||
+||``Start Size``               ||パーティクルが発光される初期サイズ。（ [[ParticleSystemCurveEditor|MinMaxCurve]] を参照して下さい）。||
+||``Start Rotation``       ||パーティクルが発光される初期の回転。 （ [[ParticleSystemCurveEditor|MinMaxCurve]] を参照して下さい）。||
 ||``Start Color``              ||パーティクルが発光される初期カラー。(See [[ParticleSystemColorEditor|MinMaxGradient]]).||
 ||``Gravity Modifier``            ||生存期間中にパーティクルに影響する重力の大きさ。||
 ||``Inherit Velocity``   ||パーティクルがパーティクルシステムの Transform から継承すべき速度の大きさを制御する係数 (移動するパーティクルシステム向け)。||
@@ -27,7 +27,7 @@ Attach:ShurikenInitialModule.png
 Attach:ShurikenEmissionModule.png
 発光されているパーティクルの割合を制御し、特定のタイミングに大規模なパーティクルのグループの生成を許容します（パーティクルシステムの期間を通じて）。同時に多くのパーティクルを生成すべき爆発などに便利です。
 ||PROPS
-||``Rate``               ||時間（毎秒）または距離（メートル）ごとに発光されるパーティクルの量 （ [[ParticleSystemCurveEditor|MinMaxCurve]] を参照下さい）。||
+||``Rate``               ||時間（毎秒）または距離（メートル）ごとに発光されるパーティクルの量 （ [[ParticleSystemCurveEditor|MinMaxCurve]] を参照して下さい）。||
 ||``Bursts`` (Time オプションのみ)  ||パーティクルシステムの期間中に発生するパーティクルの爆発を追加
 ||>>>``Time and Number of Particles`` ||特定の量のパーティクルが発光されるべき時間を指定（期間内に秒単位で）。＋および－を使用して爆発の数を調整します。||
 
