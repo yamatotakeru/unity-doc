@@ -17,7 +17,7 @@ The path to the Unity DLLs will typically be
 
 On Windows, the DLLs can be found in the folders that accompany the Unity application. The path will typically be
 
-	C:\Program Files (x86)\Unity\Editor\Data\Managed
+	C:\Program Files\Unity\Editor\Data\Managed\
 
 ...while the names of the DLLs are the same as for Mac OS.
 
@@ -33,4 +33,118 @@ Once compiled, the DLL file can simply be dragged into the Unity project like an
 
 Attach:DLLScreenshot.png\\
 ''A folded-out DLL with the classes visible''
+
+!!Step by Step Guide for MonoDevelop and Visual Studio
+
+In this section you will learn how to build and integrate a simple example with MonoDevelop and Visual Studio, which are the most popular IDEs to generate .NET DLLs. This section will also explain how to setup the debugging session for the DLL.
+
+!!!Writing and Building the DLL
+
+#Open MonoDevelop or Visual Studio.
+
+#Create a new project from the application's menu:
+
+**MonoDelelop:
+***Open the menu File > New > Solution
+***Choose C# > Library
+
+**Visual Studio:	
+***Open the menu File > New > Project
+***Choose Visual C# > Class Library
+
+#Fill out the information of the new library:
+
+**__Name__ is the namespace, for this example use "DLLTest".
+**__Location__ is the parent folder of the project.
+**__Solution name__ is the folder of the project.
+
+#Add references to the Unity API:
+
+**MonoDevelop:
+***In the Solution browser open the contextual menu of References (right-click) and choose Edit references
+***Choose the option .Net Assembly tab > File System > select file
+
+**Visual Studio:
+***In the Solution Explorer open the contextual menu of References (right-click) and choose Add Reference
+***Choose the option Browse > Browse > select file
+
+#Select the required Unity API file:
+
+**MacOS:
+***<Applications>/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll
+
+**Windows:
+***<Program Files>\Unity\Editor\Data\Managed\UnityEngine.dll
+
+#For this example, in the Solution browser rename the class into "MyUtilities" and replace its code with this:
+
+!!!C#
+[@
+using System;	
+using UnityEngine;
+
+namespace DLLTest {
+
+	public class MyUtilities {
+	
+		public int c;
+
+		public void AddValues(int a, int b) {
+			c = a + b;	
+		}
+	
+		public static int GenerateRandom(int min, int max) {
+			System.Random rand = new System.Random();
+			return rand.Next(min, max);
+		}
+	}
+}
+@]
+
+Finally build the project to generate the DLL file and debug symbols.
+
+!!!Using the newly created DLL in Unity
+
+#Open Unity and create a new project.
+
+#Copy the built file bin/Debug/DLLTest.dll into Assets or a subfolder (i.e. Plugins)
+
+#For this example, create a C# script in Assets and replace its contents with the following code:
+
+!!!C#
+[@
+using UnityEngine;
+using System.Collections;
+using DLLTest;
+	
+void Start () {
+	MyUtilities utils = new MyUtilities();
+	utils.AddValues(2, 3);
+	print("2 + 3 = " + utils.c);
+}
+	
+void Update () {
+	print(MyUtilities.GenerateRandom(0, 100));
+}
+@]
+
+Finally assign the script to an object in scene (i.e. Main Camera) and run the scene. You will see the output in the $$Console$$ window.
+
+!!!Debugging the DLL
+
+__[TODO]__
+
+MD:
+	Copy built file bin/Debug/DLLTest.dll.mdb into Assets (ie. Assets/Plugins/)
+VS:
+	Execute <Program Files>/Unity/Editor/Data/Mono/lib/mono/2.0/pdb2mdb.exe in the command prompt, pass bin/Debug/DLLTest.pdb as parameter
+	Copy converted file bin/Debug/DLLTest.dll.mdb into Assets (ie. Assets/Plugins/)
+
+Open Test script in Mono
+
+MonoDevelop-Unity > Add-in Manager > Installed tab > Unity > select Mono Soft Debugger Support for Unity > Enable
+
+Close
+
+http://docs.unity3d.com/Documentation/Manual/Debugger.html
 

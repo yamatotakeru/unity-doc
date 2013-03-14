@@ -1,0 +1,244 @@
+! ShaderLab syntax: Stencil
+
+The stencil buffer can be used as a general purpose per pixel mask for saving or discarding pixels.
+
+The stencil buffer is usually an 8 bit integer per pixel. The value can be written to, increment or decremented. Subsequent draw calls can test against the value, to decide if a pixel should be discarded before running the pixel shader.
+
+!! Syntax
+
+:Ref ''referenceValue'': The value to be compared against (if Comp is anything else than ''always'') and/or the value to be written to the buffer (if  either Pass, Fail or ZFail is set to replace). Can also take value from a shader property, if ''referenceValue'' is a property name in square brackets: Ref [_StencilReference]. 0-255 integer.
+:ReadMask ''readMask'': An 8 bit mask as an 0-255 integer, used when comparing the reference value with the contents of the buffer (''referenceValue'' & ''readMask'') ''comparisonFunction'' (''stencilBufferValue'' & ''readMask''). Default: ''255''.
+:WriteMask ''writeMask'': An 8 bit mask as an 0-255 integer, used when writing to the buffer. Default: ''255''.
+:Comp ''comparisonFunction'': The function used to compare the reference value to the current contents of the buffer. Default: ''always''.
+:Pass ''stencilOperation'': What to do with the contents of the buffer if the stencil test (and the depth test) passes. Default: ''keep''.
+:Fail ''stencilOperation'': What to do with the contents of the buffer if the stencil test fails. Default: ''keep''.
+:ZFail ''stencilOperation'': What to do with the contents of the buffer if the stencil test passes, but the depth test fails. Default: ''keep''.
+
+Comp, Pass, Fail and ZFail will be applied to the front-facing geometry, unless ''Cull Front'' is specified, in which case it's back-facing geometry. You can also explicitly specify the two-sided stencil state by defining CompFront, PassFront, FailFront, ZFailFront, CompBack, PassBack, FailBack, ZFailBack.
+
+!!!Comparison Function
+Comparison function is one of the following:
+||__Greater__ ||Only render pixels whose reference value is greater than the value in the buffer.||
+||__GEqual__ ||Only render pixels whose reference value is greater than or equal to the value in the buffer.||
+||__Less__ ||Only render pixels whose reference value is less than the value in the buffer.||
+||__LEqual__ ||Only render pixels whose reference value is less than or equal to the value in the buffer.||
+||__Equal__ ||Only render pixels whose reference value equals the value in the buffer.||
+||__NotEqual__ ||Only render pixels whose reference value differs from the value in the buffer.||
+||__Always__ ||Make the stencil test always pass.||
+||__Never__ ||Make the stencil test always fail.||
+
+!!!Stencil Operation
+Stencil operation is one of the following:
+||__Keep__ ||Keep the current contents of the buffer.||
+||__Zero__ ||Write 0 into the buffer.||
+||__Replace__ ||Write the reference value into the buffer.||
+||__IncrSat__ ||Increment the current value in the buffer. If the value is 255 already, it stays at 255.||
+||__DecrSat__ ||Decrement the current value in the buffer. If the value is 0 already, it stays at 0.||
+||__Invert__ ||Negate all the bits.||
+||__IncrWrap__ ||Increment the current value in the buffer. If the value is 255 already, it becomes 0.||
+||__DecrWrap__ ||Decrement the current value in the buffer. If the value is 0 already, it becomes 255.||
+
+!! Deferred rendering path
+Stencil functionality for objects rendered in the deferred rendering path is somewhat limited, as during the base pass and lighting pass the stencil buffer is used for other purposes. During those two stages stencil state defined in the shader will be ignored and only taken into account during the final pass. Because of that it's not possible to mask out these objects based on a stencil test, but they can still modify the buffer contents, to be used by objects rendered later in the frame. Objects rendered in the forward rendering path following the deferred path (e.g. transparent objects or objects without a surface shader) will set their stencil state normally again.
+
+The deferred rendering path uses the three highest bits of the stencil buffer, plus up to four more highest bits - depending on how many light mask layers are used in the scene. It is possible to operate within the range of the "clean" bits using the stencil read and write masks, or you can force the camera to clean the stencil buffer after the lighting pass using Camera.clearStencilAfterLightingPass.
+
+!! Example
+The first example shader will write the value 2 wherever the depth test passes (the stencil test is set to always pass), and will decrement (and wrap) the current value to 255 if the depth test fails (assuming we're starting off with a clear stencil buffer).
+
+[@Shader "Red" {
+	SubShader {
+		Tags { "RenderType"="Opaque" "Queue"="Geometry"}
+		Pass {
+			Stencil {
+				Ref 2
+				Comp always
+				Pass replace
+				ZFail decrWrap
+			}
+		
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			struct appdata {
+				float4 vertex : POSITION;
+			};
+			struct v2f {
+				float4 pos : SV_POSITION;
+			};
+			v2f vert(appdata v) {
+				v2f o;
+				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				return o;
+			}
+			half4 frag(v2f i) : COLOR {
+				return half4(1,0,0,1);
+			}
+			ENDCG
+		}
+	} 
+}
+@]
+
+Second shader will pass only for the pixels for which the first (red) shader passed, since it's checking for equality with value 2. It will also decrement the value in the buffer wherever it fails the stencil test.
+
+[@Shader "Green" {
+	SubShader {
+		Tags { "RenderType"="Opaque" "Queue"="Geometry+1"}
+		Pass {
+			Stencil {
+				Ref 2
+				Comp equal
+				Pass keep 
+				Fail decrWrap 
+				ZFail keep
+			}
+		
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			struct appdata {
+				float4 vertex : POSITION;
+			};
+			struct v2f {
+				float4 pos : SV_POSITION;
+			};
+			v2f vert(appdata v) {
+				v2f o;
+				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				return o;
+			}
+			half4 frag(v2f i) : COLOR {
+				return half4(0,1,0,1);
+			}
+			ENDCG
+		}
+	} 
+}
+@]
+
+The third shader will only pass wherever the stencil value was decremented twice, so for pixels, which failed the depth test in the first (red) shader and also failed the stencil test in the second (green) shader.
+
+[@Shader "Blue" {
+	SubShader {
+		Tags { "RenderType"="Opaque" "Queue"="Geometry+2"}
+		Pass {
+			Stencil {
+				Ref 254
+				Comp equal
+			}
+		
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			struct appdata {
+				float4 vertex : POSITION;
+			};
+			struct v2f {
+				float4 pos : SV_POSITION;
+			};
+			v2f vert(appdata v) {
+				v2f o;
+				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				return o;
+			}
+			half4 frag(v2f i) : COLOR {
+				return half4(0,0,1,1);
+			}
+			ENDCG
+		}
+	}
+}
+@]
+
+The result:
+Attach:StencilExample.png
+
+
+Another example of a more directed effect. The sphere is first rendered with this shader to mark-up the proper regions in the stencil buffer:
+
+[@Shader "HolePrepare" {
+	SubShader {
+		Tags { "RenderType"="Opaque" "Queue"="Geometry+1"}
+		ColorMask 0
+		ZWrite off
+		Stencil {
+			Ref 1
+			Comp always
+			Pass replace
+		}
+
+		CGINCLUDE
+			struct appdata {
+				float4 vertex : POSITION;
+			};
+			struct v2f {
+				float4 pos : SV_POSITION;
+			};
+			v2f vert(appdata v) {
+				v2f o;
+				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				return o;
+			}
+			half4 frag(v2f i) : COLOR {
+				return half4(1,1,0,1);
+			}
+		ENDCG
+
+		Pass {
+			Cull Front
+			ZTest Less
+		
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			ENDCG
+		}
+		Pass {
+			Cull Back
+			ZTest Greater
+		
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			ENDCG
+		}
+	} 
+}
+@]
+
+And then rendered once more as a fairly standard surface shader, with the exception of front face culling, disabled depth test and stencil test discarding previously marked pixels:
+
+[@Shader "Hole" {
+	Properties {
+		_Color ("Main Color", Color) = (1,1,1,0)
+	}
+	SubShader {
+		Tags { "RenderType"="Opaque" "Queue"="Geometry+2"}
+
+		ColorMask RGB
+		Cull Front
+		ZTest Always
+		Stencil {
+			Ref 1
+			Comp notequal 
+		}
+
+		CGPROGRAM
+		#pragma surface surf Lambert
+		float4 _Color;
+		struct Input {
+			float4 color : COLOR;
+		};
+		void surf (Input IN, inout SurfaceOutput o) {
+			o.Albedo = _Color.rgb;
+			o.Normal = half3(0,0,-1);
+			o.Alpha = 1;
+		}
+		ENDCG
+	} 
+}
+@]
+
+The result:
+Attach:StencilExample2.png

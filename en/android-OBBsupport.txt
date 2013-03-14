@@ -1,4 +1,4 @@
-!! Support for Split Application Binary (.OBB)
+!Support for Split Application Binary (.OBB)
 
 Under ''Player Settings | Publishing Settings'' you'll find the option to split the application binary (.apk) into expansion files (.apk + .obb).
 

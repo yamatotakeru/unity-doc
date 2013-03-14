@@ -17,7 +17,7 @@ Unity DLL へのパスは通常、
 
 Windows では、DLL は Unity アプリケーションについてきたフォルダにあります。パスは通常
 
-	C:\Program Files (x86)\Unity\Editor\Data\Managed
+	C:\Program Files\Unity\Editor\Data\Managed\
 
 ...であり、DLL のファイル名は Mac OS 向けと同じです。
 

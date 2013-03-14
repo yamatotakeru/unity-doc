@@ -1,0 +1,65 @@
+!Using the Chain of Trust system in the Web Player
+
+In this section you will learn how to create strongly-named assemblies and use them, in conjunction with Javascript, to interact with your own custom back-ends.
+
+The Chain of Trust system allows external internet applications to trust requests which originate from within a Unity Web Player. This is useful if you wish to provide a full-featured API to Unity Developers creating games within the Unity Web Player. To use the Chain of Trust system, you must have some sort of internet application backend which accepts requests; the most common example would be a web application with a REST API. You must also have a Managed C# assembly which contains code for calling your internet application.
+
+!! Generate a key pair
+The first step in establishing a chain of trust is to create the cryptographic key pair needed to sign your assembly. Do this on Windows, OS X or Linux using the SN tool.
+
+#To create a new key pair, open a command line terminal and type:
+
+ [@ sn -k myNewKey.snk @]
+
+#Replace @@myNewKey.snk@@ with the file name you'd prefer for your key pair. The file name does not matter from the point of view of the Chain of Trust system.
+#Keep your .SNK file secure! If this file is leaked, a malicious developer can spoof your assembly.
+
+!!Sign your assembly
+Next take your Managed C# assembly (which you will use to call your backend), and sign it using the key pair you generated. You will need to use the @@al@@ tool, which is included with Windows, OS X and Linux.
+
+Signing the assembly is a simple process. 
+#Open a command line terminal, navigate to your Managed C# assembly and type:
+
+ [@ al /out:mySignedAssembly.dll myUnsignedAssembly.dll /keyfile:myNewSky.snk @]
+
+ *@@mySignedAssembly.dll@@ is the desired, final name of your assembly.
+ *@@myUnsignedAssembly.dll@@ is name of your normal, unsigned Managed C# assembly. 
+ *@@myNewKey.snk@@ is name of your cryptographic key pair file.
+#Once @@al@@ finishes running, your signed assembly will be ready. Drop it into your Unity project for use with the Chain of Trust system.
+
+!! Inject your secret
+You can inject secrets into the Unity Web Player at any time after your Unity game has loaded. This is done with the Javascript $$SendMessage$$ function exposed on the @@UnityObject2@@ Javascript object.
+
+When you pass a specially-formatted message to a certain game object, the Chain of Trust system detects that you want to inject a secret and intercept the message. You do not need to create or rename any game objects to use this system. With a @@UnityObject2@@ instance called @@u@@ the Javascript call will be:
+
+[@ u.GetUnity().SendMessage("ChainOfTrust_SetValueASDF", ".", "name=mySecretDataName;value=mySecretValue;publickey=publicKeyTokenOfMyAssembly"); @]
+
+*The $$SendMessage$$ function is similar to the standard ``MonoBehaviour/SendMessage`` function. It takes three nominal arguments: 
+**the name of the target game object,
+**the name of the method to invoke, and 
+**a string argument.
+*With the Chain of Trust system, the name of the method is ignored entirely. The name of the target game object must begin with @@ChainOfTrust_SetValue@@, however, any characters appended after @@ChainOfTrust_SetValue@@ will be safely ignored.
+*The formatting of the string argument is very important. The Chain of Trust system will split it into three parts, separated by semicolons. It expects: 
+**a @@name@@, 
+**a @@value@@ and
+**a @@publickey@@. 
+ Capitalization is important! All three of these keywords must be lower case and followed by an equals sign (@@=@@).
+*You may provide any @@name@@ for your secret data. Simply replace @@mySecretDataName@@ in the example above.
+*The @@value@@ is your shared key, or other secret data that you wish to store in the Chain of Trust system. Precisely what this value consists of is specific to your particular application. Replace @@mySecretDataValue@@ in the example above.
+*The @@publickey@@ is the public key token with which you signed your Managed C# assembly. You can find it on your signed assembly using the @@sn@@ tool:
+
+ [@ sn -T mySignedAssembly.dll @]
+
+ Copy the entire public key token, without leading or trailing whitespace, and replace @@myPublicKeyToken@@ in the example above.
+*Add random data to the Virtual Game Object's name. You cannot ensure that everyone using the Web Player has the latest version of the Web Player runtime, meaning that not all Web Players will intercept your $$SendMessage$$ call. If a malicious developer looks at your Javascript and sees the name of the virtual game object and function which you are using, they could create a Unity game which contains a game object with that name and implements that method. In the very specific case that this malicious developer's code runs on an outdated version of the Web Player, then their code could intercept your shared secret and use it to make unwanted calls to your backend. By randomizing the game object's name, it makes it more difficult for someone to intercept your Chain of Trust calls in older runtimes.
+
+!! Retrieve your secret
+Once a secret has been injected into the Unity Web Player, you can only retrieve it with a cryptographically-signed ("strong named") Managed C# assembly with a matching public key token. 
+*The Managed C# assembly must call $$Security.GetChainOfTrustValue$$ to retrieve the secret. $$GetChainOfTrustValue$$ requires you to pass in the name of the secret, as specified at injection time in the @@name=@@ clause of the payload.
+*$$GetChainOfTrustValue$$ returns the value of your secret as a clear-text string, which you can then use within your assembly.
+*For an injection payload @@name=mySecret;value=superSecretData;publickey=A92181sn828O@@, the code to retrieve your secret within your Managed C# assembly will be:
+
+ [@ string myValue = Security.GetChainOfTrustValue("mySecret"); @]
+
+*As you've gone through a lot of trouble to keep the value of your secret secure, you should not return the secret's value to any functions or code outside your Managed C# assembly.
+*Any attempts to call $$Security.GetChainOfTrustValue$$ from code that is not within a signed assembly, or from within a signed assembly whose signature does not match the secret's specified public key, will generate an error in the logs and $$Security.GetChainOfTrustValue$$ will return an empty string.

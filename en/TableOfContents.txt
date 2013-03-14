@@ -401,9 +401,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[Web Player Streaming]]
 ****[[WebPlayerChannels]]
 >><<
->>nextrelease<<
 ***[[Using the Web Player Chain-of-Trust system]]
->><<
 
 ----
 
@@ -695,7 +693,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ******[[SL-PassTags]]
 ******[[SL-Name]]
 ******[[SL-BindChannels]]
->>nextrelease<<
+>>u42<<
 ******[[SL-Stencil]]
 >><<
 *****[[SL-UsePass]]
