@@ -36,7 +36,7 @@ Attach:DLLScreenshot.png\\
 
 !!Step by Step Guide for MonoDevelop and Visual Studio
 
-In this section you will learn how to build and integrate a simple example with MonoDevelop and Visual Studio, which are the most popular IDEs to generate .NET DLLs. This section will also explain how to setup the debugging session for the DLL.
+In this section you will learn how to build and integrate a simple DLL example with MonoDevelop and Visual Studio, which are the most popular IDEs to generate .NET libraries. This section will also explain how to prepare the debugging session for the DLL.
 
 !!!Writing and Building the DLL
 
@@ -44,15 +44,15 @@ In this section you will learn how to build and integrate a simple example with 
 
 #Create a new project from the application's menu:
 
-**MonoDelelop:
-***Open the menu File > New > Solution
-***Choose C# > Library
+**MonoDevelop:
+###Open the menu File > New > Solution
+###Choose C# > Library
 
 **Visual Studio:	
-***Open the menu File > New > Project
-***Choose Visual C# > Class Library
+###Open the menu File > New > Project
+###Choose Visual C# > Class Library
 
-#Fill out the information of the new library:
+#Fill out the information for the new library:
 
 **__Name__ is the namespace, for this example use "DLLTest".
 **__Location__ is the parent folder of the project.
@@ -61,12 +61,12 @@ In this section you will learn how to build and integrate a simple example with 
 #Add references to the Unity API:
 
 **MonoDevelop:
-***In the Solution browser open the contextual menu of References (right-click) and choose Edit references
-***Choose the option .Net Assembly tab > File System > select file
+###In the Solution browser open the contextual menu of References (right-click) and choose Edit references
+###Choose the option .Net Assembly tab > File System > select file
 
 **Visual Studio:
-***In the Solution Explorer open the contextual menu of References (right-click) and choose Add Reference
-***Choose the option Browse > Browse > select file
+###In the Solution Explorer open the contextual menu of References (right-click) and choose Add Reference
+###Choose the option Browse > Browse > select file
 
 #Select the required Unity API file:
 
@@ -77,13 +77,12 @@ In this section you will learn how to build and integrate a simple example with 
 ***<Program Files>\Unity\Editor\Data\Managed\UnityEngine.dll
 
 #For this example, in the Solution browser rename the class into "MyUtilities" and replace its code with this:
+ !!!C#
+ [@
+ using System;	
+ using UnityEngine;
 
-!!!C#
-[@
-using System;	
-using UnityEngine;
-
-namespace DLLTest {
+ namespace DLLTest {
 
 	public class MyUtilities {
 	
@@ -98,53 +97,49 @@ namespace DLLTest {
 			return rand.Next(min, max);
 		}
 	}
-}
-@]
-
-Finally build the project to generate the DLL file and debug symbols.
+ }
+ @]
+#Finally build the project to generate the DLL file and its debug symbols.
 
 !!!Using the newly created DLL in Unity
 
 #Open Unity and create a new project.
 
-#Copy the built file bin/Debug/DLLTest.dll into Assets or a subfolder (i.e. Plugins)
+#Copy the built file <project folder>/bin/Debug/DLLTest.dll into Assets or a subfolder (e.g. Plugins)
 
-#For this example, create a C# script in Assets and replace its contents with the following code:
+#For this example, create a C# script called "Test" in Assets, and replace its contents with the following code:
 
-!!!C#
-[@
-using UnityEngine;
-using System.Collections;
-using DLLTest;
+ !!!C#
+ [@
+ using UnityEngine;
+ using System.Collections;
+ using DLLTest;
 	
-void Start () {
+ void Start () {
 	MyUtilities utils = new MyUtilities();
 	utils.AddValues(2, 3);
 	print("2 + 3 = " + utils.c);
-}
+ }
 	
-void Update () {
+ void Update () {
 	print(MyUtilities.GenerateRandom(0, 100));
-}
-@]
+ }
+ @]
+#Finally assign the script to an object in the scene (ie. Main Camera) and run the scene. You will see the output in the $$Console$$ window.
 
-Finally assign the script to an object in scene (i.e. Main Camera) and run the scene. You will see the output in the $$Console$$ window.
+!!!Setup the debugging session for the DLL
 
-!!!Debugging the DLL
+#Prepare the debug symbols of the DLL:
 
-__[TODO]__
+**MonoDevelop:
+***Copy built file <project folder>/bin/Debug/DLLTest.dll.mdb into Assets (ie. Assets/Plugins/)
 
-MD:
-	Copy built file bin/Debug/DLLTest.dll.mdb into Assets (ie. Assets/Plugins/)
-VS:
-	Execute <Program Files>/Unity/Editor/Data/Mono/lib/mono/2.0/pdb2mdb.exe in the command prompt, pass bin/Debug/DLLTest.pdb as parameter
-	Copy converted file bin/Debug/DLLTest.dll.mdb into Assets (ie. Assets/Plugins/)
+**Visual Studio:
+###Execute <Program Files>\Unity\Editor\Data\Mono\lib\mono\2.0\pdb2mdb.exe in the command prompt, pass <project folder>\bin\Debug\DLLTest.pdb as parameter
+###Copy converted file <project folder>\bin\Debug\DLLTest.dll.mdb into Assets (ie. Assets\Plugins\)
 
-Open Test script in Mono
+#Open "Test" script in MonoDevelop, and make sure to enable the debugger for Unity from the Tools menu (Windows) or MonoDevelop-Unity menu (MacOS):
 
-MonoDevelop-Unity > Add-in Manager > Installed tab > Unity > select Mono Soft Debugger Support for Unity > Enable
+**Add-in Manager > Installed tab > Unity > select Mono Soft Debugger Support for Unity > Enable
 
-Close
-
-http://docs.unity3d.com/Documentation/Manual/Debugger.html
-
+See the [[Debugger]] page for further information.
