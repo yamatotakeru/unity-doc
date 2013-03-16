@@ -9,7 +9,7 @@ Attach:ShurikenParticleEditor.png
 
 このエディタにより ^^Show: All^^ と ^^Show: Selected^^ 間でトグルすることが出来ます。^^Show: All^^ の場合パーティクルエフェクトの全体をレンダリングします。^^Show: Selected^^ の場合は選択されたパーティクルシステムのみレンダリングします。選択されたものは、パーティクルエディタで青い枠により、ハイライトされ、 Hierarchy ビューでも青で表示されます。 Hierarchy ビューおよびパーティクルエディタにて、パーティクルシステムの左上角のアイコンをクリックすることで、選択範囲は変更することが出来ます。複数選択をするためには、 Windows では Ctrl + クリックを用いて、MacではCommand + クリックをします。
 
-グルーピングされたパーティクル（そうでなければ物理空間的に近いパーティクルエミッター）のレンダリング順序を、 [[ParticleSystemModules#RendererModule|``レンダラ`` モジュール]] の``Sorting Fudge`` プロパティを微調整することで、明示的に制御することが出来ます。
+グルーピングされたパーティクル（そうでなければ物理空間的に近いパーティクルエミッター）のレンダリング順序を、 [[ParticleSystemModules40#RendererModule|``レンダラ`` モジュール]] の``Sorting Fudge`` プロパティを微調整することで、明示的に制御することが出来ます。
 
 
 Attach:ShurikenOverviewHierarchy.png
