@@ -15,7 +15,7 @@ If you modify your __.blend__ file, Unity will automatically update whenever you
 # Skinned Meshes
 # Animations
 
->>nextrelease<<
+>>u42<<
 See [[Main.BlenderAndRigify|Using Blender and Rigify]] for more details of how to import animated, boned characters into Unity for use with Mecanim.
 >><<
 
