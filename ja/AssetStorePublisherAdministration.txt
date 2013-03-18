@@ -1,60 +1,60 @@
-!Asset Store Publisher Administration
+!アセットストア パブリッシャ管理
 
-!! Setting up a Publisher account
+!! パブリッシャ アカウントのセットアップ
 
-#Open up the Asset Store and download the latest version of �Asset Store Tools� from the Asset Store (you�ll need to sign in, if you haven�t done so already).
+# アセットストアを開き、アセットストアから最新のアセットストア ツールをダウンロードします。（まだしていなければ、サインインしておく必要があります。）
 
-#Once downloaded and imported to your project, you should see the �Asset Store Tools� menu appear in your Toolbar. Scroll down and click the Package Manager button.
+# 一回ダウンロードしてプロジェクトにインポートすれば、その後はツールバー上でアセットストア ツール（Asset Store Tools）メニューが表示されます。下までスクロールして Package Manager ボタンをクリックします。
 
-#Now you have the Package Manager open, you can click the link in the top right-hand corner that reads �Publisher account�. 
+# これでパッケージ マネージャが開いたので、右上隅の Publisher account と書かれたリンクをクリックできます。
 
-#This will bring up a window that prompts you to create your Publisher Account. You�ll need to fill out your Publisher name, Publisher URL, Publisher description (including an email Support address for your packages) and Key images.
+# これによりウィンドウが表示されパブリッシャ アカウントを作成するように促されます。パブリッシャ名、パブリッシャ URL 、パブリッシャ説明（パッケージ向けのサポート用の e メールアドレス含む）およびキーイメージを入力する必要があります。
 
-#Once you�re done, hit Save. Viola, all finished!
+# すべて終わった後に Save ボタンをクリックすればいよいよ完了です。
 
 
-!!Publisher Administration
+!! パブリッシャ管理
 
-Once you have your Publisher Account for the Asset Store setup, you�ll be able to log into the Publisher Administration portal, here: https://publisher.assetstore.unity3d.com/
+アセットストア セットアップ向けのパブリッシャ アカウント が終わると、次のパブリッシャ 管理（Publisher Adminstration） ポータルサイトにログインできるようになります： https://publisher.assetstore.unity3d.com/
 
-You�ll see a number of tabs. Below is a summary of each of these:
+複数のタブが表示されます。以下で各々のサマリーを説明します：
 
-*The �Sales� tab allows you to track all purchases made by customers, organised by Package name. Quantity of Sales and Gross Revenue will be shown here, as well as any refunds (if applicable).
+* Sales タブにより顧客による購入のトラッキングをパッケージ名別に整理されて確認が出来ます。販売数および総売上額、さらには返品も（適用があった場合）ここに表示されます。
 
-*�Free Downloads� allows you track all packages you have published on the Asset Store, for free, much the same as the Sales tab.
+* Free Downloads タブにより、Salesタブと同じように、アセットストアでフリーで提供した全てのパッケージのトラッキングが出来ます。
 
-*The �Revenue� shows your revenue for any given month since you started selling on the Asset Store. Credits, debits, your balance and recent payouts will be shown here.
+* Revenue タブによりアセットストアで販売を始めて以降、任意の月の売上額が表示できます。クレジット、デビット、および残高そして支払い額がここに表示されます。
 
-*The �Pending� tab will show any outstanding packages you have submitted, that are pending approval from our Vetting Team, before being accepted for sale on the Asset Store.
+* Pending タブはすでに提出済みのパッケージのなかで、アセットストアで販売する前にわれわれの審査チームが承認待ちとなっているものを確認出来ます。
 
-*If and when a customer needs Support for your package, you can verify they have indeed purchased your package using the �Verify Invoice� tab.
+* Verify Invoice タブで、もし顧客がパッケージのサポートを必要とする場合にパッケージの購入者であるかどうか確認することが出来ます。
 
-*You can add a number of administrative users (teammates, employees, colleagues) to your master account via the �Users� tab.
+* Users タブでは、管理ユーザを複数（チームメンバ、従業員、同僚）をマスターアカウントに追加できます。
 
-*In the �Payout� tab, you will specify how you would like to receive your earnings. You can amend your payout details for the Asset Store at any point. There are three options when receiving payouts from the Asset Store.\\
+* Layout タブでは、収入の受け取り方法を指定できます。アセットストアでの支払い情報はいつでも修正が出来ます。アセットストアからの支払いの受け取り方法は三種類あります。\\
 
-#Paypal - Free transactions. No minimum transfer. Monthly transfers.\\
+# Paypal - 送金手数料は無料。最低送金金額はなく、月単位での送金。\\
 
-#Wire - $20 Transaction fee. Minimum transfer of $250. Quarterly transfers.\\
+# 電信送金 - 送金手数料は $20。最低送金金額は $250。四半期単位での送金。\\
 
-#Check (US only) - $15 Transaction fee. Minimum transfer of $250. Quarterly transfers.\\
+# 小切手（米国のみ）- 送金手数料は $15。 最低送金金額は $250。四半期単位での送金。\\
 
-Simply check the box and fill out your details.
+チェックボックスを選択したうえ、詳細情報を入力するのみです。
 
 
 !!Q&A
 
-[=Q:=] What date will I receive my monthly or quarterly transfer?\\
-[=A:=] All payouts are scheduled for the 15th of each month
+[=Q:=] 月単位または四半期単位の早期の送金を受け取る日付はいつですか？\\
+[=A:=] 毎月 15 日が支払い予定日です。
 
-[=Q:=] Why haven�t I received my payout?\\
-[=A:=] Check your details are correct in the �Payout� tab in your Publisher Administration account. If everything looks correct and you still haven�t received your funds, please contact: assetstore@unity3d.com
+[=Q:=] 支払いを受け取りできていない理由は何故ですか？\\
+[=A:=] パブリッシャ管理アカウントにおける Layout タブで詳細情報が正しいか確認して下さい。もし全て正しくそれでも売り上げを受け取り出来ない場合はお手数ですがご連絡下さい： assetstore@unity3d.com
 
-[=Q:=] My package has shown as Pending for a while now, what should I do?\\
-[=A:=] Our Vetting Team receive a huge amount of submissions per week, please be patient when waiting for acceptance. If you feel there may be an issue with your submission, please contact assetstore@unity3d.com stating your Publisher and Package details.
+[=Q:=] パッケージのペンディング状態が長く続いているのですが、どうすれば良いですか？\\
+[=A:=] われわれの審査チームは毎週大量の提出を受け取りまうので、辛抱強くお待ちください。何か提出についての問題があると感じる場合は、パブリッシャおよびパッケージ詳細を明確にしたうえで assetstore@unity3d.com までご連絡下さい。
 
-[=Q:=] Can I merge my account with my co workers/additional account/pets� account?\\
-[=A:=] Unfortunately not, once an account has been created and purchases have been made, we cannot swap, merge or edit these purchases to appear in another account.
+[=Q:=] アカウント情報を会社の同僚、別のアカウント、その他のアカウントと統合できますか？\\
+[=A:=] いいえ、残念ながらできません。アカウントを一回作成して購入が行われるとこれらの販売を別のアカウントで表示されるように交換、統合、編集することが出来なくなります。
 
-[=Q:=] Your Q&A sections sucks! Can I speak to a human about my issue?\\
-[=A:=] Of course you can, drop us an email at assetstore@unity3d.com, we aim to respond within 24 hours.
+[=Q:=] Q&Aでは不十分です。誰か担当の方と話したいのですが。\\
+[=A:=] はい、 assetstore@unity3d.com に連絡をいただいたら 24 時間以内のレスが目安となります。
