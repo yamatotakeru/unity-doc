@@ -205,7 +205,7 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[HOWTO-ImportObjectModo]]
 ****[[HOWTO-importObjectLightwave]]
 ****[[HOWTO-ImportObjectBlender]]
->>nextrelease<<
+>>u42<<
 ****[[BlenderAndRigify]]
 >><<
 ***[[Workflow]]
@@ -410,18 +410,18 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 ****[[class-WheelCollider]]
 ***[[comp-GameObjectGroup]]
 ****[[class-GameObject]]
->>nextrelease<<
+>>u42<<
 ****[[class-ScriptableObject]]
 >><<
 *** [[comp-ImageEffects]]
 **** [[script-AntialiasingAsPostEffect]]
 **** [[script-Bloom]]
->>nextrelease<<
+>>u42<<
 **** [[script-FastBloom]]
 >><<
 **** [[script-BloomAndLensFlares]]
 **** [[script-BlurEffect]]
->>nextrelease<<
+>>u42<<
 **** [[script-Blur]]
 >><<
 **** [[script-CameraMotionBlur]]
@@ -445,11 +445,11 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 **** [[script-ScreenOverlay]]
 **** [[script-SepiaToneEffect]]
 **** [[script-SunShafts]]
->>nextrelease<<
+>>u42<<
 **** [[script-AmbientObscurance]]
 >><<
 **** [[script-SSAOEffect]]
->>nextrelease<<
+>>u42<<
 **** [[script-TiltShiftHdr]]
 >><<
 **** [[script-TiltShift]]

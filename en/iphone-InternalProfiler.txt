@@ -1,22 +1,8 @@
 ! Measuring Performance with the Built-in Profiler
 
-!iOS!
->>ios<<
-On iOS, it's disabled by default so to enable it, you need to open the Unity-generated XCode project, select the @@iPhone_Profiler.h@@ file and change the line
+Unity iOS and Android contain a built in profiler.  This is included in all versions of the add-ons, and is __not__ a Pro feature.  (Pro add-ons do contain a more advanced profiler, however.)  The built-in profiler emits console messages from the game running on device.  These messages are written every 30 seconds and will provide insight into how the game is running.  Understanding what these messages mean is not always easy, but as a minimum, you should quickly be able to determine if your game is CPU or GPU bound, and if CPU bound whether it's script code, or perhaps Mono garbage collection that is slowing you down.  See later in this page to learn how to configure the built-in profiler.
 
-[@#define ENABLE_INTERNAL_PROFILER 0@]
-
-to
-
-[@#define ENABLE_INTERNAL_PROFILER 1@]
-
-Select ^^View > Debug Area > Activate Console^^ in the XCode menu to display the output console (GDB) and then run your project. Unity will output statistics to the console window every thirty frames.
->><<
-
-!Android!
->>android<<
-On Android, it is enabled by default. Just make sure Development Build is checked in the player settings when building, and the statistics should show up in logcat when run on the device. To view logcat, you need ``@@adb@@`` or the Android Debug Bridge. Once you have that, simply run the shell command ``@@adb logcat@@``.
->><<
+!! What the Profiler Tells You
 
 Here's an example of the built-in profiler's output.
 
@@ -72,4 +58,26 @@ The ``mono-memory`` section gives you an idea of how memory is being managed by 
 ||``used heap`` ||The portion of the ``allocated heap`` which is currently used up by objects. Every time you create a new class instance (not a struct) this number will grow until the next garbage collection.
 ||``max number of collections`` ||Number of garbage collection passes during the last 30 frames.
 ||``collection total duration`` ||Total time (in milliseconds) of all garbage collection passes that have happened during the last 30 frames.
+
+
+!!Configuration
+
+!iOS!
+>>ios<<
+On iOS, it's disabled by default so to enable it, you need to open the Unity-generated XCode project, select the @@iPhone_Profiler.h@@ file and change the line
+
+[@#define ENABLE_INTERNAL_PROFILER 0@]
+
+to
+
+[@#define ENABLE_INTERNAL_PROFILER 1@]
+
+Select ^^View > Debug Area > Activate Console^^ in the XCode menu to display the output console (GDB) and then run your project. Unity will output statistics to the console window every thirty frames.
+>><<
+
+!Android!
+>>android<<
+On Android, it is enabled by default. Just make sure Development Build is checked in the player settings when building, and the statistics should show up in logcat when run on the device. To view logcat, you need ``@@adb@@`` or the Android Debug Bridge. Once you have that, simply run the shell command ``@@adb logcat@@``.
+>><<
+
 

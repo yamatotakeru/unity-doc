@@ -192,7 +192,7 @@ Here's a simple specular lighting model. It's quite simple to what built-in Blin
 Attach:SurfaceShaderSimpleSpecular.png Attach:SurfaceShaderSimpleSpecularNoTex.png
 
 
->>nextrelease<<
+>>u42<<
 !! Decoding Lightmaps
 
 We'll start with a shader that mimics built-in lightmap decoding and uses Unity built-in function $$DecodeLightmap$$ to decode information from data stored in lightmap textures and built-in $$UNITY_DIRBASIS$$ macro defining basis vectors for Directional lightmaps:

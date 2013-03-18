@@ -131,7 +131,7 @@ Attach:Light-SpotVertex.png\\
 Attach:Light-DirectVertex.png\\
 ''Directional light in Vertex lighting mode.''
 
-Lights have a big impact on rendering speed - therefore a tradeoff has to be made betwen lighting quality and game speed. Since pixel lights are much more expensive than vertex lights, Unity will only render the brightest lights at per-pixel quality.  The actual number of pixel lights can be set in the [[class-QualitySettings|Quality Settings]] for webplayer and standalone build targets. 
+Lights have a big impact on rendering speed - therefore a tradeoff has to be made between lighting quality and game speed. Since pixel lights are much more expensive than vertex lights, Unity will only render the brightest lights at per-pixel quality.  The actual number of pixel lights can be set in the [[class-QualitySettings|Quality Settings]] for webplayer and standalone build targets. 
 
 You can explicitly control if a light should be rendered as a vertex or pixel light using the ``Render Mode`` property. By default Unity will classify the light automatically based on how much the object is affected by the light.
 
