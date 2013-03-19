@@ -1,23 +1,23 @@
 ! Shadows in Unity
 
 
-Unity Pro makes it possible to use real-time $$shadows$$ on any light. Objects can cast shadows onto each other and onto parts of themselves ("self shadowing"). All types of [[class-Light | Lights]] - Directional, Spot and Point - support shadows.
+Unity Pro makes it possible to use real-time $$shadows$$ on any light. Objects can cast shadows onto each other and onto parts of themselves ("self shadowing"). Directional, Spot and Point lights support shadows.
 
-Using shadows can be as simple as choosing ^^Hard Shadows^^ or ^^Soft Shadows^^ on a [[class-Light | Light]]. However, if you want optimal shadow quality and performance, there are some additional things to consider.
+Using shadows can be as simple as choosing $$Hard Shadows$$ or $$Soft Shadows$$ on a [[class-Light | Light]]. However, if you want optimal shadow quality and performance, there are some additional things to consider.
 
 The [[Shadow Troubleshooting]] page contains solutions to common shadowing problems.
 
-Curiously enough, the best shadows are non-realtime ones! Whenever your game level geometry and lighting is static, just precompute lightmaps in your 3D application. Computing shadows offline will always result in better quality and performance than displaying them in real time. ''Now onto the realtime ones...''
+Curiously enough, the best shadows are non-realtime ones! Whenever your game level geometry and lighting is static, just precompute [[Main.Lightmapping| lightmaps]] in Unity. Computing shadows offline will always result in better quality and performance than displaying them in real time. ''Now onto the realtime ones...''
 
 
 !! Tweaking shadow quality
 
 Unity uses so called [[http://en.wikipedia.org/wiki/Shadow_mapping | shadow maps]] to display shadows. Shadow mapping is a texture based approach, it's easiest to think of it as "shadow textures" projecting out from lights onto the scene. Thus much like regular texturing, quality of shadow mapping mostly depends on two factors:
 * The $$resolution$$ (size) of the shadow maps. The larger the shadow maps, the better the shadow quality.
-* The $$filtering$$ of the shadows. $$Hard shadows$$ take the nearest shadow map pixel. $$Soft shadows$$ average several shadow map pixels, resulting in smoother looking shadows (but soft shadows are more expensive to render).
+* The $$filtering$$ of the shadows. Hard shadows take the nearest shadow map pixel. Soft shadows average several shadow map pixels, resulting in smoother looking shadows. However, soft shadows are more expensive to render.
 
 Different ``Light`` types use different algorithms to calculate shadows.
-* For Directional lights, the crucial settings for shadow quality are ^^Shadow Distance^^ and ^^Shadow Cascades^^, found in [[class-QualitySettings | Quality Settings]]. ^^Shadow Resolution^^ is also taken into account, but the first thing to try to improve directional shadow quality is reducing shadow distance. All the details about directional light shadows can be found here: [[DirectionalShadowDetails | Directional Shadow Details]].
+* For Directional lights, the crucial settings for shadow quality are ^^Shadow Distance^^ and ^^Shadow Cascades^^, found in [[class-QualitySettings | Quality Settings]]. ^^Shadow Resolution^^ is also taken into account, but the first thing to try when improving directional shadow quality is to reduce shadow distance. All the details about directional light shadows can be found in [[DirectionalShadowDetails | Directional Shadow Details]].
 * For Spot and Point lights, ^^Shadow Resolution^^ determines shadow map size. Additionally, for lights that cover small area on the screen, smaller shadow map resolutions are used.
 
 Details on how shadow map sizes are computed are in [[Shadow Size Details]] page.
@@ -27,14 +27,14 @@ Details on how shadow map sizes are computed are in [[Shadow Size Details]] page
 
 Realtime shadows are quite performance hungry, so use them sparingly. For each light to render its shadows, first any potential shadow casters must be rendered into the shadow map, then all shadow receivers are rendered with the shadow map. This makes shadow casting lights even more expensive than $$Pixel lights$$, but hey, computers are getting faster as well!
 
-$$Soft shadows$$ are more expensive to render than $$Hard shadows$$. The cost is entirely on the graphics card though (it's only longer shaders), so Hard vs. Soft shadows don't make any impact on the CPU or memory.
+Soft shadows are more expensive to render than hard shadows. The cost is entirely on the graphics card though (it's only longer shaders), so hard vs. soft shadows don't make any impact on the CPU or memory.
 
 [[class-QualitySettings | Quality Settings]] contains a setting called ^^Shadow Distance^^ - this is how far from the camera shadows are drawn. Often it makes no sense to calculate and display shadows that are 500 meters away from the camera, so use as low shadow distance as possible for your game. This will help performance (and will improve quality of directional light shadows, see above).
 
 [[#hardware]]
 !! Hardware support for shadows
 
-Built-in shadows require a fragment program (pixel shader 2.0) capable graphics card. This is the list of supported cards:
+Built-in shadows require a fragment program (pixel shader 2.0) capable graphics card. The following cards are supported:
 * On Windows:
 ** ATI Radeon 9500 and up, Radeon X series, Radeon HD series.
 ** NVIDIA GeForce 6xxx, 7xxx, 8xxx, 9xxx, GeForce GT, GTX series.
@@ -55,4 +55,3 @@ Built-in shadows require a fragment program (pixel shader 2.0) capable graphics 
 * Vertex-lit lights don't have shadows.
 * Vertex-lit materials won't receive shadows (but do cast shadows).
 * Transparent objects don't cast or receive shadows. Transparent Cutout objects do cast and receive shadows.
-

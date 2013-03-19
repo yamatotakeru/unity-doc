@@ -3,11 +3,11 @@
 This page explains [[Shadows|shadows]] from $$Directional$$ lights in detail.
 
 
-__Note on Mobile platforms__: realtime shadows for directional lights __always__ use 1 shadow cascade, and are always "hard shadows".
+__Note__: on mobile platforms realtime shadows for directional lights __always__ use 1 shadow cascade and are $$Hard Shadows$$.
 
-Directional lights are mostly used as a key light - sunlight or moonlight - in an outdoor game. Viewing distances can be huge, especially in first and third person games, and shadows often require some tuning to get the best quality vs. performance balance for your situation.
+Directional lights are mostly used as a key light &ndash; sunlight or moonlight &ndash; in an outdoor game. Viewing distances can be huge, especially in first and third person games, and shadows often require some tuning to get the best quality vs. performance balance for your situation.
 
-Let's start out with a good looking shadow setup for a 3rd person game:
+Let's start out with a good looking shadow setup for a 3rd person perspective game:
 
 Attach:Shadow50-4hs.png\\
 ''Shadows here look pretty good!''
@@ -23,7 +23,7 @@ Chapters below dissect each aspect of directional light shadows:
 [[#hardvssoft]]
 !! Hard versus Soft shadows
 
-Using the same light setup, if we switch ``Shadow Type`` to ``Hard Shadows``, then the transition from lit to shadowed regions is "hard" - either something is 100% in shadow, or 100% lit. Hard shadows are faster to render but often they look less realistic.
+Using the same light setup, if we switch ``Shadow Type`` to Hard Shadows, then the transition from lit to shadowed regions is "hard" - either something is 100% in shadow, or 100% lit. Hard shadows are faster to render but often they look less realistic.
 
 Attach:Shadow50-4hh.png\\
 ''Hard shadows with distance of 50 and four cascades.''
@@ -34,7 +34,7 @@ Attach:Shadow50-4hh.png\\
 
 For Directional lights Unity can use so called $$Cascaded Shadow Maps$$ (alternatively called "Parallel Split Shadow Maps") which give very good shadow quality, especially for long viewing distances. Cascaded shadows work by dividing viewing area into progressively larger portions and using the same size shadow map on each. The result is that objects close to the viewer get more shadow map pixels than objects far away.
 
-In the images below we'll use Hard shadows because shadow pixels are better visible there.
+In the images below we'll use hard shadows because shadow pixels are better visible there.
 
 If no cascaded shadow maps were used, the entire shadow distance (still 50 units in our case) must be covered by the shadow texture uniformly. Hard shadows would look like this with no cascades:
 
@@ -86,4 +86,3 @@ Shadow maps with cascades scale with distance much better. For example, four cas
 
 Attach:Shadow300-4hs.png
 ''Soft shadows with distance of 300 and four cascades.''
-

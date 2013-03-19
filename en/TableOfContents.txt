@@ -159,7 +159,6 @@ This is "the structure" of the docs. Simply a nested bulleted list; to make a pa
 >><<
 >>bb10<<
 **[[bb10-gettingstarted]]
-*** [[bb10-sdksetup]]
 >><<
 >>metro<<
 **[[metro-gettingstarted]]

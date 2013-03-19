@@ -15,7 +15,7 @@ This page lists solutions to common [[Shadows | shadow]] problems.
 
 First, the [[class-MeshRenderer | Renderer]] has to have ``Receive Shadows`` on to have shadows on itself; and ``Cast Shadows`` on to cast shadows on other objects (both are on by default).
 
-Next, only opaque objects cast and receive shadows; that means if you use built-in [[shader-TransparentFamily | Transparent]] or Particle shaders then you'll get no shadows. In most cases it's possible to [[shader-TransparentCutoutFamily | Transparent Cutout]] shaders (for objects like fences, vegetation etc.). If you use custom written [[Shaders]], they have to be pixel-lit and use [[SL-SubshaderTags | Geometry render queue]]. Objects using ``VertexLit`` shaders do not receive shadows either (but can cast shadows just fine).
+Next, only opaque objects cast and receive shadows; that means if you use built-in [[shader-TransparentFamily | Transparent]] or Particle shaders then you'll get no shadows. In most cases it's possible to use [[shader-TransparentCutoutFamily | Transparent Cutout]] shaders (for objects like fences, vegetation etc.) instead. If you use custom written [[Shaders]], they have to be pixel-lit and use the [[SL-SubshaderTags | Geometry render queue]]. Objects using ``VertexLit`` shaders do not receive shadows either (but can cast shadows just fine).
 
 Finally, in [[RenderTech-ForwardRendering | Forward rendering path]], only the brightest directional light can cast shadows. If you want to have many shadow casting lights, you need to use [[RenderTech-DeferredLighting | Deferred Lighting]] rendering path.
 

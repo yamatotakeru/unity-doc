@@ -1,4 +1,4 @@
-Understanding the View Frustum
+!Understanding the View Frustum
 
 The word ``frustum`` refers to a solid shape that looks like a pyramid with the top cut off parallel to the base. This is the shape of the region that can be seen and rendered by a perspective camera. The following thought experiment should help to explain why this is the case.
 
