@@ -15,6 +15,6 @@
 
 最初に [[class-MeshRenderer | Renderer]] で ``Receive Shadows`` を有効にしないと自身にシャドウが投影されず、 ``Cast Shadows`` を有効にしないと他のオブジェクトにシャドウを投影しません（ともにデフォルトでは有効）。
 
-次に、不透明のオブジェクトのみがシャドウを投影します／されます。すなわち、ビルトインの [[shader-TransparentFamily | Transparent]] またはパーティクル シェーダを用いた場合シャドウは出来ません。ほとんどのケースでは [[shader-TransparentCutoutFamily | Transparent Cutout]] シェーダが利用可能です（フェンスや植生といったオブジェクト）。もしカスタムで書かれた [[Shaders]] を使用する場合、ピクセル ライティングで、かつ、[[SL-SubshaderTags | Geometry render queue]] を使用している必要があります。``頂点ライティング`` シェーダを使用しているオブジェクトは自身に影を投影されません（逆に他に投影することは出来ます）。
+次に、不透明のオブジェクトのみがシャドウを投影します／されます。すなわち、ビルトインの [[shader-TransparentFamily | Transparent]] またはパーティクル シェーダを用いた場合シャドウは出来ません。ほとんどのケースでは [[shader-TransparentCutoutFamily | 透明カットアウト]] シェーダが代わりに使用可能です（フェンスや植生といったオブジェクト）。もしカスタムで書かれた [[Shaders]] を使用する場合、ピクセル ライティングで、かつ、[[SL-SubshaderTags | Geometry Render Queue]] を使用している必要があります。``頂点ライティング`` シェーダを使用しているオブジェクトは自身に影を投影されません（逆に他に投影することは出来ます）。
 
 最後に、 [[RenderTech-ForwardRendering | Forward Rendering パス]] では、もっとも明るい方向性ライトのみがシャドウを投影できます。もし多くのライトによりシャドウを投影したい場合、 [[RenderTech-DeferredLighting | Deferred Lighting]] レンダリング パスを使用する必要があります。
