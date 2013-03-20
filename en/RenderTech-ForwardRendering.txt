@@ -7,7 +7,7 @@ Forward Rendering path renders each object in one or more passes, depending on l
 !! Implementation Details
 
 
-In Forward Rendering, some number of brightest lights that affect each object are rendered in fully per-pixel lit mode. Then, up to 4 point lights are calculated per-vertex. The other lights are computed as Spherical Harmonics (SH), which is much faster but is only an approximation. Whether a light will be per-pixel light or not is dependent on this:
+In Forward Rendering, some number of brightest lights that affect each object are rendered in fully per-pixel lit mode. Then, up to 4 point lights are calculated per-vertex. The other lights are computed as Spherical Harmonics (SH), which is much faster but is only an approximation. Whether a light will be a per-pixel light or not is dependent on this:
 * Lights that have their Render Mode set to $$Not Important$$ are always per-vertex or SH.
 * Brightest directional light is always per-pixel.
 * Lights that have their Render Mode set to $$Important$$ are always per-pixel.
@@ -43,6 +43,6 @@ Spherical Harmonics lights are ''very'' fast to render. They have a tiny cost on
 The downsides of SH lights are:
 * They are computed at object's vertices, not pixels. This means they do not support light Cookies or normal maps.
 * SH lighting is very low frequency. You can't have sharp lighting transitions with SH lights. They are also only affecting the diffuse lighting (too low frequency for specular highlights).
-* SH lighting is is not local; point or spot SH lights close to some surface will "look wrong".
+* SH lighting is not local; point or spot SH lights close to some surface will "look wrong".
 
 In summary, SH lights are often good enough for small dynamic objects.
