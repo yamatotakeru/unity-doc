@@ -1,39 +1,39 @@
-!Structure of an Unity XCode Project
+! Unity XCode プロジェクトの構成 / Structure of an Unity XCode Project
 
-When you build a project for the iOS platform Unity will create a folder that contains an XCode project. This project is required to compile and sign your app before deploying on devices, and it allows preparing and bundling your game for distribution on the App Store.
+iOS プラットフォームに向けてプロジェクトをビルドするとき、Unity は XCode プロジェクトを含むフォルダを作成します。このプロジェクトはコンパイルのため、およびデバイスに向けてアプリをデプロイするために署名するために必要であり、ゲームを App Store で配布するための準備およびバンドル化を可能にします。
 
 Attach:Unity-iPhone-Project-Folder.png
 
-Before building the iOS project make sure that you set the ^^Bundle Identifier^^ in ^^Player Settings^^. You may also choose the ^^SDK version^^ to run the game on the device or simulator.
+iOS プロジェクトをビルドする前に ^^Player Settings^^ で ^^Bundle Identifier^^ を設定していることを確認します。さらにゲームをデバイスまたはシミュレータで実行する際の  ^^SDK version^^ を選択します。
 
-!!Classes folder
+!! Classes フォルダ
 
-This contains code that integrates the Unity Runtime and Objective-C. The contained files @@main.mm@@ and @@AppController.mm@@ are the entry point of the application. Also the @@iPhone_Profiler.h@@ file defines a compiler conditional to enable the Internal Profiler. This is a folder for code that doesn't change often, and you can place your custom classes here. The changes to this folder are preserved between builds when the append mode is selected, but this function doesn't support multiple build targets and requires a fixed structure of the @@Libraries@@ folder.
+Unity ランタイム および Objective-C を統合するコードがここに格納されます。格納されるファイルである @@main.mm@@ および @@AppController.mm@@ がアプリケーションのエントリ ポイントです。さらに @@iPhone_Profiler.h@@ ファイルにより内部プロファイルを有効にする条件のコンパイラを定義します。このフォルダは頻繁に変更しないコードのためのフォルダであり、カスタムクラスをここに配置できます。append モードが選択されたとき、ビルド間でのこのフォルダに対する変更は保存されますが、この関数は複数のビルドターゲットはサポートせず、@@Libraries@@ フォルダの構造を固定する必要があります。
 
-The Internal Profiler is fast and unintrusive, and feeds basic information: which subsystem is taking most of the frame time, .NET heap size, GC event count/duration. See [[iphone-InternalProfiler | built-in profiler]] for further information.
+内部プロファイルは速く、干渉せず、また基本的な情報をフィードしてくれます。どのサブシステムがフレーム時間を多く消費しちえるか、.NET ヒープサイズ、ガーベージコレクション (GC) イベントの回数/長さなどの情報がフィードされます。詳細については [[iphone-InternalProfiler | ビルトイン プロファイラ]] を参照して下さい。
 
-!!Data folder
+!! Data フォルダ
 
-This contains the serialized game assets, and .NET assemblies (@@dll@@ files) as full code or metadata if stripping is on. The @@machine.config@@ file is the setup for various .NET services such as security, WebRequest, and more. The content of this folder is refreshed with each build, and you should not modify it.
+ここにはシリアライズされたゲームアセット、および .NET アセンブリ (@@dll@@ ファイル) をフルコードまたはストリッピングが有効のときはメタデータを格納しています。 @@machine.config@@ ファイルはセキュリティ、ウェブリクエスト、その他の様々な .NET サービスの設定です。
 
-!!Libraries folder
+!! Libraries フォルダ
 
-This contains the .NET assemblies translated into ARM assembler (@@s@@ files). The @@libiPhone-lib.a@@ file is the Unity Runtime static library, and @@RegisterMonoModules.cpp@@ binds Unity native code with .NET. The content of this folder is refreshed with each build, and you should not modify it.
+ここには ATM アセンブラ（@@s@@ files）に変換された .NET アセンブリが格納されます。 @@libiPhone-lib.a@@ ファイルは Unity ランタイム スタティック ライブラリであり、 @@RegisterMonoModules.cpp@@ が Unity のネイティブコードを .NET でバインドします。このフォルダのコンテンツは各ビルドごとにリフレッシュされ、修正すべきではありません
 
-!!Other newly created custom folders
+!! その他新たに作成されるカスタムフォルダ
 
-Your custom files can be placed here.
+自身のカスタムファイルはここに格納できます。
 
-!!Graphic files
+!! グラフィック ファイル
 
 These are icons and splash screens (@@png@@ files). These files are automatically managed by Unity. You can setup them in ^^Player Settings^^.
 
-!!Property List file
+!! プロパティ リスト ファイル
 
-The @@info.plist@@ is managed via ^^Player Settings^^ in Unity. With Unity 4.1 this file is updated, instead of being replaced. You should not modify it unless it is really needed.
+@@info.plist@@ は Unity の ^^Player Settings^^ を介して管理されます。Unity 4.1 よりこのファイルが上書きされるかわりに、更新されます。本当に必要なときを除いて修正すべきではありません。
 
-!!Other files
+!! その他のファイル
 
-These include the XCode Project file (@@xcodeproj@@ file), and framework links that are only shown in the ^^Project Navigator^^.
+これらには XCode プロジェクトファイル (@@xcodeproj@@ ファイル) 、および ^^Project Navigator^^ でのみ表示されるフレームワーク リンクが含まれます。
 
 Attach:Unity-iPhone-Project.png
