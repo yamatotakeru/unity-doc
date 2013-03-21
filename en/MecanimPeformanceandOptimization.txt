@@ -1,57 +1,47 @@
 !Mecanim Performance and Optimization
 
-!!If you attach elements to the bones of the player character (like weapons) , can this generate framerates issues, if we have lots of elements?
+!!Visibility and Updates
 
-When you have no animations playing on the additional bones, the cost should be negligible. Otherwise, you could expect to have a relative cost for each additional bones ( ie 15 additional bones on a rig that already has 30 bones, should be 50% longer to solve), in Generic mode. - ''Note that you can have additional bones in Generic and in Humanoid mode''
+It is recommended to optimize animations by setting the animators's ``Culling Mode`` to ``Based on Renderers``, and to disable the skinned mesh renderer's ``Update When Offscreen`` property. This way animations won't be updated when the character is not visible. See the [[class-SkinnedMeshRenderer | skinned mesh renderer]] for further information.
 
-!!How expensive is another layer in the animator? (synced/not synced)
+!!Amount of Bones
 
-Most of the time in Mecanim is evaluating animations. We kept the overhead for layer/stateMachine very minimal. So it really depends on what animations/blendTrees are played by the layer.
+In some cases you might need to create characters with a large amount of bones, for example when you want a lot of customizable attachments. These extra bones will slightly increase the size of the build, and you could expect to have a relative processing cost for each additional bone. In example 15 additional bones on a rig that already has 30 bones, should take 50% longer to solve, in Generic mode. Note that you can have additional bones in Generic and in Humanoid mode. When you have no animations playing on the additional bones the processing cost should be negligible. This cost will be even lower if their attachments are non existent or hidden.
 
-!!Does the layer cost when the weight of it is 0?
+!!Multiple Skinned Meshes
 
-Unity does not skip all computations, but does skip the most expensive ones
+Combine skinned meshes whenever is possible. Splitting a character into two skinned mesh renderers is a bad idea performance wise. It's better if your character has just one material, but in some cases you might require more materials.
 
-!!Does the animator use cpu even if a controller is not set to it?
+!!Controllers
 
-No, From version 4.1 onwards
+The animator doesn't use processing when a controller is not set to it.
 
-!!How can I optmised my Mecanim scene?
+!!Simple Animation
 
-There are many optimisations that can be made, some usefull tips include:
+Playing a single animation clip with no blending can make Mecanim slower than the legacy animation system. The old system is very direct, sampling the curve and directly writing into the transform. Mecanim has temporary buffers it uses for blending, and there is additional copying of the sampled curve and other data. The Mecanim layout is optimized for animation blending and more complex setups.
 
-Use hashes instead of strings to query the Animator
+!!Scale Curves
 
-* Implement a small AI layer to control the Animato. You can make it provide simple callbacks for OnStateChange, OnTransitionBegin etc...
-* Use 'State Tags' to easily match your AI StateMachine to the Mecanim StateMachine
-* Use additional curves to simulate Events
-* Use additional curves to markup your animations (for example in conjunction with MatchTarget : http://docs.unity3d.com/Documentation/Manual/TargetMatching.html)
+Don't use scale curves. Always double check there aren't scale curves that don't change any of the values. Make sure that there is not a single scale curve on any animation clip. You can write an asset post-procesor to remove or warn about them.
 
-!!Simple animation performance
+!!Layers
 
-It looks like right now, the Mecanim overhead when playing a single clip with no blending can make Mecanim slower than the old animation system. The old animation system is very direct, sampling the curve and directly writing into the transform. Mecanim has temporary buffers it uses for blending, so right now there is additional copying of data of the sampled curve data etc. For a single animationclip the old system performs pretty well I guess.
+Most of the time Mecanim is evaluating animations, but the overhead for layers and state machine processing is kept to the minimal. The cost of adding another layer to the animator, synchronized or not, depends on what animations and blend trees are played by the layer. When the weight of the layer is zero, the layer update will be skipped.
 
-The mecanim layout on the other hand is optimized for when you have animation blending & more complex setups.
+!!Humanoid vs. Generic Modes
 
-We'll take a look at optimizing Mecanim for the case of only a single animation playing.
+These tips will help you decide between these modes:
 
-!!Humanoid vs Generic performance
+*When you have IK pass enabled and Foot IK enabled on your animation states, you will get better performance with Generic Mecanim mode.
+*When you use Generic, using root motion is more expensive than not using root motion. So if your animations don't use root motion, make sure that you have no root bone selected.
+*On Android you will get worse performance since we don't do NEON there at the moment. Especially Humanoid mode is very math heavy so it can easily be 2-2.5x slower without NEON.
 
-IK pass enabled and you have Foot IK enabled on your animation states: You will get better performance with Generic mecanim mode.
+!!Mecanim Scene
 
-When you use Generic, using root motion is more expensive than not using root motion. So if your animations don't use root motion, make sure that you have no root bone selected.
+There are many optimisations that can be made, some useful tips include:
 
-On Android you will get worse performance right now since we don't do NEON there at the moment. Especially humanoid mode is very math heavy so can easily be 2-2.5x slower without neon. This explains the performance difference you are seeing ios / android. [randy: Apparently we're re-adding NEON support in a future release, so hopefully this will improve quite a bit on modern Android devices]
-
-!!Don't use scale curves
-
-Artists simply put scale curves that don't change any of the values. Always double check that this isn't happening. Make sure that there is not a single scale curve on any animationclip.
-
-Best write an assetpostprocesor to remove it or warn about it.
-
-!!Combine skinned meshes whenever possible
-
-Your character has two skinned mesh renderers with 3 material on each skinned mesh. Splitting a character into two skinned mesh renderers is a bad idea performance wise. Having one with more material is better.
-
-Best is having 1 material but most of the time 2 materials are necessary to make artists happy.
-
+*Use hashes instead of strings to query the Animator.
+*Implement a small AI layer to control the Animator. You can make it provide simple callbacks for OnStateChange, OnTransitionBegin, etc.
+*Use "State Tags" to easily match your AI StateMachine to the Mecanim StateMachine.
+*Use additional curves to simulate Events.
+*Use additional curves to markup your animations, for example in conjunction with [[TargetMatching | target matching]].

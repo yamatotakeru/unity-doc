@@ -22,12 +22,12 @@ The WWW class and sockets use the same policy schema but besides that they are c
 
 The Unity editor comes with an "Emulate Web Security" feature, that imposes the webplayer's security model.
 This makes it easy to detect problems from the comfort of the editor. You can find this setting in
-__Edit->Project Settings->Editor__.
+__Edit->Project Settings->Editor__.  See also the [[class-EditorManager | Editor settings]].
 
 
-!Implications for usage of the WWW class
+!Implications for use of the WWW class
 
-The Unity webplayer expects a http served policy file named "__crossdomain.xml__" to be available on the domain you want to access with the WWW class,
+The Unity webplayer expects a http served policy file named @@crossdomain.xml@@ to be available on the domain you want to access with the WWW class,
 (although this is not needed if it is the same domain that is hosting the unity3d file).
 
 For example, imagine a tetris game, hosted at the following url:
@@ -38,10 +38,10 @@ needs to access a highscore list from the following url:
 
 ''http://highscoreprovider.net/gethighscore.php''
 
-In this case, you would need to place a __crossdomain.xml__ file at the root of the ''highscoreprovider.net'' domain like this: ''http://highscoreprovider.net/crossdomain.xml''
+In this case, you would need to place a @@crossdomain.xml@@ file at the root of the ''highscoreprovider.net'' domain like this: ''http://highscoreprovider.net/crossdomain.xml''
 
-The contents of the __crossdomain.xml__ file are in the format used by the Flash player. It is very likely that you'll
-find the __crossdomain.xml__ file already in place. The policy in the file look like this:
+The contents of the @@crossdomain.xml@@ file are in the format used by the Flash player. It is very likely that you'll
+find the @@crossdomain.xml@@ file already in place. The policy in the file look like this:
 [@
 <?xml version="1.0"?>
 <cross-domain-policy>
@@ -51,11 +51,49 @@ find the __crossdomain.xml__ file already in place. The policy in the file look 
 When this file is placed at http://highscoreprovider.net/crossdomain.xml, the owner of that domain declares that
 the contents of the webserver may be accessed by any webplayer coming from any domain.
 
-The Unity webplayer does not support the @@<allow-http-request-headers-from domain>@@ and @@<site-control permitted-cross-domain-policies>@@ tags. Note that __crossdomain.xml__ should be an ASCII file.
+The Unity webplayer does not support the @@<allow-http-request-headers-from domain>@@ and @@<site-control permitted-cross-domain-policies>@@ tags. Note that @@crossdomain.xml@@ should be an ASCII file.
 
+!!Debugging
+Setting an environment variable @@ENABLE_CROSSDOMAIN_LOGGING@@ to @@1@@ will cause console messages to be generated as the Unity runtime fetches and decodes the @@crossdomain.xml@@ file.  On a Mac you can set global environment variables in @@/etc/launchd.conf@@.  On a PC use @@Control Panel->System And Security->System->Advanced system settings->Environment Variables...@@.
 
+Here is an example output with this environment variable set, when the webplayer attempts to fetch an image from a remote server:
 
-!Implications for usage of Sockets:
+[@Determining crossdomain.xml location for request: http://www.remoteserver.com/image.jpg
+About to parse url: http://www.remoteserver.com/image.jpg
+Determining crossdomain.xml location for request: http://www.remoteserver.com/image.jpg
+About to parse url: http://www.remoteserver.com/crossdomain.xml
+About to parse url: http://www.remoteserver.com/image.jpg
+Determining crossdomain.xml location for request: http://www.remoteserver.com/image.jpg
+Download had OK statuscode
+Received the following crossdomain.xml
+----------
+<?xml version="1.0"?>
+<cross-domain-policy>
+<allow-access-from domain="*"/>
+</cross-domain-policy>
+----------
+received policy
+Parsing: cross-domain-policy
+cross-domain-policy
+Parsing: allow-access-from
+allow-access-from
+  domain: *
+done parsing policy
+crossdomain.xml was succesfully parsed
+About to parse url: http://www.remoteserver.com/image.jpg
+Checking if http://www.remoteserver.com/image.jpg is a valid domain
+Checking request-host: www.remoteserver.com against valid domain: *
+All requirements met, the request is approved
+@]
+When running in the Editor these messages are written to the Editor.log.  Attempting to read a @@crossdomain.xml@@ file incorrectly stored as @@utf16@@ with a @@BOM@@ will result in a failure to parse the xml:
+[@BuildFlashPolicy caught an exception while parsing http://www.remoteserver.com/crossdomain.xml: Expected element
+@]
+This is because the @@BOM@@ is not expected.  Using an unsupported @@utf16@@ file with no @@BOM@@ will result in:
+[@BuildFlashPolicy caught an exception while parsing http://www.remoteserver.com/crossdomain.xml: Policy can't be constructed from empty stream.
+@]
+This is because the first byte in the file is zero, which causes the parser to think it's reached the end of the file.  @@Crossdomain.xml@@ must be an ASCII file.
+
+!Implications for use of Sockets:
 
 A Unity webplayer needs a socket served policy in order to connect to a particular host. This policy is by default hosted by the target host on port __843__ but it can be hosted on other ports as well. The functional difference with a non-default port is that it must be manually fetched with  [[ScriptRef:Security.PrefetchSocketPolicy.html|Security.PrefetchSocketPolicy()]]  API call and if it is hosted on a port higher than 1024 the policy can only give access to other ports higher than 1024.
 
@@ -92,7 +130,7 @@ Third party networking libraries, commonly used for multiplayer game networking,
 
 __Note:__ Whilst the @@crossdomain.xml@@ and socket policy files are both xml documents and are broadly similar, the way that these documents are served are very different.  @@Crossdomain.xml@@ (which applied to http requests) is fetched using http on port 80, where-as the socket policy is fetched from port 843 using a trivial server that implements the @@<policy-file-request/>@@.  You cannot use an http server to issue the socket policy file, nor set up a server that simply sends the socket policy file in response to a socket connection on port 843.  Note also that each server you connect to requires its own socket policy server.
 
-!!!Debugging
+!!Debugging
 
 You can use @@telnet@@ to connect to the socket policy server.  An example session is shown below:
 [@
@@ -112,7 +150,7 @@ In this example session, telnet is used to connect to the localhost on port 843.
 
 You __cannot__ create listening sockets in the webplayer, it cannot act as a server. Therefore webplayers cannot communicate with each other directly (peer 2 peer). When using TCP sockets you can only connect to remote endpoints provided it is allowed through the socket policy system. For UDP it works the same but the concept is a little bit different as it is a connectionless protocol, you don't have to connect/listen to send/receive packets. It works by enforcing that you can only receive packets from a server if he has responded first with a valid policy with the @@allow-access-from domain@@ tag.
 
-!!This is all just so annoying, why does all this stuff exist?
+!This is all just so annoying, why does all this stuff exist?
 
 The socket and WWW security features exist to protect people who install the Unity Web Player. Without these restrictions, an attack such as the following would be possible:
 
@@ -129,9 +167,12 @@ With the WWW and socket security features, this attack will fail, because before
 Unfortunately, in order to protect the people who install the Unity Web Player, people who develop in Unity need to take these security measures into account when developing content. The same restrictions are present in all major plugin technologies. (Flash, Silverlight, Shockwave)
 
 
-!! Exceptions
+! Exceptions
 
 In order to find the right balance between protecting Web Player users and making life of content developers easy, we have implemented an exception to the security mechanism described above:
 
-- You are allowed to download images from servers that do not have a crossdomain.xml file. However, the only thing you are allowed to do with these images is use them as textures in your scene. You are not allowed to use GetPixel() on them. You are also no longer allowed to read back from the screen. Both attempts will result in a SecurityException being thrown.
-The reasoning is here is that it's okay to download the image, as long as the content developer gets no access to it. So you can display it to the user, but you cannot send the bytes of the image back to some other server.
+You are allowed to download images from servers that do not have a crossdomain.xml file. However, the only thing you are allowed to do with these images is use them as textures in your scene. You are not allowed to use [[ScriptRef:Texture2D.GetPixel.html|GetPixel()]] on them. You are also not allowed to read back from the screen. Both attempts will result in a SecurityException being thrown:
+[@SecurityException: No read access to the texture data: 
+  at (wrapper managed-to-native) UnityEngine.Texture2D:GetPixel (int,int)
+@]
+The reasoning is here is that it's okay to download the image, as long as the content developer gets no access to it. So you can display it to the user, but you cannot send the bytes of the image back to some other server.  If you need access to the pixel data then place an @@crossdomain.xml@@ file on the server where the images are fetched from.

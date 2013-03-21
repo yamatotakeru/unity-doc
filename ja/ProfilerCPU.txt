@@ -17,3 +17,4 @@ Attach:ProfilerCPUSelected.png\\
 階層タイムデータの中で self time は特定の関数についてサブ関数を呼ぶ時間を除いた時間を示します。上記のスクリーンショットでは例えば時間の 51.2% がCamera.Render関数に時間を要しています。この関数は多くの作業を行って様々な描画およびカリングの関数をコールします。これらの関数を取り除くとCamera.Render関数に要した時間は0.8%のみです。
 
 
+The @@Others@@ section of the CPU profiler records the total of all areas that do not fall into Renderer, Scripts, Physics, Garbage Collection or VSync.  This includes Animation, AI, Audio, Particles, Networking, Loading, and PlayerLoop.

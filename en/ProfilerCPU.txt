@@ -16,3 +16,4 @@ Attach:ProfilerCPUSelected.png\\
 
 In the hierarchical time data the self time refers to the amount of time spent in a particular function not including the time spent calling sub-functions.  In the screenshot above, for example 51.2% of time is spent in the Camera.Render function.  This function does a lot of work and calls the various drawing and culling functions.  Excluding all these functions only 0.8% of time is spent actually in the Camera.Render function.
 
+The @@Others@@ section of the CPU profiler records the total of all areas that do not fall into Renderer, Scripts, Physics, Garbage Collection or VSync.  This includes Animation, AI, Audio, Particles, Networking, Loading, and PlayerLoop.
