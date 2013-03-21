@@ -74,7 +74,7 @@ __ライト:__
 
 ||PROPS
 ||``Use Lightmaps``||レンダリング中にライトマップを使用するかしないか。||
-||``Shadow Distance``||Auto ライトと Close By ライトマップが Far Away ライトマップにフェードアウトする距離。 この設定は QualitySettings.shadowDistance 設定をク項にしますが、上書きはしません。||
+||``Shadow Distance``||Auto ライトと Close By ライトマップが Far Away ライトマップにフェードアウトする距離。 この設定は QualitySettings.shadowDistance 設定をオーバーライドしますが、上書きはしません。||
 ||``Show Resolution``||シーン ビューのライトマップ解像度モードを切り替えます。これにより、スタティックとマーキングされたオブジェクトでライトマップのテクセルがどのように消費されるかをプレビューできます。||
 
 
